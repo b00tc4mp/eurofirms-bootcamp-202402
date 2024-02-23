@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="frame">
+        <div class="row1">
+          <div class="col0">
+            <div class="block z"></div>
+          </div>
+          <div class="col1">
+            <div class="block a"></div>
+            <div class="block b"></div>
+          </div>
+          <div class="col2">
+            <div class="block c"></div>
+          </div>
+        </div>
+        <div class="row2">
+          <div class="col0">
+            <div class="block y"></div>
+          </div>
+          <div class="col3">
+            <div class="block d"></div>
+          </div>
+          <div class="col4">
+            <div class="block e"></div>
+          </div>
+          <div class="col5">
+            <div class="block f"></div>
+            <div class="block g"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <style>
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        background: #f3f3f3;
+      }
+
+      .wrap {
+        height: 100%;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .frame {
+        display: flex;
+        flex-flow: row wrap;
+        margin: 0 auto;
+        box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.2);
+        background: #000;
+      }
+
+      .block {
+        display: flex;
+        color: #fff;
+      }
+
+      .row1 {
+        display: flex;
+        flex-flow: row wrap;
+        flex: 1 100%;
+        height: 240px;
+        padding: 0;
+      }
+
+      .row1 {
+        display: flex;
+        flex-flow: row wrap;
+        flex: 1 100%;
+        padding: 0;
+      }
+
+      .row2 {
+        display: flex;
+        flex-flow: row wrap;
+        flex: 1 100%;
+        padding: 2% 0 0;
+      }
+
+      .col1,
+      .col3 {
+        display: flex;
+        flex-flow: column wrap;
+        margin-right: 2%;
+      }
+
+      .col2 {
+        display: flex;
+        flex-flow: column wrap;
+      }
+
+      .col4 {
+        display: flex;
+        flex-flow: column wrap;
+        margin-right: 2%;
+      }
+
+      .col5 {
+        display: flex;
+        flex-flow: column wrap;
+      }
+
+      @media all and (min-width: 769px) {
+        .frame {
+          width: 50%;
+          max-width: 640px;
+        }
+        .row1 {
+          height: 140px;
+        }
+        .row2 {
+          height: 180px;
+        }
+        .col0 {
+          display: flex;
+          flex-flow: column wrap;
+          flex: 1 18%;
+          margin-right: 2%;
+        }
+        .col1,
+        .col3 {
+          flex: 1 50%;
+        }
+        .col2 {
+          flex: 1 28%;
+        }
+        .col4 {
+          flex: 1 13%;
+        }
+        .col5 {
+          flex: 1 13%;
+        }
+        .a {
+          flex: 1 30%;
+          background: #fff;
+          margin-bottom: 4%;
+        }
+        .b {
+          flex: 1 30%;
+          background: #fff;
+        }
+        .c {
+          flex: 1 100%;
+          background: #dd0100;
+        }
+        .d {
+          flex: 1 100%;
+          background: #225095;
+        }
+        .e {
+          flex: 1 100%;
+          background: #fff;
+        }
+        .f {
+          flex: 1 37%;
+          background: #fac901;
+          margin-bottom: 25%;
+        }
+        .g {
+          flex: 1 37%;
+          background: #fac901;
+        }
+        .z {
+          flex: 1 100%;
+          background: #e4f7f7;
+        }
+        .y {
+          flex: 1 100%;
+          background: #fff;
+        }
+      }
+
+      @media all and (max-width: 768px) {
+        .frame {
+          width: 80%;
+          max-width: 280px;
+        }
+        .row1 {
+          height: 220px;
+        }
+        .row2 {
+          height: 100px;
+        }
+        .col0 {
+          display: none;
+        }
+        .col1,
+        .col3 {
+          flex: 1 16%;
+        }
+        .col2 {
+          flex: 1 76%;
+        }
+        .col4 {
+          flex: 1 68%;
+        }
+        .col5 {
+          flex: 1 4%;
+        }
+        .a {
+          flex: 1 40%;
+          background: #fff;
+          margin-bottom: 20%;
+        }
+        .b {
+          flex: 1 40%;
+          background: #fff;
+        }
+        .c {
+          flex: 1 100%;
+          background: #dd0100;
+        }
+        .d {
+          flex: 1 100%;
+          background: #225095;
+        }
+        .e {
+          flex: 1 100%;
+          background: #fff;
+        }
+        .f {
+          flex: 1 35%;
+          background: #fff;
+          margin-bottom: 30%;
+        }
+        .g {
+          flex: 1 35%;
+          background: #fac901;
+        }
+      }
+    </style>
+  </body>
+</html>
