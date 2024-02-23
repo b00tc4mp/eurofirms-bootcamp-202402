@@ -1,3 +1,3 @@
 # Objects
 
-Standalone functions to work with iterable objects.
+Standalone functions that work with iterable objects.
