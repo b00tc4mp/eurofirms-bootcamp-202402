@@ -1,0 +1,34 @@
+body, html {
+    height: 100%;
+    margin: 0;
+  }
+  
+  .container {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(7, 1fr);
+    gap: 5px;
+  }
+  
+  .red {
+    background-color: red;
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+  
+  .blue {
+    background-color: blue;
+    grid-column: span 3;
+    grid-row: span 2;
+  }
+  
+  .yellow {
+    background-color: yellow;
+    grid-column: span 3;
+    grid-row: span 3;
+  }
+  
+  .white {
+    background-color: white;
+  }
+  

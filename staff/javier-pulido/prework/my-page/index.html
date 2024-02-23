@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediaMarkt</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/@heroicons/vue@1.0.4/dist/index.css" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" />
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+
+
+
+</head>
+
+
+<body>
+
+
+    <main>
+        <header class="main-header flex items-center justify-between">
+            <div class="mediamarkt-icon-container">
+                <img class="full-width" src="./Images/media_markt_logo.PNG" alt="PC components logo">
+            </div>
+            <div>
+
+                <form onsubmit="">
+
+                    <select id="category-select">
+                        <option selected value="all">Todas las categorias</option>
+                        <option value="reacondicioned">Reacondicionados</option>
+                    </select>
+                    <input type="text" id="search-input" placeholder="buscar">
+
+                    <!-- lupa de heroicons no funciona --> 
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                      </svg>
+                      
+
+                       
+            </div>
+
+
+            <button>buscar</button>
+            </form>
+            </div>
+
+
+            <div class="cart-account-container flex">
+                <a href="account">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                    </svg>
+                </a>
+
+
+                <button onclick=""></button>
+                <a href="shopping-cart">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
+                    </svg>
+                </a>
+            </div>
+        </header>
+
+
+        <div class="carousel-container">
+            <div class="carousel">
+                <div><img class="imagen-carousel" src="./Images/carousel1.PNG" alt="Imagen 1"></div>
+                <div><img class="imagen-carousel" src="./Images/Carousel2.PNG" alt="Imagen 2"></div>
+                <div><img class="imagen-carousel" src="./Images/Carousel3.PNG" alt="Imagen 3"></div>
+            </div>
+        </div>
+
+
+        <h4> <b>Categorias destacadas </b></h4>
+
+
+        <!-- CONTENEDOR DE CATEGORIAS -->
+        <div class="container-categories">
+
+            <div class="box">
+                <img class="box-imagen" src="./Images/categoria1.PNG">
+            </div>
+            <div class="box"> <img class="box-imagen" src="./Images/categoria2.PNG"></div>
+            <div class="box">
+                <img class="box-imagen" src="./Images/categoria3.PNG">
+            </div>
+            <div class="box"><img class="box-imagen" src="./Images/categoria4.PNG">
+            </div>
+            <div class="box"><img class="box-imagen" src="./Images/categoria5.PNG">
+            </div>
+            <div class="box"><img class="box-imagen" src="./Images/categoria6.PNG">
+            </div>
+
+        </div>
+        </div>
+        <!-- CONTENEDOR DE ARTICULOS CON BOTON BUSCAR -->
+        <h5><b>Tecno Lovers</b></h5>
+        <div class="container-articles">
+            <div class="tecno-lover">
+                <article class="article-container">
+                    <div class="product-image-container">
+                        <img class="image-tecno-lover" src="./Images/mediamarkt_buscar1.PNG" alt="monitor tuf gaming">
+                    </div>
+                    <div>
+                        <h3 class="product-title color-green">Móvil - Google Pixel 8, Obsidiana, 256 GB, 8 GB RAM, 6.2 "
+                            OLED Full HD+, Google Tensor G3, 4.575 mAh, Android</h3>
+                    
+                    <span>759,99€</span>
+                    <span>Envio gratis</span>
+                    <a href="https://www.mediamarkt.es/es/product/_tv-oled-55-lg-oled55b36la-uhd-4k-inteligente-a7-4k-gen6-smart-tv-dvb-t2-h265-negro-1550712.html">
+                        <button class="my-button">Ver producto</button>
+                      </a>
+                   
+                    </div>
+                </article>
+            </div>
+            <div class="tecno-lover">
+                <article class="article-container">
+                    <div class="product-image-container">
+                        <img class="image-tecno-lover" src="./Images/mediamarkt_buscar2.PNG" alt="monitor tuf gaming">
+                    </div>
+                    <div>
+                        <h3 class="product-title color-green">Portátil - Lenovo IdeaPad Slim 3 15IAH8, 15.6" FullHD,
+                            Intel® Core™ i5-12450H, 16GB RAM, 512GB SSD, UHD Graphics, Windows 11 Home, Gris</h3>
+                    
+                    <span>579,99€</span>
+                    <span>Envio gratis</span>
+                    <button class="my-button">Ver producto</button>
+                    </div>
+                </article>
+            </div>
+            <div class="tecno-lover">
+                <article class="article-container">
+                    <div class="product-image-container">
+                        <img class="image-tecno-lover" src="./Images/mediamarkt_buscar3.PNG" alt="monitor tuf gaming">
+                    </div>
+                    <div> 
+                        <h3 class="product-title color-green">TV OLED 55" - LG OLED55B36LA, OLED 4K, Inteligente α7 4K
+                            Gen6, Smart TV, DVB-T2 (H.265), Negro</h3>
+                    
+                    <span>1079,99€</span>
+                    <span>Envio gratis</span>
+                    <a href="https://www.mediamarkt.es/es/product/_tv-oled-55-lg-oled55b36la-uhd-4k-inteligente-a7-4k-gen6-smart-tv-dvb-t2-h265-negro-1550712.html">
+                        <button class="my-button">Ver producto</button>
+                      </a>
+                    </div>
+                </article>
+            </div>
+            <div class="tecno-lover">
+                <article class="article-container">
+                    <div class="product-image-container">
+                        <img class="image-tecno-lover" src="./Images/mediamarkt_buscar4.PNG" alt="monitor tuf gaming">
+                    </div>
+                    <div>
+                        <h3 class="product-title color-green">Lavadora carga frontal - Bosch WAN24200EP, serie 4, 9 kg,
+                            1200 rpm, 15 programas, Speed Perfect, Blanco</h3>
+                    
+                    <span>469,99€</span>
+                    <span>Envio gratis</span>
+                    <button class="my-button">Ver producto</button>
+                    </div>
+                </article>
+            </div>
+
+
+        </div>
+        <aside>
+
+        </aside>
+
+
+        FOOTER PIE DE PAGINA -->
+
+         <footer>
+            <div class="footer-container">
+                <div class="footer-section">
+                    <h3>Contacto :</h3>
+                    <p>Dirección: 123 Calle Principal, Ciudad, País</p>
+                    <p>Email: info@example.com</p>
+                    <p>Teléfono: +1234567890</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Enlaces útiles</h3>
+                    <ul>
+                        <li><a href="#">Acerca de nosotros</a></li>
+                        <li><a href="#">Términos de servicio</a></li>
+                        <li><a href="#">Política de privacidad</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Síguenos</h3>
+                    <ul>
+                        <li><a href="https://www.facebook.com">Facebook</a></li>
+                        <li><a href="https://twitter.com">Twitter</a></li>
+                        <li><a href="https://www.instagram.com"> Instagram</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2024 - Todos los derechos reservados</p>
+            </div>
+        </footer>
+    </main>
+
+
+
+    <script>
+        $(document).ready(function () {
+            $('.carousel').slick({
+                autoplay: true, // Autoplay activado
+                autoplaySpeed: 2000, // Velocidad de cambio de las imágenes (en milisegundos)
+                dots: true, // Muestra los indicadores de puntos
+                arrows: true // Muestra las flechas de navegación
+            });
+        });
+
+    </script>
+</body>
+
+</html>
