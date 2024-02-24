@@ -2,37 +2,60 @@
  * Merge elements from iterable object to another iterable object at specified index.
  */
 function mergeElements(object, index, objectToMerge) {
-    // TODO
-    var displacements = objectToMerge.length;
-    for(var i = 0; i<displacements; i++) {
-        
-    }
+  // TODO
+  var displacements = objectToMerge.length;
+  var topDisplacement = object.length + objectToMerge.length - 1;
+  // Displace elements
+  for (var i = object.length - 1; i >= index; i--) {
+    object[topDisplacement] = object[i];
+    topDisplacement--;
+  }
+
+  // Merge elements
+  for (var i = 0; i < objectToMerge.length; i++) {
+    object[index + i] = objectToMerge[i];
+  }
+  object.length += objectToMerge.length;
+
+  // Displace elements
+  //var cars = { 0: 'peugeot', 1: 'ford', 2: 'renault', 3: 'audi', 4: 'bmw', 5: 'mercedez', 6: 'bentley', 7: 'ferrari', length: 8 }
+  //var cars = { 0: 'peugeot', 1: 'ford', 2: 'renault', 3: 'audi', 4: 'bmw', 5: 'mercedez', 6: 'bentley', 7: 'ferrari', 10: 'ferrari', length: 8 }
+  //var cars = { 0: 'peugeot', 1: 'ford', 2: 'renault', 3: 'audi', 4: 'bmw', 5: 'mercedez', 6: 'bentley', 7: 'ferrari', 9: 'bentley', 10: 'ferrari', length: 8 }
+  //var cars = { 0: 'peugeot', 1: 'ford', 2: 'renault', 3: 'audi', 4: 'bmw', 5: 'mercedez', 6: 'bentley', 7: 'ferrari', 8: 'mercedez', 9: 'bentley', 10: 'ferrari', length: 8 }
+
+  // Merge elements
+  //var cars = { 0: 'peugeot', 1: 'ford', 2: 'renault', 3: 'audi', 4: 'bmw', 5: "citroen", 6: 'bentley', 7: 'ferrari', 8: 'mercedez', 9: 'bentley', 10: 'ferrari', length: 8 }
+  //var cars = { 0: 'peugeot', 1: 'ford', 2: 'renault', 3: 'audi', 4: 'bmw', 5: "citroen", 6: "volkswagen", 7: 'ferrari', 8: 'mercedez', 9: 'bentley', 10: 'ferrari', length: 8 }
+  //var cars = { 0: 'peugeot', 1: 'ford', 2: 'renault', 3: 'audi', 4: 'bmw', 5: "citroen", 6: "volkswagen", 7: 'seat', 8: 'mercedez', 9: 'bentley', 10: 'ferrari', length: 8 }
+
+  // Update length value
+  //var cars = { 0: 'peugeot', 1: 'ford', 2: 'renault', 3: 'audi', 4: 'bmw', 5: "citroen", 6: "volkswagen", 7: 'seat', 8: 'mercedez', 9: 'bentley', 10: 'ferrari', length: 11 }
 }
 
-console.log('CASE 1: inserts citroen, volkswagen and seat in cars at index 4')
+console.log("CASE 1: inserts citroen, volkswagen and seat in cars at index 4");
 
 var cars = {
-    0: 'peugeot',
-    1: 'ford',
-    2: 'renault',
-    3: 'audi',
-    4: 'bmw',
-    5: 'mercedez',
-    6: 'bentley',
-    7: 'ferrari',
-    length: 8
-}
+  0: "peugeot",
+  1: "ford",
+  2: "renault",
+  3: "audi",
+  4: "bmw",
+  5: "mercedez",
+  6: "bentley",
+  7: "ferrari",
+  length: 8,
+};
 
 var cars2 = {
-    0: 'citroen',
-    1: 'volkswagen',
-    2: 'seat',
-    length: 3
-}
+  0: "citroen",
+  1: "volkswagen",
+  2: "seat",
+  length: 3,
+};
 
-mergeElements(cars, 5, cars2)
+mergeElements(cars, 5, cars2);
 
-console.log(cars)
+console.log(cars);
 /*
 {
     0: 'peugeot',
@@ -51,7 +74,7 @@ console.log(cars)
 }
 */
 
-console.log(cars2)
+console.log(cars2);
 /*
 {
     0: 'citroen',
@@ -61,31 +84,30 @@ console.log(cars2)
 }
 */
 
-
-console.log('CASE 2: add 250, 260, 270, 280, 290 in nums at index 2')
+console.log("CASE 2: add 250, 260, 270, 280, 290 in nums at index 2");
 
 var nums = {
-    0: 100,
-    1: 200,
-    2: 300,
-    3: 400,
-    4: 500,
+  0: 100,
+  1: 200,
+  2: 300,
+  3: 400,
+  4: 500,
 
-    length: 5
-}
+  length: 5,
+};
 
 var nums2 = {
-    0: 250,
-    1: 260,
-    2: 270,
-    3: 280,
-    4: 290,
-    length: 5
-}
+  0: 250,
+  1: 260,
+  2: 270,
+  3: 280,
+  4: 290,
+  length: 5,
+};
 
-mergeElements(nums, 2, nums2)
+mergeElements(nums, 2, nums2);
 
-console.log(nums)
+console.log(nums);
 /*
 
     0: 100,
@@ -103,7 +125,7 @@ console.log(nums)
 }
 */
 
-console.log(nums2)
+console.log(nums2);
 /*
 {
     0: 250,
@@ -114,3 +136,4 @@ console.log(nums2)
     length: 5
 }
 */
+console.log("end");
