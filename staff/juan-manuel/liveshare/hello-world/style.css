@@ -1,0 +1,73 @@
+#oliwis {
+    background-color: #d32323;
+    border: solid 1px;
+}
+
+#oliwis2 {
+    background-color: #d4fbff;
+    border: solid 9px;
+    margin-top: 20px;
+    background: url(images/condustora.png);
+    background-repeat: no-repeat;
+    height: 340px;
+    background-attachment: fixed;
+}
+
+#oliwis3 {
+    background-color: black;
+    font-size: 100px;
+    border: solid;
+    height: 150px;
+    margin-top: 1%;
+}
+
+#oliwis4 {
+    background-color: rgb(255 195 0);
+    height: 40px;
+    width: 40px;
+    margin-left: 85%;
+    margin-top: 40px;
+    position: relative;
+}
+
+#oliwis5 {
+    background-color: rgb(255 195 0);
+    height: 40px;
+    width: 40px;
+    margin-left: 10%;
+    margin-top: -40px;
+    position: relative;
+}
+
+#oliwis6 {
+    background-color: rgb(0 0 0);
+    width: 80%;
+    height: 100px;
+    margin: auto;
+    margin-top: 5%;
+    margin-bottom: 3%;
+    border: solid;
+}
+
+#oliwis7 {
+    background-color: rgb(0 0 0);
+    width: 10%;
+    height: 100px;
+    margin-top: 0.5%;
+    border-radius: 25px;
+    position: relative;
+}
+
+#oliwis8 {
+    background-color: rgb(0 0 0);
+    width: 10%;
+    height: 100px;
+    border-radius: 25px;
+    position: relative;
+    left: 90%;
+    top: -100px;
+}
+
+#tamaño {
+    width: 80%;
+}
