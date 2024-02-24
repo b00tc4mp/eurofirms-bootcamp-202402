@@ -1,0 +1,71 @@
+body {
+    margin: 0;
+    overflow: hidden;
+}
+
+#game-container {
+    margin: 0%;
+    background: url("images/mcdonalds.jpg");
+    background-repeat: no-repeat;
+    height: 100vh;
+    background-size: 100%;
+}
+
+#character {
+    width: 80px;
+    height: 95px;
+    background: url("images/Yisus-Avatar.png");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: absolute;
+    z-index: 2;
+}
+
+.moneda {
+    width: 77px;
+    height: 70px;
+    background: url("images/Hamburguesa.png");
+    background-size: cover;
+    position: absolute;
+    z-index: 1;
+}
+
+#Ahorros {
+    position: relative;
+    font-size: 40px;
+    background-color: #00bdffde;
+    border-block: solid;
+    border-radius: 1px;
+    text-align: center;
+    display: flex;
+    margin-right: auto;
+    margin-left: auto;
+    justify-content: center;
+    width: 25%;
+}
+
+#Multas
+ {
+    position: relative;
+    font-size: 40px;
+    background-color: #ff1414bd;
+    border-block: solid;
+    border-radius: 1px;
+    text-align: center;
+    display: flex;
+    margin-right: auto;
+    margin-left: auto;
+    justify-content: center;
+    width: 25%;
+}
+
+.enemigo {
+ width: 104px;
+ height: 100px;
+ background: url("images/policia-h.gif");
+ background-size: cover;
+ position: absolute;
+ display: none;
+ z-index: 2;
+}
