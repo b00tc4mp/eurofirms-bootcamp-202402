@@ -2,11 +2,6 @@
  * Inserts an element in iterable object at specified index.
  */
 function insertElement(object, index, value) {
-    // TODO
-
-    // object -> { 0: 'peugeot', 1: 'ford', 2: 'renault', 3: 'audi', 4: 'bmw', 5: 'mercedez', 6: 'bentley', 7: 'ferrari', length: 8 }
-    // index -> 3
-    // value -> 'citroen'
 
     for (var i = object.length - 1; i >= index; i--) {
         var elem = object[i]
