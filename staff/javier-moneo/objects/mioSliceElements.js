@@ -1,4 +1,5 @@
 function slice(object, ini, end) {
+  // TODO: con esta versión faltan la lógica cuando ini y end son negativos
   var resultObject = { length: 0 };
 
   for (var i = 0; i < end - ini; i++) {
