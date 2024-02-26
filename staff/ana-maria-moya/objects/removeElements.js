@@ -3,7 +3,7 @@
  */
 function removeElements(object, index, count) {
     var deletedElemenets = { length: o }
-    for (var i = o; i < count; i++) {
+    for (var i = 0; i < count; i++) {
         deleted[i] = object[index]
         for (var j = index; j < object.length; i++) {
             object[i] = object[i + 1];
