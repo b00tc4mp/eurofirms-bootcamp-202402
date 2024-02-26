@@ -2,13 +2,7 @@
  * Adds elements to iterable object.
  */
 function addElements(object) {
-    for (var i = 1; i < arguments.length; i++) {
-        var elem = arguments[i]
-
-        object[object.length] = elem
-
-        object.length++
-    }
+   
 }
 
 

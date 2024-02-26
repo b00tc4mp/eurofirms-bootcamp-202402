@@ -25,10 +25,8 @@ function removeFirstElement(object) {
 
     object.length--
     // { 0: 'renault', 1: 'audi', 2: 'bmw', 3: 'mercedez', 4: 'bentley', 5: 'ferrari', length: 6 }
-
     return first
 }
-
 console.log('CASE 1: remove peugeot from cars')
 
 var cars = {
