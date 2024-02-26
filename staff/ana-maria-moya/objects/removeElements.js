@@ -2,12 +2,18 @@
  * Removes elements specified by index and count from iterable object and returns them.
  */
 function removeElements(object, index, count) {
-    for (var i = 0; i < count; i++) {
+    var deletedElemenets = { length: o }
+    for (var i = o; i < count; i++) {
         deleted[i] = object[index]
-        for (var i = index; i < object.length; i++) {
+        for (var j = index; j < object.length; i++) {
             object[i] = object[i + 1];
         }
+        object.length--
+        delete object[object.length]
     }
+    deletedElemenets.length = count
+    return deletedElements
+
 }
 
 console.log('CASE 1: remove at index 3, 2 elments from cars')
