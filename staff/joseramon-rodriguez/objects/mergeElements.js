@@ -4,18 +4,23 @@
 function mergeElements(object, index, objectToMerge) {
     //TODO
     //move properties to make space for the new ones
-    var elementsToInsert = cars2.length
+    var elementsToInsert = objectToMerge.length
     for (var i = 0; i < elementsToInsert; i++) {
-        var origin = cars.length - i
-
-
+        var origin = object.length - 1 - i
+        var destination = object.length - 1 + elementsToInsert - i
+        object[destination] = object[origin]
     }
     //{0: 'peugeot',1: 'ford',2: 'renault',3: 'audi,4: 'bmw',5: 'mercedez',6: 'bentley',7: 'ferrari',length:8}
-    //{0: 'peugeot',1: 'ford',2: 'renault',3: 'audi,4: 'bmw',5: 'mercedez',6: 'bentley',7: 'ferrari',10: 'ferrari',length:8}
+    //{0: 'peugeot',1: 'ford',2: 'renault',3: 'audi,4: 'bmw',5: 'mercedez',6: 'bentley',7: 'ferrari',10: 'ferrari',length:8} cars[10] = ferrari
     //{0: 'peugeot',1: 'ford',2: 'renault',3: 'audi,4: 'bmw',5: 'mercedez',6: 'bentley',7: 'ferrari',9: 'bentley,10: 'ferrari', length:8}
     //{0: 'peugeot',1: 'ford',2: 'renault',3: 'audi,4: 'bmw',5: 'mercedez',6: 'bentley',7: 'ferrari',9: 'bentley,10: 'ferrari', length:8}
     //{0: 'peugeot',1: 'ford',2: 'renault',3: 'audi,4: 'bmw',5: 'mercedez',6: 'bentley',7: 'ferrari',8:'mercedez, 9: 'bentley,10: 'ferrari', length:8}
     //add the new properties
+    for (var i = 0; i < elementsToInsert; i++) {
+        var origin = objectToMerge[i]
+        var destination = index + i
+        object[destination] = origin
+    }
     //{0: 'peugeot',1: 'ford',2: 'renault',3: 'audi,4: 'bmw',5: 'citroen',6: 'bentley',7: 'ferrari',8:'mercedez, 9: 'bentley,10: 'ferrari', length:8}
     //{0: 'peugeot',1: 'ford',2: 'renault',3: 'audi,4: 'bmw',5: 'citroen',6: 'volkswagen',7: 'ferrari',8:'mercedez, 9: 'bentley,10: 'ferrari', length:8}
     //{0: 'peugeot',1: 'ford',2: 'renault',3: 'audi,4: 'bmw',5: 'citroen',6: 'volkswagen',7: 'seat',8:'mercedez, 9: 'bentley,10: 'ferrari', length:8}
@@ -23,7 +28,7 @@ function mergeElements(object, index, objectToMerge) {
     //{0: 'peugeot',1: 'ford',2: 'renault',3: 'audi,4: 'bmw',5: 'citroen',6: 'volkswagen',7: 'seat',8:'mercedez, 9: 'bentley,10: 'ferrari', length:11}
 }
 
-console.log('CASE 1: inserts citroen, volkswagen and seat in cars at index 4')
+console.log('CASE 1: inserts citroen, volkswagen and seat in cars at index 5')
 
 var cars = {
     0: 'peugeot',
