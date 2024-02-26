@@ -1,0 +1,138 @@
+/* Orejas */
+.ear {
+    width: 16vw;
+    height: 16vw;
+    background-color: black;
+    border-radius: 50%;
+    position: absolute;
+    top: 4vw;
+    z-index: 1;
+  }
+  .left-ear {
+    left: 32vw;
+  }
+  .right-ear {
+    right: 32vw;
+  }
+  /* Cabeza */
+  .head {
+    width: 26vw;
+    height: 26vw;
+    background-color: black;
+    border-radius: 50%;
+    position: absolute;
+    top: 14vw;
+    z-index: 2; 
+    left: 38vw;
+  }
+  /* Parte inferior de la cabeza */
+  .chin {
+    width: 50vw;
+    height: 34vw;
+    background-color: white;
+    position: absolute;
+    top: 28vw;
+    border-radius: 60%;
+    z-index: 3; 
+    left: 26vw;
+  }
+  .head-front {
+    width: 25.5vw;
+    height: 25vw;
+    background-color: rgba(255, 0, 0, 0);
+    border-radius: 50%;
+    position: absolute;
+    top: 14vw;
+    z-index: 4; 
+    left: 37.6vw;
+    border: 0.7vw solid black;
+  }
+    /* espacio reservado para ojos */
+  .space {
+    width: 10vw;
+    height: 15vw;
+    background-color: white;
+    border-radius: 50%;
+    position: absolute;
+    z-index: 6; 
+  }
+  .eye-left {
+    top: 16vw;
+    left: 49vw;
+  }
+  .eye-right{
+    top: 16vw;
+    right: 49vw;
+  }
+   /* Ojos */
+  .eye {
+    width: 7vw;
+    height: 10vw;
+    border-radius: 50%;
+    position: absolute;
+    border: 0.3vw solid black;
+    z-index: 7; 
+  }
+  .left-eye {
+    top: 18vw;
+    left: 42.2vw;
+  }
+  .right-eye {
+    top: 18vw;
+    right: 42.2vw;
+  }
+   /* Pupilas */
+   .pupil {
+    width: 4vw;
+    height: 4vw;
+    background-color: black;
+    border-radius: 50%;
+    position: absolute;
+    top: 3.5vw;/* Posición inicial */
+    left: 1.4vw;/* Posición inicial */ 
+  }
+  
+    /* Nariz */
+    .nose {
+    width: 6.5vw;
+    height: 5vw;
+    background-color: black;
+    border-radius: 50%;
+    position: absolute;
+    top: 26vw;
+    left: 47vw;
+    z-index: 9; 
+  }
+    /* Boca */
+    .mouth {
+    width: 30vw;
+    height: 8vw;
+    position: absolute;
+    top: 27vw;
+    left: 34vw;
+    overflow: hidden;
+    border-radius: 0 20% 30% 50%;
+    z-index: 10; 
+  }
+  .mouth .smile {
+    width: 30vw;
+    height: 30vw;
+    border-bottom: 2px solid black;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 10; 
+  }
+      /* cuerpo */
+  .body {
+    width: 50vw;
+    height: 50vw;
+    background-color: rgb(178, 41, 41);
+    border-radius: 50%;
+    position: relative;
+    margin: 50px; /* Centra el cuerpo en la página */
+    left: 22vw;
+    top: 36.6vw;
+    z-index: 3; 
+  }
+  
