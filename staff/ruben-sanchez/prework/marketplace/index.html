@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="esp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marketplace</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main>
+        <form id="create-product-form" class="create-product-form" >
+            <div class="label-inputs-container">
+            <div class="label-container">
+            <label for="description">Despription:</label>
+            <label for="title">Product title: </label>
+            <label for="image">Product Image:</label>
+            <label for="image-alt">Product image-alt:</label>
+            <label for="price">Price:</label>
+            </div>
+            
+            <div class="inputs-container">
+            <input id="image" type="text">
+            <input  id="title" type="text">
+            <input id="image-alt" type="text">
+            <input id="description" type="text">
+            <input id="price" type="text">
+            </div>
+            </div>
+
+            <div>
+            <button class="Create-product-button">Create product</button>
+            </div>
+        </form>
+        <section class="products-container" id="products-container">
+            
+        </section>
+
+    </main>
+    <script src="validator.js"></script>
+    <script src="index.js"></script>
+    
+</body>
+</html>
