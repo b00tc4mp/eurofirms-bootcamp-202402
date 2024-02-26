@@ -15,7 +15,7 @@ function sliceElement(object) {
     } else {
         positionEnd = object.length
     }
-    //if any of the positions are numbers the positions are treated as 0 and the whole object will be copied
+    //if any of the positions are not numbers the positions are treated as 0 and the whole object will be copied
     //check if the positions are good to create a copy of the object.
     var indexStart = positionStart
     var indexEnd = positionEnd
@@ -40,7 +40,7 @@ function sliceElement(object) {
 
     }
     // if the positions conditions are good to go we can get the indexes of the object to create the copy
-    // negative values will get the index in reverse order positionEnd = -1 will be indexEnd = object.length - 1
+    // negative values will get the index in reverse order positionEnd = -1 will be indexEnd = object.length
     switch (positionEnd > 0) {
         case true:
             if (positionEnd >= object.length) { // if the end is equal or greater than  the object's length then we take the last property in order to copy the whole object
