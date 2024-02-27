@@ -1,23 +1,25 @@
 /**
  * Removes first element from iterable object and returns it.
  */
-function addElements(object, index,) {
-    newPositions = arguments.length - 2;
+function addElements(object, index) {
 
 
-    for (let i = index; i < newPositions; i++) {
-        object[i + newPositions] = object[i]
+
+    for (let i = index; i < arguments.length; i++) {
+        object[i + index] = object[i]
 
     }
 
-    for (let i = index; i < newPositions; i++) {
+    for (let i = index; i < arguments.length; i++) {
 
         object[i] = arguments[i];//Añadiendo los valores a coche
         length++;//Longitud aumentada del objeto
 
     }
-
-
+    i = index
+    object[i] = arguments[2]
+    console.log(arguments[2])
+    //object.length=cars.length+i
 
 
 }
