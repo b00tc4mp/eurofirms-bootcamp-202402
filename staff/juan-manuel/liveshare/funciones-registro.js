@@ -20,6 +20,16 @@ form.onsubmit = function (event) {
     var passwordInput = form.querySelector('#password')
     var password = passwordInput.value
 
+    if (password.length < 8)
+    throw new Error("La contraseña es muy corta")
+
+    for (var i = 0; i < users.length; i++) {
+        var user = users[i]
+
+        if (user.email === email)
+        throw new Error("El usuario ya existe")
+    }
+
     var user = {
         name: name,
         birthdate: birthdate,
@@ -29,4 +39,6 @@ form.onsubmit = function (event) {
     }
 
     users[users.length] = user
+
+    console.log("Usuario Registrado")
 }
