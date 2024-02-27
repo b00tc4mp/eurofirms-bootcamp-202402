@@ -68,19 +68,6 @@
             var passwordInput = form.querySelector('#password')
             var password = passwordInput.value
 
-            if (password.length < 8)
-                throw new Error('password too short')
-
-            // TODO check user exists (if already exists, then error)
-
-            for (var i = 0; i < users.length; i++) {
-                var user = users[i]
-
-                if (user.email === email)
-                    throw new Error('user already exists')
-            }
-
-
             var user = {
                 name: name,
                 birthdate: birthdate,
@@ -90,8 +77,6 @@
             }
 
             users[users.length] = user
-
-            console.log('user registered')
         }
     </script>
 </body>
