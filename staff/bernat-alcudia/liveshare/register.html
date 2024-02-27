@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+</head>
+
+<body>
+    <main class="main">
+        <form class="form" action="">
+            <label id="labelName" for="Name">Name</label>
+            <input id="inputName" type="text">
+            <label id="labelBirthdate" for="Birthdate">Birthdate</label>
+            <input id="inputBirthdate" type="date">
+            <label id="labelUsername" for="Username">Username</label>
+            <input id="inputUsername" type="text">
+            <label id="labelE-mail" for="E-mail">E-mail</label>
+            <input id="inputE-mail" type="text">
+            <label id="labelPassword" for="Password">Passsword</label>
+            <input id="inputPassword" type="text">
+            <button id="buttonSubmit" type="submit">
+                <Ri:a>Register</Ri:a>
+            </button>
+        </form>
+    </main>
+    <style>
+        .main {
+            padding-left: 20vw;
+            padding-right: 20vw;
+        }
+
+        .form {
+            display: flex;
+            flex-direction: column;
+        }
+    </style>
+
+    <script>
+        var users = []
+        var form = document.querySelector('.form')
+        form.onsubmit = function (event) {
+
+            var nameInput = form.querySelector('#inputName')
+            var name = nameInput.value
+
+            var birthdateInput = form.querySelector('#inputBirthdate')
+            var birthdate = birthdateInput.value
+
+            var usernameInput = form.querySelector('#inputUsername')
+            var username = usernameInput.value
+
+            var emailInput = form.querySelector('#inputE-mail')
+            var email = emailInput.value
+
+            var passwordInput = form.querySelector('#inputPassword')
+            var password = passwordInput.value
+
+
+            var users = {
+                name,
+                birthdate,
+                username,
+                email,
+                password
+            }
+            users[users.length] = users
+        }
+    </script>
+
+</body>
+
+</html>
