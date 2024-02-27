@@ -46,8 +46,6 @@
     </style>
 
     <script>
-        var users = []
-
         var form = document.querySelector('.form')
 
         form.onsubmit = function (event) {
@@ -56,27 +54,27 @@
             var nameInput = form.querySelector('#name')
             var name = nameInput.value
 
+            console.log('name', name)
+
             var birthdateInput = form.querySelector('#birthdate')
             var birthdate = birthdateInput.value
+
+            console.log('birthdate', birthdate)
 
             var usernameInput = form.querySelector('#username')
             var username = usernameInput.value
 
+            console.log('username', username)
+
             var emailInput = form.querySelector('#email')
             var email = emailInput.value
+
+            console.log('email', email)
 
             var passwordInput = form.querySelector('#password')
             var password = passwordInput.value
 
-            var user = {
-                name: name,
-                birthdate: birthdate,
-                username: username,
-                email: email,
-                password: password
-            }
-
-            users[users.length] = user
+            console.log('password', password)
         }
     </script>
 </body>
