@@ -17,7 +17,7 @@ var cars = {
     length: 8
 }
 
-var car = removeElement(cars, 2)
+
 
 console.log(car)
 // 'renault'
