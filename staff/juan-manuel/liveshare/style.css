@@ -1,0 +1,38 @@
+.ashe1{
+    background-color: rgb(174 218 255);
+    text-align: center;
+}
+
+.main {
+    padding-left: 20vw;
+    padding-right: 20vw;
+    background-color: aliceblue;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+.textos{
+    font-size: 30px;
+}
+
+#enviarboton{
+    height: 50px;
+    margin-top: 20px;
+    background-color: aqua;
+}
+
+.formulario {
+    height: 50px;
+    font-size: 30px;
+}
+
+#conectarboton{
+    border: solid;
+    background-color: cyan;
+    position: relative;
+    font-size: 50px;
+    left: 105%;
+}
