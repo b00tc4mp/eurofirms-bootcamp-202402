@@ -11,7 +11,7 @@ function mergeElements(object, index, objectToMerge) {
     //hacer bucle para mover las propiedades y elementos hacia delante
     //TODO
 
-    for (var i= object.length; i > index, index-- ){
+    for (var i= object.length; i > index; index-- ){
         object[i + objectToMerge.length] = object[i]
     }
     object[10] = object[7]
