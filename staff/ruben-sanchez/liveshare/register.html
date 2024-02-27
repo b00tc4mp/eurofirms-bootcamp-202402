@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <main class="main">
+    <form class="form" action="">
+        <label for="name">Name</label>
+        <input type="text" id="name" class="input">
+
+        <label for="birthdate">Birthdate</label>
+        <input type="date" name="" id="birthdate" class="input">
+
+        <label for="username">Username</label>
+        <input type="text" id="username" class="input">
+
+        <label for="email">E-mail</label>
+        <input type="text" id="e-mail" class="input">
+
+        <label for="password">Password</label>
+        <input type="password" id="password" class="input">
+
+        <button type="submit" class="button">Register</button>
+
+
+
+
+    </form>
+    <a href="">Login</a>
+</main>
+
+    <style>
+        .main {
+            padding: 6%;
+            color: violet;
+            background-color: black;
+
+
+        }
+        .button {
+            padding: 10px;
+            color: blue;
+            background-color: green;
+            margin-top: 20px;
+        }
+
+        .label {
+            color: red;
+            margin: 10px;
+        }
+
+
+        .form {
+            display: flex;
+            flex-direction: column;
+            color: grey;
+        }
+        .input { 
+            background-color: aquamarine;
+
+        }
+
+
+
+    </style>
+
+    <script>
+        var users = []
+        
+        var form = document.querySelector('.form')
+
+        form.onbusmit = function (event) {
+            event.preventDefault()
+
+            
+
+            var nameInput = form.querySelector('#name')
+            var name = nameInput.value
+
+           
+
+            var birthdateInput = form.querySlector('#birthdate')
+            var birthdate = birthdateInput.value
+
+           
+
+            var usernameInput = form.querySelector('#username')
+            var username = usernameInput.value
+
+           
+
+            var emilInput = form.querySelector('#email')
+            var email = emilInput.value
+
+         
+
+            var passwordInput = form.querySelector('#password')
+            var password = passwordInput.value
+
+           var user = {
+            name: name,
+            birthdate: birthdate,
+            username: username,
+            email: email,
+            password: password
+           }
+
+           users[users.length] = user
+
+        }
+
+    </script>
+
+
+
+</body>
+
+</html>
