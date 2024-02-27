@@ -56,13 +56,13 @@ function sliceElement(object) {
             //}
             break
         case false:
-            if (positionEnd === 0) {
-                break
-            }
+            // if (positionEnd === 0) {
+            //     break
+            // }
             if (positionEnd > -object.length) {
                 positionEnd = object.length + positionEnd
-            } else {
-                break// if the backwards end is greater than the object's length then the end is set to 0 //positionEnd is still 0 because we never modified it yet
+                // } else {
+                //     break// if the backwards end is greater than the object's length then the end is set to 0 //positionEnd is still 0 because we never modified it yet
             }
             break
     }
