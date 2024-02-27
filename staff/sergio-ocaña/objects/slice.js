@@ -1,19 +1,24 @@
 function slice(object, start, end) {
     var newobject = {};
-    if (start === undefined)
+    if (start === undefined) {
         start = 0
-    if (end === undefined)
+    }
+    if (end === undefined) {
         end = object.length
-    if (start < 0)
+    }
+    if (start < 0) {
         if (start *= -1 > object.length)
             start = 0
-        else start = object.length + start
-    if (end < 0)
+    } else { start = object.length + start }
+    if (end < 0) {
         end = object.length + end - 1
-    if (end > object.length)
+    }
+    if (end > object.length) {
         end = object.length - 1
-    if (start > object.length)
+    }
+    if (start > object.length) {
         return newobject
+    }
     for (i = 0; i + start < end; i++) {
         newobject[i] = object[start + i]
     }
