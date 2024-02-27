@@ -1,11 +1,7 @@
-function slice(object, start, end) {
+function slice(object, start = 0, end = object.length) {
     var newobject = {};
-    if (start === undefined)
-        start = 0
-    if (end === undefined)
-        end = object.length
     if (start < 0)
-        if (Math.abs(start) > object.length)
+        if (start *= -1 > object.length)
             start = 0
         else start = object.length + start
     if (end < 0)
