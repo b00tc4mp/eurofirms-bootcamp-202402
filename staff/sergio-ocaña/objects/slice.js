@@ -7,9 +7,11 @@ function slice(object, start, end) {
         end = object.length
     }
     if (start < 0) {
-        if (start *= -1 > object.length)
+        if (-start > object.length) {
             start = 0
-    } else { start = object.length + start }
+
+        } else { start = object.length + start }
+    }
     if (end < 0) {
         end = object.length + end - 1
     }
@@ -39,7 +41,7 @@ var animals = {
     9: "rat",
     length: 10
 }
-animals2 = slice(animals, 2, 6)
+var animals2 = slice(animals, 2, 6)
 console.log(animals2)
 
 var nums = {
