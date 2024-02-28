@@ -1,0 +1,2 @@
+//data layer
+var users = []
