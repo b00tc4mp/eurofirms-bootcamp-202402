@@ -22,6 +22,12 @@
     height: 50px;
     margin-top: 20px;
     background-color: aqua;
+    -webkit-transition:all .9s ease; /* Safari y Chrome */
+    -moz-transition:all .9s ease; /* Firefox */
+    -o-transition:all .9s ease; /* IE 9 */
+    -ms-transition:all .9s ease; /* Opera */
+    width:100%;
+    z-index: 10000;
 }
 
 .formulario {
@@ -33,6 +39,17 @@
     border: solid;
     background-color: cyan;
     position: relative;
-    font-size: 50px;
+    font-size: 33px;
     left: 105%;
+    top: 50px;
 }
+
+
+
+#enviarboton:hover{
+    -webkit-transform:scale(1.25);
+    -moz-transform:scale(1.25);
+    -ms-transform:scale(1.25);
+    -o-transform:scale(1.25);
+    transform:scale(1.25);
+    }
