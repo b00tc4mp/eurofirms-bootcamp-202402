@@ -62,15 +62,26 @@
 
             var passwordInput = form.querySelector('#password')
             var password = passwordInput.value
+            //conditions for the password to be correct -> minimun 8 characters
+            if (password.length < 8)
+                throw new Error('password too short')
 
-            var user = {                                //object to store the form data
+            //check if user already exist via email (if already exist, then throw error)
+            for (var i = 0; i < users.length; i++) {
+                var user = users[i]
+                if (user.email === email)
+                    throw new Error('user already exist')
+            }
+            //object to store the form data
+            var user = {
                 name: name,
                 birthdate: birthdate,
                 username: username,
                 email: email,
                 password: password
             }
-            users[users.length] = user                   //adds the new user into the storage of users -> users []
+            //adds the new user into the storage of users -> users []
+            users[users.length] = user
         }
     </script>
 </body>
