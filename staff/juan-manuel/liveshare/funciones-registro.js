@@ -3,6 +3,7 @@ var users = []
 var form = document.querySelector('.form')
 
 form.onsubmit = function (event) {
+
     event.preventDefault()
 
     var nameInput = form.querySelector('#name')
@@ -20,8 +21,47 @@ form.onsubmit = function (event) {
     var passwordInput = form.querySelector('#password')
     var password = passwordInput.value
 
+    try {
+
+    if (name.length < 1)
+    throw new Error("El nombre es muy corto")
+
+    var nameIsBlank = true
+
+    for (var i = 0; i < name.length && nameIsBlank; i++){
+        var char = name [i]
+
+        if (char !== " ")
+        nameIsBlank = false
+    }
+
+    for (var i = 0; i < password.length; i++) {
+        var char = password[i]
+
+        if (char === " ")
+        throw new Error("Password tiene espacio")
+    }
+
+    if (nameIsBlank)
+    throw new Error("nombre es blanco")
+    if(email.length < 6)
+    throw new Error("El email no es correcto")
+    if (!email.includes("@"))
+        throw new Error("Te has olvidado el @")
+    if (!email.includes("."))
+        throw new Error ("No has puesto el .")
+    if (email.indexOf(".") < email.indexOf("@"))
+        throw new Error ("email tiene . después de @")
+    if (email.indexOf(".") - email.indexOf("@") <2)
+        throw new Error("email tiene . después de @")
     if (password.length < 8)
-    throw new Error("La contraseña es muy corta")
+        throw new Error("password too short")
+    for (var i = 0; i < password.length; i++) {
+        var char = password [i]
+
+        if (char === " ")
+            throw new Error ("Password tiene un espacio.")
+    }
 
     for (var i = 0; i < users.length; i++) {
         var user = users[i]
@@ -41,4 +81,11 @@ form.onsubmit = function (event) {
     users[users.length] = user
 
     console.log("Usuario Registrado")
+
+    alert("usuario registrado")
+} catch (error) {
+    console.error(error.message)
+
+    alert(error.message)
+}
 }
