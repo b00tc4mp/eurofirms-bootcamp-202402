@@ -11,10 +11,12 @@ let pilotos = {
 
 function alReves(obj){
 
-    for(let i=0;i < obj.length;i++){
+    let iterations = Math.floor(obj.length / 2); //LLego hasta la mitad de longitud para ir cambiando el order
+    for(let i=0;i < iterations;i++){
 
         let temporal = obj[i];
-        obj[i] = obj[i + 1];
+        obj[i] = Math.floor(obj[obj.length - 1 - i]); //Te 
+        obj[obj.length - 1 - i] = temporal;ad
     }
 }
 
