@@ -1,3 +1,4 @@
+//function that will reverse the order of the properties of an iterable object
 function reverseElement(object) {
     //1st copy the object in order to reverse it
     var copy = { ...object }
