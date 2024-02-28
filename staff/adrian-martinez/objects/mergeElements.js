@@ -2,7 +2,7 @@
  * Merge elements from iterable object to another iterable object at specified index.
  */
 
-console.log('CASE 1: inserts citroen, volkswagen and seat in cars at index 4')
+console.log('CASE 1: inserts citroen, volkswagen and seat in cars at index 5')
 
 var cars = {
     0: 'peugeot',
@@ -27,10 +27,9 @@ function mergeElements(object, index, objectToMerge) {
 
     //Movemos los elementos del objecto
     for (let i = object.length-1; i >= index; i--){
-
         object[i + objectToMerge.length] = object[i];
     }
-    object.length ++;
+    //object.length ++;
     
     //Introducimos los elementos del objectToMerge en el primer objeto
     for(let i = 0;i < object.length;i++){
