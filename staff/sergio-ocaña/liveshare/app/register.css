@@ -1,0 +1,9 @@
+.main {
+    padding-left: 30vw;
+    padding-right: 30vw;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+}
