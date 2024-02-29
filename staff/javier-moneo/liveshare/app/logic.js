@@ -68,4 +68,6 @@ function registerUser(name, birthdate, username, email, password) {
   };
 
   users[users.length] = user;
+
+  localStorage.users = JSON.stringify(users);
 }
