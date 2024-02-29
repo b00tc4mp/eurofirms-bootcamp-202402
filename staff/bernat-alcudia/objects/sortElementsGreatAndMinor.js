@@ -13,10 +13,11 @@ function minorAndGreater(object) {
                 object[j] = object[j + 1]
                 greater = object[j]
             }
-            return object;
+
 
         }
     }
+    return object;
 }
 
 var cars = {
