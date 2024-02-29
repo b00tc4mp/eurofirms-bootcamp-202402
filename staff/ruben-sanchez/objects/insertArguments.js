@@ -33,5 +33,7 @@ function insertElement(object, index) {
     }
 
     return object
+
 }
+
 insertElement(cars, 2, 'honda', 'kawasaki', 'bmw')
