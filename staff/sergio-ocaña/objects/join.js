@@ -5,6 +5,7 @@ function join(object, value) {
         value = ','
     for (var i = 0; i < object.length; i++) {
         var string = object[i]
+
         if (i < object.length - 1)
             phrase = phrase + string + value
         else
