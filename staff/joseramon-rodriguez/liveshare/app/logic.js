@@ -85,3 +85,32 @@ function registerUser(name, birthdate, username, email, password) {
     //pull data into localStorage to not lose it
     localStorage.users = JSON.stringify(users)
 }
+
+function loginUser(username, password) { //function that logins the user if credentials are correct and validated
+    if (username.length < 3)// username has at least 3 characters
+        throw new Error('username is lower than 3 characters')
+
+    if (username.includes(' '))//username has no space characters
+        throw new Error('username has a space character')
+
+    if (password.length < 8)//password has at least 8 characters
+        throw new Error('password is lower than 8 characters')
+
+    var user
+
+    for (var i = 0; i < users.length; i++) { //look in users (localStorage for all registered users)
+        var user2 = users[i] //put aside the data of users on each iteration
+
+        if (user2.username === username) { //if the input username matches the name of an user in our users (localStorage) 
+            user = user2 //then take them aside
+
+            break
+        }
+    }
+
+    if (user === undefined) //if we didnt find any matches then user will be undefinded, that means user was not found ->error
+        throw new Error('user not found')
+
+    if (user.password !== password)//if the input password doesnt match the password inside our users (localStorage), that means password is wrong ->error
+        throw new Error('wrong password')
+}
