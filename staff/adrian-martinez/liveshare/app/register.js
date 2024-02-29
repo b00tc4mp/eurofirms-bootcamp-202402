@@ -1,5 +1,6 @@
 //Capa de presentación o vista
 var form = document.querySelector(".form");
+var anchor = document.querySelector("a");
 
 form.onsubmit = function (event){
             
@@ -29,6 +30,8 @@ form.onsubmit = function (event){
         console.log("USUARIO REGISTRADO");
         alert("USUARIO REGISTRADO");
         form.reset();
+
+        anchor.click(); //Para que reedirija a login automáticamente una registrado
     }
     catch(e){
 

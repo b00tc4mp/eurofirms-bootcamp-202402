@@ -79,11 +79,15 @@
 
         if(user.email == email){
 
+            throw new Error("Error. El correo ya existe");
+        }
+        if(user.usename == username){
+
             throw new Error("Error. El usuario ya existe");
         }
     }
 
-    const user ={
+    const user = {
         name: name,
         birthdate: birthdate,
         username: username,
@@ -92,4 +96,46 @@
     }
 
     users[users.length] = user;
+
+    //Hay que guardar el usuario en LocalStorage en formato JSON
+    localStorage.users = JSON.stringify(users);
+ }
+ function loginUser(username, password){
+
+    if(username.length < 3){
+
+        throw new Error("El usuario debe tener por lo menos 3 caracteres");
+    }
+    if(username.includes(" ")){
+
+        throw new Error("El usuario no debe tener espacios");
+    }
+    if(password.length < 8){
+
+        throw new Error("La contraseña debe tener por lo menos 8 caracteres");
+    }
+    if(password.includes(" ")){
+
+        throw new Error("La contraseña no debe tener espacios");
+    }
+    
+    var user;
+
+    for(let i=0;i < users.length;i++){
+
+        let userBuscado = users[i];
+        if(userBuscado.username == username){
+
+            user = userBuscado;
+            break;
+        }
+    }
+    if(user === undefined){
+
+        throw new Error("Usuario no encontrado");
+    }
+    if(user.password !== password){
+
+        throw new Error("Contraseña incorrecta");
+    }
  }
