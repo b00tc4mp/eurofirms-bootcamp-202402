@@ -3,7 +3,7 @@
 
 //presentation layer
 var form = document.querySelector('.form')  //grabs from de document the class -> form
-
+var anchor = document.querySelector('a')
 form.onsubmit = function (event) {
     event.preventDefault()
 
@@ -27,6 +27,8 @@ form.onsubmit = function (event) {
         registerUser(name, birthdate, username, email, password)
         console.log('user registered')
         alert('user registered')
+        form.reset()
+        anchor.click()
     } catch (error) {
         console.error(error.message)
         alert(error.message)
