@@ -3,4 +3,4 @@
 var users = []
 
 if (localStorage.users)
-    users = JSON.parte(localStorage.users)
+    users = JSON.parse(localStorage.users)
