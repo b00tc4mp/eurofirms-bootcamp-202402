@@ -15,7 +15,7 @@ function registerUser(name, birthdate, username, email, password) {
     if (birthdate.includes(' '))
         throw new Error('birthdate has a space character')
     if (birthdate.indexOf('-') !== 4 || birthdate.lastIndexOf('-') !== 7)
-        throw new error('birthdate´s dashes are not in correct position')
+        throw new error('birthdates dashes are not in correct position')
     // TODO check that birthdate has only 2 dashes
     // TODO check that birthdate has no alphabet characters (only numbers and 2 dashes)
     // TODO check that birthdate is equal or greater than 18 years old
@@ -57,4 +57,28 @@ function registerUser(name, birthdate, username, email, password) {
         password: password
     }
     users[users.length] = user
+    localStorage.users = JSON.stringify(users)
+}
+function loginUser(username, password) {
+    if (username.length < 3)
+        throw new Error('username is lower than 3 characters')
+    if (username.includes(' '))
+        throw new Error('username has a space character')
+    if (password.length < 8)
+        throw new Error('password is lower than 8 characters')
+    if (password.includes(' '))
+        throw new Error('password has a space character')
+
+    var user
+    for (var i = 0; i < users.length; i++) {
+        var user2 = users[i]
+        if (user2.username === username) {
+            user = user2
+            break
+        }
+    }
+    if (user === undefined)
+        throw new Error('user not found')
+    if (user.password !== password)
+        throw new Error('wrong password')
 }
