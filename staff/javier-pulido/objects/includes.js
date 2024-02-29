@@ -3,7 +3,7 @@ function includes (object, value, fromIndex = 0){
     
     for (var i = fromIndex; i < object.length ; i++){
 
-        if(object[1]=== value){
+        if(object[i]=== value){
 
             return true
         }
