@@ -1,8 +1,8 @@
-function registerUser(name, birthdate , username, email, password) {
+var form = document.querySelector('.form')
 
     form.onsubmit = function (event) {
         event.preventDefault()
-    }
+    
 
     var nameInput = form.querySelector('#name')
     var name = nameInput.value
