@@ -16,20 +16,22 @@ var num = {
 
  function bubble(object) {
 
-    for ( var i = 0; i < object.length -1; i ++ ) {
+    var elementMoved = true
 
-        if(object[i] > object[i +1] ) {
-            var element = object[i]
+    for (var i = 0; elementMoved; i++) {
+        elementMoved = false
+            for (var j= 0; j < object.length-1-i; j++) {
+                var element = object[j]
+                var nextElement = object[j+1]
 
-            object[i + 1 ] = object[i] 
-            
-            object[i] = element
+                if( element > nextElement) {
+                    object[j] = nextElement
+                    object[j+1] = element
+                    elementMoved = true
+                }
 
-            
-    
-        }
-        return object
+            }
+
     }
-
-
+ return object
  }
