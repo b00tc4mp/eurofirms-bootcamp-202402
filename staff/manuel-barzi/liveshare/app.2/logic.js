@@ -65,9 +65,6 @@ function registerUser(name, birthdate, username, email, password) {
     for (var i = 0; i < users.length; i++) {
         var user = users[i]
 
-        if (user.username === username)
-            throw new Error('user already exists')
-
         if (user.email === email)
             throw new Error('user already exists')
     }
@@ -81,6 +78,4 @@ function registerUser(name, birthdate, username, email, password) {
     }
 
     users[users.length] = user
-
-    localStorage.users = JSON.stringify(users)
 }

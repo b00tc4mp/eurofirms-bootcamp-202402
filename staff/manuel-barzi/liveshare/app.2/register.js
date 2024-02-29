@@ -1,7 +1,6 @@
 // presentation layer
 
 var form = document.querySelector('.form')
-var anchor = document.querySelector('a')
 
 form.onsubmit = function (event) {
     event.preventDefault()
@@ -29,8 +28,6 @@ form.onsubmit = function (event) {
         alert('user registered')
 
         form.reset()
-
-        anchor.click()
     } catch (error) {
         console.error(error.message)
 
