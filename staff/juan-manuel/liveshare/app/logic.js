@@ -107,3 +107,28 @@ function loginUser(username, password) {
     if (user.password !== password)
         throw new Error('Contraseña Errónea')
 }
+
+function retrieveUser(username) {
+    if (username.length < 3)
+        throw new Error('Nombre de usuario es más pequeño que 3 carácteres')
+
+    if (username.includes(' '))
+        throw new Error('Nombre de usuario tiene un espacio')
+
+    var user
+
+    for (var i = 0; i < users.length; i++) {
+        var user2 = users[i]
+
+        if (user2.username === sessionStorage.username) {
+            user = user2
+
+            break
+        }
+    }
+
+    if (user === undefined)
+        throw new Error('usuario no encontrado')
+
+    return user
+}
