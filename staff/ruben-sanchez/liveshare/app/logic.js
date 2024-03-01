@@ -107,8 +107,9 @@ function registerUser(name, birthdate, username, email, password) {
 
             if (user2.username === username) {
                 user = user2
+                
+                break
             }
-            break
         }
 
         if(user === undefined)
