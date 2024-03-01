@@ -8,9 +8,9 @@ function array(array, value) {
         }
 
 }
+//TODO add infinite bucle protection and change instanceof
 function join(object, value) {
-    var phrase = "'"
-
+    var phrase = ""
     if (value === undefined)
         value = ','
     for (var i = 0; i < object.length; i++) {
@@ -22,7 +22,7 @@ function join(object, value) {
         if (i < object.length - 1)
             phrase = phrase + string + value
         else
-            phrase = phrase + string + "'"
+            phrase = phrase + string
 
     }
     return phrase
@@ -48,5 +48,5 @@ var arrCaballero = {
     1: [1, [2, 22]],
     length: 2
 }
-var result = join(arrCaballero)
+var result = join(arrCaballero, ";")
 console.log(result)
