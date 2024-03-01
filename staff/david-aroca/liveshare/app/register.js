@@ -1,18 +1,19 @@
 // presentation layer
 
-var from = document.querySelector('.form')
+var form = document.querySelector('.form')
+var anchor = document.querySelector('a')
 
-from.onsubmit = function (event) {
+form.onsubmit = function (event) {
     event.preventDefault()
 
     var nameInput = form.querySelector('#name')
-    var name = nameInput()
+    var name = nameInput.value
 
     var birthdateInput = form.querySelector('#birthdate')
-    var birthdate = birthdateInput
+    var birthdate = birthdateInput.value
 
-    var usernameinPut = form.querySelector('#username')
-    var username = usernameinPut.value
+    var usernameInput = form.querySelector('#username')
+    var username = usernameInput.value
 
     var emailInput = form.querySelector('#email')
     var email = emailInput.value
@@ -20,15 +21,18 @@ from.onsubmit = function (event) {
     var passwordInput = form.querySelector('#password')
     var password = passwordInput.value
 
-
     try {
         registerUser(name, birthdate, username, email, password)
         console.log('user registered')
-        alert('user registered')
-        form.reset()
-    } catch {
-        console.error(error.mesage)
 
-        alert(error.mesage)
+        alert('user registered')
+
+        form.reset()
+
+        anchor.click()
+    } catch (error) {
+        console.error(error.message)
+
+        alert(error.message)
     }
 }
