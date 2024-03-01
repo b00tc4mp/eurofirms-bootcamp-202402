@@ -142,3 +142,32 @@ function loginUser(username, password) {
 
 }
 
+function retrieveUser(username) {
+    if (username.length < 3) {
+        throw new Error('username is lower than 3 characters')
+    }
+    if (username.includes(' ')) {
+        throw new Error('username has a space character')
+    }
+
+    var user
+
+    for (let i = 0; i < array.length; i++) {
+
+        var user2 = users[i]
+
+        if (user2.username === sessionStorage.username) {
+            user = user2
+
+            break
+
+        }
+    }
+
+    if (user === undefined) {
+        throw new Error('user not found')
+    }
+
+    return user
+}
+
