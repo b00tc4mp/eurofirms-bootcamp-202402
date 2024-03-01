@@ -10,6 +10,10 @@ Shows the status of the working directory
 
 Shows the branches in local git.
 
+# git branch (branch-name)
+
+Create a new branch
+
 # git checkout <another-branch>
 
 Changes to another branch.
@@ -38,6 +42,10 @@ Print working directory
 # ls
 
 List the files and directory
+
+# ls -a 
+
+List hidden files and directory 
 
 # node --inspect-brk <directory-structure>
 
