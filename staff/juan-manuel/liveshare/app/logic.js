@@ -72,4 +72,38 @@ function registerUser(name, birthdate, username, email, password) {
     }
 
     users[users.length] = user
+
+    localStorage.users = JSON.stringify(users)
+}
+
+function loginUser(username, password) {
+    if (username.length < 3)
+        throw new Error('El nombre de usuario tiene menos de 3 caracteres')
+
+    if (username.includes(' '))
+        throw new Error('El nombre de usuario tiene un carácter de espacio')
+
+    if (password.length < 8)
+        throw new Error('La contraseña tiene menos de 8 caracteres')
+
+    if (password.includes(' '))
+        throw new Error('La contraseña tiene carácter de espacio')
+
+    var user
+
+    for (var i = 0; i < users.length; i++) {
+        var user2 = users[i]
+
+        if (user2.username === username) {
+            user = user2
+
+            break
+        }
+    }
+
+    if (user === undefined)
+        throw new Error('Usuario no encontrado')
+
+    if (user.password !== password)
+        throw new Error('Contraseña Errónea')
 }
