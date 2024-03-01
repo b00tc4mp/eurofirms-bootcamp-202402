@@ -1,4 +1,4 @@
-function includes (object, value, fromIndex = 0){
+function includes (object, value, fromIndex = 0 ){
 
     
     for (var i = fromIndex; i < object.length ; i++){
@@ -36,7 +36,7 @@ var colors = {
 console.log('FUNCTION INCLUDES')
 
 // describimos el caso
-console.log('CASE 1: return true when search for red on the object')
+console.log('CASE 1: comprobe if exist the property red on the object')
 
 // guardamos el resultado en una variable
 var result = includes(colors, 'red')
@@ -46,14 +46,14 @@ console.log ({ result})
 
 // repetir pasos anteriores
 
-console.log('CASE 2: return false when search for green  on the object')
+console.log('CASE 2: comprobe if exist the property green  on the object')
 
 var result = includes(colors, 'green')
 
 console.log ({ result})
 
-console.log ('Case 3: return false when search for brown on the object')
+console.log ('Case 3:  comprobe if exist the property brown on the object')
 
-var result = includes(colors, brown, 5)
+var result = includes(colors, 'brown', 5)
 
 console.log ({result})

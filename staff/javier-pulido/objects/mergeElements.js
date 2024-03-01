@@ -14,15 +14,15 @@ function mergeElements(object, index, objectToMerge) {
     for (var i= object.length; i > index; index-- ){
         object[i + objectToMerge.length] = object[i]
     }
-    object[10] = object[7]
+    //object[10] = object[7]
      //#1 object { 0: 'peugeot',1: 'ford',2: 'renault',3: 'audi',4: 'bmw',5: 'mercedez',6: 'bentley',7: 'ferrari',10: 'ferrari'length: 8}
 
-    object[9] = object[6] 
+    //object[9] = object[6] 
 
     //#1 object { 0: 'peugeot',1: 'ford',2: 'renault',3: 'audi',4: 'bmw',5: 'mercedez',6: 'bentley',7: 'ferrari',9: 'bentley',10: 'ferrari'length: 8}
 
 
-    object[8] = object [5]
+    //object[8] = object [5]
 
      //#1 object { 0: 'peugeot',1: 'ford',2: 'renault',3: 'audi',4: 'bmw',5: 'mercedez',6: 'bentley',7:'ferrari' 8: 'mercedez'',9: 'bentley',10: 'ferrari'length: 8}
 
@@ -31,13 +31,13 @@ function mergeElements(object, index, objectToMerge) {
     
     //Hacer bucle  para machacar
     //TODO
-     object[5] = objectToMerge[0]
+     //object[5] = objectToMerge[0]
 
-     object[6] = objectToMerge[1]
+    //object[6] = objectToMerge[1]
 
-     object[7] = objectToMerge[2]
+     //object[7] = objectToMerge[2]
 
-     for (var i= 0; i < object.ToMerge.length; i++){
+     for (var i= 0; i < objectToMerge.length; i++){
         var mergeElement = objectToMerge[i]
          objectToMerge[index + i] =mergeElement
      }

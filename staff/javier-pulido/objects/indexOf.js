@@ -1,17 +1,18 @@
-function indexOf ( Object,searchElement, fromIndex ) {
+function indexOf ( Object,value, fromIndex ) {
 
     for ( var i = 0; i < Object.length; i++){
 
-        if (Object(searchElement[fromIndex])){
-        if ( object[1] === searchElement)
+      
+        if(object[i]=== value)
 
-            return true
-        }
+            return value
+        
+    
     }
 
-        return -1
-}
+    return -1
 
+}
 
 
 
@@ -34,8 +35,12 @@ var colors = {
 console.log('CASE 1 Retorna el primer indice en el que se puede encontrar black')
 
 var result = indexOf(colors, 'black')
-console.log (result)
 
 
+console.log ({ result})
 
-console.log ('CASE 2 Retorna ')
+
+console.log ('CASE 2 : Retorna -1 cuando no encuentra el elemento  ')
+
+var result = indexOf(colors, 'green')
+console.log ({ result})
