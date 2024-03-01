@@ -22,7 +22,7 @@ function registerUser(name, birthdate, username, email, password) {
     if (birthdate.includes(' '))
         throw new Error('birhdate has a space character')
 
-    if (birthdate.indexOf('-') !== 4 || birthdate - lastIndexOf('-') !== 7)
+    if (birthdate.indexOf('-') !== 4 || birthdate.lastIndexOf('-') !== 7)
         throw new Error('birthdate dashes are not in correct position')
 
     // TODO check that birthdate has only 2 dashes
