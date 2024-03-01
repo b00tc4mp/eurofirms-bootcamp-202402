@@ -1,12 +1,20 @@
 .ashe1{
     background-color: rgb(174 218 255);
     text-align: center;
+    border-radius: 20px 20px 1000px 1000px;
+    top: 7px;
+    position: relative;
 }
 
 .main {
-    padding-left: 20vw;
-    padding-right: 20vw;
     background-color: aliceblue;
+    position: absolute;
+    left: 20%;
+    right: 20%;
+    padding-left: 5%;
+    padding-right: 5%;
+    border-radius: 100px 100px 50px 50px;
+    height: 85%;
 }
 
 .form {
@@ -18,16 +26,17 @@
     font-size: 30px;
 }
 
-#enviarboton{
+#enviarboton {
     height: 50px;
     margin-top: 20px;
     background-color: aqua;
-    -webkit-transition:all .9s ease; /* Safari y Chrome */
-    -moz-transition:all .9s ease; /* Firefox */
-    -o-transition:all .9s ease; /* IE 9 */
-    -ms-transition:all .9s ease; /* Opera */
-    width:100%;
+    -webkit-transition: all .9s ease;
+    -moz-transition: all .9s ease;
+    -o-transition: all .9s ease;
+    -ms-transition: all .9s ease;
+    width: 90%;
     z-index: 10000;
+    align-self: center;
 }
 
 .formulario {
@@ -38,10 +47,13 @@
 #conectarboton{
     border: solid;
     background-color: cyan;
-    position: relative;
+    position: absolute;
     font-size: 33px;
     left: 105%;
     top: 50px;
+    width: 175px;
+    text-align: center;
+    height: 45px;
 }
 
 
