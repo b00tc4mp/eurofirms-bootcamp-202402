@@ -46,10 +46,13 @@ function registerUser(name, birthdate, username, email, password) {
     if (!email.includes('.'))
         throw new Error('email has no .')
 
-    if (email.lastIndesOf('.')< email.indexOf('@'))
-        throw new Error('email has . next to @')
+    if (email.lastIndexOf('.') < email.indexOf('@'))
+        throw new Error('email has . before @')
 
     if (email.lastIndexOf('.')- email.indexOf('@')< 2)
+        throw new Error('email has . next to @')
+
+    if(email.length-1-email.indexOf('.')<2)
         throw new Error('email has . next to @')
 
     if (email.includes(' '))
@@ -79,6 +82,39 @@ function registerUser(name, birthdate, username, email, password) {
 
     users[users.length] = user
 
+    localStorage.users = JSON.stringify(users)
+
 
     }
 
+    function loginUser(username, password) {
+        if (username.length < 3)
+            throw new Error('username is lower than 3 characters') 
+
+        if (username.includes(' '))
+            throw new Error('username has a space cahracter')
+
+        if (password.length < 8)
+            throw new Error('password is lower than 8 characters')
+
+        if (password.includes(' ')) 
+            throw new Error('password has space characater') 
+
+        var user
+
+        for (var i = 0; i < users.length; i++) {
+            var user2 = users[i]
+
+            if (user2.username === username) {
+                user = user2
+            }
+            break
+        }
+
+        if(user === undefined)
+            throw new Error('user not found')
+
+        if (user.password !== password)
+            throw new Error('wrong password')
+
+    }

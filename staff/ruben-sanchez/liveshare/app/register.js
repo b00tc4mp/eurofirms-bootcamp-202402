@@ -1,4 +1,5 @@
 var form = document.querySelector('.form')
+var anchor = document.querySelector('a')
 
     form.onsubmit = function (event) {
         event.preventDefault()
@@ -31,7 +32,7 @@ var form = document.querySelector('.form')
 
 
 
-
+        anchor.click()
     } catch (error) {
         console.error(error.message)
 
