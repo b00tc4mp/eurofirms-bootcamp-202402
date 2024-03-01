@@ -18,6 +18,8 @@ form.onsubmit = function (event) {
 
         console.log('user logged in')
 
+        alert('user logged in')
+
         form.reset()
 
         var loginAddress = location.href

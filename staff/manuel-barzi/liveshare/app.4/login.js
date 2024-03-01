@@ -14,17 +14,13 @@ form.onsubmit = function (event) {
     try {
         loginUser(username, password)
 
-        sessionStorage.username = username
-
         console.log('user logged in')
+
+        alert('user logged in')
 
         form.reset()
 
-        var loginAddress = location.href
-
-        var homeAddress = loginAddress.replace('login', 'home')
-
-        location.href = homeAddress
+        // TODO navigate to home
     } catch (error) {
         console.error(error.message)
 
