@@ -15,13 +15,15 @@ function alReves(obj){
     for(let i=0;i < iterations;i++){
 
         let temporal = obj[i];
-        obj[i] = Math.floor(obj[obj.length - 1 - i]); //Te 
-        obj[obj.length - 1 - i] = temporal;ad
+        obj[i] = obj[obj.length - 1 - i]; //Te 
+        obj[obj.length - 1 - i] = temporal;
     }
 }
 
 console.log(pilotos); 
+
 alReves(pilotos);
-console.log(pilotos)
+
+console.log(pilotos);
 
 
