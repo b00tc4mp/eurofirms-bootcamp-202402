@@ -1,4 +1,5 @@
 var form = document.querySelector('.form')
+var anchor = document.querySelector('a')
 
 form.onsubmit = function (event) {
     event.preventDefault()
@@ -21,11 +22,13 @@ form.onsubmit = function (event) {
     try {
         registerUser(name, birthdate, username, email, password)
 
-        console.log('user registered')
+        console.log('Usuario Registrado')
 
-        alert('user registered')
+        alert('Usuario Registrado')
 
         form.reset()
+
+        anchor.click()
     } catch (error) {
         console.error(error.message)
 
