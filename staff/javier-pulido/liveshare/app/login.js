@@ -20,6 +20,11 @@ form.onsubmit = function (event) {
 
         form.reset()
 
+        var loginAddress = location.href
+
+        var homeAddress = loginAddress.replace('login', 'home')
+
+        location.href = homeAddress
 
         //TODO navigate to home
     }   catch (error) {
