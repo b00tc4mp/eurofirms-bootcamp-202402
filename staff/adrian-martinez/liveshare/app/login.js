@@ -16,12 +16,18 @@ form.onsubmit = function (event){
     try{
         loginUser(username, password);
 
+        sessionStorage.username = username;
+
         console.log("Usuario logueado!");
         alert("Bienvenido "+ username);
 
-        form.reset();
 
-        //TODO navigate to home
+        let loginAddress = location.href;
+        let homeAddress = loginAddress.replace("login","home");
+
+        location.href = homeAddress;
+
+        form.reset();
     }
     catch(e){
 

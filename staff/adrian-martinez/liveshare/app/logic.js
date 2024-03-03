@@ -139,3 +139,32 @@
         throw new Error("Contraseña incorrecta");
     }
  }
+
+ function retrieveUser(username){
+
+    if(username.length < 3){
+
+        throw new Error("ERROR. El nombre de usuario debe tener más de 3 caracteres");
+    }
+    if(username.includes(" ")){
+
+        throw new Error("ERROR. El nombre de usuario no debe tener espacios");
+    }
+    
+    var user;
+
+    for(let i=0;i < users.length;i++){
+
+        var user2 = users[i];
+        if(user2.usename == sessionStorage.Storage.username){
+
+            user = user2;
+            break; //Si encuentra al usuario salimos del bucle.
+        }  
+    } 
+    if(user === undefined){
+
+        throw new Error("Usuario no encontrado");
+    }
+    return user;
+ }
