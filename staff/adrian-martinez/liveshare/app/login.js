@@ -2,7 +2,7 @@
 var form = document.querySelector(".form");
 
 form.onsubmit = function (event){
-            
+        
     event.preventDefault();
 
     //Cogemos el valor de los campos para pasárselo a la propiedad de un array de objetos de usuarios
