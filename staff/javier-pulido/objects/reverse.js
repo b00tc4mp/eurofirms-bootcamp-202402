@@ -25,4 +25,5 @@ function reverseArray (object, index){
 //Index -> {0: 'white', 1: 'Yellow', 2: 'Red', 3: 'black', 'length': 4}
 
 
+console.log ('CASE 1')
 console.log ('colors', colors)
