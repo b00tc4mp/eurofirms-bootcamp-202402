@@ -26,10 +26,14 @@
     font-size: 30px;
 }
 
+.registrarse{
+    font-size: 20px;
+}
+
 #enviarboton {
     height: 50px;
     margin-top: 20px;
-    background-color: aqua;
+    background-color: deepskyblue;
     -webkit-transition: all .9s ease;
     -moz-transition: all .9s ease;
     -o-transition: all .9s ease;
@@ -45,8 +49,7 @@
 }
 
 #conectarboton{
-    border: solid;
-    background-color: cyan;
+    background-color: deepskyblue;
     position: absolute;
     font-size: 33px;
     left: 105%;
@@ -54,6 +57,9 @@
     width: 175px;
     text-align: center;
     height: 45px;
+    color: #0070e0;
+    border: solid #000000;
+    border-radius: 100px 100px 100px 100px;
 }
 
 

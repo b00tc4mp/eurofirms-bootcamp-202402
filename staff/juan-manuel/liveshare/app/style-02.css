@@ -49,6 +49,7 @@
     -moz-transition: all 1.5s ease;
     -o-transition: all 1.5s ease;
     -ms-transition: all 1.5s ease;
+    font-size: 20px;
 }
 
 .submit:hover{
@@ -62,9 +63,13 @@
 .register {
     top: 65vh;
     position: absolute;
-    font-size: 40px;
-    background-color: #abffff;
+    font-size: 30px;
+    background-color: deepskyblue;
     width: 25vh;
     text-align: center;
     border-radius: 50px 50px 50px 50px;
+    left: 106%;
+    top: 108%;
+    color: #0051ff;
+    border: solid #000000;
 }
