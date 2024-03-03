@@ -132,7 +132,11 @@
     }
     if(user === undefined){
 
+<<<<<<< HEAD
         throw new Error("Usuario no encontrado");
+=======
+        throw new Error("Usuario no encontrado");m
+>>>>>>> 9940764e28896ea03814a7f2ed3004a10eaa0f50
     }
     if(user.password !== password){
 
