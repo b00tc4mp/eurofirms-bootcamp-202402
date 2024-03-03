@@ -9,12 +9,13 @@ form.onsubmit = function (event) {
     var password = passwordInput.value
     try {
         loginUser(username, password)
-
+        sessionStorage.username = username
         console.log('user logged in')
 
-        alert('user logged in')
+        var loginAddress = location.href
+        var homeAddress = loginAddress.replace('login', 'home')
+        location.href = homeAddress
 
-        form.reset()
     } catch (error) {
         console.error(error.message)
 
