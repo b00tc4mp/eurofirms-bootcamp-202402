@@ -1,7 +1,7 @@
 // presentation layer
 
 var title = document.querySelector('h1')
-var logoutButtion = document.querySelector('button')
+var logoutButton = document.querySelector('button')
 
 try {
     var user = retrieveUser(sessionStorage.username)

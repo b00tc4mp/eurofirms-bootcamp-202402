@@ -62,14 +62,18 @@ function registerUser(name, birthdate, username, email, password) {
     if (password.includes(' '))
         throw new Error('password has space character')
 
+        var users = JSON.parse(localStorage.users || '[]')
+
+
     for (var i = 0; i < users.length; i++) {
         var user = users[i]
 
-        if (user.email === email)
+        if (user.username === username || user.email === email)
             throw new Error('user already exists')
     }
 
     var user = {
+        id: parseInt(Math.random() *  1000000000000000000).toString(36),
         name: name,
         birthdate: birthdate,
         username: username,
@@ -97,6 +101,8 @@ function registerUser(name, birthdate, username, email, password) {
 
         var user
 
+        var users = JSON.parse(localStorage.users || '[]')
+
         for (var i = 0; i < users.length; i++) {
             var users2 = users[i]
 
@@ -113,29 +119,27 @@ function registerUser(name, birthdate, username, email, password) {
 
         if (user.password !== password)
             throw new Error('wrong password')
+
+            sessionStorage.userId = user.id
     }
 
-        function retrieveUser(username) {
-            if (username.length < 3)
-                throw new Error('username is lower than 3 characters')
-            
-            if (username.includes(' '))
-                throw new Error('username has a space character')
-
-            var user
-
-            for (var i = 0; i < users.length; i++) {
-                var user2 = users[i]
-
-                if (user2.username === sessionStorage.username) {
-                    user = user2
-
-                    break
-                }
+    function retrieveUser() {
+        var user
+    
+        var users = JSON.parse(localStorage.users || '[]')
+    
+        for (var i = 0; i < users.length; i++) {
+            var user2 = users[i]
+    
+            if (user2.id === sessionStorage.userId) {
+                user = user2
+    
+                break
             }
-
-            if (user === undefined)
-                throw new Error('user not found')
-
-            return user
         }
+    
+        if (user === undefined)
+            throw new Error('user not found')
+    
+        return user
+    }
