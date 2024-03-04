@@ -73,6 +73,9 @@
 
         throw new Error("Error. La contraseña no debe tener espacios");
     }
+
+    var users = JSON.parse(localStorage.users || "[]");
+
     for(let i=0;i < users.length;i++){
 
         let user = users[i];
@@ -87,7 +90,8 @@
         }
     }
 
-    const user = {
+    var user = {
+        id: parseInt(Math.random() * 10000000000000).toString(36),
         name: name,
         birthdate: birthdate,
         username: username,
@@ -121,10 +125,12 @@
     
     var user;
 
+    var users = JSON.parse(localStorage.users || "[]");
+
     for(let i=0;i < users.length;i++){
 
-        let userBuscado = users[i];
-        if(userBuscado.username == username){
+        var userBuscado = users[i];
+        if(userBuscado.username === username){
 
             user = userBuscado;
             break;
@@ -138,25 +144,18 @@
 
         throw new Error("Contraseña incorrecta");
     }
+    sessionStorage.userId = user.id; //Le añadimos un identificador único y complejo para darle más seguridad al perfil de usuario
  }
 
- function retrieveUser(username){
+ function retrieveUser(){
 
-    if(username.length < 3){
-
-        throw new Error("ERROR. El nombre de usuario debe tener más de 3 caracteres");
-    }
-    if(username.includes(" ")){
-
-        throw new Error("ERROR. El nombre de usuario no debe tener espacios");
-    }
-    
     var user;
+    var users = JSON.parse(localStorage.users || "[]");
 
-    for(let i=0;i < users.length;i++){
+    for(var i=0;i < users.length;i++){
 
         var user2 = users[i];
-        if(user2.username === username){
+        if(user2.id === sessionStorage.userId){
 
             user = user2;
             break; //Si encuentra al usuario salimos del bucle.
@@ -166,5 +165,6 @@
 
         throw new Error("Usuario no encontrado");
     }
+
     return user;
  }
