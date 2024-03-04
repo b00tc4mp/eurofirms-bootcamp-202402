@@ -61,13 +61,58 @@ function sortElements2(object) {
         //the last property of each object is the "string" meaning of the converted UTF-16 code units 
         definedPropertiesConverted[i] = newString
         definedPropertiesConverted.length++
-        //TODO sort ->compare the first code unit (X) of a string (STRING A) with the first code unit (Y) off the next string (STRING B)
-        // if X > Y then STRING A comes before STRING B
-        // if X === Y we compare the second code unit (X) of a string (STRING A) with the first code unit (Y) off the next string (STRING B)
-        // if if X > Y then STRING A comes before STRING B
+
     }
+    //sort ->compare the first code unit (X) of a string (STRING A) with the first code unit (Y) off the next string (STRING B)
+    // if X > Y then STRING A comes before STRING B
+    // if X === Y we compare the second code unit (X) of a string (STRING A) with the first code unit (Y) off the next string (STRING B)
+    // if if X > Y then STRING A comes before STRING B
     //then sort in ascending order
-    return
+    var somethingMoved = true
+    var checkUtf = true
+    for (var i = 0; somethingMoved && i < definedPropertiesConverted.length - 1; i++) {
+        somethingMoved = false
+
+        //we want to compare utf-16 code files a number of times equal to the shortest word ->numberOfIterations
+        var numberOfIterations
+        if (definedPropertiesConverted[i].length - 1 < definedPropertiesConverted[i + 1].length - 1)
+            numberOfIterations = definedPropertiesConverted[i].length - 1
+        if (definedPropertiesConverted[i + 1].length - 1 < definedPropertiesConverted[i].length - 1)
+            numberOfIterations = definedPropertiesConverted[i + 1].length - 1
+        if (definedPropertiesConverted[i].length - 1 === definedPropertiesConverted[i + 1].length - 1)
+            numberOfIterations = definedPropertiesConverted[i].length
+        checkUtf = true
+        for (var j = 0; checkUtf && j < numberOfIterations; j++) {
+            checkUtf = true
+            somethingMoved = true
+            if (definedPropertiesConverted[i][j] > definedPropertiesConverted[i + 1][j]) {
+                var objectToMove = definedPropertiesConverted[i]
+                definedPropertiesConverted[i] = definedPropertiesConverted[i + 1]
+                definedPropertiesConverted[i + 1] = objectToMove
+                somethingMoved = true
+                checkUtf = false
+            } else if (definedPropertiesConverted[i][j] < definedPropertiesConverted[i + 1][j]) {
+                checkUtf = false
+                somethingMoved = true
+            }
+        }
+    }
+    //now that we sorted by utf-16  code units we update our defined properties to match the order
+    for (var i = 0; i < definedProperties.length; i++) {
+        definedProperties[i] = definedPropertiesConverted[i][definedPropertiesConverted.length - 1]
+    }
+    //return the ordered properties by modifing the object
+    for (var i = 0; i < blankProperties.length; i++) {
+        object[i] = blankProperties[i]
+    }
+    for (var i = 0; i < definedProperties.length; i++) {
+        object[object.length - definedProperties.length - undefinedProperties.length + i] = definedPropertiesConverted[i][definedPropertiesConverted[i].length - 1]
+    }
+    for (var i = 0; i < undefinedProperties.length; i++) {
+        object[object.length - undefinedProperties.length + i] = undefinedProperties[i]
+    }
+
+    return object
 }
 
 
@@ -83,8 +128,8 @@ var items = {
     length: 7
 
 }
-var arrayItems = ['forks', undefined, 'spoons', ' ', undefined, 'knife', ' ']
 var itemsSorted = sortElements2(items)
 console.log('CASE 1 : sort items by utf-16 unicode comparison')
 console.log('expected result')
-console.log(arrayItems.sort())
+console.log(itemsSorted)
+console.log(items)
