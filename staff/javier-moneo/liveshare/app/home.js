@@ -4,7 +4,7 @@ var title = document.querySelector('h1');
 var logoutButton = document.querySelector('button');
 
 try {
-  var user = retrieveUser(sessionStorage.username);
+  var user = retrieveUser();
 
   title.innerText = 'Hello, ' + user.name + '!';
 } catch (error) {
