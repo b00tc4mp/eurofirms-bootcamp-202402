@@ -81,7 +81,7 @@
 
             throw new Error("Error. El correo ya existe");
         }
-        if(user.usename == username){
+        if(user.username == username){
 
             throw new Error("Error. El usuario ya existe");
         }
@@ -156,7 +156,7 @@
     for(let i=0;i < users.length;i++){
 
         var user2 = users[i];
-        if(user2.usename == sessionStorage.username){
+        if(user2.username === username){
 
             user = user2;
             break; //Si encuentra al usuario salimos del bucle.

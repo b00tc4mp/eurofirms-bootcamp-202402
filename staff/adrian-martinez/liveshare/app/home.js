@@ -1,26 +1,26 @@
-
-let title = document.querySelector("h1");
-let logoutButton = document.querySelector("button");
+debugger;
+var title = document.querySelector("h1");
+var logoutButton = document.querySelector("button");
 
 try{
-    let user = retrieveUser(sessionStorage.username);
+    var user = retrieveUser(sessionStorage.username);
 
     title.innerText = "Hello, "+ user.name +"!";
 }
 catch(e){
-    let homeAddress = location.href;
-    let loginAddress = homeAddress.replace("home", "login");
+    
+    var homeAddress = location.href;
+    var loginAddress = homeAddress.replace("home", "login");
 
     location.href = loginAddress;
-    alert(e.message);
 }
 
 logoutButton.onclick = function(){
 
     delete sessionStorage.username;
 
-    let homeAddress = location.href;
-    let loginAddress = homeAddress.replace("home", "login");
+    var homeAddress = location.href;
+    var loginAddress = homeAddress.replace("home", "login");
 
     location.href = loginAddress;
 }
