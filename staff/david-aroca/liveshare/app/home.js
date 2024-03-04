@@ -1,0 +1,27 @@
+// presentation layer 
+
+var title = document.querySelector('h1')
+
+try {
+    var user = retrieveUser(sessionStorage.username)
+
+    title.innerText = 'Hello,' + user.name + '!'
+}
+catch (error) {
+
+
+    var homeAddress = location.href
+    var loginAddress = homeAddress.replace('home', 'login')
+
+    location.href = loginAddress
+}
+
+logoutButton.onclick = function () {
+    delete sessionStorage.username
+
+    var homeAddress = location.href
+
+    var loginAddress = homeAddress.replace('home', 'login')
+
+    location.href = loginAddress
+}

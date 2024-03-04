@@ -114,4 +114,36 @@ function loginUser(username, password) {
         }
 
     }
+    if (user === undefined)
+        throw new Error('user not found')
+
+    if (user.password !== password)
+        throw new Error('wrong password')
+
+}
+
+function registerUser(username) {
+
+    if (username.length < 3)
+        throw new Error('username is lower than 3 characters')
+
+    if (username.includes(' '))
+        throw new Error('username has a space character')
+
+    var user
+
+    for (var i = 0; i < users.length; i++) {
+        var user2 = users[i]
+
+        if (user2.username === sessionStorage.username) {
+            user = user2
+
+            break
+        }
+    }
+
+    if (user === undefined)
+        throw new Error('user not found')
+
+    return user
 }
