@@ -113,12 +113,9 @@ function loginUser(username, password) { //function that logins the user if cred
 
     if (user.password !== password)//if the input password doesnt match the password inside our users (localStorage), that means password is wrong ->error
         throw new Error('wrong password')
+    sessionStorage.username = username
 }
-function retrieveUser(username) {
-    if (username.length < 3)
-        throw new Error('username is lower than 3 characters')
-    if (username.includes(' '))
-        throw new Error('username has a space character')
+function retrieveUser() {
     var user
 
     for (var i = 0; i < users.length; i++) {
