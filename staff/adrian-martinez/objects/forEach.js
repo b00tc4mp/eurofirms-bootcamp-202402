@@ -27,7 +27,20 @@ var users = {
     }
 }
     //Callback
-    var userNames = function(obj){
+    /* var userNames = function(obj){
 
         return users.name;
+    } */
+
+    var nums = {
+        0:5,
+        1:10,
+        2:20,
+        3:30,
+        length: 4
     }
+
+    forEach(nums, function(element) {
+
+        console.log(element * 10);
+    });
