@@ -156,7 +156,7 @@
     for(let i=0;i < users.length;i++){
 
         var user2 = users[i];
-        if(user2.usename == sessionStorage.Storage.username){
+        if(user2.usename == sessionStorage.username){
 
             user = user2;
             break; //Si encuentra al usuario salimos del bucle.

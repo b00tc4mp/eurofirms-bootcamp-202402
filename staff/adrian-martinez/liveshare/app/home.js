@@ -12,6 +12,7 @@ catch(e){
     let loginAddress = homeAddress.replace("home", "login");
 
     location.href = loginAddress;
+    alert(e.message);
 }
 
 logoutButton.onclick = function(){
