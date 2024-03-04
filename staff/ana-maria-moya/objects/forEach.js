@@ -1,15 +1,16 @@
 var callback = function (element) {
     console.log(element)
+}
 
     function forEach (object, callback) {
         for (var i = 0; i< object.length; i++)
             callback(object[i])
 
     }
-}
+
 
 forEach(colors, callback)
-
+ 
 
 
 var colors = {
