@@ -28,5 +28,6 @@ form.onsubmit = function (event) {
         location.href = homeAddress
     } catch (error) {
         console.error(error.message)
+        alert(error.message)
     }
 }
