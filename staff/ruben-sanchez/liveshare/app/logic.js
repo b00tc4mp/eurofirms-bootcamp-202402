@@ -1,15 +1,15 @@
 function registerUser(name, birthdate, username, email, password) {
 
-    if(name.length < 1)
+    if (name.length < 1)
         throw new Error('name is lower than 1 character')
 
 
-    var nameIsBlank = true 
+    var nameIsBlank = true
 
-    for(var i =0; i < name.length && nameIsBlank; i++) {
+    for (var i = 0; i < name.length && nameIsBlank; i++) {
         var char = name[i]
 
-        if ( char !== ' ' )
+        if (char !== ' ')
             nameIsBlank = false
 
     }
@@ -17,21 +17,21 @@ function registerUser(name, birthdate, username, email, password) {
     if (nameIsBlank)
         throw new Error('name is blank')
 
-    if (birthdate.length !== 10) 
+    if (birthdate.length !== 10)
         throw new Error('birthdate does not have 10 characters')
 
     if (birthdate.includes(' '))
         throw new Error('birthdate does not have 10 characters')
 
-    if (birthdate.indexOf('-') !== 4 || birthdate.lastIndexOf('-') !== 7 )
+    if (birthdate.indexOf('-') !== 4 || birthdate.lastIndexOf('-') !== 7)
         throw new Error('birthdate dashes are not in correct posisiton')
-     
+
     // TODO check that birthdate has only 2 dashes
     // TODO check that birthdate has no alphabet characters (only numbers and 2 dashes)
     // TODO check that birthdate is equal or greater than 18 years old
 
 
-    if (username.length < 3) 
+    if (username.length < 3)
         throw new Error('username is lower than 3 charcters')
 
     if (username.includes(' '))
@@ -49,22 +49,22 @@ function registerUser(name, birthdate, username, email, password) {
     if (email.lastIndexOf('.') < email.indexOf('@'))
         throw new Error('email has . before @')
 
-    if (email.lastIndexOf('.')- email.indexOf('@')< 2)
+    if (email.lastIndexOf('.') - email.indexOf('@') < 2)
         throw new Error('email has . next to @')
 
-    if(email.length-1-email.indexOf('.')<2)
+    if (email.length - 1 - email.indexOf('.') < 2)
         throw new Error('email has . next to @')
 
     if (email.includes(' '))
         throw new Error('email has space character')
 
-    if (password.length < 8) 
+    if (password.length < 8)
         throw new Error('password is lower than 8 characters')
 
     if (password.includes(' '))
         throw new Error('password has space characater')
 
-    for ( var i = 0; i < users.length; i++) {
+    for (var i = 0; i < users.length; i++) {
         var user = users[i]
 
         if (user.email === email)
@@ -85,37 +85,68 @@ function registerUser(name, birthdate, username, email, password) {
     localStorage.users = JSON.stringify(users)
 
 
-    }
+}
 
-    function loginUser(username, password) {
-        if (username.length < 3)
-            throw new Error('username is lower than 3 characters') 
+function loginUser(username, password) {
+    if (username.length < 3)
+        throw new Error('username is lower than 3 characters')
 
-        if (username.includes(' '))
-            throw new Error('username has a space cahracter')
+    if (username.includes(' '))
+        throw new Error('username has a space cahracter')
 
-        if (password.length < 8)
-            throw new Error('password is lower than 8 characters')
+    if (password.length < 8)
+        throw new Error('password is lower than 8 characters')
 
-        if (password.includes(' ')) 
-            throw new Error('password has space characater') 
+    if (password.includes(' '))
+        throw new Error('password has space characater')
 
-        var user
+    var user
 
-        for (var i = 0; i < users.length; i++) {
-            var user2 = users[i]
+    for (var i = 0; i < users.length; i++) {
+        var user2 = users[i]
 
-            if (user2.username === username) {
-                user = user2
-                
-                break
-            }
+        if (user2.username === username) {
+            user = user2
+
+            break
         }
-
-        if(user === undefined)
-            throw new Error('user not found')
-
-        if (user.password !== password)
-            throw new Error('wrong password')
-
     }
+
+    if (user === undefined)
+        throw new Error('user not found')
+
+    if (user.password !== password)
+        throw new Error('wrong password')
+
+}
+
+function retrieveUser(username) {
+
+    if (username.length < 3)
+        throw new Error('username is lower than 3 characters')
+
+    if (username.includes(' '))
+        throw new Error('username has a space character')
+
+
+    var user
+
+    for (var i = 0; i < users.length; i++) {
+        var user2 = users[i]
+
+        if (user2.username === sessionStorage.username) {
+            user = user2
+
+            break
+        }
+    }
+
+    if (user === undefined) {
+        throw new Error('user not found')
+
+       
+    }
+    return user
+
+}
+
