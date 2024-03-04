@@ -62,17 +62,17 @@ function registerUser(name, birthdate, username, email, password) {
     if (password.includes(' '))
         throw new Error('password has space character')
 
-    var users = JSON.parse(localStorage.users || '[]')
-
     for (var i = 0; i < users.length; i++) {
         var user = users[i]
 
-        if (user.username === username || user.email === email)
+        if (user.username === username)
+            throw new Error('user already exists')
+
+        if (user.email === email)
             throw new Error('user already exists')
     }
 
     var user = {
-        id: parseInt(Math.random() * 1000000000000000000).toString(36),
         name: name,
         birthdate: birthdate,
         username: username,
@@ -100,8 +100,6 @@ function loginUser(username, password) {
 
     var user
 
-    var users = JSON.parse(localStorage.users || '[]')
-
     for (var i = 0; i < users.length; i++) {
         var user2 = users[i]
 
@@ -117,19 +115,21 @@ function loginUser(username, password) {
 
     if (user.password !== password)
         throw new Error('wrong password')
-
-    sessionStorage.userId = user.id
 }
 
-function retrieveUser() {
-    var user
+function retrieveUser(username) {
+    if (username.length < 3)
+        throw new Error('username is lower than 3 characters')
 
-    var users = JSON.parse(localStorage.users || '[]')
+    if (username.includes(' '))
+        throw new Error('username has a space character')
+
+    var user
 
     for (var i = 0; i < users.length; i++) {
         var user2 = users[i]
 
-        if (user2.id === sessionStorage.userId) {
+        if (user2.username === username) {
             user = user2
 
             break

@@ -72,7 +72,6 @@ function registerUser(name, birthdate, username, email, password) {
     }
 
     var user = {
-        id: parseInt(Math.random() * 1000000000000000000).toString(36),
         name: name,
         birthdate: birthdate,
         username: username,
@@ -118,7 +117,7 @@ function loginUser(username, password) {
     if (user.password !== password)
         throw new Error('wrong password')
 
-    sessionStorage.userId = user.id
+    sessionStorage.username = username
 }
 
 function retrieveUser() {
@@ -129,7 +128,7 @@ function retrieveUser() {
     for (var i = 0; i < users.length; i++) {
         var user2 = users[i]
 
-        if (user2.id === sessionStorage.userId) {
+        if (user2.username === sessionStorage.username) {
             user = user2
 
             break

@@ -14,6 +14,8 @@ form.onsubmit = function (event) {
     try {
         loginUser(username, password)
 
+        sessionStorage.username = username
+
         console.log('user logged in')
 
         form.reset()
