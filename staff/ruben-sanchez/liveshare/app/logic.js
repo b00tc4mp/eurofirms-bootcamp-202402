@@ -72,6 +72,7 @@ function registerUser(name, birthdate, username, email, password) {
     }
 
     var user = {
+        id: pareseInt(Math.random()* 10^18).toString(36),
         name: name,
         birthdate: birthdate,
         username: username,
@@ -121,15 +122,15 @@ function loginUser(username, password) {
 }
 
 function retrieveUser(username) {
-
-    if (username.length < 3)
-        throw new Error('username is lower than 3 characters')
-
-    if (username.includes(' '))
-        throw new Error('username has a space character')
-
-
     var user
+
+    var user = JSON.parse(localStorage.users || '[]')
+
+
+    
+
+
+  
 
     for (var i = 0; i < users.length; i++) {
         var user2 = users[i]
