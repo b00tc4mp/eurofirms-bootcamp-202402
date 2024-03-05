@@ -63,17 +63,20 @@ function registerUser(name, birthdate, username, email, password) {
     //password cant contain space characters
     if (password.includes(' '))
         throw new Error('password has space characters')
+
+    var users = JSON.parse(localStorage.users || '[]')
+
+
     //check if user already exist via email (if already exist, then throw error)
     for (var i = 0; i < users.length; i++) {
         var user = users[i]
-        //check if username already exist via username (if already exist, then throw error)
-        if (user.username === username)
-            throw new Error('username already exist')
-        if (user.email === email)
+        //check if username already exist via username or email (if already exist, then throw error)
+        if (user.username === username || user.email === email)
             throw new Error('user already exist')
     }
     //object to store the form data
     var user = {
+        id: parseInt(Math.random() * 1000000000000000000).toString(36),
         name: name,
         birthdate: birthdate,
         username: username,
@@ -98,6 +101,8 @@ function loginUser(username, password) { //function that logins the user if cred
 
     var user
 
+    var users = JSON.parse(localStorage.users || '[]')
+
     for (var i = 0; i < users.length; i++) { //look in users (localStorage for all registered users)
         var user2 = users[i] //put aside the data of users on each iteration
 
@@ -113,15 +118,17 @@ function loginUser(username, password) { //function that logins the user if cred
 
     if (user.password !== password)//if the input password doesnt match the password inside our users (localStorage), that means password is wrong ->error
         throw new Error('wrong password')
-    sessionStorage.username = username
+    sessionStorage.id = user.id
 }
 function retrieveUser() {
     var user
 
+    var users = JSON.parse(localStorage.users || '[]')
+
     for (var i = 0; i < users.length; i++) {
         var user2 = users[i]
 
-        if (user2.username === sessionStorage.username) {
+        if (user2.id === sessionStorage.id) {
             user = user2
             break
         }
