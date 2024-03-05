@@ -64,6 +64,7 @@ function registerUser(name, birthdate, username, email, password) {
 
     var user = {
         name: name,
+        lastname: lastname,
         birthdate: birthdate,
         username: username,
         email: email,
