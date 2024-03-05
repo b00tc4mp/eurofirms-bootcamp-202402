@@ -2,9 +2,9 @@ var title = document.querySelector('h1')
 var logoutButton = document.querySelector('button')
 
 try {
-    var user = retrieveUser(sessionStorage.username)
+    var user = retrieveUser()
 
-    title.innerText = 'Hola, ' + user.name + '!'
+    title.innerText = 'Bienvenid@, ' + user.name + '!'
 } catch (error) {
     var homeAddress = location.href
 
@@ -14,7 +14,7 @@ try {
 }
 
 logoutButton.onclick = function () {
-    delete sessionStorage.username
+    logoutUser()
 
     var homeAddress = location.href
 

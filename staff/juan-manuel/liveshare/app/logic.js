@@ -70,10 +70,7 @@ function registerUser(name, birthdate, username, email, password) {
         email: email,
         password: password
     }
-
-    users[users.length] = user
-
-    localStorage.users = JSON.stringify(users)
+        insertUser(user)
 }
 
 function loginUser(username, password) {
@@ -81,54 +78,38 @@ function loginUser(username, password) {
         throw new Error('El nombre de usuario tiene menos de 3 caracteres')
 
     if (username.includes(' '))
-        throw new Error('El nombre de usuario tiene un carácter de espacio')
+        throw new Error('El nombre de usuario tiene espacio')
 
     if (password.length < 8)
-        throw new Error('La contraseña tiene menos de 8 caracteres')
+        throw new Error('Contraseña es más pequeña que 8 carácteres')
 
     if (password.includes(' '))
-        throw new Error('La contraseña tiene carácter de espacio')
+        throw new Error('Contraseña tiene espacio')
 
-    var user
-
-    for (var i = 0; i < users.length; i++) {
-        var user2 = users[i]
-
-        if (user2.username === username) {
-            user = user2
-
-            break
-        }
-    }
+    var user = findUser(function (user) {
+        return user.username === username
+    })
 
     if (user === undefined)
         throw new Error('Usuario no encontrado')
 
     if (user.password !== password)
-        throw new Error('Contraseña Errónea')
+        throw new Error('Contraseña errónea')
+
+    sessionStorage.userId = user.id
 }
 
-function retrieveUser(username) {
-    if (username.length < 3)
-        throw new Error('Nombre de usuario es más pequeño que 3 carácteres')
-
-    if (username.includes(' '))
-        throw new Error('Nombre de usuario tiene un espacio')
-
-    var user
-
-    for (var i = 0; i < users.length; i++) {
-        var user2 = users[i]
-
-        if (user2.username === sessionStorage.username) {
-            user = user2
-
-            break
-        }
-    }
+function retrieveUser() {
+    var user = findUser(function (user) {
+        return user.id === sessionStorage.userId
+    })
 
     if (user === undefined)
-        throw new Error('usuario no encontrado')
+        throw new Error('Usuario no encontrado')
 
     return user
+}
+
+function logoutUser() {
+    delete sessionStorage.userId
 }
