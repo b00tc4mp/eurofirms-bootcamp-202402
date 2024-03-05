@@ -7,9 +7,6 @@
  */
 
 
-
-
-
 function map(iterable, callback) {
     var mapped =  {length: 0}
 
@@ -29,7 +26,7 @@ function map(iterable, callback) {
 
 console.log('TEST map')
 
-console.log('CASE multiplu numbers by 2')
+console.log('CASE 1: multiply numbers by 2')
 
 var nums = {
     0: 1,
@@ -53,7 +50,7 @@ console.log(numsX2);
 }
 */
 
-console.log ('CASE map lower case to upper case')
+console.log ('CASE 2: map lower case to upper case')
 
 var names = {
     0: 'Mary',
@@ -79,7 +76,7 @@ console.log(namesInUppercase)
 }
 
 */ 
-console.log('CASE extract prices from cart')
+console.log('CASE 3: extract prices from cart')
 
 var cart = {
     0: { what: 'carrots', price: 1, quantity: 5 },
