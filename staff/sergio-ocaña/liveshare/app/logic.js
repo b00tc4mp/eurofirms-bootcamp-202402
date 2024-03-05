@@ -41,6 +41,8 @@ function registerUser(name, birthdate, username, email, password) {
         throw new Error('password is lower than 8 characters')
     if (password.includes(' '))
         throw new Error('password has a space character')
+
+    var users = JSON.parse(localStorage.users || '[]')
     for (var i = 0; i < users.length; i++) {
         var user = users[i]
         if (user.email === email)
@@ -50,6 +52,7 @@ function registerUser(name, birthdate, username, email, password) {
     }
 
     var user = {
+        id: parseInt(Math.random() * 1000000000000000000).toString(36),
         name: name,
         birthdate: birthdate,
         username: username,
@@ -69,6 +72,7 @@ function loginUser(username, password) {
     if (password.includes(' '))
         throw new Error('password has a space character')
 
+    var users = JSON.parse(localStorage.users || '[]')
     var user
     for (var i = 0; i < users.length; i++) {
         var user2 = users[i]
@@ -81,6 +85,7 @@ function loginUser(username, password) {
         throw new Error('user not found')
     if (user.password !== password)
         throw new Error('wrong password')
+    sessionStorage.userId = user.id
 }
 
 function retrieveUser(username) {
@@ -89,10 +94,10 @@ function retrieveUser(username) {
     if (username.includes(' '))
         throw new Error('username has a space character')
     var user
-
+    var users = JSON.parse(localStorage.users || '[]')
     for (var i = 0; i < users.length; i++) {
         var user2 = users[i]
-        if (user2.username === sessionStorage.username) {
+        if (user2.id === sessionStorage.userId) {
             user = user2
             break
         }
