@@ -1,5 +1,5 @@
 /**
- * 
+ * Loops on each value from iterable object.
  */
 function forEach(iterable, callback) {
     for (var i = 0; i < iterable.length; i++) {
@@ -8,6 +8,8 @@ function forEach(iterable, callback) {
         callback(element)
     }
 }
+
+console.log('TEST forEach')
 
 console.log('CASE 1: iterate on nums to show each one multiplied in the console')
 
