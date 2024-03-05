@@ -64,29 +64,23 @@ function registerUser(name, birthdate, username, email, password) {
     if (password.includes(' '))
         throw new Error('password has space characters')
 
-    var users = JSON.parse(localStorage.users || '[]')
-
-
     //check if user already exist via email (if already exist, then throw error)
-    for (var i = 0; i < users.length; i++) {
-        var user = users[i]
-        //check if username already exist via username or email (if already exist, then throw error)
-        if (user.username === username || user.email === email)
-            throw new Error('user already exist')
-    }
+    var user = findUser(function (user) {
+        return user.username === username || user.email === email
+    })
+
+    if (user !== undefined)
+        throw new Error('user already exists')
     //object to store the form data
     var user = {
-        id: parseInt(Math.random() * 1000000000000000000).toString(36),
         name: name,
         birthdate: birthdate,
         username: username,
         email: email,
         password: password
     }
-    //adds the new user into the storage of users -> users []
-    users[users.length] = user
-    //pull data into localStorage to not lose it
-    localStorage.users = JSON.stringify(users)
+    insertUser(user)
+
 }
 
 function loginUser(username, password) { //function that logins the user if credentials are correct and validated
@@ -99,42 +93,27 @@ function loginUser(username, password) { //function that logins the user if cred
     if (password.length < 8)//password has at least 8 characters
         throw new Error('password is lower than 8 characters')
 
-    var user
-
-    var users = JSON.parse(localStorage.users || '[]')
-
-    for (var i = 0; i < users.length; i++) { //look in users (localStorage for all registered users)
-        var user2 = users[i] //put aside the data of users on each iteration
-
-        if (user2.username === username) { //if the input username matches the name of an user in our users (localStorage) 
-            user = user2 //then take them aside
-
-            break
-        }
-    }
+    var user = findUser(function (user) {
+        return user.username === username
+    })
 
     if (user === undefined) //if we didnt find any matches then user will be undefinded, that means user was not found ->error
         throw new Error('user not found')
 
     if (user.password !== password)//if the input password doesnt match the password inside our users (localStorage), that means password is wrong ->error
         throw new Error('wrong password')
-    sessionStorage.id = user.id
+    sessionStorage.userId = user.id
 }
 function retrieveUser() {
-    var user
-
-    var users = JSON.parse(localStorage.users || '[]')
-
-    for (var i = 0; i < users.length; i++) {
-        var user2 = users[i]
-
-        if (user2.id === sessionStorage.id) {
-            user = user2
-            break
-        }
-    }
+    var user = findUser(function (user) {
+        return user.id === sessionStorage.userId
+    })
     if (user === undefined)
         throw new Error('user not found')
 
     return user
+}
+
+function logoutUser() {
+    delete sessionStorage.userId
 }
