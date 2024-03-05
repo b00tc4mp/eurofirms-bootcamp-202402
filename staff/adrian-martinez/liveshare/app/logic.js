@@ -74,9 +74,16 @@
         throw new Error("Error. La contraseña no debe tener espacios");
     }
 
-    var users = JSON.parse(localStorage.users || "[]");
+    //var users = JSON.parse(localStorage.users || "[]");
+    var user = findUser(function(user){
 
-    for(let i=0;i < users.length;i++){
+        return user.username === username || user.email === email;
+    })
+    if(user !== undefined){
+
+        throw new Error("El usuario ya existe");
+    }
+    /* for(let i=0;i < users.length;i++){
 
         let user = users[i];
 
@@ -88,10 +95,9 @@
 
             throw new Error("Error. El usuario ya existe");
         }
-    }
+    } */
 
     var user = {
-        id: parseInt(Math.random() * 10000000000000).toString(36),
         name: name,
         birthdate: birthdate,
         username: username,
@@ -99,10 +105,11 @@
         password: password
     }
 
-    users[users.length] = user;
+    insertUser(user);
+    /* users[users.length] = user;
 
     //Hay que guardar el usuario en LocalStorage en formato JSON
-    localStorage.users = JSON.stringify(users);
+    localStorage.users = JSON.stringify(users); */
  }
  function loginUser(username, password){
 
@@ -122,20 +129,10 @@
 
         throw new Error("La contraseña no debe tener espacios");
     }
-    
-    var user;
 
-    var users = JSON.parse(localStorage.users || "[]");
-
-    for(let i=0;i < users.length;i++){
-
-        var userBuscado = users[i];
-        if(userBuscado.username === username){
-
-            user = userBuscado;
-            break;
-        }
-    }
+    var user = findUser(function(user){
+        return user.username === username;
+    })
     if(user === undefined){
 
         throw new Error("Usuario no encontrado");
@@ -144,27 +141,22 @@
 
         throw new Error("Contraseña incorrecta");
     }
-    sessionStorage.userId = user.id; //Le añadimos un identificador único y complejo para darle más seguridad al perfil de usuario
+    sessionStorage.userId = user.id;
  }
 
  function retrieveUser(){
 
-    var user;
-    var users = JSON.parse(localStorage.users || "[]");
-
-    for(var i=0;i < users.length;i++){
-
-        var user2 = users[i];
-        if(user2.id === sessionStorage.userId){
-
-            user = user2;
-            break; //Si encuentra al usuario salimos del bucle.
-        }  
-    } 
+    var user = findUser(function(user){
+        return user.id === sessionStorage.userId;
+    });
+     
     if(user === undefined){
 
         throw new Error("Usuario no encontrado");
     }
 
     return user;
+ }
+ function logoutUser(){
+    delete sessionStorage.userId;
  }

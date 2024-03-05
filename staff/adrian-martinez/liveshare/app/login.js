@@ -1,8 +1,8 @@
-
+debugger;
 var form = document.querySelector(".form");
 
 form.onsubmit = function (event){
-        
+            
     event.preventDefault();
 
     //Cogemos el valor de los campos para pasárselo a la propiedad de un array de objetos de usuarios
@@ -18,14 +18,14 @@ form.onsubmit = function (event){
 
         console.log("Usuario logueado!");
         alert("Bienvenido "+ username);
+        
+        form.reset();
 
-
-        let loginAddress = location.href;
-        let homeAddress = loginAddress.replace("login","home");
+        var loginAddress = location.href;
+        var homeAddress = loginAddress.replace("login","home");
 
         location.href = homeAddress;
 
-        form.reset();
     }
     catch(e){
 
