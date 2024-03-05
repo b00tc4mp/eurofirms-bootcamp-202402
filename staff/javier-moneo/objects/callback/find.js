@@ -2,7 +2,7 @@ function find(object, callback) {
   for (let i = 0; i < object.length; i++) {
     var valueCallback = callback(object[i]);
     if (valueCallback) {
-      return i;
+      return object[i];
     }
   }
 
@@ -19,7 +19,7 @@ var users = {
 };
 
 var callback = function (user) {
-  return user.username.length > 5
+  return user.username.length > 5;
 };
 console.log('---------------FIND----------------');
 
