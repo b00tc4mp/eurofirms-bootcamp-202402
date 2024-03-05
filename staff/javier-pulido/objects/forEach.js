@@ -1,27 +1,56 @@
-var colors = {
-
-    0: 'black',
-    1: 'white',
-    2: 'red',
-    3: 'blue',
-    4: 'brown',
-    5: 'orange',
-    6: 'yellow',
-    7: 'pink',
-
-    length: 8
-
-}
-
-function forEach ( object, callback){
-
-    for ( var i = 0 ; i < object.length; i++ ) {
-        callback(object[i])
-}
+/**
+ *  Loops on each value from iterable object.
+ */
+function forEach(iterable, callback){
+    for (var i = 0; i < iterable.length; i++) {
+        var element = iterable[i]
     
+
+        callback(element)
+    }
 }
 
-var printColors = function (element) {
-    console.log(element)
+console.log('TEST forEach')
+
+console.log('CASE 1: iterate on nums to show each one multiplied in the console')
+
+var nums = {
+    0: 10,
+    1: 20,
+    2: 30,
+    3: 40,
+    4: 50,
+    length: 5
 }
 
+forEach(nums, function(element) {
+    console.log(element * 10)
+
+})
+
+//100
+//200
+//300
+//400
+//500
+
+console.log('CASE 2: iterate on nums to put each one multiplied  by 10 in a new array')
+
+var nums = {
+    0: 10,
+    1: 20,
+    2: 30,
+    3: 40,
+    4: 50,
+    length: 5
+}
+
+var numsX10 = { length: 0}
+
+forEach(nums, function (element){
+    numsX10[numsX10.length] = element * 10
+    numsX10.length++
+})
+
+console.log(numsX10)
+// 100, 200, 300, 400, 500

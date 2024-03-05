@@ -1,53 +1,105 @@
-function map ( object, callback){
-// recorrer el objecto
-// llamo a mi callback con cada uno de los elementos del array
-// arma un nuevo array (objeto) con el valor que se retorne mi callback
-// modificar la longitud
-// retornar el nuevo array
-var callback = function(element){
-     console.log(element)}
-var result = {}
-
-for ( var i = 0 ; i < object.length; i++ ) {
-    callback[i] = callback(object[i])
+/**
+ * Maps each element from iterable object to another iterable object.
+ * 
+ * @param {*} iterable 
+ * @param {*} callback 
+ * 
+ */
 
 
 
+
+
+function map(iterable, callback) {
+    var mapped =  {length: 0}
+
+
+    for (var i = 0; i < iterable.length; i++) {
+        var element = iterable[i]
+
+        var mappedElement = callback(element)
+
+        mapped[mapped.length] = mappedElement
+        mapped.length++
+    }
+
+
+    return mapped
 }
 
-result.length = object.length
+console.log('TEST map')
 
-return result
+console.log('CASE multiplu numbers by 2')
 
+var nums = {
+    0: 1,
+    1: 4,
+    2: 9,
+    3: 16,
+    length: 4
 }
-var users = {
 
-    '0': { 
-        name: 'Javier',
-        surname: 'Pulido',
-        password: '123123123',
-        
-    },
+var numsX2 = map(nums, function (n) { return n * 2})
 
-    '1': { 
-        name: 'Pepito',
-        surname: 'Pepito12',
-        password: '123123123',
-        
-    },
+console.log(numsX2);
+/*
+{
+
+    0: 2,
+    1: 8,
+    2: 18,
+    3: 32,
+    length: 4
+}
+*/
+
+console.log ('CASE map lower case to upper case')
+
+var names = {
+    0: 'Mary',
+    1: 'Stella',
+    2: 'Amanda',
+    length: 3
+}
+
+var namesInUppercase = map(names, function (name) {
+    return name.toUpperCase()
     
-    '2': { 
-        name: 'Grillo',
-        surname: 'Grillo12',
-        password: '123123123',
-       
-    },
-        length: 3
-}
-
-var userNames = map(users, function (element) {
-
-    return element
 })
 
-console.log (userNames)
+console.log(namesInUppercase)
+
+
+/*
+{
+    0: 'MARY',
+    1: 'STELLA',
+    2: 'AMANDA,
+    length: 3
+}
+
+*/ 
+console.log('CASE extract prices from cart')
+
+var cart = {
+    0: { what: 'carrots', price: 1, quantity: 5 },
+    1: { what: 'potatoes', price: .5, quantity: 10 },
+    2: { what: 'cabbage', price : 5, quantity: 2 },
+    3: { what: 'rioja top', price: 40, quantity: 3},
+    length: 4
+}
+
+var prices = map(cart, function (item) {
+    return item.price * item.quantity
+})
+
+console.log(prices)
+/*
+{
+    0: 5,
+    1: 5,
+    2: 10,
+    3: 120,
+    length: 4
+}
+*/
