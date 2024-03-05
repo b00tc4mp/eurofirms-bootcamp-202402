@@ -8,7 +8,7 @@ function filtro(element, indexStart, indexEnd) {
 
     }
 
-}
+} j
 
 
 var nums = {
@@ -17,8 +17,8 @@ var nums = {
     2: 432,
     3: 2,
     4: 1111,
-    5: 1231231254
-    6: 999
+    5: 1231231254,
+    6: 999,
 }
 
 console.log('CASE 1 : filtrar desde la poscion 3 a la 5 los  numeros que tengan 2 digitos o mas ')
