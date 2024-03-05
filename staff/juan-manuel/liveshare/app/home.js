@@ -4,7 +4,7 @@ var logoutButton = document.querySelector('button')
 try {
     var user = retrieveUser()
 
-    title.innerText = 'Bienvenid@, ' + user.name + '!'
+    title.innerText = 'Buenas =D, ' + user.name + '!'
 } catch (error) {
     var homeAddress = location.href
 

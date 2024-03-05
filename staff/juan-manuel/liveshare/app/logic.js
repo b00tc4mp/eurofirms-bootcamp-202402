@@ -12,56 +12,56 @@ function registerUser(name, birthdate, username, email, password) {
     }
 
     if (nameIsBlank)
-        throw new Error('El nombre es blanco')
+        throw new Error('Nombre es blanco')
 
     if (birthdate.length !== 10)
         throw new Error('La fecha de nacimiento no tiene 10 caracteres')
 
     if (birthdate.includes(' '))
-        throw new Error('La fecha de nacimiento tiene un espacio')
+        throw new Error('Fecha de nacimiento tiene espacio en blanco')
 
     if (birthdate.indexOf('-') !== 4 || birthdate.lastIndexOf('-') !== 7)
-        throw new Error('Los guiones de la fecha de nacimiento no están en la posición correcta.')
+        throw new Error('Los guiones de fecha de nacimiento no están en la posición correcta')
 
     if (username.length < 3)
-        throw new Error('Tu nombre de usuario es inferior a 3 carácteres')
+        throw new Error('El nombre de usuario tiene menos de 3 caracteres')
 
     if (username.includes(' '))
-        throw new Error('Tu nombre de usuario tiene un espacio')
+        throw new Error('El nombre de usuario tiene espacio en blanco')
 
     if (email.length < 6)
-        throw new Error('Email es menor que 6 carácteres')
+        throw new Error('Email es más pequeño que 6 carácteres')
 
     if (!email.includes('@'))
-        throw new Error('Email no tiene @')
+        throw new Error('El correo electrónico no tiene @')
 
     if (!email.includes('.'))
-        throw new Error('Email no tiene .')
+        throw new Error('El correo electrónico no tiene .')
 
     if (email.lastIndexOf('.') < email.indexOf('@'))
-        throw new Error('Email tiene . antes de @')
+        throw new Error('El correo electrónico tiene . antes @')
 
     if (email.lastIndexOf('.') - email.indexOf('@') < 2)
-        throw new Error('El email tiene . junto a @')
+        throw new Error('El correo electrónico tiene . junto a @')
 
     if (email.length - 1 - email.indexOf('.') < 2)
-        throw new Error('El dominio de email tiene menos de 2 caracteres.')
+        throw new Error('El nombre de dominio de correo electrónico tiene menos de 2 caracteres')
 
     if (email.includes(' '))
         throw new Error('Email tiene un espacio')
 
     if (password.length < 8)
-        throw new Error('Contraseña es menor de 8 carácteres')
+        throw new Error('La contraseña tiene menos de 8 caracteres')
 
     if (password.includes(' '))
-        throw new Error('Contraseña tiene espacios')
+        throw new Error('La contraseña tiene espacio')
 
-    for (var i = 0; i < users.length; i++) {
-        var user = users[i]
+    var user = findUser(function (user) {
+        return user.username === username || user.email === email
+    })
 
-        if (user.email === email)
-            throw new Error('El usuario ya existe')
-    }
+    if (user !== undefined)
+        throw new Error('El usuario ya existe')
 
     var user = {
         name: name,
@@ -70,7 +70,8 @@ function registerUser(name, birthdate, username, email, password) {
         email: email,
         password: password
     }
-        insertUser(user)
+
+    insertUser(user)
 }
 
 function loginUser(username, password) {
@@ -81,7 +82,7 @@ function loginUser(username, password) {
         throw new Error('El nombre de usuario tiene espacio')
 
     if (password.length < 8)
-        throw new Error('Contraseña es más pequeña que 8 carácteres')
+        throw new Error('Contraseña es más pequeña que 8')
 
     if (password.includes(' '))
         throw new Error('Contraseña tiene espacio')

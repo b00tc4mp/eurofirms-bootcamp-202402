@@ -22,19 +22,12 @@
     flex-direction: column;
 }
 
-#username{
+#username, #password{
     height: 8vh;
-}
-
-#password{
-    height: 8vh;
-}
-
-.username{
     font-size: 30px;
 }
 
-.password{
+.username, .password{
     font-size: 30px;
 }
 

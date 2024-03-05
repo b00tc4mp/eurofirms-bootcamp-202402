@@ -12,16 +12,15 @@ form.onsubmit = function (event) {
     try {
         loginUser(username, password)
 
-        sessionStorage.username = username
-
-        console.log('Usuario ha iniciado sesión')
+        console.log('user logged in')
 
         form.reset()
 
-        var Loginaddress = location.href
-        var homeAddress = Loginaddress.replace("login", "home")
-        location.href = homeAddress
+        var loginAddress = location.href
 
+        var homeAddress = loginAddress.replace('login', 'home')
+
+        location.href = homeAddress
     } catch (error) {
         console.error(error.message)
 
