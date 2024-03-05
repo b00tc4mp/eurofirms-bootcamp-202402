@@ -62,18 +62,16 @@ function registerUser(name, birthdate, username, email, password) {
     if (password.includes(' '))
         throw new Error('password has space character')
 
-        var users = JSON.parse(localStorage.users || '[]')
+        var user = findUser(function (user) {
+            return user.username === username || user.email === email
+        })
 
-
-    for (var i = 0; i < users.length; i++) {
-        var user = users[i]
-
-        if (user.username === username || user.email === email)
+        if (user !== undefined)
             throw new Error('user already exists')
-    }
+
+
 
     var user = {
-        id: parseInt(Math.random() *  1000000000000000000).toString(36),
         name: name,
         birthdate: birthdate,
         username: username,
@@ -81,9 +79,9 @@ function registerUser(name, birthdate, username, email, password) {
         password: password
     }
 
-    users[users.length] = user
+    insertUser(user)
 
-    localStorage.users = JSON.stringify(users)
+   
 }
 
     function loginUser(username, password) {
@@ -99,20 +97,12 @@ function registerUser(name, birthdate, username, email, password) {
         if (password.includes(' '))
             throw new Error('password has space character')
 
-        var user
+        var user = findUser(function (user) {
+            return user.username === username
 
-        var users = JSON.parse(localStorage.users || '[]')
+        })
 
-        for (var i = 0; i < users.length; i++) {
-            var users2 = users[i]
-
-            if (users2.username === username) {
-                user = users2
-
-                break
-            }
-        }
-
+      
 
         if (user === undefined)
             throw new Error('user not found')
@@ -124,22 +114,17 @@ function registerUser(name, birthdate, username, email, password) {
     }
 
     function retrieveUser() {
-        var user
+        var user = findUser(function (user) {
+            return user.id === sessionStorage.userId
+        })
     
-        var users = JSON.parse(localStorage.users || '[]')
-    
-        for (var i = 0; i < users.length; i++) {
-            var user2 = users[i]
-    
-            if (user2.id === sessionStorage.userId) {
-                user = user2
-    
-                break
-            }
-        }
-    
-        if (user === undefined)
+       if (user === undefined)
             throw new Error('user not found')
-    
-        return user
+
+            return user
+        
+    }
+
+    function logoutUser() {
+        delete sessionStorage.userId
     }
