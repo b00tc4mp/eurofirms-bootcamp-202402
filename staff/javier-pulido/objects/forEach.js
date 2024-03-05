@@ -1,3 +1,18 @@
+var colors = {
+
+    0: 'black',
+    1: 'white',
+    2: 'red',
+    3: 'blue',
+    4: 'brown',
+    5: 'orange',
+    6: 'yellow',
+    7: 'pink',
+
+    length: 8
+
+}
+
 function forEach ( object, callback){
 
     for ( var i = 0 ; i < object.length; i++ ) {
@@ -6,43 +21,7 @@ function forEach ( object, callback){
     
 }
 
-var users = {
-
-    '0': { 
-        name: 'Javier',
-        surname: 'Pulido',
-        password: '123123123',
-        
-    },
-
-    '1': { 
-        name: 'Pepito',
-        surname: 'Pepito12',
-        password: '123123123',
-        
-    },
-    
-    '2': { 
-        name: 'Grillo',
-        surname: 'Grillo12',
-        password: '123123123',          
-},
-        length: 3
-
-var printUserName = function (user) {
-    console.log(user.name + ' ' + user.userName)
+var printColors = function (element) {
+    console.log(element)
 }
 
-forEach(users, printUsername)
-
-
-
-
-
-
-
-    var users function ( callback)
-
-
-
-    console.log (users, )

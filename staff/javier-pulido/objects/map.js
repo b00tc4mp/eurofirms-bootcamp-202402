@@ -4,11 +4,13 @@ function map ( object, callback){
 // arma un nuevo array (objeto) con el valor que se retorne mi callback
 // modificar la longitud
 // retornar el nuevo array
-
+var callback = function(element){
+     console.log(element)}
 var result = {}
 
 for ( var i = 0 ; i < object.length; i++ ) {
-    result[i] = callback(object[i])
+    callback[i] = callback(object[i])
+
 
 
 }
@@ -43,9 +45,9 @@ var users = {
         length: 3
 }
 
-var userNames = map(users, function (user) {
+var userNames = map(users, function (element) {
 
-    return user.userName
+    return element
 })
 
 console.log (userNames)
