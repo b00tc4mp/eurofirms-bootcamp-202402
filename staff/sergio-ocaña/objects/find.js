@@ -6,9 +6,10 @@ find(object, search, callback, value){
 }
 
 var callback = function (element, search, value) {
-    if (typeof search === "number")
-        if (search ===)
-            if (typeof search === string)
+    if (typeof search === "number") {
+        if (search === element)
+            return true
+    }
 
 }
-// TODO 
+// TODO  WIP EXAMPLES
