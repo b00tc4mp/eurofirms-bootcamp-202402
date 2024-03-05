@@ -16,7 +16,7 @@ try {
 }
 
 logoutButton.onclick = function () {
-  delete sessionStorage.username;
+  logoutUser();
 
   var homeAddress = location.href;
 
