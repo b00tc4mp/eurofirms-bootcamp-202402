@@ -3,14 +3,11 @@ var callback = function (element) {
 }
 
     function forEach (object, callback) {
-        for (var i = 0; i< object.length; i++)
+        for (var i = 0; i< object.length; i++) {
             callback(object[i])
+        }
 
     }
-
-
-forEach(colors, callback)
- 
 
 
 var colors = {
@@ -22,4 +19,6 @@ var colors = {
     5: 'strawberry',
     length: 6
 }
+
+forEach(colors, callback)
 
