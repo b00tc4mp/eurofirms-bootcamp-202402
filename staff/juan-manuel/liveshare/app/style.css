@@ -58,8 +58,6 @@
     border-radius: 100px 100px 100px 100px;
 }
 
-
-
 #enviarboton:hover{
     -webkit-transform:scale(1.25);
     -moz-transform:scale(1.25);
@@ -67,3 +65,7 @@
     -o-transform:scale(1.25);
     transform:scale(1.25);
     }
+
+label{
+    font-size: 30px;
+}
