@@ -21,16 +21,15 @@ form.onsubmit = function (event) {
   var passwordInput = form.querySelector('#password');
   var password = passwordInput.value;
 
-  // business layer (logic)
-
   try {
-    registerUser(name, birthdate, username, email, password);
+    logic.registerUser(name, birthdate, username, email, password);
 
     console.log('user registered');
 
     alert('user registered');
 
     form.reset();
+
     anchor.click();
   } catch (error) {
     console.error(error.message);

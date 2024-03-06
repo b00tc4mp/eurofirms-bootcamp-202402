@@ -12,11 +12,9 @@ form.onsubmit = function (event) {
   var password = passwordInput.value;
 
   try {
-    loginUser(username, password);
+    logic.loginUser(username, password);
 
     console.log('user logged in');
-
-    alert('user logged in');
 
     form.reset();
 
