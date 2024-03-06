@@ -22,7 +22,7 @@ form.onsubmit = function (event) {
     var password = passwordInput.value
 
     try {
-        logic.registerUser(name, birthdate, username, email, password)
+        registerUser(name, birthdate, username, email, password)
 
         console.log('user registered')
 

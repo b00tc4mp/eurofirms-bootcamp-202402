@@ -16,7 +16,7 @@ try {
 }
 
 logoutButton.onclick = function () {
-    logic.logoutUser()
+    logoutUser()
 
     var homeAddress = location.href
 

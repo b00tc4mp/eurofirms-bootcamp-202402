@@ -4,7 +4,7 @@ var title = document.querySelector('h1')
 var logoutButton = document.querySelector('button')
 
 try {
-    var user = logic.retrieveUser()
+    var user = retrieveUser()
 
     title.innerText = 'Hello, ' + user.name + '!'
 } catch (error) {
@@ -16,7 +16,7 @@ try {
 }
 
 logoutButton.onclick = function () {
-    logic.logoutUser()
+    logoutUser()
 
     var homeAddress = location.href
 

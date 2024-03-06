@@ -1,21 +1,36 @@
-function findUser(callback) {
-    var users = JSON.parse(localStorage.users || '[]')
+var data = (function () {
+    // helpers
 
-    for (var i = 0; i < users.length; i++) {
-        var user = users[i]
-
-        var matches = callback(user)
-
-        if (matches) return user
+    function parseUsers() {
+        return JSON.parse(localStorage.users || '[]')
     }
-}
 
-function insertUser(user) {
-    var users = JSON.parse(localStorage.users || '[]')
+    // data
 
-    user.id = parseInt(Math.random() * 1000000000000000000).toString(36)
+    function findUser(callback) {
+        var users = parseUsers()
 
-    users[users.length] = user
+        for (var i = 0; i < users.length; i++) {
+            var user = users[i]
 
-    localStorage.users = JSON.stringify(users)
-}
+            var matches = callback(user)
+
+            if (matches) return user
+        }
+    }
+
+    function insertUser(user) {
+        var users = parseUsers()
+
+        user.id = parseInt(Math.random() * 1000000000000000000).toString(36)
+
+        users[users.length] = user
+
+        localStorage.users = JSON.stringify(users)
+    }
+
+    return {
+        findUser: findUser,
+        insertUser: insertUser
+    }
+})()
