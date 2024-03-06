@@ -11,7 +11,7 @@ form.onsubmit = function (event) {
     var password = passwordInput.value
 
     try {
-        loginUser(username, password)
+        logic.loginUser(username, password)
 
         console.log('user logged in')
 
