@@ -116,10 +116,6 @@ var logic = (function () {
             throw new Error('wrong password')
 
         sessionStorage.userId = user.id
-
-        user.online = true
-
-        data.saveUser(user)
     }
 
     function retrieveUser() {
@@ -134,40 +130,13 @@ var logic = (function () {
     }
 
     function logoutUser() {
-        var user = data.findUser(function (user) {
-            return user.id === sessionStorage.userId
-        })
-
-        if (!user) throw new Error('user not found')
-
-        user.online = false
-
-        data.saveUser(user)
-
         delete sessionStorage.userId
-    }
-
-    function retrieveOnlineUsers() {
-        var users = data.findUsers(function (user) {
-            return user.online
-        })
-
-        users.forEach(function (user) {
-            delete user.name
-            delete user.birthdate
-            delete user.email
-            delete user.password
-            delete user.online
-        })
-
-        return users
     }
 
     return {
         registerUser: registerUser,
         loginUser: loginUser,
         retrieveUser: retrieveUser,
-        logoutUser: logoutUser,
-        retrieveOnlineUsers: retrieveOnlineUsers
+        logoutUser: logoutUser
     }
 })()

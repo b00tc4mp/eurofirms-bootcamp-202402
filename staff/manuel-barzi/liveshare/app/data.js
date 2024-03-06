@@ -1,14 +1,18 @@
 var data = (function () {
     // helpers
 
-    function parseUsers() {
+    function loadUsers() {
         return JSON.parse(localStorage.users || '[]')
+    }
+
+    function saveUsers(users) {
+        localStorage.users = JSON.stringify(users)
     }
 
     // data
 
     function findUser(callback) {
-        var users = parseUsers()
+        var users = loadUsers()
 
         for (var i = 0; i < users.length; i++) {
             var user = users[i]
@@ -20,17 +24,39 @@ var data = (function () {
     }
 
     function insertUser(user) {
-        var users = parseUsers()
+        var users = loadUsers()
 
         user.id = parseInt(Math.random() * 1000000000000000000).toString(36)
 
         users[users.length] = user
 
-        localStorage.users = JSON.stringify(users)
+        saveUsers(users)
+    }
+
+    function saveUser(user) {
+        var users = loadUsers()
+
+        var index = users.findIndex(function (user2) {
+            return user2.id === user.id
+        })
+
+        users.splice(index, 1, user)
+
+        saveUsers(users)
+    }
+
+    function findUsers(callback) {
+        var users = loadUsers()
+
+        var filtered = users.filter(callback)
+
+        return filtered
     }
 
     return {
         findUser: findUser,
-        insertUser: insertUser
+        insertUser: insertUser,
+        saveUser: saveUser,
+        findUsers: findUsers
     }
 })()
