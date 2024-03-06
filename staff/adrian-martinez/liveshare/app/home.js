@@ -6,8 +6,10 @@ var correo = document.querySelector("#correo");
 
 var logoutButton = document.querySelector("button");
 
+var conectados = document.querySelector("#online-users");
+
 try{
-    var user = retrieveUser();
+    var user = logic.retrieveUser();
 
     title.innerText = "Hello, "+ user.name +"!";
     alias.innerText = "Tu alias es "+ user.username +".";
@@ -24,10 +26,33 @@ catch(error){
 
 logoutButton.onclick = function(){
 
-    logoutUser();
+    try{
+        logic.logoutUser();
 
-    var homeAddress = location.href;
-    var loginAddress = homeAddress.replace("home", "login");
+        var homeAddress = location.href;
+        var loginAddress = homeAddress.replace("home", "login");
 
-    location.href = loginAddress;
+        location.href = loginAddress;
+    }
+    catch(error){
+        console.error(error);
+
+        alert(error.message);
+    }
+}
+try{
+    var users = logic.retrieveOnlineUsers();
+
+    users.forEach(function(user){
+        var item = document.createElement("li");
+
+        item.innerText = user.username;
+
+        conectados.appendChild(item);
+    })
+}
+catch(error){
+
+    console.error(error);
+    alert(error.message);
 }

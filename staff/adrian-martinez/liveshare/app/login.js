@@ -1,4 +1,4 @@
-debugger;
+
 var form = document.querySelector(".form");
 
 form.onsubmit = function (event){
@@ -14,7 +14,7 @@ form.onsubmit = function (event){
     var password = passwordInput.value;
 
     try{
-        loginUser(username, password);
+        logic.loginUser(username, password);
 
         console.log("Usuario logueado!");
         alert("Bienvenido "+ username);

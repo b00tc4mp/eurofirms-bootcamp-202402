@@ -34,3 +34,6 @@ button a{
     text-decoration: none;
     color: white
 }
+li::marker{
+    color: limegreen;
+}
