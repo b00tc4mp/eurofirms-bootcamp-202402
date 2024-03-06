@@ -42,25 +42,22 @@ function registerUser(name, birthdate, username, email, password) {
     if (password.includes(' '))
         throw new Error('password has a space character')
 
-    var users = JSON.parse(localStorage.users || '[]')
-    for (var i = 0; i < users.length; i++) {
-        var user = users[i]
-        if (user.email === email)
-            throw new Error('email already exist')
-        if (user.username === username)
-            throw new Error('username already exist')
-    }
+    var user = findUser(function (user) {
+        return user.username === username || user.email === email
+    })
+    if (user !== undefined)
+        throw new Error('user already exist')
 
     var user = {
-        id: parseInt(Math.random() * 1000000000000000000).toString(36),
+
         name: name,
         birthdate: birthdate,
         username: username,
         email: email,
         password: password
     }
-    users[users.length] = user
-    localStorage.users = JSON.stringify(users)
+
+    insertUser(user)
 }
 function loginUser(username, password) {
     if (username.length < 3)
@@ -71,21 +68,16 @@ function loginUser(username, password) {
         throw new Error('password is lower than 8 characters')
     if (password.includes(' '))
         throw new Error('password has a space character')
+    var user = findUser(function (user) {
+        return user.username === username
+    })
 
-    var users = JSON.parse(localStorage.users || '[]')
-    var user
-    for (var i = 0; i < users.length; i++) {
-        var user2 = users[i]
-        if (user2.username === username) {
-            user = user2
-            break
-        }
-    }
     if (user === undefined)
         throw new Error('user not found')
     if (user.password !== password)
         throw new Error('wrong password')
     sessionStorage.userId = user.id
+
 }
 
 function retrieveUser(username) {
@@ -93,17 +85,16 @@ function retrieveUser(username) {
         throw new Error('username is lower than 3 characters')
     if (username.includes(' '))
         throw new Error('username has a space character')
-    var user
-    var users = JSON.parse(localStorage.users || '[]')
-    for (var i = 0; i < users.length; i++) {
-        var user2 = users[i]
-        if (user2.id === sessionStorage.userId) {
-            user = user2
-            break
-        }
-    }
+    var user = findUser(function (user) {
+        return user.id === sessionStorage.userId
+    })
+
     if (user === undefined)
         throw new Error('user not found')
     return user
 
+}
+
+function logoutUser() {
+    delete sessionStorage.userId
 }
