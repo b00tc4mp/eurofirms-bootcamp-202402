@@ -1,6 +1,6 @@
 // data layer
 function findUser(callback) {
-    var users = JSON.parse(localstorage.users || '[]')
+    var users = JSON.parse(localStorage.users || '[]')
 
     for (var i = 0; i < users.length; i++) {
         var user = users[i]

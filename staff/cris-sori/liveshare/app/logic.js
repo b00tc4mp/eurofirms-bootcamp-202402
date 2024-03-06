@@ -1,3 +1,5 @@
+//capa de logica
+debugger
 function registerUser(name, lastname, birthdate, username, email, password) {
     if (name.length < 1)
         throw new Error('El nombre tiene menos de 1 carácter')
@@ -25,7 +27,7 @@ function registerUser(name, lastname, birthdate, username, email, password) {
     }
 
     if (lastnameIsBlank)
-        throw new Error('El apellido es blanco')
+        throw new Error('El apellido está en blanco')
 
     if (birthdate.length !== 10)
         throw new Error('La fecha de nacimiento no tiene 10 caracteres')
@@ -108,15 +110,19 @@ function loginUser(username, password) {
         return user.username === username
     })
 
-    // for (var i = 0; i < users.length; i++) {
-    //     var user2 = users[i]
+    if (user === undefined)
+        throw new Error('user not found')
 
-    //     if (user2.username === username) {
-    //         user = user2
+    if (user.password !== password)
+        throw new Error('wrong password')
 
-    //         break
-    //     }
-    // }
+    sessionStorage.userId = user.id
+}
+
+function retrieveUser() {
+    var user = findUser(function (user) {
+        return user.id === sessionStorage.userId
+    })
 
     if (user === undefined)
         throw new Error('user not found')

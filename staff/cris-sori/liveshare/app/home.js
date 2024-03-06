@@ -1,5 +1,4 @@
 // capa de presentacion
-
 var title = document.querySelector('h1')
 var logoutButton = document.querySelector('button')
 
