@@ -1,22 +1,62 @@
-function findUser(callback) {
-    var users = JSON.parse(localStorage.users || '[]')
+var data = (function () {
+    // helpers
 
-    for (var i = 0; i < users.length; i++) {
-        var user = users[i]
-
-        var matches = callback(user)
-
-        if (matches) return user
+    function loadUsers() {
+        return JSON.parse(localStorage.users || '[]')
     }
-}
 
-function insertUser(user) {
-    var users = JSON.parse(localStorage.users || '[]')
+    function saveUsers(users) {
+        localStorage.users = JSON.stringify(users)
+    }
 
-    user.id = parseInt(Math.random()  * 1000000000000000000).toString(36)
+    // data
 
+    function findUser(callback) {
+        var users = loadUsers()
 
-    users[users.length] = user
+        for (var i = 0; i < users.length; i++) {
+            var user = users[i]
 
-    localStorage.users = JSON.stringify(users)
-}
+            var matches = callback(user)
+
+            if (matches) return user
+        }
+    }
+
+    function insertUser(user) {
+        var users = loadUsers()
+
+        user.id = parseInt(Math.random() * 1000000000000000000).toString(36)
+
+        users[users.length] = user
+
+        saveUsers(users)
+    }
+
+    function saveUser(user) {
+        var users = loadUsers()
+
+        var index = users.findIndex(function (user2) {
+            return user2.id === user.id
+        })
+
+        users.splice(index, 1, user)
+
+        saveUsers(users)
+    }
+
+    function findUsers(callback) {
+        var users = loadUsers()
+
+        var filtered = users.filter(callback)
+
+        return filtered
+    }
+
+    return {
+        findUser: findUser,
+        insertUser: insertUser,
+        saveUser: saveUser,
+        findUsers: findUsers
+    }
+})()

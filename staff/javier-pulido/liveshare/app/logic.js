@@ -1,6 +1,10 @@
 // business layer (logic)
 
-function registerUser(name, birthdate, username, email, password) {
+var logic = (function() {
+
+    //helpers
+
+function validateName (name) {
     if (name.length < 1)
         throw new Error('name is lower than 1 character')
 
@@ -15,7 +19,10 @@ function registerUser(name, birthdate, username, email, password) {
 
     if (nameIsBlank)
         throw new Error('name is blank')
+}
 
+        function validateBirthdate(birthdate) {
+        
     if (birthdate.length !== 10)
         throw new Error('birthdate does not have 10 characters')
 
@@ -28,13 +35,17 @@ function registerUser(name, birthdate, username, email, password) {
     // TODO check that birthdate has only 2 dashes
     // TODO check that birthdate has no alphabet characters (only numbers and 2 dashes)
     // TODO check that birthdate is equal or greater than 18 years old
+        }
 
+    function validateUsername (username) {
     if (username.length < 3)
         throw new Error('username is lower than 3 characters')
 
     if (username.includes(' '))
         throw new Error('username has a space character')
+    }
 
+    function validateEmail (email) {
     if (email.length < 6)
         throw new Error('email is lower than 6 characters')
 
@@ -56,19 +67,30 @@ function registerUser(name, birthdate, username, email, password) {
     if (email.includes(' '))
         throw new Error('email has space character')
 
+    }
+    
+    function validatePassword(password) {
     if (password.length < 8)
         throw new Error('password is lower than 8 characters')
 
     if (password.includes(' '))
         throw new Error('password has space character')
 
-        var user = findUser(function (user) {
-            return user.username === username || user.email === email
-        })
+    }
+// logic
+        function registerUser(name, birthdate, username, email, password) {
+            validateName(name)
+            validateBirthdate(birthdate)
+            validateUsername(username)
+            validateEmail(email)
+            validatePassword(password)
 
-        if (user !== undefined)
-            throw new Error('user already exists')
+            var user = data.findUser(function(user) {
+                return user.username === username || user.email === email
+            })
 
+            if (user !== undefined)
+                throw new Error('user already exists')
 
 
     var user = {
@@ -79,30 +101,18 @@ function registerUser(name, birthdate, username, email, password) {
         password: password
     }
 
-    insertUser(user)
+    data.insertUser(user)
 
    
 }
 
     function loginUser(username, password) {
-        if (username.length < 3)
-            throw new Error('username is lower than 3 characters')
+        validateUsername(username)
+        validatePassword(password)
 
-        if (username.includes(' '))
-            throw new Error('username has a space character')
-
-        if (password.length < 8)
-            throw new Error('password is lower than 8 characters')
-
-        if (password.includes(' '))
-            throw new Error('password has space character')
-
-        var user = findUser(function (user) {
+        var user = data.findUser(function(user) {
             return user.username === username
-
         })
-
-      
 
         if (user === undefined)
             throw new Error('user not found')
@@ -111,10 +121,18 @@ function registerUser(name, birthdate, username, email, password) {
             throw new Error('wrong password')
 
             sessionStorage.userId = user.id
+
+            user.online = true
+
+            data.saveUser(user)
+
     }
 
+
+
+
     function retrieveUser() {
-        var user = findUser(function (user) {
+        var user = data.findUser(function (user) {
             return user.id === sessionStorage.userId
         })
     
@@ -126,5 +144,43 @@ function registerUser(name, birthdate, username, email, password) {
     }
 
     function logoutUser() {
-        delete sessionStorage.userId
+        var user = data.findUser(function (user) {
+            return user.id === sessionStorage.userId
+        })
+
+        if (!user) throw new Error('user not found')
+
+        user.online = false
+        
+        data.saveUser(user)
+
+        delete sessionStorage.userid
+
     }
+
+    function retrieveOnlineUsers() {
+        var users = data.findUsers(function (user) {
+            return user.online
+
+        })
+       
+        users.forEach(function (user) {
+            delete user.name
+            delete user.birthdate
+            delete user.email
+            delete user.password
+            delete user.online
+        })
+
+        return users
+    }
+
+    return {
+        registerUser : registerUser,
+        loginUser: loginUser,
+        retrieveUser: retrieveUser,
+        logoutUser: logoutUser,
+        retrieveOnlineUsers: retrieveOnlineUsers
+    }
+
+})()

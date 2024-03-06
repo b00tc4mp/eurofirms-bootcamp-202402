@@ -9,14 +9,14 @@ form.onsubmit = function (event) {
     var username = usernameInput.value
 
     var passwordInput = form.querySelector('#password')
-    var pasword = passwordInput.value
+    var password = passwordInput.value
 
     try {
-        loginUser(username, password)
+        logic.loginUser(username, password)
 
         console.log('user logged in')
 
-        alert('user logged in')
+      
 
         form.reset()
 
@@ -26,11 +26,11 @@ form.onsubmit = function (event) {
 
         location.href = homeAddress
 
-        //TODO navigate to home
+        
     }   catch (error) {
             console.error(error.message)
 
-            alert.error(error.message)
+          
 
             alert(error.message)
     }
