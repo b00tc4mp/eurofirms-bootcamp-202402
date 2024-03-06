@@ -1,8 +1,10 @@
-function registerUser(name, birthdate, username, email, password) {
+function registerUser(name, lastname, birthdate, username, email, password) {
     if (name.length < 1)
         throw new Error('El nombre tiene menos de 1 carácter')
 
     var nameIsBlank = true
+
+
 
     for (var i = 0; i < name.length && nameIsBlank; i++) {
         var char = name[i]
@@ -10,9 +12,20 @@ function registerUser(name, birthdate, username, email, password) {
         if (char !== ' ')
             nameIsBlank = false
     }
+    if (lastname.length < 3)
+        throw new Error('El apellido tiene menos de 3 caracteres')
 
-    if (nameIsBlank)
-        throw new Error('El nombre es blanco')
+    var lastnameIsBlank = true
+
+    for (var i = 0; i < lastname.length && lastnameIsBlank; i++) {
+        var char = lastname[i]
+
+        if (char !== ' ')
+            lastnameIsBlank = false
+    }
+
+    if (lastnameIsBlank)
+        throw new Error('El apellido es blanco')
 
     if (birthdate.length !== 10)
         throw new Error('La fecha de nacimiento no tiene 10 caracteres')
@@ -55,13 +68,15 @@ function registerUser(name, birthdate, username, email, password) {
 
     if (password.includes(' '))
         throw new Error('Contraseña tiene espacios')
-    for (var i = 0; i < users.length; i++) {
-        var user = users[i]
+    // for (var i = 0; i < users.length; i++) {
+    //     var user = users[i]
 
-        if (user.email === email)
-            throw new Error('El usuario ya existe')
-    }
-
+    //     if (user.email === email)
+    //         throw new Error('El usuario ya existe')
+    // }
+    var user = findUser(function (user) {
+        return user.username === username || user.email === email
+    })
     var user = {
         name: name,
         lastname: lastname,
@@ -71,8 +86,7 @@ function registerUser(name, birthdate, username, email, password) {
         password: password
     }
 
-    users[users.length] = user
-    localStorage.users = JSON.stringify(users)
+    insertUser(user)
 }
 
 
@@ -90,22 +104,24 @@ function loginUser(username, password) {
         throw new Error('password has space character')
 
 
-    var user
+    var user = findUser(function (user) {
+        return user.username === username
+    })
 
-    for (var i = 0; i < users.length; i++) {
-        var user2 = users[i]
+    // for (var i = 0; i < users.length; i++) {
+    //     var user2 = users[i]
 
-        if (user2.username === username) {
-            user = user2
+    //     if (user2.username === username) {
+    //         user = user2
 
-            break
-        }
-    }
+    //         break
+    //     }
+    // }
 
     if (user === undefined)
         throw new Error('user not found')
     if (user.password !== password)
         throw new Error('wrong password')
-
+    sessionStorage.userId = user.id
 }
 

@@ -9,6 +9,9 @@ form.onsubmit = function (event) {
     var nameInput = form.querySelector('#name')
     var name = nameInput.value
 
+    var lastnameInput = form.querySelector('#lastname')
+    var lastname = lastnameInput.value
+
     var birthdateInput = form.querySelector('#birthdate')
     var birthdate = birthdateInput.value
 

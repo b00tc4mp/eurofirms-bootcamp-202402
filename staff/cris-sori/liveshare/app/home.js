@@ -4,23 +4,23 @@ var title = document.querySelector('h1')
 var logoutButton = document.querySelector('button')
 
 try {
-    var user = retrieverUser(sessionStorage.username)
+    var user = retrieveUser()
 
     title.innerText = 'Hello, ' + user.name + '!'
 } catch (error) {
-    var homeAdress = location.href
+    var homeAddress = location.href
 
-    var loginAdress = homeAdress: replace('home', 'login')
+    var loginAddress = homeAddress.replace('home', 'login')
 
-    location.href = loginAdress
+    location.href = loginAddress
 }
 
 logoutButton.onclick = function () {
-    delete sessionStorage.userId
+    logoutUser()
 
-    var homeAdress = location.href
+    var homeAddress = location.href
 
-    var loginAdress = homeAdress.replace('home', 'login')
+    var loginAddress = homeAddress.replace('home', 'login')
 
-    location.href = loginAdress
+    location.href = loginAddress
 }    
