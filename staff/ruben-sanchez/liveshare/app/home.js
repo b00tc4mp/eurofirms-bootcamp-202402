@@ -1,5 +1,5 @@
 // presentation layeer
-
+debugger
 
 
 var title = document.querySelector('h1')
@@ -20,7 +20,7 @@ try {
     
 }
 logoutButton.onclick = function () {
-    delete sessionStorage.username
+    logoutUser()
 
     var homeAddres = location.href
 
