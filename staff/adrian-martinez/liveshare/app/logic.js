@@ -100,7 +100,7 @@
     var user = {
         name: name,
         birthdate: birthdate,
-        username: username,
+        username: username,                                                                                                       
         email: email,
         password: password
     }
@@ -130,7 +130,7 @@
         throw new Error("La contraseña no debe tener espacios");
     }
 
-    var user = findUser(function(user){
+    var user = findUser(function(user){                                  
         return user.username === username;
     })
     if(user === undefined){
