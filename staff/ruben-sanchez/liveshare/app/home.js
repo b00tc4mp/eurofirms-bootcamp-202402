@@ -1,12 +1,12 @@
 // presentation layeer
-debugger
+
 
 
 var title = document.querySelector('h1')
 var logoutButton = document.querySelector('button')
 
 try {
-    var user = retrieveUser()
+    var user = logic.retrieveUser()
 
 
     title.innerText = 'Hello, ' + user.name + '!'
@@ -20,7 +20,7 @@ try {
     
 }
 logoutButton.onclick = function () {
-    logoutUser()
+    logic.logoutUser()
 
     var homeAddres = location.href
 

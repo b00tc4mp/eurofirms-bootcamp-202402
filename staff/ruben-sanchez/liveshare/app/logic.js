@@ -1,4 +1,6 @@
-function registerUser(name, birthdate, username, email, password) {
+var logic = (function () {
+    
+    function validateName(name){
 
     if (name.length < 1)
         throw new Error('name is lower than 1 character')
@@ -17,6 +19,9 @@ function registerUser(name, birthdate, username, email, password) {
     if (nameIsBlank)
         throw new Error('name is blank')
 
+}
+    function validateBirthdate(birthdate){
+
     if (birthdate.length !== 10)
         throw new Error('birthdate does not have 10 characters')
 
@@ -25,17 +30,23 @@ function registerUser(name, birthdate, username, email, password) {
 
     if (birthdate.indexOf('-') !== 4 || birthdate.lastIndexOf('-') !== 7)
         throw new Error('birthdate dashes are not in correct posisiton')
-
+    }
     // TODO check that birthdate has only 2 dashes
     // TODO check that birthdate has no alphabet characters (only numbers and 2 dashes)
     // TODO check that birthdate is equal or greater than 18 years old
 
+    function validateUsername(username) {
+
+    
 
     if (username.length < 3)
         throw new Error('username is lower than 3 charcters')
 
     if (username.includes(' '))
         throw new Error('username has a space charcter')
+    }
+
+    function validateEmail(email){
 
     if (email.length < 6)
         throw new Error('email is lower than 6 characters')
@@ -57,19 +68,27 @@ function registerUser(name, birthdate, username, email, password) {
 
     if (email.includes(' '))
         throw new Error('email has space character')
-
+    }
+    function validatePassword(password) {
     if (password.length < 8)
         throw new Error('password is lower than 8 characters')
 
     if (password.includes(' '))
         throw new Error('password has space characater')
+    }
 
-    var user = findUser(function (user) {
-        return user.username === username || user.email === email
+    function registerUser(name, birthdate, username, email, password) {
+        validateName(name)
+        validateBirthdate(birthdate)
+        validateUsername(username)
+        validateEmail(email)
+        validatePassword(password)
 
+        var user = data.findUser(function (user) {
+            return user.username === username || user.email === email
 
-    })
-
+    }) 
+    
     if (user !== undefined)
         throw new Error('user already exists')
    
@@ -84,24 +103,16 @@ function registerUser(name, birthdate, username, email, password) {
     }
 
 
-    insertUser(user)
+    data.insertUser(user)
 
 }
 
 function loginUser(username, password) {
-    if (username.length < 3)
-        throw new Error('username is lower than 3 characters')
+    validateUsername(username)
+    validatePassword(password)
 
-    if (username.includes(' '))
-        throw new Error('username has a space cahracter')
 
-    if (password.length < 8)
-        throw new Error('password is lower than 8 characters')
-
-    if (password.includes(' '))
-        throw new Error('password has space characater')
-
-    var user = findUser(function (user) {
+    var user = data.findUser(function (user) {
         return user.username === username 
     })
 
@@ -118,7 +129,7 @@ function loginUser(username, password) {
 }
 
 function retrieveUser() {
-    var user = findUser(function (user){
+    var user = data.findUser(function (user){
         return user.id === sessionStorage.userId
     })
 
@@ -137,3 +148,12 @@ function retrieveUser() {
 function logoutUser() {
     delete sessionStorage.userId
 }
+    return {
+        registerUser: registerUser,
+        loginUser: loginUser,
+        retrieveUser: retrieveUser,
+        logoutUser: logoutUser
+    }
+
+
+})()

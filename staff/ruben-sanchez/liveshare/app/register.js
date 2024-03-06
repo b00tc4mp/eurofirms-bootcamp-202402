@@ -21,7 +21,7 @@ var anchor = document.querySelector('a')
     var password = passowrdInput.value
 
     try {
-        registerUser(name, birthdate, username, email, password)
+        logic.registerUser(name, birthdate, username, email, password)
 
         console.log('user registered')
 

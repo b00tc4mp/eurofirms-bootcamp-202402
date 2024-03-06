@@ -1,5 +1,12 @@
+var data = (function () {
+    // helpers
+
+    function parseUsers() {
+        return JSON.parse(localStorage.users || '[]')
+    }
+// data
 function findUser(callback) {
-    var users = JSON.parse(localStorage.users || '[]')
+    var users = parseUsers()
 
     for(var i=0; i < users.length; i++) {
         var user = users[i]
@@ -12,7 +19,7 @@ function findUser(callback) {
 }
 
 function insertUser(user) {
-    var users = JSON.parse(localStorage.users || '[]')
+    var users = parseUsers()
 
     user.id = parseInt(Math.random()*10^18).toString(36)
 
@@ -23,8 +30,11 @@ function insertUser(user) {
 
 
 
+return {
+    findUser:   findUser,
+    insertUser: insertUser
+}
 
 
-
-
+})()
 
