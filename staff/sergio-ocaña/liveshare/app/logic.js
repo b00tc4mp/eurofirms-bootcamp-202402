@@ -136,7 +136,7 @@ var logic = (function () {
         data.saveUser(user)
         delete sessionStorage.userId
     }
-    debugger
+
     function retrieveOnlineUsers() {
         var users = data.findUsers(function (user) {
             return user.online

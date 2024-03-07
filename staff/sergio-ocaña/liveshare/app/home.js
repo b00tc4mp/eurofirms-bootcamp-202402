@@ -29,7 +29,7 @@ logoutButton.onclick = function () {
 }
 
 try {
-    var users = logic.retrieveOnlineUsers
+    var users = logic.retrieveOnlineUsers()
 
     users.forEach(function (user) {
         var item = document.createElement('li')
