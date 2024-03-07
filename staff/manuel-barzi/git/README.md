@@ -28,4 +28,4 @@ Pushes the changes from local git to remote git (origin).
 
 ## git pull
 
-...
+Pulls the changes from remote git (origin) to local git.
