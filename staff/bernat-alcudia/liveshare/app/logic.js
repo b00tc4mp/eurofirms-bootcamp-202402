@@ -1,9 +1,7 @@
 
-//bussines layer
+//bussines layer(logic)
 
 var logic = (function () {
-
-
     //helpers
 
     function validateName(name) {
@@ -11,6 +9,7 @@ var logic = (function () {
             throw new Error('name is lower than 1 character')
         }
         var nameIsBlank = true
+
         for (var i = 0; i < name.length && nameIsBlank; i++) {
             var char = name[i];
 
@@ -18,8 +17,6 @@ var logic = (function () {
                 nameIsBlank = false
             }
         }
-
-
 
         if (nameIsBlank) {
             throw new Error('name is blank')
@@ -151,6 +148,7 @@ var logic = (function () {
         }
 
         sessionStorage.userId = user.id
+
         user.online = true
 
         data.saveUser(user)
@@ -159,7 +157,7 @@ var logic = (function () {
 
     function retrieveUser() {
 
-        var user = findUser(function (user) {
+        var user = data.findUser(function (user) {
             return user.id === sessionStorage.userId
         })
 
@@ -211,7 +209,4 @@ var logic = (function () {
         logoutUser: logoutUser,
         retrieveOnlineUsers: retrieveOnlineUsers
     }
-
-
-
 })()

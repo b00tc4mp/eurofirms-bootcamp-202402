@@ -51,6 +51,7 @@ var data = (function () {
 
     function findUsers(callback) {
         var users = loadUsers()
+
         var filtered = users.filter(callback)
 
         return filtered

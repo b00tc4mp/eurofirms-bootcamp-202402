@@ -6,12 +6,13 @@ var onlineUsersList = document.querySelector('#online-users')
 
 
 try {
-    var user = retrieveUser()
-    title.innerText = 'Hello, ' + user.username + '!'
+    var user = logic.retrieveUser()
+
+    title.innerText = 'Hello, ' + user.name + '!'
 } catch (error) {
     console.error(error)
 
-    alert(error.massage)
+    alert(error.message)
 
 
     var homeAddress = location.href
@@ -23,7 +24,7 @@ try {
 
 logoutButton.onclick = function () {
     try {
-        logoutUser()
+        logic.logoutUser()
 
         var homeAddress = location.href
 
@@ -35,7 +36,7 @@ logoutButton.onclick = function () {
     } catch (error) {
         console.error(error)
 
-        alert(error.massage)
+        alert(error.message)
     }
 
 
@@ -55,5 +56,5 @@ try {
 } catch (error) {
     console.error(error)
 
-    alert(error.massage)
+    alert(error.message)
 }

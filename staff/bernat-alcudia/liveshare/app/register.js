@@ -1,5 +1,6 @@
 
 //presentation layer
+
 var form = document.querySelector('.form')
 var anchor = document.querySelector('a')
 
@@ -24,7 +25,7 @@ form.onsubmit = function (event) {
 
     try {
 
-        registerUser(name, birthdate, username, email, password)
+        logic.registerUser(name, birthdate, username, email, password)
 
         console.log('user registered')
 

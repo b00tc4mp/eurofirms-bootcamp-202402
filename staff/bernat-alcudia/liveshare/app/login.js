@@ -13,7 +13,7 @@ form.onsubmit = function (event) {
 
     try {
 
-        loginUser(username, password)
+        logic.loginUser(username, password)
 
         console.log('user logged in ')
 
