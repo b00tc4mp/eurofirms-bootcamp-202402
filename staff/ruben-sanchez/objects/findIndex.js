@@ -10,12 +10,12 @@ var numbers = {
     length: 8
 }
 function biggerThan(element) {
-     return element > 77
+    return element > 77
 
 }
 function findIndex(object, callback) {
     for (var i = 0; i < object.length; i++) {
-       var number = object[i]
+        var number = object[i]
         if (callback(number)) {
             console.log(i)
             return i;

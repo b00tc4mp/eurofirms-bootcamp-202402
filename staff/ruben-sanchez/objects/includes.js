@@ -1,10 +1,3 @@
-
-
-
-
-
-
-
 var cities = {
     0: 'Barcelon',
     1: 'Madrid',
@@ -18,27 +11,27 @@ var cities = {
     length: 8
 }
 
-function includes(object,element,fromIndex= 0) {
-    var booleanVar =  false;
-for ( var i = fromIndex; i < object.length -1;i++) {
-    
-    if (object[i]== element) {
+function includes(object, element, fromIndex = 0) {
+    var booleanVar = false;
+    for (var i = fromIndex; i < object.length - 1; i++) {
 
-        booleanVar = true;
+        if (object[i] == element) {
+
+            booleanVar = true;
+        }
+
     }
-
-}
     return booleanVar
 }
 
-console.log( 'CASE 1: we write Tokyo and the function returns true ')
+console.log('CASE 1: we write Tokyo and the function returns true ')
 
-console.log(includes(cities,'Tokyo'))
+console.log(includes(cities, 'Tokyo'))
 
-console.log( 'CASE 2: we write Vancover and the function returns false ')
+console.log('CASE 2: we write Vancover and the function returns false ')
 
 console.log(includes(cities, 'Vancover'))
 
 console.log('CASE 3: We write Tokyo and fromIndex = 4 and return false')
 
-console.log(includes(cities, 'Tokyo',4))
+console.log(includes(cities, 'Tokyo', 4))
