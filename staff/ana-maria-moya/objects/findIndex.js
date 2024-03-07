@@ -13,7 +13,6 @@ var callback = function (element) {
         return true
     }
     return false
-
 }
 
 console.log('CASE1 : ENCONTRAR EL PRIMER ELEMENTO QUE CONTENGA BLUE Y QUE ME DEVUELVA EL INDEX DE ESE ELEMENTO')

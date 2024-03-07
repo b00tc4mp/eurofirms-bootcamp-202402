@@ -14,9 +14,9 @@ var colors = {
     0: 'red',
     1: 'yellow',
     2: 'orange',
-    3: 'apple',
-    4: 'banana',
-    5: 'strawberry',
+    3: 'blue',
+    4: 'green',
+    5: 'pink',
     length: 6
 }
 
