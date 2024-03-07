@@ -6,7 +6,7 @@ function every(object, callback) {
 }
 
 var callback = function (element) {
-    return element > 3
+    return element.length > 3
 
 }
 
