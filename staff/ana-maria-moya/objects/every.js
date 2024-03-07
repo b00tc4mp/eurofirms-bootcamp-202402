@@ -10,12 +10,6 @@ var callback = function (element) {
 
 }
 
-
-
-
-
-
-
 console.log('CASE1:comprobar si los elementos son > 3')
 
 var food = {
