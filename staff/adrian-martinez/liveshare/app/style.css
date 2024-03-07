@@ -34,6 +34,25 @@ button a{
     text-decoration: none;
     color: white
 }
+#lista-usuarios{
+    position: absolute;
+    display: inline;
+    width: 20%;
+    margin-top: -16%;
+    margin-left: 75%;
+}
+ul {
+    position: relative;
+    margin-left: 5%;
+    border: 2px solid black;
+    border-radius: 5%;
+}
+li {
+    font-size: 20px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif, 'Arial Narrow', Arial, sans-serif;
+    border-bottom: 1px solid gainsboro;
+    padding:10px;
+}
 li::marker{
     color: limegreen;
 }
