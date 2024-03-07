@@ -14,13 +14,20 @@ form.onsubmit = function (event) {
     try {
 
         loginUser(username, password)
+
         console.log('user logged in ')
-        alert('user logged in')
+
         form.reset()
 
-    } catch (error) {
-        console.error(error.massage)
+        var loginAddress = location.href
 
-        alert(error.massage)
+        var homeAddress = loginAddress.replace('login', 'home')
+
+        location.href = homeAddress
+
+    } catch (error) {
+        console.error(error.message)
+
+        alert(error.message)
     }
 }
