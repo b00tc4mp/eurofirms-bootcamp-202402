@@ -66,23 +66,26 @@ Initialize a new Git repository in the current directory
 Add changes in the working directory to the staging area
 
 # git commit -m *
+
 Commit changes to the Git repository along with a commit message
 
 # git push
 
 Upload local changes (commits) to a remote repository
 
-
 # git log 
 
 display the commit history in a Git repository
 
 # git checkout 
+
 1 Switching Branches
 2 Creating a New Branch and Switching to It
 3 Discarding Changes in the Working Directory
 4 Checking Out a Specific Commit
+
 # git reset 
+
 1 Unstaging Changes
 2 Soft Reset (Keep Changes in Working Directory)
 3 Mixed Reset (Unstage Changes)
@@ -90,6 +93,7 @@ display the commit history in a Git repository
 5 Undo the Last Commit:
 
 # git commit --amend -m "New commit message"
+
 Amend the last commit with new changes or a new commit message
 
 # git push -f 
