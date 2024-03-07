@@ -37,7 +37,8 @@ var data = (function () {
         users[users.length] = user
         //pull data into localStorage to not lose it
 
-        localStorage.users = JSON.stringify(users)
+        //localStorage.users = JSON.stringify(users)
+        saveUsers(users)
     }
     function saveUser(user) {
         var users = loadUsers()
