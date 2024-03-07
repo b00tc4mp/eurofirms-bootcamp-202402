@@ -1,5 +1,3 @@
-// layer de presentacion
-
 var form = document.querySelector('.form')
 var anchor = document.querySelector('a')
 
@@ -8,9 +6,6 @@ form.onsubmit = function (event) {
 
     var nameInput = form.querySelector('#name')
     var name = nameInput.value
-
-    var lastnameInput = form.querySelector('#lastname')
-    var lastname = lastnameInput.value
 
     var birthdateInput = form.querySelector('#birthdate')
     var birthdate = birthdateInput.value
@@ -25,11 +20,11 @@ form.onsubmit = function (event) {
     var password = passwordInput.value
 
     try {
-        registerUser(name, lastname, birthdate, username, email, password)
+        logic.registerUser(name, birthdate, username, email, password)
 
-        console.log('user registered')
+        console.log('Usuario Registrado')
 
-        alert('user registered')
+        alert('Usuario Registrado')
 
         form.reset()
 

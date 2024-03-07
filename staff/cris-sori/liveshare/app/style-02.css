@@ -14,7 +14,7 @@
     padding-left: 5%;
     padding-right: 5%;
     border-radius: 100px 100px 50px 50px;
-    height: 85%;
+    height: 80%;
 }
 
 .form {
@@ -22,38 +22,38 @@
     flex-direction: column;
 }
 
-.registrarse {
+#username,
+#password {
+    height: 8vh;
+    font-size: 30px;
+}
+
+.username,
+.password {
+    font-size: 30px;
+}
+
+.submit {
+    position: relative;
+    top: 50px;
+    width: 500px;
+    height: 50px;
+    align-self: center;
+    background-color: deepskyblue;
     font-size: 20px;
 }
 
-#sendbutton {
-    height: 50px;
-    margin-top: 20px;
-    background-color: deepskyblue;
-    width: 90%;
-    z-index: 10000;
-    align-self: center;
-}
 
-.formulario {
-    height: 50px;
-    font-size: 30px;
-}
-
-#conectarboton {
-    background-color: rgb(174, 155, 245);
+.register {
+    top: 65vh;
     position: absolute;
-    font-size: 33px;
-    left: 105%;
-    top: 50px;
-    width: 175px;
-    text-align: center;
-    height: 45px;
-    color: #4e00e0;
-    border: solid #000000;
-    border-radius: 100px 100px 100px 100px;
-}
-
-label {
     font-size: 30px;
+    background-color: deepskyblue;
+    width: 25vh;
+    text-align: center;
+    border-radius: 50px 50px 50px 50px;
+    left: 106%;
+    top: 108%;
+    color: #0051ff;
+    border: solid #000000;
 }

@@ -1,6 +1,4 @@
-// data layer
 var data = (function () {
-    // helpers
 
     function loadUsers() {
         return JSON.parse(localStorage.users || '[]')
@@ -9,8 +7,6 @@ var data = (function () {
     function saveUsers(users) {
         localStorage.users = JSON.stringify(users)
     }
-
-    // data
 
     function findUser(callback) {
         var users = loadUsers()

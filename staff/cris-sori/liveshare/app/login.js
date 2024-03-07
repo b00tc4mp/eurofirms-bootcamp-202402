@@ -1,5 +1,3 @@
-// presentation layer
-debugger
 var form = document.querySelector('.form')
 
 form.onsubmit = function (event) {
@@ -12,18 +10,17 @@ form.onsubmit = function (event) {
     var password = passwordInput.value
 
     try {
-        loginUser(username, password)
+        logic.loginUser(username, password)
 
-        console.log('user logged in')
-
-
+        console.log('Un usuario ha iniciado sesión')
 
         form.reset()
-        var loginAddress = location.href
-        var homeAddress = loginAddress.replace('login', 'home')
-        location.href = homeAddress
 
-        // TODO navigate to home
+        var loginAddress = location.href
+
+        var homeAddress = loginAddress.replace('login', 'home')
+
+        location.href = homeAddress
     } catch (error) {
         console.error(error.message)
 

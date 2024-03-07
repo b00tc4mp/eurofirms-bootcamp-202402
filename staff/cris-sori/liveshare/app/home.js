@@ -1,4 +1,3 @@
-// capa de presentacion
 var title = document.querySelector('h1')
 var logoutButton = document.querySelector('#logout-button')
 var onlineUsersList = document.querySelector('#online-users')
@@ -6,7 +5,7 @@ var onlineUsersList = document.querySelector('#online-users')
 try {
     var user = logic.retrieveUser()
 
-    title.innerText = 'Hello, ' + user.name + '!'
+    title.innerText = 'Hola =D, ' + user.name + '!'
 } catch (error) {
     console.error(error)
 

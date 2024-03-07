@@ -1,132 +1,164 @@
-//capa de logica
-function registerUser(name, lastname, birthdate, username, email, password) {
-    if (name.length < 1)
-        throw new Error('El nombre tiene menos de 1 carácter')
+var logic = (function () {
 
-    var nameIsBlank = true
+    function validateName(name) {
+        if (name.length < 1)
+            throw new Error('El nombre tiene menos de 1 carácter')
 
+        var nameIsBlank = true
 
+        for (var i = 0; i < name.length && nameIsBlank; i++) {
+            var char = name[i]
 
-    for (var i = 0; i < name.length && nameIsBlank; i++) {
-        var char = name[i]
+            if (char !== ' ')
+                nameIsBlank = false
+        }
 
-        if (char !== ' ')
-            nameIsBlank = false
-    }
-    if (lastname.length < 3)
-        throw new Error('El apellido tiene menos de 3 caracteres')
-
-    var lastnameIsBlank = true
-
-    for (var i = 0; i < lastname.length && lastnameIsBlank; i++) {
-        var char = lastname[i]
-
-        if (char !== ' ')
-            lastnameIsBlank = false
+        if (nameIsBlank)
+            throw new Error('Nombre es blanco')
     }
 
-    if (lastnameIsBlank)
-        throw new Error('El apellido está en blanco')
+    function validateBirthdate(birthdate) {
+        if (birthdate.length !== 10)
+            throw new Error('La fecha de nacimiento no tiene 10 caracteres')
 
-    if (birthdate.length !== 10)
-        throw new Error('La fecha de nacimiento no tiene 10 caracteres')
+        if (birthdate.includes(' '))
+            throw new Error('Fecha de nacimiento tiene espacio en blanco')
 
-    if (birthdate.includes(' '))
-        throw new Error('La fecha de nacimiento tiene un espacio')
-
-    if (birthdate.indexOf('-') !== 4 || birthdate.lastIndexOf('-') !== 7)
-        throw new Error('Los guiones de la fecha de nacimiento no están en la posición correcta.')
-
-    if (username.length < 3)
-        throw new Error('Tu nombre de usuario es inferior a 3 carácteres')
-
-    if (username.includes(' '))
-        throw new Error('Tu nombre de usuario tiene un espacio')
-
-    if (email.length < 6)
-        throw new Error('Email es menor que 6 carácteres')
-
-    if (!email.includes('@'))
-        throw new Error('Email no tiene @')
-
-    if (!email.includes('.'))
-        throw new Error('Email no tiene .')
-
-    if (email.lastIndexOf('.') < email.indexOf('@'))
-        throw new Error('Email tiene . antes de @')
-
-    if (email.lastIndexOf('.') - email.indexOf('@') < 2)
-        throw new Error('El email tiene . junto a @')
-
-    if (email.length - 1 - email.indexOf('.') < 2)
-        throw new Error('El dominio de email tiene menos de 2 caracteres.')
-
-    if (email.includes(' '))
-        throw new Error('Email tiene un espacio')
-
-    if (password.length < 8)
-        throw new Error('Contraseña es menor de 8 carácteres')
-
-    if (password.includes(' '))
-        throw new Error('Contraseña tiene espacios')
-    // for (var i = 0; i < users.length; i++) {
-    //     var user = users[i]
-
-    //     if (user.email === email)
-    //         throw new Error('El usuario ya existe')
-    // }
-    var user = findUser(function (user) {
-        return user.username === username || user.email === email
-    })
-    var user = {
-        name: name,
-        lastname: lastname,
-        birthdate: birthdate,
-        username: username,
-        email: email,
-        password: password
+        if (birthdate.indexOf('-') !== 4 || birthdate.lastIndexOf('-') !== 7)
+            throw new Error('Fecha de nacimiento no está en el orden correcto')
     }
 
-    insertUser(user)
-}
+    function validateUsername(username) {
+        if (username.length < 3)
+            throw new Error('El nombre de usuario tiene menos de 3 caracteres')
 
+        if (username.includes(' '))
+            throw new Error('El nombre de usuario tiene espacio en blanco')
+    }
 
-function loginUser(username, password) {
-    if (username.length < 3)
-        throw new Error('username is lower than 3 characters')
+    function validateEmail(email) {
+        if (email.length < 6)
+            throw new Error('Correo Electrónico es más pequeño que 6 carácteres')
 
-    if (username.includes(' '))
-        throw new Error('username has a space character')
+        if (!email.includes('@'))
+            throw new Error('El correo electrónico no tiene @')
 
-    if (password.length < 8)
-        throw new Error('password is lower than 8 characters')
+        if (!email.includes('.'))
+            throw new Error('El correo electrónico no tiene .')
 
-    if (password.includes(' '))
-        throw new Error('password has space character')
+        if (email.lastIndexOf('.') < email.indexOf('@'))
+            throw new Error('El correo electrónico tiene . antes @')
 
+        if (email.lastIndexOf('.') - email.indexOf('@') < 2)
+            throw new Error('El correo electrónico tiene . junto a @')
 
-    var user = findUser(function (user) {
-        return user.username === username
-    })
+        if (email.length - 1 - email.indexOf('.') < 2)
+            throw new Error('El dominio de Correo electrónico es inferior a 2 cáracteres')
 
-    if (user === undefined)
-        throw new Error('user not found')
+        if (email.includes(' '))
+            throw new Error('El correo electrónico tiene espacio')
+    }
 
-    if (user.password !== password)
-        throw new Error('wrong password')
+    function validatePassword(password) {
+        if (password.length < 8)
+            throw new Error('La contraseña tiene menos de 8 caracteres')
 
-    sessionStorage.userId = user.id
-}
+        if (password.includes(' '))
+            throw new Error('Contraseña tiene espacio')
+    }
 
-function retrieveUser() {
-    var user = findUser(function (user) {
-        return user.id === sessionStorage.userId
-    })
+    function registerUser(name, birthdate, username, email, password) {
+        validateName(name)
+        validateBirthdate(birthdate)
+        validateUsername(username)
+        validateEmail(email)
+        validatePassword(password)
 
-    if (user === undefined)
-        throw new Error('user not found')
-    if (user.password !== password)
-        throw new Error('wrong password')
-    sessionStorage.userId = user.id
-}
+        var user = data.findUser(function (user) {
+            return user.username === username || user.email === email
+        })
 
+        if (user !== undefined)
+            throw new Error('Usuario ya Existe')
+
+        var user = {
+            name: name,
+            birthdate: birthdate,
+            username: username,
+            email: email,
+            password: password
+        }
+
+        data.insertUser(user)
+    }
+
+    function loginUser(username, password) {
+        validateUsername(username)
+        validatePassword(password)
+
+        var user = data.findUser(function (user) {
+            return user.username === username
+        })
+
+        if (user === undefined)
+            throw new Error('Usuario no encontrado')
+
+        if (user.password !== password)
+            throw new Error('Contraseña errónea')
+
+        sessionStorage.userId = user.id
+
+        user.online = true
+
+        data.saveUser(user)
+    }
+
+    function retrieveUser() {
+        var user = data.findUser(function (user) {
+            return user.id === sessionStorage.userId
+        })
+
+        if (user === undefined)
+            throw new Error('Usuario no encontrado')
+
+        return user
+    }
+
+    function logoutUser() {
+        var user = data.findUser(function (user) {
+            return user.id === sessionStorage.userId
+        })
+
+        if (!user) throw new Error('Usuario no encontrado')
+
+        user.online = false
+
+        data.saveUser(user)
+
+        delete sessionStorage.userId
+    }
+
+    function retrieveOnlineUsers() {
+        var users = data.findUsers(function (user) {
+            return user.online
+        })
+
+        users.forEach(function (user) {
+            delete user.name
+            delete user.birthdate
+            delete user.email
+            delete user.password
+            delete user.online
+        })
+
+        return users
+    }
+
+    return {
+        registerUser: registerUser,
+        loginUser: loginUser,
+        retrieveUser: retrieveUser,
+        logoutUser: logoutUser,
+        retrieveOnlineUsers: retrieveOnlineUsers
+    }
+})()
