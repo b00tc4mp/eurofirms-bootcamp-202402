@@ -18,9 +18,10 @@ form.onsubmit = function (event) {
         alert('user logged in')
 
         form.reset()
-        var loginAdress = location.href 
+        var loginAdress = location.href
         var homeAdress = loginAdress.replace('login', 'home')
-        location.href =homeAdress
+
+        location.href = homeAdress
 
         // TODO navigate to home
     } catch (error) {

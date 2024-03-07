@@ -66,7 +66,6 @@ var logic = (function () {
     }
 
     function validatePassword(password) {
-
         if (password.length < 8)
             throw new Error('password is lower than 8 characters')
 

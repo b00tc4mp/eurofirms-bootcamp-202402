@@ -2,14 +2,17 @@
 var data = (function() {
     // helpers
 
-    function parseUsers() {
+    function loadUsers() {
         return JSON.parse(localStorage.users || '[]')
     }
-
+    function saveUsers(users) {
+        localStorage.users = JSON.stringify(users)
+    
+    }
     // data
 
     function findUser(callback) {
-        var users = parseUsers()
+        var users = loadUsers()
 
         for (var i = 0; i < users.length; i++) {
             var user = users[i]
@@ -21,13 +24,13 @@ var data = (function() {
 }
 
 function insertUser(user) {
-    var users = parseUsers()
+    var users = loadUsers()
   
     user.id = parseInt(Math.random() * 1000000000000000000).toString(36)
 
     users[users.length] = user
 
-    localStorage.users = JSON.stringify(users)
+    saveUsers(users)
 }
 function saveUser(user) {
     var users = loadUsers()
