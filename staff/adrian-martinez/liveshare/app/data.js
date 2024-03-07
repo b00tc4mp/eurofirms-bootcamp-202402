@@ -34,7 +34,7 @@ var data = (function(){
     
         users[users.length] = user;
     
-        saveUser(users);
+        saveUsers(users);
     }
     function saveUser(user){
     
