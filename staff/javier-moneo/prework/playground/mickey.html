@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="mickey">
+      <div id="ears-container">
+        <div id="ear-left" class="ear"></div>
+        <div id="ear-right" class="ear"></div>
+      </div>
+
+      <div id="mickey-head">
+        <div id="eyes-container">
+          <div id="eye-left" class="eye">
+            <div class="iris"></div>
+          </div>
+          <div id="eye-right" class="eye">
+            <div class="iris"></div>
+          </div>
+        </div>
+
+        <div id="mouth"></div>
+      </div>
+    </div>
+
+    <style>
+      #mickey {
+        position: absolute;
+        left: 40%;
+        top: 30%;
+        background-color: gray;
+      }
+      #ears-container {
+        display: flex;
+      }
+      .ear {
+        width: 100px;
+        height: 100px;
+        background-color: black;
+        border-radius: 50%;
+      }
+      #ear-left {
+        position: relative;
+      }
+      #ear-right {
+        position: relative;
+        background-color: blue;
+        left: 40px;
+      }
+
+      #mickey-head {
+        position: relative;
+        left: 20px;
+        top: -20px;
+        width: 200px;
+        height: 200px;
+        background-color: navajowhite;
+        border-radius: 50%;
+        border-style: solid;
+        border-width: 2px;
+        border-color: black;
+      }
+      #eyes-container {
+        position: absolute;
+        top: 60px;
+      }
+      .eye {
+        background-color: white;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+      }
+      #eye-left {
+        position: absolute;
+        left: 60px;
+      }
+      #eye-right {
+        position: absolute;
+        background-color: blue;
+        left: 120px;
+      }
+      .iris {
+        position: absolute;
+        background-color: black;
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        left: 10px;
+        top: 10px;
+        animation-name: iris-ani;
+        animation-duration: 20s;
+        animation-iteration-count: infinite;
+      }
+
+      @keyframes iris-ani {
+        0% {
+          transform: translate(4px, 4px);
+        }
+
+        10% {
+          transform: translate(4px, 8px);
+        }
+
+        20% {
+          transform: translate(4px, 4px);
+        }
+
+        30% {
+          transform: translate(8px, 4px);
+        }
+
+        40% {
+          transform: translate(4px, 4px);
+        }
+
+        50% {
+          transform: translate(4px, 0px);
+        }
+
+        60% {
+          transform: translate(4px, 4px);
+        }
+
+        70% {
+          transform: translate(0px, 4px);
+        }
+
+        80% {
+          transform: translate(4px, 4px);
+        }
+      }
+      #mouth {
+        position: relative;
+        background-color: red;
+        width: 20px;
+        height: 10px;
+        top: 140px;
+        left: 90px;
+        animation-name: mouth-ani;
+        animation-duration: 10s;
+        animation-iteration-count: infinite;
+      }
+
+      @keyframes mouth-ani {
+        0% {
+          height: 4px;
+        }
+
+        50% {
+          height: 12px;
+        }
+
+        100% {
+          height: 4px;
+        }
+      }
+    </style>
+  </body>
+</html>

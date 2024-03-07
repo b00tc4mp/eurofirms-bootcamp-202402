@@ -1,0 +1,51 @@
+.container {
+  position: relative;
+  width: 500px;
+  height: 200px;
+  border: 2px dashed black;
+  top: 100px;
+}
+
+[class^="box"] {
+  width: 120px;
+  height: 50px;
+  font-weight: bold;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.box-1 {
+  position: absolute;
+  background-color: hsl(0deg, 100%, 50%);
+}
+
+.box-2 {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: hsl(30deg, 100%, 50%);
+}
+
+.box-3 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-color: hsl(60deg, 80%, 50%);
+}
+
+.box-4 {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background-color: hsl(120deg, 70%, 50%);
+}
+
+.box-5 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  background-color: hsl(180, 60%, 50%);
+}
