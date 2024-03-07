@@ -1,0 +1,35 @@
+.container {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+
+
+}
+
+.sub-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px 1fr));
+    gap: 10px;
+}
+
+.box {
+    border-radius: solid 1px;
+    border: solid 10px pink;
+    height: 200px;
+    background-color: blueviolet;
+    padding: 10px 20px 10px 20px;
+
+
+}
+
+img {
+    width: 20%;
+    height: 100%;
+}
+
+.box {
+    width: 30%;
+    display: grid;
+    grid-template-columns: (auto-fit, minimax(200pz, 1fr));
+}
