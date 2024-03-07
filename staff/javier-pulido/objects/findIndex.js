@@ -14,20 +14,16 @@ function findIndex (object, callback){
     for (var i = 0; i < object.length; i++) {
 
     if(callback(object[i])) {
-        return i
-    }
-
+       return i
+    }       
+}
+       return false
 }
 
-        return -1
-
-}
-
-var foundIndex = findIndex(people, function(element){
-
-
+var callback = function(element){
     return element.name === 'Javi'
+}
 
-})
+console.log ( 'CASE 1: buscar el indice del nombre Javi')
 
-console.log(foundIndex)
+console.log(findIndex(people, callback))
