@@ -8,12 +8,15 @@ form.onsubmit = function (event) {
     var passwordInput = form.querySelector('#password')
     var password = passwordInput.value
     try {
-        loginUser(username, password)
-        sessionStorage.username = username
+        logic.loginUser(username, password)
         console.log('user logged in')
 
+        form.reset()
+
         var loginAddress = location.href
+
         var homeAddress = loginAddress.replace('login', 'home')
+
         location.href = homeAddress
 
     } catch (error) {

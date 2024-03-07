@@ -1,4 +1,4 @@
-var users = []
+
 var form = document.querySelector('.form')
 var anchor = document.querySelector('a')
 
@@ -20,7 +20,7 @@ form.onsubmit = function (event) {
     var password = passwordInput.value
 
     try {
-        registerUser(name, birthdate, username, email, password)
+        logic.registerUser(name, birthdate, username, email, password)
         console.log('user registered')
         alert('user registered')
         form.reset()
