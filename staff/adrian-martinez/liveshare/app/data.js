@@ -6,13 +6,14 @@ if(localStorage.users){
     users = JSON.parse(localStorage.users);
 } */
 var data = (function(){
-
     function loadUsers(){
         return JSON.parse(localStorage.users || "[]");
     }
+
     function saveUsers(users){
         localStorage.users = JSON.stringify(users);
     }
+
     function findUser(callback){
 
         var users = loadUsers();
@@ -26,6 +27,7 @@ var data = (function(){
             }
         }
     }
+
     function insertUser(user){
     
         var users = loadUsers();
@@ -36,6 +38,7 @@ var data = (function(){
     
         saveUsers(users);
     }
+
     function saveUser(user){
     
         var users = loadUsers();
@@ -48,6 +51,7 @@ var data = (function(){
 
         saveUsers(users)
     }
+    
     function findUsers(callback){
     
         var users = loadUsers();
