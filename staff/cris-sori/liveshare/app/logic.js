@@ -1,5 +1,4 @@
 //capa de logica
-debugger
 function registerUser(name, lastname, birthdate, username, email, password) {
     if (name.length < 1)
         throw new Error('El nombre tiene menos de 1 carácter')
