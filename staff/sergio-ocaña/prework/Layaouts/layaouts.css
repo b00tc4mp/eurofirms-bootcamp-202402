@@ -1,0 +1,10 @@
+        .big {
+            background-color: red;
+            width: 500vh;
+            height: 500wh;
+        }
+
+        .head {
+            size: 40%;
+            background-color: black;
+        }
