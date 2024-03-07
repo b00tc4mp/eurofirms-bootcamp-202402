@@ -1,0 +1,236 @@
+* {
+    box-sizing: border-box;
+}
+
+/*Container Padre Global-Envuelve todas las etiquetas-------------------------*/
+.container {
+    width: 450px;
+    height: 550px;
+    
+}
+
+/*Upper-container---------PADRE----------------------------------------------*/
+.upper-container {
+    width: 100%;
+    height: 10%;
+    display: flex;
+    border-bottom: solid 2px black;
+}
+
+.upper-left-white {
+    height: 100%;
+    width: 35%;
+    background-color: beige;
+    border-right: solid 2px black;
+    border-bottom: solid 2px black;
+    
+    
+}
+
+.upper-right-white {
+    height: 100%;
+    width: 55%;
+    background-color: beige;
+    border-bottom: solid 2px black;
+    border-right: solid 2px black;
+    border-left: solid 2px black;
+
+}
+
+.upper-yellow {
+    height: 100%;
+    width: 10%;
+    background-color: yellow;
+    border-left: solid 2px black;
+}
+
+/*Middle-container---------PADRE------------------------------------*/
+.middle-container {
+    width: 100%;
+    height: 70%;
+    border-top: solid 2px black;
+    border-bottom: solid 2px black;
+    display: flex;
+
+}
+
+/*Middle-left-container----------PADRE-------------------------------*/
+.middle-left-container {
+    height: 100%;
+    width: 8%;
+    background-color: beige;
+    display: flex;
+    flex-direction: column;
+    border-top: solid 2px black;
+    border-right: solid 2px black;
+    border-bottom: solid 2px black;
+}
+
+/*Etiquetas Hijos--------------------------------------------------*/
+.middle-upper-white {
+    height: 40%;
+    width: 100%;
+    border-top: solid 2px black;
+    border-right: solid 2px black;
+    border-bottom: solid 2px black;
+}
+
+.middle-bottom-white {
+    height: 60%;
+    width: 100%;
+    border-top: solid 2px black;
+    border-right: solid 2px black;
+    border-bottom: solid 2px black;
+
+}
+
+/*middle-middle-container--------Padre-----------------------------*/
+.middle-middle-container {
+    width: 82%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/*Etiqueta Hijo---------------------------------------------------*/
+.red-block {
+    width: 100%;
+    height: 80%;
+    background-color: red;
+   
+
+}
+
+/*Etiqueta padre--------------------------------------------------*/
+.white-black-middle-container {
+    width: 100%;
+    height: 20%;
+    display: flex;
+   
+    float: right;
+}
+
+/*Etiquetas Hijos---------------------------------------------------*/
+.middle-black {
+    height: 100%;
+    width: 50%;
+    background-color: black;
+}
+
+.middle-white {
+    height: 100%;
+    width: 50%;
+    background-color: beige;
+}
+/*Etiqueta Padre----------------------------------------------------*/
+.middle-right-container {
+    height: 100%;
+    width: 10%;
+    background-color: beige;
+    display: flex;
+    flex-direction: column;
+}
+
+/*Etiqueta Hijos----------------------------------------------------*/
+.middle-yellow {
+    width: 100%;
+    height: 50%;
+   
+    background-color: yellow;
+}
+
+
+.middle-right-white {
+    width: 100%;
+    height: 50%;
+   
+    background-color: beige;
+}
+
+.middle-bottom-right-white {
+    width: 100%;
+    height: 25%;
+   
+    background-color: beige;
+}
+
+/*Etiqueta padre-------------------------------------------------*/
+.bottom-container {
+    width: 100%;
+    height: 20%;
+    display: flex;
+}
+
+/*Etiquetas hijos-------------------------------------------------*/
+.bottom-yellow {
+    width: 8%;
+    height: 100%;
+    background-color: yellow;
+   
+}
+
+.bottom-middle-container {
+    width: 82%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+   
+}
+
+/*Etiqueta Padre---------------------------------------------------*/
+.bottom-upper-container {
+    width: 100%;
+    height: 67%;
+    display: flex;
+    
+}
+
+/*Etiquetas Hijos---------------------------------------------------*/
+.middle-black {
+    height: 100%;
+    width: 50%;
+    background-color: black;
+}
+
+.middle-white {
+    height: 100%;
+    width: 50%;
+    background-color: beige;
+}
+
+/*Etiqueta Padre------------------------------------------------------*/
+.bottom-bottom-container {
+    width: 100%;
+    height: 33%;
+    display: flex;
+}
+
+/*Etiqueta Hijos-------------------------------------------------------*/
+.bottom-white {
+    height: 100%;
+    width: 50%;
+    background-color: beige;
+   
+
+}
+
+.bottom-black {
+    height: 100%;
+    width: 50%;
+    background-color: black;
+   
+}
+
+/*Etiqueta Hijo de Bottom-cotainer-----------------------------------------*/
+.bottom-blue {
+    width: 10%;
+    height: 100%;
+    background-color: blue;
+   
+
+}
+
+
+
+
+

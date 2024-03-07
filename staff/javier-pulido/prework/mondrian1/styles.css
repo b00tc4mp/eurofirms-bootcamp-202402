@@ -1,0 +1,58 @@
+.container {
+    height: 70vh;
+    width: 50vw;
+    border: solid black 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    _background-color: red;  
+  }
+  .white1 {
+    height: 30vh;
+    width: 16vw;
+    border: solid black 16px;
+    background-color: white;  
+  }
+  .white2 {
+   
+    height: 50vh;
+    width: 16vw;
+    border: solid black 16px;
+    background-color: yellow;
+  }
+  .red {
+    height: 100%;
+    width: 20vw;
+    border: solid black 16px;
+    background-color: red; 
+    display: flex;
+    flex-direction: row-reverse;
+  }
+  .container2 {
+    height: 13vh;
+    width: 50vw;
+    border: solid black 16px;
+    display: flex;
+    _flex-direction: column;
+  }
+  .blue {
+    
+    height: 10vh;
+    width: 30vw;
+    border: solid black 16px;
+    background-color: darkmagenta;
+  }
+  .white3 {
+    height: 10vh;
+    width: 30vw;
+    border: solid black 16px;
+    background-color: white;
+    display: flex;
+  }
+  .white4 {
+    height: 10vh;
+    width: 11vw;
+    border: solid black 16px;
+    background-color: white;
+    display: flex;
+  } 
