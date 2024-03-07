@@ -24,7 +24,6 @@ Add directory or file to staging area.
 
 ## git commit -m "<message> #<issue>"
 
-
 Consolidates the changes in files added to staging area.
 
 # git push
@@ -49,13 +48,11 @@ List hidden files and directory
 
 # node --inspect-brk <directory-structure>
 
-Debugger 
-
+debugger
 
 # git --version
 
 Retrieve the current installed version of git
-
 
 # git init
 
