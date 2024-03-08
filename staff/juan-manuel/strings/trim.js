@@ -22,6 +22,6 @@ function trim(string) {
     return resultado;
 }
 
-var string = "   HOLA    ";
+var string = "  HOLA   ";
 console.log("CASO 1: eliminar espacios al principio y al final. Resultado = Primer carácter que no sea espacio");
 console.log({ resultado: trim(string) });
