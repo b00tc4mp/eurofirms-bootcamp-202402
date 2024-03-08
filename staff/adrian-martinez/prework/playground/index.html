@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pintar Objectos</title>
+</head>
+<body>
+    <h1>Ejemplo 1 - Poner emoticonos en un contenedor</h1>
+    <hr/>
+    <div style="width: 50%;border-style:solid;;border-width: 10px;">
+        <div style="margin-left:5%;margin-top:100px;background-color:ghostwhite;font-size:50px">🤠</div>
+        <div style="background-color:ghostwhite;font-size:100px;">🐎</div>
+    </div>
+    <h1>Ejemplo 2 - Hacer un coche</h1>
+        <hr/>
+    <div style="width:80px;position:relative;" id="car">
+        <div style="background-color: red; padding: 2px; border-style: solid; border-width: 1px;">
+            <div style="background-color: skyblue; border-style: solid; border-width: 1px;">
+                😜
+            </div>
+
+            <div
+                style="border-style: solid; border-width: 1px; margin-top: 1px; margin-bottom: 1px; padding: 1px; display: flex; justify-content: space-between;">
+                <div
+                    style="border-style: solid; border-width: 1px; width: 10px; height: 10px;background-color: yellow;">
+                </div>
+
+                <div
+                    style="border-style: solid; border-width: 1px; width: 10px; height: 10px;background-color: yellow;">
+                </div>
+            </div>
+
+            <div style="border-style: solid; border-width: 5px;">
+
+            </div>
+        </div>
+        <div style="margin-top: 1px; margin-bottom: 1px; display: flex; justify-content: space-between;">
+            <div style="border-style: solid; border-width: 1px; width: 10px; height: 15px;background-color: gray;">
+            </div>
+
+            <div style="border-style: solid; border-width: 1px; width: 10px; height: 15px;background-color: gray;">
+            </div>
+        </div>
+        <script>
+            let car = document.getElementById("car");
+            let x = 0;
+            let y = 0;
+            
+            //Capturamos el evento del teclado y ejecutamos la función 
+            document.onkeydown = function (oliwis) {
+                movercoche(oliwis);
+            }
+        
+            function movercoche(oliwis) {
+                if (oliwis.key === "ArrowRight") {
+                    x = x + 10;
+                } else if (oliwis.key === "ArrowLeft") {
+                    x = x - 10;
+                } else if (oliwis.key === "ArrowUp") {
+                    y = y - 10;
+                } else if (oliwis.key === "ArrowDown") {
+                    y = y + 10;
+                }
+        
+                car.style.left = x + "px";
+                car.style.top = y + "px";
+            }
+        </script>
+    </div>
+    <h1>Ejemplo 3 - Hacer un caballo dibujandolo con píxeles</h1>
+        <hr/>
+    <div id="horse" style="position: relative;">
+        <div style="position: relative; left: 25px;">
+            <div style="display: flex; gap: 1px;">
+                <div style="background-color: brown; width: 2px; height: 5px;"></div>
+                <div style="background-color: brown; width: 2px; height: 5px;"></div>
+            </div>
+
+            <div style="background-color: brown; width: 20px; height: 10px; position: relative;">
+                <div style="background-color: white; width: 5px; height: 5px; position: absolute; left: 3px; top: 2px;">
+                    <div
+                        style="background-color: black; width: 2px; height: 2px; position: absolute; left: 2px; top: 1px;">
+                    </div>
+                </div>
+            </div>
+
+            <div style="background-color: brown; width: 5px; height: 10px;"></div>
+        </div>
+
+        <div style="background-color: brown; width: 30px; height: 10px;"></div>
+
+        <div style="display: flex; justify-content: space-between; width: 30px;">
+            <div style="background-color: brown; width: 2px; height: 15px;"></div>
+            <div style="background-color: brown; width: 2px; height: 15px;"></div>
+            <div style="background-color: brown; width: 2px; height: 15px;"></div>
+            <div style="background-color: brown; width: 2px; height: 15px;"></div>
+        </div>
+    </div>
+</body>
+</html>
