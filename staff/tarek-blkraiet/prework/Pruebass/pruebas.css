@@ -1,0 +1,21 @@
+
+.container{
+ background-color: blueviolet;
+ width: 100vw;
+ height: 100vw;
+ display: grid;
+ grid-template-columns:  1fr 1fr 1fr;
+ grid-template-rows:1fr 1fr 1f 1fr ;
+ border: 10px solid;
+
+}
+.header{
+ background-color: brown;
+}
+.content{
+background-color: blue;
+}
+.footer{
+background-color: green;
+
+}
