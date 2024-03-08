@@ -1,0 +1,71 @@
+*{
+    box-sizing: border-box;
+}
+.container{
+    width:450px; 
+    height:500px;
+    border: solid 2px black;
+    display:flex; /*ordenar los 2 hijos*/
+    flex-direction:column; /*de arriba a bajo*/
+    box-shadow:10px 5px 15px black;
+}
+.upper-container{
+  width:100%;  /* porcentaje se usa por el los padres  container*/
+  height:75%;
+  border:solid 2px black;
+  display:flex;
+  border-bottom: solid 10px black;
+}
+.left-white-blocks{
+ width:25%;
+ height:100%;
+ border: solid 2px black
+}
+.left-white1{
+width: 100%;
+height: 40% ;
+background-color: beige;
+border-bottom:solid 10px black;
+}
+.left-white2{
+    width: 100%;
+    height: 60% ;
+    background-color: beige;
+    }
+.red-block{
+ width: 75%;
+ height:100%;
+ background-color:red
+}
+.lower-container{
+    width:100%;
+    height:30%;
+    border: solid 2px black;
+    display:flex;
+}
+.blue-block{
+ width:25%;
+ height:100%;
+ background-color: blue;
+} 
+.lower-white-block{
+width:62.5%;
+height:100%;
+border: solid 2px black;
+}
+.lower-right-container{
+width:12.5%;
+height:100%;
+border: solid 2px black;
+border-left: solid 10px black;
+}
+.lower-right-white{
+width:100%;
+height:50%;
+background-color:beige;
+}
+.lower-right-yellow {
+width:100%;
+height:50%;
+background-color: blueviolet;
+}

@@ -1,0 +1,29 @@
+.container{
+    width:100vw;
+    height:100vh;
+    display:grid;
+    grid-template-columns: 1fr 2fr; /* se puedo usar % y fraquiciones(1fr 2fr...) se puede usar la opicion repeat(cuantas veces queremos que se repite(6,1fr),rows se usar y funciona igual */
+    grid-template-rows: 1fr 3fr 1fr;
+    /* grid template e usa solo para los padres*/
+}
+.header{
+    background-color: blue;
+    grid-column:1 / 3;/* de 2colum a la 3 column*/
+    grid-row: 1 / 2;
+}
+.left-navigation{
+    background-color: orange;
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+}
+.content{
+    background-color: grey;
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+    
+}
+.footer{
+    background-color: green;
+    grid-column: 1 / 3;
+    grid-row: 3 / 4 ;
+}

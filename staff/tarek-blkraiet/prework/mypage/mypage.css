@@ -1,0 +1,46 @@
+*{
+    padding:1px;
+
+}
+img{
+    width: 100%;
+}
+button{
+    cursor:pointer;
+
+}
+.main-header{
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.cart-account-container{
+    display:flex;
+    gap:15px;
+
+}
+.pc-compontents-icon{
+    width:120px;
+    
+}
+.section-container{
+    display:flex;
+    flex-direction: column;
+
+
+}
+.article-container{
+    min-height: 400px;
+    width: 400px;
+    border-radius:20px ;
+    padding:20px;
+
+}
+.product-image-container{
+    width:60%;
+
+}
+.produt-image{
+    width:100%;
+
+}
