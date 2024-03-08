@@ -11,10 +11,13 @@ var animales = {
 }
 
 function someElements(object, callback){
-    
+    for(let i=0;i < object.length;i++){
+
+        callback(object[i]);
+    }
 }
 
-var callback = function(object){
-
+var callback = function(element){
+    return element.length < 6;
 }
 console.log(animales, callback);
