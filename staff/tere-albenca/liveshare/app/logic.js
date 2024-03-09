@@ -1,4 +1,28 @@
 var logic = (function () {    //IFFE
+     //utils
+     function convertDateToISOString(date){
+        var year =date.getFullYear()
+        var month = date.getMonth()+1
+        var day = date.getDate()
+
+        var hours = date.getHours()
+        var minutes = date.getMinutes()
+        var seconds =date.getSeconds()
+        var millis =date-getMilliseconds()
+        
+        function twoDigits(value){
+            return value <10 ? '0'+value : ''+value        
+        }
+
+        function threeDigits(value){
+            return value < 10 ? '00'+ value : value < 100 ? '0'+value: ''+value
+        }
+
+        var isoDate = year + '-'+ twoDigits(month) +'-'+ twoDigits(day) +' '+twoDigits(hours)+ ':'+ twoDigits(minutes)+':'+twoDigits(seconds)+'.'+threeDigits(millis)
+        
+        return isoDate
+    }
+
     //helpers
     function validateName(name) {   //name
         if (name.length < 1)
@@ -47,10 +71,10 @@ var logic = (function () {    //IFFE
 
     function validateUsername(username) {   //username
         if (username.length < 3)
-            throw new Error('username is lower, write more character, please')
+            throw new Error('username is lower. Write more character, please')
 
         if (username.includes(' '))
-            throw new Error('You use space character, delete please')
+            throw new Error('You use space character. Delete it, please')
     }
 
     function validateEmail(email) {   //email
@@ -82,6 +106,20 @@ var logic = (function () {    //IFFE
 
         if (password.includes(' '))
             throw new Error('Password has space character, please delete it')
+
+        if(!password.length)throw new Error('password is empty. Write a password')
+    }
+    
+    function validateUserId(userId){
+        if(typeof userId !== 'string')throw new Error ('userId is not a string')
+        if(userId.includes(' '))throw new Error ('userId has spaces')
+        if (!userId.length)throw new Error ('userId is empty')
+    }
+
+    function validateText(text){
+        if(typeof text !== 'string')throw new Error ('text is not a string')
+        if(text.includes(' '))throw new Error ('text has spaces')
+        if (!text.length)throw new Error ('text is empty')
     }
 
     //logic
@@ -130,7 +168,7 @@ var logic = (function () {    //IFFE
 
         user.online = true
 
-        data.saveUser(user)
+        data.updateUser(user)
     }
 
     function retrieveUser() { //retrieve user 
@@ -148,30 +186,62 @@ var logic = (function () {    //IFFE
         var user = data.findUser(function (user) {
             return user.id === sessionStorage.userId
         })
+
         if (!user) throw new Error('user not found')
 
         user.online = false
 
-        data.saveUser(user)
+        data.updateUser(user)
 
         delete sessionStorage.userId
     }
 
-    function retrieveOnlineUsers() {
-        var users = data.findUsers(function (user) {
-            return user.online
+     function retrieveUsers() {
+        var users = data.getAllUsers()
+
+        var index = users.findIndex(function (user) {
+            return user.id === sessionStorage.userId
         })
+
+        users.splice(index, 1)
 
         users.forEach(function (user) {
             delete user.name
-            delete user.lastname
             delete user.birthdate
             delete user.email
             delete user.password
-            delete user.online
+        })
+
+        users.sort(function (user1, user2) {
+            return user1.online > user2.online ? -1 : 1
         })
 
         return users
+    }
+
+    function sendMessageToUser(userId, text){
+        validateUserId(userId)
+        validateText(text)
+
+        var message ={
+            from : sessiontStorage.userId,
+            to : userId,
+            text: text,
+            date : convertDateToISOString(new Date())
+        }
+        data.insertMessage(message)
+
+    }
+
+    function retrieveMessagesWithUser(userId){
+        validateUserId(userId)
+
+        var messager =data.findMessages(function(message){
+            return message.from === sessionStorage.userId && message.to === userId ||message.from === userId && message.to === sessionStorage.userId
+        
+        })
+
+        return messages
     }
 
     //object with functions
@@ -180,6 +250,8 @@ var logic = (function () {    //IFFE
         loginUser: loginUser,
         retrieveUser: retrieveUser,
         logoutUser: logoutUser,
-        retrieveOnlineUsers: retrieveOnlineUsers
+        retrieveUsers: retrieveUsers,
+        sendMessageToUser: sendMessageToUser,
+        retrieveMessagesWithUser:retrieveMessagesWithUser
     }
 })()
