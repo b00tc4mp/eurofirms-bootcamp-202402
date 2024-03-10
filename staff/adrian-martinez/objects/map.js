@@ -1,9 +1,14 @@
 
-function map(object, callback){
+/**
+ * 
+ * @param {*} iterable
+ * @param {*} callback 
+ */
+function map(iterable, callback){
     
-    var result = {};
+    var mapped = {length: 0};
 
-    for(let i=0;i < object.length;i++){
+    for(let i=0;i < iterable.length;i++){
 
         result[i] = callback(object[i]);
     }
