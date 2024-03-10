@@ -59,3 +59,12 @@ li.online::marker{
 li.offline::marker{
     color:gray;
 }
+li.online:hover{
+    color: limegreen; 
+    cursor: pointer;
+}
+
+li.offline:hover{
+    color: rgb(190, 197, 208); 
+    cursor: pointer;
+}

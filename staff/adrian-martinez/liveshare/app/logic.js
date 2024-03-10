@@ -227,7 +227,7 @@ var logic = (function() {
 
             user.online = false;
 
-            data.updateUser(user);
+            data.updateUser(user);A
             
             delete sessionStorage.userId;
         }

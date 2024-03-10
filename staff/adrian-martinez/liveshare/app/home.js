@@ -1,4 +1,5 @@
 debugger;
+var metaTitle = document.querySelector("title");
 var title = document.querySelector("h1");
 var alias = document.querySelector("#alias");
 var cumpleanos = document.querySelector("#cumpleanos");
@@ -11,6 +12,7 @@ var conectados = document.querySelector("#online-users");
 try{
     var user = logic.retrieveUser();
 
+    metaTitle.innerHTML = user.name;
     title.innerText = "Hello, "+ user.name +"!";
     alias.innerText = "Tu alias es "+ user.username +".";
     cumpleanos.innerText = "Fecha de cumpleaños:  "+ user.birthdate +".";
