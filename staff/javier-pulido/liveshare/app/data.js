@@ -9,6 +9,15 @@ var data = (function () {
         localStorage.users = JSON.stringify(users)
     }
 
+    function loadMessages() {
+        return JSON.parse(localStorage.messages || '[]')
+
+    }
+
+    function saveMessages(messages) {
+        localStorage.messages = JSON.stringify(messages)
+    }
+
     // data
 
     function findUser(callback) {
@@ -33,8 +42,8 @@ var data = (function () {
         saveUsers(users)
     }
 
-    function saveUser(user) {
-        var users = loadUsers()
+    function updateUser(user) {
+        var users = loadUsers(use)
 
         var index = users.findIndex(function (user2) {
             return user2.id === user.id
@@ -53,10 +62,40 @@ var data = (function () {
         return filtered
     }
 
+    function printUsers() {
+        var users = loadUsers()
+
+        console.table(users)
+
+        return users
+
+    }
+
+    function printMessages() {
+        var messages = loadMessages()
+
+        console.table(messages)
+
+    }
+
+    function insertMessage(message) {
+        var messages = loadMessages()
+
+        messages.push(message)
+
+        saveMessages(message)
+
+    }
+
     return {
         findUser: findUser,
         insertUser: insertUser,
-        saveUser: saveUser,
-        findUsers: findUsers
+        updateUser: updateUser,
+        findUser: updateUser,
+        findUsers: findUsers,
+        printUsers: printUsers,
+        getAllUsers: printUsers,
+        printMessages: printMessages,
+        findMessages: findMessages
     }
 })()
