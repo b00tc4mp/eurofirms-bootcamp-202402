@@ -1,5 +1,32 @@
 //Capa de lógica o controlador
 var logic = (function() {
+    //Utils
+
+    function convertDateToString(){
+
+        var year = date.getFullYear();
+        var month = date.getMonth() + 1;
+        var day = date.getDate();
+
+        var hours = date.getHours();
+        var minutes = date.getMinutes();
+        var seconds = date.getSeconds();
+        var milisegundos = date.getMilisegundos();
+       
+        function twoDigits(value){
+            return value < 10 ? "0" + value : "" + value;
+        }
+        
+        //No entiendo estas condiciones
+        function threeDigits(value){
+            return value < 10 ? "00" + value : value < 100 ? "0" + value : "" + value;
+        }
+
+        var dateConvert = year + "-" + twoDigits(month) + "-" +twoDigits(day) + "-" + twoDigits(hours) + ":" + twoDigits(minutes) + ":"
+        + twoDigits(seconds) + "." + threeDigits(milisegundos);
+
+        return dateConvert;
+    }
 
     function validateName(name){
 
@@ -81,7 +108,45 @@ var logic = (function() {
     
             throw new Error("Error. La contraseña no debe tener espacios");
         }
+        if(!password.length){
+
+            throw new Error("La contraseña no debe estar vacía");
+        }
     }
+
+    function validateUserId(userId){
+
+        if(typeof userId !== "string"){
+
+            throw new Error("El ID del usuario no es una cadena");
+        }
+        if(userId.includes(" ")){
+
+            throw new Error("El ID no puede tener espacios");
+        }
+        if(!userId.length){
+
+            throw new Error("El ID del usuario no debe estar vacío");
+        }
+    }
+
+    function validateText(text){
+
+        if(typeof text !== "string"){
+
+            throw new Error("El texto debe ser una cadena");
+        }
+        if(text.includes(" ")){
+
+            throw new Error("El texto no puede tener espacios");
+        }
+        if(!text.length){
+
+            throw new Error("El texto no debe estar vacío");
+        }
+    }
+
+
     function registerUser(name, birthdate, username, email, password){
 
         validateName(name);
@@ -102,19 +167,6 @@ var logic = (function() {
     
             throw new Error("El usuario ya existe");
         }
-        /* for(let i=0;i < users.length;i++){
-    
-            let user = users[i];
-    
-            if(user.email == email){
-    
-                throw new Error("Error. El correo ya existe");
-            }
-            if(user.username == username){
-    
-                throw new Error("Error. El usuario ya existe");
-            }
-        } */
     
         var user = {
             name: name,
@@ -125,10 +177,6 @@ var logic = (function() {
         }
     
         data.insertUser(user);
-        /* users[users.length] = user;
-    
-        //Hay que guardar el usuario en LocalStorage en formato JSON
-        localStorage.users = JSON.stringify(users); */
      }
      function loginUser(username, password){
     
@@ -150,7 +198,7 @@ var logic = (function() {
         
         user.online = true;
     
-        data.saveUser(user);
+        data.updateUser(user);
      }
     
      function retrieveUser(){
@@ -179,35 +227,68 @@ var logic = (function() {
 
             user.online = false;
 
-            data.saveUser(user);
+            data.updateUser(user);
             
             delete sessionStorage.userId;
         }
      
-     function retrieveOnlineUsers(){
+     function retrieveUsers(){
 
-        var users = data.findUsers(function(user){
-            return user.online;
+        var users = data.getAllUsers();
+        
+        var index = users.findIndex(function(user){
+            return user.id === sessionStorage.userId;
         })
+
+        users.splice(index, 1);
 
         users.forEach(function(user){
             delete user.name;
             delete user.birthdate;
             delete user.email;
             delete user.password;
-            delete user.online;
+         })
+
+         users.sort(function(user1, user2){
+            return user1.online > user2.online ? -1 : 1;
          })
 
          return users;
      }
 
-     //Las funciones propias de una capa mejor meterlas como propiedad en de un objecto
+     function sendMessageToUser(userId, text){
+
+        validateUserId(userId);
+        validateText(text);
+
+        var message = {
+            from: sessionStorage.userId,
+            to: userId,
+            text: text,
+            date: convertDateToString(new Date())
+        }
+
+        data.insertMessage(message);
+     }
+
+     function retrieveMessagesWithUser(userId){
+
+        validateUserId(userId);
+
+        var messages = data.findMessages(function(message){
+            return message.from === sessionStorage.userId && message.to === userId || message.from === userId && message.to === sessionStorage.userId; 
+        })
+     }
+
+     //Las funciones propias de una capa mejor meterlas como propiedad de un objecto
     return {
         registerUser: registerUser,
         loginUser: loginUser,
         retrieveUser: retrieveUser,
         logoutUser: logoutUser,
-        retrieveOnlineUsers: retrieveOnlineUsers
+        retrieveUsers: retrieveUsers,
+        sendMessageToUser: sendMessageToUser,
+        retrieveMessagesWithUser: retrieveMessagesWithUser
     }
 })()
  

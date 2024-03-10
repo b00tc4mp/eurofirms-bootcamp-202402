@@ -53,6 +53,9 @@ li {
     border-bottom: 1px solid gainsboro;
     padding:10px;
 }
-li::marker{
+li.online::marker{
     color: limegreen;
+}
+li.offline::marker{
+    color:gray;
 }

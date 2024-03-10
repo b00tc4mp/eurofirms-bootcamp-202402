@@ -1,11 +1,8 @@
 //Capa de datos o modelo
-/* var users = [];
 
-if(localStorage.users){
-
-    users = JSON.parse(localStorage.users);
-} */
 var data = (function(){
+    //Helpers
+
     function loadUsers(){
         return JSON.parse(localStorage.users || "[]");
     }
@@ -14,6 +11,14 @@ var data = (function(){
         localStorage.users = JSON.stringify(users);
     }
 
+    function loadMessages(){
+        return JSON.parse(localStorage.messages || "[]");
+    }
+
+    function saveMessages(messages){
+        localStorage.messages = JSON.stringify(messages);
+    }
+    /***********************************************************/
     function findUser(callback){
 
         var users = loadUsers();
@@ -39,7 +44,7 @@ var data = (function(){
         saveUsers(users);
     }
 
-    function saveUser(user){
+    function updateUser(user){
     
         var users = loadUsers();
     
@@ -59,11 +64,54 @@ var data = (function(){
 
         return filtered;
     }
+
+    function printUsers(){
+
+        var users = loadUsers();
+
+        console.table(users);
+    }
+
+    function getAllUsers(){
+        
+        var users = loadUsers();
+
+        return users;
+    }
+
+    function printMessages(){
+
+        var messages = loadMessages();
+
+        console.table(messages);
+    }
+
+    function insertMessage(message){
+
+        var messages = loadMessages();
+
+        messages.push(message);
+        saveMessages(messages);
+    }
+
+    function findMessages(callback){
+
+        var messages = loadMessages();
+        var filtered = messages.filter(callback);
+
+        return filtered;
+    }
+
     //Las funciones propias de una capa mejor meterlas como propiedad en de un objecto
     return {
         findUser: findUser,
         insertUser: insertUser,
-        saveUser: saveUser,
+        updateUser: updateUser,
         findUsers: findUsers,
+        printUsers: printUsers,
+        getAllUsers: getAllUsers,
+        printMessages: printMessages,
+        insertMessage: insertMessage,
+        findMessages: findMessages
     }
 })()
