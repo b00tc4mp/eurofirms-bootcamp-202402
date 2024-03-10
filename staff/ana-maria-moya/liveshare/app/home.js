@@ -36,11 +36,12 @@ var homeAddress = location.href
 }
 
 try {
-var users = logic.retrieveOnlineUsers()
+var users = logic.retrieveUsers()
 
 users.forEach(function (user) {
     var item = document.createElement('li')
 
+    item.classList.add(user.online ? 'online' : 'offline')
     item.innerText = user.username
 
     onlineUsersList.appendChild(item)
