@@ -9,6 +9,10 @@ var data = (function () {
         localStorage.users = JSON.stringify(users)
     }
 
+    function loadMessages() {
+        return JSON.parse(localStorage.users || '[]')
+    }
+
     // data
 
     function findUser(callback) {
@@ -52,6 +56,21 @@ var data = (function () {
 
         return filtered
     }
+    function printMessages() {
+        var messages = loadMessages()
+
+        console.table(messages)
+
+    }
+
+    function saveMessage(message) {
+        var messages = loadMessages()
+
+        messages.push(message)
+
+    }
+
+
 
     return {
         findUser: findUser,

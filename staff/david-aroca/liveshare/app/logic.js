@@ -156,6 +156,18 @@ var logic = (function () {
 
         return users
     }
+    function sendMessageToUser(userId, text) {
+
+        var messages = {
+            from: sessionStorage.userId,
+            to: userId,
+            text: text,
+            date: convertDateTo
+        }
+        data.saveMessage(message)
+
+    }
+
     return {
         registerUser: registerUser,
         loginUser: loginUser,
