@@ -34,7 +34,7 @@ try {
     users.forEach(function (user) {
         var item = document.createElement('li')
 
-        item.classList.add(user.online ? 'online' : 'ofline')
+        item.classList.add(user.online ? 'online' : 'offline')
 
         item.innerText = user.username
 
