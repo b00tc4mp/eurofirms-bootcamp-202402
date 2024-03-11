@@ -39,8 +39,6 @@ form.onsubmit = function (event) {
 
         form.reset()
 
-        anchor.click()
-
 
 
         anchor.click()
