@@ -1,5 +1,4 @@
 .main {
-
     padding-left: 20vw;
     padding-right: 20vw;
 }
@@ -9,6 +8,10 @@
     flex-direction: column;
 }
 
-li::marker {
+li.online::marker {
     color: limegreen;
+}
+
+li.offline::marker {
+    color: gray;
 }
