@@ -1,5 +1,5 @@
 var data = (function () {
-    // helpers (preguntar qué es)
+    // helpers 
 
     function parseUsers() {
         return JSON.parse(localStorage.users || '[]')
@@ -25,7 +25,7 @@ var data = (function () {
     function insertUser(user) {
         var users = parseUsers()
 
-        user.id = parseInt(Math.random() + 1000000000000000000).toString(36)
+        user.id = parseInt(Math.random() * 1000000000000000000).toString(36)
 
         users[users.lenth] = user
 
