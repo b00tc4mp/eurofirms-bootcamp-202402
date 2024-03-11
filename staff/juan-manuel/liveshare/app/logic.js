@@ -170,7 +170,7 @@ function convertDateToISOString(date) {
 
         user.online = false
 
-        data.saveUser(user)
+        data.updateUser(user)
 
         delete sessionStorage.userId
     }

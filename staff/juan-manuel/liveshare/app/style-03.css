@@ -8,6 +8,80 @@
     flex-direction: column;
 }
 
+#online-users{
+    width: 10%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    left: 80%;
+    position: fixed;
+    border: solid black;
+    background-color: aliceblue;
+    font-size: 25px;
+    border-radius: 200px 50px 50px 200px;
+    text-align: center;
+    -webkit-transition: all 1.5s ease;
+    -moz-transition: all 1.5s ease;
+    -o-transition: all 1.5s ease;
+    -ms-transition: all 1.5s ease;
+}
+
+#online-users:hover{
+-webkit-transform: rotate(360deg);transform: rotate(360deg);
+}
+
+#logout-button{
+    position: absolute;
+    padding: 1%;
+    left: 44%;
+    right: 44%;
+    top: 45%;
+    background-color: black;
+    color: white;
+    font-size: 32px;
+    justify-self: center;
+    z-index: 1000;
+    -webkit-transition: all 1.5s ease;
+    -moz-transition: all 1.5s ease;
+    -o-transition: all 1.5s ease;
+    -ms-transition: all 1.5s ease;
+}
+
+#logout-button:hover{
+    -webkit-transform:scale(1.4);
+    -moz-transform:scale(1.4);
+    -ms-transform:scale(1.4);
+    -o-transform:scale(1.4);
+    transform:scale(1.4);
+}
+
+#oliwis{
+    position: absolute;
+    background-color: aliceblue;
+    padding: 1%;
+    border-radius: 200px 200px 200px 200px;
+    left: 5%;
+    color: black;
+    top: 8%;
+}
+
+.oliwish{
+    background-color: black;
+    width: 98%;
+    height: 150px;
+    position: absolute;
+    left: 1%;
+    border-radius: 100px 1000px 100px 1000px;
+    -webkit-transition: all 1.5s ease;
+    -moz-transition: all 1.5s ease;
+    -o-transition: all 1.5s ease;
+    -ms-transition: all 1.5s ease;
+}
+
+.oliwish:hover{
+    box-shadow: 0px 0px 15px 15px #000000;
+    -webkit-box-shadow: 0px 0px 15px 15px #000000;
+}
+
 li.online::marker {
     color: limegreen;
 }
