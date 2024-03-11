@@ -7,3 +7,12 @@
     display: flex;
     flex-direction: column;
 }
+
+li.online::marker {
+    color: limegreen;
+
+}
+
+li.offline::marker {
+    color: gray;
+}

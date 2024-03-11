@@ -1,9 +1,9 @@
 var form = document.querySelector('.form')
 var anchor = document.querySelector('a')
 
-    form.onsubmit = function (event) {
-        event.preventDefault()
-    
+form.onsubmit = function (event) {
+    event.preventDefault()
+
 
     var nameInput = form.querySelector('#name')
     var name = nameInput.value
