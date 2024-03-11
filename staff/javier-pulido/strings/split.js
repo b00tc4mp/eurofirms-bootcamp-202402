@@ -1,7 +1,7 @@
 function split (string, separator ){
    var result = []
    var acumulatedString = ''
-   
+
     for (var i = 0; i < string.length; i++){
         if (string[i] === separator){
             result[result.length] = acumulatedString
@@ -10,7 +10,14 @@ function split (string, separator ){
         }
         
         else acumulatedString += string[i]
+
+        if ( i === string.length -1  ){
+            result[result.length] = acumulatedString
+            
+
+        }
     }
+
 
     
     return result
