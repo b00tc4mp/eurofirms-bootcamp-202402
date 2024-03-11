@@ -130,8 +130,7 @@ var logic = (function () {
 
         var user = data.findUser(function (user) {
             return user.username === username
-        }
-        )
+        })
 
 
         if (user === undefined)
@@ -148,8 +147,7 @@ var logic = (function () {
     function retrieveUser() {
         var user = data.findUser(function (user) {
             return user.id === sessionStorage.userId
-        }
-        )
+        })
 
 
 
