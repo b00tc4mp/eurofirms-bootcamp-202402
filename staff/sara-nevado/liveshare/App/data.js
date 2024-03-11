@@ -45,7 +45,7 @@ var data = (function () {
 
         user.id = parseInt(Math.random() * 1000000000000000000).toString(36)
 
-        users[users.lenth] = user
+        users[users.length] = user
 
 
         saveUsers(users)
