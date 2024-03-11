@@ -1,4 +1,4 @@
-// function slice(string, indexStart, indexEnd) {
+// afunction slice(string, indexStart, indexEnd) {
 //     var resultado = ''
 //     for (var i = indexStart; i < indexEnd; i++){
 //         resultado += string[i]

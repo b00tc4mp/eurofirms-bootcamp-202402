@@ -1,4 +1,4 @@
-//Eliminar espacios
+//Eliminar espacios a
 
 function trim(string) {
     var resultado = "";
