@@ -4,7 +4,9 @@
 
 var title = document.querySelector('h1')
 
-var logoutButton = document.querySelector('button')
+var logoutButton = document.querySelector('#logout-button')
+
+var onlineUsersList = document.querySelector('#online-users')
 
 
 try {
@@ -14,6 +16,9 @@ try {
 
 
 } catch (error) {
+    console.error(error)
+    alert(error.message)
+
 
     var homeAddress = location.href
 
@@ -24,13 +29,36 @@ try {
 
 
 logoutButton.onclick = function () {
-    logic.logoutUser()
+    try {
+        logic.logoutUser()
+
+        var homeAddress = location.href
+
+        var loginAddress = homeAddress.replace('home', 'login')
+
+        location.href = loginAddress
+    } catch (error) {
+        console.error(error)
+        alert(error.message)
+    }
+}
 
 
+try {
+    var users = logic.retrieveUsers()
 
-    var homeAddress = location.href
+    users.forEacha(function (user) {
+        var item = document.createElement('li')
 
-    var loginAddress = homeAddress.replace('home', 'login')
+        item.classList.add(user.online ? 'online' : 'offline')
 
-    location.href = loginAddress
+        item.innerText = user.username
+
+        onlineUsersList.appendChild(item)
+    })
+
+
+} carch(error) {
+    console.error(error)
+    alert(error.message)
 }
