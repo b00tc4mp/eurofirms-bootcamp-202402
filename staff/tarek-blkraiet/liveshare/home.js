@@ -2,10 +2,10 @@
 
 var title = document.querySelector('h1')
 var logoutButton = document.querySelector('#logout-button')
-var onineUsersList = document.querySelector('#online-users')
+var onlineUsersList = document.querySelector('#online-users')
 
 try {
-    var user = retrieveUser()
+    var user = logic.retrieveUser()
 
     title.innerText = 'Hello, ' + user.name + '!'
 } catch (error) {
@@ -43,7 +43,7 @@ try{
     users.forEach(function(user){
         var item = document.createElement('li')
 
-        item.classList.add(user.online ? 'online': 'offine')
+        item.classList.add(user.online ? 'online': 'offline')
 
         item.innerText = user.username
         

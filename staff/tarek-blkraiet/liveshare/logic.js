@@ -6,7 +6,7 @@ var logic = (function () {
     function convertDateToISOString(date) {
         var year = date.getFullYear()
         var month = date.getMonth() + 1
-        var dasy = date.getDate()
+        var day = date.getDate()
 
         var hours = date.getHours()
         var minutes = date.getMinutes()
@@ -16,7 +16,7 @@ var logic = (function () {
         function twoDigits(value) {
             return value < 10 ? '0' + value : '' + value
         }
-        
+
         debugger
 
         function threeDigits(value) {
@@ -165,12 +165,12 @@ var logic = (function () {
 
         user.online = true
 
-      
+
         data.updateUser(user)
 
-        debugger
+      
     }
-    
+
 
     function retrieveUser() {
 

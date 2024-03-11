@@ -42,7 +42,7 @@ var data = (function () {
         saveUsers(users)
     }
 
-    function updateUser(users) {
+    function updateUser(user) {
         var users = loadUsers()
 
         var index = users.findIndex(function (user2) {
