@@ -31,7 +31,7 @@ form.onsubmit = function (event) {
     } catch (error) {
         console.error(error.message)
 
-        alert(error.massage)
+        alert(error.message)
 
     }
 
