@@ -1,20 +1,26 @@
 // data layer
 var data = (function () {
     // helpers
+    
     function loadUsers() {
-
-        return JSON.parse(localStorage.users || '[]')
+       return JSON.parse(localStorage.users || '[]')
     }
 
     function saveUsers(users) {
         localStorage.users = JSON.stringify(users)
     }
+    function loadMessages(){
+        return JSON.parse(localStorage.messages || '[]')
+    }
+
+    function saveMessages(messages){
+        localStorage.messages = JSON.stringify(messages)
+    }
 
     // data
 
-    function findUsers(callback) {
+    function findUser(callback) {
         var users = loadUsers()
-
 
         for (var i = 0; i < users.length; i++) {
             var user = users[i]
@@ -27,19 +33,16 @@ var data = (function () {
 
 
     function insertUser(user) {
-
         var users = loadUsers()
 
         user.id = parseInt(Math.random() * 10000000000000000).toString(36)
-
 
         users[users.length] = user
 
         saveUsers(users)
     }
 
-
-    function saveUsers(users) {
+    function updateUser(users) {
         var users = loadUsers()
 
         var index = users.findIndex(function (user2) {
@@ -59,10 +62,46 @@ var data = (function () {
         return filtered
     }
 
+    function printUsers(){
+        var users = loadUsers()
+
+        console.table(users)
+    }
+    function getAllUsers(){
+        var users = loadUsers()
+
+        return users
+    }
+
+    function printMessages(){
+        var messages = loadMessages()
+
+        console.table(messages)
+    }
+    function insertMessage(){
+        var messages = loadMessages()
+
+        messages.push(messages)
+
+        saveMessages(messages)
+    }
+    function findMessages(callback){
+        var messages = loadMessages()
+        var filtered = messages.filter(callback)
+
+        return filtered
+    }
+
+
     return {
         findUser:findUser,
         insertUser: insertUser,
-        saveUser: saveUser,
-        findUsers: findUsers
+        updateUser:updateUser,
+        printUsers:printUsers,
+        getAllUsers:getAllUsers,
+        printMessages:printMessages,
+        insertMessage:insertMessage,
+        findMessages:findMessages,
+        findUsers:findUsers
     }
 })()

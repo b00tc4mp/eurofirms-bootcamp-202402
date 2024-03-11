@@ -1,4 +1,5 @@
 // presntation layer
+
 var title = document.querySelector('h1')
 var logoutButton = document.querySelector('#logout-button')
 var onineUsersList = document.querySelector('#online-users')
@@ -20,19 +21,16 @@ try {
 }
 
 logoutButton.onclick = function () {
-   
-   
     try{
         logic.logoutUser()
     
-
     var homeAddress = location.href
     
     var loginAddress = homeAddress.replace('home', 'login')
 
     location.href = loginAddress
     
-    }catch(error){
+    }catch (error){
         console.error(error)
 
         alert(error.message)
@@ -40,12 +38,15 @@ logoutButton.onclick = function () {
 }
 
 try{
-    var users = logic.retrieveOnlineUsers()
+    var users = logic.retrieveUsers()
 
-    users.forEach(function(users){
+    users.forEach(function(user){
         var item = document.createElement('li')
 
+        item.classList.add(user.online ? 'online': 'offine')
+
         item.innerText = user.username
+        
         onlineUsersList.appendChild(item)
         
     })

@@ -21,18 +21,16 @@ form.onsubmit = function (event) {
     var passwordInput = form.querySelector('#password')
     var password = passwordInput.value
 
-    try{
+    try {
         logic.registerUser (name, birthdate, username, email, password)
 
         console.log('user registered')
 
         alert('user registered')
         
-        
         form.reset()
 
         anchor.click()
-
     } catch (error) {
         console.error(error.message)
         

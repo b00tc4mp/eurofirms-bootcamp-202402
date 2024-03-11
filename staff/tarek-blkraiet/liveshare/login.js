@@ -11,8 +11,8 @@ form.onsubmit = function (event) {
       var passwordInput = form.querySelector('#password')
       var password= passwordInput.value
 
-      try{
-        loginUser(username, password)
+      try {
+        logic.loginUser(username, password)
 
         console.log('user logged in')
 
@@ -22,8 +22,6 @@ form.onsubmit = function (event) {
         // para clean los especios despues de escribir
         var loginAddress = location.href
         var homeAddress = loginAddress.replace('login', 'home')
-        
-        
         
         location.href = homeAddress
 
