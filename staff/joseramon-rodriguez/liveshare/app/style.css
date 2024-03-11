@@ -8,6 +8,10 @@
      flex-direction: column;
  }
 
- li::marker {
+ li.online::marker {
      color: limegreen;
+ }
+
+ li.offline::marker {
+     color: gray;
  }

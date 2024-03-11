@@ -1,6 +1,34 @@
 // business layer (logic)
 
 var logic = (function () {
+    //utils
+
+    function convertDateToISOString(date) {
+
+        var year = date.getFullYear()
+        var month = date.getMonth() + 1
+        var day = date.getDate()
+
+        var hours = date.getHours()
+        var minutes = date.getMinutes()
+        var seconds = date.getSeconds()
+        var millis = date.getMilliseconds()
+
+        function twoDigits(value) {
+
+            return value < 10 ? '0' + value : '' + value
+        }
+
+        function threeDigits(value) {
+
+            return value < 10 ? '00' + value : value < 100 ? '0' + value : '' + value
+        }
+
+        var isoDate = year + '-' + twoDigits(month) + '-' + twoDigits(day) + ' ' + twoDigits(hours) + ':' +
+            twoDigits(minutes) + ':' + twoDigits(seconds) + '.' + threeDigits(millis)
+
+        return isoDate
+    }
     //helpers
     //name validations
     function validateName(name) {
@@ -74,6 +102,33 @@ var logic = (function () {
         //password cant contain space characters
         if (password.includes(' '))
             throw new Error('password has space characters')
+
+        if (!password.length)
+            throw new Error('password is empty')
+    }
+    //userId validations
+    function validateUserId(userId) {
+
+        if (typeof userId !== 'string')
+            throw new Error('text is not a string')
+
+        if (userId.includes(' '))
+            throw new Error('userId has space characters')
+
+        if (!userId.length)
+            throw new Error('userId is empty')
+    }
+    //text validations
+    function validateText(text) {
+
+        if (typeof text !== 'string')
+            throw new Error('text is not a string')
+
+        // if (text.includes(' ')) THIS DOESNT MAKE SENSE TODO-> CHECK IF ALL THE CHARACTERS ARE SPACES RATHER THAN CHECKING IF THERE IS 1 SPACE
+        //     throw new Error('text has space characters')
+
+        if (!text.length)
+            throw new Error('text is empty')
     }
 
     //logic
@@ -123,7 +178,7 @@ var logic = (function () {
 
         user.online = true
 
-        data.saveUser(user)
+        data.updateUser(user)
     }
 
 
@@ -146,25 +201,59 @@ var logic = (function () {
 
         user.online = false
 
-        data.saveUser(user)
+        data.updateUser(user)
 
         delete sessionStorage.userId
     }
 
-    function retrieveOnlineUsers() {
-        var users = data.findUsers(function (user) {
-            return user.online
+    function retrieveUsers() {
+        var users = data.getAllUsers()
+
+        var index = users.findIndex(function (user) {
+            return user.id === sessionStorage.userId
         })
+
+        users.splice(index, 1)
 
         users.forEach(function (user) {
             delete user.name
             delete user.birthdate
             delete user.email
             delete user.password
-            delete user.online
+            // delete user.online
+        })
+
+        users.sort(function (user1, user2) {
+            return user1.online > user2.online ? -1 : 1
         })
 
         return users
+    }
+
+    function sendMessageToUser(userId, text) {
+
+        validateUserId(userId)
+        validateText(text)
+
+        var message = {
+            from: sessionStorage.userId,
+            to: userId,
+            text: text,
+            date: convertDateToISOString(new Date())
+        }
+
+        data.insertMessage(message)
+    }
+
+    function retrieveMessageWithUser(userId) {
+
+        validateUserId(userId)
+
+        var messages = data.findMessages(function (message) {
+            return message.from === sessionStorage.userId && message.to === userId || message.from === userId && message.to === sessionStorage.userId
+        })
+
+        return messages
     }
 
     return {
@@ -172,7 +261,10 @@ var logic = (function () {
         loginUser: loginUser,
         retrieveUser: retrieveUser,
         logoutUser: logoutUser,
-        retrieveOnlineUsers: retrieveOnlineUsers
+        retrieveUsers: retrieveUsers,
+        sendMessageToUser: sendMessageToUser,
+        retrieveMessageWithUser: retrieveMessageWithUser
+
     }
 
 })()
