@@ -1,0 +1,17 @@
+.main {
+    padding-left: 20vw;
+    padding-right: 20vw;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+li.online::marker {
+    color: limegreen;
+}
+
+li.offline::marker {
+    color: gray;
+}
