@@ -25,6 +25,7 @@ var data = (function () {   //IIFE
             var user = users[i]
 
             var matches = callback(user)
+            
             if (matches) return user
         }
     }
@@ -59,11 +60,10 @@ var data = (function () {   //IIFE
         return filtered
     }
 
+    function printUsers() {
+        var users = loadUsers()
 
-    function printUsers(){
-        var users = loadUsers(
-            console.table(users)
-        )
+        console.table(users)
     }
 
     function getAllUsers(){
@@ -98,6 +98,7 @@ var data = (function () {   //IIFE
         insertUser: insertUser,
         updateUser: updateUser,
         findUsers: findUsers,
+        printUsers: printUsers,
         getAllUsers:getAllUsers,
         printMessages: printMessages,
         insertMessage:insertMessage,
