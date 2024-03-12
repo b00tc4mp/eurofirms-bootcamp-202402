@@ -10,7 +10,7 @@ var onlineUsersList = document.querySelector('#online-users')
 
 
 try {
-    var user = retrieveUser()
+    var user = logic.retrieveUser()
 
     title.innerText = 'Hello, ' + user.name + '!'
 
@@ -47,7 +47,7 @@ logoutButton.onclick = function () {
 try {
     var users = logic.retrieveUsers()
 
-    users.forEacha(function (user) {
+    users.forEach(function (user) {
         var item = document.createElement('li')
 
         item.classList.add(user.online ? 'online' : 'offline')

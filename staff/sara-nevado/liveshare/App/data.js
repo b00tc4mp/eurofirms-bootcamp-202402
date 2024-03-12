@@ -51,7 +51,7 @@ var data = (function () {
         saveUsers(users)
     }
 
-    function updateUsers(user) {
+    function updateUser(user) {
         var users = loadUsers()
 
         var index = users.findIndex(function (user2) {
@@ -83,7 +83,7 @@ var data = (function () {
 
 
 
-    function getSAllUsers() {
+    function getAllUsers() {
         var users = loadUsers()
 
         return users
@@ -122,10 +122,10 @@ var data = (function () {
 
         findUser: findUser,
         insertUser: insertUser,
-        updateUsers: updateUsers,
+        updateUser: updateUser,
         findUser: findUser,
         printUsers: printUsers,
-        getSAllUsers: getSAllUsers,
+        getAllUsers: getAllUsers,
         printMessages: printMessages,
         insertMessage: insertMessage,
         findMessages: findMessages,
