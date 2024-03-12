@@ -2,7 +2,9 @@
 
 var title = document.querySelector('h1')
 var logoutButton = document.querySelector('#logout-button')
-var onlineUsersList = document.querySelector('#online-users')
+var chatSection = document.querySelector('#chat-section')
+var chatUsers = chatSection.querySelector('#chat-users')
+var chat = chatSection.querySelector('#chat')
 
 try {
     var user = logic.retrieveUser()
@@ -40,13 +42,19 @@ try {
     var users = logic.retrieveUsers()
 
     users.forEach(function (user) {
-        var item = document.createElement('li')
+        var chatUserItem = document.createElement('li')
 
-        item.classList.add(user.online ? 'online' : 'offline')
+        chatUserItem.classList.add('chat-user')
 
-        item.innerText = user.username
+        chatUserItem.classList.add(user.online ? 'chat-user-online' : 'chat-user-offline')
 
-        onlineUsersList.appendChild(item)
+        chatUserItem.innerText = user.username
+
+        chatUserItem.onclick = function () {
+            chat.style.display = 'block'
+        }
+
+        chatUsers.appendChild(chatUserItem)
     })
 
 } catch (error) {
