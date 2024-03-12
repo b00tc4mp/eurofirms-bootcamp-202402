@@ -4,7 +4,7 @@ RemovE element specified by index from interable object and returs it
 
 // la function not work i need to debugg
 
-function removeElemnt( object, index) {
+function removeElement( object, index) {
     
     var deletedElement =object[index]
 
@@ -36,7 +36,7 @@ var cars = {
     length:8
 }
 
-var car = removeElement(cars,'2')
+var car = removeElement(cars,2)
 
 console.log(car)
 //'renault'
