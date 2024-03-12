@@ -40,7 +40,6 @@ try {
         var chatUserItem = document.createElement('li')
 
         chatUserItem.classList.add('chat-user')
-        debugger
         chatUserItem.classList.add(user.online ? 'chat-user-online' : 'chat-user-offline')
 
         chatUserItem.innerText = user.username
