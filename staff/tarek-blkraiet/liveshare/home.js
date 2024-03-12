@@ -2,7 +2,9 @@
 
 var title = document.querySelector('h1')
 var logoutButton = document.querySelector('#logout-button')
-var onlineUsersList = document.querySelector('#online-users')
+var chatSection = document.querySelector('#chat-section')
+var chatUsers = chatSection.querySelector('chat-users')
+var chat = chatSection.querySelector('#chat')
 
 try {
     var user = logic.retrieveUser()
@@ -15,42 +17,54 @@ try {
 
     var homeAddress = location.href
 
-    var loginAddress = homeAddress.replace('home','login')
+    var loginAddress = homeAddress.replace('home', 'login')
 
     location.href = loginAddress
 }
 
 logoutButton.onclick = function () {
-    try{
+    try {
         logic.logoutUser()
-    
-    var homeAddress = location.href
-    
-    var loginAddress = homeAddress.replace('home', 'login')
 
-    location.href = loginAddress
-    
-    }catch (error){
+        var homeAddress = location.href
+
+        var loginAddress = homeAddress.replace('home', 'login')
+
+        location.href = loginAddress
+
+    } catch (error) {
         console.error(error)
 
         alert(error.message)
     }
 }
 
-try{
+try {
     var users = logic.retrieveUsers()
 
-    users.forEach(function(user){
-        var item = document.createElement('li')
+    users.forEach(function (user) {
+        var chatUserItem = document.createElement('li')
 
-        item.classList.add(user.online ? 'online': 'offline')
+        chatUserItem.classList.add('chat-user')
 
-        item.innerText = user.username
-        
-        onlineUsersList.appendChild(item)
-        
+        chatUserItem.classList.add(user.online ? 'chat-user-online' : 'chat-user-offline')
+
+        chatUserItem.innerText = user.username
+
+        chatUserItem.onclick = function () {
+            chat.computedStyleMap.display = 'block'
+
+        }
+        chatUsers.appendChild(chatUserItem)
+
+
+
+
+
+
+
     })
-} catch (error){
+} catch (error) {
     console.error(error)
 
     alert(error.message)
