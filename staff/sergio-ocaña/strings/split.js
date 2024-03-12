@@ -36,12 +36,12 @@ function split(string, separator, limit = string.length) {
             add += string[j]
         }
     }
-    if (separator !== "" && add !== '') { result[result.length] = add }
+    if (separator !== "" && add !== '' && result.length < limit) { result[result.length] = add }
     return result
 }
 var sssssssssssssstring = "The morning is upon us. Be aware about it"
 var stringlong = "La casa - es tan pequeña - que no se puede vender"
 
 console.log(split(sssssssssssssstring, ''))
-console.log(split(sssssssssssssstring, ' ', 12))
+console.log(split(sssssssssssssstring, ' ', 3))
 console.log(split(stringlong, ' - '))
