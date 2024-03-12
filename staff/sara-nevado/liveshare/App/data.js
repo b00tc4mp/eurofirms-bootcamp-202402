@@ -73,11 +73,6 @@ var data = (function () {
         return filtered
     }
 
-    function printUsers() {
-        var users = loadUsers()
-
-        console.table(users)
-    }
 
 
     function printUsers() {
