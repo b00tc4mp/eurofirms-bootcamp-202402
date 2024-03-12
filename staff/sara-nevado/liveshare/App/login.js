@@ -26,14 +26,11 @@ form.onsubmit = function (event) {
         var loginAdress = location.href
 
         var homeAddress = loginAddress.replace('login', 'home')
-        location.href = homeAddress
 
+        location.href = homeAddress
     } catch (error) {
         console.error(error.message)
-
         alert(error.message)
 
     }
-
-
 }

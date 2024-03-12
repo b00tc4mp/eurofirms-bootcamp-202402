@@ -104,33 +104,35 @@ var data = (function () {
 
 
 
-    function insertMessage(message)
+    function insertMessage(message) {
+        var messages = loadMessages()
 
-    saveMessages(messages)
-}
+        messages.push(message)
 
-
-function findMessages(callback) {
-    var messages = loadMessages()
-
-    var filtered = messages.filter(callback)
-
-    return filtered
-}
+        saveMessages(messages)
+    }
 
 
+    function findMessages(callback) {
+        var messages = loadMessages()
 
-return {
+        var filtered = messages.filter(callback)
 
-    findUser: findUser,
-    insertUser: insertUser,
-    updateUsers: updateUsers,
-    findUser: findUser,
-    printUsers: printUsers,
-    getSAllUsers: getSAllUsers,
-    printMessage: printMessage,
-    insertMessage: insertMessage,
-    findMessages: findMessages,
-}
+        return filtered
+    }
 
-}) ()
+
+
+    return {
+
+        findUser: findUser,
+        insertUser: insertUser,
+        updateUsers: updateUsers,
+        findUser: findUser,
+        printUsers: printUsers,
+        getSAllUsers: getSAllUsers,
+        printMessages: printMessages,
+        insertMessage: insertMessage,
+        findMessages: findMessages,
+    }
+})()

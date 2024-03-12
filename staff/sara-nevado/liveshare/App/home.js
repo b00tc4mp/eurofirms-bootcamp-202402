@@ -58,7 +58,7 @@ try {
     })
 
 
-} carch(error) {
+} catch (error) {
     console.error(error)
     alert(error.message)
 }
