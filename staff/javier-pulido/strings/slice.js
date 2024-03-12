@@ -2,24 +2,18 @@ function slice(string, indexStart, indexEnd) {
     var result = ''
     // if (indexStart === -indexStart)
     // if (indexEnd === -indexEnd)
-
     if (indexStart < 0) {
         indexStart = string.length + indexStart;
     }
-
     if (indexEnd < 0) {
         indexEnd = string.length + indexEnd;
     }
-
+    
     for (var i = indexStart; i < indexEnd; i++) {
         result += string[i]
     }
     return result
 }
-
-
-
-
 
 console.log('FUNCTION SLICE')
 
