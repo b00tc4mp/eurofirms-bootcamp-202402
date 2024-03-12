@@ -2,7 +2,7 @@
 var logic = (function() {
     //Utils
 
-    function convertDateToString(){
+    /* function convertDateToString(){
 
         var year = date.getFullYear();
         var month = date.getMonth() + 1;
@@ -26,7 +26,7 @@ var logic = (function() {
         + twoDigits(seconds) + "." + threeDigits(milisegundos);
 
         return dateConvert;
-    }
+    } */
 
     function validateName(name){
 
@@ -265,10 +265,16 @@ var logic = (function() {
             from: sessionStorage.userId,
             to: userId,
             text: text,
-            date: convertDateToString(new Date())
+            date: new Date().toISOString()
         }
 
         data.insertMessage(message);
+
+        return messages;
+     }
+
+     function getLoggedInUserId(){
+        return sessionStorage.userId;
      }
 
      function retrieveMessagesWithUser(userId){
@@ -288,7 +294,8 @@ var logic = (function() {
         logoutUser: logoutUser,
         retrieveUsers: retrieveUsers,
         sendMessageToUser: sendMessageToUser,
-        retrieveMessagesWithUser: retrieveMessagesWithUser
+        retrieveMessagesWithUser: retrieveMessagesWithUser,
+        getLoggedInUserId: getLoggedInUserId
     }
 })()
  

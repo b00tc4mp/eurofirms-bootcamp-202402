@@ -34,17 +34,17 @@ button a{
     text-decoration: none;
     color: white
 }
-#lista-usuarios{
+#chat-users{
     position: absolute;
     display: inline;
     width: 20%;
-    margin-top: -16%;
+    margin-top: -27%;
     margin-left: 75%;
 }
 ul {
     position: relative;
     margin-left: 5%;
-    border: 2px solid black;
+    border: 3px solid black;
     border-radius: 5%;
 }
 li {
@@ -53,9 +53,40 @@ li {
     border-bottom: 1px solid gainsboro;
     padding:10px;
 }
-li.online::marker{
+
+#chat-section{
+    border: 1px solid black;
+    padding: 10px;
+}
+li.chat-user-online::marker{
     color: limegreen;
 }
-li.offline::marker{
+li.chat-user-offline::marker{
     color:gray;
+}
+li.chat-user-online:hover{
+    color: limegreen;
+    cursor: pointer
+}
+li.chat-user-offline:hover{
+    color: gray;
+    cursor: pointer;
+}
+#chat{
+    display: none;
+    z-index: 10;
+}
+#chat-messages{
+    border: 1px solid black;
+    min-height: 60px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    list-style: none;
+}
+.chat-message--left{
+    align-self: flex-start;
+}
+.chat-message--right{
+    align-self: flex-end;
 }

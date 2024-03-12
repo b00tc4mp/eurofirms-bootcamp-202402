@@ -16,11 +16,22 @@
         <h3 id="correo"></h3>
         <button>Logout</button>
     </div>
-    <div id="lista-usuarios">
-        <ul id="online-users">
+    <section id="chat-section">
+        <ul id="chat-users">
             <h2>Lista de usuarios conectados:</h2>
         </ul>
-    </div>
+        <div id="chat">
+            <h3 id="chat-interlocutor">username</h3>
+
+            <ul id="chat-menssages"></ul>
+
+            <form id="chat-form">
+                <label for="text">Text</label>
+                <input type="text" id="text" />
+                <button type="submit">Enviar</button>
+            </form>
+        </div>
+    </section>
     
     <script src="data.js"></script>
     <script src="logic.js"></script>
