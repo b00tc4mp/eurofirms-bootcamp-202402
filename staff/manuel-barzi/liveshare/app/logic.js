@@ -1,31 +1,6 @@
 // business layer (logic)
 
 var logic = (function () {
-    // utils
-
-    function convertDateToISOString(date) {
-        var year = date.getFullYear()
-        var month = date.getMonth() + 1
-        var day = date.getDate()
-
-        var hours = date.getHours()
-        var minutes = date.getMinutes()
-        var seconds = date.getSeconds()
-        var millis = date.getMilliseconds()
-
-        function twoDigits(value) {
-            return value < 10 ? '0' + value : '' + value
-        }
-
-        function threeDigits(value) {
-            return value < 10 ? '00' + value : value < 100 ? '0' + value : '' + value
-        }
-
-        var isoDate = year + '-' + twoDigits(month) + '-' + twoDigits(day) + ' ' + twoDigits(hours) + ':' + twoDigits(minutes) + ':' + twoDigits(seconds) + '.' + threeDigits(millis)
-
-        return isoDate
-    }
-
     // helpers
 
     function validateName(name) {
@@ -109,7 +84,6 @@ var logic = (function () {
 
     function validateText(text) {
         if (typeof text !== 'string') throw new Error('text is not a string')
-        if (text.includes(' ')) throw new Error('text has spaces')
         if (!text.length) throw new Error('text is empty')
     }
 
@@ -217,7 +191,7 @@ var logic = (function () {
             from: sessionStorage.userId,
             to: userId,
             text: text,
-            date: convertDateToISOString(new Date())
+            date: new Date().toISOString()
         }
 
         data.insertMessage(message)
@@ -233,6 +207,10 @@ var logic = (function () {
         return messages
     }
 
+    function getLoggedInUserId() {
+        return sessionStorage.userId
+    }
+
     return {
         registerUser: registerUser,
         loginUser: loginUser,
@@ -240,6 +218,7 @@ var logic = (function () {
         logoutUser: logoutUser,
         retrieveUsers: retrieveUsers,
         sendMessageToUser: sendMessageToUser,
-        retrieveMessagesWithUser: retrieveMessagesWithUser
+        retrieveMessagesWithUser: retrieveMessagesWithUser,
+        getLoggedInUserId: getLoggedInUserId
     }
 })()

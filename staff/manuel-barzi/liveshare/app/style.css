@@ -31,9 +31,21 @@
     display: none;
 }
 
-#messages {
+#chat-messages {
     border-width: 1px;
     border-color: black;
     border-style: solid;
     min-height: 40px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    list-style: none;
+}
+
+.chat-message--left {
+    align-self: flex-start;
+}
+
+.chat-message--right {
+    align-self: flex-end;
 }
