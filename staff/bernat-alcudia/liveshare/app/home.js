@@ -2,7 +2,9 @@
 
 var title = document.querySelector('h1')
 var logoutButton = document.querySelector('#logout-button')
-var onlineUsersList = document.querySelector('#online-users')
+var chatSecton = document.querySelector('#chat-section')
+var chatUsers = chatSecton.querySelector('#chat-users')
+var chat = chatSecton.querySelector('#chat')
 
 
 try {
@@ -47,12 +49,17 @@ try {
 
     users.forEach(function (user) {
 
-        var item = document.createElement('li')
-        item.classList.add(user.online ? 'online' : 'offline')
+        var chatUserItem = document.createElement('li')
+        chatUserItem.classList.add(user.online ? 'chat-user-online' : 'chat-user-offline')
+        chatUserItem.classList.add('chat-user')
 
-        item.innerText = user.username
+        chatUserItem.innerText = user.username
 
-        onlineUsersList.appendChild(item)
+        chatUserItem.onclick() = function () {
+            chat.style.display = 'block'
+        }
+
+        onlineUsersList.appendChild(chatUserItem)
     })
 } catch (error) {
     console.error(error)
