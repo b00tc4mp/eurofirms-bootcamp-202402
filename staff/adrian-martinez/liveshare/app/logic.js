@@ -284,6 +284,8 @@ var logic = (function() {
         var messages = data.findMessages(function(message){
             return message.from === sessionStorage.userId && message.to === userId || message.from === userId && message.to === sessionStorage.userId; 
         })
+        
+        return messages;
      }
 
      //Las funciones propias de una capa mejor meterlas como propiedad de un objecto

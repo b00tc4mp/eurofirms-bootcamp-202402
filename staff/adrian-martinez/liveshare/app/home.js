@@ -7,8 +7,8 @@ var correo = document.querySelector("#correo");
 
 var logoutButton = document.querySelector("button");
 
-var chatSection = document.querySelector("#chat-session");
-var chatUsers = document.querySelector("#chat-users");
+var chatSection = document.querySelector("#chat-section");
+var chatUsers = chatSection.querySelector("#chat-users");
 var chat = chatSection.querySelector("#chat");
 var chatForm = chat.querySelector("#chat-form");
 var chatMessages = chat.querySelector("#chat-messages");
@@ -32,61 +32,55 @@ catch(error){
     location.href = loginAddress;
 }
 
-logoutButton.onclick = function(){
-
-    try{
+logoutButton.onclick = function () {
+    try {
         logic.logoutUser();
 
         var homeAddress = location.href;
-        var loginAddress = homeAddress.replace("home", "login");
-
+        var loginAddress = homeAddress.replace('home', 'login');
         location.href = loginAddress;
-    }
-    catch(error){
-        console.error(error);
+    } catch (error) {
 
+        console.error(error);
         alert(error.message);
     }
 }
-try{
+try {
     var users = logic.retrieveUsers();
+    users.forEach(function (user) {
+        var chatUserItem = document.createElement('li');
 
-    users.forEach(function(user){
-        var chatUserItem = document.createElement("li");
-
+        chatUserItem.classList.add('chat-user');
+        chatUserItem.classList.add(user.online ? 'chat-user-online' : 'chat-user-offline');
         chatUserItem.innerText = user.username;
-        
-        chatUserItem.classList.add(user.online ? "chat-user-online" : "chat-user-offline");
 
-        chatUserItem.onclick = function(){
-            var interlocutorTitle = chat.querySelector("#chat-interlocutor");
+        chatUserItem.onclick = function () {
+            var interlocutorTitle = chat.querySelector('#chat-interlocutor');
 
             interlocutorTitle.innerText = user.username;
 
-            function renderMessages(){
-                try{
+            function renderMessages() {
+                try {
                     var messages = logic.retrieveMessagesWithUser(user.id);
 
-                    chatMessages.innerHTML = "";
-                    
-                    messages.forEach(function(message){
-                        var messageItem = document.createElement("li");
+                    chatMessages.innerHTML = '';
 
-                        if(message.from === locic.getLoggedInUserId()){
-                            messageItem.classList.add("chat-message--right");
+                    messages.forEach(function (message) {
+                        var messageItem = document.createElement('li');
+
+                        if (message.from === logic.getLoggedInUserId()){
+                            messageItem.classList.add('chat-message--right');
                         }
-                        else{
-                            messageItem.classList.add("chat-message--left");
-                        }
+                        else
+                            messageItem.classList.add('chat-message--left');
 
                         messageItem.innerText = message.text;
 
                         chatMessages.appendChild(messageItem);
                     })
-                }
-                catch(error){
-                    
+                } catch (error) {
                     console.error(error);
+
                     alert(error.message);
                 }
             }
@@ -95,36 +89,31 @@ try{
 
             clearInterval(renderMessagesIntervalId);
 
-            renderMessagesIntervalId = setInterval(function(){
-                renderMessages();
-            }, 1000)
+            renderMessagesIntervalId = setInterval(function () { renderMessages() }, 1000);
 
-            chatForm.onsumit = function(event){
+            chatForm.onsubmit = function (event) {
                 event.preventDefault();
 
-                var textInput = chatForm.querySelector("#text");
+                var textInput = chatForm.querySelector('#text');
                 var text = textInput.value;
-            }
-            try{
-                logic.sendMessageToUser(user.id, text);
 
-                chatForm.reset();
+                try {
+                    logic.sendMessageToUser(user.id, text);
 
-                renderMessages()
-            }
-            catch(error){
+                    chatForm.reset();
 
-                console.error(error);
-                alert(error.message);
+                    renderMessages();
+                } catch (error) {
+                    console.error(error);
+
+                    alert(error.message);
+                }
             }
+            chat.style.display = 'block';
         }
-        chat.style.display = "block";
+        chatUsers.appendChild(chatUserItem);
     })
-
-    chatUsers.appendChild(chatUserItem);
-}
-catch(error){
-
+} catch (error) {
     console.error(error);
     alert(error.message);
 }
