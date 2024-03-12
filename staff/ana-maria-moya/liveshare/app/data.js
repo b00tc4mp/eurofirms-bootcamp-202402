@@ -11,7 +11,7 @@ var data = (function () {
     }
 
     function loadMessages() {
-        return JSON.parse(localStorage.loadMessages || '[]')
+        return JSON.parse(localStorage.messages || '[]')
     }
 
     function saveMessages(messages) {
