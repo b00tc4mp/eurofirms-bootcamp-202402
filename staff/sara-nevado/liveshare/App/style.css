@@ -11,11 +11,11 @@
 }
 
 
-li.online::marker {
+li.online:marker {
     color: limegreen;
 }
 
 
-li.offline::marker {
+li.offline:marker {
     color: gray;
 }
