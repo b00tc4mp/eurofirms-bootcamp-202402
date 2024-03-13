@@ -1,6 +1,6 @@
 // business layer (logic)
 
-var logic = (function () {
+var logic = (function () {//Aqui comienza mi IIFE
     // utils
 
     function convertDateToISOString(date) {
@@ -109,7 +109,7 @@ var logic = (function () {
 
     function validateText(text) {
         if (typeof text !== 'string') throw new Error('text is not a string')
-        if (text.includes(' ')) throw new Error('text has spaces')
+
         if (!text.length) throw new Error('text is empty')
     }
 
@@ -242,4 +242,4 @@ var logic = (function () {
         sendMessageToUser: sendMessageToUser,
         retrieveMessagesWithUser: retrieveMessagesWithUser,
     }
-})()
+})() //Aqui acaba mi IIFE

@@ -53,6 +53,7 @@ var data = (function () {
         saveUsers(users)
     }
 
+
     function findUsers(callback) {
         var users = loadUsers()
 
@@ -60,12 +61,14 @@ var data = (function () {
 
         return filtered
     }
+
     function printMessages() {
         var messages = loadUsers()
 
         console.table(users)
 
     }
+
 
     function getAllUsers() {
         var users = loadUsers()
@@ -79,14 +82,16 @@ var data = (function () {
         console.table(messages)
     }
 
+
     function insertMessage(message) {
         var messages = loadMessages()
 
         messages.push(message)
 
-        saveMessage(messages)
+        saveMessages(messages)
 
     }
+
 
     function findMessages(callback) {
         var messages = loadMessages()
@@ -94,6 +99,14 @@ var data = (function () {
         var filtered = messages.filter(callback)
 
         return filtered
+
+
+    }
+
+    function printUsers() {
+        var users = loadUsers()
+
+        console.table(users)
 
     }
 

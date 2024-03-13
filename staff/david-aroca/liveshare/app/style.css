@@ -20,15 +20,23 @@
 }
 
 .chat-user-online::marker {
-    color: gray;
+    color: green;
+}
+
+.chat-user-offline::marker {
+
+    color: red;
 }
 
 #chat {
     display: none;
+    background-color: cadetblue;
+    border: 2px solid black;
+
 }
 
 #chat-messages {
-    border-width: 1px;
+    border-width: 2px;
     border-color: black;
     border-style: solid;
     min-height: 40px;
@@ -36,6 +44,7 @@
     flex-direction: column;
     padding: 10px;
     list-style: none;
+    background-color: white;
 }
 
 .chat-message--left {

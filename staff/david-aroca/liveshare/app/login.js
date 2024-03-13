@@ -1,5 +1,6 @@
 // presentation layer
 
+
 var form = document.querySelector('.form')
 
 form.onsubmit = function (event) {
@@ -13,7 +14,7 @@ form.onsubmit = function (event) {
 
 
     try {
-        loginUser(username, password)
+        logic.loginUser(username, password)
 
         console.log('user logged in')
 
