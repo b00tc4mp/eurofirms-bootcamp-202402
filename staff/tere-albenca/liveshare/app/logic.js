@@ -146,6 +146,31 @@ var logic = (function () {    //IFFE
         data.updateUser(user)
     }
 
+    function resetPasswordUser(name,lastname,birthdate,username,email,newpassword,repeatpassword){
+        validateName(name)
+        validateLastname(lastname)
+        validateBirthdate(birthdate)
+        validateUsername(username)
+        validateEmail(email)
+        validatePassword(newpassword)
+        validatePassword(repeatpassword)
+
+        var user = data.findUser(function(user) {
+            return user.username === username || user.email === email;
+        });
+    
+        if (user === undefined) {
+            throw new Error('User not found');
+        }
+    
+        if (newpassword !== repeatpassword) {
+            throw new Error('Passwords are not equal');
+        }
+    
+        user.password = newpassword;
+        data.updateUser(user);
+    }
+    
     function retrieveUser() { //retrieve user 
         var user = data.findUser(function (user) {
             return user.id === sessionStorage.userId
@@ -232,6 +257,7 @@ var logic = (function () {    //IFFE
         retrieveUsers: retrieveUsers,
         sendMessageToUser: sendMessageToUser,
         retrieveMessagesWithUser: retrieveMessagesWithUser,
-        getLoggedInUserId: getLoggedInUserId
+        getLoggedInUserId: getLoggedInUserId,
+        resetPasswordUser: resetPasswordUser
     }
 })()

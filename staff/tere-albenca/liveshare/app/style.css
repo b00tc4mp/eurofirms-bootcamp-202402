@@ -102,7 +102,7 @@ aside {
     top: 50%; 
     right: 0; 
     transform: translateY(-50%); /* para ajustar la posición vertical */
-    width: 120px; 
+    width: 320px; 
     min-height: 460px; 
     display: flex;
     flex-direction: column;
@@ -138,7 +138,7 @@ aside h3 {
 }
 #chat-messages{
     border: 1px solid black;
-    min-height: 40px;
+    min-height: 80px;
     display: flex;
     flex-direction: column;
     padding: 10px;
@@ -148,7 +148,7 @@ aside h3 {
     align-self:flex-start;
 
 }
-.chat.message--rigth{
+.chat-message--right{
     align-self:flex-end;
 }
 footer{

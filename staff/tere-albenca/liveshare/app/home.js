@@ -11,7 +11,7 @@ var renderMessagesIntervalId
 try {
     var user = logic.retrieveUser()
 
-    title.innerText = 'Welcome ' + user.name + '!'
+    title.innerText = 'Welcome ' + user.username + '!'
 } catch (error) {
     console.error(error)
 
