@@ -32,9 +32,8 @@
 #logout-button{
     position: absolute;
     padding: 1%;
-    left: 44%;
-    right: 44%;
-    top: 45%;
+    left: 82%;
+    top: 3%;
     background-color: black;
     color: white;
     font-size: 32px;
@@ -44,6 +43,7 @@
     -moz-transition: all 1.5s ease;
     -o-transition: all 1.5s ease;
     -ms-transition: all 1.5s ease;
+    border-radius: 200px 200px 200px 200px;
 }
 
 #logout-button:hover{
@@ -55,13 +55,14 @@
 }
 
 #oliwis{
-    position: absolute;
-    background-color: aliceblue;
+    position: static;
+    background-color: #eeeeee;
     padding: 1%;
     border-radius: 200px 200px 200px 200px;
-    left: 5%;
+    left: 38%;
     color: black;
-    top: 8%;
+    top: 70%;
+    text-align: center;
 }
 
 .oliwish{
@@ -82,10 +83,83 @@
     -webkit-box-shadow: 0px 0px 15px 15px #000000;
 }
 
-li.online::marker {
+#chat-section {
+    border-width: 1px;
+    border-color: black;
+    border-style: solid;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.chat-user {
+    cursor: pointer;
+}
+
+.chat-user-online::marker {
     color: limegreen;
 }
 
-li.offline::marker {
+
+.chat-user-offline::marker {
     color: gray;
+}
+
+#chat {
+    display: none;
+}
+
+#messages {
+    border-width: 1px;
+    border-color: black;
+    border-style: solid;
+    min-height: 40px;
+}
+
+#chat-messages {
+    border-width: 1px;
+    border-color: black;
+    border-style: solid;
+    min-height: 40px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    list-style: none;
+    background-color: white;
+    font-size: 40px;
+    padding-left: 150px;
+    padding-right: 150px;
+}
+
+.chat-message--left {
+    align-self: flex-start;
+}
+
+.chat-message--right {
+    align-self: flex-end;
+}
+
+#enviar{
+    background-color: dodgerblue;
+    height: 70px;
+    width: 120px;
+    margin-left: 55px;
+    -webkit-transition: all 1.5s ease;
+    -moz-transition: all 1.5s ease;
+    -o-transition: all 1.5s ease;
+    -ms-transition: all 1.5s ease;
+    position: absolute;
+}
+
+#enviar:hover{
+    -webkit-transform:scale(1.1);
+    -moz-transform:scale(1.1);
+    -ms-transform:scale(1.1);
+    -o-transform:scale(1.1);
+    transform:scale(1.1);
+}
+
+#text{
+    width: 85%;
+    height: 80px;
+    font-size: 35px;
 }
