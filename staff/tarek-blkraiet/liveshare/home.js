@@ -3,14 +3,20 @@
 var title = document.querySelector('h1')
 var logoutButton = document.querySelector('#logout-button')
 var chatSection = document.querySelector('#chat-section')
-var chatUsers = chatSection.querySelector('chat-users')
+var chatUsers = chatSection.querySelector('#chat-users')
 var chat = chatSection.querySelector('#chat')
+
+var chatFrom = chat.querySelector('#chat-form')
+var chatMessages = chat.querySelector('#chat-messages')
+var renderMessagesIntervalId
 
 try {
     var user = logic.retrieveUser()
 
     title.innerText = 'Hello, ' + user.name + '!'
+
 } catch (error) {
+
     console.error(error)
 
     alert(error.message)
@@ -52,16 +58,67 @@ try {
         chatUserItem.innerText = user.username
 
         chatUserItem.onclick = function () {
-            chat.computedStyleMap.display = 'block'
+            var interlocutorTitle = chat.querySelector('#chat-interlocutor')
+            
+
+
+            
+
+            interlocutorTitle.innerText = user.username
+
+            function renderMessages() {
+
+                try {
+                    var messages = logic.retrieveMessagesWithUser(user.id)
+                    chatMessages.innerHTML = ''
+
+                    messages.forEach(function (message) {
+                        var messageItem = document.createElement('li')
+
+                        if (message.form === logic.getLoggedInUserId())
+                            messageItem.classList.add('chat-message--right')
+                        else
+                            messageItem.classList.add('chat-message--left')
+
+                        messageItem.innerText = message.text
+
+                        chatMessages.appendChild(messageItem)
+                    })
+                } catch (error) {
+                    console.error(error)
+
+                    alert(error.message)
+                }
+            }
+
+            renderMessages()
+
+            clearInterval(renderMessagesIntervalId)
+
+            renderMessagesIntervalId = setInterval(function () { renderMessages() }, 1000)
+
+            chatFrom.onsumit = function (event) {
+                event.preventDefault()
+
+                var textInput = chatFrom.querySelector('#text')
+                var text = textInput.value
+
+                try {
+                    logic.sendMessageToUser(user.id, text)
+
+                    chatFrom.reset()
+
+                    renderMessages()
+                } catch (error) {
+                    console.error(error)
+
+                    alert(error.message)
+                }
+            }
+            chat.style.display = 'block'
 
         }
         chatUsers.appendChild(chatUserItem)
-
-
-
-
-
-
 
     })
 } catch (error) {

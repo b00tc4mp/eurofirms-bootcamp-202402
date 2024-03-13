@@ -1,33 +1,6 @@
 // business layer (logic)
 
 var logic = (function () {
-    // utils
-
-    function convertDateToISOString(date) {
-        var year = date.getFullYear()
-        var month = date.getMonth() + 1
-        var day = date.getDate()
-
-        var hours = date.getHours()
-        var minutes = date.getMinutes()
-        var seconds = date.getSeconds()
-        var millis = date.getMilliseconds()
-
-        function twoDigits(value) {
-            return value < 10 ? '0' + value : '' + value
-        }
-
-        debugger
-
-        function threeDigits(value) {
-            return value < 10 ? '00' + value : value < 100 ? '0' + value : '' + value
-        }
-
-        var isoDate = year + '-' + twoDigits(month) + '-' + twoDigits(day) + ' ' + twoDigits(hours) + ':' + twoDigits(minutes) + ':' + twoDigits(seconds) + '.' + threeDigits(millis)
-
-        return isoDate
-    }
-
     //helpers
 
 
@@ -76,6 +49,7 @@ var logic = (function () {
     }
 
     function validateEmail(email) {
+
         if (email.length < 6)
             throw new Error('email is lower than 6 charcters')
 
@@ -108,13 +82,17 @@ var logic = (function () {
     }
 
     function validateUserId(userId) {
+
         if (typeof userId !== 'string') throw new Error('userId is not a string')
+
         if (userId.includes(' ')) throw new Error('userId has spaces')
+
         if (!userId.length) throw new Error('userId is empty')
     }
     function validateText(text) {
+
         if (typeof text !== 'string') throw new Error('text is not a string')
-        if (text.includes('')) throw new Error('text has spaces')
+
         if (!text.length) throw new Error('text is empty')
     }
 
@@ -129,6 +107,7 @@ var logic = (function () {
         validatePassword(password)
 
         var user = data.findUser(function (user) {
+
             return user.username === username || user.email === email
         })
 
@@ -147,10 +126,13 @@ var logic = (function () {
     }
 
     function loginUser(username, password) {
+
         validateUsername(username)
+
         validatePassword(password)
 
         var user = data.findUser(function (user) {
+
             return user.username === username
 
         })
@@ -168,7 +150,7 @@ var logic = (function () {
 
         data.updateUser(user)
 
-      
+
     }
 
 
@@ -184,22 +166,27 @@ var logic = (function () {
         return user
     }
     function logoutUser() {
+
         var user = data.findUser(function (user) {
+
             return user.id === sessionStorage.userId
         })
+
         if (!user) throw new Error('user not found')
 
         user.online = false
 
-        data.saveUser(user)
+        data.updateUser(user)
 
         delete sessionStorage.userId
     }
 
     function retrieveUsers() {
+
         var users = data.getAllUsers()
 
         var index = users.findIndex(function (user) {
+
             return user.id === sessionStorage.userId
 
         })
@@ -215,20 +202,24 @@ var logic = (function () {
         })
 
         users.sort(function (user1, users2) {
+
             return user1.online > users2.online ? -1 : 1
         })
 
         return users
     }
+
     function sendMessageToUser(userId, text) {
+
         validateUserId(userId)
         validateText(text)
 
         var message = {
+
             from: sessionStorage.userId,
             to: userId,
             text: text,
-            date: convertDateToISOString(new Date())
+            date: new Date().toISOString()
         }
 
         data.insertMessage(message)
@@ -238,19 +229,25 @@ var logic = (function () {
         validateUserId(userId)
 
         var messages = data.findMessages(function (message) {
+
             return message.from === sessionStorage.userId && message.to === userId || message.from === userId && message.to === sessionStorage.userId
         })
 
         return messages
     }
+    function getLoggedInUserId() {
+        return sessionStorage.userId
+    }
 
     return {
+
         registerUser: registerUser,
         loginUser: loginUser,
         retrieveUser: retrieveUser,
         logoutUser: logoutUser,
         retrieveUsers: retrieveUsers,
         sendMessageToUser: sendMessageToUser,
-        retrieveMessagesWithUser: retrieveMessagesWithUser
+        retrieveMessagesWithUser: retrieveMessagesWithUser,
+        getLoggedInUserId: getLoggedInUserId
     }
 })()
