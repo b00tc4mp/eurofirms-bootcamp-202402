@@ -136,10 +136,6 @@ var logic = (function() {
 
             throw new Error("El texto debe ser una cadena");
         }
-        if(text.includes(" ")){
-
-            throw new Error("El texto no puede tener espacios");
-        }
         if(!text.length){
 
             throw new Error("El texto no debe estar vacío");

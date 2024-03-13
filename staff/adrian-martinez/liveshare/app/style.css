@@ -1,7 +1,11 @@
-
+.home-main{
+    display: flex;
+    width: 100%;
+    gap: 20px
+}
 .main{
-    padding-left: 20vw;
-    padding-right: 20vw;
+    margin-left: 2%;
+    margin-right: 2%;
 }
 .form{
     display: flex;
@@ -24,28 +28,27 @@ hr{
     height: 5px;
     background-color: rgb(4, 104, 254);
 }
-#datosPerfil{
+.profile-chat-container{
+    display: flex;
+    justify-content: space-between;
+}
+#datos-perfil{
     border: 5px solid black;
     border:radius;
     padding: 10px;
-    width:15%;
+    width:25%;
 }
 button a{
     text-decoration: none;
     color: white
 }
-#chat-users{
-    position: absolute;
+.lista-usuarios{
+    border: 3px solid black;
+    border: radius;
+}
+ul#chat-users{
     display: inline;
     width: 20%;
-    margin-top: -27%;
-    margin-left: 75%;
-}
-ul {
-    position: relative;
-    margin-left: 5%;
-    border: 3px solid black;
-    border-radius: 5%;
 }
 li {
     font-size: 20px;
@@ -55,7 +58,9 @@ li {
 }
 
 #chat-section{
-    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
     padding: 10px;
 }
 li.chat-user-online::marker{
@@ -73,16 +78,27 @@ li.chat-user-offline:hover{
     cursor: pointer;
 }
 #chat{
+    margin-top: 10px;
     display: none;
+    border: 20px solid lightgreen;
+    border: radius;
     z-index: 10;
+    width: 78%;
+    height: 300px;
+    background-color: lightgreen;
 }
 #chat-messages{
-    border: 1px solid black;
+    border: 2px solid black;
+    background-color: white;
     min-height: 60px;
+    max-width: 90%;
+    max-height: 200px;
+    overflow-y: scroll;
     display: flex;
     flex-direction: column;
     padding: 10px;
     list-style: none;
+    z-index: 10;
 }
 .chat-message--left{
     align-self: flex-start;
