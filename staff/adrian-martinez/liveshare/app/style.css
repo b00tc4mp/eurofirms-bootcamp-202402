@@ -45,10 +45,11 @@ button a{
 .lista-usuarios{
     border: 3px solid black;
     border: radius;
+    padding: 10px;
+    width: 15%;
 }
 ul#chat-users{
     display: inline;
-    width: 20%;
 }
 li {
     font-size: 20px;
@@ -61,6 +62,7 @@ li {
     display: flex;
     flex-direction: column;
     width: 100%;
+    
     padding: 10px;
 }
 li.chat-user-online::marker{
@@ -84,8 +86,11 @@ li.chat-user-offline:hover{
     border: radius;
     z-index: 10;
     width: 78%;
-    height: 300px;
+    height: 350px;
     background-color: lightgreen;
+}
+#chat-form{
+    margin-top: -20px;
 }
 #chat-messages{
     border: 2px solid black;

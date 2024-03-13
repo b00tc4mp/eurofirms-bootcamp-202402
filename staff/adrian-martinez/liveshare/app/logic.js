@@ -265,8 +265,6 @@ var logic = (function() {
         }
 
         data.insertMessage(message);
-
-        return messages;
      }
 
      function getLoggedInUserId(){
