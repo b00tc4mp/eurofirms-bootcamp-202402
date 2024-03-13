@@ -1,58 +1,26 @@
 //business layer (logic)
 
 var logic = (function () {
-    // utils?
-
-
-    function convertDateToISOString(date) {
-        var year = date.getFullYear()
-        var month = date.getMonth() + 1
-        var day = date.getDate()
-
-
-        var hours = date.getHours()
-        var minutes = date.getMinutes()
-        var seconds = date.getSeconds()
-        var millis = date.getMilliseconds()
-
-
-        function twoDigits(value) {
-            return value < 10 ? '0' + value : '' + value
-        }
-
-
-        function threeDigits(value) {
-            return value < 10 ? '00' + value : value < 100 ? '0' + value : '' + value
-        }
-
-
-        var isoDate = year + '-' + twoDigits(month) + '-' + twoDigits(day) + ' ' + twoDigits(hours) + ':' + twoDigits(minutes) + ':' + twoDigits(seconds) + '.' + threeDigits(millis)
-
-        return isoDate
-    }
-
-
     // helpers
-
 
     function validateName(name) {
         if (name.length < 1)
             throw new Error('name is lower than 1 character')
 
-
         var nameIsBlank = true
-
 
         for (var i = 0; i < name.length && nameIsBlank; i++) {
             var char = name[i]
 
-            if (char !== ' ')
+            if (char !== name[i])
                 nameIsBlank = false
         }
 
         if (nameIsBlank)
             throw new Error('name is blank')
     }
+
+
 
 
 
@@ -248,7 +216,7 @@ var logic = (function () {
             from: sessionStorage.userId,
             to: userId,
             text: text,
-            date: convertDateToISOString(new Date())
+            date: new Date().toISOString()
         }
 
 
@@ -266,6 +234,10 @@ var logic = (function () {
         return messages
     }
 
+    function getLoggedInUserId() {
+        return sessionStorage.userId
+    }
+
 
     return {
         registerUser: registerUser,
@@ -274,6 +246,7 @@ var logic = (function () {
         logoutUser: logoutUser,
         retrieveUsers: retrieveUsers,
         sendMessageToUser: sendMessageToUser,
-        retrieveMessagesWithUser: retrieveMessagesWithUser
+        retrieveMessagesWithUser: retrieveMessagesWithUser,
+        getLoggedInUserId: getLoggedInUserId
     }
 })()
