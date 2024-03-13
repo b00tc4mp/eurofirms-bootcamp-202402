@@ -13,7 +13,7 @@ var data = (function () {
         return JSON.parse(localStorage.users || '[]')
     }
 
-    function saveMessage(messages) {
+    function saveMessages(messages) {
         localStorage.messages = JSON.stringify(messages)
     }
 

@@ -23,6 +23,7 @@ form.onsubmit = function (event) {
 
     try {
         logic.registerUser(name, birthdate, username, email, password)
+
         console.log('user registered')
 
         alert('user registered')
