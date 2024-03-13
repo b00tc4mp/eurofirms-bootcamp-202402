@@ -156,19 +156,19 @@ var logic = (function () {    //IFFE
         validatePassword(repeatpassword)
 
         var user = data.findUser(function(user) {
-            return user.username === username || user.email === email;
+            return user.username === username || user.email === email
         });
     
         if (user === undefined) {
-            throw new Error('User not found');
+            throw new Error('User not found')
         }
     
         if (newpassword !== repeatpassword) {
-            throw new Error('Passwords are not equal');
+            throw new Error('Passwords are not equal')
         }
     
-        user.password = newpassword;
-        data.updateUser(user);
+        user.password = newpassword
+        data.updateUser(user)
     }
     
     function retrieveUser() { //retrieve user 

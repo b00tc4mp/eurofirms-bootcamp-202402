@@ -1,3 +1,4 @@
+debugger
 var form = document.querySelector('.form')  
 var anchor = document.querySelector('#login')
 
