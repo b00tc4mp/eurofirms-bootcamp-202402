@@ -28,7 +28,7 @@ form.onsubmit = function (event) {
 
         
     }   catch (error) {
-            console.error(error.message)
+            console.error(error)
 
           
 

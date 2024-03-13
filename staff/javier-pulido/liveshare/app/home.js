@@ -56,7 +56,7 @@ try {
 
         chatUserItem.classList.add('chat-user')
 
-        chatUserItem.classList.add(user.online ? 'chat-user-online' : 'chat-user.offline')
+        chatUserItem.classList.add(user.online ? 'chat-user-online' : 'chat-user-offline')
 
         chatUserItem.innerText = user.username
 

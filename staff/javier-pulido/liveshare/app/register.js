@@ -1,6 +1,6 @@
 // presentation layer
 
-var form = document.querySelector('.form')
+var form = document.querySelector('.form') 
 var anchor = document.querySelector('a')
 
 form.onsubmit = function (event) {

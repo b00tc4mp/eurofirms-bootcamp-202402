@@ -104,7 +104,7 @@ var logic = (function () {
 
         if (user !== undefined)
             throw new Error('user already exists')
-
+debugger
         var user = {
             name: name,
             birthdate: birthdate,

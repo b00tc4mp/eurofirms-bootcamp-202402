@@ -1,6 +1,5 @@
-var data = (function () {
+var data = (function () { //Aqui comienza mi IIFE
     // helpers
-
     function loadUsers() {
         return JSON.parse(localStorage.users || '[]')
     }
@@ -43,7 +42,7 @@ var data = (function () {
     }
 
     function updateUser(user) {
-        var users = loadUsers(use)
+        var users = loadUsers(user)
 
         var index = users.findIndex(function (user2) {
             return user2.id === user.id
@@ -87,6 +86,14 @@ var data = (function () {
 
     }
 
+    function findMessages(callback) {
+        var messages = loadMessages()
+
+        var filtered = messages.filter(callback)
+
+        return filtered
+    }
+
     return {
         findUser: findUser,
         insertUser: insertUser,
@@ -98,4 +105,4 @@ var data = (function () {
         printMessages: printMessages,
         findMessages: findMessages
     }
-})()
+})() //Aqui termina mi IIFE
