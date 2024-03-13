@@ -11,11 +11,41 @@
 }
 
 
-li.online:marker {
-    color: limegreen;
+#chat-section {
+    border-width: 1px;
+    border-color: beige;
+    border-style: solid;
+    padding: 10px;
 }
 
 
-li.offline:marker {
+.chat-user-online::marker {
     color: gray;
+}
+
+.chat-user-ofline::marker {
+    color: grey
+}
+
+#chat {
+    display: none;
+}
+
+#chat-mesagges {
+    border-width: 1px;
+    border-color: black;
+    border-style: solid;
+    min-height: 40px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    list-style: none;
+}
+
+.chat-message--left {
+    aling-self: flex-start;
+}
+
+.chat-message--right {
+    aling-self: flex-end;
 }
