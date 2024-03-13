@@ -11,3 +11,21 @@
 
 // thisArg Opcional
 // Valor que se usará como this cuando se ejecute el callback.
+
+
+
+function callbackForEach(object{
+    for (let i = 0; i < array.length; i++) {
+    var value = object[i]
+
+    console.log(value)
+
+}
+})
+
+
+
+
+function forEach(callback) {
+
+}
