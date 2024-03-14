@@ -233,6 +233,10 @@ var logic = (function () {//Aqui comienza mi IIFE
         return messages
     }
 
+    function getLoggedInUserId() {
+        return sessionStorage.userId
+    }
+
     return {
         registerUser: registerUser,
         loginUser: loginUser,
@@ -241,5 +245,6 @@ var logic = (function () {//Aqui comienza mi IIFE
         retrieveUsers: retrieveUsers,
         sendMessageToUser: sendMessageToUser,
         retrieveMessagesWithUser: retrieveMessagesWithUser,
+        getLoggedInUserId: getLoggedInUserId
     }
 })() //Aqui acaba mi IIFE
