@@ -1,14 +1,30 @@
 //presentation layer
 
 var title = document.querySelector('h1')
+
+var chatButton = document.querySelector('#chat-button')
 var logoutButton = document.querySelector('#logout-button')
-var onlineUsersList = document.querySelector('#online-users')
+
 var chatSection = document.querySelector('#chat-section')
 var chatUsers = chatSection.querySelector('#chat-users')
 var chat = chatSection.querySelector('#chat')
 var chatForm = chat.querySelector('#chat-form')
 var chatMessages = chat.querySelector('#chat-messages')
 var renderMessagesIntervalId
+
+var postsSection = document.querySelector('#posts-section')
+
+var createPostSection = document.querySelector('#create-post-section')
+var createPostCancelButton = createPostSection.querySelector('#create-post-cancel-button')
+var createPostForm = createPostSection.querySelector('#create-post-button')
+
+var postsButton = document.querySelector('#posts-button')
+var createPostButton = document.querySelector('#create-post-button')
+
+chatButton.onclick = function () {
+    postsSection.classList.add('posts-section--off')
+    chatSection.classList.remove('chat-section--off')
+}
 
 try {
     var user = logic.retrieveUser()
@@ -113,4 +129,35 @@ try {
     console.error(error)
 
     alert(error.message)
+}
+
+postsButton.onclick = function () {
+    chatSection.classList.add('chat-section--off')
+    postsSection.classList.remove('post-section--off')
+}
+
+createPostButton.onclick = function () {
+    createPostSection.classList.remove('create-post-section--off')
+}
+
+createPostCancelButton.onclick = function () {
+    createPostSection.classList.add('create-post-section--off')
+}
+
+createPostForm.onsubmit = function (event) {
+    event.preventDefault()
+
+    var imageInput = createPostForm.querySelector('#image')
+    var image = imageInput.value
+
+    var textInput = createPostForm.querySelector('#text')
+    var text = textInput.value
+
+    try {
+
+    } catch (error) {
+        console.error(error)
+
+        alert(error.message)
+    }
 }

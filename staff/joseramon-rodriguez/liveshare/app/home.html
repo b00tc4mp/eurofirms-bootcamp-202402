@@ -11,7 +11,28 @@
 <body>
     <h1>Hello , Home!</h1>
 
-    <button id="logout-button">Logout</button>
+    <nav id="top-menu">
+        <button id="chat-button">Chat</button>
+        <button id="logout-button">Log->out</button>
+    </nav>
+
+    <section id="posts-section">
+        <h2>Posts</h2>
+
+        <article class="post">
+            <h3>Coco Drillo</h3>
+            <img class="post-image"
+                src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExc2Qyc250NTFweG1iN3h1MTlhbnVnMHptN3E4bTdrOWlkcm44d3VhdiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l49F5FtmOKYb3cD84/giphy.gif">
+            <p>aqui yo, cocodrilo! <br><sup>2024-03-14 16:47</sup></p>
+        </article>
+
+        <article class="post">
+            <h3>La Garto</h3>
+            <img class="post"
+                src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExejdzcGg3M252ZGdsYm0ybWk1ZHk1ODFqeTF0ZHEzaGg2c2oxOWR4byZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Jmn0QU5fYKqizwkR5v/giphy.gif">
+            <p>y aqui yo, lagarto!<br><sup>2024-03-14 16:57</sup></p>
+        </article>
+    </section>
 
     <section id="chat-section">
         <ul id="chat-users"></ul>
@@ -29,6 +50,27 @@
             </form>
         </div>
     </section>
+
+    <section id="create-post-section" class="create-post-section--off">
+        <h2>Create post</h2>
+
+        <form id="create-post-form">
+            <label for="image">Image</label>
+            <input type="text" id="image">
+
+            <label for="text">Text</label>
+            <input type="text" id="text">
+
+            <button type="submit">Create Post</button>
+        </form>
+
+        <button id="create-post-cancel-button">Cancel create post</button>
+    </section>
+
+    <footer>
+        <button id="posts-button">Posts</button>
+        <button id="create-post-button">Create post</button>
+    </footer>
 
     <script src="data.js"></script>
     <script src="logic.js"></script>

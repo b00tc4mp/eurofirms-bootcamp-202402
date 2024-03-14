@@ -1,18 +1,35 @@
+ body {
+     margin: 0
+ }
+
  .main {
      padding-left: 20vw;
      padding-right: 20vw;
  }
+
+ /*register and login*/
 
  .form {
      display: flex;
      flex-direction: column;
  }
 
+ /*top-menu*/
+
+ #top-menu {
+     display: flex;
+     justify-content: end;
+ }
+
+ /*chat*/
+
  #chat-section {
-     border-width: 1px;
-     border-color: black;
-     border-style: solid;
+     margin-bottom: 60px;
      padding: 10px;
+ }
+
+ .chat-section--off {
+     display: none;
  }
 
  .chat-user {
@@ -32,9 +49,6 @@
  }
 
  #chat-messages {
-     border-width: 1px;
-     border-color: black;
-     border-style: solid;
      min-height: 40px;
      display: flex;
      flex-direction: column;
@@ -44,8 +58,64 @@
 
  .chat-message--left {
      align-self: flex-start;
+     text-align: left;
  }
 
  .chat-message--right {
      align-self: flex-end;
+     text-align: right;
+ }
+
+ #chat-form {
+     display: flex;
+     gap: 5px;
+ }
+
+ #chat-form>#text {
+     width: 100%;
+ }
+
+ /* posts*/
+
+ .post {
+     border: 1px solid black;
+     margin: 10px;
+     padding: 10px;
+ }
+
+ .post-image {
+     width: 100%;
+ }
+
+ /*create-post*/
+
+ #create-post-section {
+     margin-bottom: 40px;
+     position: fixed;
+     bottom: 0;
+     background-color: darkgrey;
+     width: 100%;
+     padding-bottom: 10px;
+ }
+
+ .create-post-section--off {
+     display: none;
+ }
+
+ #create-post--form {
+     display: flex;
+     flex-direction: column;
+ }
+
+ /*footer*/
+
+ footer {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     position: fixed;
+     bottom: 0;
+     width: 100%;
+     background-color: lightgray;
+     height: 40px;
  }
