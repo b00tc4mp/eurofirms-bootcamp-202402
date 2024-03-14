@@ -10,7 +10,7 @@ var chatUsers = chatSection.querySelector('#chat-users')
 
 var chat = chatSection.querySelector('#chat')
 
-var charForm = chat.querySelector('#chat-form')
+var chatForm = chat.querySelector('#chat-form')
 
 var chatMessages = chat.querySelector('#chat-messages')
 
