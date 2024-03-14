@@ -10,7 +10,7 @@ function endsWith(string, searchString, position) {
     }
 
     // Calculamos la posición de inicio de la búsqueda.
-    var startIndex = length - searchStringLength
+    var startIndex = position - searchStringLength
     startIndex = startIndex < 0 ? 0 : startIndex // Aseguramos que startIndex no sea negativo.
 
     // Iteramos sobre la cadena desde startIndex hasta el principio.
@@ -43,5 +43,5 @@ console.log(endsWith(stringFruits, 'pepper!', 4))
 console.log('CASE 3: endsWith in string fruits')
 console.log(endsWith(stringFruits, 'pepper '))
 // Expected: false
-console.log(endsWith(stringFruits, 'pepper',13))
+console.log(endsWith(stringFruits, 'milk',4))
 // Expected: true
