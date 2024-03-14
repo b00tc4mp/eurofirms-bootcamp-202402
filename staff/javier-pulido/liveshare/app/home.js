@@ -6,7 +6,7 @@ var chatSection = document.querySelector('#chat-section')
 var chatUsers = chatSection.querySelector('#chat-users')
 var chat = chatSection.querySelector('#chat')
 var chatForm = chat.querySelector('#chat-form')
-var charMessages = chat.querySelector('#chat-messages')
+var chatMessages = chat.querySelector('#chat-messages')
 var renderMessagesIntervalid
 
 try {
@@ -61,7 +61,7 @@ try {
         chatUserItem.innerText = user.username
 
         chatUserItem.onclick = function () {
-            var interlocutorTitle = chat.querySelector('@chat-interlocutor')
+            var interlocutorTitle = chat.querySelector('#chat-interlocutor')
 
             interlocutorTitle.innerText = user.username
 
@@ -77,9 +77,10 @@ try {
                         if (message.from === logic.getLoggedInUserId())
                             messageItem.classList.add('chat-message--right')
                         else
-                            messageItem.classList.add('chat-message-left')
+                            messageItem.classList.add('chat-message--left')
 
-                        messageItem.innerText = message.innerText
+                        messageItem.innerText = message.text
+                        chatMessages.appendChild(messageItem)
                     })
                 } catch (error) {
                     console.error(error)

@@ -20,7 +20,7 @@
     cursor:pointer;
 }
 
-.chat-user-online:marker {
+.chat-user-online::marker {
     color: limegreen;
 }
 
@@ -47,6 +47,6 @@
     align-self: flex-start;
 }
 
-.chat-message--rigth {
+.chat-message--right {
     align-self: flex-end;
 }

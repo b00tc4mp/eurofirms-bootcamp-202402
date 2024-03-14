@@ -104,7 +104,7 @@ var logic = (function () {
 
         if (user !== undefined)
             throw new Error('user already exists')
-debugger
+
         var user = {
             name: name,
             birthdate: birthdate,
@@ -193,7 +193,7 @@ debugger
             from: sessionStorage.userId,
             to: userId,
             text: text,
-            date: new Date().toISOString
+            date: new Date().toISOString()
         }
 
         data.insertMessage(message)

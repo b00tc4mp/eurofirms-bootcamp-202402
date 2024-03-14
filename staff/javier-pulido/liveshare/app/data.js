@@ -70,6 +70,12 @@ var data = (function () { //Aqui comienza mi IIFE
 
     }
 
+    function getAllUsers(){
+        var users = loadUsers()
+        return users
+    }
+    
+
     function printMessages() {
         var messages = loadMessages()
 
@@ -82,7 +88,7 @@ var data = (function () { //Aqui comienza mi IIFE
 
         messages.push(message)
 
-        saveMessages(message)
+        saveMessages(messages)
 
     }
 
@@ -94,15 +100,17 @@ var data = (function () { //Aqui comienza mi IIFE
         return filtered
     }
 
+    
+
     return {
         findUser: findUser,
         insertUser: insertUser,
         updateUser: updateUser,
-        findUser: updateUser,
         findUsers: findUsers,
         printUsers: printUsers,
-        getAllUsers: printUsers,
+        getAllUsers: getAllUsers,
         printMessages: printMessages,
-        findMessages: findMessages
+        findMessages: findMessages,
+        insertMessage: insertMessage
     }
 })() //Aqui termina mi IIFE
