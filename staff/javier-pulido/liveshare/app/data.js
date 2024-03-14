@@ -1,116 +1,122 @@
-var data = (function () { //Aqui comienza mi IIFE
+var data = (function () { // Se declara una variable data y se asigna el resultado de una IIFE
     // helpers
     function loadUsers() {
-        return JSON.parse(localStorage.users || '[]')
+        return JSON.parse(localStorage.users || '[]') // Función para cargar usuarios desde el almacenamiento local
     }
 
     function saveUsers(users) {
-        localStorage.users = JSON.stringify(users)
+        localStorage.users = JSON.stringify(users) // Función para guardar usuarios en el almacenamiento local
     }
+
 
     function loadMessages() {
-        return JSON.parse(localStorage.messages || '[]')
+    return JSON.parse(localStorage.messages || '[]') // Función para cargar mensajes desde el almacenamiento local
 
     }
 
-    function saveMessages(messages) {
-        localStorage.messages = JSON.stringify(messages)
+function saveMessages(messages) {
+    localStorage.messages = JSON.stringify(messages) // Función para guardar mensajes en el almacenamiento local
     }
 
-    // data
 
-    function findUser(callback) {
-        var users = loadUsers()
+// data
 
-        for (var i = 0; i < users.length; i++) {
-            var user = users[i]
+function findUser(callback) { // Función para encontrar un usuario que cumpla con una condición dada
+    var users = loadUsers() // Se cargan los usuarios desde el almacenamiento local
 
-            var matches = callback(user)
 
-            if (matches) return user
-        }
+    for (var i = 0; i < users.length; i++) { // Se recorre la lista de usuarios
+        var user = users[i] // Se obtiene un usuario de la lista
+
+        var matches = callback(user) // Se aplica la función de callback para verificar si el usuario cumple con la condición
+
+        if (matches) return user // Si el usuario cumple con la condición, se retorna
     }
+}
 
-    function insertUser(user) {
-        var users = loadUsers()
+function insertUser(user) { // Función para insertar un nuevo usuario
+    var users = loadUsers() // Se cargan los usuarios desde el almacenamiento local
 
-        user.id = parseInt(Math.random() * 1000000000000000000).toString(36)
+    user.id = parseInt(Math.random() * 1000000000000000000).toString(36) // Se genera un ID para el usuario
 
-        users[users.length] = user
+    users[users.length] = user // Se agrega el usuario a la lista de usuarios
 
-        saveUsers(users)
-    }
+    saveUsers(users) // Se guardan los usuarios actualizados en el almacenamiento local
+}
 
-    function updateUser(user) {
-        var users = loadUsers(user)
+function updateUser(user) { // Función para actualizar un usuario existente
+    var users = loadUsers(user) // Se cargan los usuarios desde el almacenamiento local
 
-        var index = users.findIndex(function (user2) {
-            return user2.id === user.id
-        })
+    var index = users.findIndex(function (user2) {  // Se busca el índice del usuario a actualizar
+        return user2.id === user.id
+    })
 
-        users.splice(index, 1, user)
+    users.splice(index, 1, user) // Se reemplaza el usuario antiguo con el usuario actualizado
 
-        saveUsers(users)
-    }
+    saveUsers(users) // Se guardan los usuarios actualizados en el almacenamiento local
+}
 
-    function findUsers(callback) {
-        var users = loadUsers()
+function findUsers(callback) { // Función para encontrar usuarios que cumplan con una condición dada
+    var users = loadUsers() // Se cargan los usuarios desde el almacenamiento local
 
-        var filtered = users.filter(callback)
 
-        return filtered
-    }
+    var filtered = users.filter(callback) // Se filtran los usuarios según la función de callback
 
-    function printUsers() {
-        var users = loadUsers()
+    return filtered // Se retorna la lista de usuarios filtrados
+}
 
-        console.table(users)
+function printUsers() { // Función para imprimir los usuarios en la consola
+    var users = loadUsers() // Se cargan los usuarios desde el almacenamiento local
 
-        return users
+    console.table(users) // Se imprime la lista de usuarios en formato de tabla en la consola
 
-    }
+    return users // Se retorna la lista de usuarios
 
-    function getAllUsers(){
-        var users = loadUsers()
-        return users
-    }
-    
+}
 
-    function printMessages() {
-        var messages = loadMessages()
+function getAllUsers() {  // Función para obtener todos los usuarios
+    var users = loadUsers() // Se cargan los usuarios desde el almacenamiento local
+    return users // Se retorna la lista de usuarios
+}
 
-        console.table(messages)
 
-    }
+function printMessages() { // Función para imprimir los mensajes en la consola
+    var messages = loadMessages() // Se cargan los mensajes desde el almacenamiento local
 
-    function insertMessage(message) {
-        var messages = loadMessages()
+    console.table(messages) // Se imprime la lista de mensajes en formato de tabla en la consola
 
-        messages.push(message)
+}
 
-        saveMessages(messages)
+function insertMessage(message) { // Función para insertar un nuevo mensaje
+    var messages = loadMessages() // Se cargan los mensajes desde el almacenamiento local
 
-    }
+    messages.push(message) // Se agrega el mensaje a la lista de mensajes
 
-    function findMessages(callback) {
-        var messages = loadMessages()
+    saveMessages(messages)  // Se guardan los mensajes actualizados en el almacenamiento local
 
-        var filtered = messages.filter(callback)
+}
 
-        return filtered
-    }
+function findMessages(callback) { // Función para encontrar mensajes que cumplan con una condición dada
+    var messages = loadMessages() // Se cargan los mensajes desde el almacenamiento local
 
-    
 
-    return {
-        findUser: findUser,
-        insertUser: insertUser,
-        updateUser: updateUser,
-        findUsers: findUsers,
-        printUsers: printUsers,
-        getAllUsers: getAllUsers,
-        printMessages: printMessages,
-        findMessages: findMessages,
-        insertMessage: insertMessage
-    }
-})() //Aqui termina mi IIFE
+    var filtered = messages.filter(callback)  // Se filtran los mensajes según la función de callback
+
+
+    return filtered // Se retorna la lista de mensajes filtrados
+}
+
+// Se retorna un objeto con todas las funciones definidas
+
+return {
+    findUser: findUser,
+    insertUser: insertUser,
+    updateUser: updateUser,
+    findUsers: findUsers,
+    printUsers: printUsers,
+    getAllUsers: getAllUsers,
+    printMessages: printMessages,
+    findMessages: findMessages,
+    insertMessage: insertMessage
+}
+}) () // Se retorna un objeto con todas las funciones definidas
