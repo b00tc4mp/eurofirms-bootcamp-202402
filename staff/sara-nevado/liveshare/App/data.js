@@ -123,7 +123,7 @@ var data = (function () {
         findUser: findUser,
         insertUser: insertUser,
         updateUser: updateUser,
-        findUser: findUser,
+        findUsers: findUsers,
         printUsers: printUsers,
         getAllUsers: getAllUsers,
         printMessages: printMessages,
