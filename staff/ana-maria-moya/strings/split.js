@@ -61,4 +61,4 @@ function split(string, separator, limit) {
 
     console.log('CASE 3: split the string with')
 
-    console.log({ expected: ['Hello', 'world'], received: result })
+    console.log({ expected: ['Hello', 'world'], received: result )
