@@ -14,7 +14,7 @@ var charForm = chat.querySelector('#chat-form')
 
 var chatMessages = chat.querySelector('#chat-messages')
 
-var renderMessagesIntervalid
+var renderMessagesIntervalId
 
 
 try {
@@ -60,7 +60,7 @@ try {
 
         chatUserItem.classList.add('chat-user')
 
-        chatUserItem.classList.add(user, online ? 'char-user-online' : 'chat-user-offline')
+        chatUserItem.classList.add(user.online ? 'chat-user-online' : 'chat-user-offline')
 
         chatUserItem.innerText = user.username
 
@@ -85,7 +85,7 @@ try {
                             var messageItem = document.createElement('li')
 
                             if (message.from === logic.getLoggedInUserId())
-                                messageItem.classList.add('chat-message--rigth')
+                                messageItem.classList.add('chat-message--right')
 
                             else
                                 messageItem.classList.add('chat-message--left')
@@ -135,12 +135,10 @@ try {
             chatUsers.appendChild(chatUserItem)
         })
 
-
 } catch (error) {
     console.error(error)
 
     alert(error.message)
 }
-
-
-//repasarrrrrrrrrrrrrrrrrrrrrrr fallos
+//habia fallos linea 17,63,88 'solucionado'
+//salta error con node linea 136
