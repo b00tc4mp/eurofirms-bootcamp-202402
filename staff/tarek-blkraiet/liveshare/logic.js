@@ -194,7 +194,6 @@ var logic = (function () {
         users.splice(index, 1)
 
         users.forEach(function (user) {
-
             delete user.name
             delete user.birthdate
             delete user.email
@@ -215,7 +214,6 @@ var logic = (function () {
         validateText(text)
 
         var message = {
-
             from: sessionStorage.userId,
             to: userId,
             text: text,

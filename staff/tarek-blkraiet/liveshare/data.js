@@ -1,4 +1,3 @@
-// data layer
 var data = (function () {
     // helpers
     
@@ -9,11 +8,11 @@ var data = (function () {
     function saveUsers(users) {
         localStorage.users = JSON.stringify(users)
     }
-    function loadMessages(){
+    function loadMessages() {
         return JSON.parse(localStorage.messages || '[]')
     }
 
-    function saveMessages(messages){
+    function saveMessages(messages) {
         localStorage.messages = JSON.stringify(messages)
     }
 
@@ -35,7 +34,7 @@ var data = (function () {
     function insertUser(user) {
         var users = loadUsers()
 
-        user.id = parseInt(Math.random() * 10000000000000000).toString(36)
+        user.id = parseInt(Math.random() * 1000000000000000000).toString(36)
 
         users[users.length] = user
 
@@ -78,7 +77,7 @@ var data = (function () {
 
         console.table(messages)
     }
-    function insertMessage(){
+    function insertMessage(message){
         var messages = loadMessages()
 
         messages.push(messages)
@@ -87,6 +86,7 @@ var data = (function () {
     }
     function findMessages(callback){
         var messages = loadMessages()
+
         var filtered = messages.filter(callback)
 
         return filtered
@@ -97,11 +97,11 @@ var data = (function () {
         findUser:findUser,
         insertUser: insertUser,
         updateUser:updateUser,
+        findUsers:findUsers,
         printUsers:printUsers,
         getAllUsers:getAllUsers,
         printMessages:printMessages,
         insertMessage:insertMessage,
-        findMessages:findMessages,
-        findUsers:findUsers
+        findMessages:findMessages,  
     }
 })()

@@ -5,8 +5,7 @@ var logoutButton = document.querySelector('#logout-button')
 var chatSection = document.querySelector('#chat-section')
 var chatUsers = chatSection.querySelector('#chat-users')
 var chat = chatSection.querySelector('#chat')
-
-var chatFrom = chat.querySelector('#chat-form')
+var chatForm = chat.querySelector('#chat-form')
 var chatMessages = chat.querySelector('#chat-messages')
 var renderMessagesIntervalId
 
@@ -16,7 +15,6 @@ try {
     title.innerText = 'Hello, ' + user.name + '!'
 
 } catch (error) {
-
     console.error(error)
 
     alert(error.message)
@@ -37,7 +35,6 @@ logoutButton.onclick = function () {
         var loginAddress = homeAddress.replace('home', 'login')
 
         location.href = loginAddress
-
     } catch (error) {
         console.error(error)
 
@@ -60,22 +57,19 @@ try {
         chatUserItem.onclick = function () {
             var interlocutorTitle = chat.querySelector('#chat-interlocutor')
             
-
-
-            
-
             interlocutorTitle.innerText = user.username
 
             function renderMessages() {
 
                 try {
                     var messages = logic.retrieveMessagesWithUser(user.id)
+
                     chatMessages.innerHTML = ''
 
                     messages.forEach(function (message) {
                         var messageItem = document.createElement('li')
 
-                        if (message.form === logic.getLoggedInUserId())
+                        if (message.from === logic.getLoggedInUserId())
                             messageItem.classList.add('chat-message--right')
                         else
                             messageItem.classList.add('chat-message--left')
@@ -97,16 +91,16 @@ try {
 
             renderMessagesIntervalId = setInterval(function () { renderMessages() }, 1000)
 
-            chatFrom.onsumit = function (event) {
+            chatForm.onsumit = function (event) {
                 event.preventDefault()
 
-                var textInput = chatFrom.querySelector('#text')
+                var textInput = chatForm.querySelector('#text')
                 var text = textInput.value
 
                 try {
                     logic.sendMessageToUser(user.id, text)
 
-                    chatFrom.reset()
+                    chatForm.reset()
 
                     renderMessages()
                 } catch (error) {
