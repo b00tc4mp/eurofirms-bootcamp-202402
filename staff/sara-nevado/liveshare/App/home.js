@@ -120,7 +120,7 @@ try {
 
                         chatForm.reset()
 
-                        rendermessages()
+                        renderMessages()
                     } catch (error) {
                         console.error(error)
                         alert(error.message)
