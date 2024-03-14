@@ -202,6 +202,20 @@ var logic = (function () {
     return sessionStorage.userId;
   }
 
+  function createPost(image, text) {
+    validateText(image);
+    validateText(text);
+
+    var post = {
+      author: sessionStorage.userId,
+      image: image,
+      text: text,
+      date: new Date().toISOString(),
+    };
+
+    data.insertPost(post);
+  }
+
   return {
     registerUser: registerUser,
     loginUser: loginUser,
@@ -211,5 +225,6 @@ var logic = (function () {
     sendMessageToUser: sendMessageToUser,
     retrieveMessagesWithUser: retrieveMessagesWithUser,
     getLoggedInUserId: getLoggedInUserId,
+    createPost: createPost,
   };
 })();
