@@ -74,7 +74,7 @@ try {
 
                 interlocutorTitle.innerText = user.username
 
-                function rendermessages() {
+                function renderMessages() {
                     try {
                         var messages = logic.retrieveMessagesWithUser(user.id)
 
@@ -102,11 +102,11 @@ try {
                     }
                 }
 
-                rendermessages()
+                renderMessages()
 
                 clearInterval(renderMessagesIntervalId)
 
-                renderMessagesIntervalId = setInterval(function () { rendermessages() }, 1000)
+                renderMessagesIntervalId = setInterval(function () { renderMessages() }, 1000)
 
                 chatForm.onsubmit = function (event) {
                     event.preventDefault()
