@@ -6,6 +6,10 @@ var numberx2 = numbers.map(function(x){
 console.log(numberx2)
 // crea un nuevo array, con la longitud de cada uno de los strings
 var strings = ['hola', 'mundo', 'a', 'todos']
+var array = array.map(function(array){
+    return array = string.length
+})
+console.log(array)
 //crea un nuevo array, con el resto de 2 de cada uno de los numeros
 var numbers2 = [12, 40, 6, 7, 24]
 //crea un nuevo array. que contenga los emails de los usuarios como string

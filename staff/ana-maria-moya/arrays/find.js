@@ -3,30 +3,49 @@ var found = numbers.find(function (number) {
     return number > 20
 })
 console.log(found)
-// encuentra el primer 
+// encuentra el primer string que contenga una 'u'
+
 var strings = ['hola', 'mundo', 'a', 'todos']
-//crea un nuevo array, con el resto de 2 de cada uno de los numeros
-var numbers2 = [12, 40, 6, 7, 24]
-//crea un nuevo array. que contenga los emails de los usuarios como string
+ var found = strings.find(function(string){
+    return string.includes('u')
+})
+ console.log(found)
+// --------------------------------------------------
+
+// encuentra el primer numero impar
+
+var numbers2 = [12, 40, 6, 7, 13]
+
+// --------------------------------------------------
+
+// encuentra el usuario con email 'wendy@darling.com'
+
 var users = [
     { name: 'pepito', email: 'pepito@grillo.com' },
     { name: 'wendy', email: 'wendy@darling.com' },
     { name: 'peter', email: 'peter@pan.com' },
-    { name: 'pinocho', email: 'pin@ocho.com' }
+    { name: 'pinocho', email: 'pin@ocho.com' },
 ]
+var found = users.find(function(user){
+    return user.email.includes('wendy@darling.com')
 
-// crea un nuevo array, que contenga la ciudad de los ususarios como string
-var user2 = [
+})
+console.log(found)
+// --------------------------------------------------
+
+// encuentra el usuario con la ciudad 'Barcelona'
+
+var users2 = [
     {
         name: 'pepito', information: {
             city: 'Madrid',
-            number: '6578759'
+            number: '65787959'
         }
     },
     {
         name: 'wendy', information: {
             city: 'Barcelona',
-            number: '6869406'
+            number: '7869406'
         }
     },
     {
@@ -37,8 +56,12 @@ var user2 = [
     },
     {
         name: 'pinocho', information: {
-            city: 'Vaencia',
+            city: 'Valencia',
             number: '57694068'
         }
-    },
+    }
 ]
+var found = users2.find(function(name){
+    return name.information.city.includes('Barcelona')
+})
+console.log(found)
