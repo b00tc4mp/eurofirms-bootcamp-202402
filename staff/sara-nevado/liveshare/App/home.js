@@ -108,7 +108,7 @@ try {
 
                 renderMessagesIntervalId = setInterval(function () { rendermessages() }, 1000)
 
-                chatform.onsubmit = function (event) {
+                chatForm.onsubmit = function (event) {
                     event.preventDefault()
 
                     var textInput = chatForm.querySelector('#text')
@@ -143,4 +143,4 @@ try {
 }
 
 
-//repasarrrrrrrrrrrrrrrrrrrrrrr
+//repasarrrrrrrrrrrrrrrrrrrrrrr fallos
