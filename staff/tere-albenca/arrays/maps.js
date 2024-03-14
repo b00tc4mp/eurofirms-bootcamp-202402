@@ -14,13 +14,14 @@ var strings= ['hola','mundo','a','todos']
 var casetwo = strings.map(function(x){
     return x.length
 })
-
+console.log(caseTwo)
 //crea un nuevo array con el resto de 2 de cada uno de los nuevos numeros
 
 var numberstwo = [12,40,6,7,24]
 var casethree = numberstwo.map(function(x){
     return x % 2
 })
+console.log(casethree)
 //crea un nuevo array que contenga los email de los usuarios como strings
 var user = [
     {name:'pepito', email:'pepito@grillo.com'},
@@ -31,6 +32,7 @@ var user = [
 var casefour = user.map(function(x){
     return x.email
 })
+console.log(casefour)
 //que contenga la ciudad de los usuarios como string
 var users= [
     {name:'Pepito', information:{
@@ -48,7 +50,10 @@ var users= [
         city:'Valencia',number:'669574343'}}
 ]
 
-
+var casefive = user.map(function(x){
+    return x.information.city
+})
+console.log(casefive)
 
 
 
