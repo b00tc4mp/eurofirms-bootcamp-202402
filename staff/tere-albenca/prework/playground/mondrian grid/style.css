@@ -1,0 +1,72 @@
+* {
+    box-sizing: border-box;
+}
+
+.container {
+    width: 600px;
+    height:600px;
+    display: grid;
+    grid-template-columns: 2fr 6fr 1fr;
+    grid-template-rows: 2fr 3fr 1fr 1fr;
+    border: solid 40px rgb(178, 104, 77);
+}
+/* bloques*/
+
+.left-white-one{
+    background-color: beige;
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    border-bottom: 16px solid black;
+   
+}
+.left-white-two {
+    border-top: 16px solid black;
+    background-color: beige;
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+}
+
+
+.red-block {
+    background-color: red;
+    grid-column: 2 / 4;
+    grid-row: 1 / 3;
+    
+}
+
+.blue-block {
+    background-color: red;
+    grid-column: 2 / 4;
+    grid-row: 1 / 3;
+}
+
+.blue-block {
+    background-color: blue;
+    grid-column: 1 / 2;
+    grid-row: 3 / 5;
+}
+.low-white-block{
+    background-color: beige;
+    grid-column: 2 / 3;
+    grid-row: 3 / 5;
+}
+.low-right-white {
+    background-color: beige;
+    border-bottom: 16px solid black;
+}
+.low-right-yellow {
+    background-color: yellow;
+}
+/* margenes comunes*/
+.red-block,.left-white-two{
+    border-bottom: 8px solid black;
+}
+.blue-block, .low-right-white, .low-white-block{
+    border-top: 8px solid black;
+}
+.left-white-one, .left-white-two, .blue-block, .low-white-block{
+    border-right: 8px solid black;
+}
+.red-block, .low-white-block, .low-right-white, .low-right-yellow{
+    border-left: 8px solid black;
+}

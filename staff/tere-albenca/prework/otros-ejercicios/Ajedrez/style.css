@@ -1,0 +1,34 @@
+*{
+	margin:0;
+	padding:0;
+	
+}
+body{
+	background-color: rgb(160, 216, 216);
+	width: 100vw;
+	height: 90wh;
+}
+.container{
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	justify-items: center;
+}
+#tablero{
+	justify-content: center;
+	width : 800px;
+	height: 800px;
+	border: 1px solid black;
+}
+.blanco, .negro{
+	width: 100px;
+	height:100px;
+}
+.blanco{
+	background-color: whitesmoke;
+}
+.negro{
+	
+	background-color: black;
+}

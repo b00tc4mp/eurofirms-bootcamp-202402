@@ -1,0 +1,102 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.flex{
+    display: flex;
+}
+
+.flex-column{
+    flex-direction: column;
+}
+
+.justify-center{
+    justify-content: center;
+}
+
+.justify-between{
+    justify-content: space-between;
+}
+
+.items-center{
+    align-items:center;
+}
+
+.full-width{
+    width: 100%;
+}
+
+.full-height{
+    height: 100%;
+}
+
+.color-dark-blue{
+    color:rgb(17, 17, 70);
+}
+.color-light-blue{
+    color: rgb(104, 214, 238);
+}
+
+.border-black{
+    border: solid 2px black;
+}
+/* Header */
+.main-header{
+    padding-right: 10px;
+    padding-left: 10px;
+    background-color:white;
+}
+
+/* logo y acceso inicio */
+.alalluna-icon-container{
+    margin-right: 30px;
+    width: 100px;
+}
+/* boton buscador */
+.button{
+    cursor: pointer;
+}
+
+/* nevegador */
+.section-navigation{
+    margin-right: 10px;
+}
+
+.section-navigation a { 
+    font-size: 16px; 
+    text-transform: uppercase; 
+    text-decoration: none; /* Quita el subrayado predeterminado */
+    cursor: pointer; 
+    height: 40px;
+}
+.section-navigation a:hover {
+    color: rgb(104, 214, 238);
+    font-size: 18px; 
+}
+/* area privada y carrito */
+.cart-account-container{
+    gap: 15px;
+}
+
+.cart-account-container img {
+    height: 30px;
+}
+/* Secciones */
+.container{
+    background-color: ;
+    justify-content: space-around;
+}
+.article-container{
+    min-height: 400px;
+    width: 400px;
+    border: solid 2px black;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.galery-image-container{
+    width: 60%;
+}
+

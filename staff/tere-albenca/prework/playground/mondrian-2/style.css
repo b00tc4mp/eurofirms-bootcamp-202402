@@ -1,0 +1,114 @@
+*{
+    box-sizing: border-box; 
+}
+
+.container{
+    width: 630px;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 10px 5px 15px black;
+    margin-left: 35vh;
+    margin-top: 8vw;
+}
+
+/* height de todos*/
+.white-left, .white-left-two,.up-yelow-one, .white-oneborder, .low-white, 
+.blue-low-low,.blue-up, .white-threeborder,.up-red , .blue-middle,.middle-red,
+.white-right, .white-right-two, .low-red, .low-white-two, .low-yelow, .low-low-yelow, .low-low-white{
+    
+    height: 100%;
+}
+/* bordes de todos*/
+.white-left, .white-left-two,.up-yelow-one, .white-oneborder, .low-white, .blue-low-low, 
+.blue-middle, .middle-red, .low-yelow , .blue-up, .white-threeborder, .up-red, .low-red, .low-white-two,
+.low-low-yelow, .low-low-white{
+    
+    border-right: solid 12px black;
+}
+.white-left-two,.white-oneborder, .white-threeborder, .blue-middle, .middle-red{
+    
+    border-bottom: solid 12px black;
+}
+
+.low-white, .low-red, .low-white-two, .low-yelow, .white-right-three {
+    border-bottom: solid 6px black;
+}
+.blue-low-low,.low-low-yelow, .low-low-white,.white-right-two, .low-low-white{
+    border-top: solid 6px black;
+}
+/* up container */
+.up-container{
+    width: 100%;
+    height: 28%;
+    display: flex;
+    border-bottom: solid 12px black;
+}
+.blue-up, .white-threeborder {
+    width: 26%;
+}
+/* extremo izquierdo*/
+.white-left, .white-left-two {
+    width: 12%; 
+}
+
+/* segunda columna*/
+.up-yelow-one, .white-oneborder, .low-white, .blue-low-low, .blue-middle, .middle-red, .low-yelow{    
+    width: 13%;
+}
+
+
+/* middle container interior*/
+.middle-container{
+    width: 100%;
+    height: 36%;
+    display: flex;
+}
+.blue-middle{
+    width: 15%;
+}
+
+
+/* low container interior*/
+.low-container, .low-low-container{
+    width: 100%;
+    height: 18%;
+    display: flex;
+}
+.low-white-two{
+    width: 15%;
+}
+.low-red, .low-low-yelow{
+    width: 39% ;
+}
+
+/* low-low container interior*/
+.low-low-white{
+    width: 28%;
+}
+.white-right-three, .white-right-two, .white-right {
+    width: 10%; 
+}
+
+/*cuadros yelow*/
+
+.up-yelow-one,.low-yelow, .low-low-yelow{
+    background-color: yellow;
+}
+
+/* cuadros blue*/
+.blue-up, .blue-middle, .blue-low-low{
+    background-color: blue; 
+}
+.up-red {
+    width: 28%;
+}
+/* cuadros red*/
+.up-red, .middle-red, .low-red{
+    background-color: red;
+}
+/* cuadros beige*/
+.white-left, .white-left-two,.white-oneborder, .low-white, .white-threeborder,.low-white-two,
+.white-right-three, .white-right-two, .white-right, .low-low-white{
+    background-color: beige;
+}

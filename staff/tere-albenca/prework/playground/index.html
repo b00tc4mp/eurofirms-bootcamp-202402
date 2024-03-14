@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" style="height: 100%;">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playground Alalluna</title>
+</head>
+<body style="height: 100%;margin: 0; overflow: hidden ">
+
+    <section id="coche" style="z-index: 10; width: 100px; position: absolute; _left: 500px; _top: 600px; transform: translate(500px, 600px);">
+        <div class="carcasa" style="background-color: rgb(251, 65, 65); border: solid black; border-width: 1px; padding: 2px; display: flex; flex-direction: column; gap: 2px;">
+            <div class="techo" style="height:10px"> </div>
+            <div class="ventana" style="background-color: skyblue; display: flex;border-style: solid; border-width: 1.5px; justify-content: space-between;">
+                <div class="emogi" style="justify-content: left; margin-left: 5px;">😍</div>
+             
+                <div class="emogi" style="justify-content: right; margin-right: 5px;">😁</div>
+            </div>
+            <div class="capo" style="background-color: rgb(251, 65, 65);height:12px; border: solid black; border-width: 1px; margin: 2px;"></div>
+            <div style="padding: 3px; display: flex; justify-content: space-between; border: solid black;">
+                <div style="width: 15px; height: 15px; background-color: yellow; border-radius: 50%; border: solid whitesmoke; border-width:2px;"></div>
+                <div style="width: 15px; height: 15px; background-color: yellow; border-radius: 50%; border: solid whitesmoke; border-width:2px;"></div>     
+            </div>
+                <div class="inferior" style="justify-content: center">
+                    <div class="matricula" style="width: 90px; height: 20px;background-color: rgb(229, 234, 236); display: flex;border-style: solid; border-width: 1.5px; justify-content: center;">7554288-M</div>
+                </div>
+        </div>
+            
+        <div style="border-style: solid; border-width: 5px;"></div>
+        <div style="margin-top: 1px; margin-bottom: 1px; display: flex; justify-content: space-between;">
+                <div class="rueda" style="width: 13px; height: 20px;background-color:rgb(29, 28, 28);"></div>
+                <div class="rueda" style="width: 13px; height: 20px;background-color: rgb(29, 28, 28);"></div>
+        </div>  
+    </section>
+    <section id="cielo">
+        <div class="sol" style="z-index: 2; position: absolute;_left: 800px; _top: 330px; transform: translate(800px, 330px);width: 50px;height: 50px; background-color: #ffdb00;border-radius: 50%; "></div>
+        <div class="nubes" style="top: 50px;z-index: 3; position: absolute;_left: 650px; _top: 250px; transform: translate(650px, 250px);width: 300px; height: 50px;border-radius: 50%; background-color: #f4f0f0;"></div>
+        <div class="nubes" style="top: 50px;z-index: 3; position: absolute;_left: 580px; _top: 230px; transform: translate(580px, 230px);width: 300px; height: 50px;border-radius: 50%; background-color: #f4f0f0;"></div>
+    </section>
+    <section id="suelo">
+        <div class="acera" style="z-index:2; position:absolute; bottom: 0;left:0; height: 11%; width: 30%; background-color: #9f9c9c;"></div>
+        <div class="acera" style="z-index:2; position:absolute; bottom: 0;right:0; height: 11%; width: 30%; background-color: #9f9c9c;"></div>
+        <div class="carretera" style="z-index: 1;position: absolute;bottom: 0;height: 10%; width: 100%;background-color: #6a6464;"></div>
+        <div id="fondo" style="position: absolute; width: 100%; height: 100%; background: linear-gradient(to bottom, #b19ceb, #780ce5);"></div>      
+    </section>
+    <section id="elementos">
+        <div class="papelera">
+            <div class="papelera" style="left: 250px; z-index: 7; position: absolute; bottom: 80px; width: 3%; height: 80px; background-color: #656363;"></div>
+            <div class="papelera" style="left: 260px; z-index: 7; position: absolute; bottom: 40px; width: 1%; height: 60px; background-color: #656363;"></div>
+        </div>
+        
+        <div class="elementos" style="z-index: 4;position: absolute;width: 10%;height: 10%;"></div>
+        <div class="edificio" style="left: 0;z-index: 3;position: absolute ;bottom: 20px;height: 50%;width: 10%;background-color: #b8b7b7; /* Color del edificio */"></div>
+        <div class="edificio" style="right: 0;z-index: 3;position: absolute;bottom: 20px;height: 80%;width: 10%;background-color: #c9c7c7; /* Color del edificio */"></div>
+    </section>
+    
+    <section id=""arboles>
+        <div class="arbol">
+            <div class="tronco" style="left: 200px; bottom: 10px;z-index: 4; position: absolute;height: 40%; width: 30px;background-color: #964b00;"></div>
+            <div class="hojas" style=" left: 120px;z-index: 5; bottom: 300px; position: absolute;width: 200px; height: 250px; background-color: green; border-radius: 50%"></div>
+        </div>
+        <div class="arbol">
+            <div class="hojas" style=" right: 120px;z-index: 5; bottom: 300px; position: absolute;width: 200px; height: 250px; background-color: green; border-radius: 50%"></div>
+            <div class="tronco" style="right: 200px;z-index: 4; bottom: 10px; position: absolute;height: 40%; width: 30px;background-color: #964b00;"></div>
+        </div>
+    </section>
+
+</body>
+</html>
