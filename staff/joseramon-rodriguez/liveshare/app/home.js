@@ -154,7 +154,11 @@ createPostForm.onsubmit = function (event) {
     var text = textInput.value
 
     try {
+        logic.createPost(image, text)
 
+        createPostForm.reset()
+
+        createPostSection.classList.add('create-post-section--off')
     } catch (error) {
         console.error(error)
 
