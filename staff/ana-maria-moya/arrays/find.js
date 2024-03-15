@@ -15,7 +15,9 @@ var strings = ['hola', 'mundo', 'a', 'todos']
 // encuentra el primer numero impar
 
 var numbers2 = [12, 40, 6, 7, 13]
-
+var found = numbers2.find(function(number){
+return number % 2 !== 0
+})
 // --------------------------------------------------
 
 // encuentra el usuario con email 'wendy@darling.com'
@@ -27,7 +29,7 @@ var users = [
     { name: 'pinocho', email: 'pin@ocho.com' },
 ]
 var found = users.find(function(user){
-    return user.email.includes('wendy@darling.com')
+    return user.email === 'wendy@darling.com'
 
 })
 console.log(found)
@@ -62,6 +64,6 @@ var users2 = [
     }
 ]
 var found = users2.find(function(name){
-    return name.information.city.includes('Barcelona')
+    return name.information.city === 'Barcelona'
 })
 console.log(found)
