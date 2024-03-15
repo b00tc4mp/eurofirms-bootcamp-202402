@@ -8,6 +8,12 @@ var numbers2 = [0, 12, 5, 40, 6, 7, 24, 13, 21]
 
 var strings = ['hola mundo', 'pepito', 'hello world to the people', 'todos']
 
+var twoWordsStrings = strings.filter(function (string) {
+    return string.split(' ').length === 2
+})
+
+console.log(twoWordsStrings)
+
 // --------------------------------------------------
 
 // crea un nuevo array que contenga los numeros con dos digitos
@@ -32,7 +38,8 @@ var users = [
 
 var users2 = [
     {
-        name: 'pepito', information: {
+        name: 'pepito',
+        information: {
             address: {
                 city: 'Madrid',
                 street: 'Gran via'
@@ -41,7 +48,8 @@ var users2 = [
         }
     },
     {
-        name: 'wendy', information: {
+        name: 'wendy',
+        information: {
             address: {
                 city: 'Barcelona',
                 street: 'Diagonal'
@@ -50,7 +58,8 @@ var users2 = [
         }
     },
     {
-        name: 'peter', information: {
+        name: 'peter',
+        information: {
             address: {
                 city: 'Sevilla',
                 street: 'bakeer street'
@@ -59,7 +68,8 @@ var users2 = [
         }
     },
     {
-        name: 'topa', information: {
+        name: 'topa',
+        information: {
             address: {
                 city: 'Barcelona',
                 street: 'Reina Amalia'
@@ -68,7 +78,8 @@ var users2 = [
         }
     },
     {
-        name: 'pinocho', information: {
+        name: 'pinocho',
+        information: {
             address: {
                 city: 'Valencia',
                 street: 'siempre viva'

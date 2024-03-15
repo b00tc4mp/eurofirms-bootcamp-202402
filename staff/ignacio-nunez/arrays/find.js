@@ -31,25 +31,29 @@ var users = [
 
 var users2 = [
     {
-        name: 'pepito', information: {
+        name: 'pepito',
+        information: {
             city: 'Madrid',
             number: '65787959'
         }
     },
     {
-        name: 'wendy', information: {
+        name: 'wendy',
+        information: {
             city: 'Barcelona',
             number: '7869406'
         }
     },
     {
-        name: 'peter', information: {
+        name: 'peter',
+        information: {
             city: 'Sevilla',
             number: '78795040'
         }
     },
     {
-        name: 'pinocho', information: {
+        name: 'pinocho',
+        information: {
             city: 'Valencia',
             number: '57694068'
         }
