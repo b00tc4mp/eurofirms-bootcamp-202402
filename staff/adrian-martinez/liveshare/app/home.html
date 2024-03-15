@@ -18,32 +18,64 @@
                 <div id="datos-perfil">
                     <h1>Hello, Home!</h1>
                     <h2 id="alias"></h2>
-                    <h3 id="cumpleanos"></h3>
-                    <h3 id="correo"></h3>
-                    <button>Logout</button>
+                    <h4 id="cumpleanos"></h4>
+                    <h4 id="correo"></h4>
+                    
+                    <nav id="top-menu">
+                        <button id="chat-button">Chat 💬</button>
+                        <button id="logout-button">Salir 🚪</button>
+                    </nav>
                 </div>
+                <section id="posts-section">
+                    <h2>Publicaciones</h2>
+                    <hr>
+                    <article class="post">
+                        <img class="post-image" src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExc2Qyc250NTFweG1iN3h1MTlhbnVnMHptN3E4bTdrOWlkcm44d3VhdiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l49F5FtmOKYb3cD84/giphy.gif" />
+                        <p>Aquí estoy yo. El cocodrilo animado.<br/><sub>2024-03-14 23:23</sub></p>
+                    </article>
+                </section>
                 <div class="lista-usuarios">
                     <ul id="chat-users">
                         <h2>Lista de usuarios:</h2>
                     </ul>
                 </div>
             </div>
-            <div id="chat">
-                <h3 id="chat-interlocutor">username</h3>
+            <section id="chat-section" class="chat-section--off">
+                <div id="chat">
+                    <h3 id="chat-interlocutor">username</h3>
+    
+                    <ul id="chat-messages"></ul>
+    
+                    <form id="chat-form">
+                        <label for="text">Text</label>
+                        <input type="text" id="text" />
+                        <button type="submit">Enviar</button>
+                    </form>
+                </div>
+            </section>
+            <section id="create-post-form" class="create-post-section--off">
+                <h2>Crear Publicación</h2>
 
-                <ul id="chat-messages"></ul>
-
-                <form id="chat-form">
-                    <label for="text">Text</label>
+                <form id="create-post-form">
+                    <label for="image">URL Imagen:</label>
                     <input type="text" id="text" />
-                    <button type="submit">Enviar</button>
+
+                    <label for="text">Descripción:</label>
+                    <input type="text" id="text" />
+
+                    <button type="submit">Crear</button>
                 </form>
-            </div>
+                <button id="create-post-cancel-button">Cancelar</button>
+            </section>
+
         </section>
     </main>
+    <footer>
+        <button id="posts-button">🏚️</button>
+        <button id="create-post-button">➕</button>
+    </footer>
     <script src="data.js"></script>
     <script src="logic.js"></script>
     <script src="home.js"></script>
 </body>
-
 </html>

@@ -76,6 +76,11 @@ try {
 
                         messageItem.innerText = message.text;
 
+                        //Poner la fecha del mensaje enviado
+                        var dateTime = document.createElement("sub");
+                        var date = new Date(message.date);
+                        dateTime.innerText= date.toLocaleString("en-CA");
+
                         chatMessages.appendChild(messageItem);
                     })
                 } catch (error) {

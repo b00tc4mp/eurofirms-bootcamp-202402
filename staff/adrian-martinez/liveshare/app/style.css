@@ -36,7 +36,11 @@ hr{
     border: 5px solid black;
     border:radius;
     padding: 10px;
-    width:25%;
+    width: 17%;
+    height: 55%;
+}
+#datos-perfil > button{
+    margin-top: -30px
 }
 button a{
     text-decoration: none;
@@ -62,7 +66,6 @@ li {
     display: flex;
     flex-direction: column;
     width: 100%;
-    
     padding: 10px;
 }
 li.chat-user-online::marker{
@@ -86,7 +89,7 @@ li.chat-user-offline:hover{
     border: radius;
     z-index: 10;
     width: 78%;
-    height: 350px;
+    height: 300px;
     background-color: lightgreen;
 }
 #chat-form{
@@ -107,7 +110,9 @@ li.chat-user-offline:hover{
 }
 .chat-message--left{
     align-self: flex-start;
+    text-align: left;
 }
 .chat-message--right{
     align-self: flex-end;
+    text-align: right;
 }
