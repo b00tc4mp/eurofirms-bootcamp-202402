@@ -1,5 +1,6 @@
 var data = (function () {   //IIFE  
     //helpers
+  
     function loadUsers() {
         return JSON.parse(localStorage.users || '[]')
     }
@@ -15,6 +16,7 @@ var data = (function () {   //IIFE
     function saveMessages(messages) {
         localStorage.messages = JSON.stringify(messages)
     }
+    
     function loadPosts() {
         return JSON.parse(localStorage.posts || '[]')
     }
@@ -101,14 +103,16 @@ var data = (function () {   //IIFE
 
         return filtered
     }
+  
     function insertPost(post) {
+    
         var posts = loadPosts()
 
         post.id = parseInt(Math.random() * 1000000000000000000).toString(36)
 
         posts.push(post)
 
-        savePosts(post)
+        savePosts(posts)
     }
     function printPosts(){
         var posts = loadPosts()

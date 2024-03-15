@@ -36,6 +36,7 @@ main{
     display: flex;
     flex-direction: column ;
     align-items: center;
+    margin-bottom: 80px;
 }
 /* register, login and reset password*/
 
@@ -111,7 +112,12 @@ a:hover {
  }
 
 /* posts */
-
+#create-post-section{
+    position: fixed;
+}
+.create-post-section--off{
+    display:none;
+}
 
 /* aside chat */
 aside {

@@ -156,6 +156,7 @@ createPostButton.onclick = function () {
 }
 
 createPostCancelButton.onclick = function () {
+    createPostForm.reset()
     createPostSection.classList.add('create-post-section--off')
 }
 
@@ -167,7 +168,7 @@ createPostForm.onsubmit = function (event) {
 
     var textInput = createPostForm.querySelector('#text')
     var text = textInput.value
-
+    
     try {
         logic.createPost(image, text)
 
