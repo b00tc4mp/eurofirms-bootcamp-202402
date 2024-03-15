@@ -248,6 +248,19 @@ var logic = (function () {    //IFFE
         return sessionStorage.userId
     }
 
+    function createPost(image, text){
+        validateText(image)
+        validateText(text)
+
+        var post = {
+            author:sessionStorage.userId,
+            image:image,
+            text:text,
+            date: new Date().toISOString()
+        }
+        data.insertPost(post)
+    }
+
     //object with functions
     return {
         registerUser: registerUser,
@@ -258,6 +271,7 @@ var logic = (function () {    //IFFE
         sendMessageToUser: sendMessageToUser,
         retrieveMessagesWithUser: retrieveMessagesWithUser,
         getLoggedInUserId: getLoggedInUserId,
-        resetPasswordUser: resetPasswordUser
+        resetPasswordUser: resetPasswordUser,
+        createPost: createPost
     }
 })()

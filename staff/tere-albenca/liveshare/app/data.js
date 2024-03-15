@@ -8,18 +8,18 @@ var data = (function () {   //IIFE
         localStorage.users = JSON.stringify(users)
     }
 
-    function loadMessages(){
+    function loadMessages() {
         return JSON.parse(localStorage.messages || '[]')
     }
 
-    function saveMessages(messages){
+    function saveMessages(messages) {
         localStorage.messages = JSON.stringify(messages)
     }
-    function loadPosts(){
+    function loadPosts() {
         return JSON.parse(localStorage.posts || '[]')
     }
 
-    function savePosts(posts){
+    function savePosts(posts) {
         localStorage.posts = JSON.stringify(posts)
     }
 
@@ -32,7 +32,7 @@ var data = (function () {   //IIFE
             var user = users[i]
 
             var matches = callback(user)
-            
+
             if (matches) return user
         }
     }
@@ -73,44 +73,44 @@ var data = (function () {   //IIFE
         console.table(users)
     }
 
-    function getAllUsers(){
+    function getAllUsers() {
         var users = loadUsers()
 
         return users
     }
 
-    function printMessages(){
+    function printMessages() {
         var messages = loadMessages()
         console.table(messages)
     }
-    
-    function insertMessage(message){
+
+    function insertMessage(message) {
         var messages = loadMessages()
 
         message.id = parseInt(Math.random() * 1000000000000000000).toString(36)
-        
+
         messages.push(message)
-        
+
         saveMessages(messages)
     }
 
-    function findMessages(callback){
+    function findMessages(callback) {
         var messages = loadMessages()
 
         var filtered = messages.filter(callback)
 
         return filtered
     }
-    function insertPost(post){
+    function insertPost(post) {
         var posts = loadPosts()
 
         post.id = parseInt(Math.random() * 1000000000000000000).toString(36)
-        
+
         posts.push(post)
-        
+
         savePosts(post)
     }
-    function printPosts{
+    function printPosts(){
         var posts = loadPosts()
 
         console.table(posts)
@@ -122,11 +122,11 @@ var data = (function () {   //IIFE
         updateUser: updateUser,
         findUsers: findUsers,
         printUsers: printUsers,
-        getAllUsers:getAllUsers,
+        getAllUsers: getAllUsers,
         printMessages: printMessages,
-        insertMessage:insertMessage,
-        findMessages:findMessages,
-        insertPost:insertPost,
-        printPosts: printPosts 
+        insertMessage: insertMessage,
+        findMessages: findMessages,
+        insertPost: insertPost,
+        printPosts: printPosts
     }
 })()
