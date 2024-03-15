@@ -16,6 +16,12 @@ var data = (function () {
     function saveMessages(messages) {
         localStorage.messages = JSON.stringify(messages)
     }
+    function loadPosts() {
+        return JSON.parse(localStorage.posts || '[]')
+    }
+    function savePosts(posts) {
+        localStorage.posts = JSON.stringify(posts)
+    }
 
 
 
@@ -88,6 +94,8 @@ function printMessages() {
 function insertMessage(message) {
     var messages = loadMessages()
 
+    message.id = parseInt(Math.random()*10**18).toString(36)
+
     messages.push(message)
 
     saveMessages(messages)
@@ -104,7 +112,22 @@ function findMessages(callback) {
     return filtered
 }
 
+function insertPost(post) {
+    var posts = loadPosts()
 
+    post.id = parseInt(Match.random()*10**18).toString(36)
+
+    posts.push(post)
+
+    savePosts(posts)
+
+}
+
+function printPosts() {
+    var posts = loadPosts()
+
+    console.table(posts)
+}
 
 
 return {
@@ -116,7 +139,9 @@ return {
     getAllUsers: getAllUsers,
     printMessages: printMessages,
     insertMessage: insertMessage,
-    findMessages: findMessages
+    findMessages: findMessages,
+    insertPost: insertPost,
+    printPosts: printPosts
 }
 
 
