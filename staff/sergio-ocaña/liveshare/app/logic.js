@@ -201,6 +201,18 @@ var logic = (function () {
     function getLoggedInUserId() {
         return sessionStorage.userId
     }
+
+    function createPost(image, text) {
+        validateText(image)
+        validateText(text)
+        var post = {
+            author: sessionStorage.userId,
+            image: image,
+            text: text,
+            date: new Date().toISOString()
+        }
+        data.insertPost(post)
+    }
     return {
         registerUser: registerUser,
         loginUser: loginUser,
@@ -209,6 +221,7 @@ var logic = (function () {
         retrieveUsers: retrieveUsers,
         sendMessageToUser: sendMessageToUser,
         retrieveMessagesWithUser: retrieveMessagesWithUser,
-        getLoggedInUserId: getLoggedInUserId
+        getLoggedInUserId: getLoggedInUserId,
+        createPost: createPost
     }
 })()
