@@ -50,21 +50,21 @@ var users2 = [
             city: 'Madrid',
             number: '65787959'
         }
-    }
+    },
     {
         name: 'wendy', information: {
             city: 'Barcelona',
             number: '7869406'
         }
 
-    }
+    },
     {
         name: 'peter', information: {
             city: 'Sevilla',
             number: ''
         }
 
-    }
+    },
     {
         name: 'wendy', information: {
             city: '',
