@@ -32,6 +32,12 @@ var users2 = [
     {name: 'peter', email: 'peter@pan.com'},
     {name: 'pinocho', email: 'pin@ocho.com'},
 ]
+const vari =users2.find(function(x){
+    if(x.email === 'wendy@darling.com' ){
+        return x.email
+    }
+})
+console.log(vari)
 // encuentra el usuario con la ciudad 'Barcelona
 var users3 = [
     {
@@ -62,3 +68,9 @@ var users3 = [
         }
     }
 ]
+const vari3 = users3.find(function(x){
+    if(x.information.city === 'Barcelona'){
+        return x.information.city
+    }
+})
+console.log(vari3)
