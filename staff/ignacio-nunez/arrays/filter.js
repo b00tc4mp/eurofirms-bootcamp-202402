@@ -1,5 +1,4 @@
-// usando el filter, crea un nuevo array, 
-// que contenga los numeros impares
+// usando el filter, crea un nuevo array, que contenga los numeros impares
 
 var numbers2 = [0, 12, 5, 40, 6, 7, 24, 13, 21]
 
@@ -29,7 +28,7 @@ var users = [
 
 // --------------------------------------------------
 
-// crea un nuevo array, que contenga los usuarios
+// crea un nuevo array, que contenga los usuarios que viven en Barcelona
 
 var users2 = [
     {
