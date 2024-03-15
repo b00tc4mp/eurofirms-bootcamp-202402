@@ -2,7 +2,7 @@
 var logic = (function() {
     //Utils
 
-    function convertDateToString(){
+    /* function convertDateToString(){
 
         var year = date.getFullYear();
         var month = date.getMonth() + 1;
@@ -26,7 +26,7 @@ var logic = (function() {
         + twoDigits(seconds) + "." + threeDigits(milisegundos);
 
         return dateConvert;
-    }
+    } */
 
     function validateName(name){
 
@@ -135,10 +135,6 @@ var logic = (function() {
         if(typeof text !== "string"){
 
             throw new Error("El texto debe ser una cadena");
-        }
-        if(text.includes(" ")){
-
-            throw new Error("El texto no puede tener espacios");
         }
         if(!text.length){
 
@@ -265,10 +261,14 @@ var logic = (function() {
             from: sessionStorage.userId,
             to: userId,
             text: text,
-            date: convertDateToString(new Date())
+            date: new Date().toISOString()
         }
 
         data.insertMessage(message);
+     }
+
+     function getLoggedInUserId(){
+        return sessionStorage.userId;
      }
 
      function retrieveMessagesWithUser(userId){
@@ -278,6 +278,23 @@ var logic = (function() {
         var messages = data.findMessages(function(message){
             return message.from === sessionStorage.userId && message.to === userId || message.from === userId && message.to === sessionStorage.userId; 
         })
+        
+        return messages;
+     }
+
+     function createPost(image, text){
+
+        //Validamos la imagen con esta función porque viene en formato string (URL)
+        validateText(image);
+        validateText(text);
+
+        var post = {
+            author: sessionStorage.userId,
+            image: image,
+            text: text,
+            date: new Date().toISOString()
+        }
+        data.insertPost(post);
      }
 
      //Las funciones propias de una capa mejor meterlas como propiedad de un objecto
@@ -288,7 +305,9 @@ var logic = (function() {
         logoutUser: logoutUser,
         retrieveUsers: retrieveUsers,
         sendMessageToUser: sendMessageToUser,
-        retrieveMessagesWithUser: retrieveMessagesWithUser
+        retrieveMessagesWithUser: retrieveMessagesWithUser,
+        getLoggedInUserId: getLoggedInUserId,
+        createPost: createPost
     }
 })()
  

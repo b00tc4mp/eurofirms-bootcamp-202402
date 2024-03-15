@@ -18,6 +18,14 @@ var data = (function(){
     function saveMessages(messages){
         localStorage.messages = JSON.stringify(messages);
     }
+
+    function loadPosts(){
+        return JSON.parse(localStorage.posts || "[]");
+    }
+
+    function savePosts(posts){
+        localStorage.posts = JSON.stringify(posts);
+    }
     /***********************************************************/
     function findUser(callback){
 
@@ -90,6 +98,9 @@ var data = (function(){
 
         var messages = loadMessages();
 
+        //Le ponemos un número aleatorio muy grande para que un mensaje sea único sí o sí
+        message.id = parseInt(Math.random() * 100000000000000).toString(36);
+
         messages.push(message);
         saveMessages(messages);
     }
@@ -102,6 +113,23 @@ var data = (function(){
         return filtered;
     }
 
+    function insertPost(post){
+
+        var posts = loadPosts();
+
+        post.id = parseInt(Math.random() * 100000000000).toString(36);
+        post.push(post);
+
+        savePosts(posts);
+    }
+
+    function printPosts(){
+
+        var posts = loadPosts();
+
+        console.table(posts);
+    }    
+
     //Las funciones propias de una capa mejor meterlas como propiedad en de un objecto
     return {
         findUser: findUser,
@@ -112,6 +140,8 @@ var data = (function(){
         getAllUsers: getAllUsers,
         printMessages: printMessages,
         insertMessage: insertMessage,
-        findMessages: findMessages
+        findMessages: findMessages,
+        insertPost: insertPost,
+        printPosts: printPosts
     }
 })()

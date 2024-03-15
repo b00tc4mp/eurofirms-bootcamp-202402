@@ -1,7 +1,14 @@
-
+body{
+    margin: 0;
+}
+.home-main{
+    display: flex;
+    width: 100%;
+    gap: 20px
+}
 .main{
-    padding-left: 20vw;
-    padding-right: 20vw;
+    margin-left: 2%;
+    margin-right: 2%;
 }
 .form{
     display: flex;
@@ -24,28 +31,32 @@ hr{
     height: 5px;
     background-color: rgb(4, 104, 254);
 }
-#datosPerfil{
+.profile-chat-container{
+    display: flex;
+    justify-content: space-between;
+}
+#datos-perfil{
     border: 5px solid black;
     border:radius;
     padding: 10px;
-    width:15%;
+    width: 17%;
+    height: 55%;
+}
+#datos-perfil > button{
+    margin-top: -30px
 }
 button a{
     text-decoration: none;
     color: white
 }
-#lista-usuarios{
-    position: absolute;
-    display: inline;
-    width: 20%;
-    margin-top: -16%;
-    margin-left: 75%;
+.lista-usuarios{
+    border: 3px solid black;
+    border: radius;
+    padding: 10px;
+    width: 15%;
 }
-ul {
-    position: relative;
-    margin-left: 5%;
-    border: 2px solid black;
-    border-radius: 5%;
+ul#chat-users{
+    display: inline;
 }
 li {
     font-size: 20px;
@@ -53,10 +64,17 @@ li {
     border-bottom: 1px solid gainsboro;
     padding:10px;
 }
-li.online::marker{
+
+#chat-section{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 10px;
+}
+li.chat-user-online::marker{
     color: limegreen;
 }
-li.offline::marker{
+li.chat-user-offline::marker{
     color:gray;
 }
 li.online:hover{
