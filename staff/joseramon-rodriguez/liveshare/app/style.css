@@ -83,6 +83,10 @@
      padding: 10px;
  }
 
+ .post-section--off {
+     display: none
+ }
+
  .post-image {
      width: 100%;
  }
