@@ -9,27 +9,29 @@ function replace(string, pattern, toReplace) {
             if (arguments[k][0] === string[j] && firstInteraction) {
                 test = ""
                 for (var i = 0; i < arguments[k].length; i++) {
-                    test += string[j]
+                    test += string[j + i]
                     if (string[j + i] !== arguments[k][i]) {
                         acumulated += test
-                        j += i + 1
+                        j += i
+                        break
                     }
                     if (test === arguments[k]) {
                         acumulated += arguments[k + 1]
-                        j = arguments[k].length
+                        j += i
                         firstInteraction = false
+
                     }
                 }
             } else {
-                acumulated += string[j]
+                acumulated += stringToCompare[j]
             }
         }
         stringToCompare = acumulated
         acumulated = ""
     }
     return stringToCompare
-
 }
 var sambaDaBahia = 'Tê tê têTetetê tete Tê tê tê tetê tetetêTê tê têTetetê tetêTê tê tê tetê tetetê Samba da Bahia'
 console.log('CASE:1 Replace "te" for "dog" only')
+console.log(sambaDaBahia)
 console.log(replace(sambaDaBahia, 'te', 'dog'))
