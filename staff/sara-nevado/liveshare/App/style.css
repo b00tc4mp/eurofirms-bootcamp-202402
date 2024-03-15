@@ -1,23 +1,40 @@
+body {
+    margin: 0
+}
+
 .main {
     padding-left: 20vw;
     padding-right: 20vw;
 }
 
 
+/*register & login*/
 
 .form {
     display: flex;
     flex-direction: column;
 }
 
+/*top menu*/
 
-#chat-section {
-    border-width: 1px;
-    border-color: beige;
-    border-style: solid;
-    padding: 10px;
+#top-menu {
+    display: flex;
+    justify-content: end;
 }
 
+
+#chat-section {
+    padding: 10px;
+    margin-bottom: 60px;
+}
+
+.chat-section--off {
+    display: none;
+}
+
+.chat-user {
+    cursor: pointer;
+}
 
 .chat-user-online::marker {
     color: gray;
@@ -32,9 +49,7 @@
 }
 
 #chat-mesagges {
-    border-width: 1px;
-    border-color: black;
-    border-style: solid;
+
     min-height: 40px;
     display: flex;
     flex-direction: column;
@@ -44,8 +59,21 @@
 
 .chat-message--left {
     aling-self: flex-start;
+    text-aling: left;
 }
 
 .chat-message--right {
     aling-self: flex-end;
+    text-align: right;
 }
+
+sup {
+    front-size: 10px;
+    color: lightgrey;
+}
+
+#chat-form>#text {
+    width: 100%
+}
+
+/*posts*/

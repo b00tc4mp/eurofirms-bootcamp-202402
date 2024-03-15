@@ -5,9 +5,9 @@
 var form = document.querySelector('.form')
 var anchor = document.querySelector('a')
 
-
 form.onsubmit = function (event) {
     event.preventDefault()
+
 
 
 
