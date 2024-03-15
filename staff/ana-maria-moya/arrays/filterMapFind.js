@@ -24,6 +24,7 @@ var users = [
             { from: 'peter', to: 'pepito', text: 'Hola' },
             { from: 'peter', to: 'pepito', text: 'Que tal!' }
         ]
+        
     }
 ]
 // usando lo aprendido hasta ahora (map, filter y find)
