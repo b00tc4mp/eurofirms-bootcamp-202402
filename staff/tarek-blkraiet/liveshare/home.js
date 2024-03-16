@@ -22,6 +22,7 @@ chatButton.onclick = function () {
     chatSection.classList.remove('chat-section--off')
 }
 
+
 try {
     var user = logic.retrieveUser()
 
