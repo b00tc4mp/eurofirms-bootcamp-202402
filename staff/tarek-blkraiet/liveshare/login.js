@@ -3,33 +3,34 @@
 var form = document.querySelector('.form')
 
 form.onsubmit = function (event) {
-    event.preventDefault()
+  event.preventDefault()
 
-      var usernameInput = form.querySelector('#username')
-      var username = usernameInput.value
+  var usernameInput = form.querySelector('#username')
+  var username = usernameInput.value
 
-      var passwordInput = form.querySelector('#password')
-      var password = passwordInput.value
+  var passwordInput = form.querySelector('#password')
+  var password = passwordInput.value
 
-      try {
-        
-        logic.loginUser(username, password)
+  try {
 
-        console.log('user logged in')
+    logic.loginUser(username, password)
 
-        // alert('user logged in')
+    console.log('user logged in')
 
-        form.reset() 
-        // para clean los especios despues de escribir
-        var loginAddress = location.href
-        var homeAddress = loginAddress.replace('login', 'home')
-        
-        location.href = homeAddress
+    // alert('user logged in')
 
-        //TODO navigate to home
-      } catch (error) {
-        console.error(error.message)
+    form.reset()
+    // para clean los especios despues de escribir
+    var loginAddress = location.href
 
-        alert(error.message)
-      }
+    var homeAddress = loginAddress.replace('login', 'home')
+
+    location.href = homeAddress
+
+
+  } catch (error) {
+    console.error(error.message)
+
+    alert(error.message)
+  }
 }

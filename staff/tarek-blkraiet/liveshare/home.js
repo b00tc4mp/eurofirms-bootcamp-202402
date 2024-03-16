@@ -1,5 +1,5 @@
 // presntation layer
-
+debugger
 var title = document.querySelector('h1')
 var logoutButton = document.querySelector('#logout-button')
 var chatSection = document.querySelector('#chat-section')
@@ -9,14 +9,24 @@ var chatForm = chat.querySelector('#chat-form')
 var chatMessages = chat.querySelector('#chat-messages')
 var renderMessagesIntervalId
 
+var postsSection = document.querySelector('#posts-section')
+var createPostSection = document.querySelector('#create-post-section')
+var createPostForm = createPostSection.querySelector('#create-post-form')
+
+var postsButton = document.querySelector('#posts-button')
+
+var createPostButton = document.querySelector('#create-post-button')
+
+chatButton.onclick = function () {
+    postsSection.classList.add('posts-secttion--off')
+    chatSection.classList.remove('chat-section--off')
+}
+
 try {
     var user = logic.retrieveUser()
 
     title.innerText = 'Hello, ' + user.name + '!'
-
 } catch (error) {
-    console.error(error)
-
     alert(error.message)
 
     var homeAddress = location.href
@@ -56,11 +66,10 @@ try {
 
         chatUserItem.onclick = function () {
             var interlocutorTitle = chat.querySelector('#chat-interlocutor')
-            
+
             interlocutorTitle.innerText = user.username
 
             function renderMessages() {
-
                 try {
                     var messages = logic.retrieveMessagesWithUser(user.id)
 
@@ -76,10 +85,22 @@ try {
 
                         messageItem.innerText = message.text
 
+                        var breakLine = document.appendChild(breakLine)
+
+                        var dateTimeSub = document.createElement('sup')
+
+                        var date = new
+                            date(message.date)
+                        dateTimeSub.innerText =
+                            date.tolocaleString('en-CA')
+
+                        messageItem.appendChild(dateTimeSub)
+
                         chatMessages.appendChild(messageItem)
                     })
+
                 } catch (error) {
-                    console.error(error)
+                    console.error(error.message)
 
                     alert(error.message)
                 }
@@ -91,7 +112,7 @@ try {
 
             renderMessagesIntervalId = setInterval(function () { renderMessages() }, 1000)
 
-            chatForm.onsumit = function (event) {
+            chatForm.onsubmit = function (event) {
                 event.preventDefault()
 
                 var textInput = chatForm.querySelector('#text')
@@ -104,7 +125,7 @@ try {
 
                     renderMessages()
                 } catch (error) {
-                    console.error(error)
+                    console.error(error.message)
 
                     alert(error.message)
                 }
@@ -119,4 +140,36 @@ try {
     console.error(error)
 
     alert(error.message)
+}
+postsButton.onclick = function () {
+    chatSection.classList.add('chat-section-off')
+    postsSection.classList.remove('posts-section--off')
+}
+createPostButton.onclick = function () {
+    createPostSection.classList.remove('create-post-section--off')
+
+}
+createPostCancelButton.onclik = function () {
+    createPostSection.classList.add('create-post-section--off')
+}
+createPostForm.onsubmit = function (event) {
+    event.preventDefault()
+
+    var imageInput = createPostForm.querySelector('#image')
+    var image = imageInput.value
+
+    var textInput = createPostForm.querySelector('#text')
+    var text = textInput.value
+    try {
+        logic.createPost(image, text)
+
+        createPostForm.reset()
+
+        createPostSection.classList.add('create-post-section--off')
+
+    } catch (error) {
+        console.error(error)
+
+        alert(error.message)
+    }
 }

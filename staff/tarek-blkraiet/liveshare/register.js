@@ -1,7 +1,7 @@
 // presentation layer
 
 var form = document.querySelector('.form')
-var anchor=document.querySelector('a') // para devolver el files de login al register 
+var anchor= document.querySelector('a') // para devolver el files de login al register 
 
 form.onsubmit = function (event) {
     event.preventDefault()

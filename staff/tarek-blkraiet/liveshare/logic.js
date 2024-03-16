@@ -1,10 +1,12 @@
 // business layer (logic)
 
 var logic = (function () {
+
     //helpers
 
 
     function validateName(name) {
+        // name validations
         if (name.length < 1)
             throw new Error('name is lower than 1 character')
 
@@ -159,12 +161,13 @@ var logic = (function () {
         var user = data.findUser(function (user) {
             return user.id === sessionStorage.userId
         })
-
+        // para preguntar 
         if (user === undefined)
             throw new Error('user not found')
 
         return user
     }
+
     function logoutUser() {
 
         var user = data.findUser(function (user) {
@@ -190,7 +193,7 @@ var logic = (function () {
             return user.id === sessionStorage.userId
 
         })
-
+        // para preguntar 
         users.splice(index, 1)
 
         users.forEach(function (user) {
@@ -198,6 +201,7 @@ var logic = (function () {
             delete user.birthdate
             delete user.email
             delete user.password
+            //delete user.online
         })
 
         users.sort(function (user1, users2) {
@@ -217,7 +221,7 @@ var logic = (function () {
             from: sessionStorage.userId,
             to: userId,
             text: text,
-            date: new Date().toISOString()
+            date: new Date().toISOString
         }
 
         data.insertMessage(message)
@@ -233,8 +237,25 @@ var logic = (function () {
 
         return messages
     }
+
+    // para preguntar como function retrieve messages
+
     function getLoggedInUserId() {
         return sessionStorage.userId
+    }
+
+    function createPost(image, text) {
+        validateText(image)
+        validateText(text)
+
+        var post = {
+            author: sessionStorage.userId,
+            image: image,
+            text: text,
+            date: new Date().toISOString()
+        }
+
+        data.inserPost(post)
     }
 
     return {
@@ -246,6 +267,7 @@ var logic = (function () {
         retrieveUsers: retrieveUsers,
         sendMessageToUser: sendMessageToUser,
         retrieveMessagesWithUser: retrieveMessagesWithUser,
-        getLoggedInUserId: getLoggedInUserId
+        getLoggedInUserId: getLoggedInUserId,
+        createPost: createPost
     }
 })()

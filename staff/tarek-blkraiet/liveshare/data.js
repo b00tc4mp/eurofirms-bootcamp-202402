@@ -1,8 +1,8 @@
 var data = (function () {
     // helpers
-    
+
     function loadUsers() {
-       return JSON.parse(localStorage.users || '[]')
+        return JSON.parse(localStorage.users || '[]')
     }
 
     function saveUsers(users) {
@@ -15,6 +15,14 @@ var data = (function () {
     function saveMessages(messages) {
         localStorage.messages = JSON.stringify(messages)
     }
+    // me acabo de añadir
+    function loadPosts() {
+        return JSON.parse(localStorage.posts || '[]')
+    }
+    function savePosts(posts) {
+        localStorage.posts = JSON.stringify(posts)
+    }
+
 
     // data
 
@@ -61,47 +69,70 @@ var data = (function () {
         return filtered
     }
 
-    function printUsers(){
+    function printUsers() {
         var users = loadUsers()
 
         console.table(users)
     }
-    function getAllUsers(){
+    function getAllUsers() {
         var users = loadUsers()
 
         return users
     }
 
-    function printMessages(){
+    function printMessages() {
+
         var messages = loadMessages()
 
         console.table(messages)
     }
-    function insertMessage(message){
-        var messages = loadMessages()
 
-        messages.push(messages)
+    function insertMessage(message) {
+        var messages = loadMessages()
+        // me acabo de añadir
+        message.id = parseInt(Math.random() * 1000000000000000000).toString(36)
+
+        messages.push(message)
 
         saveMessages(messages)
     }
-    function findMessages(callback){
+    function findMessages(callback) {
         var messages = loadMessages()
 
         var filtered = messages.filter(callback)
 
         return filtered
+
+    }
+    // me acabo de añadir de abajo
+    function insertPost(post) {
+        var posts = loadPosts()
+
+        post.id = parseInt(Math.random() * 1000000000000000000).toString(36)
+
+        posts.push(post)
+
+        savePosts(posts)
+    }
+
+    function printPosts() {
+        var posts = loadPosts()
+
+        console.table(posts)
     }
 
 
     return {
-        findUser:findUser,
+        findUser: findUser,
         insertUser: insertUser,
-        updateUser:updateUser,
-        findUsers:findUsers,
-        printUsers:printUsers,
-        getAllUsers:getAllUsers,
-        printMessages:printMessages,
-        insertMessage:insertMessage,
-        findMessages:findMessages,  
+        updateUser: updateUser,
+        findUsers: findUsers,
+        printUsers: printUsers,
+        getAllUsers: getAllUsers,
+        printMessages: printMessages,
+        insertMessage: insertMessage,
+        findMessages: findMessages,
+        insertPost: insertPost,
+        printPosts: printPosts
     }
 })()
