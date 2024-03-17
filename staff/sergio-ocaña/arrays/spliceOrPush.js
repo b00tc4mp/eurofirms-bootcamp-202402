@@ -32,7 +32,7 @@ function savePost(userId, postId) {
         user.saved.splice(indexResult, 1)
     }
 
-    var indexUser = users.map(function (user) { return user.id }).indexOf('5t45e5i')
+    var indexUser = users.map(function (user) { return user.id }).indexOf(userId)
 
     users.splice(indexUser, 1, user)
 }
