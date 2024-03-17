@@ -10,7 +10,7 @@ var chatUsers = chatSection.querySelector('#chat-users')
 var chat = chatSection.querySelector('#chat')
 var chatForm = chat.querySelector('#chat-form')
 var chatMessages = chat.querySelector('#chat-messages')
-var renderMessagesIntervalid
+var renderMessagesIntervalId
 
 var postsSection = document.querySelector('#posts-section')
 
@@ -122,9 +122,9 @@ try {
 
         renderMessages()
 
-        clearInterval(renderMessagesIntervalid)
+        clearInterval(renderMessagesIntervalId)
 
-        renderMessagesIntervalid = setInterval(function () { renderMessages() }, 1000)
+        renderMessagesIntervalId = setInterval(function () { renderMessages() }, 1000)
 
         chatForm.onsubmit = function (event) {
             event.preventDefault()
