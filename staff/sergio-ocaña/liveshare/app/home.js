@@ -10,7 +10,7 @@ var chatForm = chat.querySelector('#chat-form')
 var chatMessages = chat.querySelector('#chat-messages')
 var renderMessagesIntervalId
 
-var postsSection = document.querySelector('#post-section')
+var postsSection = document.querySelector('#posts-section')
 var createPostSection = document.querySelector('#create-post-section')
 var createPostCancelButton = createPostSection.querySelector('#create-post-cancel-button')
 var createPostForm = createPostSection.querySelector('#create-post-form')

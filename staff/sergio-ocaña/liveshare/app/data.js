@@ -85,9 +85,9 @@ var data = (function () {
         return filtered
     }
     function insertPost(post) {
-        var posts = loadPost()
+        var posts = loadPosts()
         post.id = parseInt(Math.random() * 1000000000000000000).toString(36)
-        post.push(post)
+        posts.push(post)
         savePosts(posts)
     }
 
