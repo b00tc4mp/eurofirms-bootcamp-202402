@@ -1,4 +1,7 @@
 
+body{
+    margin: 0;
+}
 .main{
     margin-left: 2%;
     margin-right: 2%;
@@ -6,6 +9,10 @@
 .form{
     display: flex;
     flex-direction: column;
+}
+#top-menu{
+    display: flex;
+    justify-content: end;
 }
 input{
     height: 30px;
@@ -51,18 +58,88 @@ button a{
 ul#chat-users{
     display: inline;
 }
+#top-menu{
+    display: flex;
+    justify-content: end;
+}
 li {
     font-size: 20px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif, 'Arial Narrow', Arial, sans-serif;
     border-bottom: 1px solid gainsboro;
     padding:10px;
 }
-
+#chat{
+    display: none;
+}
 #chat-section{
     display: flex;
     flex-direction: column;
     width: 100%;
     padding: 10px;
+    margin-bottom: 60px;
+}
+#chat-messages{
+    min-height: 40px;
+    display: flex;
+    flex-direction: column;
+}
+.chat.messages-left{
+    align-self: flex-start;
+    text-align: left;
+}
+.chat.messages-right{
+    align-self: flex-end;
+    text-align: right;
+}
+sup{
+    font-size: 12px;
+    color: grey;
+}
+#chat-form{
+    display: flex;
+    gap: 5px;
+}
+#chat-form > #text{
+    width: 100%;
+}
+#post-section{
+    margin-bottom: 60px;
+}
+.post{
+    border: 1px solid black;
+    margin: 10px;
+    padding: 10px;
+}
+.post-image{
+    width: 100%;
+}
+#create-post-section{
+    margin-bottom: 40px;
+    position: fixed;
+    bottom: 0;
+    background-color: darkgray;
+    width: 100%;
+    padding-bottom: 10px;
+}
+#create-post-section--off{
+    display: none;
+}
+#create-post-form{
+    display: flex;
+    flex-direction: column;
+}
+footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color:lightgray;
+    height: 40px;
+}
+.chat-section--off{
+    display: none;
 }
 li.chat-user-online::marker{
     color: limegreen;
