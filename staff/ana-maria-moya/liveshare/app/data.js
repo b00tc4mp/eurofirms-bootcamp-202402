@@ -90,6 +90,21 @@ var data = (function () {
         var filtered = messages.filter(callback)
         return filtered
     }
+    function insertPost(post) {
+        var posts = loadPosts()
+
+        post.id = parseInt(Math.random() * 1000000000000000000).toString(36)
+
+        posts.push(post)
+
+        savePosts(posts)
+    }
+
+    function printPosts() {
+        var posts = loadPosts()
+
+        console.table(posts)
+    }
 
     return {
         findUser: findUser,
@@ -100,6 +115,9 @@ var data = (function () {
         getAllUsers: getAllUsers,
         printMessages: printMessages,
         insertMessage: insertMessage,
-        findMessages: findMessages
+        findMessages: findMessages,
+        insertPost: insertPost,
+        printPosts: printPosts
+
     }
 })()
