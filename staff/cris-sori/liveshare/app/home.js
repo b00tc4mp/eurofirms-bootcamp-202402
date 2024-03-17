@@ -1,5 +1,5 @@
 // presentation layer
-
+debugger
 var title = document.querySelector('h1')
 
 var chatButton = document.querySelector('#chat-button')

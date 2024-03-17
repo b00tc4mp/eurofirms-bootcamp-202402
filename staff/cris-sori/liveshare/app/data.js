@@ -17,7 +17,7 @@ var data = (function () {
     }
 
     function loadPosts() {
-        return JSON.parse(localStorage.psts || '[]')
+        return JSON.parse(localStorage.posts || '[]')
     }
 
     function savePosts(posts) {
@@ -97,7 +97,7 @@ var data = (function () {
     }
 
     function findMessages(callback) {
-        var messages = load messages()
+        var messages = loadMessages()
 
         var filtered = messages.filter(callback)
 
