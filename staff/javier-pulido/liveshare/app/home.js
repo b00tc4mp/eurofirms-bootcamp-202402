@@ -1,13 +1,30 @@
 // presentation layer
 
 var title = document.querySelector('h1')
+
+var chatButton = document.querySelector('#chat-button')
 var logoutButton = document.querySelector('#logout-button')
+
 var chatSection = document.querySelector('#chat-section')
 var chatUsers = chatSection.querySelector('#chat-users')
 var chat = chatSection.querySelector('#chat')
 var chatForm = chat.querySelector('#chat-form')
 var chatMessages = chat.querySelector('#chat-messages')
 var renderMessagesIntervalid
+
+var postsSection = document.querySelector('#posts-section')
+
+var createPostSection = document.querySelector('#posts-section')
+var createPostCancelButton = createPostSection.querySelector('#create-post-cancel-button')
+var createPostForm = createPostSection.querySelector('#create-post-form')
+
+var postsButton = document.querySelector('#posts-button')
+var createPostButton = document.querySelector('#create-post-button')
+
+chatButton.onclick = function () {
+    postsSection.classList.add('posts-section--off')
+    chatSection.classList.remove('chat-section--off')
+}
 
 try {
     var user = logic.retrieveUser()
@@ -80,50 +97,100 @@ try {
                             messageItem.classList.add('chat-message--left')
 
                         messageItem.innerText = message.text
+
+                        var breakLine = document.createElement('br')
+
+                        messageItem.appendChild(breakLine)
+
+                        var dateTimeSub = document.createElement('sup')
+
+                        var date = new Date(message.date)
+
+                        dateTimeSub.innetText = date.toLocaleString('en-CA')
+
+                        messageItem.appendChild(dateTimeSub)
+
                         chatMessages.appendChild(messageItem)
                     })
                 } catch (error) {
                     console.error(error)
 
                     alert(error.message)
-                }
             }
 
-            renderMessages()
-            
-            clearInterval(renderMessagesIntervalid)
+        }
 
-            renderMessagesIntervalid = setInterval(function () { renderMessages()}, 1000)
+        renderMessages()
 
-            chatForm.onsubmit = function (event) {
-                event.preventDefault()
+        clearInterval(renderMessagesIntervalid)
 
-                var textInput = chatForm.querySelector('#text')
-                var text = textInput.value
+        renderMessagesIntervalid = setInterval(function () { renderMessages() }, 1000)
 
-                try {
-                    logic.sendMessageToUser(user.id, text)
+        chatForm.onsubmit = function (event) {
+            event.preventDefault()
 
-                    chatForm.reset()
+            var textInput = chatForm.querySelector('#text')
+            var text = textInput.value
 
-                    renderMessages()
-                } catch (error) {
-                    console.error(error)
+            try {
+                logic.sendMessageToUser(user.id, text)
 
-                    alert(error.message)
-                }
+                chatForm.reset()
+
+                renderMessages()
+            } catch (error) {
+                console.error(error)
+
+                alert(error.message)
             }
+        }
 
 
-                    chat.style.display = 'block'
-                }
+        chat.style.display = 'block'
+    }
 
-                chatUsers.appendChild(chatUserItem)
+        chatUsers.appendChild(chatUserItem)
 
-            })
+    })
 
 } catch (error) {
     console.error(error)
 
     alert(error.message)
+}
+
+postsButton.onclick = function () {
+    chatSection.classList.add('chat-section--off')
+    postsSection.classList.remove('posts-section--off')
+}
+
+createPostButton.onclick = function () {
+    createPostSection.classList.remove('create-post-section--off')
+}
+
+createPostCancelButton.onclick = function () {
+    createPostSection.classList.add('create-post-section--off')
+}
+
+createPostForm.onsubmit = function (event) {
+    event.preventDefault()
+
+    var imageInput = createPostForm.querySelector('#image')
+    var image = imageInput.value
+
+    var textInput = createPostForm.querySelector('#text')
+    var text = textInput.value
+
+    try {
+        logic.createPost(image, text)
+
+        createPostForm.reset()
+
+        createPostSection.classList.add('create-post-section--off')
+    } catch (error) {
+        console.error(error)
+
+        alert(error.message)
+    }
+
 }

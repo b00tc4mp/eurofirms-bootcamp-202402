@@ -17,6 +17,13 @@ var data = (function () { // Se declara una variable data y se asigna el resulta
 function saveMessages(messages) {
     localStorage.messages = JSON.stringify(messages) // Función para guardar mensajes en el almacenamiento local
     }
+    function loadPosts() {
+        return JSON.parse(localStorage.posts || '[]')
+    }
+
+    function savePosts(posts) {
+        localStorage.posts = JSON.stringify(posts)
+    }
 
 
 // data
@@ -90,6 +97,8 @@ function printMessages() { // Función para imprimir los mensajes en la consola
 function insertMessage(message) { // Función para insertar un nuevo mensaje
     var messages = loadMessages() // Se cargan los mensajes desde el almacenamiento local
 
+    message.id = parseInt(Math.random() * 1000000000000000000).toString(36)
+
     messages.push(message) // Se agrega el mensaje a la lista de mensajes
 
     saveMessages(messages)  // Se guardan los mensajes actualizados en el almacenamiento local
@@ -106,6 +115,21 @@ function findMessages(callback) { // Función para encontrar mensajes que cumpla
     return filtered // Se retorna la lista de mensajes filtrados
 }
 
+function insertPost(post) {
+    var posts = loadPosts()
+
+    post.id = parseInt(Math.random() * 1000000000000000000).toString(36)
+    
+    posts.push(post)
+
+    savePosts(posts)
+}
+
+function printPosts() {
+    var posts = loadPosts()
+
+    console.table(posts)
+}
 // Se retorna un objeto con todas las funciones definidas
 
 return {
@@ -116,7 +140,9 @@ return {
     printUsers: printUsers,
     getAllUsers: getAllUsers,
     printMessages: printMessages,
+    insertMessage: insertMessage,
     findMessages: findMessages,
-    insertMessage: insertMessage
+    insertPost: insertPost,
+    printPosts: printPosts
 }
-}) () // Se retorna un objeto con todas las funciones definidas
+})() // Se retorna un objeto con todas las funciones definidas
