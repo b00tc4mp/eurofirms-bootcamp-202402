@@ -199,7 +199,7 @@ a:hover {
 
 /* aside chat */
 aside {
-    background-color: azure;
+    
     position: fixed;
     top: 50%; 
     right: 0; 
@@ -224,6 +224,7 @@ aside h3 {
 }
 
 #chat-section {
+    background-color: azure;
     padding: 10px;
     border: 1px Solid black;
 }
