@@ -47,10 +47,10 @@ var users = [
     { name: 'pinocho', email: 'pin@ocho.com' },
 ]
 
-var userEmail = users.find(function(mail){
-    return users.mail === 'wendy@darling.com'
+var userEmail = users.find(function(user){
+    return user.email === 'wendy@darling.com'
 })
-
+console.log(userEmail)
 // --------------------------------------------------
 
 // encuentra el usuario con la ciudad 'Barcelona'
@@ -82,6 +82,7 @@ var users2 = [
     }
 ]
 
-var userCity = users2.find(function(city){
-    return users2.information.city  === 'Barcelona'
+var userCity = users2.find(function(user){
+    return user.information.city  === 'Barcelona'
 })
+console.log(userCity)
