@@ -1,0 +1,64 @@
+.title {
+    background-color: rgb(159, 140, 211);
+    text-align: center;
+    border-radius: 5px;
+    top: 7px;
+    position: relative;
+}
+
+.main {
+    background-color: rgb(199, 187, 248);
+    position: absolute;
+    left: 20%;
+    right: 20%;
+    padding: 5%;
+    border-radius: 50px;
+    border: solid 5px rgb(98, 14, 194);
+    top: 15%;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+.registrarse {
+    font-size: 20px;
+}
+
+#sendbutton {
+    height: 40px;
+    margin-top: 30px;
+    background-color: rgb(204, 163, 250);
+    width: 90%;
+    z-index: 10000;
+    align-self: center;
+}
+
+.formulario {
+    height: 20px;
+    font-size: 15px;
+}
+
+#conectarboton {
+    background-color: rgb(150, 125, 240);
+    position: absolute;
+    font-size: 18px;
+    left: 80%;
+    width: 100px;
+    top: 500px;
+    bottom: 700;
+    text-align: center;
+    height: 30px;
+    color: #4e00e0;
+    border: solid #000000;
+    border-radius: 100px 100px 100px 100px;
+}
+
+label {
+    font-size: 20px;
+}
+
+body {
+    background-color: #000000;
+}
