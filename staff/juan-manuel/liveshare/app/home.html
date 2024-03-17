@@ -10,23 +10,79 @@
 </head>
 
 <body>
-<h1 id="oliwis">Bienvenid@</h1>
-<section id="chat-section">
-<ul id="chat-users"></ul>
+<div id="images">
+<div id="header">
+    <h1 class="chuli">¡Bienvenid@!</h1>
+    <nav id="top-menu">
+        <button id="chat-button">💬</button>
+        <button id="logout-button">🚪</button>
+    </nav>
+</div>
 
-<div id="chat">
-    <h3 id="chat-interlocutor">Nombre de Usuario</h3>
+<h2>Posts</h2>
+    <section id="posts-section">
 
-    <ul id="chat-messages"></ul>
+        <article class="post">
+            <h3>Coco Drilo</h3>
+            <img class="post-image"
+                src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExc2Qyc250NTFweG1iN3h1MTlhbnVnMHptN3E4bTdrOWlkcm44d3VhdiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l49F5FtmOKYb3cD84/giphy.gif">
+            <p>aqui, yo, cocodrilo!<br><sup>2024-03-14 16:47</sup></p>
+        </article>
 
-    <form id="chat-form">
-        <input type="text" placeholder="Escribe aquí tu mensaje" id="text">
+        <article class="post">
+            <h3>La Garto</h3>
+            <img class="post-image"
+                src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExejdzcGg3M252ZGdsYm0ybWk1ZHk1ODFqeTF0ZHEzaGg2c2oxOWR4byZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Jmn0QU5fYKqizwkR5v/giphy.gif">
+            <p> y aqui, yo, lagarto!<br><sup>2024-03-14 16:47</sup></p>
+        </article>
 
-        <button type="submit" id="enviar">Enviar</button>
-    </form>
-</section>
+        <article class="post">
+            <h3>Micky Mouse</h3>
+            <img class="post-image"
+                src="https://cdn.s7.shopdisney.eu/is/image/DisneyStoreES/412304234249-4?fmt=jpeg&qlt=90&wid=652&hei=652">
+            <p> y aqui, yo, Micky!<br><sup>2024-03-14 16:47</sup></p>
+        </article>
+    </section>
 
-    <button id="logout-button">Desconectar</button>
+    <section id="chat-section" class="chat-section--off">
+        <h2>Chat</h2>
+
+        <ul id="chat-users"></ul>
+
+        <div id="chat">
+            <h3 id="chat-interlocutor">Usuario</h3>
+
+            <ul id="chat-messages"></ul>
+
+            <form id="chat-form">
+                <label for="text">Texto</label>
+                <input type="text" id="texto">
+
+                <button type="submit">Enviar</button>
+            </form>
+        </div>
+    </section>
+
+    <section id="create-post-section" class="create-post-section--off">
+        <h2>Crear Post</h2>
+
+        <form id="create-post-form">
+            <label for="image">Imagen</label>
+            <input type="text" id="image">
+
+            <label for="text">Texto</label>
+            <input type="text" id="text">
+
+            <button type="submit">Crear</button>
+        </form>
+
+        <button id="create-post-cancel-button">Cancelar</button>
+    </section>
+
+    <footer>
+        <button id="posts-button">🏚️</button>
+        <button id="create-post-button">➕</button>
+    </footer>
 
     <script src="data.js"></script>
     <script src="logic.js"></script>
