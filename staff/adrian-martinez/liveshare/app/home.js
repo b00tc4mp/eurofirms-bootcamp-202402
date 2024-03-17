@@ -5,6 +5,7 @@ var alias = document.querySelector("#alias");
 var cumpleanos = document.querySelector("#cumpleanos");
 var correo = document.querySelector("#correo");
 
+var chatButton = document.querySelector("#chat-button");
 var logoutButton = document.querySelector("button");
 
 var chatSection = document.querySelector("#chat-section");
@@ -121,4 +122,41 @@ try {
 } catch (error) {
     console.error(error);
     alert(error.message);
+}
+
+//Añadimos los botones para manejar las publicaciones
+
+postsButton.onclick = function(){
+    chatSection.classList.add("chat-section--off");
+    postsSection.classList.add("chat-section--off");
+}
+
+createPostButton.onclick = function(){
+    createPostSection.classList.remove("chat-section--off");
+}
+
+createPostCancelButton.onclick = function(){
+    createPostSection.classList.add("chat-section--off");
+}
+
+createPostForm.onclick = function(event){
+    event.preventDefault();
+    
+    var imageInput = createPostForm.querySelector("#image");
+    var image = imageInput.value;
+
+    var textInput = createPostForm.querySelector("#text");
+    var text = textInput.value;
+
+    try{
+        logic.createPost(image, text);
+
+        createPostForm.reset();
+
+        createPostSection.classList.add("create-post-section--off");
+    }
+    catch(error){
+        console.error(error);
+        alert(error.message);
+    }
 }

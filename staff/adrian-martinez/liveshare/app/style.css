@@ -1,8 +1,4 @@
-.home-main{
-    display: flex;
-    width: 100%;
-    gap: 20px
-}
+
 .main{
     margin-left: 2%;
     margin-right: 2%;
@@ -73,46 +69,4 @@ li.chat-user-online::marker{
 }
 li.chat-user-offline::marker{
     color:gray;
-}
-li.chat-user-online:hover{
-    color: limegreen;
-    cursor: pointer
-}
-li.chat-user-offline:hover{
-    color: gray;
-    cursor: pointer;
-}
-#chat{
-    margin-top: 10px;
-    display: none;
-    border: 20px solid lightgreen;
-    border: radius;
-    z-index: 10;
-    width: 78%;
-    height: 300px;
-    background-color: lightgreen;
-}
-#chat-form{
-    margin-top: -20px;
-}
-#chat-messages{
-    border: 2px solid black;
-    background-color: white;
-    min-height: 60px;
-    max-width: 90%;
-    max-height: 200px;
-    overflow-y: scroll;
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
-    list-style: none;
-    z-index: 10;
-}
-.chat-message--left{
-    align-self: flex-start;
-    text-align: left;
-}
-.chat-message--right{
-    align-self: flex-end;
-    text-align: right;
 }
