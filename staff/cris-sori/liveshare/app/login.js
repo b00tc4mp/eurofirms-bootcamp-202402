@@ -1,3 +1,5 @@
+// capa de presentacion
+
 var form = document.querySelector('.form')
 
 form.onsubmit = function (event) {

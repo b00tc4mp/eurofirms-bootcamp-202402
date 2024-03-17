@@ -1,4 +1,7 @@
+//capa logica
+
 var logic = (function () {
+    //apoyo
 
     function validateName(name) {
         if (name.length < 1)
@@ -65,7 +68,20 @@ var logic = (function () {
 
         if (password.includes(' '))
             throw new Error('Contraseña tiene espacio')
+
     }
+
+    function validateUserId(userId) {
+        if (typeof userId !== 'string') throw new Error('userId no es un string')
+        if (userId.includes(' ')) throw new Error('userId tiene espacios')
+        if (!userId.length) throw new Error('userId está vacío')
+    }
+
+    function validateText(text) {
+        if (typeof text !== 'string') throw new Error('test no es un string')
+        if (!text.length) throw new Error('text está vacío')
+    }
+    //logica
 
     function registerUser(name, birthdate, username, email, password) {
         validateName(name)
@@ -110,7 +126,7 @@ var logic = (function () {
 
         user.online = true
 
-        data.saveUser(user)
+        data.updateUser(user)
     }
 
     function retrieveUser() {
@@ -133,25 +149,74 @@ var logic = (function () {
 
         user.online = false
 
-        data.saveUser(user)
+        data.updateUser(user)
 
         delete sessionStorage.userId
     }
 
-    function retrieveOnlineUsers() {
-        var users = data.findUsers(function (user) {
-            return user.online
+    function retrieveUsers() {
+        var users = data.getAllUsers()
+
+        var index = users.findIndex(function (user) {
+            return user.id === sessionStorage.userId
         })
+
+        users.splice(index, 1)
 
         users.forEach(function (user) {
             delete user.name
             delete user.birthdate
             delete user.email
             delete user.password
-            delete user.online
+        })
+
+        users.sort(function (user1, user2) {
+            return user1.online > user2.online ? -1 : 1
         })
 
         return users
+    }
+
+    function sendMessageToUser(userId, text) {
+        validateUserId(userId)
+        validateText(text)
+
+        var message = {
+            from: sessionStorage.userId,
+            to: userId,
+            text: text,
+            date: new Date().toISOString()
+        }
+
+        data.insertMessage(message)
+    }
+
+    function retrieveMessagesWithUser(userId) {
+        validateUserId(userId)
+
+        var messages = data.findMessages(function (message) {
+            return message.from === sessionStorage.userId && message.to === userId || message.from === userId && message.to === sessionStorage.userId
+        })
+
+        return messages
+    }
+
+    function getLoggedInUserId() {
+        return sessionStorage.userId
+    }
+
+    function createPost(image, text) {
+        validateText(image)
+        validateText(text)
+
+        var post = {
+            author: sessionStorage.userId,
+            image: image,
+            text: text,
+            date: new Date().toISOString()
+        }
+
+        data.insertPost(post)
     }
 
     return {
@@ -159,6 +224,10 @@ var logic = (function () {
         loginUser: loginUser,
         retrieveUser: retrieveUser,
         logoutUser: logoutUser,
-        retrieveOnlineUsers: retrieveOnlineUsers
+        retrieveUsers: retrieveUsers,
+        sendMessageToUser: sendMessageToUser,
+        retrieveMessagesWithUser: retrieveMessagesWithUser,
+        getLoggedInUserId: getLoggedInUserId,
+        createPost: createPost
     }
 })()
