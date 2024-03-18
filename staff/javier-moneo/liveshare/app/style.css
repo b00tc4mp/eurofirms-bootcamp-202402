@@ -44,7 +44,7 @@ body {
   color: gray;
 }
 
-#chat {
+.chat--off {
   display: none;
 }
 

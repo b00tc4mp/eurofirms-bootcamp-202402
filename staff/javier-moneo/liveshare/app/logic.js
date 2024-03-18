@@ -216,6 +216,26 @@ var logic = (function () {
     data.insertPost(post);
   }
 
+  function retrievePosts() {
+    var posts = data.getAllPosts();
+
+    posts.forEach(function (post) {
+      var user = data.findUser(function (user) {
+        return user.id === post.author;
+      });
+
+      delete user.name;
+      delete user.birthdate;
+      delete user.email;
+      delete user.password;
+      delete user.online;
+
+      post.author = user;
+    });
+
+    return posts;
+  }
+
   return {
     registerUser: registerUser,
     loginUser: loginUser,
@@ -226,5 +246,6 @@ var logic = (function () {
     retrieveMessagesWithUser: retrieveMessagesWithUser,
     getLoggedInUserId: getLoggedInUserId,
     createPost: createPost,
+    retrievePosts: retrievePosts,
   };
 })();
