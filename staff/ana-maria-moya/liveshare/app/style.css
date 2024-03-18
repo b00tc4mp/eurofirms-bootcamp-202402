@@ -1,18 +1,34 @@
+body {
+    margin: 0
+}
+
 .main {
     padding-left: 20vw;
     padding-right: 20vw;
 }
 
+/* register & login */
 .form {
     display: flex;
     flex-direction: column;
 }
 
+/* top menu */
+#top-menu {
+    display: flex;
+    justify-content: end;
+}
+
+/* chat */
 #chat-section {
     border-width: 1px;
     border-color: black;
     border-style: solid;
     padding: 10px;
+}
+
+.chat-section--off {
+    display: none;
 }
 
 .chat-user {
@@ -24,10 +40,11 @@
 
 }
 
-chat-user.offline::marker {
+.chat-user.offline::marker {
     color: gray;
 
 }
+
 #chat {
     display: none;
 }
@@ -37,19 +54,20 @@ chat-user.offline::marker {
     border-color: black;
     border-style: solid;
     min-height: 40px;
-    display:flex;
+    display: flex;
     flex-direction: column;
-    padding:10px;
-    list-style:none;
+    padding: 10px;
+    list-style: none;
 }
 
-.chat-message--left{
+.chat-message--left {
     align-self: flex-start;
 }
 
-.chat-message--right{
+.chat-message--right {
     align-self: flex-end;
 }
+
 sup {
     font-size: 10px;
     color: lightgrey;
