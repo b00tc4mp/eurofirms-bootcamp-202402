@@ -14,10 +14,10 @@ var data = (function () {
         localStorage.messages = JSON.stringify(messages)
     }
     function loadPosts() {
-        return JSON.parse(localStorage.post || '[]')
+        return JSON.parse(localStorage.posts || '[]')
     }
     function savePosts(posts) {
-        localStorage.post = JSON.stringify(posts)
+        localStorage.posts = JSON.stringify(posts)
     }
 
     function findUser(callback) {
@@ -97,6 +97,12 @@ var data = (function () {
         console.table(posts)
     }
 
+    function getAllPosts() {
+        var posts = loadPosts()
+
+        return posts
+    }
+
     return {
         findUser: findUser,
         insertUser: insertUser,
@@ -108,6 +114,7 @@ var data = (function () {
         insertMessage: insertMessage,
         findMessages: findMessages,
         insertPost: insertPost,
-        printPosts: printPosts
+        printPosts: printPosts,
+        getAllPosts: getAllPosts
     }
 })()
