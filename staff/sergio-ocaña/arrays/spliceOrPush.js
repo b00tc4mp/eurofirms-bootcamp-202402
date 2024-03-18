@@ -18,8 +18,6 @@ var users = [
 
 
 function savePost(userId, postId) {
-
-
     var user = users.find(function (user) {
         return user.id === userId
     })
@@ -28,16 +26,17 @@ function savePost(userId, postId) {
 
     if (indexResult === -1) {
         user.saved.push(postId)
+        // user.saved.splice(indexResult, 0, postId)
     } else {
         user.saved.splice(indexResult, 1)
     }
 
-    var indexUser = users.map(function (user) { return user.id }).indexOf(userId)
+    // var indexUser = users.findIndex(function (user) { return user.id === userId })
 
-    users.splice(indexUser, 1, user)
+    // users.splice(indexUser, 1, user)
 }
 
-console.log('CASE:1 remove "grghejh4" al user id "5t45e5i" ')
+console.log('CASE:1 remove "grghejh4" al user id "5t45e5i"')
 savePost('5t45e5i', 'grghejh4')
 console.log(users)
 
