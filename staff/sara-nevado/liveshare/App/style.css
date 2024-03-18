@@ -58,17 +58,17 @@ body {
 }
 
 .chat-message--left {
-    aling-self: flex-start;
-    text-aling: left;
+    align-self: flex-start;
+    text-align: left;
 }
 
 .chat-message--right {
-    aling-self: flex-end;
+    align-self: flex-end;
     text-align: right;
 }
 
 sup {
-    front-size: 10px;
+    font-size: 10px;
     color: lightgrey;
 }
 
