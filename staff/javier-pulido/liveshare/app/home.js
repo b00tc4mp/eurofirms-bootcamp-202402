@@ -14,7 +14,7 @@ var renderMessagesIntervalId
 
 var postsSection = document.querySelector('#posts-section')
 
-var createPostSection = document.querySelector('#posts-section')
+var createPostSection = document.querySelector('#create-post-section')
 var createPostCancelButton = createPostSection.querySelector('#create-post-cancel-button')
 var createPostForm = createPostSection.querySelector('#create-post-form')
 
