@@ -278,6 +278,7 @@ var logic = (function () {
       });
 
       delete user.name;
+      delete user.lastname;
       delete user.birthdate;
       delete user.email;
       delete user.password;
