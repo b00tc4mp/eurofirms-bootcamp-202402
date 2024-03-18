@@ -122,4 +122,5 @@ footer {
     width: 100%;
     background-color: lightgray;
     height: 40px;
+    z-index: 10;
 }
