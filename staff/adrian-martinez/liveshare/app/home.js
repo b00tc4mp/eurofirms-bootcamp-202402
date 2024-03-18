@@ -6,15 +6,29 @@ var cumpleanos = document.querySelector("#cumpleanos");
 var correo = document.querySelector("#correo");
 
 var chatButton = document.querySelector("#chat-button");
-var logoutButton = document.querySelector("button");
+var logoutButton = document.querySelector("#logout-button");
 
 var chatSection = document.querySelector("#chat-section");
-var chatUsers = chatSection.querySelector("#chat-users");
+var chatUsers = document.querySelector("#chat-users");
 var chat = chatSection.querySelector("#chat");
 var chatForm = chat.querySelector("#chat-form");
 var chatMessages = chat.querySelector("#chat-messages");
 var renderMessagesIntervalId;
 
+var listaUsuarios = document.querySelector("#lista-usuarios");
+
+var postsSection = document.querySelector("#post-section");
+var createPostSection = document.querySelector("#create-post-section");
+var createPostCancelButton = createPostSection.querySelector("#create-post-cancel-button");
+var createPostForm = createPostSection.querySelector("#create-post-form");
+var postsButton = document.querySelector("#posts-button");
+var createPostButton = document.querySelector("#create-post-button");
+
+chatButton.onclick = function(){
+    postsSection.classList.add("post-section--off");
+    chatSection.classList.remove("chat-section--off");
+    listaUsuarios.classList.remove("lista-usuarios--off");
+}
 
 try{
     var user = logic.retrieveUser();
@@ -128,18 +142,19 @@ try {
 
 postsButton.onclick = function(){
     chatSection.classList.add("chat-section--off");
-    postsSection.classList.add("chat-section--off");
+    postsSection.classList.remove("post-section--off");
+    listaUsuarios.classList.add("lista-usuarios--off");
 }
 
 createPostButton.onclick = function(){
-    createPostSection.classList.remove("chat-section--off");
+    createPostSection.classList.remove("create-post-section--off");
 }
 
 createPostCancelButton.onclick = function(){
-    createPostSection.classList.add("chat-section--off");
+    createPostSection.classList.add("create-post-section--off");
 }
 
-createPostForm.onclick = function(event){
+createPostForm.onsubmit = function(event){
     event.preventDefault();
     
     var imageInput = createPostForm.querySelector("#image");

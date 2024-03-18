@@ -9,32 +9,37 @@
 </head>
 
 <body>
-    <span style="font-size:60px;font-weight:bold;">Mi Perfil</span>
-    <hr />
-    <main class="home-main">
-
-        <section id="chat-section">
+    <div class="margen">
+        <span style="font-size:60px;font-weight:bold;">Mi Perfil</span>
+        <hr />
+    </div>
+    <main>
+        <nav id="top-menu">
+            <button id="posts-button">Home 🏚️</button>
+            <button id="chat-button">Chat 💬</button>
+            <button id="logout-button">Logout 🚪</button>
+        </nav>
+        <section class="margen">
             <div class="profile-chat-container" >
                 <div id="datos-perfil">
                     <h1>Hello, Home!</h1>
                     <h2 id="alias"></h2>
                     <h4 id="cumpleanos"></h4>
                     <h4 id="correo"></h4>
-                    
-                    <nav id="top-menu">
-                        <button id="chat-button">Chat 💬</button>
-                        <button id="logout-button">Salir 🚪</button>
-                    </nav>
+                
                 </div>
-                <section id="posts-section">
+                <section id="post-section">
                     <h2>Publicaciones</h2>
                     <hr>
                     <article class="post">
                         <img class="post-image" src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExc2Qyc250NTFweG1iN3h1MTlhbnVnMHptN3E4bTdrOWlkcm44d3VhdiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l49F5FtmOKYb3cD84/giphy.gif" />
                         <p>Aquí estoy yo. El cocodrilo animado.<br/><sub>2024-03-14 23:23</sub></p>
                     </article>
+                    <div id="post-area">
+
+                    </div>
                 </section>
-                <div class="lista-usuarios">
+                <div id="lista-usuarios" class="lista-usuarios--off">
                     <ul id="chat-users">
                         <h2>Lista de usuarios:</h2>
                     </ul>
@@ -53,12 +58,12 @@
                     </form>
                 </div>
             </section>
-            <section id="create-post-form" class="create-post-section--off">
+            <section id="create-post-section" class="create-post-section--off">
                 <h2>Crear Publicación</h2>
 
                 <form id="create-post-form">
                     <label for="image">URL Imagen:</label>
-                    <input type="text" id="text" />
+                    <input type="text" id="image" />
 
                     <label for="text">Descripción:</label>
                     <input type="text" id="text" />
@@ -71,7 +76,6 @@
         </section>
     </main>
     <footer>
-        <button id="posts-button">🏚️</button>
         <button id="create-post-button">➕</button>
     </footer>
     <script src="data.js"></script>

@@ -118,7 +118,7 @@ var data = (function(){
         var posts = loadPosts();
 
         post.id = parseInt(Math.random() * 100000000000).toString(36);
-        post.push(post);
+        posts.push(post);
 
         savePosts(posts);
     }
@@ -126,6 +126,10 @@ var data = (function(){
     function printPosts(){
 
         var posts = loadPosts();
+
+        //Ponemos todas las publicaciones que tengamos en esta sección
+        var postArea = document.querySelector("post-area");
+        postArea.appendChild(posts);
 
         console.table(posts);
     }    

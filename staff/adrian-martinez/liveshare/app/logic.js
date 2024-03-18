@@ -282,6 +282,21 @@ var logic = (function() {
         return messages;
      }
 
+     function createPost(image, text){
+
+        validateText(image);
+        validateText(text);
+
+        var post = {
+            author: sessionStorage.userId,
+            image: image,
+            text: text,
+            date: new Date().toISOString()
+        }
+
+        data.insertPost(post);
+     }
+
      //Las funciones propias de una capa mejor meterlas como propiedad de un objecto
     return {
         registerUser: registerUser,
@@ -291,7 +306,8 @@ var logic = (function() {
         retrieveUsers: retrieveUsers,
         sendMessageToUser: sendMessageToUser,
         retrieveMessagesWithUser: retrieveMessagesWithUser,
-        getLoggedInUserId: getLoggedInUserId
+        getLoggedInUserId: getLoggedInUserId,
+        createPost:createPost
     }
 })()
  
