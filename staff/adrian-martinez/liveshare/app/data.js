@@ -127,12 +127,15 @@ var data = (function(){
 
         var posts = loadPosts();
 
-        //Ponemos todas las publicaciones que tengamos en esta sección
-        var postArea = document.querySelector("post-area");
-        postArea.appendChild(posts);
-
         console.table(posts);
     }    
+
+    function getAllPosts(){
+
+        var posts = loadPosts()
+
+        return posts;
+    }
 
     //Las funciones propias de una capa mejor meterlas como propiedad en de un objecto
     return {
@@ -146,6 +149,7 @@ var data = (function(){
         insertMessage: insertMessage,
         findMessages: findMessages,
         insertPost: insertPost,
-        printPosts: printPosts
+        printPosts: printPosts,
+        getAllPosts: getAllPosts
     }
 })()

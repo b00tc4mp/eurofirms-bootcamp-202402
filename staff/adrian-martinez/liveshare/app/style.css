@@ -27,6 +27,10 @@ button{
     background-color: rgb(4, 104, 254);
     color: white
 }
+nav > button:active{
+    color:black;
+    font-weight: bold;
+}
 hr{
     height: 5px;
     background-color: rgb(4, 104, 254);
@@ -77,6 +81,9 @@ li {
     border: 3px solid blue;
     padding: 2%;
     width: 50%;
+}
+.chat--off{
+    display: none;
 }
 #chat-section{
     /* display: flex; */

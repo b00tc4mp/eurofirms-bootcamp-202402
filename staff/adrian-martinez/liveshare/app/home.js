@@ -24,7 +24,13 @@ var createPostForm = createPostSection.querySelector("#create-post-form");
 var postsButton = document.querySelector("#posts-button");
 var createPostButton = document.querySelector("#create-post-button");
 
+var postsList = postsSection.querySelector("#posts-list");
+var renderPostsIntervalId;
+
 chatButton.onclick = function(){
+
+    clearInterval(renderPostsIntervalId);
+
     postsSection.classList.add("post-section--off");
     chatSection.classList.remove("chat-section--off");
     listaUsuarios.classList.remove("lista-usuarios--off");
@@ -129,7 +135,7 @@ try {
                     alert(error.message);
                 }
             }
-            chat.style.display = 'block';
+            chat.classList.remove("chat--off");
         }
         chatUsers.appendChild(chatUserItem);
     })
@@ -141,6 +147,17 @@ try {
 //Añadimos los botones para manejar las publicaciones
 
 postsButton.onclick = function(){
+
+    clearInterval(renderPostsIntervalId);
+
+    chatMessages.innerHTML = "";
+
+    chat.classList.add("chat--off");
+
+    renderPostsIntervalId = setInterval(function(){
+        renderPost()
+    },3000);
+
     chatSection.classList.add("chat-section--off");
     postsSection.classList.remove("post-section--off");
     listaUsuarios.classList.add("lista-usuarios--off");
@@ -169,9 +186,63 @@ createPostForm.onsubmit = function(event){
         createPostForm.reset();
 
         createPostSection.classList.add("create-post-section--off");
+
+        renderPostsIntervalId();
     }
     catch(error){
         console.error(error);
         alert(error.message);
     }
 }
+
+function renderPost(){
+    try{
+        var posts = logic.retrievePosts();
+    
+        postsList.innerHTML = "";
+    
+        posts.forEach(function(post){
+    
+            var article = document.createElement("article");
+            article.classList.add("post");
+    
+            var title = document.createElement("h3");
+            title.innerHTML = post.author.username;
+    
+            article.appendChild(title);
+    
+            var image = document.createElement("img");
+            image.src = post.image;
+    
+            article.appendChild(image);
+    
+            var paragraph = document.createElement("p");
+            paragraph.innerText = post.text;
+    
+            var breakLine = document.createElement("br");
+    
+            paragraph.appendChild(breakLine);
+    
+            var dateTimeSup = document.createElement("sup");
+            var date = new Date(post.date);
+    
+            dateTimeSup.innerText = date.toLocaleDateString("en-CA");
+    
+            paragraph.appendChild(dateTimeSup);
+    
+            article.appendChild(paragraph);
+    
+            postsList.appendChild(article);
+        })
+    }
+    catch(error){
+        console.error(error)
+        alert("No hay publicaciones");
+    }
+}
+
+renderPost();
+
+renderPostsIntervalId = setInterval(function(){
+    renderPost();
+},3000)

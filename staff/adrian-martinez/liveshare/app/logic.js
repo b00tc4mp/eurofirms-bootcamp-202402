@@ -297,6 +297,29 @@ var logic = (function() {
         data.insertPost(post);
      }
 
+     function retrievePosts(){
+        
+        var posts = data.getAllPosts();
+
+        posts.forEach(function(post){
+            
+            var user = data.findUser(function(user){
+                return user.id === post.author;
+            })
+
+            delete user.name;
+            delete user.birthdate;
+            delete user.email;
+            delete user.password;
+            delete user.online;
+
+            post.author = user;
+        })
+
+        //Devolvemos las publicaciones en orden inverso. Aparecen primero en el HTML las más recientes
+        return posts.reverse();
+     }
+
      //Las funciones propias de una capa mejor meterlas como propiedad de un objecto
     return {
         registerUser: registerUser,
@@ -307,7 +330,8 @@ var logic = (function() {
         sendMessageToUser: sendMessageToUser,
         retrieveMessagesWithUser: retrieveMessagesWithUser,
         getLoggedInUserId: getLoggedInUserId,
-        createPost:createPost
+        createPost:createPost,
+        retrievePosts: retrievePosts
     }
 })()
  
