@@ -1,6 +1,7 @@
 // presentation layer
 
 var title = document.querySelector('h1')
+var chatButton = document.querySelector('#chat-button')
 var logoutButton = document.querySelector('#logout-button')
 var chatSection = document.querySelector('#chat-section')
 var chatUsers = chatSection.querySelector('#chat-users')
