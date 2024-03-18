@@ -12,20 +12,34 @@
 // thisArg Opcional
 // Valor que se usará como this cuando se ejecute el callback.
 
-
-
-function callbackForEach(object{
-    for (let i = 0; i < array.length; i++) {
-    var value = object[i]
-
-    console.log(value)
-
+var users = {
+    '0': {
+        name: 'Pepito',
+        username: 'Pepito80',
+        password: '12231234242342134'
+    },
+    '1': {
+        name: 'Grillo',
+        username: 'Grillo21',
+        password: '12132123124'
+    },
+    '2': {
+        name: 'Wendy',
+        username: 'Smith',
+        password: '3143442342'
+    }
 }
-})
 
-
-
-
-function forEach(callback) {
-
+var printUaer = function (user) {
+    console.log(user.name + '  ' + user.username)
 }
+
+
+function forEach(user, callback) {
+    for (var i = 0; i < user.length; i++) {
+        callback(user[i])
+
+    }
+}
+
+forEach(users, printUaer)
