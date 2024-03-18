@@ -14,6 +14,9 @@ var renderMessagesIntervalId
 
 var postsSection = document.querySelector('#posts-section')
 
+var postsList = postsSection.querySelector('#posts-list')
+var renderPostsIntervalId
+
 var createPostSection = document.querySelector('#create-post-section')
 var createPostCancelButton = createPostSection.querySelector('#create-post-cancel-button')
 var createPostForm = createPostSection.querySelector('#create-post-form')
@@ -22,6 +25,8 @@ var postsButton = document.querySelector('#posts-button')
 var createPostButton = document.querySelector('#create-post-button')
 
 chatButton.onclick = function () {
+    clearInterval(renderPostsIntervalId)
+
     postsSection.classList.add('posts-section--off')
     chatSection.classList.remove('chat-section--off')
 }
@@ -101,14 +106,15 @@ try {
                         var breakLine = document.createElement('br')
 
                         messageItem.appendChild(breakLine)
+                    
 
-                        var dateTimeSub = document.createElement('sup')
+                        var dateTimeSup = document.createElement('sup')
 
                         var date = new Date(message.date)
 
-                        dateTimeSub.innetText = date.toLocaleString('en-CA')
+                        dateTimeSup.innetText = date.toLocaleString('en-CA')
 
-                        messageItem.appendChild(dateTimeSub)
+                        messageItem.appendChild(dateTimeSup)
 
                         chatMessages.appendChild(messageItem)
                     })
@@ -146,7 +152,7 @@ try {
         }
 
 
-        chat.style.display = 'block'
+        chat.classList.remove('chat--off')
     }
 
         chatUsers.appendChild(chatUserItem)
@@ -160,6 +166,15 @@ try {
 }
 
 postsButton.onclick = function () {
+    clearInterval(renderMessagesIntervalId)
+
+    chatMessages.innerHTML = ''
+
+    chat.classList.add('chat--off')
+
+    renderPostsIntervalId = setInterval(function () {
+renderPostsIntervalId() }, 3000)
+    
     chatSection.classList.add('chat-section--off')
     postsSection.classList.remove('posts-section--off')
 }
@@ -187,6 +202,8 @@ createPostForm.onsubmit = function (event) {
         createPostForm.reset()
 
         createPostSection.classList.add('create-post-section--off')
+
+        renderPosts()
     } catch (error) {
         console.error(error)
 
@@ -194,3 +211,55 @@ createPostForm.onsubmit = function (event) {
     }
 
 }
+
+
+    function renderPosts() {
+        try {
+            var posts = logic.retrievePosts()
+    postsList.innetHTML = '' 
+
+    posts.forEach(function (post) {
+        var article = document.createElement('article')
+        article.classList.add('post')
+
+        var title = document.createElement('h3')
+        title.innerText = post.author.username
+        
+        article.appendChild(title)
+
+        var image = document.createElement('img')
+        image.src = post.image
+        image.classList.add('post-image')
+
+        article.appendChild(image)
+
+        var paragraph = document.createElement('p')
+        paragraph.innerText = post.text
+
+        var breakLine = document.createElement('br')
+
+        paragraph.appendChild(breakLine)
+
+        var dateTimeSup = document.createElement('sup')
+
+        var date = new Date(post.date)
+
+        dateTimeSup.innerText = date.toLocaleString('en-CA')
+
+        paragraph.appendChild(dateTimeSup)
+
+        article.appendChild(paragraph)
+
+        postsList.appendChild(article)
+ })
+}   catch (error) {
+    console.error(error)
+
+    alert(error.message)
+}
+}
+
+renderPosts()
+
+renderPostsIntervalId = setInterval(function () { renderPosts() }, 3000)
+        

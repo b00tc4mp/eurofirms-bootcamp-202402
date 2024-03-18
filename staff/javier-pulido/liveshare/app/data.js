@@ -131,7 +131,11 @@ function printPosts() {
     console.table(posts)
 }
 // Se retorna un objeto con todas las funciones definidas
+function getAllPosts() { // para cargar las publicaciones
+    var posts = loadPosts()
 
+    return posts
+}
 return {
     findUser: findUser,
     insertUser: insertUser,
@@ -143,6 +147,7 @@ return {
     insertMessage: insertMessage,
     findMessages: findMessages,
     insertPost: insertPost,
-    printPosts: printPosts
+    printPosts: printPosts,
+    getAllPosts: getAllPosts
 }
 })() // Se retorna un objeto con todas las funciones definidas
