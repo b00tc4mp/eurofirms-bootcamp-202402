@@ -201,7 +201,7 @@ button[type="submit"]:hover {
 .chat-user-offline:hover{
     color: gray; 
 }
-#chat {
+.chat--off {
     display: none;
 }
 

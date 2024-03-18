@@ -278,6 +278,7 @@ var logic = (function () {
       });
 
       delete user.name;
+      delete user.lastname;
       delete user.birthdate;
       delete user.email;
       delete user.password;
@@ -295,10 +296,10 @@ var logic = (function () {
     retrieveUser: retrieveUser,
     logoutUser: logoutUser,
     retrieveUsers: retrieveUsers,
+    resetPasswordUser: resetPasswordUser,
     sendMessageToUser: sendMessageToUser,
     retrieveMessagesWithUser: retrieveMessagesWithUser,
     getLoggedInUserId: getLoggedInUserId,
-    resetPasswordUser: resetPasswordUser,
     createPost: createPost,
     retrievePosts: retrievePosts,
   };
