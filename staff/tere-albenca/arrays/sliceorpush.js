@@ -1,13 +1,8 @@
-// el usuario peter con id '5t45e5i' le ha dado a guardar a un post (el id de este se guarda en el array saved del user)
-// si peter ya lo tiene guardado, deberia borrarse el id del array
-// si no lo tiene, deberia agregarlo
-
+// el usuario peter con id '5t45e5i' ha guardado un post (el id de este se guarda en el array saved del user)
+// si peter ya lo tiene guardado, borrar id del array
+// si no lo tiene, agregar id
 // para busar al usuario, utilizar el id
-
-// hacer dos casos, uno para cuando lo encuentra en el array, otro para cuando no lo encuentra
-
-// metodos sugeridos a usar: find, includes, splice, push
-// (puedes agregar otros o prescindir de alguno si lo ves necesario, splice y push son obligatorios)
+// metodos a usar: find, includes, splice, push
 
 var users = [
   {
@@ -30,32 +25,27 @@ var users = [
   },
   { id: "djn5gje", name: "pinocho", email: "pin@ocho.com", saved: [] },
 ];
-function sliceOrPush(userId, postId) {
-  var user = null; //si no encontrara el user se queda null
-  for (var i = 0; i < users.length; i++) {
-    if (users[i].id === userId) {
-      user = users[i];
-      break;
+function sliceorPush(userId = "", postIdToRemove = "") {
+  // Encontrar al usuario por su ID
+  var user = users.find(function (user) {
+    return user.id === userId;
+  });
+
+  if (user) {
+    // Verificar si el post ya está guardado por el usuario
+    var postIndex = user.saved.indexOf(postIdToRemove);
+
+    if (postIndex !== -1) {
+      // Si el post está guardado, lo eliminamos
+      user.saved.splice(postIndex, 1);
+    } else {
+      // Si el post no está guardado, lo agregamos
+      user.saved.push(postIdToRemove);
     }
   }
 
-  if (!user) {
-    console.log("Usuario no encontrado.");
-    return;
-  }
-
-  var postIndex = user.saved.indexOf(postId);
-  if (postIndex !== -1) {
-    // Si encuentra el post, lo borramos
-    user.saved.splice(postIndex, 1);
-    console.log("Post eliminado de los guardados.");
-  } else {
-    // Si no lo encuentra, lo añadimos
-    user.saved.push(postId);
-    console.log("Post añadido a los guardados.");
-  }
+  // Devolver el usuario modificado
+  return user;
 }
-
-// Pruebas
-sliceOrPush("5t45e5i", "4tw4hj4");
-sliceOrPush("5t45e5i", "abc123");
+console.log(sliceorPush("5t45e5i", "grghejh4"));
+console.log(sliceorPush("5t45e5i", "grghehee"));
