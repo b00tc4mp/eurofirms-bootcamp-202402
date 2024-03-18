@@ -242,7 +242,7 @@ var logic = (function () {
             post.author = user
         })
 
-        return posts
+        return posts.reverse()
     }
 
     return {
