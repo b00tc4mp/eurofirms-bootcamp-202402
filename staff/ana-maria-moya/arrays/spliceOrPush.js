@@ -14,11 +14,22 @@ var users = [
     { id: '5t45e5i', name: 'peter', email: 'peter@pan.com', saved: ['grghejh4', '4tw4hj4', 'f4jkg4g', 'f4wfjw4f'] },
     { id: 'djn5gje', name: 'pinocho', email: 'pin@ocho.com', saved: [] },
 ]
-var found = users.find(function (users) {
+var user = users.find(function (users) {
     return users.id === '5t45e5i'
     
 })
-var spliceId = .splice
 
-console.log(found)
-console.log(spliceId)
+// onclick (event, postId) {}
+
+var postId = '4tw4hj4'
+
+var isPostSaved = user.saved.includes(postId)
+if(isPostSaved){
+   
+  //TODO borrar el id de el array  
+}
+else{
+   user.saved.push(postId)
+}
+
+console.log(user)
