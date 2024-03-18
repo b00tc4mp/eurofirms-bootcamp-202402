@@ -1,136 +1,145 @@
-var data = (function () {   //IIFE  
-    //helpers
-  
-    function loadUsers() {
-        return JSON.parse(localStorage.users || '[]')
+//iFFE
+var data = (function () {
+  // helpers
+
+  function loadUsers() {
+    return JSON.parse(localStorage.users || "[]");
+  }
+
+  function saveUsers(users) {
+    localStorage.users = JSON.stringify(users);
+  }
+
+  function loadMessages() {
+    return JSON.parse(localStorage.messages || "[]");
+  }
+
+  function saveMessages(messages) {
+    localStorage.messages = JSON.stringify(messages);
+  }
+
+  function loadPosts() {
+    return JSON.parse(localStorage.posts || "[]");
+  }
+
+  function savePosts(posts) {
+    localStorage.posts = JSON.stringify(posts);
+  }
+
+  // data
+
+  function findUser(callback) {
+    var users = loadUsers();
+
+    for (var i = 0; i < users.length; i++) {
+      var user = users[i];
+
+      var matches = callback(user);
+
+      if (matches) return user;
     }
+  }
 
-    function saveUsers(users) {
-        localStorage.users = JSON.stringify(users)
-    }
+  function insertUser(user) {
+    var users = loadUsers();
 
-    function loadMessages() {
-        return JSON.parse(localStorage.messages || '[]')
-    }
+    user.id = parseInt(Math.random() * 1000000000000000000).toString(36);
 
-    function saveMessages(messages) {
-        localStorage.messages = JSON.stringify(messages)
-    }
-    
-    function loadPosts() {
-        return JSON.parse(localStorage.posts || '[]')
-    }
+    users[users.length] = user;
 
-    function savePosts(posts) {
-        localStorage.posts = JSON.stringify(posts)
-    }
+    saveUsers(users);
+  }
 
+  function updateUser(user) {
+    var users = loadUsers();
 
-    //data
-    function findUser(callback) {
-        var users = loadUsers()
+    var index = users.findIndex(function (user2) {
+      return user2.id === user.id;
+    });
 
-        for (var i = 0; i < users.length; i++) {
-            var user = users[i]
+    users.splice(index, 1, user);
 
-            var matches = callback(user)
+    saveUsers(users);
+  }
 
-            if (matches) return user
-        }
-    }
+  function findUsers(callback) {
+    var users = loadUsers();
 
-    function insertUser(user) {
-        var users = loadUsers()
+    var filtered = users.filter(callback);
 
-        user.id = parseInt(Math.random() * 1000000000000000000).toString(36)
+    return filtered;
+  }
 
-        users[users.length] = user
+  function printUsers() {
+    var users = loadUsers();
 
-        saveUsers(users)
-    }
+    console.table(users);
+  }
 
-    function updateUser(user) {
-        var users = loadUsers()
+  function getAllUsers() {
+    var users = loadUsers();
 
-        var index = users.findIndex(function (user2) {
-            return user2.id === user.id
-        })
+    return users;
+  }
 
-        users.splice(index, 1, user)
+  function printMessages() {
+    var messages = loadMessages();
 
-        saveUsers(users)
-    }
+    console.table(messages);
+  }
 
-    function findUsers(callback) {
-        var users = loadUsers()
+  function insertMessage(message) {
+    var messages = loadMessages();
 
-        var filtered = users.filter(callback)
+    message.id = parseInt(Math.random() * 1000000000000000000).toString(36);
 
-        return filtered
-    }
+    messages.push(message);
 
-    function printUsers() {
-        var users = loadUsers()
+    saveMessages(messages);
+  }
 
-        console.table(users)
-    }
+  function findMessages(callback) {
+    var messages = loadMessages();
 
-    function getAllUsers() {
-        var users = loadUsers()
+    var filtered = messages.filter(callback);
 
-        return users
-    }
+    return filtered;
+  }
 
-    function printMessages() {
-        var messages = loadMessages()
-        console.table(messages)
-    }
+  function insertPost(post) {
+    var posts = loadPosts();
 
-    function insertMessage(message) {
-        var messages = loadMessages()
+    post.id = parseInt(Math.random() * 1000000000000000000).toString(36);
 
-        message.id = parseInt(Math.random() * 1000000000000000000).toString(36)
+    posts.push(post);
 
-        messages.push(message)
+    savePosts(posts);
+  }
 
-        saveMessages(messages)
-    }
+  function printPosts() {
+    var posts = loadPosts();
 
-    function findMessages(callback) {
-        var messages = loadMessages()
+    console.table(posts);
+  }
 
-        var filtered = messages.filter(callback)
+  function getAllPosts() {
+    var posts = loadPosts();
 
-        return filtered
-    }
-  
-    function insertPost(post) {
-    
-        var posts = loadPosts()
+    return posts;
+  }
 
-        post.id = parseInt(Math.random() * 1000000000000000000).toString(36)
-
-        posts.push(post)
-
-        savePosts(posts)
-    }
-    function printPosts(){
-        var posts = loadPosts()
-
-        console.table(posts)
-    }
-
-    return {
-        findUser: findUser,
-        insertUser: insertUser,
-        updateUser: updateUser,
-        findUsers: findUsers,
-        printUsers: printUsers,
-        getAllUsers: getAllUsers,
-        printMessages: printMessages,
-        insertMessage: insertMessage,
-        findMessages: findMessages,
-        insertPost: insertPost,
-        printPosts: printPosts
-    }
-})()
+  return {
+    findUser: findUser,
+    insertUser: insertUser,
+    updateUser: updateUser,
+    findUsers: findUsers,
+    printUsers: printUsers,
+    getAllUsers: getAllUsers,
+    printMessages: printMessages,
+    insertMessage: insertMessage,
+    findMessages: findMessages,
+    insertPost: insertPost,
+    printPosts: printPosts,
+    getAllPosts: getAllPosts,
+  };
+})();

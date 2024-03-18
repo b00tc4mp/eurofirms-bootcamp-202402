@@ -17,6 +17,7 @@ var createPostCancelButton = createPostSection.querySelector(
   "#create-post-cancel-button"
 );
 var createPostForm = createPostSection.querySelector("#create-post-form");
+
 var postsButton = document.querySelector("#posts-button");
 var createPostButton = document.querySelector("#create-post-button");
 
@@ -155,6 +156,8 @@ postsButton.onclick = function () {
 };
 
 createPostButton.onclick = function () {
+  chatSection.classList.add("chat-section--off");
+  postsSection.classList.remove("posts-section--off");
   createPostSection.classList.remove("create-post-section--off");
 };
 

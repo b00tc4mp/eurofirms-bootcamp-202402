@@ -12,67 +12,62 @@
 </head>
 
 <body>
+   
     <nav id="top-menu">
         <div class="start-nav">
             <img src="images/logo-cabecera-alalluna.png" alt="logo alalluna">
         </div>
+        <h1>Welcome, Home!</h1>
         <div class="end-nav">
             <button id="chat-button">💬</button>
             <button id="posts-button">🏚️</button>
             <button id="create-post-button">+</button>
         </div>
     </nav>
+    <section id="posts-section">
+        <h2>Posts</h2>
+        <article class="post">
+            <h3>Coco Drilo</h3>
+            <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExc2Qyc250NTFweG1iN3h1MTlhbnVnMHptN3E4bTdrOWlkcm44d3VhdiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l49F5FtmOKYb3cD84/giphy.gif"
+            alt="image cocodrilo">
+            <p>Yo soy un cocodrilo!<br><sup>2024-03-14 16:47</sup></p>
+        </article>
+        
+        <article class="post">
+            <h3>La Garto</h3>
+            <img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExejdzcGg3M252ZGdsYm0ybWk1ZHk1ODFqeTF0ZHEzaGg2c2oxOWR4byZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Jmn0QU5fYKqizwkR5v/giphy.gif"
+            alt="image lagarto">
+            <p>Y yo un lagarto!<br><sup>2024-03-14 16:47</sup></p>
+        </article>
+    </section>
+    
+    <section id="chat-section" class="chat-section--off">
+        <h2>Chat</h2>
+        <ul id="chat-users"></ul>
+        <div id="chat">
+            <h3 id="chat-interlocutor">username</h3>
+            <ul id="chat-messages"></ul>
+            <form id="chat-form">
+                <input type="text" placeholder="your message" id="text">
 
-
-    <main>
-        <div>
-            <h1>Welcome to home!</h1>
-        </div>
-        <section id="posts-section">
-            <h2>Posts</h2>
-            <article class="post">
-                <h3>Coco Drilo</h3>
-                <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExc2Qyc250NTFweG1iN3h1MTlhbnVnMHptN3E4bTdrOWlkcm44d3VhdiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l49F5FtmOKYb3cD84/giphy.gif"
-                    alt="image cocodrilo">
-                <p>Yo soy un cocodrilo!<br><sup>2024-03-14 16:47</sup></p>
-            </article>
-            <article class="post">
-                <h3>La Garto</h3>
-                <img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExejdzcGg3M252ZGdsYm0ybWk1ZHk1ODFqeTF0ZHEzaGg2c2oxOWR4byZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Jmn0QU5fYKqizwkR5v/giphy.gif"
-                    alt="image lagarto">
-                <p>Y yo un lagarto!<br><sup>2024-03-14 16:47</sup></p>
-            </article>
-        </section>
-        <section id="create-post-section" class="create-post-section--off">
-            <h2>CREATE POST</h2>
-            <form action="" id="create-post-form">
-                <input type="text" placeholder="image" id="image">
-
-                <input type="text" placeholder="text" id="text">
-
-                <button type="submit">create</button>
-
+                <button type="submit">Send</button>
             </form>
+        </div>
+    </section>
 
-            <button id="create-post-cancel-button">cancel</button>
-        </section>
+    <section id="create-post-section" class="create-post-section--off">
+        <h2>CREATE POST</h2>
+        <form action="" id="create-post-form">
+            <input type="text" placeholder="image" id="image">
 
-    </main>
+            <input type="text" placeholder="text" id="text">
 
-    <aside>
-        <section id="chat-section" class="chat-section--off">
-            <ul id="chat-users"></ul>
-            <div id="chat">
-                <h3 id="chat-interlocutor">username</h3>
-                <ul id="chat-messages"></ul>
-                <form id="chat-form">
-                    <input type="text" placeholder="your message" id="text">
+            <button type="submit">create</button>
 
-                    <button type="submit">Send</button>
-                </form>
-            </div>
-        </section>
-    </aside>
+        </form>
+
+        <button id="create-post-cancel-button">cancel</button>
+    </section>
 
     <footer>
         <div>
