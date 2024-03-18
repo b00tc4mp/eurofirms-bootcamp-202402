@@ -3,8 +3,8 @@
 var logic = (function () {
     // utils
 
-   
-    
+
+
 
     // helpers
 
@@ -118,23 +118,23 @@ var logic = (function () {
     function loginUser(username, password) {
         validateUsername(username)
         validatePassword(password)
-    
-    var user = data.findUser(function (user) {
-        return user.username === username
-    })
 
-    if (user === undefined)
-        throw new Error('user not found')
+        var user = data.findUser(function (user) {
+            return user.username === username
+        })
 
-    if (user.password !== password)
-        throw new Error('wrong password')
+        if (user === undefined)
+            throw new Error('user not found')
 
-    sessionStorage.userId = user.id
+        if (user.password !== password)
+            throw new Error('wrong password')
 
-    user.online = true
+        sessionStorage.userId = user.id
 
-    data.updateUser(user)
-}
+        user.online = true
+
+        data.updateUser(user)
+    }
 
     function retrieveUser() {
         var user = data.findUser(function (user) {
@@ -208,18 +208,37 @@ var logic = (function () {
         return sessionStorage.userId
     }
 
-    function createPost(image,text){
+    function createPost(image, text) {
         validateText(image)
         validateText(text)
-   
-    var post = {
-        author: sessionStorage.userId,
-        image: image,
-        text: text,
-        date: new Date().toISOString()
+
+        var post = {
+            author: sessionStorage.userId,
+            image: image,
+            text: text,
+            date: new Date().toISOString()
+        }
+        data.insertPost(post)
     }
-    data.insertPost(post)
-    }
+        function retrievePosts() {
+            var posts = data.getAllPosts()
+
+            posts.forEach(function (post) {
+                var user = data.findUser(function (user) {
+                    return user.id === post.author
+                })
+                    delete user.name
+                    delete user.birthdate
+                    delete user.email
+                    delete user.password
+                    delete user.online
+
+                    post.author = user
+                })
+                return posts.reverse()
+            }
+        
+    
     return {
         registerUser: registerUser,
         loginUser: loginUser,
@@ -229,7 +248,9 @@ var logic = (function () {
         sendMessageToUser: sendMessageToUser,
         retrieveMessagesWithUser: retrieveMessagesWithUser,
         getLoggedInUserId: getLoggedInUserId,
-        createPost: createPost
+        createPost: createPost,
+        retrievePosts: retrievePosts
     }
+    
 
 })()

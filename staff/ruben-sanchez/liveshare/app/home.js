@@ -13,6 +13,8 @@ var chatMessages = chat.querySelector('#chat-messages')
 var renderMessagesIntervalId
 
 var postsSection = document.querySelector('#posts-section')
+var postsList = postsSection.querySelector('#posts-list')
+var renderPostsIntervalId
 
 var createPostSection = document.querySelector('#create-post-section')
 var createPostCancelButton = createPostSection.querySelector('#create-post-cancel-button')
@@ -22,6 +24,8 @@ var postsButton = document.querySelector('#posts-button')
 var createPostButton = document.querySelector('#create-post-button')
 
 chatButton.onclick = function () {
+    clearInterval(renderPostsIntervalId)
+
     postsSection.classList.add('posts-section--off')
     chatSection.classList.remove('chat-section--off')
 }
@@ -141,7 +145,7 @@ try {
 
 
             }
-            chat.style.display = 'block'
+            chat.classList.remove('chat--off')
         }
 
         chatUsers.appendChild(chatUserItem)
@@ -153,20 +157,28 @@ try {
 }
 
 postsButton.onclick = function () {
+    clearInterval(renderMessagesIntervalId)
+
+    chatMessages.innerHTML = ''
+
+    chat.classList.add('chat--off')
+
+    renderPostsIntervalId = setInterval(function () { renderPostsIntervalId()}, 3000)
+
     chatSection.classList.add('chat-section--off')
     postsSection.classList.remove('posts-section--off')
 
 }
 
-createPostButton.onclick = function () {
+createPostButton.onclick = function() {
     createPostSection.classList.remove('create-post-section--off')
 }
 
-createPostCancelButton.onclick = function () {
+createPostCancelButton.onclick = function() {
     createPostSection.classList.add('create-post-section--off')
 }
 
-createPostForm.onsubmit = function (event) {
+createPostForm.onsubmit = function(event) {
     event.prenventDefault()
 
 
@@ -182,6 +194,7 @@ createPostForm.onsubmit = function (event) {
         createPostForm.reset()
 
         createPostSection.classList.add('create-post-section--off')
+        renderPosts()
     } catch (error) {
         console.error(error)
 
@@ -189,3 +202,52 @@ createPostForm.onsubmit = function (event) {
 
     }
 }
+function renderPosts() {
+try {
+    var posts = logic.retrievePosts()
+
+    postsList.innerHTML = ''
+
+    posts.forEach(function (post){
+        var article = document.createElement('article')
+        article.classList.add('post')
+
+        var title = document.createElement('h3')
+        title.innerTest = post.author.username
+
+        article.appendChild(title)
+
+        var image = document.createElement('img')
+        image.src = post.image
+        image.classList.add('post-image')
+
+        article.appendChild(image)
+
+        var paragraph = document.createElement('p')
+        paragraph.innerText = post.text
+
+        var breakLine = document.createElement('br')
+
+        paragraph.appendChild(breakLine)
+
+        var dateTimeSup = document.createElement('sup')
+
+        var date = new Date(post.date)
+
+        dateTimeSup.innerText = date.toLocaleString('en-CA')
+        paragraph.appendChild(dateTimeSup)
+
+        article.appendChild(paragraph)
+
+        postsList.appendChild(article)
+    })
+} catch (error) {
+    console.error(error)
+
+    alert(error.message)
+}
+}
+
+renderPosts()
+
+renderPostsIntervalId = setInterval(function (){ renderPosts()},3000)
