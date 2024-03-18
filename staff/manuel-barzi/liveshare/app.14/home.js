@@ -13,7 +13,6 @@ var chatMessages = chat.querySelector('#chat-messages')
 var renderMessagesIntervalId
 
 var postsSection = document.querySelector('#posts-section')
-var postsList = postsSection.querySelector('#posts-list')
 
 var createPostSection = document.querySelector('#create-post-section')
 var createPostCancelButton = createPostSection.querySelector('#create-post-cancel-button')
@@ -96,13 +95,13 @@ try {
 
                         messageItem.appendChild(breakLine)
 
-                        var dateTimeSup = document.createElement('sup')
+                        var dateTimeSub = document.createElement('sup')
 
                         var date = new Date(message.date)
 
-                        dateTimeSup.innerText = date.toLocaleString('en-CA')
+                        dateTimeSub.innerText = date.toLocaleString('en-CA')
 
-                        messageItem.appendChild(dateTimeSup)
+                        messageItem.appendChild(dateTimeSub)
 
                         chatMessages.appendChild(messageItem)
                     })
@@ -183,49 +182,4 @@ createPostForm.onsubmit = function (event) {
 
         alert(error.message)
     }
-}
-
-try {
-    var posts = logic.retrievePosts()
-
-    postsList.innerHTML = ''
-
-    posts.forEach(function (post) {
-        var article = document.createElement('article')
-        article.classList.add('post')
-
-        var title = document.createElement('h3')
-        title.innerText = post.author.username
-
-        article.appendChild(title)
-
-        var image = document.createElement('img')
-        image.src = post.image
-        image.classList.add('post-image')
-
-        article.appendChild(image)
-
-        var paragraph = document.createElement('p')
-        paragraph.innerText = post.text
-
-        var breakLine = document.createElement('br')
-
-        paragraph.appendChild(breakLine)
-
-        var dateTimeSup = document.createElement('sup')
-
-        var date = new Date(post.date)
-
-        dateTimeSup.innerText = date.toLocaleString('en-CA')
-
-        paragraph.appendChild(dateTimeSup)
-
-        article.appendChild(paragraph)
-
-        postsList.appendChild(article)
-    })
-} catch (error) {
-    console.error(error)
-
-    alert(error.message)
 }
