@@ -144,7 +144,7 @@ postsButton.onclick = function () {
     clearInterval(renderMessagesIntervalId)
     chatMessages.innerHTML = ''
     chat.classList.add('chat--off')
-    renderPostIntervalId = setInterval(function () { renderPosts() }, 3000)
+    renderPostsIntervalId = setInterval(function () { renderPosts() }, 3000)
     chatSection.classList.add('chat-section--off')
     postsSection.classList.remove('posts-section--off')
 }
