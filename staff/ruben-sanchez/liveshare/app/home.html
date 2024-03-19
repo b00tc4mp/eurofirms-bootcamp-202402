@@ -10,13 +10,15 @@
 </head>
 
 <body>
+    <header class="header">
     <h1>Hello, Home!</h1>
 
     <nav id="top-menu">
         <button id="chat-button">💬</button>
         <button id="logout-button">🚪</button>
     </nav>
-
+</header>
+    <main class="main">
     <section id="posts-section">
         <h2>Posts</h2>
 
@@ -52,31 +54,31 @@
                 <label for="text">Text</label>
                 <input type="text" id="text">
 
-                <button type="submit">Send</button>
+                <button class="button" type="submit">Send</button>
             </form>
 
         </div>
     </section>
 
-    <section id="create-post-section" class="create-post-section--off">
+    <section id="create-post-section" class="container container--border-top" class="create-post-section--off">
         <h2>Create Post</h2>
 
-        <form id="create-post-form">
+        <form id="create-post-form" class="form">
             <label for="image">Image</label>
-            <input type="text" id="image">
+            <input type="text" id="image" class="input">
 
             <label for="text">Text</label>
-            <input type="text" id="text">
+            <input type="text" id="text" class="input">
 
-            <button type="submit">Create</button>
+            <button class="button button--right" type="submit">Create</button>
         </form>
 
-        <button id="create-post-cancel-button">Cancel</button>
+        <button class="button button--center" id="create-post-cancel-button">Cancel</button>
     </section>
-
+</main>
     <footer>
-        <button id="posts-button">🏚️</button>
-        <button id="create-post-button">➕</button>
+        <button class="button" id="posts-button">🏚️</button>
+        <button class='button' id="create-post-button">➕</button>
     </footer>
 
 
