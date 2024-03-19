@@ -1,9 +1,12 @@
 // presntation layer
-debugger
+
 var title = document.querySelector('h1')
+var chatButton = document.querySelector('#chat-button')
 var logoutButton = document.querySelector('#logout-button')
+
 var chatSection = document.querySelector('#chat-section')
 var chatUsers = chatSection.querySelector('#chat-users')
+
 var chat = chatSection.querySelector('#chat')
 var chatForm = chat.querySelector('#chat-form')
 var chatMessages = chat.querySelector('#chat-messages')
@@ -18,9 +21,10 @@ var postsButton = document.querySelector('#posts-button')
 var createPostButton = document.querySelector('#create-post-button')
 
 chatButton.onclick = function () {
-    postsSection.classList.add('posts-secttion--off')
+    postsSection.classList.add('posts-section--off')
     chatSection.classList.remove('chat-section--off')
 }
+
 
 
 try {
@@ -86,14 +90,15 @@ try {
 
                         messageItem.innerText = message.text
 
-                        var breakLine = document.appendChild(breakLine)
+                        var breakLine = document.createElement(breakLine)
+
+                        messageItem.appendChild(breakLine)
 
                         var dateTimeSub = document.createElement('sup')
 
-                        var date = new
-                            date(message.date)
-                        dateTimeSub.innerText =
-                            date.tolocaleString('en-CA')
+                        var date = new Date(message.date)
+
+                        dateTimeSub.innerText = date.toLocaleString('en-CA')
 
                         messageItem.appendChild(dateTimeSub)
 
@@ -142,15 +147,17 @@ try {
 
     alert(error.message)
 }
+debugger
 postsButton.onclick = function () {
-    chatSection.classList.add('chat-section-off')
+    chatSection.classList.add('chat-section--off')
     postsSection.classList.remove('posts-section--off')
 }
+
+debugger
 createPostButton.onclick = function () {
     createPostSection.classList.remove('create-post-section--off')
-
 }
-createPostCancelButton.onclik = function () {
+createPostCancelButton.onclick = function () {
     createPostSection.classList.add('create-post-section--off')
 }
 createPostForm.onsubmit = function (event) {

@@ -30,6 +30,7 @@ body {
 
 .chat-section--off {
     display: none;
+    /* para escabar el chat*/
 }
 
 .chat-user {
@@ -105,6 +106,7 @@ sup {
     margin-bottom: 40px;
     position: fixed;
     bottom: 0;
+    /* bottom 0 para que queda pegado abajo*/
     background-color: darkgray;
     width: 100%;
     padding-bottom: 10px;
