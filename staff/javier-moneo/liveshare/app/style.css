@@ -1,17 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Sen:wght@400..800&display=swap');
+
+* {
+  font-family: Sen;
+}
+
 body {
   margin: 0;
+  margin-top: 70px;
+  margin-bottom: 60px;
 }
 
-.main {
-  padding-left: 20vw;
-  padding-right: 20vw;
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-left: 0;
+  border-right: 0;
+  border-bottom: 1px;
+  border-top: 0;
+  border-color: black;
+  border-style: solid;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: white;
+  height: 50px;
+  padding: 5px 0;
+  box-sizing: border-box;
 }
 
-/* register & login */
+.header,
+.main,
+.container {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.main--thin {
+  padding-left: 20%;
+  padding-right: 20%;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.container--border-top {
+  border-top: 1px solid black;
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: white;
+  height: 50px;
+  border-left: 0;
+  border-right: 0;
+  border-bottom: 0;
+  border-top: 1px;
+  border-color: black;
+  border-style: solid;
+  padding: 5px 0;
+  box-sizing: border-box;
+}
 
 .form {
   display: flex;
   flex-direction: column;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.input {
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+}
+
+.button {
+  border-radius: 10px;
+  border-width: 1px;
+  padding: 5px 10px;
+  max-width: 50%;
+  margin: 0 3px;
+  min-height: 35px;
+  min-width: 35px;
+}
+
+.button--right {
+  align-self: flex-end;
+}
+
+.button--center {
+  align-self: center;
+}
+
+.link--center {
+  display: block;
+  text-align: center;
+  width: 100%;
 }
 
 /* top-menu */
@@ -82,10 +175,6 @@ sup {
 
 /* posts */
 
-#posts-section {
-  margin-bottom: 60px;
-}
-
 .posts-section--off {
   display: none;
 }
@@ -103,10 +192,11 @@ sup {
 /* create-post */
 
 #create-post-section {
-  margin-bottom: 40px;
+  margin-bottom: 50px;
   position: fixed;
   bottom: 0;
-  background-color: darkgray;
+  left: 0;
+  background-color: white;
   width: 100%;
   padding-bottom: 10px;
 }
@@ -118,17 +208,4 @@ sup {
 #create-post-form {
   display: flex;
   flex-direction: column;
-}
-
-/* footer */
-
-footer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  background-color: lightgray;
-  height: 40px;
 }
