@@ -53,3 +53,18 @@ var users = [
     { id: '5t45e5i', name: 'peter', email: 'peter@pan.com', saved: ['grghejh4', '4tw4hj4', 'f4jkg4g', 'f4wfjw4f'] },
     { id: 'djn5gje', name: 'pinocho', email: 'pin@ocho.com', saved: [] },
 ]
+
+var removeUsers = users.filter(function(user){
+    if(user.name.includes('pe'))
+
+return user.name.splice(0,2)
+})
+
+users.forEach(function(user){
+    if(user.name.includes('pe'))
+    return user.splice(0, 1)
+})
+
+//recorrer con un bucle mover wendy al lugar de peter
+
+// preguntar si hay algun metodo que te cambie una posicion por otra
