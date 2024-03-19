@@ -180,6 +180,7 @@ createPostForm.onsubmit = function (event) {
 
 
 }
+
 function renderPosts() {
     try {
         var posts = logic.retrievePosts()
@@ -203,7 +204,7 @@ function renderPosts() {
             var paragraph = document.createElement('p')
             paragraph.innerText = post.text
 
-            var breakLine = document.createElemnt('br')
+            var breakLine = document.createElement('br')
             paragraph.appendChild(breakLine)
 
             var dateTimeSup = document.createElement('sup')

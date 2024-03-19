@@ -218,7 +218,7 @@ var logic = (function () {
             author: sessionStorage.userId,
             image:image,
             text: text,
-            date: newDate().toISOString()
+            date: new Date().toISOString()
         }
         data.insertPost(post)
 

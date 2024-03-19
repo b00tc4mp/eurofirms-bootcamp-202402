@@ -17,7 +17,14 @@ var data = (function () {
     function saveMessages(messages) {
         localStorage.messages = JSON.stringify(messages)
     }
+    
+    function loadPosts() {
+        return JSON.parse(localStorage.posts || '[]')
+    }
 
+    function savePosts(posts) {
+        localStorage.posts = JSON.stringify(posts)
+    }
     // data
 
     function findUser(callback) {
