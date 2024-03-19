@@ -106,7 +106,7 @@ try {
                         var breakLine = document.createElement('br')
 
                         messageItem.appendChild(breakLine)
-                    
+
 
                         var dateTimeSup = document.createElement('sup')
 
@@ -122,38 +122,38 @@ try {
                     console.error(error)
 
                     alert(error.message)
+                }
+
             }
 
-        }
+            renderMessages()
 
-        renderMessages()
+            clearInterval(renderMessagesIntervalId)
 
-        clearInterval(renderMessagesIntervalId)
+            renderMessagesIntervalId = setInterval(function () { renderMessages() }, 1000)
 
-        renderMessagesIntervalId = setInterval(function () { renderMessages() }, 1000)
+            chatForm.onsubmit = function (event) {
+                event.preventDefault()
 
-        chatForm.onsubmit = function (event) {
-            event.preventDefault()
+                var textInput = chatForm.querySelector('#text')
+                var text = textInput.value
 
-            var textInput = chatForm.querySelector('#text')
-            var text = textInput.value
+                try {
+                    logic.sendMessageToUser(user.id, text)
 
-            try {
-                logic.sendMessageToUser(user.id, text)
+                    chatForm.reset()
 
-                chatForm.reset()
+                    renderMessages()
+                } catch (error) {
+                    console.error(error)
 
-                renderMessages()
-            } catch (error) {
-                console.error(error)
-
-                alert(error.message)
+                    alert(error.message)
+                }
             }
+
+
+            chat.classList.remove('chat--off')
         }
-
-
-        chat.classList.remove('chat--off')
-    }
 
         chatUsers.appendChild(chatUserItem)
 
@@ -173,8 +173,9 @@ postsButton.onclick = function () {
     chat.classList.add('chat--off')
 
     renderPostsIntervalId = setInterval(function () {
-renderPostsIntervalId() }, 3000)
-    
+        renderPosts()
+    }, 3000)
+
     chatSection.classList.add('chat-section--off')
     postsSection.classList.remove('posts-section--off')
 }
@@ -213,53 +214,52 @@ createPostForm.onsubmit = function (event) {
 }
 
 
-    function renderPosts() {
-        try {
-            var posts = logic.retrievePosts()
-    postsList.innetHTML = '' 
+function renderPosts() {
+    try {
+        var posts = logic.retrievePosts()
+        postsList.innerHTML = ''
 
-    posts.forEach(function (post) {
-        var article = document.createElement('article')
-        article.classList.add('post')
+        posts.forEach(function (post) {
+            var article = document.createElement('article')
+            article.classList.add('post')
 
-        var title = document.createElement('h3')
-        title.innerText = post.author.username
-        
-        article.appendChild(title)
+            var title = document.createElement('h3')
+            title.innerText = post.author.username
 
-        var image = document.createElement('img')
-        image.src = post.image
-        image.classList.add('post-image')
+            article.appendChild(title)
 
-        article.appendChild(image)
+            var image = document.createElement('img')
+            image.src = post.image
+            image.classList.add('post-image')
 
-        var paragraph = document.createElement('p')
-        paragraph.innerText = post.text
+            article.appendChild(image)
 
-        var breakLine = document.createElement('br')
+            var paragraph = document.createElement('p')
+            paragraph.innerText = post.text
 
-        paragraph.appendChild(breakLine)
+            var breakLine = document.createElement('br')
 
-        var dateTimeSup = document.createElement('sup')
+            paragraph.appendChild(breakLine)
 
-        var date = new Date(post.date)
+            var dateTimeSup = document.createElement('sup')
 
-        dateTimeSup.innerText = date.toLocaleString('en-CA')
+            var date = new Date(post.date)
 
-        paragraph.appendChild(dateTimeSup)
+            dateTimeSup.innerText = date.toLocaleString('en-CA')
 
-        article.appendChild(paragraph)
+            paragraph.appendChild(dateTimeSup)
 
-        postsList.appendChild(article)
- })
-}   catch (error) {
-    console.error(error)
+            article.appendChild(paragraph)
 
-    alert(error.message)
-}
+            postsList.appendChild(article)
+        })
+    } catch (error) {
+        console.error(error)
+
+        alert(error.message)
+    }
 }
 
 renderPosts()
 
 renderPostsIntervalId = setInterval(function () { renderPosts() }, 3000)
-        
