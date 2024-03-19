@@ -141,7 +141,7 @@ var data = (function () {
     }
 
     function getAllPosts() {
-        var posts = loadPosts
+        var posts = loadPosts()
 
         return posts
     }

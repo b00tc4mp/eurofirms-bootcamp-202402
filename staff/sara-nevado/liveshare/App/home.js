@@ -19,6 +19,8 @@ var postsButton = document.querySelector('#posts-button')
 var createPostButton = document.querySelector('#create-post-button')
 
 chatButton.onclick = function () {
+    clearInterval(renderPostsIntervalId)
+
     postsSection.classList.add('posts-section--off')
     chatSection.classList.remove('chat-section--off')
 }
@@ -232,4 +234,4 @@ function renderPosts() {
 
 renderPosts()
 
-renderPostsIntervalId = setInterval(function () { renderPosts() }, 3000)
+renderPostsIntervalId = setInterval(function () { renderPosts() }, 5000)
