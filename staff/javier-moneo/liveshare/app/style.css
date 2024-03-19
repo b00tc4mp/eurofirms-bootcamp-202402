@@ -1,0 +1,211 @@
+@import url('https://fonts.googleapis.com/css2?family=Sen:wght@400..800&display=swap');
+
+* {
+  font-family: Sen;
+}
+
+body {
+  margin: 0;
+  margin-top: 70px;
+  margin-bottom: 60px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-left: 0;
+  border-right: 0;
+  border-bottom: 1px;
+  border-top: 0;
+  border-color: black;
+  border-style: solid;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: white;
+  height: 50px;
+  padding: 5px 0;
+  box-sizing: border-box;
+}
+
+.header,
+.main,
+.container {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.main--thin {
+  padding-left: 20%;
+  padding-right: 20%;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.container--border-top {
+  border-top: 1px solid black;
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: white;
+  height: 50px;
+  border-left: 0;
+  border-right: 0;
+  border-bottom: 0;
+  border-top: 1px;
+  border-color: black;
+  border-style: solid;
+  padding: 5px 0;
+  box-sizing: border-box;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.input {
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+}
+
+.button {
+  border-radius: 10px;
+  border-width: 1px;
+  padding: 5px 10px;
+  max-width: 50%;
+  margin: 0 3px;
+  min-height: 35px;
+  min-width: 35px;
+}
+
+.button--right {
+  align-self: flex-end;
+}
+
+.button--center {
+  align-self: center;
+}
+
+.link--center {
+  display: block;
+  text-align: center;
+  width: 100%;
+}
+
+/* top-menu */
+
+#top-menu {
+  display: flex;
+  justify-content: end;
+}
+
+/* chat */
+
+#chat-section {
+  padding: 10px;
+  margin-bottom: 60px;
+}
+
+.chat-section--off {
+  display: none;
+}
+
+.chat-user {
+  cursor: pointer;
+}
+
+.chat-user-online::marker {
+  color: limegreen;
+}
+
+.chat-user-offline::marker {
+  color: gray;
+}
+
+.chat--off {
+  display: none;
+}
+
+#chat-messages {
+  min-height: 40px;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  list-style: none;
+}
+
+.chat-message--left {
+  align-self: flex-start;
+  text-align: left;
+}
+
+.chat-message--right {
+  align-self: flex-end;
+  text-align: right;
+}
+
+sup {
+  font-size: 10px;
+  color: lightgrey;
+}
+
+#chat-form {
+  display: flex;
+  gap: 5px;
+}
+
+#chat-form > #text {
+  width: 100%;
+}
+
+/* posts */
+
+.posts-section--off {
+  display: none;
+}
+
+.post {
+  border: 1px solid black;
+  margin: 10px;
+  padding: 10px;
+}
+
+.post-image {
+  width: 100%;
+}
+
+/* create-post */
+
+#create-post-section {
+  margin-bottom: 50px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background-color: white;
+  width: 100%;
+  padding-bottom: 10px;
+}
+
+.create-post-section--off {
+  display: none;
+}
+
+#create-post-form {
+  display: flex;
+  flex-direction: column;
+}
