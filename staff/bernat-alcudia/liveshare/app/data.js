@@ -122,6 +122,12 @@ var data = (function () {
         console.table(posts)
     }
 
+    function getAllPosts() {
+        var posts = loadPosts()
+
+        return posts
+    }
+
     return {
         findUser: findUser,
         insertUser: insertUser,
@@ -133,7 +139,8 @@ var data = (function () {
         insertMessage: insertMessage,
         findMessages: findMessages,
         insertPost: insertPost,
-        printPosts: printPosts
+        printPosts: printPosts,
+        getAllPosts: getAllPosts
     }
 
 })()

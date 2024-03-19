@@ -13,6 +13,8 @@ var chatMessages = chat.querySelector('#chat-messages')
 var renderMessagesIntervalidId
 
 var postsSection = document.querySelector('#posts-section')
+var postsList = postsSection.querySelector('#posts-list')
+var renderPostsIntervalid
 
 
 var createPostSection = document.querySelector('#create-post-section')
@@ -23,6 +25,8 @@ var postsButton = document.querySelector('#post-button')
 var createPostButton = document.querySelector('#create-post-button')
 
 chatButton.onclick = function () {
+    clearInterval(renderPostsIntervalid)
+
     postsSection.classList.add('post-section--off')
     chatSection.classList.remove('chat-section--off')
 }
@@ -148,7 +152,7 @@ try {
             }
 
 
-            chat.style.display = 'block'
+            chat.classList.remove('chat--off')
 
 
         }
@@ -162,12 +166,23 @@ try {
 }
 
 postsButton.onclick = function () {
+    clearInterval(renderMessagesIntervalidId)
+
+    chatMessages.innerHTML = ''
+
+    chat.classList.add('chat--off')
+
+    renderPostsIntervalid = setInterval(function () { renderPosts() }, 3000)
+
+
     chatSection.classList.add('chat-section--off')
     postsSection.classList.add('posts-section--off')
 }
 
 createPostButton.onclick = function () {
     createPostSection.classList.add('create-post-section--off')
+
+    renderPosts()
 }
 
 createPostForm.onsubmit = function (event) {
@@ -185,9 +200,59 @@ createPostForm.onsubmit = function (event) {
         createPostForm.reset()
 
         createPostSection.classList.add('create-`post-section--off')
+
+        renderPosts()
     } catch (error) {
         console.error(error)
 
         alert(error.message)
     }
 }
+
+function renderPosts() {
+    try {
+        var posts = logic.retrievePosts()
+
+        postsList.innerHTML = ''
+
+        posts.forEach(function (post) {
+            var article = document.createElement('article')
+            article.classList.add('post')
+
+            var title = document.createElement('h3')
+            title.innerText = post.author.username
+
+            article.appendChild(title)
+
+            var paragraph = document.createElement('p')
+            paragraph.innerText = post.text
+
+            var breakLine = document.createElement('br')
+
+            paragraph.appendChild(breakLine)
+
+            var dateTimeSup = document.createElement('sup')
+
+            var date = new Date(post.date)
+
+            dateTimeSup.innerText = date.toLocaleString('en-CA')
+
+            paragraph.appendChild(dateTimeSup)
+
+            article.appendChild(paragraph)
+
+            postsList.appendChild(article)
+        })
+
+
+
+    } catch (error) {
+        console.error(error)
+
+        alert(error.message)
+    }
+}
+
+renderPosts()
+
+renderPostsIntervalid = setInterval(function () { renderPosts() }, 3000)
