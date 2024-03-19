@@ -9,69 +9,71 @@
 </head>
 
 <body>
-    <h1> Hello, Home!</h1>
+    <header>
+        <h1> Hello, Home!</h1>
 
-    <nav id="top-menu">
-        <button id="chat-button">💬</button>
-        <button id="logout-button">🚪</button>
-    </nav>
+        <nav id="top-menu">
+            <button class="button" id="chat-button">💬</button>
+            <button class="button" id="logout-button">🚪</button>
+        </nav>
+    </header>
 
+    <main>
+        <section id="posts-section">
+            <h2>Posts</h2>
+            <div id="posts-list">
+                <article class="post">
+                    <h3>Coco Drilo</h3>
+                    <img class="post-image"
+                        src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExc2Qyc250NTFweG1iN3h1MTlhbnVnMHptN3E4bTdrOWlkcm44d3VhdiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l49F5FtmOKYb3cD84/giphy.gif">
+                    <p>aqui, yo, cocodrilo!<br><sup>2024-03-14 16:47</sup></p>
+                </article>
 
-    <section id="posts-section">
-        <h2>Posts</h2>
-        <div id="posts-list">
-            <article class="post">
-                <h3>Coco Drilo</h3>
-                <img class="post-image"
-                    src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExc2Qyc250NTFweG1iN3h1MTlhbnVnMHptN3E4bTdrOWlkcm44d3VhdiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l49F5FtmOKYb3cD84/giphy.gif">
-                <p>aqui, yo, cocodrilo!<br><sup>2024-03-14 16:47</sup></p>
-            </article>
-
-            <article class="post">
-                <h3>La Garto</h3>
-                <img class="post-image"
-                    src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExejdzcGg3M252ZGdsYm0ybWk1ZHk1ODFqeTF0ZHEzaGg2c2oxOWR4byZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Jmn0QU5fYKqizwkR5v/giphy.gif">
-                <p> y aqui, yo, lagarto!<br><sup>2024-03-14 16:47</sup></p>
-            </article>
-        </div>
-    </section>
-
-    <section id="chat-section" class="chat-section--off">
-        <h2>Chat</h2>
-
-        <section id="chat-section">
-            <ul id="chat-users"></ul>
-
-            <div id="chat" class="chat--off">
-                <h3 id="chat-interlocutor">username</h3>
-                <ul id="chat-messages"></ul>
-                <form id="chat-form">
-                    <label for="text">Text</label>
-                    <input type="text" id="text">
-                    <button type="submit">Send</button>
-                </form>
+                <article class="post">
+                    <h3>La Garto</h3>
+                    <img class="post-image"
+                        src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExejdzcGg3M252ZGdsYm0ybWk1ZHk1ODFqeTF0ZHEzaGg2c2oxOWR4byZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Jmn0QU5fYKqizwkR5v/giphy.gif">
+                    <p> y aqui, yo, lagarto!<br><sup>2024-03-14 16:47</sup></p>
+                </article>
             </div>
         </section>
-    </section>
-    <section id="create-post-section" class="create-post-section--off">
-        <h2>Create Post</h2>
 
-        <form id="create-post-form">
-            <label for="image">Image</label>
-            <input type="text" id="image">
+        <section id="chat-section" class="chat-section--off">
+            <h2>Chat</h2>
 
-            <label for="text">Text</label>
-            <input type="text" id="text">
+            <section id="chat-section">
+                <ul id="chat-users"></ul>
 
-            <button type="submit">Create</button>
-        </form>
+                <div id="chat" class="chat--off">
+                    <h3 id="chat-interlocutor">username</h3>
+                    <ul id="chat-messages"></ul>
+                    <form id="chat-form">
+                        <label for="text">Text</label>
+                        <input class="input" type="text" id="text">
+                        <button class="button" type="submit">Send</button>
+                    </form>
+                </div>
+            </section>
+        </section>
+        <section class="container container--border-top" id="create-post-section" class="create-post-section--off">
+            <h2>Create Post</h2>
 
-        <button id="create-post-cancel-button">Cancel</button>
-    </section>
+            <form id="create-post-form">
+                <label for="image">Image</label>
+                <input class="input" type="text" id="image">
 
-    <footer>
-        <button id="posts-button">🏚️</button>
-        <button id="create-post-button">➕</button>
+                <label for="text">Text</label>
+                <input class="input" type="text" id="text">
+
+                <button class="button button--right" type="submit">Create</button>
+            </form>
+
+            <button class="button button--center" id="create-post-cancel-button">Cancel</button>
+        </section>
+    </main>
+    <footer class="footer">
+        <button class="button" id="posts-button">🏚️</button>
+        <button class="button" id="create-post-button">➕</button>
     </footer>
 
     <script src="data.js"></script>
