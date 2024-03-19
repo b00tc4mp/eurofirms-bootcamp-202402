@@ -36,14 +36,13 @@ var users = [
 
 // var peUsers = users.filter(function (user) { return user.name.startsWith('pe') })
 
-// peUsers.forEach(function (peUser) {
+// peUsers.forEach(function () {
 //     users.forEach(function (user) {
 //         indexPeUser = users.findIndex(function (peUser) {
-//             return user.name === peUser.name
+//             return user.name.startsWith('pe')
 //         })
 //     })
-
-//     console.log(indexPeUser)
+//   
 //     users.splice(indexPeUser, 1)
 
 // })
