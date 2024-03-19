@@ -13,7 +13,7 @@ var chatMessages = chat.querySelector('#chat-messages')
 var renderMessagesIntervalId
 
 var postsSection = document.querySelector('#posts-section')
-var postsList = postSection.querySelector('#posts-list')
+var postsList = postsSection.querySelector('#posts-list')
 var renderPostsIntervalId
 
 var createPostSection = document.querySelector('#create-post-section')
