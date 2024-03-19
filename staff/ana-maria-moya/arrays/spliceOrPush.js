@@ -22,14 +22,14 @@ var user = users.find(function (users) {
 // onclick (event, postId) {}
 
 var postId = '4tw4hj4'
-
+var index = users.forEach(function(user){
 var isPostSaved = user.saved.includes(postId)
 if(isPostSaved){
-   
+   user.saved.splice(index,1)
   //TODO borrar el id de el array  
 }
-else{
-   user.saved.push(postId)
+else{user.saved.push(postId)
 }
+})  
 
 console.log(user)
