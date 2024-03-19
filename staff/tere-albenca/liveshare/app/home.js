@@ -14,8 +14,11 @@ var renderMessagesIntervalId;
 
 var postsSection = document.querySelector("#posts-section");
 var postsList = postsSection.querySelector("#posts-list");
+<<<<<<< HEAD
 var renderPostsIntervalId;
 
+=======
+>>>>>>> f05b05e4ba10ca58347d0bd8567e5af8aac84722
 var createPostSection = document.querySelector("#create-post-section");
 var createPostCancelButton = createPostSection.querySelector(
   "#create-post-cancel-button"
@@ -147,6 +150,10 @@ try {
         }
       };
 
+<<<<<<< HEAD
+=======
+      //chat.style.display = "block";
+>>>>>>> f05b05e4ba10ca58347d0bd8567e5af8aac84722
       chat.classList.remove("chat--off");
     };
 
@@ -197,7 +204,10 @@ createPostForm.onsubmit = function (event) {
     createPostForm.reset();
 
     createPostSection.classList.add("create-post-section--off");
+<<<<<<< HEAD
 
+=======
+>>>>>>> f05b05e4ba10ca58347d0bd8567e5af8aac84722
     renderPosts();
   } catch (error) {
     console.error(error);
