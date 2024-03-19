@@ -38,7 +38,11 @@ numbers2.forEach(function (number) {
 
     }
 })
+var removeImpar = numbers2.filter(function(number){
+return number % 2 == 0
+})
 console.log(numbers2)
+console.log(removeImpar)
 // borra todos los usuarios cuyo nombre empiece con 'pe'
 
 var users = [
@@ -47,3 +51,8 @@ var users = [
     { id: '5t45e5i', name: 'peter', email: 'peter@pan.com', saved: ['grghejh4', '4tw4hj4', 'f4jkg4g', 'f4wfjw4f'] },
     { id: 'djn5gje', name: 'pinocho', email: 'pin@ocho.com', saved: [] },
 ]
+var filterUser= users.filter(function(user){
+return !user.name.startsWith('pe')
+})
+users = filterUser
+console.log(users)
