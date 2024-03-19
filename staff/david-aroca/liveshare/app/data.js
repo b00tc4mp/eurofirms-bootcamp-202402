@@ -107,8 +107,16 @@ var data = (function () {
         var users = loadUsers()
 
         console.table(users)
-
+        //Se retorna un objeto con todas las funciones definidas
     }
+
+    function getAllPosts() {
+        var posts = loadPosts()
+
+        return posts
+        //para cargar todas las publicaciones
+    }
+
 
     return {
         findUser: findUser,
@@ -119,6 +127,7 @@ var data = (function () {
         getAllUsers: getAllUsers,
         printMessages: printMessages,
         insertMessage: insertMessage,
-        findMessages: findMessages
+        findMessages: findMessages,
+        getAllPosts: getAllPosts
     }
 })()
