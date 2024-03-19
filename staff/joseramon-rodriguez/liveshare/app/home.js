@@ -158,6 +158,7 @@ postsButton.onclick = function () {
 
     chatSection.classList.add('chat-section--off')
     postsSection.classList.remove('post-section--off')
+    postsSection.classList.add('post-section--on')
 }
 
 createPostButton.onclick = function () {
