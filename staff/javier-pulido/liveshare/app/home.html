@@ -10,15 +10,19 @@
 </head>
 
 <body>
+   <header class="header">
     <h1>Hello, Home!</h1>
 
     <nav id="top-menu">
-        <button id="chat-button">💬</button>
-        <button id="logout-button">🚪</button>
+        <button class="button" id="chat-button">💬</button>
+        <button class="button" id="logout-button">🚪</button>
     </nav>
+    </header>
 
+    <main class="main">    
     <section id="posts-section">
         <h2>Posts</h2>
+
         <div id="posts-list">
         <article class="post">
             <h3>Coco Drilo</h3>
@@ -49,29 +53,29 @@
             <form id="chat-form">
                 <label for="text">Text</label>
                 <input type="text" id="text">
-                <button>send</button>
+                <button class="button" type="submit">send</button>
             </form>
         </div>
     </section>
 
-    <section id="create-post-section" class="create-post-section--off">
+    <section class="container container--border-top" id="create-post-section" class="create-post-section--off">
         <h2>Create Post</h2>
 
-        <form id="create-post-form">
+        <form class="form" id="create-post-form">
             <label for="image">Image</label>
-            <input type="text" id="image">
+            <input class="input" type="text" id="image">
 
-            <label for="text">Text</label>
-            <input type="text" id="text">
-
-            <button type="submit">Create</button>
+           <input class="input" type="text" id="text">
+            <button class="button button-rigth type="submit">Create</button>
         </form>
-        <button id="create-post-cancel-button">Cancel</button>
+       
+        <button class="button button--center" id="create-post-cancel-button"></button>
     </section>
+    </main>
 
-    <footer>
-        <button id="posts-button">🏚️</button>
-        <button id="create-post-button">➕</button>
+    <footer class="footer">
+        <button class="button" id="posts-button">🏚️</button>
+        <button class="button" id="create-post-button">➕</button>
     </footer>
 
 
