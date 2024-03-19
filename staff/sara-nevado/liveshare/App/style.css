@@ -46,9 +46,15 @@ body {
     color: grey
 }
 
+
+.chat--of {
+    display: none;
+}
+
 #chat {
     display: none;
 }
+
 
 #chat-mesagges {
 
@@ -79,6 +85,16 @@ sup {
 }
 
 /*posts*/
+
+
+#posts-section {
+    margin-bottom: 60px;
+}
+
+.posts-section--off {
+    display: none;
+}
+
 .post {
     border: 1px solid black;
     margin: 10px;
@@ -88,6 +104,7 @@ sup {
 .post-image {
     width: 100%;
 }
+
 
 /*create post*/
 

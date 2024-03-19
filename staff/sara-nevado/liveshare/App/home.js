@@ -11,6 +11,7 @@ var chatMessages = chat.querySelector('#chat-messages')
 var renderMessagesIntervalId
 
 var postsSection = document.querySelector('#posts-section')
+var postList = postsSection.querySelector('#post-list')
 var createPostSection = document.querySelector('#create-post-section')
 var createPostCancelButton = createPostSection.querySelector('#create-post-cancel-button')
 var createPostForm = createPostSection.querySelector('#create-post-form')
@@ -129,7 +130,7 @@ try {
             }
 
 
-            chat.style.display = 'block'
+            chat.classList.remove('chat--off')
 
         }
 
@@ -180,4 +181,55 @@ createPostForm.onsubmit = function (event) {
     }
 }
 
+function renderPosts() {
+    try {
+        var posts = logic.retrievePosts()
 
+        postsList.innerHTML = ''
+
+
+        posts.forEach(function (post) {
+            var article = document.createElement('article')
+            article.classList.add('post')
+
+            var title = document.createElement('h3')
+            title.innerText = post.author.username
+
+            article.appendChild(title)
+
+            var image = document.createElement('img')
+            image.src = post.image
+            image.classList.add('post-image')
+
+            article.appendChild(image)
+
+            var paragraph = document.createElement('p')
+            paragraph.innerText = post.text
+
+            var breakLine = document.createElement('br')
+
+            paragraph.appendChild(breakLine)
+
+            var dateTimeSup = document.createElement('sup')
+
+            var date = new Date(post.date)
+
+            dateTimeSup.innerText = date.toLocaleString('en-CA')
+
+            paragraph.appendChild(dateTimeSup)
+
+            article.appendChild(paragraph)
+
+            postsList.appendChild(article)
+        })
+
+    } catch (error) {
+        console.error(error)
+
+        alert(error.message)
+    }
+}
+
+renderPosts()
+
+renderPostsIntervalId = setInterval(function () { renderPosts() }, 3000)
