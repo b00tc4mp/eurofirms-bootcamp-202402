@@ -163,7 +163,7 @@ postsButton.onclick = function () {
 
     chat.classList.add('chat--off')
 
-    renderPostsIntervalId = setInterval(function () { renderPostsIntervalId()}, 3000)
+    renderPostsIntervalId = setInterval(function () { renderPosts()}, 3000)
 
     chatSection.classList.add('chat-section--off')
     postsSection.classList.remove('posts-section--off')
@@ -179,7 +179,7 @@ createPostCancelButton.onclick = function() {
 }
 
 createPostForm.onsubmit = function(event) {
-    event.prenventDefault()
+    event.preventDefault()
 
 
     var imageInput = createPostForm.querySelector('#image')

@@ -115,7 +115,7 @@ function findMessages(callback) {
 function insertPost(post) {
     var posts = loadPosts()
 
-    post.id = parseInt(Match.random()*10**18).toString(36)
+    post.id = parseInt(Math.random()*10**18).toString(36)
 
     posts.push(post)
 
