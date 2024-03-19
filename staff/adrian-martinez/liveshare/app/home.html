@@ -9,51 +9,36 @@
 </head>
 
 <body>
-    <div class="margen">
-        <span style="font-size:60px;font-weight:bold;">Mi Perfil</span>
-        <hr />
-    </div>
-    <main>
+    
+    <header>
+        <div class="margen">
+            <span class="app">LiveShare</span>
+            <hr />
+            <div id="datos-perfil">
+                <h1>Hello, Home!</h1>
+                <h2 id="alias" style="display:none"></h2>
+                <h4 id="cumpleanos" style="display:none"></h4>
+                <h4 id="correo" style="display:none"></h4>
+            </div>
+        </div>
+        
         <nav id="top-menu">
             <button id="posts-button">Home 🏚️</button>
             <button id="chat-button">Chat 💬</button>
             <button id="logout-button">Logout 🚪</button>
         </nav>
-        <section class="margen">
-            <div class="profile-chat-container" >
-                <div id="datos-perfil">
-                    <h1>Hello, Home!</h1>
-                    <h2 id="alias"></h2>
-                    <h4 id="cumpleanos"></h4>
-                    <h4 id="correo"></h4>
+
+    </header>
+    <main>
+        <section id="post-section">
+            <h2>Publicaciones</h2>
+            <hr>
+            <div id="posts-list">
                 
-                </div>
-                <section id="post-section">
-                    <h2>Publicaciones</h2>
-                    <hr>
-                    <div id="posts-list">
-                        
-                    </div>
-                </section>
-                <div id="lista-usuarios" class="lista-usuarios--off">
-                    <ul id="chat-users">
-                        <h2>Lista de usuarios:</h2>
-                    </ul>
-                </div>
             </div>
-            <section id="chat-section" class="chat-section--off">
-                <div id="chat" class="chat--off">
-                    <h3 id="chat-interlocutor">username</h3>
-    
-                    <ul id="chat-messages"></ul>
-    
-                    <form id="chat-form">
-                        <label for="text">Text</label>
-                        <input type="text" id="text" />
-                        <button type="submit">Enviar</button>
-                    </form>
-                </div>
-            </section>
+        </section>
+        <div class="margen">
+            
             <section id="create-post-section" class="create-post-section--off">
                 <h2>Crear Publicación</h2>
 
@@ -68,8 +53,28 @@
                 </form>
                 <button id="create-post-cancel-button">Cancelar</button>
             </section>
-
-        </section>
+            <section id="chat-section" class="chat-section--off">
+                <div class="profile-chat-container" >
+            
+                    <div id="lista-usuarios" class="lista-usuarios--off">
+                        <ul id="chat-users">
+                            <h2>Lista de usuarios:</h2>
+                        </ul>
+                    </div>
+                </div>
+                <div id="chat" class="chat--off">
+                    <h3 id="chat-interlocutor">username</h3>
+    
+                    <ul id="chat-messages"></ul>
+    
+                    <form id="chat-form">
+                        <label for="text">Text</label>
+                        <input type="text" id="text" />
+                        <button type="submit">Enviar</button>
+                    </form>
+                </div>
+            </section>
+        </div>
     </main>
     <footer>
         <button id="create-post-button">➕</button>
