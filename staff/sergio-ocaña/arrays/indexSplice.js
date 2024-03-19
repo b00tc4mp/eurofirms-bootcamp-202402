@@ -34,17 +34,22 @@ var users = [
     { id: 'djn5gje', name: 'pinocho', email: 'pin@ocho.com', saved: [] },
 ]
 
-var peUsers = users.filter(function (user) { return user.name.startsWith('pe') })
-var count = 0
-peUsers.forEach(function (peUser) {
+// var peUsers = users.filter(function (user) { return user.name.startsWith('pe') })
 
-    indexPeUser = users.findIndex(function (peUser) {
-        return users.name === peUser.name
-    })
-    users.splice(indexPeUser, 1)
-    count++
-})
+// peUsers.forEach(function (peUser) {
+//     users.forEach(function (user) {
+//         indexPeUser = users.findIndex(function (peUser) {
+//             return user.name === peUser.name
+//         })
+//     })
+
+//     console.log(indexPeUser)
+//     users.splice(indexPeUser, 1)
+
+// })
+// console.log(users)
 
 
-
+var peUsers = users.filter(function (user) { return !user.name.startsWith('pe') })
+users = peUsers
 console.log(users)
