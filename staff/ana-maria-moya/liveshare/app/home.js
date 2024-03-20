@@ -124,6 +124,7 @@ try {
                 }
             }
 
+            chat.classList.remove('chat--off')
         }
         chatUsers.appendChild(chatUserItem)
     })
@@ -143,7 +144,7 @@ postsButton.onclick = function () {
 
     renderPostsIntervalId = setInterval(function () { renderPosts() }, 3000)
 
-    chatSection.classList.add('chat--off')
+    chatSection.classList.add('chat-section--off')
     postsSection.classList.remove('posts-section--off')
 }
 
