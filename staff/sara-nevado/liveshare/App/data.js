@@ -59,6 +59,7 @@ var data = (function () {
         saveUsers(users)
     }
 
+
     function updateUser(user) {
         var users = loadUsers()
 
@@ -161,6 +162,6 @@ var data = (function () {
         findMessages: findMessages,
         insertPost: insertPost,
         printPosts: printPosts,
-        function: getAllPosts
+        getAllPosts: getAllPosts
     }
 })()

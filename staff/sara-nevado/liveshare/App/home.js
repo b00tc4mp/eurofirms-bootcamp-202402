@@ -11,7 +11,7 @@ var chatMessages = chat.querySelector('#chat-messages')
 var renderMessagesIntervalId
 
 var postsSection = document.querySelector('#posts-section')
-var postList = postsSection.querySelector('#post-list')
+var postsList = postsSection.querySelector('#posts-list')
 var createPostSection = document.querySelector('#create-post-section')
 var createPostCancelButton = createPostSection.querySelector('#create-post-cancel-button')
 var createPostForm = createPostSection.querySelector('#create-post-form')
@@ -188,7 +188,6 @@ function renderPosts() {
         var posts = logic.retrievePosts()
 
         postsList.innerHTML = ''
-
 
         posts.forEach(function (post) {
             var article = document.createElement('article')
