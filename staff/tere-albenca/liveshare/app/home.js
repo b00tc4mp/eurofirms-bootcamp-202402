@@ -14,11 +14,8 @@ var renderMessagesIntervalId;
 
 var postsSection = document.querySelector("#posts-section");
 var postsList = postsSection.querySelector("#posts-list");
-<<<<<<< HEAD
 var renderPostsIntervalId;
 
-=======
->>>>>>> f05b05e4ba10ca58347d0bd8567e5af8aac84722
 var createPostSection = document.querySelector("#create-post-section");
 var createPostCancelButton = createPostSection.querySelector(
   "#create-post-cancel-button"
@@ -27,7 +24,7 @@ var createPostForm = createPostSection.querySelector("#create-post-form");
 
 var postsButton = document.querySelector("#posts-button");
 var createPostButton = document.querySelector("#create-post-button");
-debugger;
+
 chatButton.onclick = function () {
   clearInterval(renderPostsIntervalId);
 
@@ -150,10 +147,6 @@ try {
         }
       };
 
-<<<<<<< HEAD
-=======
-      //chat.style.display = "block";
->>>>>>> f05b05e4ba10ca58347d0bd8567e5af8aac84722
       chat.classList.remove("chat--off");
     };
 
@@ -204,10 +197,6 @@ createPostForm.onsubmit = function (event) {
     createPostForm.reset();
 
     createPostSection.classList.add("create-post-section--off");
-<<<<<<< HEAD
-
-=======
->>>>>>> f05b05e4ba10ca58347d0bd8567e5af8aac84722
     renderPosts();
   } catch (error) {
     console.error(error);
