@@ -4,6 +4,12 @@
     font-family: "Sen";
 }
 
+h1,
+h2 {
+    padding-left: 10px;
+    color: cornflowerblue
+}
+
 .body {
     margin: 0;
     margin-top: 70px;
@@ -52,7 +58,6 @@
 }
 
 .footer {
-
     display: flex;
     justify-content: center;
     align-items: center;
