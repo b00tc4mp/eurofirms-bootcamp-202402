@@ -17,6 +17,14 @@ var data = (function () {
         localStorage.messages = JSON.stringify(messages)
     }
 
+    function loadPosts() {
+        return JSON.parse(localStorage.posts || '[]')
+    }
+
+    function savePosts(posts) {
+        localStorage.posts = JSON, stringify(posts)
+    }
+
     // data
 
     function findUser(callback) {
@@ -69,7 +77,6 @@ var data = (function () {
 
     }
 
-
     function getAllUsers() {
         var users = loadUsers()
 
@@ -110,6 +117,12 @@ var data = (function () {
         //Se retorna un objeto con todas las funciones definidas
     }
 
+    function printPosts() {
+        var posts = loadPosts()
+
+        console.table(posts)
+    }
+
     function getAllPosts() {
         var posts = loadPosts()
 
@@ -128,6 +141,8 @@ var data = (function () {
         printMessages: printMessages,
         insertMessage: insertMessage,
         findMessages: findMessages,
+        insertPost: insertPost,
+        printPosts, printPosts,
         getAllPosts: getAllPosts
     }
 })()

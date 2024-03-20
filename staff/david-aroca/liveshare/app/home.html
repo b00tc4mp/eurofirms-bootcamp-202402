@@ -10,17 +10,19 @@
 </head>
 
 <body>
-    <h1>Hello, Home!</h1>
+    <header class="header">
+        <h1>Hello, Home!</h1>
 
-    <nav id="top-menu">
-        <button id="chat-button">💬</button>
-        <button id="logout-button">🚪logout</button>
-    </nav>
+        <nav id="top-menu">
+            <button class="button" id="chat-button">💬</button>
+            <button class="button" id="logout-button">🚪logout</button>
+        </nav>
+    </header>
 
-    <section id="posts-section">
-        <h2>posts</h2>
+    <main class="main">
 
-        <div id="posts-list">
+        <section id="posts-section">
+            <h2>Posts</h2>
 
             <div id="posts-list">
                 <article class="post">
@@ -45,47 +47,51 @@
                     <p> y aqui, yo, lagarto!<br><sup>2024-03-19 16:47</sup></p>
                 </article>
             </div>
-    </section>
+        </section>
 
-    <section id="chat-section" class="chat-section--off">
-        <h2>Chat</h2>
+        <section id="chat-section" class="chat-section--off">
+            <h2>Chat</h2>
 
-        <ul id="chat-users"></ul>
+            <ul id="chat-users"></ul>
 
-        <div id="chat" class="chat--off">
-            <h3 id="chat-interlocutor">username</h3>
+            <div id="chat" class="chat--off">
+                <h3 id="chat-interlocutor">username</h3>
 
-            <ul id="chat-messages"></ul>
+                <ul id="chat-messages"></ul>
 
-            <form id="chat-form">
+                <form id="chat-form">
+                    <label for="text">Text</label>
+                    <input type="text" id="text">
+
+                    <button class="button" type="submit">Send</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- formulario para crear posts -->
+        <section class="container container--border-top" id="create-post-section" class="create-post-section--off">
+            <h2>Create Post</h2>
+
+            <form class="form" id="create-post-form">
+                <label for="image">Image</label>
+                <input class="input" type="text" id="image">
+
                 <label for="text">Text</label>
-                <input type="text" id="text">
+                <input class="input" type="text" id="text">
 
-                <button type="submit">Send</button>
+                <button class="button" type="submit">Create</button>
             </form>
-        </div>
-    </section>
 
-    <!-- formulario para crear posts -->
-    <section id="create-post-section" class="create-post-section--off">
-        <h2>Create Post</h2>
+            <button class="button button--right" type="submit">Create</button>
+            </form>
 
-        <form id="create-post-form">
-            <label for="image">Image</label>
-            <input type="text" id="image">
-
-            <label for="text">Text</label>
-            <input type="text" id="text">
-
-            <button type="submit">Create</button>
-        </form>
-
-        <button id="create-post-cancel-button">Cancel</button>
-    </section>
+            <button class="button button--center" id="create-post-cancel-button">Cancel</button>
+        </section>
+    </main>
     <!-- el footer es la parte de abajo de una paginaweb  -->
-    <footer>
-        <button id="posts-button">🏚️</button>
-        <button id="create-post-button">➕</button>
+    <footer class="footer">
+        <button class="button" id="posts-button">🏚️</button>
+        <button class="button" id="create-post-button">➕</button>
     </footer>
 
     <script src="data.js"></script>
