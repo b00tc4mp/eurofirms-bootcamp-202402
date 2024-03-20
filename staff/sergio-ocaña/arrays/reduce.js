@@ -64,9 +64,10 @@ var users2 = [
     { id: 'djn5gje', name: 'pinocho', email: 'pin@ocho.com', saved: [] },
 ]
 var users2Reduced = users2.reduce(function (acumulator, current) {
-    delete current.id
-    delete current.saved
-    acumulator.push(current)
+    var object = {}
+    object.name = current.name
+    object.email = current.email
+    acumulator.push(object)
     return acumulator
 
 }, [])
@@ -78,12 +79,11 @@ console.log(users2Reduced)
 
 var users3 = ['peter', 'pan']
 
-var users3Reduced = users3.reduce(function (acumulator, current, currentIndex = 0) {
+var users3Reduced = users3.reduce(function (acumulator, current, currentIndex) {
 
     if (currentIndex === 0) {
         acumulator.name = current
     } else { acumulator.surname = current }
-    currentIndex++
     return acumulator
 
 }, {})
