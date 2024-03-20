@@ -24,7 +24,7 @@ var initialValue = 10
 var sum2 = numbers3.reduce(function (accumulator, currentValue) {
     return currentValue + accumulator
 },
-initialValue
+    initialValue
 );
 
 console.log(sum2)
@@ -35,10 +35,10 @@ console.log(sum2)
 
 var strings = ['mundo', 'pepito', 'como', 'va todo']
 var initialValue = 'Hola'
-var sumStrings = strings.reduce(function(accumulator, currentValue){
+var sumStrings = strings.reduce(function (accumulator, currentValue) {
     return currentValue + accumulator
 },
-initialValue
+    initialValue
 );
 console.log(sumStrings)
 //______________________________________________________
@@ -53,9 +53,11 @@ var users = [
 ]
 
 
-var array = users.reduce(function(accumulator, user){
-    if(user.name.startsWith('pe'))
+var array = users.reduce(function (accumulator, user) {
+    if (user.name.startsWith('pe')) {
+        accumulator.push(user)
 
+    }
     return accumulator
 }, [])
 
@@ -70,13 +72,39 @@ var users2 = [
     { id: 'djn5gje', name: 'pinocho', email: 'pin@ocho.com', saved: [] },
 ]
 
+var usersBasicInfo = users.reduce(function(accumulator, {name, email}){
+ var newUser = {name, email}
+ return[...accumulator,newUser]
+},[])
+console.log(usersBasicInfo)
 //__________________________________________________________________________________________
 // en users3 esta el name como primer valor y surname como segundo del usuario,
 // crea un objecto que contenga estas propiedades
 var users3 = ['peter', 'pan']
+var user = users3.reduce(function (accumulator,string){
+    if(accumulator.name){
+        accumulator.surname = string
+    }
+    else{
+        accumulator.name = string
+    }
+    return accumulator
+}, {})
+console.log(user)
 //_______________________________________________________________________________
 // users4 es un array que contiene arrays, dentro de este segundo array, tenemos el name en primera posicion
 // y el surname en segunda posicion de cada usuario
 // crea un array de objetos, donde cada objecto tenga la propiedad name y surname correspondiente
 
 var users4 = [['pepito', 'grillo'], ['wendy', 'darling'], ['peter', 'pan']]
+
+var usersBasicInfo2 = users4.reduce(function(accumulator,user){
+    console.log(accumulator)
+    var newUser = {
+        name: user[0], 
+        surname:user[1]
+    }
+    return {...accumulator, newUser}
+}, [])
+console.log(users4)
+
