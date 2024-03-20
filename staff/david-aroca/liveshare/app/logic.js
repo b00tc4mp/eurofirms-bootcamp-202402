@@ -246,7 +246,7 @@ var logic = (function () {//Aqui comienza mi IIFE
         sendMessageToUser: sendMessageToUser,
         retrieveMessagesWithUser: retrieveMessagesWithUser,
         getLoggedInUserId: getLoggedInUserId,
-        createPost: createPost,
-        retrievePosts: retrievePosts
+        // createPost: createPost,
+        // retrievePosts: retrievePosts
     }
 })() //Aqui acaba mi IIFE

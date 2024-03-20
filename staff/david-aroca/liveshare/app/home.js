@@ -20,7 +20,7 @@ var createPostSection = document.querySelector('#create-post-section')
 var createPostCancelButton = createPostSection.querySelector('#create-post-cancel-button')
 var createPostForm = createPostSection.querySelector('#create-post-form')
 
-var postButton = document.querySelector('#post-button')
+var postsButton = document.querySelector('#posts-button')
 var createPostButton = document.querySelector('#create-post-button')
 
 chatButton.onclick = function () {
@@ -153,7 +153,7 @@ try {
     alert(error.message)
 }
 
-postButton.onclick = function () {
+postsButton.onclick = function () {
     clearInterval(renderMessagesIntervalId)
 
     chatMessages.innerHTML = ''
