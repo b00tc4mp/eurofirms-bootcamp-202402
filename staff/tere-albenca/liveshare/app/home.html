@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <nav id="top-menu">
+        <div class="start-nav">
+            <img src="images/logo-cabecera-alalluna-pe.png" alt="logo alalluna">
+        </div>
+       
+        <div class="end-nav">
+            <button id="chat-button">💬</button>
+            <button id="posts-button">🏚️</button>
+            <button id="create-post-button">+</button>
+        </div>
+    </nav>
+    <h1 class="homeTitlePost">Welcome, Home!</h1>
+    <section id="posts-section">
+        <h2>Posts</h2>
+        <div id="posts-list" class="postslist">
+        </div>  
+    </section>
+    
+    <section id="chat-section" class="chat-section--off">
+        <h2>Chat</h2>
+        <ul id="chat-users"></ul>
+        <div id="chat" class="chat--off">
+            <h3 id="chat-interlocutor">username</h3>
+            <ul id="chat-messages"></ul>
+            <form id="chat-form">
+                <input type="text" placeholder="your message" id="text">
+
+                <button type="submit">Send</button>
+            </form>
+        </div>
+    </section>
+
+    <section id="create-post-section" class="create-post-section--off">
+        <h2>CREATE POST</h2>
+        <form action="" id="create-post-form">
+            <input type="text" placeholder="image" id="image">
+
+            <input type="text" placeholder="text" id="text">
+
+            <button type="submit">create</button>
+
+        </form>
+
+        <button id="create-post-cancel-button">cancel</button>
+    </section>
+
+    <footer>
+        <div>
+            &copy; 2024 Alalluna
+        </div>
+        <div class="right">
+            <button id="logoutButton">Logout</button>
+        </div>
+
+    </footer>
+
+    <script src="data.js"></script>
+    <script src="logic.js"></script>
+    <script src="home.js"></script>
+</body>
+
+</html>
