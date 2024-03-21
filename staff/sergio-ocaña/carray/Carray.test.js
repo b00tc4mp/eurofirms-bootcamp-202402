@@ -75,3 +75,26 @@ var namesInUpperCase = c.map(function (names) {
 })
 
 console.log(namesInUpperCase)
+
+console.log('>Insert')
+
+console.log('CASE insert "50" y "60"en la posicion 2')
+
+var c = new Carray(10, 20, 30)
+
+c.insert(2, 50, 60)
+
+console.log(c)
+
+console.log('>filter')
+console.log('CASE filter names starts with "A"')
+
+var c = new Carray('Ana', 'Adrian', 'Javier', 'Sergio', 'Bernat', 'Maite', 'Sara')
+
+var d = c.filter(function (name) {
+    return name.startsWith('A')
+})
+
+console.log(d)
+
+console.log('>filter')
