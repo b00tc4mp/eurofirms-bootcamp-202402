@@ -22,7 +22,7 @@ var data = (function () {
     }
 
     function savePosts(posts) {
-        localStorage.posts = JSON, stringify(posts)
+        localStorage.posts = JSON.stringify(posts)
     }
 
     // data

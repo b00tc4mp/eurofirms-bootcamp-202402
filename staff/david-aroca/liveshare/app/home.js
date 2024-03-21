@@ -182,22 +182,21 @@ createPostForm.onsubmit = function (event) {
 
     var textInput = createPostForm.querySelector('#text')
     var text = textInput.value
+
+    try {
+        logic.createPost(image, text)
+
+        createPostForm.reset()
+
+        createPostSection.classList.add('create-post-section--off')
+
+        renderPosts()
+    } catch (error) {
+        console.error(error)
+
+        alert(error.message)
+    }
 }
-
-try {
-    logic.createPost(image, text)
-
-    createPostForm.reset()
-
-    createPostSection.classList.add('create-post-section--off')
-
-    renderPosts()
-} catch (error) {
-    console.error(error)
-
-    alert(error.message)
-}
-
 
 function renderPosts() {
     try {
