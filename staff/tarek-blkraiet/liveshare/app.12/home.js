@@ -1,6 +1,6 @@
 // presntation layer
 
-var title = document.querySelector('h1')
+/*var title = document.querySelector('h1')
 var chatButton = document.querySelector('#chat-button')
 var logoutButton = document.querySelector('#logout-button')
 
@@ -280,7 +280,7 @@ try{
 
         alert(error.message)
     }
-}
+}*/
 
 renderPosts()
 

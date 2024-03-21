@@ -1,6 +1,6 @@
 // presntation layer
 
-var title = document.querySelector('h1')
+/*var title = document.querySelector('h1')
 var chatButton = document.querySelector('#chat-button')
 var logoutButton = document.querySelector('#logout-button')
 
@@ -281,8 +281,8 @@ try{
         alert(error.message)
     }
 }
-
+*/
 renderPosts()
 
 renderPostsIntervalId = setInterval(function(){
-    renderPosts() },3000)//
+    renderPosts() },3000)
