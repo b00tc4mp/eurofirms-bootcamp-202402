@@ -123,3 +123,205 @@ var namesInUpperCase = names.map(function (name) {
 
 console.log(namesInUpperCase);
 // Carray { 0: 'ANA', 1: 'ADRIAN', 2: 'JAVIER', 3: 'SERGIO', 4: 'BERNAT', 5: 'MAITE', 6: 'SARA', length: 7 }
+
+console.log("CASE filter names that starts with 'A'");
+
+var names = new Carray(
+  'Ana',
+  'Adrian',
+  'Javier',
+  'Sergio',
+  'Bernat',
+  'Maite',
+  'Sara'
+);
+
+var namesInUpperCase = names.filter((name) => name.startsWith('A'));
+
+console.log(namesInUpperCase);
+
+console.log('CASE reverse names');
+
+var names = new Carray(
+  'Ana',
+  'Adrian',
+  'Javier',
+  'Sergio',
+  'Bernat',
+  'Maite',
+  'Sara'
+);
+
+var namesInUpperCase = names.reverse();
+
+console.log(namesInUpperCase);
+
+console.log('##################### FUNCTION SLICE ##################');
+console.log('CASE 1: extract from object the values between index 2 and 6');
+
+var superHeroes = new Carray(
+  'Batman',
+  'Superman',
+  'Flash',
+  'Spiderman',
+  'Hulk',
+  'The Thing',
+  'Wonder woman',
+  'Iron man',
+  'Arrow'
+);
+
+var slicedSuperHeroes = superHeroes.slice(2, 6);
+
+console.log(superHeroes);
+console.log(slicedSuperHeroes);
+// { 0: 'Flash', 1: 'Spiderman', 2: 'Hulk', 3: 'The Thing', length: 4 }
+
+console.log('CASE 2: extract from object the values between index 2');
+
+var slicedSuperHeroes2 = superHeroes.slice(2);
+
+console.log(superHeroes);
+console.log(slicedSuperHeroes2);
+// {
+//     0: 'Flash',
+//     1: 'Spiderman',
+//     2: 'Hulk',
+//     3: 'The Thing'
+//     4: 'Wonder woman',
+//     5: 'Iron man',
+//     6: 'Arrow',
+//     length: 7
+// }
+
+console.log('CASE 3: extract all values from object');
+
+var slicedSuperHeroes3 = superHeroes.slice();
+
+console.log(superHeroes);
+console.log(slicedSuperHeroes3);
+// {
+//     0: 'Batman',
+//     1: 'Superman',
+//     2: 'Flash',
+//     3: 'Spiderman',
+//     4: 'Hulk',
+//     5: 'The Thing',
+//     6: 'Wonder woman',
+//     7: 'Iron man',
+//     8: 'Arrow',
+
+//     length: 9
+// }
+
+console.log('CASE 4: extract from object the values between index -7 and 6');
+
+var slicedSuperHeroes4 = superHeroes.slice(-7, 6);
+
+console.log(superHeroes);
+console.log(slicedSuperHeroes4);
+// { 0: 'Flash', 1: 'Spiderman', 2: 'Hulk', 3: 'The Thing', length: 4 }
+
+console.log('CASE 5: extract from object the values between index 2 and -3');
+
+var slicedSuperHeroes5 = superHeroes.slice(2, -3);
+
+console.log(superHeroes);
+console.log(slicedSuperHeroes5);
+// { 0: 'Flash', 1: 'Spiderman', 2: 'Hulk', 3: 'The Thing', length: 4 }
+
+console.log('##################### FUNCTION push ##################');
+console.log('CASE 1: push one string');
+
+var superHeroes = new Carray(
+  'Batman',
+  'Superman',
+  'Flash',
+  'Spiderman',
+  'Hulk',
+  'The Thing',
+  'Wonder woman',
+  'Iron man',
+  'Arrow'
+);
+
+superHeroes.push('Mortadelo');
+
+console.log(superHeroes);
+// {
+//     0: 'Batman',
+//     1: 'Superman',
+//     2: 'Flash',
+//     3: 'Spiderman',
+//     4: 'Hulk',
+//     5: 'The Thing',
+//     6: 'Wonder woman',
+//     7: 'Iron man',
+//     8: 'Arrow',
+//     9: 'Mortadelo',
+
+//     length: 10
+// }
+
+console.log('CASE 1: push two strings');
+
+var superHeroes = new Carray(
+  'Batman',
+  'Superman',
+  'Flash',
+  'Spiderman',
+  'Hulk',
+  'The Thing',
+  'Wonder woman',
+  'Iron man',
+  'Arrow'
+);
+
+superHeroes.push('Mortadelo', 'Filemon');
+
+console.log(superHeroes);
+// {
+//     0: 'Batman',
+//     1: 'Superman',
+//     2: 'Flash',
+//     3: 'Spiderman',
+//     4: 'Hulk',
+//     5: 'The Thing',
+//     6: 'Wonder woman',
+//     7: 'Iron man',
+//     8: 'Arrow',
+//     9: 'Mortadelo',
+//     10: 'Filemon',
+
+//     length: 11
+// }
+
+console.log('###################### FUNCTION EVERY ##################');
+
+console.log('CASE 1: return true on all cities have length higher than 4');
+
+var cities = new Carray(
+  'Barcelona',
+  'Madrid',
+  'Sevilla',
+  'Valencia',
+  'Oviedo',
+  'Pontevedra',
+  'Caceres'
+);
+
+var isEveryHigherThan4 = cities.every(function (element) {
+  return element.length > 4;
+});
+
+console.log(isEveryHigherThan4);
+// true
+
+console.log('CASE 2: return false on all cities have length higher than 6');
+
+var isEveryHigherThan4 = cities.every(function (element) {
+  return element.length > 6;
+});
+
+console.log(isEveryHigherThan4);
+// false
