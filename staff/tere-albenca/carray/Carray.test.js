@@ -4,13 +4,13 @@ console.log("TEST CARRAY");
 console.log("> CONSTRUCTOR");
 
 console.log("CASE simple construction: construct an instance without elements");
-@ts-ignore
-var c = new Carray;
+
+var c = new Carray();
 
 console.log(c);
 //Carray {length:0}
 
-console, log("CASE construct an instance with elements");
+console.log("CASE construct an instance with elements");
 
 var c = new Carray(10, 20, 30);
 
@@ -70,7 +70,7 @@ console.log(person);
 console.log("maps");
 
 var cart = new Carray(
-  { name: "soks Adidas", price: 20, quantitu: 2 },
+  { name: "soks Adidas", price: 20, quantity: 2 },
   { name: "nike Air MAx", price: 80, quantity: 1 },
   { name: "shorts Puma", price: 30, quantity: 3 },
   { name: "Ray ban glasses", price: 70, quantity: 4 }
@@ -83,18 +83,79 @@ console.log(subtotals);
 
 console.log("> MAPS TO UPPERCASE");
 console.log("CASE maps names to uppercase");
+console.log("> map");
+
+console.log("CASE maps products from cart to subtotals");
+
+var cart = new Carray(
+  { name: "Socks Adidas", price: 20, quantity: 2 },
+  { name: "Nike Air Max", price: 80, quantity: 1 },
+  { name: "Shorts Puma", price: 30, quantity: 3 },
+  { name: "Glasses Ray Ban", price: 70, quantity: 4 }
+);
+
+var subtotals = cart.map(function (product) {
+  return product.price * product.quantity;
+});
+
+console.log(subtotals);
+// Carray { 0: 40, 1: 80, 2: 90, 3: 280, length: 4 }
+
+console.log("CASE maps names to upper-case");
+
 var names = new Carray(
   "Ana",
+  "Adrian",
   "Javier",
-  "Bernat",
   "Sergio",
+  "Bernat",
   "Maite",
-  "Sara",
-  "Adrian"
+  "Sara"
 );
 
 var namesInUpperCase = names.map(function (name) {
-  return name.toUpperCase;
+  return name.toUpperCase();
 });
+
 console.log(namesInUpperCase);
-//carray { 0:'ANA', 1: 'JAVIER', 2: 'BERNAT', 3: 'SERGIO', 4: 'MAITE', 5: 'SARA', 6: 'ADRIAN', length: 7}
+// Carray { 0: 'ANA', 1: 'ADRIAN', 2: 'JAVIER', 3: 'SERGIO', 4: 'BERNAT', 5: 'MAITE', 6: 'SARA', length: 7 }
+console.log("CASE filter names with 6 characters");
+
+var names = new Carray(
+  "Ana",
+  "Adrian",
+  "Javier",
+  "Sergio",
+  "Bernat",
+  "Maite",
+  "Sara"
+);
+var namesFiltered = names.filter(function (name) {
+  return name.length === 6;
+});
+console.log(namesFiltered);
+
+console.log("CASE every");
+
+var names = new Carray(
+  "Ana",
+  "Adrian",
+  "Javier",
+  "Sergio",
+  "Bernat",
+  "Maite",
+  "Sara"
+);
+var longnames = names.every(function (name) {
+  return name.length > 2;
+});
+
+console.log(longnames);
+console.log("CASE push");
+var names = new Carray("Ana", "Adrian", "Javier");
+names.push("Bernat", "Maite");
+
+console.log(names);
+console.log("numbers includes value 20");
+var numbers = new Carray(10, 20, 30);
+numbers.includes(20);

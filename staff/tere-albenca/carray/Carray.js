@@ -33,10 +33,53 @@ Carray.prototype.map = function (callback) {
     var element = this[i];
 
     var mappedElement = callback(element);
-    results[results.lenght] = mappedElement;
+
+    results[results.length] = mappedElement;
     results.length++;
   }
+
   return results;
+};
+
+Carray.prototype.filter = function (callback) {
+  var result = new Carray();
+
+  for (var i = 0; i < this.length; i++) {
+    var element = this[i];
+
+    if (callback(element)) {
+      result[result.length] = element;
+      result.length++;
+    }
+  }
+  return result;
+};
+
+Carray.prototype.every = function (callback) {
+  var result = new Carray();
+
+  for (var i = 0; i < this.length; i++) {
+    var element = this[i];
+
+    if (!callback(element)) {
+      return false;
+    }
+  }
+  return true;
+};
+
+Carray.prototype.push = function () {
+  for (var i = 0; i < arguments.length; i++) {
+    this[this.length] = arguments[i];
+
+    this.length++;
+  }
+
+  return this.length;
+};
+
+Carray.prototype.includes = function (value) {
+  for (var i = 0; i < this.length; i++) {}
 };
 
 module.exports = Carray;
