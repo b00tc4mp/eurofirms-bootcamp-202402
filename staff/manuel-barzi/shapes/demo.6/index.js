@@ -143,33 +143,7 @@ function Person(width, height, hairColor, sweeterColor, trousersColor) {
 Person.prototype = Object.create(Shape2D.prototype)
 Person.prototype.constructor = Person
 
-// skate
-
-function Skate(length) {
-    Shape2D.call(this, length, 5, 'black')
-
-    var leftWheel = new Shape2D(10, 10, 'black')
-    leftWheel.container.style.borderRadius = '50%'
-    leftWheel.setX(10)
-    leftWheel.setY(7)
-
-    var rightWheel = new Shape2D(10, 10, 'black')
-    rightWheel.container.style.borderRadius = '50%'
-    rightWheel.setX(this.getWidth() - 20)
-    rightWheel.setY(7)
-
-    this.container.appendChild(leftWheel.container)
-    this.container.appendChild(rightWheel.container)
-}
-
-Skate.prototype = Object.create(Shape2D.prototype)
-Skate.prototype.constructor = Skate
-
 // demo
-
-var skate = new Skate(100)
-
-skate.setLocation(180, 280)
 
 var adrian = new Person(60, 175, 'dodgerblue', 'red', 'blue')
 adrian.setLocation(200, 100)
@@ -180,23 +154,22 @@ ana.setLocation(100, 100)
 var kid = new Person(20, 80, 'gold', 'dodgerblue', 'magenta')
 kid.setLocation(150, 200)
 
-document.body.appendChild(skate.container)
 document.body.appendChild(adrian.container)
 document.body.appendChild(ana.container)
 document.body.appendChild(kid.container)
 
-document.onkeydown = function (event) {
-    console.log(event.key)
+// document.onkeydown = function (event) {
+//     console.log(event.key)
 
-    if (event.key === 'ArrowLeft')
-        adrian.setX(adrian.getX() - 10)
-    else if (event.key === 'ArrowRight')
-        adrian.setX(adrian.getX() + 10)
-    else if (event.key === 'ArrowUp')
-        adrian.setY(adrian.getY() - 10)
-    else if (event.key === 'ArrowDown')
-        adrian.setY(adrian.getY() + 10)
+//     if (event.key === 'ArrowLeft')
+//         adrian.setX(adrian.getX() - 10)
+//     else if (event.key === 'ArrowRight')
+//         adrian.setX(adrian.getX() + 10)
+//     else if (event.key === 'ArrowUp')
+//         adrian.setY(adrian.getY() - 10)
+//     else if (event.key === 'ArrowDown')
+//         adrian.setY(adrian.getY() + 10)
 
-}
+// }
 
 

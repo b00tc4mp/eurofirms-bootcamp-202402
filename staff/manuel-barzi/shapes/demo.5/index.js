@@ -72,14 +72,13 @@ Shape2D.prototype.setDimensions = function (width, height) {
     this.setHeight(height)
 }
 
-// person
 
-function Person(width, height, hairColor, sweeterColor, trousersColor) {
+function Person(width, height) {
     Shape2D.call(this, width, height, 'transparent')
 
     var head = new Shape2D(this.getWidth() / 3, this.getHeight() / 8, 'bisque')
 
-    var hair = new Shape2D(head.getWidth(), head.getHeight() / 8, hairColor)
+    var hair = new Shape2D(head.getWidth(), head.getHeight() / 8, 'black')
 
     head.container.appendChild(hair.container)
 
@@ -95,20 +94,20 @@ function Person(width, height, hairColor, sweeterColor, trousersColor) {
 
     head.container.appendChild(rightEye.container)
 
-    var leftArm = new Shape2D(head.getWidth() / 2, head.getHeight() * 3.5, sweeterColor)
+    var leftArm = new Shape2D(head.getWidth() / 2, head.getHeight() * 3.5, 'red')
     leftArm.setY(head.getHeight() * 1.5)
 
-    var shoulders = new Shape2D(this.getWidth(), head.getHeight() / 2, sweeterColor)
+    var shoulders = new Shape2D(this.getWidth(), head.getHeight() / 2, 'red')
     shoulders.setY(head.getHeight())
 
-    var body = new Shape2D(head.getWidth() * 2, head.getHeight() * 3, sweeterColor)
+    var body = new Shape2D(head.getWidth() * 2, head.getHeight() * 3, 'red')
     body.container.style.borderLeft = '1px solid black'
     body.container.style.borderRight = '1px solid black'
     body.container.style.boxSizing = 'border-box'
     body.setX(leftArm.getWidth())
     body.setY(head.getHeight() * 1.5)
 
-    var hip = new Shape2D(body.getWidth(), head.getHeight(), trousersColor)
+    var hip = new Shape2D(body.getWidth(), head.getHeight(), 'red')
     hip.container.style.borderTop = '1px solid black'
     hip.container.style.borderLeft = '1px solid black'
     hip.container.style.borderRight = '1px solid black'
@@ -118,15 +117,15 @@ function Person(width, height, hairColor, sweeterColor, trousersColor) {
 
     head.setX(body.getX() + body.getWidth() / 2 - head.getWidth() / 2)
 
-    var rightArm = new Shape2D(head.getWidth() / 2, head.getHeight() * 3.5, sweeterColor)
+    var rightArm = new Shape2D(head.getWidth() / 2, head.getHeight() * 3.5, 'red')
     rightArm.setX(leftArm.getWidth() + body.getWidth())
     rightArm.setY(head.getHeight() * 1.5)
 
-    var leftLeg = new Shape2D(head.getWidth() * 3 / 4, head.getHeight() * 3, trousersColor)
+    var leftLeg = new Shape2D(head.getWidth() * 3 / 4, head.getHeight() * 3, 'red')
     leftLeg.setX(leftArm.getWidth())
     leftLeg.setY(head.getHeight() * 2 + body.getHeight())
 
-    var rightLeg = new Shape2D(head.getWidth() * 3 / 4, head.getHeight() * 3, trousersColor)
+    var rightLeg = new Shape2D(head.getWidth() * 3 / 4, head.getHeight() * 3, 'red')
     rightLeg.setX(leftArm.getWidth() + body.getWidth() - rightLeg.getWidth())
     rightLeg.setY(head.getHeight() * 2 + body.getHeight())
 
@@ -143,60 +142,33 @@ function Person(width, height, hairColor, sweeterColor, trousersColor) {
 Person.prototype = Object.create(Shape2D.prototype)
 Person.prototype.constructor = Person
 
-// skate
-
-function Skate(length) {
-    Shape2D.call(this, length, 5, 'black')
-
-    var leftWheel = new Shape2D(10, 10, 'black')
-    leftWheel.container.style.borderRadius = '50%'
-    leftWheel.setX(10)
-    leftWheel.setY(7)
-
-    var rightWheel = new Shape2D(10, 10, 'black')
-    rightWheel.container.style.borderRadius = '50%'
-    rightWheel.setX(this.getWidth() - 20)
-    rightWheel.setY(7)
-
-    this.container.appendChild(leftWheel.container)
-    this.container.appendChild(rightWheel.container)
-}
-
-Skate.prototype = Object.create(Shape2D.prototype)
-Skate.prototype.constructor = Skate
-
 // demo
 
-var skate = new Skate(100)
-
-skate.setLocation(180, 280)
-
-var adrian = new Person(60, 175, 'dodgerblue', 'red', 'blue')
+var adrian = new Person(60, 175)
 adrian.setLocation(200, 100)
 
-var ana = new Person(45, 161, 'brown', 'greenyellow', 'black')
+var ana = new Person(45, 161)
 ana.setLocation(100, 100)
 
-var kid = new Person(20, 80, 'gold', 'dodgerblue', 'magenta')
+var kid = new Person(20, 80)
 kid.setLocation(150, 200)
 
-document.body.appendChild(skate.container)
 document.body.appendChild(adrian.container)
 document.body.appendChild(ana.container)
 document.body.appendChild(kid.container)
 
-document.onkeydown = function (event) {
-    console.log(event.key)
+// document.onkeydown = function (event) {
+//     console.log(event.key)
 
-    if (event.key === 'ArrowLeft')
-        adrian.setX(adrian.getX() - 10)
-    else if (event.key === 'ArrowRight')
-        adrian.setX(adrian.getX() + 10)
-    else if (event.key === 'ArrowUp')
-        adrian.setY(adrian.getY() - 10)
-    else if (event.key === 'ArrowDown')
-        adrian.setY(adrian.getY() + 10)
+//     if (event.key === 'ArrowLeft')
+//         adrian.setX(adrian.getX() - 10)
+//     else if (event.key === 'ArrowRight')
+//         adrian.setX(adrian.getX() + 10)
+//     else if (event.key === 'ArrowUp')
+//         adrian.setY(adrian.getY() - 10)
+//     else if (event.key === 'ArrowDown')
+//         adrian.setY(adrian.getY() + 10)
 
-}
+// }
 
 
