@@ -154,8 +154,28 @@ console.log(longnames);
 console.log("CASE push");
 var names = new Carray("Ana", "Adrian", "Javier");
 names.push("Bernat", "Maite");
-
 console.log(names);
+
 console.log("numbers includes value 20");
 var numbers = new Carray(10, 20, 30);
-numbers.includes(20);
+numbersIncludes =numbers.includes(20);
+console.log(numbersIncludes)
+
+console.log('CASE join element from objecte into string')
+var name= new Carray ('Carla','David','Merçe')
+var namejoin = name.join('')
+console.log(namejoin)
+
+console.log('CASE REVERSE SERIES')
+var series = new Carray ('Simpson','Big bang theory','Homeland','Futurama')
+var reverseSeries = series.reverse()
+console.log(reverseSeries)
+
+//--------
+
+console.log('BubbleSort office')
+
+var officeTools = new Carray ('pen', 'scissors','notebook','folder','rubber','glue' )
+var bubbleOfficeTools = officeTools.bubbleSort()
+
+console.log(bubbleOfficeTools)
