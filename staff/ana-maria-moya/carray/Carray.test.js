@@ -70,9 +70,9 @@ console.log('> find')
 console.log('CASE find person with age 20')
 
 var people = new Carray(
-    {name: 'Peter', age: 30}
-    {name: 'Wendy', age: 25}
-    {name: 'James', age: 20}
+    {name: 'Peter', age: 30},
+    {name: 'Wendy', age: 25},
+    {name: 'James', age: 20},
     {name: 'Campa', age: 15}
 )
 
@@ -110,3 +110,13 @@ var namesInUpperCase = names.map(function (name){
 console.log(namesInUpperCase)
 // Carray { 0: 'ANA', 1: 'ADRIAN', 2: 'JAVIER', 3: 'SERGIO', 4: 'BERNAT', 5: 'MAITE, 6: 'SARA', length: 7 }
 
+console.log('< push')
+
+console.log('CASE añade un nuevo elemento que es 40 al final del objeto')
+
+var c = new Carray(10, 20, 30)
+
+c.push(40)
+    console.log(c)
+
+// Carray {0: 10, 1:20, 2:30, 3:40, length:5}
