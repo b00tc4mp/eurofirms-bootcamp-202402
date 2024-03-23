@@ -46,3 +46,30 @@ Shape2D.prototype.setLocation = function (x, y) {
 Shape2D.prototype.getLocation = function (x, y) {
     return this.getX, this.getY
 }
+
+//dimensions
+
+Shape2D.prototype.setWidth = function (width) {
+    this.width = width
+
+    this.container.style.width = this.width + 'px'
+}
+
+Shape2D.prototype.getWidth = function () {
+    return this.width
+}
+
+Shape2D.prototype.setHeight = function (height) {
+    this.height
+
+    this.container.style.height = this.height + 'px'
+}
+
+Shape2D.prototype.getHeight = function () {
+    return this.height
+}
+
+Shape2D.prototype.setDimensions = function (width, height) {
+    this.setWidth(width)
+    this.setHeight(height)
+}
