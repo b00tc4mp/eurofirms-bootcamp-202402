@@ -1,4 +1,4 @@
-
+//TODO
 function removeElements(object, index, count){}
 console.log('CASE 1: remove at index 3, 2 elments from cars')
 

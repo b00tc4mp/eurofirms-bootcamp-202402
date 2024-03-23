@@ -1,7 +1,7 @@
 
 function addElement(object, element){
-    object[object.length]= element
-    object.length++
+    object[object.length]= element // add the new propierty
+    object.length++ // modify the length
 }
 console.log('case1:add a to chars')
 
