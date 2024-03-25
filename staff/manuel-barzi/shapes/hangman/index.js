@@ -5,29 +5,16 @@ var title = new Component('h1')
 title.setText('Hangman')
 body.add(title)
 
-var startForm = new Form
-startForm.setStyle('display', 'flex')
-startForm.setStyle('gap', '10px')
-startForm.onSubmit(function (event) {
-    event.preventDefault()
+var startForm = new StartForm
 
-    sessionStorage.secret = wordsInput.getValue()
+startForm.onSubmit(function (words) {
+    sessionStorage.secret = words
 
     body.remove(startForm)
+
+    var charBoxes = new CharBoxes(words)
+
+    body.add(charBoxes)
 })
-
-var wordsLabel = new Label
-wordsLabel.setFor('words')
-wordsLabel.setText('Words')
-startForm.add(wordsLabel)
-
-var wordsInput = new Input
-wordsInput.setId('words')
-startForm.add(wordsInput)
-
-var startButton = new Button
-startButton.setType('submit')
-startButton.setText('Start')
-startForm.add(startButton)
 
 body.add(startForm)
