@@ -6,12 +6,12 @@ function Carray() {
 
         this[i] = element
     }
-    this.length = element.length
+    this.length = elements.length
 }
 
 // Carray.prototype.array.forEach(element => {});
 
-Carray.prototype.array.forEach = function (callback) {
+Carray.prototype.forEach = function (callback) {
     for (var i = 0; i < this.length; i++) {
         var element = this[i];
 
@@ -44,6 +44,18 @@ Carray.prototype.map = function (callback) {
 
     }
 
+    return results
+}
+
+Carray.prototype.find = Function(callback){
+    var results = new Carray()
+
+    for (var i = 0; i < this.length; i++) {
+        if (callback(this{ i })) {
+
+        }
+
+    }
     return results
 }
 

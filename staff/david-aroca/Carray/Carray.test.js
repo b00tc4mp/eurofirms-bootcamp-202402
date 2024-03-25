@@ -99,3 +99,15 @@ var namesinUpperCase = names.map(function (name) {
 
 console.log(namesinUpperCase)
 // Carray {0: 'ANA', 1: 'ADRIAN', 2: 'JAVIER', 3 'SERGIO', 4: 'BERNAT', 5: 'MAITE', 6: 'SARA', lentgh: 7}
+
+
+console.log('CASE find the names whith (A)')
+
+var names = new Carray('Ana', 'Adrian', 'Javier', 'Sergio', 'Bernat', 'Maite', 'Sara')
+
+var nanesWithA = names.find(function(name){
+    return name.includes('a')
+})
+
+console.log(namesinUpperCase)
+
