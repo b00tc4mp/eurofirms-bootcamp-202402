@@ -72,12 +72,6 @@ Shape2D.prototype.setDimensions = function (width, height) {
     this.setHeight(height)
 }
 
-Shape2D.prototype.add = function (shape) {
-    if (!(shape instanceof Shape2D)) throw new TypeError('shape is not a Shape2D')
-
-    this.container.appendChild(shape.container)
-}
-
 // person
 
 function Person(width, height, hairColor, sweeterColor, trousersColor) {
@@ -87,13 +81,19 @@ function Person(width, height, hairColor, sweeterColor, trousersColor) {
 
     var hair = new Shape2D(head.getWidth(), head.getHeight() / 8, hairColor)
 
+    head.container.appendChild(hair.container)
+
     var leftEye = new Shape2D(head.getWidth() / 5, head.getWidth() / 5, 'black')
     leftEye.setX(head.getWidth() / 5)
     leftEye.setY(head.getHeight() / 3)
 
+    head.container.appendChild(leftEye.container)
+
     var rightEye = new Shape2D(head.getWidth() / 5, head.getWidth() / 5, 'black')
     rightEye.setX(head.getWidth() * 3 / 5)
     rightEye.setY(head.getHeight() / 3)
+
+    head.container.appendChild(rightEye.container)
 
     var leftArm = new Shape2D(head.getWidth() / 2, head.getHeight() * 3.5, sweeterColor)
     leftArm.setY(head.getHeight() * 1.5)
@@ -130,18 +130,14 @@ function Person(width, height, hairColor, sweeterColor, trousersColor) {
     rightLeg.setX(leftArm.getWidth() + body.getWidth() - rightLeg.getWidth())
     rightLeg.setY(head.getHeight() * 2 + body.getHeight())
 
-    head.add(hair)
-    head.add(leftEye)
-    head.add(rightEye)
-
-    this.add(head)
-    this.add(shoulders)
-    this.add(body)
-    this.add(hip)
-    this.add(leftArm)
-    this.add(rightArm)
-    this.add(leftLeg)
-    this.add(rightLeg)
+    this.container.appendChild(head.container)
+    this.container.appendChild(shoulders.container)
+    this.container.appendChild(body.container)
+    this.container.appendChild(hip.container)
+    this.container.appendChild(leftArm.container)
+    this.container.appendChild(rightArm.container)
+    this.container.appendChild(leftLeg.container)
+    this.container.appendChild(rightLeg.container)
 }
 
 Person.prototype = Object.create(Shape2D.prototype)
@@ -200,4 +196,7 @@ document.onkeydown = function (event) {
         adrian.setY(adrian.getY() - 10)
     else if (event.key === 'ArrowDown')
         adrian.setY(adrian.getY() + 10)
+
 }
+
+
