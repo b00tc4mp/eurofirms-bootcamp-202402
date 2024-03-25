@@ -34,22 +34,32 @@ var users = [
     }
 ]
 
-// var user = users.find(function (user) {
-//     return user.email === 'pepito@grillo.com'
-// })
-
-// var messagesToWendy = user.messages.filter(function (message) {
-//     return message.to === 'wendy'
-// })
-
-// var texts = messagesToWendy.map(function (message) {
-//     return message.text
-// })
-
-var texts = users.find(function (user) {
+var user = users.find(function (user) {
     return user.email === 'pepito@grillo.com'
-}).messages.filter(function (message) {
+})
+
+var messagesToWendy = user.messages.filter(function (message) {
     return message.to === 'wendy'
-}).map(function (message) {
+})
+
+var texts = messagesToWendy.map(function (message) {
     return message.text
 })
+
+var usersFromWendyFilter = users.map(user => {
+    var filteredMessages = user.messages.filter(message => message.to === 'wendy')
+
+    return { ...user, messages: filteredMessages }
+})
+
+usersFromWendyFilter.forEach(user => user.messages.forEach(message => console.log(message.text)))
+
+// var texts = user.messages.reduce(function (accumulator, message) {
+//     if (message.to === 'wendy') {
+//         return [...accumulator, message.text]
+//     }
+
+//     return accumulator
+// }, [])
+
+// console.log(texts)

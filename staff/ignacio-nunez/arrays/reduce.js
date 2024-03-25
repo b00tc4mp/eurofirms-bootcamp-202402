@@ -32,6 +32,19 @@ var users = [
     { id: 'djn5gje', name: 'pinocho', email: 'pin@ocho.com', saved: [] },
 ]
 
+var usersWithPe = users.reduce(function (accumulator, user) {
+    if (user.name.startsWith('pe'))
+        accumulator.push(user)
+
+    return accumulator
+    // if (user.name.startsWith('pe')) 
+    //     return [...accumulator, user]
+
+    // return accumulator
+}, [])
+
+console.log(usersWithPe)
+
 //------------------------------------------------
 
 // haz un array que contenga cada uno de los usuarios, pero solo con la propiedad name y email
@@ -43,6 +56,14 @@ var users2 = [
     { id: 'djn5gje', name: 'pinocho', email: 'pin@ocho.com', saved: [] },
 ]
 
+var usersBasicInfo = users2.reduce(function (accumulator, { name, email }) {
+    var newUser = { name, email }
+
+    return [...accumulator, newUser]
+}, [])
+
+console.log(usersBasicInfo)
+
 //------------------------------------------------
 
 // en users3 esta el name como primer valor y surname como segundo del usuario,
@@ -50,6 +71,14 @@ var users2 = [
 
 var users3 = ['peter', 'pan']
 
+var user = users3.reduce(function (accumulator, string) {
+    if (accumulator.name)
+        return { ...accumulator, surname: string }
+
+    return { name: string }
+}, {})
+
+console.log(user)
 //------------------------------------------------
 
 // users4 es un array que contiene arrays, dentro de este segundo array, tenemos el name en primera posicion
@@ -57,3 +86,14 @@ var users3 = ['peter', 'pan']
 // crea un array de objetos, donde cada objecto tenga la propiedad name y surname correspondiente
 
 var users4 = [['pepito', 'grillo'], ['wendy', 'darling'], ['peter', 'pan']]
+
+var usersBasicInfo2 = users4.reduce(function (accumulator, user) {
+    var newUser = {
+        name: user[0],
+        surname: user[1]
+    }
+
+    return [...accumulator, newUser]
+}, [])
+
+console.log(usersBasicInfo2)

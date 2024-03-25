@@ -76,7 +76,11 @@ var cities = users2.map(function (user) {
     return user.information.city
 })
 
+// var cities = users2.map(user => user.information.city)
+
 console.log(cities)
 
 // var myFunction = () => { }
 // var myFunction2 = function () { }
+
+var arrowFunction = () => 'hola'
