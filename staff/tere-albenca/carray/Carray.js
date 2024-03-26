@@ -132,4 +132,22 @@ Carray.prototype.bubbleSort = function(){
   return this
 }
 
+Carray.prototype.shift = function(){
+ var deletedElement = this[0]
+ 
+ for( var i = 0; i < this.length -1; i ++ ){
+  this[i] = this[i +1 ]
+ }
+ this.lenght --
+ delete this[this.length]
+ return deletedElement
+}
 module.exports = Carray;
+
+Carray.prototype.pop = function(){
+  this.length--
+  var element = this[this.length]
+  delete this[this.length]
+
+  return element
+}
