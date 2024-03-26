@@ -1,5 +1,5 @@
 function StartForm() {
-    FormData.call(this)
+    Form.call(this)
 
     this.setStyle('display', 'flex')
     this.setStyle('gap', '10px')
@@ -9,15 +9,15 @@ function StartForm() {
     wordsLabel.setText('Words')
     this.add(wordsLabel)
 
-    var wordInput = new Input
-    wordsInput.set('words')
+    var wordsInput = new Input
+    wordsInput.setId('words')
     this.add(wordsInput)
 
-    this.wordsInput = this.wordsInput
+    this.wordsInput = wordsInput
 
-    var StartButton = new Button
+    var startButton = new Button
     startButton.setType('submit')
-    startuButton.setText('Start')
+    startButton.setText('Start')
     this.add(startButton)
 
 }

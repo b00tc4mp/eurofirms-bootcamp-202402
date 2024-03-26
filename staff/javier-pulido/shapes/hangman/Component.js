@@ -7,7 +7,7 @@ Component.prototype.setId = function (id) {
 }
 
 Component.prototype.setText = function (text) {
-    this.container.innetText = text
+    this.container.innerText = text
 }
 
 Component.prototype.add = function (component) {

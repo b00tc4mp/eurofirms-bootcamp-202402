@@ -1,7 +1,7 @@
 function CharBoxes(words) {
     Component.call(this, 'div')
 
-    this.SetStyle('display', 'flex')
+    this.setStyle('display', 'flex')
     this.setStyle('gap', '5px')
     this.setStyle('margin', '5px')
 
