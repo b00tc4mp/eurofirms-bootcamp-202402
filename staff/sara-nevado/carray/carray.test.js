@@ -55,6 +55,7 @@ var people = new Carray(
 
 var person = people.find(function (person) {
     return person.age === 20
+
 })
 console.log(person)
 
