@@ -8,6 +8,14 @@ function Carray() {
     this.length = elements.length
 }
 
+Carray.prototype.forEach = function (callback) {
+    for (var i = 0; i < this.length; i++) {
+        var element = this[i]
+        callback(element)
+    }
+
+
+}
 Carray.prototype.find = function (callback) {
     for (var i = 0; i < this.length; i++) {
         var element = this[i]
@@ -41,5 +49,16 @@ Carray.prototype.push = function () {
     }
     return this.length
 }
+
+Carray.prototype.every = function (callback) {
+    for (i = 0; i < this.length; i++) {
+        var element= this[i]
+        if (!callback(element)) return false
+    }
+    return true
+   
+}
+
+
 
 module.exports = Carray
