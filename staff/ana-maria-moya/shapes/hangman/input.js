@@ -1,5 +1,5 @@
 function Input() {
-    CompositionEvent.call(this, 'input')
+    Component.call(this, 'input')
 }
 
 Input.prototype = Object.create(Component.prototype)

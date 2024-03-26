@@ -2,7 +2,7 @@ function Component(tagName) {
     this.container = document.createElement(tagName)
 }
 
-Component.prototype.setID = function (id) {
+Component.prototype.setId = function (id) {
     this.container.id = id
 }
 

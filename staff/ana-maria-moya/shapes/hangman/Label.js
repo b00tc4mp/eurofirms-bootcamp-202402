@@ -1,5 +1,5 @@
 function Label() {
-    CompositionEvent.call(this, 'label')
+    Component.call(this, 'label')
 }
 
 Label.prototype = Object.create(Component.prototype)
