@@ -58,6 +58,37 @@ var person = people.find(function (person) {
 
 })
 console.log(person)
+// { name: 'James', age: 20 }
+
+
+console.log('> map')
+
+console.log('CASE maps products from cart to subtotals')
+
+var cart = new Carray(
+    { name: 'Socks Adidas', price: 20, quantity: 2 },
+    { name: 'Nike Air Max', price: 80, quantity: 1 },
+    { name: 'Shorts Puma', price: 30, quantity: 3 },
+    { name: 'Glasses Ray Ban', price: 70, quantity: 4 }
+)
+
+var subtotals = cart.map(function (product) {
+    return product.price * product.quantity
+})
+
+console.log(subtotals)
+// Carray { 0: 40, 1: 80, 2: 90, 3: 280, length: 4 }
+
+console.log('CASE maps names to upper-case')
+
+var names = new Carray('Ana', 'Adrian', 'Javier', 'Sergio', 'Bernat', 'Maite', 'Sara')
+
+var namesInUpperCase = names.map(function (name) {
+    return name.toUpperCase()
+})
+
+console.log(namesInUpperCase)
+// Carray { 0: 'ANA', 1: 'ADRIAN', 2: 'JAVIER', 3: 'SERGIO', 4: 'BERNAT', 5: 'MAITE', 6: 'SARA', length: 7 }
 
 
 
