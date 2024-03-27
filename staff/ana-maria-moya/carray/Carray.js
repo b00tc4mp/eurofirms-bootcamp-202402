@@ -59,6 +59,17 @@ Carray.prototype.every = function (callback) {
    
 }
 
+// Carray.prototype.removeFirstElement() {
+//     var firstElement = this[0]
+//     for (var i = 0; i < this.length - 1; i++) {
+//         this[i] = this[i + 1]
+//     }
+//     this.length--
+
+
+//     delete this[this.length]
+//     return firstElement
+// }
 
 
 module.exports = Carray

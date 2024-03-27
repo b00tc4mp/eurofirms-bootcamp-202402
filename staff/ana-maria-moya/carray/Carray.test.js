@@ -129,3 +129,10 @@ c.every(function (element) {
     return element.length > 4
 })
 console.log(c)
+
+console.log('< removefirstElement')
+console.log('CASE quitar el primer elemento que seria "Ana"')
+var c = new Carray('Ana', 'Adrian', 'Javier', 'Sergio', 'Bernat', 'Maite', 'Sara')
+
+c.shift(firstElemnt)
+console.log(c)
