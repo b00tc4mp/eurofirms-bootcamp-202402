@@ -7,11 +7,11 @@ function Shape2D(width, height, color) {
 
     this.x = 0
     this.y = 0
-
+    
     this.container.style.position = 'absolute'
     this.container.style.left = this.x + 'px'
     this.container.style.top = this.y + 'px'
-    this.container.width = this.width + 'px'
+    this.container.style.width = this.width + 'px'
     this.container.style.height = this.height + 'px'
     this.container.style.backgroundColor = this.color
 }
