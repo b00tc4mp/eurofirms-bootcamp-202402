@@ -11,6 +11,7 @@ function StartForm() {
 
     var wordsInput = new Input
     wordsInput.setId('words')
+    wordsInput.setType('password')
     this.add(wordsInput)
 
     this.wordsInput = wordsInput
@@ -28,8 +29,10 @@ StartForm.prototype.onSubmit = function (callback) {
     this.container.onsubmit = function (event) {
         event.preventDefault()
 
-        var value = this.wordsInput.getValue()
+        var words = this.wordsInput.getValue()
 
-        callback(value)
+        this.reset()
+
+        callback(words)
     }.bind(this)
 }

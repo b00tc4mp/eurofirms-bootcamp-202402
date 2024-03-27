@@ -1,28 +1,28 @@
-const body = new Component
+var body = new Component
 body.container = document.body
 
-const title = new Component('h1')
+var title = new Component('h1')
 title.setText('Hangman')
 body.add(title)
 
-const startForm = new StartForm
+var startForm = new StartForm
 
-startForm.onSubmit(words => {
+startForm.onSubmit(function (words) {
     sessionStorage.secret = words
 
     body.remove(startForm)
 
-    const charBoxes = new CharBoxes(words)
+    var charBoxes = new CharBoxes(words)
 
     body.add(charBoxes)
 
-    const guessForm = new GuessForm
+    var guessForm = new GuessForm
 
-    const charsUsed = []
-    let assertionsCount = 0
-    let failsCount = 0
+    var charsUsed = []
+    var assertionsCount = 0
+    var failsCount = 0
 
-    guessForm.onSubmit(char => {
+    guessForm.onSubmit(function (char) {
         if (charsUsed.includes(char)) {
             alert('Character was already used. Try with another one.')
 
@@ -31,10 +31,10 @@ startForm.onSubmit(words => {
 
         charsUsed.push(char)
 
-        let charFound = false
+        var charFound = false
 
-        for (const i in sessionStorage.secret) {
-            const currentChar = sessionStorage.secret[i]
+        for (var i = 0; i < sessionStorage.secret.length; i++) {
+            var currentChar = sessionStorage.secret[i]
 
             if (currentChar === char) {
                 charFound = true
@@ -80,7 +80,7 @@ startForm.onSubmit(words => {
 
     body.add(guessForm)
 
-    const hangman = new Hangman(150, 200)
+    var hangman = new Hangman(150, 200)
     hangman.setLocation(100, 300)
 
     body.add(hangman)
