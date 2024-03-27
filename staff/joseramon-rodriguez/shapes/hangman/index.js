@@ -1,15 +1,21 @@
-var body = new Component
+const body = new Component
 body.container = document.body
 
-var title = new Component('h1')
+const title = new Component('h1')
 title.setText('Hangman')
 body.add(title)
 
 var startForm = new StartForm
-var charBoxes
-var hangman
+var guessForm = new GuessForm
+let charBoxes
+let hangman
+let failsCount = 0
+let assertionsCount = 0
+let charsUsed = []
 
-startForm.onSubmit(function (words) {
+body.add(startForm)
+
+startForm.onSubmit(words => {
     sessionStorage.secret = words
 
     body.remove(startForm)
@@ -21,29 +27,25 @@ startForm.onSubmit(function (words) {
 
     body.add(charBoxes)
 
-    body.add(guessForm)
-
     startForm.reset()
+
+    failsCount = 0
+
+    assertionsCount = 0
+
+    charsUsed = []
+
+    body.add(guessForm)
 })
 
-body.add(startForm)
-
-var guessForm = new GuessForm
-
-var failsCount = 0
-
-var assertionsCount = 0
-
-var charsUsed = []
-
-guessForm.onSubmit(function (char) {
+guessForm.onSubmit(char => {
     if (!charsUsed.includes(char)) {
         charsUsed.push(char)
 
-        var secret = sessionStorage.secret
+        const secret = sessionStorage.secret
 
-        for (var i = 0; i < secret.length; i++) {
-            var charToCompare = secret[i]
+        for (const i in secret) {
+            const charToCompare = secret[i]
             if (char === charToCompare) {
                 charBoxes.showChar(i)
                 assertionsCount++
@@ -64,12 +66,16 @@ guessForm.onSubmit(function (char) {
         if (!secret.includes(char)) {
             failsCount++
 
-            if (failsCount > 6) {
-                alert('game over. The solution was ' + sessionStorage.secret)
-                body.remove(guessForm)
-                body.remove(hangman)
-                body.remove(charBoxes)
-                body.add(startForm)
+            if (failsCount === 6) {
+                hangman.setFails(failsCount)
+                setTimeout(function () {
+                    alert('game over. The solution was ' + sessionStorage.secret)
+
+                    body.remove(guessForm)
+                    body.remove(hangman)
+                    body.remove(charBoxes)
+                    body.add(startForm)
+                }, 1000)
             } else {
                 hangman.setFails(failsCount)
                 console.log('fallo')
