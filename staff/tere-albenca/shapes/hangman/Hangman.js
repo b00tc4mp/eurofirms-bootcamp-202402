@@ -1,7 +1,7 @@
 function Hangman(width, height){
     Shape2D.call(this, width, height,'transparent')
 
-    this.setLocation(50, 200)
+    //this.setLocation(50, 200)
     
     var gallowBase = new Shape2D(100, 0)
     gallowBase.setStyle('border', '1px solid blue')
@@ -56,15 +56,7 @@ function Hangman(width, height){
     leftLeg.setStyle('transform-origin', 'top left')
     leftLeg.setStyle('transform', 'rotate(-45deg)')
     leftLeg.setLocation(this.width - 5 - (gallowBase.width / 2) - gallowBar2.width, gallowBar3.height + head.height + body.height)
-    //this.add(leftLeg)
-
-    // this.head = head
-    // this.body = body
-    // this.rightArm = rightArm
-    // this.leftArm = leftArm
-    // this.rightLeg = rightLeg
-    // this.leftLeg = leftLeg
-
+    
     this.parts = [head, body, rightArm, leftArm, rightLeg, leftLeg]
 }
 

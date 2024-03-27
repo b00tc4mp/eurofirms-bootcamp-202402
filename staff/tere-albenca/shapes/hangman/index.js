@@ -6,76 +6,84 @@ title.setText('Hangman')
 body.add(title)
 
 var startForm = new StartForm
-var charBoxes
-var hangman
 
 startForm.onSubmit(function (words) {
     sessionStorage.secret = words
 
     body.remove(startForm)
 
-    charBoxes = new CharBoxes(words)
-
-    hangman = new Hangman(150, 200)
-    body.add(hangman)
+    var charBoxes = new CharBoxes(words)
 
     body.add(charBoxes)
 
-    body.add(guessForm)
+    var guessForm = new GuessForm
 
-    startForm.reset()
-})
+    var charsUsed = []
+    var assertionsCount = 0
+    var failsCount = 0
 
-body.add(startForm)
+    guessForm.onSubmit(function (char) {
+        if (charsUsed.includes(char)) {
+            alert('Character was already used. Try with another one.')
 
-var guessForm = new GuessForm
+            return
+        }
 
-var failsCount = 0
-
-var assertionsCount = 0
-
-var charsUsed = []
-
-guessForm.onSubmit(function (char) {
-    if (!charsUsed.includes(char)) {
         charsUsed.push(char)
 
-        var secret = sessionStorage.secret
+        var charFound = false
 
-        for (var i = 0; i < secret.length; i++) {
-            var charToCompare = secret[i]
-            if (char === charToCompare) {
+        for (var i = 0; i < sessionStorage.secret.length; i++) {
+            var currentChar = sessionStorage.secret[i]
+
+            if (currentChar === char) {
+                charFound = true
+
                 charBoxes.showChar(i)
+
                 assertionsCount++
             }
         }
 
-        if (assertionsCount === secret.length) {
-            setTimeout(function () {
-                alert('You win!')
+        if (charFound) {
+            if (assertionsCount === sessionStorage.secret.length) {
+                setTimeout(function () {
+                    alert('You win!')
 
-                body.remove(guessForm)
-                body.remove(hangman)
-                body.remove(charBoxes)
-                body.add(startForm)
-            }, 1000)
-        }
+                    body.remove(charBoxes)
+                    body.remove(guessForm)
+                    body.remove(hangman)
 
-        if (!secret.includes(char)) {
-            failsCount++
-
-            if (failsCount > 6) {
-                alert('game over. The solution was ' + sessionStorage.secret)
-                body.remove(guessForm)
-                body.remove(hangman)
-                body.remove(charBoxes)
-                body.add(startForm)
-            } else {
-                hangman.setFails(failsCount)
-                console.log('fallo')
+                    body.add(startForm)
+                }, 100)
             }
-        }
-        guessForm.reset()
-    } else alert('char was already used')
 
+            return
+        }
+
+        failsCount++
+
+        hangman.setFails(failsCount)
+
+        if (failsCount === 6) {
+            setTimeout(function () {
+                alert('Game Over.')
+
+                body.remove(charBoxes)
+                body.remove(guessForm)
+                body.remove(hangman)
+
+                body.add(startForm)
+            }, 100)
+        }
+    })
+
+    body.add(guessForm)
+
+    var hangman = new Hangman(150, 200)
+    hangman.setLocation(100, 300)
+
+    body.add(hangman)
 })
+
+body.add(startForm)

@@ -1,4 +1,4 @@
-function Shape2D(width, height, color){
+function Shape2D(width,height,color){
     Component.call(this,'div')
 
     this.width = width
