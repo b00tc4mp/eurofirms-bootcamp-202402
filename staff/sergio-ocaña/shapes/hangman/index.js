@@ -1,23 +1,23 @@
-var body = new Component
+const body = new Component
 body.container = document.body
 
-var title = new Component('h1')
+const title = new Component('h1')
 title.setText('Hangman')
 body.add(title)
-var failsCount
 
-var assertionsCount
+let failsCount
 
-var startForm = new StartForm
-var charBoxes
-var hangman
+let assertionsCount
 
-var charsUsed = []
-var guessForm = new GuessForm
+let startForm = new StartForm
+let charBoxes
+let hangman
+
+let charsUsed = []
+let guessForm = new GuessForm
 body.add(startForm)
-startForm.onSubmit(function (words) {
+startForm.onSubmit(words => {
     sessionStorage.secret = words
-
 
     body.remove(startForm)
 
@@ -37,14 +37,14 @@ startForm.onSubmit(function (words) {
     charsUsed = []
 })
 
-guessForm.onSubmit(function (char) {
+guessForm.onSubmit(char => {
     if (!charsUsed.includes(char)) {
         charsUsed.push(char)
 
-        var secret = sessionStorage.secret
+        const secret = sessionStorage.secret
 
-        for (var i = 0; i < secret.length; i++) {
-            var charToCompare = secret[i]
+        for (const i in secret) {
+            const charToCompare = secret[i]
             if (char === charToCompare) {
                 charBoxes.showChar(i)
                 assertionsCount++
@@ -65,7 +65,7 @@ guessForm.onSubmit(function (char) {
         if (!secret.includes(char)) {
             failsCount++
 
-            if (failsCount > 6) {
+            if (failsCount === 6) {
                 alert('game over. The solution was ' + sessionStorage.secret)
                 body.remove(guessForm)
                 body.remove(hangman)
