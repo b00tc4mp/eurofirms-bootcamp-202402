@@ -1,10 +1,10 @@
-function CharBoxes(words){
-    Component.call(this,'div')
+function CharBoxes(words) {
+    Component.call(this, 'div')
 
     this.setId('characters')
-    this.setStyle('display','flex')
-    this.setStyle('gap','5px')
-    this.setStyle('margin','5px')
+    this.setStyle('display', 'flex')
+    this.setStyle('gap', '5px')
+    this.setStyle('margin', '5px')
 
     this.boxes = []
 
@@ -25,6 +25,7 @@ function CharBoxes(words){
         this.boxes.push(charBox)
     }
 }
+
 CharBoxes.prototype = Object.create(Component.prototype)
 CharBoxes.prototype.contructor = CharBoxes
 
