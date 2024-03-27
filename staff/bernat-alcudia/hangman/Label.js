@@ -1,10 +1,10 @@
-function Label() {
-    Component.call(this, 'label')
-}
+class Label extends this.Component {
+    constructor() {
+        super('label')
+    }
 
-Label.prototype = Object.create(Component.prototype)
-Label.prototype.constructor = Label
+    setFor(htmlFor) {
+        this.container.htmlFor = htmlFor
+    }
 
-Label.prototype.setFor = function (htmlFor) {
-    this.container.htmlFor = htmlFor
 }
