@@ -1,9 +1,7 @@
 function CharBoxes(words) {
-    Component.call(this, 'div')
+    this.boxes = []
 
-    this.setStyle('display', 'flex')
-    this.setStyle('gap', '5px')
-    this.setStyle('margin', '5px')
+
 
     for (var i = 0; i < words.length; i++) {
         var char = words[i]
@@ -18,9 +16,16 @@ function CharBoxes(words) {
         charBox.setText(char)
 
         this.add(charBox)
+        this.boxes.push(charBox)
     }
 }
 
 
 CharBoxes.prototype = Object.create(Component.prototype)
 CharBoxes.prototype.constructor = CharBoxes
+
+CharBoxes.prototype.showChar = function (index) {
+    var charBox = this.boxes[index]
+
+    charBox.setStyle('background-color', 'transparent')
+}
