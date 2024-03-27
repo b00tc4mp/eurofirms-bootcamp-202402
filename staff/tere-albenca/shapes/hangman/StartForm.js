@@ -1,10 +1,10 @@
-function StartForm(){
+function StartForm() {
     Form.call(this)
 
-    this.setStyle('display','flex')
+    this.setStyle('display', 'flex')
     this.setStyle('gap', '10px')
 
-    var wordsLabel = new wordsLabel
+    var wordsLabel = new Label
     wordsLabel.setFor('words')
     wordsLabel.setText('Words')
     this.add(wordsLabel)
@@ -24,12 +24,12 @@ function StartForm(){
 StartForm.prototype = Object.create(Form.prototype)
 StartForm.prototype.constructor = StartForm
 
-StartForm.prototype.onSubmit = function (callback){
-    this.container.onSubmit = function(event){
+StartForm.prototype.onSubmit = function (callback) {
+    this.container.onsubmit = function (event) {
         event.preventDefault()
 
         const value = this.wordsInput.getValue()
 
         callback(value)
-    }.blind(this)
+    }.bind(this)
 }

@@ -1,74 +1,81 @@
-function Shape2D(width, height, color) {
-    Component.call(this, 'div')
+var body = new Component
+body.container = document.body
 
-    this.width = width
-    this.height = height
-    this.color = color
+var title = new Component('h1')
+title.setText('Hangman')
+body.add(title)
 
-    this.x = 0
-    this.y = 0
+var startForm = new StartForm
+var charBoxes
+var hangman
 
-    this.container.style.position = 'absolute'
-    this.container.style.left = this.x + 'px'
-    this.container.style.top = this.y + 'px'
-    this.container.style.width = this.width + 'px'
-    this.container.style.height = this.height + 'px'
-    this.container.style.backgroundColor = this.color
-}
+startForm.onSubmit(function (words) {
+    sessionStorage.secret = words
 
-Shape2D.prototype = Object.create(Component.prototype)
-Shape2D.prototype.constructor = Shape2D
+    body.remove(startForm)
 
-// location
+    charBoxes = new CharBoxes(words)
 
-Shape2D.prototype.setX = function (x) {
-    this.x = x
+    hangman = new Hangman(150, 200)
+    body.add(hangman)
 
-    this.container.style.left = this.x + 'px'
-}
+    body.add(charBoxes)
 
-Shape2D.prototype.getX = function () {
-    return this.x
-}
+    body.add(guessForm)
 
-Shape2D.prototype.setY = function (y) {
-    this.y = y
+    startForm.reset()
+})
 
-    this.container.style.top = this.y + 'px'
-}
+body.add(startForm)
 
-Shape2D.prototype.getY = function () {
-    return this.y
-}
+var guessForm = new GuessForm
 
-Shape2D.prototype.setLocation = function (x, y) {
-    this.setX(x)
-    this.setY(y)
-}
+var failsCount = 0
 
-// dimensions
+var assertionsCount = 0
 
-Shape2D.prototype.setWidth = function (width) {
-    this.width = width
+var charsUsed = []
 
-    this.container.style.width = this.width + 'px'
-}
+guessForm.onSubmit(function (char) {
+    if (!charsUsed.includes(char)) {
+        charsUsed.push(char)
 
-Shape2D.prototype.getWidth = function () {
-    return this.width
-}
+        var secret = sessionStorage.secret
 
-Shape2D.prototype.setHeight = function (height) {
-    this.height = height
+        for (var i = 0; i < secret.length; i++) {
+            var charToCompare = secret[i]
+            if (char === charToCompare) {
+                charBoxes.showChar(i)
+                assertionsCount++
+            }
+        }
 
-    this.container.style.height = this.height + 'px'
-}
+        if (assertionsCount === secret.length) {
+            setTimeout(function () {
+                alert('You win!')
 
-Shape2D.prototype.getHeight = function () {
-    return this.height
-}
+                body.remove(guessForm)
+                body.remove(hangman)
+                body.remove(charBoxes)
+                body.add(startForm)
+            }, 1000)
+        }
 
-Shape2D.prototype.setDimensions = function (width, height) {
-    this.setWidth(width)
-    this.setHeight(height)
-}
+        if (!secret.includes(char)) {
+            failsCount++
+
+            if (failsCount > 6) {
+                alert('game over. The solution was ' + sessionStorage.secret)
+                body.remove(guessForm)
+                body.remove(hangman)
+                body.remove(charBoxes)
+                body.add(startForm)
+            } else {
+                hangman.setFails(failsCount)
+                console.log('fallo')
+            }
+        }
+        guessForm.reset()
+    } else alert('char was already used')
+
+})
