@@ -5,6 +5,8 @@ function CharBoxes(words) {
     this.setStyle('gap', '5px')
     this.setStyle('margin', '5px')
 
+    this.boxes = []
+
     for (var i = 0; i < words.length; i++) {
         var char = words[i]
 
@@ -18,8 +20,17 @@ function CharBoxes(words) {
         charBox.setText(char)
 
         this.add(charBox)
+
+        //this.boxes.push(charBox)
+        this.boxes[i] = charBox
     }
 }
 
 CharBoxes.prototype = Object.create(Component.prototype)
 CharBoxes.prototype.constructor = CharBoxes
+
+CharBoxes.prototype.showChar = function (index) {
+    var charBox = this.boxes[index]
+
+    charBox.setStyle('background-color', 'transparent')
+}
