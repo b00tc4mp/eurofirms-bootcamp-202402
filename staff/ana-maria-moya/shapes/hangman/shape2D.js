@@ -1,15 +1,15 @@
-function Shape2D(width, height, color){
+function Shape2D(width, height, color) {
     Component.call(this, 'div')
 
     this.width = width
-    this.height =height
+    this.height = height
     this.color = color
 
     this.x = 0
     this.y = 0
 
     this.container.style.position = 'absolute'
-    this.container.style.left = this.x +'px'
+    this.container.style.left = this.x + 'px'
     this.container.style.top = this.y + 'px'
     this.container.style.width = this.width + 'px'
     this.container.style.height = this.height + 'px'
@@ -34,7 +34,7 @@ Shape2D.prototype.getX = function () {
 Shape2D.prototype.setY = function (y) {
     this.y = y
 
-    this.container.style.top = this.y +'px'
+    this.container.style.top = this.y + 'px'
 }
 
 Shape2D.prototype.setLocation = function (x, y) {
