@@ -8,7 +8,7 @@ function StartForm(){
 
     var wordsLabel = new Label;
     wordsLabel.setFor("words");
-    wordsLabel.setTex("Words");
+    wordsLabel.setText("Words");
     this.add(wordsLabel);
 
     var wordsInput = new Input;
@@ -26,7 +26,7 @@ function StartForm(){
 StartForm.prototype = Object.create(Form.prototype);
 StartForm.prototype.constructor = StartForm;
 
-StartForm.prototype.constructor = function(callback){
+StartForm.prototype.onSubmit = function(callback){
     this.container.onsubmit = function(event){
         event.preventDefault();
 

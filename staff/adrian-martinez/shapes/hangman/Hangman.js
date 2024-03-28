@@ -2,6 +2,7 @@
 function Hangman(width, height){
 
     Shape2D.call(this, width, height, "transparent");
+
     this.setLocation(50, 500);
 
     var gallowBase = new Shape2D(100, 0);
@@ -15,13 +16,13 @@ function Hangman(width, height){
     this.add(gallowBar1);
 
     var gallowBar2 = new Shape2D(50, 0);
-    gallowBar1.setStyle("border", "1px solid green");
-    gallowBar1.setLocation(this.width - 5 - (gallowBar2.width / 2) - gallowBar2.height, 0);
+    gallowBar2.setStyle("border", "1px solid green");
+    gallowBar2.setLocation(this.width - 5 - (gallowBase.width / 2) - gallowBar2.width, 0);
     this.add(gallowBar2);
 
     var gallowBar3 = new Shape2D(0, 50);
     gallowBar3.setStyle("border", "1px solid orange");
-    gallowBar3.setLocation(this.width - 5 - (gallowBase.width / 2) - gallowBar1.height, 0);
+    gallowBar3.setLocation(this.width - 5 - (gallowBase.width / 2) - gallowBar2.width, 0);
     this.add(gallowBar3);
 
     var head = new Shape2D(20, 20);
@@ -42,7 +43,7 @@ function Hangman(width, height){
 
     var leftArm = new Shape2D(25, 0);
     leftArm.setStyle("border", "1px solid purple");
-    leftArm.setLocation(this.width - 5 - (gallowBase.width / 2) - gallowBar2.width, leftArm.width, gallowBar3.height + head.height + body.height * 0.25);
+    leftArm.setLocation((this.width - 5 - (gallowBase.width / 2) - gallowBar2.width) - leftArm.width, gallowBar3.height + head.height + body.height * 0.25);
     //this.add(leftArm);
 
     var rightLeg = new Shape2D(0, 25);

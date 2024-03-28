@@ -29,7 +29,8 @@ GuessForm.prototype = Object.create(Form.prototype);
 GuessForm.prototype.constructor = GuessForm;
 
 GuessForm.prototype.onSubmit = function(callback){
-    this.container.onSubmit = function(e){
+    //El onsubmit de en minúsculas hace referencia el botón del formulario, por eso no va en camelCase
+    this.container.onsubmit = function(e){
 
         e.preventDefault();
         

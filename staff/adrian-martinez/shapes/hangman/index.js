@@ -18,7 +18,7 @@ startForm.onSubmit(function(words){
 
     charBoxes = new CharBoxes(words);
 
-    hangman = new hangman(150, 200);
+    hangman = new Hangman(150, 200);
     body.add(hangman);
 
     body.add(charBoxes);
