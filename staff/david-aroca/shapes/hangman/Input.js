@@ -1,11 +1,17 @@
-function Input() {
-    Component.call(this, 'input')
-}
+class Input extends Component {
+    constructor() {
+        super('input')
+    }
 
-Input.prototype = Object.create
-    (Component.prototype)
-Input.prototype.constructor = Input
+    getValue() {
+        return this.container.value
+    }
 
-Input.prototype.getValue = function () {
-    return this.container.value
+    setMaxLength(MaxLength) {
+        this.container.maxLength = maxLength
+    }
+
+    setType(type) {
+        this.container.type = type
+    }
 }

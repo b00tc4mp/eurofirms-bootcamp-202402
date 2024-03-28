@@ -1,11 +1,13 @@
-function Form() {
-    Component.call(this, 'form')
-}
+class Form extends Component {
+    constructor() {
+        super('form')
+    }
 
-Form.prototype = Object.create
-    (Component.prototype)
-Form.prototype.constructor = Form
+    onSubmit(callback) {
+        this.container.onsubmit = callback
+    }
 
-Form.prototype.onSubmit = function name(callback) {
-    this.container.onsubmit = callback
+    reset() {
+        this.container.reset()
+    }
 }

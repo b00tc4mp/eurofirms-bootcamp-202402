@@ -1,35 +1,36 @@
-function StartForm() {
-    Form.call(this)
+class StartForm extends Form {
+    constructor() {
+        super()
 
-    this.setStyle('display', 'flex')
-    this.setStyle('gap', '10px')
+        this.setStyle('display', 'flex')
+        this.setStyle('gap', '10px')
 
-    var wordsLabel = new Label
-    wordsLabel.setFor('words')
-    wordsLabel.setText('Words')
-    this.add(wordsLabel)
+        const wordsLabel = new Label
+        wordsLabel.setFor('words')
+        wordsLabel.setText('Words')
+        this.add(wordsLabel)
 
-    var wordsInput = new Input
-    wordsInput.setId('words')
-    this.add(wordsInput)
+        const wordsInput = new Input
+        wordsInput.setId('words')
+        this.add(wordsInput)
 
-    this.wordsInput = wordsInput
+        this.wordsInput = wordsInput
 
-    var startButton = new Button
-    startButton.setType('submit')
-    startButton.setText('Start')
-    this.add(startButton)
-}
+        const startButton = new Button
+        startButton.setType('submit')
+        startButton.setText('Start')
+        this.add(startButton)
+    }
 
-StartForm.prototype = Object.create(Form.prototype)
-StartForm.prototype.constructor = StartForm
+    onSubmit(callback) {
+        super.onSubmit(event => {
+            event.preventDefault()
 
-StartForm.prototype.onSubmit = function (callback) {
-    this.container.onsubmit = function (event) {
-        event.preventDefault()
+            const words = this.wordsInput.getValue()
 
-        const value = this.wordsInput.getValue()
+            this.reset()
 
-        callback(value)
-    }.bind(this)
+            callback(words)
+        })
+    }
 }
