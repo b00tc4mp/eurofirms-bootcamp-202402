@@ -2,7 +2,7 @@ class App extends React.Component {
     constructor() {
         super()
 
-        const board = new Array(5)
+        const board = new Array(4)
 
         for (let i = 0; i < board.length; i++)
             board[i] = new Array(board.length).fill(0)
