@@ -1,15 +1,22 @@
-var body = new Component
+const body = new Component
 body.container = document.body
 
-var title = new Component('h1')
+const title = new Component('h1')
 title.setText('Hangman')
 body.add(title)
 
-var startForm = new StartForm
-var charBoxes 
-var hangman
+let failsCount
 
-startForm.onSubmit(function (words) {
+let assertionsCount
+
+const startForm = new StartForm
+let charBoxes
+let hangman
+
+let charsUsed = []
+const guessForm = new GuessForm
+body.add(startForm)
+startForm.onSubmit(words => {
     sessionStorage.secret = words
 
     body.remove(startForm)
@@ -17,33 +24,27 @@ startForm.onSubmit(function (words) {
     charBoxes = new CharBoxes(words)
 
     hangman = new Hangman(150, 200)
+
     body.add(hangman)
 
     body.add(charBoxes)
-    
+
     body.add(guessForm)
 
     startForm.reset()
+    failsCount = 0
+    assertionsCount = 0
+    charsUsed = []
 })
 
-body.add(startForm)
-
-var guessForm = new GuessForm
-
-var failsCount = 0
-
-var assertionsCount = 0
-
-var charsUsed = []
-
-guessForm.onSubmit(function (char){
+guessForm.onSubmit(char => {
     if (!charsUsed.includes(char)) {
         charsUsed.push(char)
 
-        var secret = sessionStorage.secret
+        const secret = sessionStorage.secret
 
-        for (var i = 0; i < secret.length; i++) {
-            var charToCompare = secret[i]
+        for (const i in secret) {
+            const charToCompare = secret[i]
             if (char === charToCompare) {
                 charBoxes.showChar(i)
                 assertionsCount++
@@ -64,7 +65,7 @@ guessForm.onSubmit(function (char){
         if (!secret.includes(char)) {
             failsCount++
 
-            if (failsCount > 6) {
+            if (failsCount === 6) {
                 alert('game over. The solution was ' + sessionStorage.secret)
                 body.remove(guessForm)
                 body.remove(hangman)
@@ -77,6 +78,5 @@ guessForm.onSubmit(function (char){
         }
         guessForm.reset()
     } else alert('char was already used')
-
 
 })

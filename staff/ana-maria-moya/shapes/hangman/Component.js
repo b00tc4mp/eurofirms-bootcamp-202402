@@ -1,26 +1,39 @@
-function Component(tagName) {
-    this.container = document.createElement(tagName)
-}
+// function Component(tagName) {
+//     this.container = document.createElement(tagName)
+// }
+class Component {
+    constructor(tagName) {
+        this.container = document.createElement(tagName)
+    }
 
-Component.prototype.setId = function (id) {
-    this.container.id = id
-}
 
-Component.prototype.setText = function (text) {
-    this.container.innerText = text
-}
+    // Component.prototype.setId = function (id) {
+    //     this.container.id = id
+    // }
+    setId(id) {
+        this.container.id = id
+    }
 
-Component.prototype.add = function (component) {
-    if(!(component instanceof Component)) throw new TypeError('component is not a Component')
-  this.container.appendChild(component.container)
-}
+    // Component.prototype.setText = function (text) {
+    //     this.container.innerText = text
+    // }
+    setText(text) {
+        this.container.innerText = text
+    }
 
-Component.prototype.remove = function (component) {
-    if (!(component instanceof Component)) throw new TypeError('component is not a Component')
+    add(component) {
+        if (!(component instanceof Component)) throw new TypeError('component is not a Component')
+        this.container.appendChild(component.container)
+    }
 
-    this.container.removeChild(component.container)
-}
+    remove(component) {
+        if (!(component instanceof Component)) throw new TypeError('component is not a Component')
 
-Component.prototype.setStyle = function (property, value) {
-    this.container.style[property] = value
+        this.container.removeChild(component.container)
+    }
+
+    setStyle(property, value) {
+        this.container.style[property] = value
+    }
+
 }

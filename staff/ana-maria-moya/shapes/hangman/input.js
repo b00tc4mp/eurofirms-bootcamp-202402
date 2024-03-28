@@ -1,10 +1,9 @@
-function Input() {
-    Component.call(this, 'input')
+class Input extends Component {
+    constructor(){
+    super('input')
 }
 
-Input.prototype = Object.create(Component.prototype)
-Input.prototype.constructor = Input
-
-Input.prototype.getValue = function () {
+getValue() {
     return this.container.value
+}
 }

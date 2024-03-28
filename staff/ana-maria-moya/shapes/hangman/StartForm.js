@@ -1,5 +1,7 @@
-function StartForm() {
-    Form.call(this)
+class StartForm extends Form {
+    constructor() {
+        super()
+    
 
     this.setStyle('display', 'flex')
     this.setStyle('gap', '10px')
@@ -21,15 +23,13 @@ function StartForm() {
     this.add(startButton)
 }
 
-StartForm.prototype = Object.create(Form.prototype)
-StartForm.prototype.constructor = StartForm
-
-StartForm.prototype.onSubmit = function (callback) {
-    this.container.onsubmit = function (event) {
+onSubmit(callback) {
+    super.onSubmit(event => {
         event.preventDefault()
 
-        const value = this.wordsInput.getValue()
+        var value = this.wordsInput.getValue()
 
         callback(value)
-    }.bind(this)
+    })
+}
 }
