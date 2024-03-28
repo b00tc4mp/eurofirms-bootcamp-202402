@@ -9,12 +9,12 @@ let failsCount
 
 let assertionsCount
 
-let startForm = new StartForm
+const startForm = new StartForm
 let charBoxes
 let hangman
 
 let charsUsed = []
-let guessForm = new GuessForm
+const guessForm = new GuessForm
 body.add(startForm)
 startForm.onSubmit(words => {
     sessionStorage.secret = words
