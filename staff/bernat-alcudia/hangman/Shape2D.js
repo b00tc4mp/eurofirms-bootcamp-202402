@@ -1,4 +1,4 @@
-class Shape2D extends this.Component() {
+class Shape2D extends Component() {
     constructor(width, height, color) {
 
 

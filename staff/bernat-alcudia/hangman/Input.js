@@ -1,4 +1,4 @@
-class Input extends this.Component {
+class Input extends Component {
     constructor() {
         super('input')
     }

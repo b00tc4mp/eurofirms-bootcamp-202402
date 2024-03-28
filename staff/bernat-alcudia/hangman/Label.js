@@ -1,4 +1,4 @@
-class Label extends this.Component {
+class Label extends Component {
     constructor() {
         super('label')
     }
