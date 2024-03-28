@@ -5,8 +5,8 @@ const title = new Component('h1')
 title.setText('Hangman')
 body.add(title)
 
-var startForm = new StartForm
-var guessForm = new GuessForm
+const startForm = new StartForm
+const guessForm = new GuessForm
 let charBoxes
 let hangman
 let failsCount = 0
@@ -82,6 +82,9 @@ guessForm.onSubmit(char => {
             }
         }
         guessForm.reset()
-    } else alert('char was already used')
+    } else {
+        guessForm.reset()
 
+        alert('char was already used')
+    }
 })
