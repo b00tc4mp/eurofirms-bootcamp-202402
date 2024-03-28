@@ -1,7 +1,7 @@
 .board {
     display: grid;
-    width: 60vw;
-    height: 60vw;
+    width: 50vw;
+    height: 50vw;
     background-color: lightgray;
     gap: 1px;
 }
@@ -12,4 +12,5 @@
     justify-content: center;
     align-items: center;
     color: white;
+    font-size: xx-large;
 }
