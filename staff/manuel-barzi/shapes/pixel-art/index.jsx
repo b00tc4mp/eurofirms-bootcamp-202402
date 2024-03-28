@@ -2,7 +2,7 @@ class App extends React.Component {
     constructor() {
         super()
 
-        const board = new Array(5)
+        const board = new Array(10)
 
         for (let i = 0; i < board.length; i++)
             board[i] = new Array(board.length).fill(0)
@@ -46,7 +46,7 @@ class App extends React.Component {
         const board = this.state.board
 
         return <>
-            <header>Tic Tac Toe</header>
+            <header>Pixel Art</header>
             <main>
                 <section className="board" style={{
                     gridTemplateColumns: `repeat(${board.length}, 1fr)`,
