@@ -51,7 +51,7 @@ Carray.prototype.push = function () {
 }
 
 Carray.prototype.every = function (callback) {
-    for (i = 0; i < this.length; i++) {
+    for (var i = 0; i < this.length; i++) {
         var element= this[i]
         if (!callback(element)) return false
     }
@@ -70,6 +70,17 @@ Carray.prototype.every = function (callback) {
 //     delete this[this.length]
 //     return firstElement
 // }
+Carray.prototype.filter = function (callback){
+    var result = new Carray()
 
+    for (var i= 0; i < this.length; i++) {
+        var element = this[i]
+        if(callback(element)) {
+            result[result.length] = element
+            result.length++
+        }
+    }
+    return result
+}
 
 module.exports = Carray

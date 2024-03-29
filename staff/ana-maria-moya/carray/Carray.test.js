@@ -125,14 +125,23 @@ console.log('< every')
 console.log('CASE comprobar si los elementos son mayores 4')
 var c = new Carray('Ana', 'Adrian', 'Javier', 'Sergio', 'Bernat', 'Maite', 'Sara')
 
-c.every(function (element) {
+var name = c.every(function (element) {
+    return element.length > 4
+}) 
+console.log(name)
+
+// console.log('< removefirstElement')
+// console.log('CASE quitar el primer elemento que seria "Ana"')
+// var c = new Carray('Ana', 'Adrian', 'Javier', 'Sergio', 'Bernat', 'Maite', 'Sara')
+
+// c.shift(firstElemnt)
+// console.log(c)
+
+console.log('< filter')
+console.log( 'CASE1: filtrar los elementos que sean > 4')
+var names = new Carray('Ana', 'Adrian', 'Javier', 'Sergio', 'Bernat', 'Maite', 'Sara')
+var namesFiltered= names.filter(function(element){
     return element.length > 4
 })
-console.log(c)
-
-console.log('< removefirstElement')
-console.log('CASE quitar el primer elemento que seria "Ana"')
-var c = new Carray('Ana', 'Adrian', 'Javier', 'Sergio', 'Bernat', 'Maite', 'Sara')
-
-c.shift(firstElemnt)
-console.log(c)
+console.log(namesFiltered)
+//RESULT: [ 'Adrian', 'Javier', 'Sergio', 'Bernat', 'Maite', length:5]
