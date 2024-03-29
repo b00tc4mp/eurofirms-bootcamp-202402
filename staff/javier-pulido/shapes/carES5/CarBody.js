@@ -3,7 +3,7 @@ function CarBody(width, height, color) {
 
     var windowRight = new Window(width, height)
 
-    windowRight.onselectionchange(this.width - windowRight.width, 20)
+    windowRight.setLocation(this.width - windowRight.width, 20)
     windowRight.setStyle('borderTopRigthRadius', '20%')
 
     this.add(windowRight)

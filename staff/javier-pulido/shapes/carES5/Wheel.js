@@ -1,4 +1,4 @@
-function wheel(width, height) {
+function Wheel(width, height) {
     Shape2D.call(this, width, height, 'gray')
 
     this.setStyle('borderRadius', '50%')
