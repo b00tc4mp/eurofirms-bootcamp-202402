@@ -130,18 +130,25 @@ var name = c.every(function (element) {
 }) 
 console.log(name)
 
-// console.log('< removefirstElement')
-// console.log('CASE quitar el primer elemento que seria "Ana"')
-// var c = new Carray('Ana', 'Adrian', 'Javier', 'Sergio', 'Bernat', 'Maite', 'Sara')
+console.log('< removefirstElement')
+console.log('CASE quitar el primer elemento que seria "Ana"')
+var names = new Carray('Ana', 'Adrian', 'Javier', 'Sergio', 'Bernat', 'Maite', 'Sara')
 
-// c.shift(firstElemnt)
-// console.log(c)
+var removeFirstElement = names.shift()
+console.log(removeFirstElement)
+// Carray: ['Ana', 'Adrian', 'Javier', 'Sergio', 'Bernat', 'Maite', 'Sara',  length: 7]
 
 console.log('< filter')
 console.log( 'CASE1: filtrar los elementos que sean > 4')
 var names = new Carray('Ana', 'Adrian', 'Javier', 'Sergio', 'Bernat', 'Maite', 'Sara')
-var namesFiltered= names.filter(function(element){
+var namesFiltered = names.filter(function(element){
     return element.length > 4
 })
 console.log(namesFiltered)
-//RESULT: [ 'Adrian', 'Javier', 'Sergio', 'Bernat', 'Maite', length:5]
+//Carray: [ 'Adrian', 'Javier', 'Sergio', 'Bernat', 'Maite', length:5]
+
+console.log(' < bubbleSort colors')
+console.log('CASE1: ordenar las palabras por orden alfabetico')
+var colors = new Carray('red', 'green', 'orange', 'yellow', 'blue', 'pink')
+var bubbleSortColors = colors.bubbleSort()
+console.log(bubbleSortColors)

@@ -59,17 +59,18 @@ Carray.prototype.every = function (callback) {
    
 }
 
-// Carray.prototype.removeFirstElement() {
-//     var firstElement = this[0]
-//     for (var i = 0; i < this.length - 1; i++) {
-//         this[i] = this[i + 1]
-//     }
-//     this.length--
+Carray.prototype.shift = function() {
+    var result = this[0]
+    for (var i = 0; i < this.length - 1; i++) {
+        this[i] = this[i + 1]
+    }
+    this.length--
 
 
-//     delete this[this.length]
-//     return firstElement
-// }
+    delete this[this.length]
+    return result
+}
+
 Carray.prototype.filter = function (callback){
     var result = new Carray()
 
@@ -82,5 +83,28 @@ Carray.prototype.filter = function (callback){
     }
     return result
 }
+
+Carray.prototype.bubbleSort = function(){
+    var bubble = true
+  
+    for (var i = 0; i < this.length && bubble; i++){
+      bubble = false
+  
+      for (var j = 0; j < this.length-1-i; j++){
+        var element = this[j]
+        var nextElement = this[j + 1]
+  
+        if(element > nextElement){
+          this[j] = nextElement
+          this[j + 1] = element
+  
+          bubble = true
+        }
+      }
+    }
+  
+    return this
+  }
+  
 
 module.exports = Carray
