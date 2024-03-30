@@ -82,7 +82,6 @@ Carray.prototype.filter = function (callback){
         }
     }
     return result
-}
 
 Carray.prototype.bubbleSort = function(){
     var bubble = true
