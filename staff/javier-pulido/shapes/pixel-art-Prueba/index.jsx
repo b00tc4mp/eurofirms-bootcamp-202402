@@ -1,28 +1,32 @@
 class App extends React.Component {
     constructor() {
         super()
-
+        // Inicializa el estado del tablero con un array de 10x10 lleno de (blanco)
         const board = new Array(10)
 
         for (let i = 0; i < board.length; i++)
-            board[i] = new Array(board.length).fill('#ffffff') // Inicialmente, todas las celdas son blancas
+            board[i] = new Array(board.length).fill('white') // Inicialmente, todas las celdas son blancas
 
+        // Estado inicial con el tablero, el turno y el color seleccionado
         this.state = {
             board,
             turn: 0,
-            selectedColor: '#000000' // Color por defecto
+            selectedColor: 'white' // Color por defecto
         }
     }
 
+    // Retorna el carácter correspondiente a un valor de celda (no utilizado en esta versión)
     getCellChar(value) {
         if (value === 1) return 'X'
         else if (value === 2) return 'O'
         else return ''
     }
 
+    // Método para manejar el clic en una celda del tablero
     play(row, column) {
         const { board, turn, selectedColor } = this.state;
 
+        // Crea un nuevo tablero con el color actualizado en la celda clicada
         const newBoard = board.map((rowArray, i) =>
             rowArray.map((cell, j) => {
                 if (i === row && j === column) {
@@ -32,10 +36,11 @@ class App extends React.Component {
                 }
             })
         );
-
+        // Actualiza el estado con el nuevo tablero y el turno incrementado
         this.setState({ board: newBoard, turn: turn + 1 });
     }
 
+    // Método para seleccionar un color
     selectColor(color) {
         this.setState({ selectedColor: color });
     }
@@ -48,15 +53,14 @@ class App extends React.Component {
                 <header>Pixel Art</header>
                 <main>
                     <div id="color-picker">
-                        <button onClick={() => this.selectColor('#ff0000')} style={{ backgroundColor: '#ff0000' }}></button>
-                        <button onClick={() => this.selectColor('#00ff00')} style={{ backgroundColor: '#00ff00' }}></button>
-                        <button onClick={() => this.selectColor('#0000ff')} style={{ backgroundColor: '#0000ff' }}></button>
+                        <button onClick={() => this.selectColor('red')} style={{ backgroundColor: 'red' }}></button>
+                        <button onClick={() => this.selectColor('yellow')} style={{ backgroundColor: 'yellow' }}></button>
+                        <button onClick={() => this.selectColor('blue')} style={{ backgroundColor: 'blue' }}></button>
                         <button onClick={() => this.selectColor('orange')} style={{ backgroundColor: 'orange' }}></button>
                         <button onClick={() => this.selectColor('pink')} style={{ backgroundColor: 'pink' }}></button>
                         <button onClick={() => this.selectColor('black')} style={{ backgroundColor: 'black' }}></button>
-                        
 
-                        {/* Agrega más botones con diferentes colores según tus necesidades */}
+
                     </div>
                     <section className="board" style={{
                         gridTemplateColumns: `repeat(${board.length}, 1fr)`,
@@ -77,5 +81,5 @@ class App extends React.Component {
         )
     }
 }
-
+// Renderiza la aplicación en el elemento con id 'root'
 ReactDOM.render(<App />, document.getElementById('root'));
