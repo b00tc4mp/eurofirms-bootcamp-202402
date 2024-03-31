@@ -1,0 +1,19 @@
+.board {
+    display: grid;
+    width: 20vw;
+    height: 20vw;
+    background-color: lightgray;
+    gap: 1px;
+    position: relative;
+    left: 40%;
+    margin-top: 10%;
+}
+
+.cell {
+    background-color: gray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: xx-large;
+}
