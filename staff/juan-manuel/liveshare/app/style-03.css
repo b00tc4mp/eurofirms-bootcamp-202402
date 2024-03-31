@@ -1,0 +1,290 @@
+.chuli{
+    color: rgb(0, 0, 0);
+    top: 30px;
+    position: relative;
+    left: 30px;
+}
+
+#header{
+    background: #e5e9ff8a;
+    width: 96%;
+    height: 100px;
+    border-radius: 200px;
+    position: relative;
+    font-family: cursive;
+    left: 2%;
+}
+
+#top-menu{
+    position: absolute;
+    padding: 1%;
+    left: 82%;
+    top: 22%;
+    background-color: #24245c;
+    color: white;
+    font-size: 32px;
+    justify-self: center;
+    z-index: 1000;
+    -webkit-transition: all 1.5s ease;
+    -moz-transition: all 1.5s ease;
+    -o-transition: all 1.5s ease;
+    -ms-transition: all 1.5s ease;
+    border-radius: 200px 200px 200px 200px;
+}
+
+#logout-button:hover{
+    -webkit-transform:scale(1.4);
+    -moz-transform:scale(1.4);
+    -ms-transform:scale(1.4);
+    -o-transform:scale(1.4);
+    transform:scale(1.4);
+}
+
+#logout-button{
+    -webkit-transition: all 1.5s ease;
+    -moz-transition: all 1.5s ease;
+    -o-transition: all 1.5s ease;
+    -ms-transition: all 1.5s ease;
+}
+
+#chat-button:hover{
+    -webkit-transform:scale(1.4);
+    -moz-transform:scale(1.4);
+    -ms-transform:scale(1.4);
+    -o-transform:scale(1.4);
+    transform:scale(1.4);
+}
+
+#chat-button{
+    -webkit-transition: all 1.5s ease;
+    -moz-transition: all 1.5s ease;
+    -o-transition: all 1.5s ease;
+    -ms-transition: all 1.5s ease;
+}
+
+#chat-section {
+    border-width: 1px;
+    border-color: black;
+    border-style: solid;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.chat-user {
+    cursor: pointer;
+}
+
+.chat-user-online::marker {
+    color: limegreen;
+}
+
+
+.chat-user-offline::marker {
+    color: gray;
+}
+
+#chat {
+    display: none;
+}
+
+#messages {
+    border-width: 1px;
+    border-color: black;
+    border-style: solid;
+    min-height: 40px;
+}
+
+#images{
+    background: url(https://sm.ign.com/t/ign_latam/screenshot/default/mickey-mouse_9cqs.1280.jpg);
+}
+
+#chat-messages {
+    border-width: 1px;
+    border-color: black;
+    border-style: solid;
+    min-height: 40px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    list-style: none;
+    background-color: white;
+    font-size: 40px;
+    padding-left: 150px;
+    padding-right: 150px;
+}
+
+.chat-message--left {
+    align-self: flex-start;
+}
+
+.chat-message--right {
+    align-self: flex-end;
+}
+
+#enviar{
+    background-color: dodgerblue;
+    height: 70px;
+    width: 120px;
+    margin-left: 55px;
+    -webkit-transition: all 1.5s ease;
+    -moz-transition: all 1.5s ease;
+    -o-transition: all 1.5s ease;
+    -ms-transition: all 1.5s ease;
+    position: absolute;
+}
+
+#enviar:hover{
+    -webkit-transform:scale(1.1);
+    -moz-transform:scale(1.1);
+    -ms-transform:scale(1.1);
+    -o-transform:scale(1.1);
+    transform:scale(1.1);
+}
+
+#texto{
+    width: 85%;
+    height: 80px;
+    font-size: 35px;
+}
+
+h2{
+    font-family: cursive;
+    font-size: 50px;
+    text-align: center;
+}
+
+#posts-section{
+    display: flex;
+}
+
+body {
+    margin: 0;
+    background: #f4ffff;
+    width: 100%;
+}
+
+.main {
+    padding-left: 20vw;
+    padding-right: 20vw;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+#top-menu {
+    display: flex;
+    justify-content: end;
+}
+
+#chat-section {
+    padding: 10px;
+    margin-bottom: 60px;
+}
+
+.chat-section--off {
+    display: none;
+}
+
+.chat-user {
+    cursor: pointer;
+}
+
+.chat-user-online::marker {
+    color: limegreen;
+}
+
+.chat-user-offline::marker {
+    color: gray;
+}
+
+#chat {
+    display: none;
+}
+
+#chat-messages {
+    min-height: 40px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    list-style: none;
+}
+
+.chat-message--left {
+    align-self: flex-start;
+    text-align: left;
+}
+
+.chat-message--right {
+    align-self: flex-end;
+    text-align: right;
+}
+
+sup {
+    font-size: 10px;
+    color: rgb(0, 0, 0);
+    top: 20px;
+    position: relative;
+}
+
+#chat-form {
+    display: flex;
+    gap: 5px;
+}
+
+#chat-form>#text {
+    width: 100%;
+}
+
+#posts-section {
+    margin-bottom: 60px;
+    position: relative;
+    justify-content: center;
+}
+
+.posts-section--off {
+    display: none;
+}
+
+.post {
+    border: 1px solid black;
+    margin: 10px;
+    padding: 10px;
+    background: #d1dcff;
+    color: black;
+    text-align: center;
+}
+
+.post-image {
+    width: 100%;
+}
+
+#create-post-section {
+    margin-bottom: 40px;
+    position: fixed;
+    bottom: 0;
+    background-color: darkgray;
+    width: 100%;
+    padding-bottom: 10px;
+}
+
+.create-post-section--off {
+    display: none;
+}
+
+#create-post-form {
+    display: flex;
+    flex-direction: column;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #0000004f;
+    height: 40px;
+}
