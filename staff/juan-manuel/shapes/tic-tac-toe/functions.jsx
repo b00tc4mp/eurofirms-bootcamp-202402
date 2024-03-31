@@ -19,6 +19,11 @@ class App extends React.Component {
         else return ''
     }
 
+    sonido() {
+        const audio = new Audio("pop.mp3");
+        audio.play();
+    }
+
     play(row, column) {
         const prevBoard = this.state.board;
 
@@ -36,7 +41,7 @@ class App extends React.Component {
             board[row][column] = 2;
         }
     
-        this.setState({ board, turn: turn + 1 });
+        this.setState({ board, turn: turn + 1 }, this.sonido);
     }
 
 
