@@ -4,6 +4,6 @@ class Label extends Component {
     }
 
     setFor(htmlFor) {
-        this, this.container.htmlFor = htmlFor
+        this.container.htmlFor = htmlFor
     }
 }

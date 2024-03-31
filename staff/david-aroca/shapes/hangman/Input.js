@@ -7,7 +7,7 @@ class Input extends Component {
         return this.container.value
     }
 
-    setMaxLength(MaxLength) {
+    setMaxLength(maxLength) {
         this.container.maxLength = maxLength
     }
 

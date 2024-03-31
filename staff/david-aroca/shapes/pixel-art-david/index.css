@@ -1,0 +1,29 @@
+.board {
+    display: grid;
+    width: 60vw;
+    height: 60vw;
+    background-color: lightgray;
+    gap: 1px;
+}
+
+.cell {
+    background-color: lightcyan;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: lightgray;
+    font-size: xx-large;
+}
+
+#color-picker button {
+    width: 20px;
+    height: 20px;
+    margin: 5px;
+    cursor: pointer;
+
+}
+
+header {
+    font-family: 'Verdana', sans-serif;
+    /* Cambia la tipografía del encabezado */
+}
