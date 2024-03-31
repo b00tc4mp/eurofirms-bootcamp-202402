@@ -6,7 +6,7 @@ class App extends React.Component {
         const board = new Array(10)
 
         for (let i = 0; i < board.length; i++)
-            borad[i] = new Array(board.length).fill('white')
+            board[i] = new Array(board.length).fill('white')
         // Inicialmente, todas las celdas son blancas
 
         // Estado inicial con el tablero, el turno y el color seleccionado
