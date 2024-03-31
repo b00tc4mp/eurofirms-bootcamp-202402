@@ -1,19 +1,19 @@
-
 class App extends React.Component {
     constructor() {
-        super()
+        super();
         // Inicializa el estado del tablero con un array de 10x10 lleno de (blanco)
-        const board = new Array(10)
+        const board = new Array(10);
 
         for (let i = 0; i < board.length; i++)
-            board[i] = new Array(board.length).fill('white')// Inicialmente, todas las celdas son blancas
+            board[i] = new Array(board.length).fill('white'); // Inicialmente, todas las celdas son blancas
 
         // Estado inicial con el tablero, el turno y el color seleccionado
         this.state = {
             board,
             turn: 0,
-            selectedColor: 'white' // Color por defecto
-        }
+            selectedColor: 'white', // Color por defecto
+            currentIndex: 0 // Índice para el cambio de color de las letras
+        };
     }
 
     // Método para manejar el clic en una celda del tablero
@@ -46,24 +46,35 @@ class App extends React.Component {
         this.setState({ board: newBoard });
     }
 
+    componentDidMount() {
+        this.intervalId = setInterval(this.changeColors.bind(this), 500); // Cambia de color cada segundo
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.intervalId);
+    }
+
+    changeColors() {
+        this.setState(prevState => ({
+            currentIndex: (prevState.currentIndex + 1) % 9 // Cambia al siguiente color en el array
+        }));
+    }
+
     render() {
-        const { board } = this.state;
+        const { board, currentIndex } = this.state;
+        const letters = "Pixel Art".split(""); // Divide la palabra en letras
+        const colors = ['blue', 'green', 'red', 'orange', 'purple', 'teal', 'yellow', 'pink', 'brown'];
 
         return (
             <>
                 <header>
                     <marquee>
-                        <span style={{ color: 'blue' }}>P</span>
-                        <span style={{ color: 'green' }}>i</span>
-                        <span style={{ color: 'red' }}>x</span>
-                        <span style={{ color: 'orange' }}>e</span>
-                        <span style={{ color: 'purple' }}>l</span>
-                        <span style={{ color: 'teal' }}> </span>
-                        <span style={{ color: 'yellow' }}>A</span>
-                        <span style={{ color: 'pink' }}>r</span>
-                        <span style={{ color: 'brown' }}>t</span>
+                        {letters.map((letter, index) => (
+                            <span key={index} style={{ color: colors[(currentIndex + index) % 9] }}>{letter}</span>
+                        ))}
                     </marquee>
                 </header>
+
                 <main>
                     <div id="color-picker">
                         <button onClick={() => this.selectColor('red')} style={{ backgroundColor: 'red' }}></button>
@@ -89,26 +100,17 @@ class App extends React.Component {
                         )).flat(Infinity)}
                     </section>
 
-                    {/* Intento de David , Ana y Javier */}
-                    {/* <section> */}
-                    {/* <button onClick={() => this.fill('white')}>Reset</button> */}
-                    {/* <button className="buttonReset" onClick={this.board.length.fill('white')}>Reset</button> */}
-                    {/* <button className="reset" onClick={() => { board.reset() }}></button> */}
-
-                    {/* </section> */}
-
                     {/* Botón para resetear todos los colores del tablero a blanco */}
                     <section>
                         <button onClick={() => this.resetColors()}>Reset</button>
                     </section>
 
-
-
                 </main>
                 <footer></footer>
             </>
-        )
+        );
     }
 }
+
 // Renderiza la aplicación en el elemento con id 'root'
 ReactDOM.render(<App />, document.getElementById('root'));
