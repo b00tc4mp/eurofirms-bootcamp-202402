@@ -1,4 +1,6 @@
 class App extends React.Component {
+    //el constructor inicia el tablero y dos propiedades en el estado
+    //el color seleccionado y resetear el juego
     constructor() {
         super()
 
@@ -11,20 +13,26 @@ class App extends React.Component {
             board,
             selectedColor: 'gray'
         }
-
+        //.bind sirve para enlazar correctamente 
+        //el contexto this con el componente de app
         this.resetGame = this.resetGame.bind(this);
         this.selectColor = this.selectColor.bind(this);
     }
 
+    //el metodo play es para cambiar el color de las celdas
     play(row, column) {
         const board = this.state.board.map(row => [...row]);
         const selectedColor = this.state.selectedColor;
 
         board[row][column] = selectedColor;
+        //para actualizar el estado del tablero
         this.setState({ board });
     }
 
+    //esto resetea el tablero
     resetGame() {
+        //.fill rellena todo el array de valor null
+        //.map crea un nuevo array y lo rellena de gris
         const board = new Array(10).fill(null).map(() => new Array(10).fill('gray'));
         this.setState({ board });
     }
@@ -33,6 +41,7 @@ class App extends React.Component {
         this.setState({ selectedColor: color });
     }
 
+    //para renderizar la interfaz, con todas las partes del jeugo
     render() {
         const board = this.state.board;
 
@@ -71,5 +80,6 @@ class App extends React.Component {
     }
 }
 
+//renderizar el dom y la app
 const root = ReactDOM.createRoot(document.querySelector('#root'))
 root.render(<App />)
