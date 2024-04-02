@@ -2,10 +2,6 @@ class CharBoxes extends Component(words) {
     constructor(words) {
         super('div')
 
-
-
-
-
         this.boxes = []
 
         for (var i = 0; i < words.length; i++) {
