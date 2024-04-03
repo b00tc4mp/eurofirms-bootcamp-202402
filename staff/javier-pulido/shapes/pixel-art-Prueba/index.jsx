@@ -11,14 +11,13 @@ class App extends React.Component {
         // Estado inicial con el tablero, el turno y el color seleccionado
         this.state = {
             board,
-            turn: 0,
             selectedColor: 'white' // Color por defecto
         }
     }
 
     // Método para manejar el clic en una celda del tablero
     play(row, column) {
-        const { board, turn, selectedColor } = this.state;
+        const { board, selectedColor } = this.state;
 
         // Crea un nuevo tablero con el color actualizado en la celda clicada
         const newBoard = board.map((rowArray, i) =>
@@ -30,8 +29,9 @@ class App extends React.Component {
                 }
             })
         );
+
         // Actualiza el estado con el nuevo tablero y el turno incrementado
-        this.setState({ board: newBoard, turn: turn + 1 });
+        this.setState({ board: newBoard});
     }
 
     // Método para seleccionar un color
