@@ -1,24 +1,23 @@
-class App extends React.Component {
-    constructor() {
-        console.debug('App constructor')
+function App() {
+    const initPixels = new Array(10)
 
-        super()
+    for (let i = 0; i < initPixels.length; i++)
+        initPixels[i] = new Array(initPixels.length).fill('white')
 
-        const pixels = new Array(10)
+    // const pixelsState = React.useState(initPixels)
+    // const pixels = pixelsState[0]
+    // const setPixels = pixelsState[1]
+    const [pixels, setPixels] = React.useState(initPixels)
 
-        for (let i = 0; i < pixels.length; i++)
-            pixels[i] = new Array(pixels.length).fill('white')
+    // const colorState = React.useState('black')
+    // const color = colorState[0]
+    // const setColor = colorState[1]
+    const [color, setColor] = React.useState('black')
 
-        this.state = {
-            pixels,
-            color: 'black'
-        }
-    }
-
-    paint(row, column) {
+    function paint(row, column) {
         console.debug('App paint')
 
-        const prevPixels = this.state.pixels
+        const prevPixels = pixels
 
         const newPixels = new Array(prevPixels.length)
         for (let i = 0; i < prevPixels.length; i++)
@@ -29,65 +28,40 @@ class App extends React.Component {
                 newPixels[i][j] = prevPixels[i][j]
 
 
-        newPixels[row][column] = this.state.color
+        newPixels[row][column] = color
 
-        this.setState({ pixels: newPixels })
+        setPixels(newPixels)
     }
 
-    clear() {
+    function clear() {
         console.debug('App clear')
 
-        const prevPixels = this.state.pixels
+        const prevPixels = pixels
 
         const newPixels = new Array(prevPixels.length)
         for (let i = 0; i < prevPixels.length; i++)
             newPixels[i] = new Array(prevPixels[0].length).fill('white')
 
-        this.setState({ pixels: newPixels })
+        setPixels(newPixels)
     }
 
-    setColor(color) {
-        console.debug('App setColor')
+    console.debug('App render')
 
-        this.setState({ color })
-    }
+    const colors = ['red', 'green', 'blue', 'yellow', 'white', 'black']
 
-    doRender() {
-        console.debug('App doRender')
+    return <>
+        <header>
+            <h1>Pixel Art</h1>
+        </header>
 
-        const pixels = this.state.pixels
-        const color = this.state.color
+        <main className="main">
+            <ColorButtons color={color} colors={colors} onColorClick={color => setColor(color)} />
 
-        const colors = ['red', 'green', 'blue', 'yellow', 'white', 'black']
+            <Pixels pixels={pixels} onPixelClick={(row, col) => paint(row, col)} />
 
-        return <>
-            <header>
-                <h1>Pixel Art</h1>
-            </header>
-            <main className="main">
-                <ColorButtons color={color} colors={colors} onColorClick={color => this.setColor(color)} />
+            <button onClick={() => clear()}>reset</button>
+        </main>
 
-                <Pixels pixels={pixels} onPixelClick={(row, col) => this.paint(row, col)} />
-
-                <button onClick={() => this.clear()}>reset</button>
-            </main>
-            <footer></footer>
-        </>
-    }
-
-    render() {
-        // console.debug('App before render', new Date().toISOString())
-        const before = window.performance.now()
-
-        const rendered = this.doRender()
-
-        // console.debug('App after render', new Date().toISOString())
-        const after = window.performance.now()
-
-        const renderTime = after - before
-
-        console.debug('App render time (in millis)', renderTime)
-
-        return rendered
-    }
+        <footer></footer>
+    </>
 }
