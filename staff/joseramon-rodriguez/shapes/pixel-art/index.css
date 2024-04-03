@@ -7,8 +7,14 @@
 
 .color-button {
     width: 30px;
-    height: 30px;
+    height: 20px;
     cursor: pointer;
+}
+
+.color-button--selected {
+    width: 30px;
+    height: 30px;
+    border: 3px dotted purple;
 }
 
 .pixels {

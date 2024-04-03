@@ -1,13 +1,8 @@
-class Pixel extends React.Component {
-    constructor() {
-        super()
-    }
+function Pixel(props) {
+    return <div
+        className="pixel"
+        style={{ backgroundColor: props.color }}
+        onClick={() => props.onClick()}>
+    </div>
 
-    render() {
-        return <div
-            className="pixel"
-            style={{ backgroundColor: this.props.color }}
-            onClick={() => this.props.onClick()}>
-        </div>
-    }
 }

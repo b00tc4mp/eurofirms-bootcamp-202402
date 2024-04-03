@@ -1,65 +1,61 @@
-class App extends React.Component {
-    constructor() {
-        super()
+function App() {
+    const initPixels = new Array(10)
 
-        const pixels = new Array(10)
+    for (let i = 0; i < initPixels.length; i++)
+        initPixels[i] = new Array(initPixels.length).fill('white')
 
-        for (let i = 0; i < pixels.length; i++)
-            pixels[i] = new Array(pixels.length).fill('white')
+    //const pixelsState = React.useState(initPixels)
+    //const pixels = pixelsState[0]
+    //const setPixels = pixelsState[1]
+    const [pixels, setPixels] = React.useState(initPixels)
 
-        this.state = {
-            pixels,
-            color: 'black'
-        }
-    }
+    //const colorState = React.useState('black')
+    //const color = colorState[0]
+    //const setColor = colorState[1]
+    const [color, setColor] = React.useState('black')
 
-    paint(row, column) {
-        const prevPixels = this.state.pixels
+
+    function paint(row, column) {
+        const prevPixels = pixels
 
         const newPixels = new Array(prevPixels.length)
         for (const i in prevPixels)
-            newPixels[i] = new Array(prevPixels[0].length).fill('white')
+            newPixels[i] = new Array(prevPixels[0].length)
 
         for (const i in prevPixels)
             for (const j in prevPixels[i])
                 newPixels[i][j] = prevPixels[i][j]
 
-        newPixels[row][column] = this.state.color
+        newPixels[row][column] = color
 
-        this.setState({ pixels: newPixels })
+        setPixels(newPixels)
     }
 
-    clear() {
-        const prevPixels = this.state.pixels
+    function clear() {
+        const prevPixels = pixels
 
         const newPixels = new Array(prevPixels.length)
         for (const i in prevPixels)
             newPixels[i] = new Array(prevPixels[0].length).fill('white')
 
-        this.setState({ pixels: newPixels })
+        setPixels(newPixels)
     }
 
-    setColor(color) {
-        this.setState({ color })//color : color
-    }
+    const colors = ['red', 'green', 'blue', 'yellow', 'white', 'black']
 
-    render() {
-        const pixels = this.state.pixels
+    return <>
+        <header>
+            <h1 className="main">Pixel Art</h1>
+        </header>
+        <main className="main">
+            <ColorButtons color={color} colors={colors} onColorClick={color => setColor(color)} />{/* onColorClick = (color) => this.setColor(color)*/}
 
-        const colors = ['red', 'green', 'blue', 'yellow', 'white', 'black']
+            <ColorPreview previewColor={color} />
+            <Pixels pixels={pixels} onPixelClick={(row, col) => paint(row, col)} />
 
-        return <>
-            <header>
-                <h1>Pixel Art</h1>
-            </header>
-            <main className="main">
-                <ColorButtons colors={colors} onColorClick={color => this.setColor(color)} />{/* onColorClick = (color) => this.setColor(color)*/}
+            <button onClick={() => clear()}>Reset</button>
+        </main>
+        <footer></footer>
+    </>
 
-                <Pixels pixels={pixels} onPixelClick={(row, col) => this.paint(row, col)} />
-
-                <button onClick={() => this.clear()}>Reset</button>
-            </main>
-            <footer></footer>
-        </>
-    }
 }
