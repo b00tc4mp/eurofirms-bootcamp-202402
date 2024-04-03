@@ -40,7 +40,8 @@ class App extends React.Component {
 
     resetColors() {
         const { board } = this.state;
-        const newBoard = board.map(row => row.map(() => 'white')); //ESTABLECE TODAS LAS CELDAS A BLANCO
+        const newBoard = board.map(row => row.map(() => 'white'));
+        // METODO QUE USAMOS PARA ESTABLECER TODAS LAS CELDAS A BLANCO
         this.setState({ board: newBoard });
     }
 
@@ -50,6 +51,7 @@ class App extends React.Component {
         return (
             <>
                 <header>
+                    {/* ESTA ES LA PARTE DE LA CABEZERA A LA QUE LE ASIGNO EL RAINBOW */}
                     <marquee>
                         <span style={{ color: 'blue' }}>P</span>
                         <span style={{ color: 'green' }}>i</span>
@@ -72,6 +74,7 @@ class App extends React.Component {
                     </marquee>
                 </header>
                 <main>
+                    {/* PALETA DE LOS COLORES PARA SELECCIONAR COMO BOTONES */}
                     <div id="color-picker">
                         <button onClick={() => this.selectColor('red')} style={{ backgroundColor: 'red' }}></button>
                         <button onClick={() => this.selectColor('yellow')} style={{ backgroundColor: 'yellow' }}></button>
