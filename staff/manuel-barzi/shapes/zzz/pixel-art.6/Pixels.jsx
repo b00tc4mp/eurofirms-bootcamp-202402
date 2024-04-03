@@ -1,13 +1,9 @@
 class Pixels extends React.Component {
     constructor() {
-        console.debug('Pixels constructor')
-
         super()
     }
 
     render() {
-        console.debug('Pixels render')
-
         return <section className="pixels" style={{
             gridTemplateColumns: `repeat(${this.props.pixels.length}, 1fr)`,
             gridTemplateRows: `repeat(${this.props.pixels.length}, 1fr)`

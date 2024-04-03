@@ -1,7 +1,5 @@
 class App extends React.Component {
     constructor() {
-        console.debug('App constructor')
-
         super()
 
         const pixels = new Array(10)
@@ -16,8 +14,6 @@ class App extends React.Component {
     }
 
     paint(row, column) {
-        console.debug('App paint')
-
         const prevPixels = this.state.pixels
 
         const newPixels = new Array(prevPixels.length)
@@ -35,8 +31,6 @@ class App extends React.Component {
     }
 
     clear() {
-        console.debug('App clear')
-
         const prevPixels = this.state.pixels
 
         const newPixels = new Array(prevPixels.length)
@@ -47,16 +41,11 @@ class App extends React.Component {
     }
 
     setColor(color) {
-        console.debug('App setColor')
-
         this.setState({ color })
     }
 
-    doRender() {
-        console.debug('App doRender')
-
+    render() {
         const pixels = this.state.pixels
-        const color = this.state.color
 
         const colors = ['red', 'green', 'blue', 'yellow', 'white', 'black']
 
@@ -65,7 +54,7 @@ class App extends React.Component {
                 <h1>Pixel Art</h1>
             </header>
             <main className="main">
-                <ColorButtons color={color} colors={colors} onColorClick={color => this.setColor(color)} />
+                <ColorButtons colors={colors} onColorClick={color => this.setColor(color)} />
 
                 <Pixels pixels={pixels} onPixelClick={(row, col) => this.paint(row, col)} />
 
@@ -73,21 +62,5 @@ class App extends React.Component {
             </main>
             <footer></footer>
         </>
-    }
-
-    render() {
-        // console.debug('App before render', new Date().toISOString())
-        const before = window.performance.now()
-
-        const rendered = this.doRender()
-
-        // console.debug('App after render', new Date().toISOString())
-        const after = window.performance.now()
-
-        const renderTime = after - before
-
-        console.debug('App render time (in millis)', renderTime)
-
-        return rendered
     }
 }
