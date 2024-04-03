@@ -52,7 +52,6 @@ class App extends React.Component {
                     gridTemplateRows: `repeat(${board.length},1fr)`
 
                 }}>
-                    {/* {board.map((row, i) => row.map((column, j) => <div className="cell" onClick={() => this.play(i, j)}>{this.getCellChar(board[i][j])}</div>)).flat(Infinity)} */}
                     {board.map((row, i) => row.map((column, j) => <div className="cell" onClick={() => this.play(i, j)}>{this.getCellChar(board[i][j])}</div>)).flat(Infinity)}
                 </section >
             </main >
