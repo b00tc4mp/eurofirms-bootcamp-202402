@@ -1,13 +1,11 @@
-class ColorButton extends React.Component {
-    constructor() {
-        super()
+function ColorButton(props) {
+    function handleClick() {
+        props.onClick()
     }
+    return <button
+        className={`color-button ${props.selected ? 'color-button-selected' : ''}`}
+        style={{ backgroundColor: props.color }}
+        onClick={() => handleClick()}
+    />
 
-    render() {
-        return <button
-            className='color-button'
-            style={{ backgroundColor: this.props.color }}
-            onClick={this.props.onClick}
-        />
-    }
 }

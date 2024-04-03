@@ -1,22 +1,16 @@
+function App() {
+    const initPixels = new Array(10)
 
-class App extends React.Component {
-    constructor() {
-        super()
-
-        const pixels = new Array(10)
-
-        for (let i = 0; i < pixels.length; i++) {
-            pixels[i] = new Array(pixels.length).fill('white')
-        }
-
-        this.state = {
-            pixels,
-            color: 'black'
-        }
+    for (let i = 0; i < initPixels.length; i++) {
+        initPixels[i] = new Array(initPixels.length).fill('white')
     }
 
-    paint(row, column) {
-        const prevPixels = this.state.pixels
+    const [pixels, setPixels] = React.useState(initPixels)
+
+    const [color, setColor] = React.useState('black')
+
+    function paint(row, column) {
+        const prevPixels = pixels
 
         const newPixels = new Array(prevPixels.length)
 
@@ -27,41 +21,35 @@ class App extends React.Component {
             for (const j in prevPixels)
                 newPixels[i][j] = prevPixels[i][j]
 
-        newPixels[row][column] = this.state.color
+        newPixels[row][column] = color
 
-        this.setState({ pixels: newPixels })
+        setPixels(newPixels)
     }
 
-    clear() {
-        const prevPixels = this.state.pixels
+    function clear() {
+        const prevPixels = pixels
 
         const newPixels = new Array(prevPixels.length)
         for (let i = 0; i < prevPixels.length; i++)
             newPixels[i] = new Array(prevPixels[0].length).fill('white')
 
-        this.setState({ pixels: newPixels })
+        setPixels(newPixels)
     }
 
-    setColor(color) {
-        this.setState({ color })
-    }
+    const colors = ['red', 'green', 'blue', 'yellow', 'white', 'black']
 
-    render() {
-        const pixels = this.state.pixels
-        const colors = ['red', 'green', 'blue', 'yellow', 'white', 'black']
+    return <>
+        <header>
+            <h1>Pixel Art</h1>
+        </header>
+        <main className="main">
+            <ColorButtons color={color} colors={colors} onColorClick={color => setColor(color)} />
 
-        return <>
-            <header>
-                <h1>Pixel Art</h1>
-            </header>
-            <main className="main">
-                <ColorButtons colors={colors} onColorClick={color => this.setColor(color)} />
+            <Pixels pixels={pixels} onPixelClick={(row, col) => paint(row, col)} />
 
-                <Pixels pixels={pixels} onPixelClick={(row, col) => this.paint(row, col)} />
-
-                <button onClick={() => this.clear()}>Reset</button>
-            </main>
-            <footer></footer>
-        </>
-    }
+            <button onClick={() => clear()}>Reset</button>
+        </main>
+        <footer></footer>
+    </>
 }
+

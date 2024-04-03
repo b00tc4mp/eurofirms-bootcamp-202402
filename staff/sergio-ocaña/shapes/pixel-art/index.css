@@ -35,3 +35,7 @@
     height: 30px;
     cursor: pointer;
 }
+
+.color-button-selected {
+    border: 5px solid salmon;
+}
