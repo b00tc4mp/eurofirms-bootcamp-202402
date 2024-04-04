@@ -47,11 +47,11 @@ class App extends React.Component {
     render() {
         const pixels = this.state.pixels
 
-        const colors = ['red', 'green', 'blue', 'yellow', 'white', 'black']
+        const colors = ['red', 'green', 'blue', 'yellow', 'white', 'black', 'gray', 'pink', 'brown']
 
         return <>
             <header>
-                <h1>Pixel Art By Components</h1>
+                <h1>Pixel Art By Components </h1>
             </header>
             <main className="main">
                 <ColorButtons colors={colors} onColorClick={color => this.setColor(color)} />
