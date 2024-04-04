@@ -45,6 +45,8 @@ class App extends React.Component {
     render() {
         const board = this.state.board;
 
+        const colorButtons = ['blueviolet','darkred','lightgreen','red','pink','gold','purple','deepskyblue','orange','black','yellow','coral', 'olive', 'whitesmoke','blue', 'dimgray', 'navy', 'orangered']
+
         return (
             <>
                 <header><div>PIXEL ART</div></header>
@@ -53,23 +55,44 @@ class App extends React.Component {
                         gridTemplateColumns: `repeat(${board.length}, 1fr)`,
                         gridTemplateRows: `repeat(${board.length}, 1fr)`
                     }}>
-                        {board.map((row, i) => row.map((color, j) =>
-                            <div
-                                key={`${i}-${j}`}
-                                className="cell"
-                                onClick={() => this.play(i, j)}
-                                style={{ backgroundColor: color }}
-                            />
+                        {board.map((row, i) => row.map((color, j) =><div key={`${i}-${j}`} className="cell" onClick={() => this.play(i, j)} style={{ backgroundColor: color }}
+                        />
                         )).flat()}
                     </section>
                     <section className="palette">
-                        <button className="redButton" onClick={() => this.selectColor('red')}>Red</button>
-                        <button className="pinkButton" onClick={() => this.selectColor('pink')}>Pink</button>
-                        <button className="purpleButton" onClick={() => this.selectColor('purple')}>Purple</button>
-                        <button className="blueButton" onClick={() => this.selectColor('blue')}>Blue</button>
-                        <button className="greenButton" onClick={() => this.selectColor('green')}>Green</button>
-                        <button className="yellowButton" onClick={() => this.selectColor('yellow')}>Yellow</button>
-                        <button className="orangeButton" onClick={() => this.selectColor('orange')}>Orange</button>
+                        {colorButtons.map(color => <button onClick={()=> this.selectColor(color)} style={{backgroundColor: color}}> </button>)}
+                        {/* <button className="redButton" onClick={() => this.selectColor('red')}></button>
+                        <button className="pinkButton" onClick={() => this.selectColor('pink')}></button>
+                        <button className="purpleButton" onClick={() => this.selectColor('purple')}></button>
+                        <button className="blueButton" onClick={() => this.selectColor('blue')}></button>
+                        <button className="greenButton" onClick={() => this.selectColor('green')}></button>
+                        <button className="yellowButton" onClick={() => this.selectColor('yellow')}></button>
+                        <button className="navyButton" onClick={() => this.selectColor('navy')}></button>
+                        <button className="fuchsiaButton" onClick={() => this.selectColor('fuchsia')}></button>
+                        <button className="limeButton" onClick={() => this.selectColor('lime')}></button>
+                        <button className="blackButton" onClick={() => this.selectColor('black')}></button>
+                        <button className="aquaButton" onClick={() => this.selectColor('aqua')}></button>
+                        <button className="maroonButton" onClick={() => this.selectColor('maroon')}></button>
+                        <button className="tealButton" onClick={() => this.selectColor('teal')}></button>
+                        <button className="oliveButton" onClick={() => this.selectColor('olive')}></button>
+                        <button className="orangeButton" onClick={() => this.selectColor('orange')}></button>
+                        <button className="chartreuseButton" onClick={() => this.selectColor('chartreuse')}></button>
+                        <button className="coralButton" onClick={() => this.selectColor('coral')}></button>
+                        <button className="bluevioletButton" onClick={() => this.selectColor('blueviolet')}></button>
+                        <button className="orangetwoButton" onClick={() => this.selectColor('orangetwo')}></button>
+                        <button className="darkredButton" onClick={() => this.selectColor('darkred')}></button>
+                        <button className="darkslategrayButton" onClick={() => this.selectColor('darkslategray')}></button>
+                        <button className="deepskyblueButton" onClick={() => this.selectColor('deepskyblue')}></button>
+                        <button className="darkolivegreenButton" onClick={() => this.selectColor('darkolivegreen')}></button>
+                        <button className="goldButton" onClick={() => this.selectColor('gold')}></button>
+                        <button className="dimgreyButton" onClick={() => this.selectColor('dimgrey')}></button>
+                        <button className="lightgreenButton" onClick={() => this.selectColor('lightgreen')}></button>
+                        <button className="indigoButton" onClick={() => this.selectColor('indigo')}></button>
+                        <button className="goldenrodButton" onClick={() => this.selectColor('goldenrod')}></button>
+                        <button className="firebrickButton" onClick={() => this.selectColor('firebrick')}></button>
+                        <button className="greenyellowButton" onClick={() => this.selectColor('greenyellow')}></button> */}
+
+
                     </section>
                 </main>
                 <footer>

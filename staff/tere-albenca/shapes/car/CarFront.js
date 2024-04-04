@@ -1,8 +1,8 @@
-function CarFront(width, heigth, color) {
-    Shape2D.call(this, width, heigth, color)
+class CarFront extends Shape2D {
+  constructor(width, heigth, color) {
+    super(width, heigth, color);
 
-    this.setStyle('borderRadius', '0 50px 10px 0')
+    this.setStyle("borderRadius", "0 50px 10px 0");
+    //to do (medidas relativas en el border radius)
+  }
 }
-
-CarFront.prototype = Object.create(Shape2D.prototype)
-CarFront.prototype.constructor = CarFront

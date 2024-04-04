@@ -1,11 +1,10 @@
-function SpareWheel(width, height) {
-  Shape2D.call(this, width, height, "black");
+class SpareWheel extends Shape2D {
+  constructor(width, height) {
+    super(width, height, "black");
 
-  var spareWheel = width + height;
+    const spareWheel = width + height;
 
-  this.setStyle("border", spareWheel);
-  this.setStyle("zIndex", 0);
+    this.setStyle("border", spareWheel);
+    this.setStyle("zIndex", 0);
+  }
 }
-
-SpareWheel.prototype = Object.create(Shape2D.prototype);
-SpareWheel.prototype.constructor = SpareWheel;
