@@ -5,7 +5,7 @@ function ColorButton(props) {
         props.onClick()
     }
 
-    console.debug('ColorBurron render')
+    console.debug('ColorButton render')
 
     return <button
         className={`color-button ${props.selected ? 'color-button-selected' : ''}`}
