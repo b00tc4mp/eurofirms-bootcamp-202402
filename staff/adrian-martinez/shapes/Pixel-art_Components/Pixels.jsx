@@ -8,7 +8,7 @@ class Pixels extends React.Component{
         return(
             <>
                 <section className="pixels"
-                style={{gridTemplatColumns : `repeat(${ this.props.pixels.length}, 1fr)`,
+                style={{gridTemplateColumns : `repeat(${ this.props.pixels.length}, 1fr)`,
                 gridTemplateRows : `repeat(${ this.props.pixels.length}, 1fr)`
                 }}>
                     {

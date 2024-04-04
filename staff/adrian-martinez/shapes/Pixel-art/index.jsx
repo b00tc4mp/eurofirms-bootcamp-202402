@@ -7,7 +7,7 @@ class App extends React.Component{
 
         for(let i=0;i < board.length;i++){
 
-            //board[i] = [0, 0, 0]
+            //board[i] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
             board[i] = new Array(board.length).fill("gray");
         }
 
@@ -41,7 +41,7 @@ class App extends React.Component{
     play(row, column){
 
         const changeColor = this.state.changeColor;
-        const board = this.state.board.map(row => [...row]);
+        const board = this.state.board.map(row => [...row]);//Siempre se debe poner esto para evitar mutar el array original
 
         console.log("click");
         board[row][column] = changeColor;
@@ -49,20 +49,20 @@ class App extends React.Component{
     }
 
     changeColor(color){
-        /* if(color == "blue"){
-            return "#3333cc";
+        /*if(color == "blue"){
+            board[row][column].style= "background-color : #3333cc";
         }
-        else if(id == "green"){
-            return "#00cc00";
+        else if(color == "green"){
+            board[row][column].style= "background-color : #00cc00";
         }
-        else if(id == "yellow"){
-            return "#fff00";
+        else if(color == "yellow"){
+            board[row][column].style= "background-color : #fff00";
         }
-        else if(id == "red"){
-            return "#e60000";
+        else if(color == "red"){
+            board[row][column].style= "background-color : #e60000";
         }
         else
-            return "#b3b3cc"; */
+            board[row][column].style= "background-color : #b3b3cc"; */
         this.setState({changeColor : color});
     }
 
@@ -94,17 +94,20 @@ class App extends React.Component{
                             Si tuviéramos que hacer que el tablero fuera dinámico tendríamos que recorrer las celdas que
                             fueran de esta forma:
                         */}
+
                         
                             {board.map((row, i) => row.map((color, j) => <div key={`${i}-${j}`} className="cell" 
                              onClick={() => this.play(i, j)} style={{ backgroundColor : color }}/>)).flat()}
-                            
+                            {/* Cada div tiene que tener un identificador único, por eso le decimos que sea una
+                            combinación de la i y la j, separados por un guión. */}
                     </section>
                     <section class="float-left">
                         <h2>Pinta celda</h2>
-                        <button className="blue" class="azul" onClick={() => this.changeColor("blue")}>Azul</button><br/>
-                        <button className="green" class="verde" onClick={() => this.changeColor("green")}>Verde</button><br/>
-                        <button className="yellow" class="amarillo" onClick={() => this.changeColor("yellow")}>Amarillo</button><br/>
-                        <button className="red" class="rojo" onClick={() => this.changeColor("red")}>Rojo</button>
+                        <button className="azul"  onClick={() => this.changeColor("blue")}>Azul</button><br/>
+                        <button className="verde"  onClick={() => this.changeColor("green")}>Verde</button><br/>
+                        <button className="amarillo" onClick={() => this.changeColor("yellow")}>Amarillo</button><br/>
+                        <button className="rojo" onClick={() => this.changeColor("red")}>Rojo</button>
+                        {/* <button className="green" class="verde" onClick={(changeColor("green"))}>Verde</button><br/> */}
                     </section>
                 </main>
                 <footer>
