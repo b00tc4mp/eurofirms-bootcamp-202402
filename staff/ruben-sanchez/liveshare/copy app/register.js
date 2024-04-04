@@ -17,8 +17,8 @@ form.onsubmit = function (event) {
     var emailInput = form.querySelector('#email')
     var email = emailInput.value
 
-    var passowrdInput = form.querySelector('#password')
-    var password = passowrdInput.value
+    var passwordInput = form.querySelector('#password')
+    var password = passwordInput.value
 
     try {
         logic.registerUser(name, birthdate, username, email, password)
