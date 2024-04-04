@@ -1,39 +1,52 @@
 /* general */
 
-body {
-    margin:0;
-    padding:0;
-    height: 100vh;
-    max-width: 100vw;
-}
-.body-rlr{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-}
-  
-.roboto-regular {
-    font-family: "Roboto", sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Coming+Soon&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anaheim&display=swap');
+
+
+.coming-soon-regular {
+    font-family: "Coming Soon", cursive;
     font-weight: 400;
     font-style: normal;
 }
   
-.roboto-medium {
-    font-family: "Roboto", sans-serif;
-    font-weight: 500;
-    font-style: normal;
+* {
+    font-family: "Coming Soon"
 }
-  
-.roboto-bold {
-    font-family: "Roboto", sans-serif;
-    font-weight: 700;
-    font-style: normal;
+
+body {
+    margin:0;
+    padding:0;
+    max-width: 100vw;
+    margin-top:70px;
+    margin-bottom: 60px;
 }
-  
-.roboto-black {
-    font-family: "Roboto", sans-serif;
-    font-weight: 900;
-    font-style: normal;
+
+.body-rlr{
+    display:flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items:center;
+    margin-top:30px;
+    margin-bottom: 10px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 1px;
+    border-top: 0;
+    border-color: black;
+    border-style: solid;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: grey;
+    height: 50px;
+    padding: 5px 0;
+    box-sizing: border-box;
 }
 
 main{
@@ -44,32 +57,36 @@ main{
     margin-bottom: 80px;
 }
 
+h1{
+    font-size: 30px;
+    font-weight: bold; 
+    color:midnightblue;
+    margin-bottom: 15px;
+    
+}
+
+h2{
+    font-size: 23px;
+    font-weight: bold; 
+    color:midnightblue;
+    margin-bottom: 20px;
+}
+
+h1, h2, a ,button{
+    font-family: "anaheim";
+}
+
 /* top-menu */
 
 #top-menu{
     display: flex;
-    justify-content: space-between;
-    align-items: center; 
-    width: 100%;
-    height: 9%;
-    top:0;
-    background-color: grey;
-    position: fixed;
- }
-
-.start-nav{
-  
-   display:flex;
-   align-items: center; 
-}
-
-.end-nav{
-    display: flex;
     align-items: center; 
     justify-content: flex-end;
- }
+    align-items: center; 
+    width: 50%;
+}
 
-.end-nav button {
+#top-menu button {
     width: 40px;
     height: 40px; 
     margin-right: 10px; 
@@ -79,33 +96,18 @@ main{
     cursor: pointer; 
 }
   
-.end-nav button:hover {
+#top-menu button:hover {
     background-color: lightgray;
 }
 
-/* register & login */
-
+/* form*/
 .form {
-    width: 400px;
     display: flex;
     flex-direction: column;
     align-items: left;
-    gap:6px;
+    gap:5px;
 }
 
-h1{
-    font-size: 32px;
-    font-weight: bold; 
-    color:darkblue;
-    margin-bottom: 20px;
-}
-
-h2{
-    font-size: 25px;
-    font-weight: bold; 
-    color:darkblue;
-    margin-bottom: 20px;
-}
 
 label{
     margin-top: 3px;
@@ -117,6 +119,7 @@ input{
     border-radius: 5px;
     border: 1px solid #ccc;
     box-sizing: border-box;
+    margin-bottom: 6px;
 }
   
 input:hover{
@@ -125,49 +128,79 @@ input:hover{
   
 button[type="submit"] {
     width: 100%;
-    padding: 10px;
+    padding: 5px 10px;
     border-radius: 5px;
     border: none;
     background-color: #007bff;
     color: #fff;
     font-size: 16px;
+    align-self: center;
     cursor: pointer;
+    margin-bottom: 5px;
 }
   
 button[type="submit"]:hover {
       background-color: #0056b3;
-  }
+}
   
-  .container-a{
-      display: flex;
-      justify-content: center;
-      width: 400px;
-      height: 40%;
-      background-color: rgb(217, 217, 213);
-      border-radius: 10px;
-      margin-top: 6px;
+.container-a{
+    display: flex;
+    justify-content: center;
+    background-color:lightgray;
+    border-radius: 5px;
+    padding: 5px;
+    
+    margin: 5px 0;
   
-  }
-  
-  .container-a:hover{
-      background-color: rgb(195, 195, 194);
-  }
-  
-  a { 
-      text-decoration: none;
-      color: #0056b3;
-  }
-  
-  a:hover {
-      color: #042e5a;
-  }
+}
+
+.container-a:hover{
+    background-color: rgb(195, 195, 194);
+}
+
+a{ 
+    text-decoration: none;
+    color: #0056b3;
+}
+
+a:hover {
+    color: #042e5a;
+}
+
+/* register, reset & login */
+
+.little-form{
+    width: 300px;
+}
+
+.big-form{
+    width: 450px;
+}
+
+.container-a-little{
+    width: 34.5%;
+}
+.container-a-big{
+    width: 98%;
+}
+
+/*home */
+
+.h1{
+    display: flex;
+    justify-content: center;
+}
 
 /* chat */
 
 #chat-section {
-    background-color: azure;
+    background-color:lightgray;
     padding: 10px;
     margin-bottom: 60px;
+}
+
+.chat-section--off {
+    display: none;
 }
 
 #chat h3 {
@@ -177,15 +210,12 @@ button[type="submit"]:hover {
     border-radius: 5px;
     border: 2px solid aliceblue; 
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); 
-   
-   }
-.chat-section--off {
-    display: none;
+ 
 }
 
 .chat-user {
     cursor: pointer;
-    font-size: 1.5em; 
+    font-size: 1em; 
 }
 .chat-user-online:hover{
     color: limegreen; 
@@ -198,10 +228,12 @@ button[type="submit"]:hover {
 .chat-user-offline::marker {
     color: gray;
 }
+
 .chat-user-offline:hover{
     color: gray; 
 }
-.chat--off {
+
+.chat--off{
     display: none;
 }
 
@@ -226,7 +258,8 @@ button[type="submit"]:hover {
 
 sup {
     font-size: 10px;
-    color: lightgrey;
+    color: dimgrey;
+    padding-left: 10px;
 }
 
 #chat-form {
@@ -239,11 +272,6 @@ sup {
 }
 
 /* posts */
-
-#posts-section {
-    margin-bottom: 60px;
-}
-
 .posts-section--off {
     display: none;
 }
@@ -252,21 +280,28 @@ sup {
     border: 1px solid black;
     margin: 10px;
     padding: 10px;
+    max-width: 100%;
+    align-self: center;
+}
+
+#posts-section h2{
+    padding-left: 15px;
 }
 
 .post-image {
-    width: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 90%;
 }
 
 /* create-post */
-
 #create-post-section {
     margin-bottom: 40px;
     position: fixed;
     bottom: 0;
     background-color: darkgray;
     width: 100%;
-    padding-bottom: 10px;
+    padding-bottom: 20px;
 }
 
 .create-post-section--off {
@@ -280,10 +315,11 @@ sup {
 
 /* footer */
 footer{
-        
+      
     background-color: dimgrey;
     color: white;
-    padding: 20px;
+    padding: 15px;
+    padding-right: 5px;
     position: fixed;
     bottom: 0;
     width: 100%;
@@ -295,16 +331,15 @@ footer div {
     display: flex;
     align-items: center;
     padding-right: 20px;
-    padding-left: 20px;
+    padding-left: 10px;
 }
 
 footer .right button {
-   
-    background-color: #fff;
+    background-color:white;
     color: #333;
     border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
+    padding: 5px 15px;
+    border-radius: 7px;
 }
 footer .right button:hover{
     background-color:gainsboro ;

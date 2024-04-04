@@ -6,44 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
     <link rel="stylesheet" href="style.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-    </style>
 </head>
 
 <body>
-   
-    <nav id="top-menu">
-        <div class="start-nav">
-            <img src="images/logo-cabecera-alalluna.png" alt="logo alalluna">
-        </div>
-        <h1>Welcome, Home!</h1>
-        <div class="end-nav">
-            <button id="chat-button">💬</button>
-            <button id="posts-button">🏚️</button>
-            <button id="create-post-button">+</button>
-        </div>
-    </nav>
+    <header class="header">
+        <img src="images/logo-cabecera-alalluna-pe.png" alt="logo alalluna">
+        <nav id="top-menu">
+                <button id="chat-button">💬</button>
+                <button id="posts-button">🏚️</button>
+                <button id="create-post-button">+</button> 
+        </nav>  
+        
+    </header>
+    
+    <div class="h1">
+        <h1 class="homeTitlePost">Welcome, Home!</h1>
+    </div>
+    
     <section id="posts-section">
         <h2>Posts</h2>
-<<<<<<< HEAD
         <div id="posts-list">
-=======
-        <div id="Posts-list">
->>>>>>> f05b05e4ba10ca58347d0bd8567e5af8aac84722
-            <article class="post">
-                <h3>Coco Drilo</h3>
-                <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExc2Qyc250NTFweG1iN3h1MTlhbnVnMHptN3E4bTdrOWlkcm44d3VhdiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l49F5FtmOKYb3cD84/giphy.gif"
-                alt="image cocodrilo">
-                <p>Yo soy un cocodrilo!<br><sup>2024-03-14 16:47</sup></p>
-            </article>
-    
-            <article class="post">
-                <h3>La Garto</h3>
-                <img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExejdzcGg3M252ZGdsYm0ybWk1ZHk1ODFqeTF0ZHEzaGg2c2oxOWR4byZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Jmn0QU5fYKqizwkR5v/giphy.gif"
-                alt="image lagarto">
-                <p>Y yo un lagarto!<br><sup>2024-03-14 16:47</sup></p>
-            </article>
         </div>  
     </section>
     
@@ -52,7 +34,9 @@
         <ul id="chat-users"></ul>
         <div id="chat" class="chat--off">
             <h3 id="chat-interlocutor">username</h3>
+
             <ul id="chat-messages"></ul>
+
             <form id="chat-form">
                 <input type="text" placeholder="your message" id="text">
 

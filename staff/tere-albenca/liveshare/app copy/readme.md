@@ -5,7 +5,6 @@ A social application to share content.
 ## Functional description
 
 ### Functionalities
-
 - Add a post (various: image,text,geo)
 - view post
 - View user profile(her o his post)
@@ -13,7 +12,7 @@ A social application to share content.
 - Edit profile
 - Send a message ( to another user)
 - View messages (recieveded and sendt)
-- Comment a post
+- Comment a post 
 - Toggle like a post
 - Toggle save a post
 - Follow a user
@@ -25,7 +24,7 @@ A social application to share content.
 ### UIDesign
 
 - Register ( Name, Lastname, Birthdate, Username, Email and Password) <a>Login
-- Login ( Username and Password) <a>Reset Password <a>Register
+- Login ( Username and Password) <a>Reset Password <a>Register 
 - Home (Logo messages profile, posts) <button> Logout
 
 ### Technical description
@@ -50,7 +49,6 @@ A social application to share content.
 - saved (array of post.id)
 
 ### Post
-
 - id (string)
 - user (user.id)
 - image (string)
