@@ -18,24 +18,24 @@ function App() {
 
     function play(row, column) {
         console.log('click')
-        //TODO FIX BOARD STATE -> ASK
+
         const prevBoard = board
 
-        const board = []
+        const newBoard = []
         for (let i = 0; i < prevBoard.length; i++)
-            board[i] = new Array(prevBoard[0].length).fill(0)
+            newBoard[i] = new Array(prevBoard[0].length).fill(0)
 
         for (const i in prevBoard)
             for (const j in prevBoard[i])
-                board[i][j] = prevBoard[i][j]
+                newBoard[i][j] = prevBoard[i][j]
 
         if (turn % 2 === 0)
-            board[row][column] = 1
+            newBoard[row][column] = 1
         else
-            board[row][column] = 2
+            newBoard[row][column] = 2
 
-        setBoard(board)
-        setTurn(turn++)
+        setBoard(newBoard)
+        setTurn(turn + 1)
     }
 
     return <>
@@ -45,7 +45,7 @@ function App() {
                 gridTemplateColumns: `repeat(${board.length}, 1fr)`,
                 gridTemplateRows: `repeat(${board.length}, 1fr)`
             }}>
-                {board.map((row, i) => row.map((column, j) => <div className="cell" onClick={() => play(i, j)}>{getCellChar(board[i][j])}</div>)).flat(Infinity)}
+                {board.map((row, i) => row.map((column, j) => <div key={`${i}-${j}`} className="cell" onClick={() => play(i, j)}>{getCellChar(board[i][j])}</div>)).flat(Infinity)}
             </section>
         </main>
         <footer></footer>
