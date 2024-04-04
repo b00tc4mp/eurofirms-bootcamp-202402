@@ -2,7 +2,7 @@ function Pixel(props) {
     function handleClick() {
         console.debug('Pixel handleClick')
 
-        props.onClick()
+        props.onClick
     }
 
     console.debug('Pixel render')
@@ -11,5 +11,6 @@ function Pixel(props) {
         className="pixel"
         style={{ backgroundColor: props.color }}
         onClick={() => handleClick()}>
-    </div >
+
+    </div>
 }
