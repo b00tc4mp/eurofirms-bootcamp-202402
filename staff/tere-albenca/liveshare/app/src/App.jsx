@@ -8,7 +8,7 @@ import ResetPassword from './pages/ResetPassword'
 function App() {
     const [count, setCount]= useState(0)
     return(<>
-    {/*<Home/>*/}
+    <Home/>
     {/*<Login/>*/}
     {/*<Register/>*/}
     <ResetPassword/>

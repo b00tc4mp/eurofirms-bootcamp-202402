@@ -1,7 +1,7 @@
 function Home(){
     return <>  
         <header className="header">
-            <img src="./assets/images/logo-cabecera-alalluna-pe.png" alt="logo alalluna"/>
+            <img src="src/assets/images/logo-cabecera-alalluna.png" alt="logo alalluna"/>
             <nav id="top-menu">
                     <button id="chat-button">💬</button>
                     <button id="posts-button">🏚️</button>
