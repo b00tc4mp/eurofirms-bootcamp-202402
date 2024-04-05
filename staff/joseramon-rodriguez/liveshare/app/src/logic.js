@@ -1,4 +1,5 @@
 // business layer (logic)
+import data from "./data"
 
 var logic = (function () {
     //helpers
@@ -101,12 +102,12 @@ var logic = (function () {
 
     //logic
 
-    function registerUser(name, birthdate, username, email, password) {
+    function registerUser(name, birthdate, email, username, password) {
 
         validateName(name)
         validateBirthdate(birthdate)
-        validateUsername(username)
         validateEmail(email)
+        validateUsername(username)
         validatePassword(password)
 
         //check if user already exist via email (if already exist, then throw error)
@@ -276,3 +277,5 @@ var logic = (function () {
     }
 
 })()
+
+export default logic
