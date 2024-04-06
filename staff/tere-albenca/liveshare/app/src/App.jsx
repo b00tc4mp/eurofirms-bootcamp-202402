@@ -3,6 +3,7 @@ import Login from './pages/Login'
 import Register from './pages/Register'
 import ResetPassword from './pages/ResetPassword'
 import{ Component } from 'react'
+
 class App extends Component {
     constructor(){
         super()
@@ -48,7 +49,8 @@ class App extends Component {
             onUserResetPassword={() => this.handleUserResetPassword()} 
             onRegisterClick={() => this.handleRegisterClick()}
             onLoginClick={() => this.handleLoginClick()}/>}
-          {this.state.view === 'home' && <Home />}
+          {this.state.view === 'home' && <Home 
+           />}
         </>
     }
 }
