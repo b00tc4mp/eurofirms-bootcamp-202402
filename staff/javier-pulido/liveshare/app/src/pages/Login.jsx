@@ -1,24 +1,45 @@
-function Login() {
-return <>
-    <main className="main main--thin">
-        <h1>Login</h1>
+import logic from "../logic"
 
-        <form className="form" action="">
-            <label htmlFor="username">Username</label>
-            <input className="input" type="text" id="username"/>
+function Login(props) {
+    const handleSubmit = event => {
+        event.preventDefault()
 
-            <label htmlFor="password">Password</label>
-            <input className="input" type="password" id="password"/>
+        const form = event.target
 
-            <button className="button button-right" type="submit">Login</button>
-        </form>
+        const username = form.username.value
+        const password = form.password.value
 
-        <a className="link--center" href="register.html">Register</a>
-    </main>
- 
+        try {
+            logic.loginUser(username, password)
 
-</>
+            props.onUserLoggedIn()
+        } catch (error) {
+            console.error(error)
 
+            alert(error.message)
+        }
+    }
+
+    const handleRegisterClick = event => {
+        event.preventDefault()
+
+        props.onRegisterClick()
+    }
+    return <>
+        <main className="main main">
+            <h1>Login</h1>
+            <form className="form" onSubmit={handleSubmit}>
+                <label htmlFor="username">Username</label>
+                <input type="text" id="username" />
+
+                <label htmlFor="password">Password</label>
+                <input type="password" id="password" />
+
+                <button type="submit">Login</button>
+                <a href="register.html" onClick={handleRegisterClick}>Register</a>
+            </form>
+        </main>
+    </>
 }
 
 export default Login

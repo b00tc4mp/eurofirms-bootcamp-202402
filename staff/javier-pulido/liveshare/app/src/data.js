@@ -151,3 +151,5 @@ return {
     getAllPosts: getAllPosts
 }
 })() // Se retorna un objeto con todas las funciones definidas
+
+export default data
