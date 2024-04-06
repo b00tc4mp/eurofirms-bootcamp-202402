@@ -1,9 +1,41 @@
-function Login(){
+import logic from "../logic"
+
+function Login(props){
+    const handleSubmit = event =>{
+        event.preventDefault()
+
+        const form = event.target
+
+        const username = form.username.value 
+        const password = form.password.value
+
+        try {
+            logic.loginUser(username, password)
+
+            props.onUserLoggedIn()
+        } catch (error) {
+            console.error(error)
+
+            alert(error.message)
+        }
+    }
+
+    const handleRegisterClick= event => {
+        event.preventDefault()
+
+        props.onRegisterClick()
+    }
+
+    const handleResetPasswordClick = event => {
+        event.preventDefault()
+        props.onResetPasswordClick()
+    }
+
     return <>
     <div className="body-rlr">
     <main className="main">
         <h1>LOGIN</h1>
-        <form action="" className="form little-form">
+        <form onSubmit={handleSubmit} className="form little-form">
 
             <label htmlFor="username">Username</label>
             <input className="input" type="text" id="username"/>
@@ -17,10 +49,10 @@ function Login(){
 
 
         <div className="container-a container-a-little">
-            <a href="">Reset password</a>
+            <a onClick= {handleResetPasswordClick}>Reset password</a>
         </div>
         <div className="container-a container-a-little">
-            <a href="">Register</a><br/>
+            <a onClick= {handleRegisterClick}>Register</a><br/>
         </div>
 
     </main>

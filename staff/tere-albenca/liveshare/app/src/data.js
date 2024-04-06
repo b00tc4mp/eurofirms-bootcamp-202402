@@ -143,3 +143,5 @@ var data = (function () {
     getAllPosts: getAllPosts,
   };
 })();
+
+export default data;

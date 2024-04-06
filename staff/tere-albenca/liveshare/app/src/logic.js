@@ -1,5 +1,6 @@
+import data from "./data";
+
 var logic = (function () {
-  //IFFE
   //helpers
   function validateName(name) {
     //name
@@ -45,15 +46,6 @@ var logic = (function () {
       throw new Error("birthdate has not correct structure");
   }
 
-  function validateUsername(username) {
-    //username
-    if (username.length < 3)
-      throw new Error("username is lower. Write more character, please");
-
-    if (username.includes(" "))
-      throw new Error("You use space character. Delete it, please");
-  }
-
   function validateEmail(email) {
     //email
     if (email.length < 6) throw new Error("email is lower than 6 characters");
@@ -72,6 +64,15 @@ var logic = (function () {
       throw new Error("email domain is lower than 2 characters");
 
     if (email.includes(" ")) throw new Error("email has space character");
+  }
+
+  function validateUsername(username) {
+    //username
+    if (username.length < 3)
+      throw new Error("username is lower. Write more character, please");
+
+    if (username.includes(" "))
+      throw new Error("You use space character. Delete it, please");
   }
 
   function validatePassword(password) {
@@ -97,27 +98,27 @@ var logic = (function () {
   }
 
   //logic
-  function registerUser(name, lastname, birthdate, username, email, password) {
+  function registerUser(name, lastname, birthdate, email, username, password) {
     //register
     validateName(name);
     validateLastname(lastname);
     validateBirthdate(birthdate);
-    validateUsername(username);
     validateEmail(email);
+    validateUsername(username);
     validatePassword(password);
 
     var user = data.findUser(function (user) {
       return user.username === username || user.email === email;
     });
 
-    if (user !== undefinedsente) throw new Error("user already exists");
+    if (user !== undefined) throw new Error("user already exists");
 
     var user = {
       name: name,
       lastname: lastname,
       birthdate: birthdate,
-      username: username,
       email: email,
+      username: username,
       password: password,
     };
 
@@ -148,16 +149,16 @@ var logic = (function () {
     name,
     lastname,
     birthdate,
-    username,
     email,
+    username,
     newpassword,
     repeatpassword
   ) {
     validateName(name);
     validateLastname(lastname);
     validateBirthdate(birthdate);
-    validateUsername(username);
     validateEmail(email);
+    validateUsername(username);
     validatePassword(newpassword);
     validatePassword(repeatpassword);
 
@@ -304,3 +305,4 @@ var logic = (function () {
     retrievePosts: retrievePosts,
   };
 })();
+export default logic;
