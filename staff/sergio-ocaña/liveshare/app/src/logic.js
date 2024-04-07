@@ -1,4 +1,4 @@
-
+import data from './data'
 var logic = (function () {
     // helpers
 
@@ -85,11 +85,11 @@ var logic = (function () {
         if (!text.length) throw new Error('text is empty')
     }
 
-    function registerUser(name, birthdate, username, email, password) {
+    function registerUser(name, birthdate, email, username, password) {
         validateName(name)
         validateBirthdate(birthdate)
-        validateUsername(username)
         validateEmail(email)
+        validateUsername(username)
         validatePassword(password)
         var user = data.findUser(function (user) {
             return user.username === username || user.email === email
@@ -245,3 +245,5 @@ var logic = (function () {
         retrievePosts: retrievePosts
     }
 })()
+
+export default logic
