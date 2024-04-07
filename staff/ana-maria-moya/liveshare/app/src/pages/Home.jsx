@@ -1,60 +1,35 @@
-import App from "../App"
+import {Component} from "react"
+import logic from "../logic"
+import CreatePost from "./CreatePost"
 
-function Home() {
-return <>
-    <>
-    <header className="header">
-        <h1>Hello, Ana María Moya Liébana!</h1>
-        <nav id="top-menu">
-            <button id="chat-button">💬</button>
-            <button id="logout-button">🚪</button>
-        </nav>
-    </header>
+class Home extends Component {
+    constructor() {
+        super()
 
-    <main className="main">
-        <section id="posts-section">
+        const posts = logic.retrievePosts()
+        this.state = {view: 'createPost', posts: posts}
+    }
+
+    handleCreateClick() {
+        this.setState({ view: 'post'})
+    }
+    render(){
+        //const user = logic.retrieveUser()
+
+        return<>
+        <section id="posts-section" className="posts-section">
             <h2>Posts</h2>
-            <div id="posts-list"><article className="post"><h3>Anamml001</h3><img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExZmJ4cGJkYWo0YjBvOW04Zmd0dnpmZTA5ajAyc3F6azZmZHJsZDljYSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3o7rc0qU6m5hneMsuc/giphy.gif" className="post-image"/><p>Que ricas las palomitas<br/><sup>2024-03-19, 2:58:49 p.m.</sup></p></article><article className="post"><h3>Anamml001</h3><img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExdTlxcW54Y3Z3aTRmZnprOHVlMGVpMnFyeGdoMDh1OGpybnZneTdlcSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/wBELrJgO6ZtII/giphy.gif" className="post-image"/><p>Besos<br/><sup>2024-03-19, 2:53:32 p.m.</sup></p></article></div>
+            <div id="posts-list">
+                {this.state.posts.map((post => <article key={post.id} className="post">
+                    <h3>{post.author.username}</h3>
+                    <img className="post-image" src={`${post.image}`}></img>
+                    <p>{post.text}<br /><sup>{post.date}</sup></p>
+                </article> ))}
+            </div>
         </section>
-        <section id="chat-section" className="chat-section--off">
-            <ul id="chat-users"><li className="chat-user chat-user-online">Esperanzaml</li><li className="chat-user chat-user-offline">Tomaml</li></ul>
-
-                <div id="chat" className="chat--off">
-                    <h3 id="chat-interlocutor">username</h3>
-
-                    <ul id="chat-messages"></ul>
-
-                    <form id="chat-form">
-                        <label htmlFor="text">Text</label>
-                        <input type="text" id="text"/>
-                        <button type="submit">Send</button>
-                    </form>
-                </div>
-        </section>
-        <section id="create-post-section" className="create-post-section--off">
-            <h2>Create Post</h2>
-
-            <form id="create-post-form">
-                <label htmlFor="image">Image</label>
-                <input type="text" id="image"/>
-
-                <label for="text">Text</label>
-                <input className="input" type="text" id="text"/>
-
-                <button className="button button--right" type="submit">Create</button>
-            </form>
-
-            <button className="button button--center" id="create-post-cancel-button">Cancel</button>
-        </section>
-
-    </main>
-    <footer className="footer">
-        <button className="button" id="posts-button">🏚️</button>
-        <button className="button" id="create-post-button">➕</button>
-    </footer>
-
-</> 
-</>
+        {this.state.view === 'createPost' && <createPost onPostCreated={() => this.handleCreateClick()}/>}
+        </>
+    }
 }
 
 export default Home

@@ -135,3 +135,5 @@ var data = (function () {
 
     }
 })()
+
+export default data

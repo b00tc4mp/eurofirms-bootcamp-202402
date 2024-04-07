@@ -1,4 +1,4 @@
-//business layer(logic)
+import data from './data'
 
 var logic = (function () {
 
@@ -87,10 +87,10 @@ var logic = (function () {
     }
     //logic
 
-    function registerUser(name, birthdate, username, email, password) {
-        validateName(name)
-        validateBirthdate(birthdate)
+    function registerUser(name, birthdate, email, username, password) {
         validateUsername(username)
+        validateBirthdate(birthdate)
+        validateName(name)
         validateEmail(email)
         validatePassword(password)
 
@@ -256,3 +256,5 @@ var logic = (function () {
         retrievePosts: retrievePosts
     }
 })() 
+
+export default logic 
