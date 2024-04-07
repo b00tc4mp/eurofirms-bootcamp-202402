@@ -1,5 +1,7 @@
 // business layer (logic)
 
+import data from './data'
+
 var logic = (function () {
     // helpers
 
@@ -89,11 +91,11 @@ var logic = (function () {
 
     // logic
 
-    function registerUser(name, birthdate, username, email, password) {
+    function registerUser(name, birthdate, email, username, password) {
         validateName(name)
         validateBirthdate(birthdate)
-        validateUsername(username)
         validateEmail(email)
+        validateUsername(username)
         validatePassword(password)
 
         var user = data.findUser(function (user) {
@@ -106,8 +108,8 @@ var logic = (function () {
         var user = {
             name: name,
             birthdate: birthdate,
-            username: username,
             email: email,
+            username: username,
             password: password
         }
 
@@ -258,3 +260,5 @@ var logic = (function () {
         retrievePosts: retrievePosts
     }
 })()
+
+export default logic
