@@ -23,6 +23,12 @@ function Register(props) {
     }
   };
 
+  const handleLoginClick = (event) => {
+    event.preventDefault();
+
+    props.onLoginClick();
+  };
+
   return (
     <main className="main main--thin">
       <h1>Register</h1>
@@ -48,7 +54,11 @@ function Register(props) {
         </button>
       </form>
 
-      <a className="link--center" href="login.html">
+      <a
+        className="link--center"
+        href="login.html"
+        onClick={handleLoginClick}
+      >
         Login
       </a>
     </main>

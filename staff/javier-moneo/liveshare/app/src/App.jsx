@@ -14,12 +14,33 @@ class App extends Component {
     this.setState({ view: 'login' });
   }
 
+  handleUserLoggedIn() {
+    this.setState({ view: 'home' });
+  }
+
+  handleRegisterClick() {
+    this.setState({ view: 'register' });
+  }
+
+  handleLoginClick() {
+    this.setState({ view: 'login' });
+  }
+
   render() {
+    
     return (
       <>
-        {this.state.view === 'login' && <Login />}
+        {this.state.view === 'login' && (
+          <Login
+            onUserLoggedIn={() => this.handleUserLoggedIn()}
+            onRegisterClick={() => this.handleRegisterClick()}
+          />
+        )}
         {this.state.view === 'register' && (
-          <Register onUserRegistered={() => this.handleUserRegistered()} />
+          <Register
+            onUserRegistered={() => this.handleUserRegistered()}
+            onLoginClick={() => this.handleLoginClick()}
+          />
         )}
         {this.state.view === 'home' && <Home />}
       </>
