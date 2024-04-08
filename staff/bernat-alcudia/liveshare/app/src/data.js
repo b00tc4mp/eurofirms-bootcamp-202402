@@ -1,5 +1,7 @@
+
+
 var data = (function () {
-    //helpers
+    // helpers
 
     function loadUsers() {
         return JSON.parse(localStorage.users || '[]')
@@ -25,21 +27,17 @@ var data = (function () {
         localStorage.posts = JSON.stringify(posts)
     }
 
-
-    //data 
+    // data
 
     function findUser(callback) {
         var users = loadUsers()
 
-        for (let i = 0; i < users.length; i++) {
+        for (var i = 0; i < users.length; i++) {
             var user = users[i]
 
             var matches = callback(user)
 
-            if (matches) {
-                return user
-            }
-
+            if (matches) return user
         }
     }
 
@@ -75,6 +73,7 @@ var data = (function () {
 
     function printUsers() {
         var users = loadUsers()
+
         console.table(users)
     }
 
@@ -104,6 +103,8 @@ var data = (function () {
         var messages = loadMessages()
 
         var filtered = messages.filter(callback)
+
+        return filtered
     }
 
     function insertPost(post) {
@@ -142,5 +143,6 @@ var data = (function () {
         printPosts: printPosts,
         getAllPosts: getAllPosts
     }
-
 })()
+
+export default data
