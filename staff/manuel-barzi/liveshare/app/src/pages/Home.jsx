@@ -1,6 +1,13 @@
+import { useState } from 'react'
+
 import logic from '../logic'
 
+import Posts from '../components/Posts'
+import CreatePost from '../components/CreatePost'
+
 function Home({ onUserLoggedOut }) {
+    const [view, setView] = useState(null)
+
     let user = null
 
     try {
@@ -27,39 +34,33 @@ function Home({ onUserLoggedOut }) {
         alert(error.message)
     }
 
+    const handleCreatePostClick = () => setView('create-post')
+
+    const handleCreatePostCancelClick = () => setView(null)
+
+    const handlePostCreated = () => setView(null)
+
     console.log('Home render')
 
     return <>
-        <header class="header">
+        <header className="header">
             <h1>Hello, {user.name}!</h1>
 
             <nav id="top-menu">
-                <button class="button" id="chat-button">💬</button>
-                <button class="button" id="logout-button" onClick={handleLogout}>🚪</button>
+                <button className="button" id="chat-button">💬</button>
+                <button className="button" id="logout-button" onClick={handleLogout}>🚪</button>
             </nav>
         </header>
 
-        <main class="main">
-            <section id="posts-section">
-                <h2>Posts</h2>
+        <main className="main">
+            <Posts />
 
-                <div id="posts-list">
-                    {
-                        posts.map(post => <article key={post.id} class="post">
-                            <h3>{post.author.name}</h3>
-                            <img src={post.image} class="post-image" />
-                            <p>{post.text}<br /><sup>{post.date}</sup></p>
-                        </article>)
-                    }
-                </div>
-            </section>
-
-            <section id="chat-section" class="chat-section--off">
+            <section id="chat-section" className="chat-section--off">
                 <h2>Chat</h2>
 
-                <ul id="chat-users"><li class="chat-user chat-user-online">wendydarling</li></ul>
+                <ul id="chat-users"><li className="chat-user chat-user-online">wendydarling</li></ul>
 
-                <div id="chat" class="chat--off">
+                <div id="chat" className="chat--off">
                     <h3 id="chat-interlocutor">username</h3>
 
                     <ul id="chat-messages"></ul>
@@ -68,31 +69,17 @@ function Home({ onUserLoggedOut }) {
                         <label htmlFor="text">Text</label>
                         <input type="text" id="text" />
 
-                        <button class="button" type="submit">Send</button>
+                        <button className="button" type="submit">Send</button>
                     </form>
                 </div>
             </section>
 
-            <section class="container container--border-top create-post-section--off" id="create-post-section">
-                <h2>Create Post</h2>
-
-                <form class="form" id="create-post-form">
-                    <label htmlFor="image">Image</label>
-                    <input class="input" type="text" id="image" />
-
-                    <label htmlFor="text">Text</label>
-                    <input class="input" type="text" id="text" />
-
-                    <button class="button button--right" type="submit">Create</button>
-                </form>
-
-                <button class="button button--center" id="create-post-cancel-button">Cancel</button>
-            </section>
+            {view === 'create-post' && <CreatePost onCancelClick={handleCreatePostCancelClick} onPostCreated={handlePostCreated} />}
         </main>
 
-        <footer class="footer">
-            <button class="button" id="posts-button">🏚️</button>
-            <button class="button" id="create-post-button">➕</button>
+        <footer className="footer">
+            <button className="button">🏚️</button>
+            <button className="button" onClick={handleCreatePostClick}>➕</button>
         </footer>
     </>
 }
