@@ -1,6 +1,8 @@
 import logic from '../logic';
 
-function CreatePost({ onPostCreated }) {
+function CreatePost({ onCancelClick, onPostCreated }) {
+  const handleCancelClick = () => onCancelClick();
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -22,13 +24,10 @@ function CreatePost({ onPostCreated }) {
 
   return (
     <>
-      <section
-        className="container container--border-top"
-        id="create-post-section"
-      >
+      <section className="container container--border-top create-post">
         <h2>Create Post</h2>
 
-        <form className="form" id="create-post-form" onSubmit={handleSubmit}>
+        <form className="form" onSubmit={handleSubmit}>
           <label htmlFor="image">Image</label>
           <input className="input" type="text" id="image" />
 
@@ -40,10 +39,7 @@ function CreatePost({ onPostCreated }) {
           </button>
         </form>
 
-        <button
-          className="button button--center"
-          id="create-post-cancel-button"
-        >
+        <button className="button button--center" onClick={handleCancelClick}>
           Cancel
         </button>
       </section>

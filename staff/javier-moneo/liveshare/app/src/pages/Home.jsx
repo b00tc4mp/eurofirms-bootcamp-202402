@@ -1,9 +1,12 @@
 import { useState } from 'react';
+
 import logic from '../logic';
-import CreatePost from './CreatePost';
+
+import Posts from '../components/Posts';
+import CreatePost from '../components/CreatePost';
 
 function Home({ onUserLoggedOut }) {
-  const [view, setView] = useState('createPost');
+  const [view, setView] = useState(null);
   let user = null;
 
   try {
@@ -22,12 +25,6 @@ function Home({ onUserLoggedOut }) {
 
   let posts = [];
 
-  const handleCreateClick = () => {
-    // const newPosts = logic.retrievePosts();
-    // this.setState({ view: 'post', posts: newPosts });
-    setView('post');
-  };
-
   try {
     posts = logic.retrievePosts();
   } catch (error) {
@@ -35,6 +32,12 @@ function Home({ onUserLoggedOut }) {
 
     alert(error.message);
   }
+
+  const handleCreatePostClick = () => setView('create-post');
+
+  const handleCreatePostCancelClick = () => setView(null);
+
+  const handlePostCreated = () => setView(null);
 
   return (
     <>
@@ -52,25 +55,12 @@ function Home({ onUserLoggedOut }) {
       </header>
 
       <main className="main">
-        <section id="posts-section">
-          <h2>Posts</h2>
-
-          <div id="posts-list">
-            {posts.map((post) => (
-              <article key={post.id} className="post">
-                <h3>{post.author.username}</h3>
-                <img className="post-image" src={`${post.image}`}></img>
-                <p>
-                  {post.text}
-                  <br />
-                  <sup>{post.date}</sup>
-                </p>
-              </article>
-            ))}
-          </div>
-        </section>
-        {view === 'createPost' && (
-          <CreatePost onPostCreated={() => handleCreateClick()} />
+        <Posts />
+        {view === 'create-post' && (
+          <CreatePost
+            onCancelClick={handleCreatePostCancelClick}
+            onPostCreated={handlePostCreated}
+          />
         )}
       </main>
 
@@ -78,7 +68,11 @@ function Home({ onUserLoggedOut }) {
         <button className="button" id="posts-button">
           🏚️
         </button>
-        <button className="button" id="create-post-button">
+        <button
+          className="button"
+          id="create-post-button"
+          onClick={handleCreatePostClick}
+        >
           ➕
         </button>
       </footer>
