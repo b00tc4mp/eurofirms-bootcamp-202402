@@ -1,26 +1,28 @@
 import Login from './pages/Login'
 import Register from './pages/Register'
 import Home from './pages/Home'
-import { Component } from 'react'
+import { useState } from 'react'
 
-class App extends Component {
-  constructor() {
-    super()
+function App() {
+  const [view, setView] = useState('login')
 
-    this.state = { view: 'register' }
-  }
+  const handleUserRegistered = () => setView('login')
 
-  handleUserRegistered() {
-    this.setState({ view: 'login' })
-  }
+  const handleUserLoggedIn = () => setView('home')
 
-  render() {
-    return <>
-      {this.state.view === 'login' && <Login />}
-      {this.state.view === 'register' && <Register onUserRegistered={() => this.handleUserRegistered()} />}
-      {this.state.view === 'home' && <Home />}
-    </>
-  }
+  const handleRegisterClick = () => setView('register')
+
+  const handleLoginClick = () => setView('login')
+
+  const handleUserLoggedOut = () => setView('login')
+
+  console.debug('App render')
+
+  return <>
+    {view === 'login' && <Login onUserLoggedIn={handleUserLoggedIn} onRegisterClick={handleRegisterClick} />}
+    {view === 'register' && <Register onUserRegistered={() => handleUserRegistered()} onLoginClick={handleLoginClick} />}
+    {view === 'home' && <Home onUserLoggedOut={handleUserLoggedOut} />}
+  </>
 }
 
 export default App

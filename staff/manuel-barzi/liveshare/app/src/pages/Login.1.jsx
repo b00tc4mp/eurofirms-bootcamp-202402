@@ -1,6 +1,6 @@
 import logic from '../logic'
 
-function Login({ onUserLoggedIn, onRegisterClick }) {
+function Login(props) {
     const handleSubmit = event => {
         event.preventDefault()
 
@@ -12,7 +12,7 @@ function Login({ onUserLoggedIn, onRegisterClick }) {
         try {
             logic.loginUser(username, password)
 
-            onUserLoggedIn()
+            props.onUserLoggedIn()
         } catch (error) {
             console.error(error)
 
@@ -23,7 +23,7 @@ function Login({ onUserLoggedIn, onRegisterClick }) {
     const handleRegisterClick = event => {
         event.preventDefault()
 
-        onRegisterClick()
+        props.onRegisterClick()
     }
 
     console.debug('Login render')
