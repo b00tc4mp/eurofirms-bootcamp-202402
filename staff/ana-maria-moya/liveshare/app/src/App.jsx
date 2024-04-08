@@ -8,29 +8,29 @@ class App extends Component {
     constructor() {
         super()
 
-        this.state = { view: 'register' }
+        this.state = { view: 'home' }
     }
 
     handleUserRegistered() {
         this.setState({ view: 'login' })
     }
 
-    handleUseLogedIn() {
-        this.state({ view: 'home' })
-    }
-
-    handleRegisterClick() {
+    handleUserLoggedIn() {
         this.setState({ view: 'home' })
     }
 
-    handleRegisterLogin() {
-        this.setState({view: 'login'})
+    handleRegisterClick() {
+        this.setState({ view: 'register' })
+    }
+
+    handleLoginClick() {
+        this.setState({ view: 'login' })
     }
 
     render() {
         return <>
-            {this.state.view === 'login' && <Login onUser/>}
-            {this.state.view === 'register' && <Register onUserRegistered={() => this.handleUserRegistered()} />}
+            {this.state.view === 'login' && <Login onUserLoggedIn={() => this.handleUserLoggedIn()} onRegisterClick={() => this.handleRegisterClick()} />}
+            {this.state.view === 'register' && <Register onUserRegistered={() => this.handleUserRegistered()} onLoginClick={() => this.handleLoginClick()} />}
             {this.state.view === 'home' && <Home />}
         </>
     }

@@ -11,7 +11,9 @@ class Home extends Component {
     }
 
     handleCreateClick() {
-        this.setState({ view: 'post'})
+        const newPosts = logic.retrievePosts()
+
+        this.setState({ view: 'post', posts: newPosts})
     }
     render(){
         //const user = logic.retrieveUser()
@@ -27,7 +29,7 @@ class Home extends Component {
                 </article> ))}
             </div>
         </section>
-        {this.state.view === 'createPost' && <createPost onPostCreated={() => this.handleCreateClick()}/>}
+        {this.state.view === 'createPost' && <CreatePost onPostCreated={() => this.handleCreateClick()}/>}
         </>
     }
 }
