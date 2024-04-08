@@ -6,14 +6,16 @@ class Home extends Component {
     constructor() {
         super()
 
-        const post = logic.retrievePosts()
+        const posts = logic.retrievePosts()
         this.state = { view: 'createPost', posts: posts }
 
 
     }
 
     handleCreateClick() {
-        this.setState({ view: 'post' })
+        const newPosts = logic.retrievePosts()
+
+        this.setState({ view: 'post', posts: newPosts })
     }
     render() {
         // const user = logic.retrieveUser()
