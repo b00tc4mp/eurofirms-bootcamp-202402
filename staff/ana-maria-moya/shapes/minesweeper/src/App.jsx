@@ -41,7 +41,7 @@ function App() {
   const [gameState, setGameState] = React.useState(null)
 
   //Hacemos esto porque no se puede mutar el array original
-  const handleClick = (i, j) => {
+  const handleCellClick = (i, j) => {
     if (gameState === 'loose') return
 
     const boardCopy = [...board].map(row => [...row])
@@ -125,10 +125,10 @@ function App() {
         >
           {board.map((row, i) => row.map((cell, j) => {
             return cell.isClicked ?
-              <div className="clicked-cell">
+              <div key={`${i}-${j}`} className="clicked-cell">
                 {cell.isBomb ? 'Boom' : cell.bombsAside}
               </div> :
-              <div className="no-clicked-cell">
+              <div key={`${i}-${j}`} className="no-clicked-cell">
                 <button onClick={() => handleCellClick(i, j)} className="cell-button"></button>
               </div>
           })).flat()}
