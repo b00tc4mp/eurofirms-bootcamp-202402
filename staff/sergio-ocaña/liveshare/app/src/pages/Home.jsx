@@ -1,77 +1,73 @@
-import { Component } from "react"
+import React, { Component } from "react"
 import CreatePost from "./sections/CreatePost"
 import Posts from "./sections/Posts"
 import logic from "../logic"
 import Chat from "./sections/Chat"
+import { useState } from "react"
 
+function Home({ onLogoutClick }) {
+    let loggedUser
+    let initialPosts
 
-class Home extends Component {
-    constructor(props) {
-        super()
-        this.props = props
-        try {
-            const user = logic.retrieveUser()
-            const posts = logic.retrievePosts()
+    try {
+        loggedUser = logic.retrieveUser()
+        initialPosts = logic.retrievePosts()
 
-            this.state = { createPost: 'hide', view: 'posts', posts, user }
-        } catch (error) {
-            console.error(error)
-            alert(error.message)
-        }
-
+    } catch (error) {
+        console.error(error)
+        alert(error.message)
     }
-    handleChatButton() {
-        this.setState({ view: 'chat' })
-    }
+    const [user, setUser] = React.useState(loggedUser)
+    const [posts, setPosts] = React.useState(initialPosts)
+    const [createPost, setCreatePost] = React.useState('hide')
+    const [view, setView] = React.useState('posts')
 
-    handleLogoutButton() {
-        this.props.onLogoutClick()
-    }
-    handlePostButton() {
-        this.setState({ view: 'posts' })
-    }
+    const handleChatButton = () => setView('chat')
 
-    handleCreatePostButton() {
-        this.setState({ createPost: 'show' })
-    }
+    const handleLogoutButton = () => {
+        logic.logoutUser()
 
-    handleSendCreateButton() {
+        onLogoutClick()
+    }
+    const handlePostButton = () => setView('posts')
+
+
+    const handleCreatePostButton = () => setCreatePost('show')
+
+
+    const handleSendCreateButton = () => {
         const updatedPosts = logic.retrievePosts()
-
-        this.setState({ createPost: 'hide', posts: updatedPosts })
+        // this.setState({ createPost: 'hide', posts: updatedPosts })
+        setPosts(updatedPosts)
+        setCreatePost('hide')
     }
 
-    handleCancelCreateButton() {
-        this.setState({ createPost: 'hide' })
-    }
+    const handleCancelCreateButton = () => setCreatePost('hide')
 
+    const username = user.username
+    return <>
 
-    render() {
-        debugger
-        const username = this.state.user.username
-        return <>
+        <header>
+            <h1>{`Hola ${username}!`}</h1>
 
-            <header>
-                <h1>{`Hola ${username}!`}</h1>
+            <nav id="top-menu">
+                <button className="button" id="chat-button" onClick={() => handleChatButton()}>💬</button>
+                <button className="button" id="logout-button" onClick={() => handleLogoutButton()}>🚪</button>
+            </nav>
+        </header >
 
-                <nav id="top-menu">
-                    <button className="button" id="chat-button" onClick={() => this.handleChatButton()}>💬</button>
-                    <button className="button" id="logout-button" onClick={() => this.handleLogoutButton()}>🚪</button>
-                </nav>
-            </header >
+        <main>
+            {view === 'posts' && < Posts postToRender={posts} />}
+            {view === 'chat' && < Chat />}
+            {createPost === 'show' && <CreatePost onSendClick={() => handleSendCreateButton()} onCancelCreateClick={() => handleCancelCreateButton()} />}
+        </main>
+        <footer className="footer">
+            <button className="button" id="posts-button" onClick={() => handlePostButton()}>🏚️</button>
+            <button className="button" id="create-post-button" onClick={() => handleCreatePostButton()}>➕</button>
+        </footer>
 
-            <main>
-                {this.state.view === 'posts' && < Posts postToRender={this.state.posts} />}
-                {this.state.view === 'chat' && < Chat />}
-                {this.state.createPost === 'show' && <CreatePost onSendClick={() => this.handleSendCreateButton()} onCancelCreateClick={() => this.handleCancelCreateButton()} />}
-            </main>
-            <footer className="footer">
-                <button className="button" id="posts-button" onClick={() => this.handlePostButton()}>🏚️</button>
-                <button className="button" id="create-post-button" onClick={() => this.handleCreatePostButton()}>➕</button>
-            </footer>
+    </>
 
-        </>
-    }
 }
 
 export default Home

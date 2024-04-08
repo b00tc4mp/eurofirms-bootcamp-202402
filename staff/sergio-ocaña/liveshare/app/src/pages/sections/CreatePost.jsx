@@ -1,5 +1,5 @@
 import logic from "../../logic"
-function CreatePost(props) {
+function CreatePost({ onSendClick, onCancelCreateClick }) {
     const handleSubmit = (event) => {
         event.preventDefault()
 
@@ -11,7 +11,7 @@ function CreatePost(props) {
         try {
             logic.createPost(image, text)
 
-            props.onSendClick()
+            onSendClick()
 
         } catch (error) {
             alert(error.message)
@@ -23,7 +23,7 @@ function CreatePost(props) {
     const handleCancelCreateClick = (event) => {
         event.preventDefault()
 
-        props.onCancelCreateClick()
+        onCancelCreateClick()
     }
 
 

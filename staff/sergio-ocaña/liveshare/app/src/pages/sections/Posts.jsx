@@ -1,6 +1,6 @@
 
-function Posts(props) {
-    const posts = props.postToRender
+function Posts({ postToRender }) {
+    const posts = postToRender
 
     return <section id="posts-section">
         <h2>Posts</h2>
