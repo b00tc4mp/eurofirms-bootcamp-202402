@@ -26,6 +26,10 @@ class App extends Component {
     this.setState({ view: 'login' })
   }
 
+  handleLogoutClick() {
+    this.setState({ view: 'login' })
+  }
+
 
   render() {
     return <>
@@ -35,7 +39,8 @@ class App extends Component {
       {this.state.view === 'register' && <Register
         onUserRegistered={() => this.handleUserRegistered()}
         onLoginClick={() => this.handleLoginClick()} />}
-      {this.state.view === 'home' && <Home />}
+      {this.state.view === 'home' && <Home
+        onLogoutClick={() => this.handleLogoutClick()} />}
     </>
   }
 

@@ -19,6 +19,10 @@ function CreatePost(props) {
             alert(error.message)
         }
     }
+
+    const handleCancelCreatePostClick = () => {
+        props.onCancelCreatePostClick()
+    }
     return <>
         <section id="create-post-section" className="create-post-section">
             <h2>Create post</h2>
@@ -33,7 +37,7 @@ function CreatePost(props) {
                 <button type="submit">Create Post</button>
             </form>
 
-            <button id="create-post-cancel-button">Cancel create post</button>
+            <button onClick={handleCancelCreatePostClick} id="create-post-cancel-button">Cancel create post</button>
         </section>
     </>
 }
