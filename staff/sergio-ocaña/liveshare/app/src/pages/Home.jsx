@@ -13,7 +13,7 @@ class Home extends Component {
             const user = logic.retrieveUser()
             const posts = logic.retrievePosts()
 
-            this.state = { createPost: 'off', view: 'posts', posts, user }
+            this.state = { createPost: 'hide', view: 'posts', posts, user }
         } catch (error) {
             console.error(error)
             alert(error.message)
@@ -32,17 +32,17 @@ class Home extends Component {
     }
 
     handleCreatePostButton() {
-        this.setState({ createPost: 'on' })
+        this.setState({ createPost: 'show' })
     }
 
     handleSendCreateButton() {
         const updatedPosts = logic.retrievePosts()
 
-        this.setState({ createPost: 'off', posts: updatedPosts })
+        this.setState({ createPost: 'hide', posts: updatedPosts })
     }
 
     handleCancelCreateButton() {
-        this.setState({ createPost: 'off' })
+        this.setState({ createPost: 'hide' })
     }
 
 
@@ -63,7 +63,7 @@ class Home extends Component {
             <main>
                 {this.state.view === 'posts' && < Posts postToRender={this.state.posts} />}
                 {this.state.view === 'chat' && < Chat />}
-                {this.state.createPost === 'on' && <CreatePost onSendClick={() => this.handleSendCreateButton()} onCancelCreateClick={() => this.handleCancelCreateButton()} />}
+                {this.state.createPost === 'show' && <CreatePost onSendClick={() => this.handleSendCreateButton()} onCancelCreateClick={() => this.handleCancelCreateButton()} />}
             </main>
             <footer className="footer">
                 <button className="button" id="posts-button" onClick={() => this.handlePostButton()}>🏚️</button>
