@@ -1,68 +1,51 @@
-import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import ResetPassword from "./pages/ResetPassword";
-import { Component } from "react";
+import Home from "./pages/Home";
+import { useState } from "react";
 
-class App extends Component {
-  constructor() {
-    super();
+function App() {
+  const [view, setView] = useState("login");
 
-    this.state = { view: "login" };
-  }
+  const handleUserRegistered = () => setView("login");
 
-  handleUserRegistered() {
-    this.setState({ view: "login" });
-  }
+  const handleUserLoggedIn = () => setView("home");
 
-  handleUserLoggedIn() {
-    this.setState({ view: "home" });
-  }
+  const handleUserResetPassword = () => setView("login");
 
-  handleUserResetPassword() {
-    this.setState({ view: "login" });
-  }
+  const handleRegisterClick = () => setView("register");
 
-  handleRegisterClick() {
-    this.setState({ view: "register" });
-  }
+  const handleLoginClick = () => setView("login");
 
-  handleLoginClick() {
-    this.setState({ view: "login" });
-  }
+  const handleResetPasswordClick = () => setView("resetpassword");
 
-  handleResetPasswordClick() {
-    this.setState({ view: "resetpassword" });
-  }
+  const handleLogout = () => setView("login");
 
-  render() {
-    return (
-      <>
-        {this.state.view === "login" && (
-          <Login
-            onUserLoggedIn={() => this.handleUserLoggedIn()}
-            onRegisterClick={() => this.handleRegisterClick()}
-            onResetPasswordClick={() => this.handleResetPasswordClick()}
-          />
-        )}
-        {this.state.view === "register" && (
-          <Register
-            onUserRegistered={() => this.handleUserRegistered()}
-            onLoginClick={() => this.handleLoginClick()}
-            onResetPasswordClick={() => this.handleResetPasswordClick()}
-          />
-        )}
-        {this.state.view === "resetpassword" && (
-          <ResetPassword
-            onUserResetPassword={() => this.handleUserResetPassword()}
-            onRegisterClick={() => this.handleRegisterClick()}
-            onLoginClick={() => this.handleLoginClick()}
-          />
-        )}
-        {this.state.view === "home" && <Home />}
-      </>
-    );
-  }
+  return (
+    <>
+      {view === "login" && (
+        <Login
+          onUserLoggedIn={handleUserLoggedIn}
+          onRegisterClick={handleRegisterClick}
+          onResetPasswordClick={handleResetPasswordClick}
+        />
+      )}
+      {view === "register" && (
+        <Register
+          onUserRegistered={handleUserRegistered}
+          onLoginClick={handleLoginClick}
+          onResetPasswordClick={handleResetPasswordClick}
+        />
+      )}
+      {view === "resetpassword" && (
+        <ResetPassword
+          onUserResetPassword={handleUserResetPassword}
+          onRegisterClick={handleRegisterClick}
+          onLoginClick={handleLoginClick}
+        />
+      )}
+      {view === "home" && <Home onUserLoggedOut={handleLogout} />}
+    </>
+  );
 }
-
 export default App;

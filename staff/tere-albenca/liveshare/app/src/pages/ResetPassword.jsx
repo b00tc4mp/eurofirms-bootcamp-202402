@@ -1,6 +1,6 @@
 import logic from "../logic";
 
-function ResetPassword(props) {
+function ResetPassword({ onUserResetPassword, onRegisterClick, onLoginClick }) {
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -25,7 +25,7 @@ function ResetPassword(props) {
         repeatpassword
       );
 
-      props.onUserResetPassword();
+      onUserResetPassword();
     } catch (error) {
       console.error(error);
 
@@ -36,13 +36,13 @@ function ResetPassword(props) {
   const handleRegisterClick = (event) => {
     event.preventDefault();
 
-    props.onRegisterClick();
+    onRegisterClick();
   };
 
   const handleLoginClick = (event) => {
     event.preventDefault();
 
-    props.onLoginClick();
+    onLoginClick();
   };
 
   return (

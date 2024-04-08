@@ -1,70 +1,79 @@
-import { Component } from "react";
 import logic from "../logic";
-import CreatePost from "./CreatePost";
+import { useState } from "react";
 
-class Home extends Component {
-  constructor() {
-    super();
+import CreatePost from "../components/CreatePost";
+import Posts from "../components/Posts";
 
-    const posts = logic.retrievePosts();
-    this.state = { view: "createPost", posts: posts };
+function Home({ onUserLoggedOut }) {
+  const [view, setView] = useState(null);
+
+  let user = null;
+
+  try {
+    user = logic.retrieveUser();
+  } catch (error) {
+    console.error(error);
+
+    alert(error.message);
   }
 
-  handleCreateClick() {
-    const newPosts = logic.retrievePosts();
-    this.setState({ view: "post", posts: newPosts });
-  }
+  const handleLogout = () => {
+    logic.logoutUser();
 
-  render() {
-    return (
-      <>
-        <header className="header">
-          <img
-            src="src/assets/images/logo-cabecera-alalluna.png"
-            alt="logo alalluna"
-          />
+    onUserLoggedOut();
+  };
 
-          <nav id="top-menu">
-            <button id="chat-button">💬</button>
-            <button id="posts-button">🏚️</button>
-            <button id="create-post-button">+</button>
-          </nav>
-        </header>
+  const handleCreateClick = () => {
+    // const newPosts = logic.retrievePosts();
+    // setState({ view: "post", posts: newPosts });
+    setView(null);
+  };
 
-        {/* <div className="h1">
+  const handleCreatePost = () => {
+    setView("createPost");
+  };
+
+  const handleCancelClick = () => {
+    setView(null);
+  };
+
+  return (
+    <>
+      <header className="header">
+        <img
+          src="src/assets/images/logo-cabecera-alalluna.png"
+          alt="logo alalluna"
+        />
+
+        <nav id="top-menu">
+          <button id="chat-button">💬</button>
+          <button id="posts-button">🏚️</button>
+          <button id="create-post-button" onClick={handleCreatePost}>
+            +
+          </button>
+        </nav>
+      </header>
+
+      {/* <div className="h1">
             <h1 className="homeTitlePost">Welcome, Home!</h1>
         </div> */}
-        <section id="posts-section" className="posts-section">
-          <h2>POSTS</h2>
-          <div id="posts-list">
-            {this.state.posts.map((post) => (
-              <article key={post.id} className="post">
-                <h3>{post.author.username}</h3>
-                <img className="post-image" src={`${post.image}`}></img>
-                <p>
-                  {post.text}
-                  <br />
-                  <sup>{post.date}</sup>
-                </p>
-              </article>
-            ))}
-          </div>
 
-          <button id="create-post-cancel-button">cancel</button>
-        </section>
-        {this.state.view === "createPost" && (
-          <CreatePost onPostCreated={() => this.handleCreateClick()} />
-        )}
-        <footer>
-          <div>&copy; 2024 Alalluna</div>
-          <div className="right">
-            <button id="logoutButton" onClick={handleLogoutClick}>
-              Logout
-            </button>
-          </div>
-        </footer>
-      </>
-    );
-  }
+      {view === "createPost" && (
+        <CreatePost
+          onPostCreated={() => handleCreateClick()}
+          onCancelClick={() => handleCancelClick()}
+        />
+      )}
+      <Posts />
+      <footer>
+        <div>&copy; 2024 Alalluna</div>
+        <div className="right">
+          <button id="logoutButton" onClick={handleLogout}>
+            Logout
+          </button>
+        </div>
+      </footer>
+    </>
+  );
 }
 export default Home;
