@@ -10,7 +10,8 @@ class Home extends Component {
   }
 
   handleCreateClick() {
-    this.setState({ view: 'post' });
+    const newPosts = logic.retrievePosts();
+    this.setState({ view: 'post', posts: newPosts });
   }
 
   render() {
