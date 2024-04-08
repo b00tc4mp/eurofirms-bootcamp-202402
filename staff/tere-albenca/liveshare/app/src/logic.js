@@ -169,6 +169,15 @@ var logic = (function () {
     if (user === undefined) {
       throw new Error("User not found");
     }
+    if (
+      user.name !== name ||
+      user.lastname !== lastname ||
+      user.birthdate !== birthdate ||
+      user.email !== email ||
+      user.username !== username
+    ) {
+      throw new Error("User verification failed");
+    }
 
     if (newpassword !== repeatpassword) {
       throw new Error("Passwords are not equal");
