@@ -1,6 +1,6 @@
 import logic from "../logic"
 
-function CreatePost(props) {
+function CreatePost({ onPostCreated, onCancelCreatePostClick }) {
     const handleSubmit = event => {
         event.preventDefault()
 
@@ -12,7 +12,7 @@ function CreatePost(props) {
         try {
             logic.createPost(image, text)
 
-            props.onPostCreated()
+            onPostCreated()
         } catch (error) {
             console.error(error)
 
@@ -21,7 +21,7 @@ function CreatePost(props) {
     }
 
     const handleCancelCreatePostClick = () => {
-        props.onCancelCreatePostClick()
+        onCancelCreatePostClick()
     }
     return <>
         <section id="create-post-section" className="create-post-section">

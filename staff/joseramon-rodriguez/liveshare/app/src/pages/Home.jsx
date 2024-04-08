@@ -1,61 +1,68 @@
-import { Component } from "react"
 import logic from "../logic"
-import CreatePost from "./CreatePost"
+import CreatePost from "../components/CreatePost"
+import { useState } from "react"
+import Posts from "../components/Posts"
+import Chat from "../components/Chat"
 
-class Home extends Component {
-    constructor(props) {
-        super()
+function Home({ onLogoutClick }) {
+    let posts = null
+    let user = null
 
-        const posts = logic.retrievePosts()
-        this.state = { view: 'post', posts: posts }
-        this.props = props
+    try {
+        posts = logic.retrievePosts()
+        user = logic.retrieveUser()
+
+    } catch (error) {
+        console.error(error)
+
+        alert(error.message)
     }
 
-    handleCreateClick() {
-        const newPosts = logic.retrievePosts()
+    const [view, setView] = useState('post')
+    const [createPost, setCreatePost] = useState(null)
 
-        this.setState({ view: 'post', posts: newPosts })
+    const handleCreateClick = () => {
+        setView('post')
     }
 
-    handleCreatePostClick() {
-        this.setState({ view: 'createPost' })
+    const handleCreatePostClick = () => {
+        setCreatePost('createPost')
     }
 
-    handleCancelCreatePostClick() {
-        this.setState({ view: 'post' })
+    const handleCancelCreatePostClick = () => {
+        setCreatePost(null)
     }
 
-    handleLogOutButton() {
+    const handleLogOutButton = () => {
         logic.logoutUser()
-        this.props.onLogoutClick()
+        onLogoutClick()
     }
-    render() {
-        return <>
-            <header id="top-menu">
-                <h1>Hello , Home!</h1>
-                <nav className="top-menu--right">
-                    <button id="chat-button">Chat</button>
-                    <button onClick={() => this.handleLogOutButton()} id="logout-button">Log-{`>`}out</button>
-                </nav>
-            </header>
-            <section id="posts-section" className="posts-section">
-                <h2>Posts</h2>
-                <div id="posts-list">
-                    {this.state.posts.map((post => <article key={post.id} className="post">
-                        <h3>{post.author.username}</h3>
-                        <img className="post-image" src={`${post.image}`}></img>
-                        <p>{post.text}<br /><sup>{post.date}</sup></p>
-                    </article>))}
-                </div>
-            </section>
-            {this.state.view === 'createPost' && <CreatePost onPostCreated={() => this.handleCreateClick()}
-                onCancelCreatePostClick={() => this.handleCancelCreatePostClick()} />}
-            <footer>
-                <button id="posts-button">Posts</button>
-                <button onClick={() => this.handleCreatePostClick()} id="create-post-button">Create post</button>
-            </footer>
-        </>
+
+    const handlePostButton = () => {
+        setView('post')
     }
+
+    const handleChatButton = () => {
+        setView('chat')
+    }
+    return <>
+        <header id="top-menu">
+            <h1>Hello , Home! {user.name}</h1>
+            <nav className="top-menu--right">
+                <button onClick={handleChatButton} id="chat-button">Chat</button>
+                <button onClick={handleLogOutButton} id="logout-button">Log-{`>`}out</button>
+            </nav>
+        </header>
+        {view === 'chat' && <Chat />}
+        {view === 'post' && <Posts />}
+        {createPost === 'createPost' && <CreatePost onPostCreated={handleCreateClick}
+            onCancelCreatePostClick={handleCancelCreatePostClick} />}
+        <footer>
+            <button onClick={handlePostButton} id="posts-button">Posts</button>
+            <button onClick={handleCreatePostClick} id="create-post-button">Create post</button>
+        </footer>
+    </>
+
 }
 
 export default Home
