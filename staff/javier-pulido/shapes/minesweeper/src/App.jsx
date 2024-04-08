@@ -34,7 +34,7 @@ function App() {
       if (initialBoard[i + 1]?.[j - 1]?.isBomb) bombsAside++
       if (initialBoard[i + 1]?.[j + 1]?.isBomb) bombsAside++
 
-      initialBoard[i][j].bombAside = bombsAside
+      initialBoard[i][j].bombsAside = bombsAside
     }
   }
 
