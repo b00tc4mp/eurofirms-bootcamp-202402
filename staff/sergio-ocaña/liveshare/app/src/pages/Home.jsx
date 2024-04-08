@@ -31,13 +31,11 @@ function Home({ onLogoutClick }) {
     }
     const handlePostButton = () => setView('posts')
 
-
     const handleCreatePostButton = () => setCreatePost('show')
-
 
     const handleSendCreateButton = () => {
         const updatedPosts = logic.retrievePosts()
-        // this.setState({ createPost: 'hide', posts: updatedPosts })
+
         setPosts(updatedPosts)
         setCreatePost('hide')
     }
