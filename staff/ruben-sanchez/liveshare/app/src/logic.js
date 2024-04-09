@@ -1,5 +1,3 @@
-// business layer (logic)
-
 import data from './data'
 
 var logic = (function () {
@@ -108,8 +106,8 @@ var logic = (function () {
         var user = {
             name: name,
             birthdate: birthdate,
-            email: email,
             username: username,
+            email: email,
             password: password
         }
 

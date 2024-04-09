@@ -1,38 +1,40 @@
 import logic from '../logic'
-   
-   function Register(props){
-   
-   const handleSubmit = event => {
-    event.preventDefault()
 
-    const form = event.target 
+function Register({ onUserRegistered, onLoginClick }) {
+    const handleSubmit = event => {
+        event.preventDefault()
 
-    const name = form.name.value 
-    const birthdate = form.birthdate.value 
-    const email = form.email.value 
-    const username = form.username.value 
-    const password = form.password.value  
+        const form = event.target
 
-    try {
-        logic.registerUser(name, birthdate, email, username, password)
+        const name = form.name.value
+        const birthdate = form.birthdate.value
+        const email = form.email.value
+        const username = form.username.value
+        const password = form.password.value
 
-        props.onUserRegistered()
+        try {
+            logic.registerUser(name, birthdate, email, username, password)
 
-    } catch (error) {
-        console.error(error)
+            onUserRegistered()
+        } catch (error) {
+            console.error(error)
 
-        alert(error.message)
+            alert(error.message)
+        }
     }
-   }
-   const handleLoginClick = event =>{
-    event.preventDefault()
-    props.onLoginClick()
-   }
-   
-   return <main className='main main--thin'>
-    <h1>Register</h1>
-   
-    <form className="form" onSubmit={handleSubmit}>
+
+    const handleLoginClick = event => {
+        event.preventDefault()
+
+        onLoginClick()
+    }
+
+    console.debug('Register render')
+
+    return <main className="main main--thin">
+        <h1>Register</h1>
+
+        <form className="form" onSubmit={handleSubmit}>
             <label htmlFor="name">Name</label>
             <input className="input" type="text" id="name" />
 
@@ -51,8 +53,8 @@ import logic from '../logic'
             <button className="button button--right" type="submit">Register</button>
         </form>
 
-        <a className="link--center" href='login.html' onClick={handleLoginClick}>Login</a>
-   </main>
-   }
+        <a className="link--center" href="" onClick={handleLoginClick}>Login</a>
+    </main>
+}
 
-   export default Register
+export default Register
