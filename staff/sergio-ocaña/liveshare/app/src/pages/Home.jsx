@@ -1,4 +1,4 @@
-import React, { Component } from "react"
+
 import CreatePost from "./sections/CreatePost"
 import Posts from "./sections/Posts"
 import logic from "../logic"
@@ -17,10 +17,10 @@ function Home({ onLogoutClick }) {
         console.error(error)
         alert(error.message)
     }
-    const [user, setUser] = React.useState(loggedUser)
-    const [posts, setPosts] = React.useState(initialPosts)
-    const [createPost, setCreatePost] = React.useState('hide')
-    const [view, setView] = React.useState('posts')
+    const [user, setUser] = useState(loggedUser)
+    const [posts, setPosts] = useState(initialPosts)
+    const [createPost, setCreatePost] = useState('hide')
+    const [view, setView] = useState('posts')
 
     const handleChatButton = () => setView('chat')
 
