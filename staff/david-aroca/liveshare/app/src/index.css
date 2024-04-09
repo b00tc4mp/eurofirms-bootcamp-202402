@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Sen:wght@400..800&display=swap');
 
 * {
-    font-family: Sen;
+    font-family: sans-serif;
 }
 
 body {
@@ -177,10 +177,6 @@ sup {
 
 /* posts */
 
-#posts-section {
-    margin-bottom: 60px;
-}
-
 .posts-section--off {
     display: none;
 }
@@ -197,7 +193,7 @@ sup {
 
 /* create-post */
 
-#create-post-section {
+.create-post {
     margin-bottom: 50px;
     position: fixed;
     bottom: 0;
@@ -205,10 +201,6 @@ sup {
     background-color: lightblue;
     width: 100%;
     padding-bottom: 10px;
-}
-
-.create-post-section--off {
-    display: none;
 }
 
 #create-post-form {

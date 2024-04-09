@@ -1,18 +1,26 @@
-import { useState } from 'react'
-import Home from './pages/Home'
 import Login from './pages/Login'
 import Register from './pages/Register'
-import './index.css'
+import Home from './pages/Home'
+import { useState } from 'react'
 
 function App() {
-    const [count, setCount] = useState(0)
+    const [view, setView] = useState('login')
 
-    return (
-        <>
-            {/* <Home></Home> */}
-            <Login></Login>
-            {/* <Register></Register> */}
-        </>
-    )
+    const handleUserRegistered = () => setView('login')
+
+    const handleUserLoggedIn = () => setView('home')
+
+    const handleRegisterClick = () => setView('register')
+
+    const handleLoginClick = () => setView('login')
+
+    const handleUserLoggedOut = () => setView('login')
+
+    console.debug('App render')
+
+    return <>
+        {view === 'login' && <Login onUserLoggedIn={handleUserLoggedIn} onRegisterClick={handleRegisterClick} />}
+        {view === 'register' && <Register onUserRegistered={() => handleUserRegistered()} onLoginClick={handleLoginClick} />}
+        {view === 'home' && <Home onUserLoggedOut={handleUserLoggedOut} />}
+    </>
 }
-export default App
