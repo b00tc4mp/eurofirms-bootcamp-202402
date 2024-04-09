@@ -195,7 +195,7 @@ sup {
 
 /* create-post */
 
-#create-post-section {
+.create-post{
     margin-bottom: 50px;
     position: fixed;
     bottom: 0;

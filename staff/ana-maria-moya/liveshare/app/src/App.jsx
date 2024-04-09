@@ -8,7 +8,7 @@ class App extends Component {
     constructor() {
         super()
 
-        this.state = { view: 'home' }
+        this.state = { view: 'login' }
     }
 
     handleUserRegistered() {

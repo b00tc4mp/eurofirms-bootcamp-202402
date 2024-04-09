@@ -1,5 +1,5 @@
 import logic from "../logic"
-function Login(props) {
+function Login({onUserLoggedIn, onRegisterClick}) {
     const handleSubmit = event => {
         event.preventDefault()
 
@@ -11,7 +11,7 @@ function Login(props) {
         try {
             logic.loginUser(username, password)
 
-            props.onUserLoggedIn()
+            onUserLoggedIn()
         } catch (error) {
             console.error(error)
 
@@ -22,8 +22,10 @@ function Login(props) {
     const handleRegisterClick = event => {
         event.preventDefault()
 
-        props.onRegisterClick()
+        onRegisterClick()
     }
+
+    console.debug('Login render')
 
     return <>
         <main className="main--thin">
