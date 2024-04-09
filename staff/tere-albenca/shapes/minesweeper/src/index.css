@@ -1,22 +1,24 @@
 body{
-  width: 650px;
+  width: 600px;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-left: 40px;
 }
-header{
+
+.header h1{
   display: flex;
   justify-content: center;
   align-items: center;
 }
-
 .board{
   display: grid;
   border: 2px solid black;
-  height: 650px;
+  height: 600px;
+  width: 600px;
   gap:1px;
   background-color: lightgray;
   padding: 10px;
-
 }
 .clicked-cell{
   background-color: blueviolet;
@@ -25,19 +27,9 @@ header{
   justify-content: center;
 
 }
-
-.no.clicked-cell{
-
-}
 .cell-button{
   width: 100%;
   height: 100%;
+  box-shadow: inset gray 0px 0px 60px -12px;
   background-color: indigo;
-}
-
-footer{
-  margin:10px;
-  bottom: 0;
-  display: flex;
-  justify-content: end;
 }
