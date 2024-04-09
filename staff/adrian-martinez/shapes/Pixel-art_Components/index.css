@@ -1,0 +1,32 @@
+.main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap:10px;
+}
+.pixels{
+    display: grid;
+    min-width: 300px;
+    width: 300px;
+    min-height: 300px;
+    height: 300px;
+    background-color: lightgray;
+    gap: 1px;
+}
+.pixel{
+    background-color: gray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    cursor: pointer;
+}
+.colors{
+    list-style-type: none;
+    display: flex;
+    padding: 0;
+}
+.color-button{
+    width: 30px;
+    height: 30px;
+}
