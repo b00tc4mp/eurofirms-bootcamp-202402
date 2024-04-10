@@ -4,8 +4,8 @@ import Board from "./Components/Board";
 function App() {
   return (
     <>
-      <header>
-        <h1>Hola Buscaminas</h1>
+      <header clasName="header">
+        <h1>MINESWEEPER</h1>
         <hr />
       </header>
       <main className="main">
