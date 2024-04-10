@@ -38,8 +38,8 @@ function generateBoard(columns, rows, bombs) {
 
             if (board[i]?.[j - 1]?.isBomb) bombsAside++
             if (board[i]?.[j + 1]?.isBomb) bombsAside++
-            if (board[i - 1]?.[j]?.isBomb) bombsAside++
-            if (board[i + 1]?.[j]?.isBomb) bombsAside++
+            if (board[i - 1]?.[j].isBomb) bombsAside++
+            if (board[i + 1]?.[j].isBomb) bombsAside++
             if (board[i - 1]?.[j - 1]?.isBomb) bombsAside++
             if (board[i - 1]?.[j + 1]?.isBomb) bombsAside++
             if (board[i + 1]?.[j - 1]?.isBomb) bombsAside++

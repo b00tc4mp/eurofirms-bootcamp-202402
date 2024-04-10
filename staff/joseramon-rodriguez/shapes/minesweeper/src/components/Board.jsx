@@ -10,39 +10,75 @@ const initialBoard = generateBoard(columns, rows, bombs)
 
 function Board() {
     const [board, setBoard] = useState(initialBoard)
-    const [gameState, setGameState] = useState(null)
+    const [isGameFinished, setGameFinished] = useState(null)
+    const [isFlagClicked, setIsFlagClicked] = useState(false)
+    const [markedBombs, setMarkedBombs] = useState(0)
 
     const handleCellClick = (i, j) => {
-        if (gameState === 'loose') return
+        if (isGameFinished) return
 
         const boardCopy = [...board].map(row => [...row])
 
         const cellCopy = { ...boardCopy[i][j] }
 
-        cellCopy.isClicked = true
+        if (isFlagClicked) {
+            setMarkedBombs(markedBombs + 1)
+
+            cellCopy.isMarked = true
+        }
+
+        else if (cellCopy.isMarked) {
+            cellCopy.isMarked = false
+
+            setMarkedBombs(markedBombs - 1)
+        }
+
+        else cellCopy.isRevealed = true
 
         boardCopy[i][j] = cellCopy
 
         setBoard(boardCopy)
 
-        if (cellCopy.isBomb) {
+        if (cellCopy.isBomb && cellCopy.isRevealed) {
             setTimeout(() => alert('explotaste'), 20)
 
-            setGameState('loose')
+            setGameFinished(true)
         }
     }
 
     const handleResetClick = () => {
-        const newBoard = generateBoard(columns, rows)
+        const newBoard = generateBoard(columns, rows, bombs)
 
         setBoard(newBoard)
-        setGameState(null)
+        setGameFinished(null)
+        setMarkedBombs(0)
+    }
+
+    const finishGameHandler = () => {
+        const isGameWinned = !board.some(row => row.some(cell => cell.isBomb && !cell.isMarked))
+
+        if (isGameWinned) {
+            setGameFinished(true)
+
+            alert('ganaste!')
+        }
+        else {
+            setGameFinished(true)
+
+            alert('perdiste!')
+        }
     }
 
     return (
         <div>
+            <div className="board-buttons">
+                <button onClick={() => setIsFlagClicked(true)}>🚩</button>
+                <button onClick={() => setIsFlagClicked(false)}>🔍</button>
+                <span>Bombs revealed: {markedBombs} / {bombs}</span>
+                <button disabled={markedBombs !== bombs || isGameFinished} onClick={finishGameHandler}>Finish game</button>
+            </div>
             <section
-                className="board"
+                className='board'
                 style={{
                     gridTemplateColumns: `repeat(${columns},1fr)`,
                     gridTemplateRows: `repeat(${rows},1fr)`
@@ -50,6 +86,8 @@ function Board() {
             >
                 {board.map((row, i) => row.map((cell, j) => (
                     <Cell
+                        isGameFinished={isGameFinished}
+                        isFlagClicked={isFlagClicked}
                         onCellClick={handleCellClick}
                         coords={{ i, j }}
                         key={`${i}-${j}`}
@@ -57,7 +95,7 @@ function Board() {
                     />)
                 )).flat()}
             </section>
-            {gameState === 'loose' && <button onClick={handleResetClick}>Reset</button>}
+            {<button onClick={handleResetClick}>Reset</button>}
         </div>
     )
 }
