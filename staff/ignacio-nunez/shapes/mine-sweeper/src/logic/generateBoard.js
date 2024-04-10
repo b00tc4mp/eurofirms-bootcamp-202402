@@ -26,7 +26,7 @@ function generateBoard(columns, rows, bombs) {
             const cell = {
                 isBomb,
                 isRevealed: false,
-                bombsAside: 0,
+                bombsAside: isBomb ? 1 : 0,
                 isMarked: false
             };
 
