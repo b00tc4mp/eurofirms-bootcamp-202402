@@ -24,3 +24,5 @@ function App() {
         {view === 'home' && <Home onUserLoggedOut={handleUserLoggedOut} />}
     </>
 }
+
+export default App

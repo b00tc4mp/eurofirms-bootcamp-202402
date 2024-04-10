@@ -23,3 +23,5 @@ function Posts() {
         </div>
     </section>
 }
+
+export default Posts

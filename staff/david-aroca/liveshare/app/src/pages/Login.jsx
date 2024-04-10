@@ -1,6 +1,5 @@
 import logic from "../logic"
-
-function Login(onUserLoggedIn, onRegisteredClick) {
+function Login({ onUserLoggedIn, onRegisterClick }) {
     const handleSubmit = event => {
         event.preventDefault()
 
@@ -12,7 +11,7 @@ function Login(onUserLoggedIn, onRegisteredClick) {
         try {
             logic.loginUser(username, password)
 
-            props.onUserRegisted
+            onUserLoggedIn()
         } catch (error) {
             console.error(error)
 
@@ -20,17 +19,16 @@ function Login(onUserLoggedIn, onRegisteredClick) {
         }
     }
 
-    const handeleRegisterClick = event => {
+    const handleRegisterClick = event => {
         event.preventDefault()
 
-        onRegisteredClick
+        onRegisterClick()
     }
 
     return <main className="main main--thin">
         <h1>Login</h1>
 
         <form className="form" onSubmit={handleSubmit}>
-
             <label htmlFor="username">Username</label>
             <input className="input" type="text" id="username" />
 
@@ -39,7 +37,8 @@ function Login(onUserLoggedIn, onRegisteredClick) {
 
             <button className="button button--right" type="submit">Login</button>
         </form>
-        <a className="link--center" href="register.html" onClick={handleRegisterClick}>Register</a>
+
+        <a className="link--center" href="" onClick={handleRegisterClick}>Register</a>
     </main>
 }
 
