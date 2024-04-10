@@ -1,0 +1,22 @@
+.board {
+  display: grid;
+  border: 2px solid black;
+  width: 400px;
+  height: 400px;
+  background-color: lightgray;
+  gap: 1px;
+}
+
+.clicked-cell {
+  background-color: blueviolet;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cell-button {
+  width: 100%;
+  height: 100%;
+  background-color: brown;
+  box-shadow: inset gray 0px 0px 60px -12px;
+}
