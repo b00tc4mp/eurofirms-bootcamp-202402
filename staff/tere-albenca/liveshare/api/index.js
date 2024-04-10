@@ -11,20 +11,95 @@ client
 
     const users = db.collection("users");
 
-    // users.insertOne({ name: 'Pepito Grillo', birthdate: '2000-01-01', email: 'pepito@grillo.com', username: 'pepitogrillo', password: '123123123' })
-    //     .then(result => console.log('insert one', result))
-    //     .catch(error => console.error(error))
+    function registerUser(
+      name,
+      lastname,
+      birthdate,
+      email,
+      username,
+      password,
+      callback
+    ) {
+      users
+        .findOne({ $or: [{ username }, { email }] })
+        .then((user) => {
+          if (user) {
+            callback(new Error("user already exists"));
 
-    // users.findOne({ _id: new ObjectId('661564cb1a472d8489c61119') })
-    //     .then(user => console.log('find one', user))
-    //     .catch(error => console.error(error))
+            return;
+          }
 
-    // users.updateOne({ _id: new ObjectId('661564cb1a472d8489c61119') }, { $set: { password: '234234234' } })
-    //     .then(result => console.log('update one', result))
-    //     .catch(error => console.error(error))
+          user = { name, lastname, birthdate, email, username, password };
+          users
+            .insertOne(user)
+            .then(() => callback(null))
+            .catch((error) => callback(error));
+        })
+        .catch((error) => callback(error));
+    }
+    registerUser("Lola", "Garcia", "2000-01-01", "lolagarcia@gmail.com", "lola", "123123123",
+      (error) => {
+        if (error) {
+          console.error(error);
 
-    // users.deleteOne({ _id: new ObjectId('661564cb1a472d8489c61119') })
-    //     .then(result => console.log('delete one', result))
-    //     .catch(error => console.error(error))
+          return;
+        }
+        console.log("user registered");
+      }
+    );
+    console.log("continue after resgistered call");
+
+    function loginUser(username, password, callback) {
+      users
+        .findOne({ username, password })
+        .then((user) => {
+          if (!user) {
+            callback(new Error("no valid credetials"));
+
+            return;
+          }
+
+          callback(null, user._id.toString());
+        })
+        .catch((error) => callback(error));
+    }
+
+    loginUser("Luis", "124124124", (error, userId) => {
+      if (error) {
+        console.error(error);
+
+        return;
+      }
+      console.log("user logged In", userId);
+    });
+    console.log("continue after logged in");
+
+    function retrieveUser(userId, callback) {
+      users.findOne({ _id: new ObjectId(userId) })
+        .then((user) => {
+          if (!user) {
+            callback(new Error('user not found'))
+
+            return
+          }
+          delete user._id
+          delete user.password
+
+          callback(null, user)
+        })
+    }
+
+    retrieveUser('661548e5ae1b17b2e116c9b7', (error, user) => {
+      if (error) {
+        console.error(error)
+
+        return
+      }
+      console.log('USERDATA')
+      console.log(user)
+    })
+
+    console.log('continue after retrieve user')
   })
+
   .catch((error) => console.error(error));
