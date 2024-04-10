@@ -23,6 +23,17 @@
 }
 
 .board-buttons {
+  width: 400px;
   display: flex;
-  text-align: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.flag-cursor{
+  cursor: url('./assets/red-flag.png'), auto !important
+}
+
+.pointer-cursor{
+  cursor: pointer;
 }
