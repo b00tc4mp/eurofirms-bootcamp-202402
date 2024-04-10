@@ -7,24 +7,61 @@ const client = new MongoClient('mongodb://localhost:27017')
 
 client.connect()
     .then(connection => {
+        console.log('connected')
+
         const db = connection.db('test')
 
         const users = db.collection('users')
 
-        // users.insertOne({ name: 'Pepito Grillo', birthdate: '2000-01-01', email: 'pepito@grillo.com', username: 'pepitogrillo', password: '123123123' })
-        //     .then(result => console.log('insert one', result))
-        //     .catch(error => console.error(error))
+        function registerUser(name, birthdate, email, username, password, callback) {
+            // TODO input validation
 
-        // users.findOne({ _id: new ObjectId('661564cb1a472d8489c61119') })
-        //     .then(user => console.log('find one', user))
-        //     .catch(error => console.error(error))
+            users.findOne({ $or: [{ email }, { username }] })
+                .then(user => {
+                    if (user) {
+                        callback(new Error('user already exists'))
 
-        // users.updateOne({ _id: new ObjectId('661564cb1a472d8489c61119') }, { $set: { password: '234234234' } })
-        //     .then(result => console.log('update one', result))
-        //     .catch(error => console.error(error))
+                        return
+                    }
 
-        // users.deleteOne({ _id: new ObjectId('661564cb1a472d8489c61119') })
-        //     .then(result => console.log('delete one', result))
-        //     .catch(error => console.error(error))
+                    // TODO insert user in db
+
+                    user = { name, birthdate, email, username, password }
+
+                    users.insertOne(user)
+                        .then(() => callback(null))
+                        .catch(error => callback(error))
+
+                })
+                .catch(error => callback(error))
+        }
+
+        registerUser('Pepito Grillo', '2000-01-01', 'pepito@grillo.com', 'pepitogrillo', '123123123', error => {
+            if (error) {
+                console.error(error)
+
+                return
+            }
+
+            console.log('user registered')
+        })
+
+        console.log('continue after registerUser call')
+
+        function loginUser(username, password, callback) {
+            // TODO
+        }
+
+        loginUser('pepitogrillo', '123123123', (error, userId) => {
+            if (error) {
+                console.error(error)
+
+                return
+            }
+
+            console.log('user logged in', userId)
+        })
+
+        console.log('continue after loginUser call')
     })
     .catch(error => console.error(error))
