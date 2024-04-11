@@ -11,6 +11,8 @@ client.connect()
 
         const users = db.collection('users')
 
+        console.log('hola')
+
 
     })
     .catch(error => console.error(error))
