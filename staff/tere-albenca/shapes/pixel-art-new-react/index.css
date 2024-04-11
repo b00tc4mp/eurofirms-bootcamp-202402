@@ -1,0 +1,174 @@
+body{
+    display:flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+
+}
+main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* .palette{
+    margin-left:5px;
+    display: flex;
+    flex-direction: column;
+    }*/
+
+
+header{
+    width: 100%;
+    background-color: lightgray;
+    padding: 1px 0 1px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color:darkblue;
+    font-size: medium;
+
+}
+.board {
+    display: grid;
+    width: 40vw;
+    height: 40vw;
+    background-color: lightgray;
+    gap: 1px;
+    border: 4px solid #34495e; 
+}
+
+.pixel {
+    background-color: gray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color:white;
+    cursor: pointer;
+}
+
+.colors {
+    list-style-type:none;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    margin-right:1px;
+    height: 10px;
+}
+.color-button{
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+/*
+.cell {
+    transition: background-color 0.3s;
+}
+.cell:hover {
+    background-color: #2c3e50; 
+}
+*/
+footer {
+    margin-top:5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+footer button {
+    width: 60%;
+    height: 20%;
+    font-size: smaller;
+}
+/*
+.redButton{
+    background-color: red;
+    
+}
+.pinkButton{
+    background-color: pink;
+}
+.purpleButton{
+    background-color: purple;
+}
+.blueButton{
+    background-color: blue;
+}
+.greenButton{
+    background-color: green;
+}
+.yellowButton {
+    background-color: yellow;
+}
+.navyButton{
+    background-color: navy;
+}
+.fuchsiaButton{
+    background-color: fuchsia;
+}
+.limeButton{
+    background-color: lime;
+}
+.blackButton{
+    background-color: black;
+}
+.aquaButton{
+    background-color: aqua;
+}
+.maroonButton{
+    background-color: maroon;
+}
+.tealButton{
+    background-color: teal;
+}
+.oliveButton{
+    background-color: olive;
+}
+.orangeButton{
+    background-color: orangered;
+}
+.chartreuseButton{
+    background-color: chartreuse;
+}
+.coralButton{
+    background-color: coral;
+}
+.bluevioletButton{
+    background-color: blueviolet;
+}
+.orangetwoButton{
+    background-color: orange;
+}
+.darkredButton{
+    background-color: darkred;
+}
+.darkslategrayButton{
+    background-color: darkslategray;
+}
+.deepskyblueButton{
+    background-color: deepskyblue;
+}
+.darkolivegreenButton{
+    background-color: darkolivegreen;
+}
+.goldButton{
+    background-color: gold;
+}
+.dimgreyButton{
+   background-color: dimgrey;
+}
+.lightgreenButton{
+    background-color: lightgreen;
+}
+.indigoButton{
+    background-color: indigo;
+}
+.goldenrodButton{
+    background-color: goldenrod;
+}
+.firebrickButton{
+    background-color: firebrick;
+}
+.greenyellowButton{
+    background-color: greenyellow;
+}
+*/
