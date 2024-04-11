@@ -8,8 +8,8 @@ function generateBoard(columns, rows, bombs) {
     for (let i = 0; i < bombs; i++) {
         const index = Math.floor(Math.random() * cellsQuantity - 1)
 
-        const indexI = Math.floor(index / 8)
-        const indexJ = index % 8
+        const indexI = Math.floor(index / rows)
+        const indexJ = index % columns
 
         if (indexes.some((index => index.i === indexI && index.j === indexJ)))
             i--
