@@ -141,7 +141,7 @@ client.connect()
         //         .catch(error => callback(error))
         // }
 
-        // createPost('6617c3ad89de5e9374288e40', 'https://www.boardinfinity.com/blog/content/images/2023/01/Mern.png', 'hello mern', error => {
+        // createPost('6617c3ad89de5e9374288e3f', 'https://www.boardinfinity.com/blog/content/images/2023/01/Mern.png', 'hello mern', error => {
         //     if (error) {
         //         console.error(error)
 
@@ -152,5 +152,69 @@ client.connect()
         // })
 
         // console.log('continue after createPost call')
+
+        function retrievePosts(userId, callback) {
+            // TODO input validations
+
+            users.findOne({ _id: new ObjectId(userId) })
+                .then(user => {
+                    if (!user) {
+                        callback(new Error('user not found'))
+
+                        return
+                    }
+
+                    let errorHappened = false
+                    let postsProcessedCount = 0
+
+                    posts.find({}).toArray()
+                        .then(posts => {
+                            posts.forEach(post => {
+                                users.findOne({ _id: post.author }, { projection: { username: 1 } })
+                                    .then(user => {
+                                        if (errorHappened) return
+
+                                        if (!user) {
+                                            callback(new Error('owner user not found'))
+
+                                            errorHappened = true
+
+                                            return
+                                        }
+
+                                        post.id = post._id.toString()
+                                        delete post._id
+
+                                        const author = {
+                                            id: post.author.toString(),
+                                            username: user.username
+                                        }
+
+                                        post.author = author
+
+                                        postsProcessedCount++
+
+                                        if (postsProcessedCount === posts.length)
+                                            callback(null, posts)
+                                    })
+                                    .catch(error => callback(error))
+                            })
+                        })
+                        .catch(error => callback(error))
+                })
+                .catch(error => callback(error))
+        }
+
+        retrievePosts('6617c3ad89de5e9374288e40', (error, posts) => {
+            if (error) {
+                console.error(error)
+
+                return
+            }
+
+            console.log('retrieved posts', posts)
+        })
+
+        console.log('continue after retrievePosts call')
     })
     .catch(error => console.error(error))
