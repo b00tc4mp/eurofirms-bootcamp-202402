@@ -59,9 +59,14 @@ client
     //------------------------------
     function loginUser(username, password, callback) {
       users
-        .findOne({ username, password })
+        .findOne({ username })
         .then((user) => {
           if (!user) {
+            callback(new Error('User not found with username and password'));
+            return;
+          }
+
+          if (user.password != password) {
             callback(new Error('User not found with username and password'));
             return;
           }
