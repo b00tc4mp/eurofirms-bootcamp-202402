@@ -119,21 +119,35 @@ client
 
     //---------------------------------
 
-    function createPost(author, date, image, text, callback) {
+    function createPost(author, image, text, callback) {
       // TODO: input validation
-      const post = { author: new ObjectId(author), date, image, text };
 
-      posts
-        .insertOne(post)
-        .then(() => callback(null))
+      users
+        .findOne({ _id: new ObjectId(author) })
+        .then((user) => {
+          if (!user) {
+            callback(new Error('User not found with userId'));
+            return;
+          }
+
+          const newPost = {
+            author: new ObjectId(author),
+            date: new Date().toISOString(),
+            image,
+            text,
+          };
+          posts
+            .insertOne(newPost)
+            .then(() => callback(null))
+            .catch((error) => callback(error));
+        })
         .catch((error) => callback(error));
     }
 
     createPost(
       '6616a62cc474d0650d18fbae',
-      '2000-01-01',
       'https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExNzZlcHlraXB6dmltODd4NXJlM2l3cHJvbnkzanptMGdsM2o4dTQwYiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/e8D8XV9fWrpF6/giphy.gif',
-      'Este es el texto',
+      'Este es el texto final',
       (error) => {
         if (error) {
           console.error(error);
