@@ -3,7 +3,7 @@ import { useState } from "react"
 
 import { generateBoard } from "../logic/generateBoard"
 import { clearCells } from "../logic/clearCells"
-import Cell from "./Cell";
+import Cell from "./Cell"
 
 const difficultLevels = [
     { columns: 8, rows: 8, bombs: 10 },
