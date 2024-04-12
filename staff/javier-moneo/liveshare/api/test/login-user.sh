@@ -1,0 +1,1 @@
+curl -X POST -H 'Content-type: application/json' -d '{"name":"dos", "password":"12345678"}' http://localhost:8080/login -v

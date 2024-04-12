@@ -1,4 +1,5 @@
 import mongodb from 'mongodb';
+import express from 'express';
 
 const { MongoClient, ObjectId } = mongodb;
 
@@ -12,31 +13,31 @@ client
     const users = db.collection('users');
     const posts = db.collection('posts');
 
-    // function registerUser(
-    //   name,
-    //   birthdate,
-    //   email,
-    //   username,
-    //   password,
-    //   callback
-    // ) {
-    //   // TODO: input validation
+    function registerUser(
+      name,
+      birthdate,
+      email,
+      username,
+      password,
+      callback
+    ) {
+      // TODO: input validation
 
-    //   users.findOne({ $or: [{ email }, { username }] }).then((user) => {
-    //     if (user) {
-    //       callback(new Error('user already exists'));
+      users.findOne({ $or: [{ email }, { username }] }).then((user) => {
+        if (user) {
+          callback(new Error('user already exists'));
 
-    //       return;
-    //     }
+          return;
+        }
 
-    //     user = { name, birthdate, email, username, password };
+        user = { name, birthdate, email, username, password };
 
-    //     users
-    //       .insertOne(user)
-    //       .then(() => callback(null))
-    //       .catch((error) => callback(error));
-    //   });
-    // }
+        users
+          .insertOne(user)
+          .then(() => callback(null))
+          .catch((error) => callback(error));
+      });
+    }
 
     // registerUser(
     //   'Uno',
@@ -57,28 +58,28 @@ client
     // console.log('continue after registerUser call');
 
     // //------------------------------
-    // function loginUser(username, password, callback) {
-    //   // TODO input validation
+    function loginUser(username, password, callback) {
+      // TODO input validation
 
-    //   users
-    //     .findOne({ username })
-    //     .then((user) => {
-    //       if (!user) {
-    //         callback(new Error('user not found'));
+      users
+        .findOne({ username })
+        .then((user) => {
+          if (!user) {
+            callback(new Error('user not found'));
 
-    //         return;
-    //       }
+            return;
+          }
 
-    //       if (user.password !== password) {
-    //         callback(new Error('wrong credentials'));
+          if (user.password !== password) {
+            callback(new Error('wrong credentials'));
 
-    //         return;
-    //       }
+            return;
+          }
 
-    //       callback(null, user._id.toString());
-    //     })
-    //     .catch((error) => callback(error));
-    // }
+          callback(null, user._id.toString());
+        })
+        .catch((error) => callback(error));
+    }
 
     // loginUser('uno', '12345678', (error, userId) => {
     //   if (error) {
@@ -93,30 +94,30 @@ client
     // console.log('continue after loginUser call');
 
     // //---------------------------------
-    // function retrieveUser(userId, callback) {
-    //   // TODO input validation
+    function retrieveUser(userId, callback) {
+      // TODO input validation
 
-    //   users
-    //     .findOne(
-    //       { _id: new ObjectId(userId) },
-    //       { projection: { _id: 0, birthdate: 0, email: 0, password: 0 } }
-    //     )
-    //     .then((user) => {
-    //       if (!user) {
-    //         callback(new Error('user not found'));
+      users
+        .findOne(
+          { _id: new ObjectId(userId) },
+          { projection: { _id: 0, birthdate: 0, email: 0, password: 0 } }
+        )
+        .then((user) => {
+          if (!user) {
+            callback(new Error('user not found'));
 
-    //         return;
-    //       }
+            return;
+          }
 
-    //       // sanitize (not needed if using projection)
-    //       // delete user._id
-    //       // delete user.email
-    //       // delete user.password
+          // sanitize (not needed if using projection)
+          // delete user._id
+          // delete user.email
+          // delete user.password
 
-    //       callback(null, user);
-    //     })
-    //     .catch((error) => callback(error));
-    // }
+          callback(null, user);
+        })
+        .catch((error) => callback(error));
+    }
 
     // retrieveUser('6616a62cc474d0650d18fbae', (error, user) => {
     //   if (error) {
@@ -248,59 +249,123 @@ client
 
     //------------------------------------------
 
-    function retrievePost(userId, postId, callback) {
-      users
-        .findOne({ _id: new ObjectId(userId) })
-        .then((user) => {
-          if (!user) {
-            callback(new Error('user not found'));
+    // function retrievePost(userId, postId, callback) {
+    //   users
+    //     .findOne({ _id: new ObjectId(userId) })
+    //     .then((user) => {
+    //       if (!user) {
+    //         callback(new Error('user not found'));
+    //         return;
+    //       }
+
+    //       posts
+    //         .findOne({ _id: new ObjectId(postId) })
+    //         .then((post) => {
+    //           users
+    //             .findOne({
+    //               _id: post.author,
+    //             })
+    //             .then((userAuthor) => {
+    //               if (!userAuthor) {
+    //                 callback(new Error('author not found'));
+    //               }
+    //               post.id = post._id.toString();
+    //               delete post._id;
+
+    //               const author = {
+    //                 id: post.author.toString(),
+    //                 username: userAuthor ? userAuthor.username : 'unknown',
+    //               };
+    //               post.author = author;
+
+    //               callback(null, post);
+    //             })
+    //             .catch((error) => callback(error));
+    //         })
+    //         .catch((error) => callback(error));
+    //     })
+    //     .catch((error) => callback(error));
+    // }
+
+    // // author, postId
+    // retrievePost(
+    //   '6616a62cc474d0650d18fbae',
+    //   '6617e6c930e9691b13da7ba2',
+    //   (error, post) => {
+    //     if (error) {
+    //       console.error(error);
+    //       return;
+    //     }
+
+    //     console.log('post retrieved', post);
+    //   }
+    // );
+
+    // console.log('continue after retrievePost call');
+
+    const server = express();
+
+    server.get('/', (req, res) => res.json({ hello: 'client' }));
+
+    server.get('/users/:userId', (req, res) => {
+      const userId = req.params.userId;
+
+      retrieveUser(userId, (error, user) => {
+        if (error) {
+          res
+            .status(404)
+            .json({ error: error.constructor.name, message: error.message });
+          return;
+        }
+        res.json(user);
+      });
+    });
+
+    const jsonBodyParser = express.json(); // JSON.parse(...)
+
+    server.post('/users', jsonBodyParser, (req, res) => {
+      const user = req.body;
+
+      registerUser(
+        user.name,
+        user.birthdate,
+        user.email,
+        user.username,
+        user.password,
+        (error) => {
+          if (error) {
+            res
+              .status(404)
+              .json({ error: error.constructor.name, message: error.message });
+
             return;
           }
 
-          posts
-            .findOne({ _id: new ObjectId(postId) })
-            .then((post) => {
-              users
-                .findOne({
-                  _id: post.author,
-                })
-                .then((userAuthor) => {
-                  if (!userAuthor) {
-                    callback(new Error('author not found'));
-                  }
-                  post.id = post._id.toString();
-                  delete post._id;
+          res.status(201).send();
+        }
+      );
+    });
 
-                  const author = {
-                    id: post.author.toString(),
-                    username: userAuthor ? userAuthor.username : 'unknown',
-                  };
-                  post.author = author;
+    server.post('/login', jsonBodyParser, (req, res) => {
+      const user = req.body;
 
-                  callback(null, post);
-                })
-                .catch((error) => callback(error));
-            })
-            .catch((error) => callback(error));
-        })
-        .catch((error) => callback(error));
-    }
-
-    // author, postId
-    retrievePost(
-      '6616a62cc474d0650d18fbae',
-      '6617e6c930e9691b13da7ba2',
-      (error, post) => {
+      loginUser(user.username, user.password, (error) => {
         if (error) {
-          console.error(error);
+          res
+            .status(404)
+            .json({ error: error.constructor.name, message: error.message });
+
           return;
         }
 
-        console.log('post retrieved', post);
-      }
-    );
+        res.json({
+          error: null,
+          data: 'exito bienvenido',
+        });
+      });
+    });
 
-    console.log('continue after retrievePost call');
+    server.listen(8080, () => console.log('Api started'));
   })
 
   .catch((error) => console.error(error));
