@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState } from "react"
 
-import { generateBoard } from "../logic/generateBoard";
-import { clearCells } from "../logic/clearCells";
+
+import { generateBoard } from "../logic/generateBoard"
+import { clearCells } from "../logic/clearCells"
 import Cell from "./Cell";
 
 const difficultLevels = [
@@ -89,6 +90,7 @@ function Board() {
         setMarkedBombs(0)
     }
 
+
     return (
         <div>
             <div>
@@ -103,6 +105,7 @@ function Board() {
                 <span>Bombs revealed: {markedBombs} / {difficultLevels[difficult].bombs}</span>
                 <button disabled={markedBombs !== difficultLevels[difficult].bombs || isGameFinished} onClick={finishGameHandler}>Finish Game</button>
             </div>
+
 
             <section
                 className={`board ${isFlagClicked && 'flag-cursor'}`}
