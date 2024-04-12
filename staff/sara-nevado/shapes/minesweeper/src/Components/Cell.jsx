@@ -14,7 +14,6 @@ function Cell(props) {
     }
 
 
-
     else {
         return (
             <div >
