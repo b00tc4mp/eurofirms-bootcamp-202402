@@ -58,16 +58,20 @@ client
 
     // //------------------------------
     // function loginUser(username, password, callback) {
+    //   // TODO input validation
+
     //   users
     //     .findOne({ username })
     //     .then((user) => {
     //       if (!user) {
-    //         callback(new Error('User not found with username and password'));
+    //         callback(new Error('user not found'));
+
     //         return;
     //       }
 
     //       if (user.password !== password) {
-    //         callback(new Error('User not found with username and password'));
+    //         callback(new Error('wrong credentials'));
+
     //         return;
     //       }
 
@@ -90,17 +94,24 @@ client
 
     // //---------------------------------
     // function retrieveUser(userId, callback) {
+    //   // TODO input validation
+
     //   users
-    //     .findOne({ _id: new ObjectId(userId) })
+    //     .findOne(
+    //       { _id: new ObjectId(userId) },
+    //       { projection: { _id: 0, birthdate: 0, email: 0, password: 0 } }
+    //     )
     //     .then((user) => {
     //       if (!user) {
-    //         callback(new Error('User not found with userId'));
+    //         callback(new Error('user not found'));
+
     //         return;
     //       }
 
-    //       delete user._id;
-    //       delete user.email;
-    //       delete user.password;
+    //       // sanitize (not needed if using projection)
+    //       // delete user._id
+    //       // delete user.email
+    //       // delete user.password
 
     //       callback(null, user);
     //     })
@@ -120,25 +131,27 @@ client
 
     // //---------------------------------
 
-    // function createPost(author, image, text, callback) {
-    //   // TODO: input validation
+    // function createPost(userId, image, text, callback) {
+    //   // TODO input validation
 
     //   users
-    //     .findOne({ _id: new ObjectId(author) })
+    //     .findOne({ _id: new ObjectId(userId) })
     //     .then((user) => {
     //       if (!user) {
-    //         callback(new Error('User not found with userId'));
+    //         callback(new Error('user not found'));
+
     //         return;
     //       }
 
-    //       const newPost = {
+    //       const post = {
     //         author: user._id,
-    //         date: new Date(),
     //         image,
     //         text,
+    //         date: new Date(),
     //       };
+
     //       posts
-    //         .insertOne(newPost)
+    //         .insertOne(post)
     //         .then(() => callback(null))
     //         .catch((error) => callback(error));
     //     })
@@ -163,75 +176,131 @@ client
 
     //----------------------------------------
 
-    function retrievePosts(userId, callback) {
-      // TODO input validations
+    // function retrievePosts(userId, callback) {
+    //   // TODO input validations
 
+    //   users
+    //     .findOne({ _id: new ObjectId(userId) })
+    //     .then((user) => {
+    //       if (!user) {
+    //         callback(new Error('user not found'));
+
+    //         return;
+    //       }
+
+    //       let errorHappened = false;
+    //       let postsProcessedCount = 0;
+
+    //       posts
+    //         .find({})
+    //         .toArray()
+    //         .then((posts) => {
+    //           posts.forEach((post) => {
+    //             users
+    //               .findOne(
+    //                 { _id: post.author },
+    //                 { projection: { username: 1 } }
+    //               )
+    //               .then((user) => {
+    //                 if (errorHappened) return;
+
+    //                 if (!user) {
+    //                   callback(new Error('owner user not found'));
+
+    //                   errorHappened = true;
+
+    //                   return;
+    //                 }
+
+    //                 post.id = post._id.toString();
+    //                 delete post._id;
+
+    //                 const author = {
+    //                   id: post.author.toString(),
+    //                   username: user.username,
+    //                 };
+
+    //                 post.author = author;
+
+    //                 postsProcessedCount++;
+
+    //                 if (postsProcessedCount === posts.length)
+    //                   callback(null, posts);
+    //               })
+    //               .catch((error) => callback(error));
+    //           });
+    //         })
+    //         .catch((error) => callback(error));
+    //     })
+    //     .catch((error) => callback(error));
+    // }
+
+    // retrievePosts('6616a62cc474d0650d18fbae', (error, posts) => {
+    //   if (error) {
+    //     console.error(error);
+    //     return;
+    //   }
+
+    //   console.log('posts retrieved', posts);
+    // });
+
+    // console.log('continue after retrievePosts call');
+
+    //------------------------------------------
+
+    function retrievePost(userId, postId, callback) {
       users
         .findOne({ _id: new ObjectId(userId) })
         .then((user) => {
           if (!user) {
             callback(new Error('user not found'));
-
             return;
           }
 
-          let errorHappened = false;
-          let postsProcessedCount = 0;
-
           posts
-            .find({})
-            .toArray()
-            .then((posts) => {
-              posts.forEach((post) => {
-                users
-                  .findOne(
-                    { _id: post.author },
-                    { projection: { username: 1 } }
-                  )
-                  .then((user) => {
-                    if (errorHappened) return;
+            .findOne({ _id: new ObjectId(postId) })
+            .then((post) => {
+              users
+                .findOne({
+                  _id: post.author,
+                })
+                .then((userAuthor) => {
+                  if (!userAuthor) {
+                    callback(new Error('author not found'));
+                  }
+                  post.id = post._id.toString();
+                  delete post._id;
 
-                    if (!user) {
-                      callback(new Error('owner user not found'));
+                  const author = {
+                    id: post.author.toString(),
+                    username: userAuthor ? userAuthor.username : 'unknown',
+                  };
+                  post.author = author;
 
-                      errorHappened = true;
-
-                      return;
-                    }
-
-                    post.id = post._id.toString();
-                    delete post._id;
-
-                    const author = {
-                      id: post.author.toString(),
-                      username: user.username,
-                    };
-
-                    post.author = author;
-
-                    postsProcessedCount++;
-
-                    if (postsProcessedCount === posts.length)
-                      callback(null, posts);
-                  })
-                  .catch((error) => callback(error));
-              });
+                  callback(null, post);
+                })
+                .catch((error) => callback(error));
             })
             .catch((error) => callback(error));
         })
         .catch((error) => callback(error));
     }
 
-    retrievePosts('6616a62cc474d0650d18fbae', (error, posts) => {
-      if (error) {
-        console.error(error);
-        return;
+    // author, postId
+    retrievePost(
+      '6616a62cc474d0650d18fbae',
+      '6617e6c930e9691b13da7ba2',
+      (error, post) => {
+        if (error) {
+          console.error(error);
+          return;
+        }
+
+        console.log('post retrieved', post);
       }
+    );
 
-      console.log('posts retrieved', posts);
-    });
-
-    console.log('continue after retrievePosts call');
+    console.log('continue after retrievePost call');
   })
 
   .catch((error) => console.error(error));
