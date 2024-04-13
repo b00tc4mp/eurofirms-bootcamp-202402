@@ -1,7 +1,6 @@
 function Cell(props) {
     const { cell, coords, isFlagClicked, isGameFinished, onCellClick } = props
 
-
     if (cell.isRevealed || isGameFinished) {
         return (
             <div className={`clicked-cell ${isFlagClicked ? 'flag-cursor' : 'pointer-cursor'}`}>
@@ -12,7 +11,6 @@ function Cell(props) {
             </div>
         )
     }
-
 
     else {
         return (
@@ -25,5 +23,6 @@ function Cell(props) {
         )
     }
 }
+
 
 export default Cell
