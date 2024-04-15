@@ -1,52 +1,87 @@
-import mongodb from 'mongodb'
+import mongoose from 'mongoose'
 import express from 'express'
 
-const { MongoClient, ObjectId } = mongodb
+const { Schema, model } = mongoose
 
-const client = new MongoClient('mongodb://localhost:27017')
+const { Types: { ObjectId } } = Schema
 
+const user = new Schema({
+    name: {
+        type: String,
+        required: true
+    },
+    birthdate: {
+        type: Date,
+        required: true
+    },
+    email: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    username: {
+        type: String,
+        required: true,
+        unique: true,
+    },
+    password: {
+        type: String,
+        required: true
+    }
+})
 
-client.connect()
-    .then(connection => {
+const post = new Schema({
+    author: {
+        type: ObjectId,
+        required: true,
+        ref: 'User'
+    },
+    image: {
+        type: String,
+        required: true
+    },
+    text: {
+        type: String,
+        required: true
+    },
+    date: {
+        type: Date,
+        required: true
+    }
+})
+
+const User = model('User', user)
+const Post = model('Post', post)
+
+mongoose.connect('mongodb://localhost:27017/test')
+    .then(() => {
         console.log('DB connected')
 
-        const db = connection.db('test')
-
-        const users = db.collection('users')
-        const posts = db.collection('posts')
-
-        function registerUser(name, birthdate, email, username, password, callback) {
+        function registerUser(name, birthdate, email, username, password) {
             // TODO input validation
 
-            users.findOne({ $or: [{ email }, { username }] })
+            return User.findOne({ $or: [{ email }, { username }] })
+                .catch(error => { throw new Error })
+                .then(user => { throw new Error(error.message) })
                 .then(user => {
-                    if (user) {
-                        callback(new Error('user already exists'))
 
-                        return
-                    }
-
-                    // TODO insert user in db
+                    if (user) throw new Error('user already exists')
 
                     user = { name, birthdate, email, username, password }
 
-                    users.insertOne(user)
-                        .then(() => callback(null))
-                        .catch(error => callback(error))
-
+                    return User.create(user)
                 })
-                .catch(error => callback(error))
+
+                .then(user => { })
         }
 
-        // registerUser('Pepito Grillo', '2000-01-01', 'pepito@grillo.com', 'pepitogrillo', '123123123', error => {
-        //     if (error) {
+        //try {
+        // registerUser('Pepito Grillo', '2000-01-01', 'pepito@grillo.com', 'pepitogrillo', '123123123')
+        //          .then(() => console.log('user registered'))
+        //          .catch(error => console.error(error))
+        //  } catch (error) {
         //         console.error(error)
-
-        //         return
-        //     }
-
-        //     console.log('user registered')
-        // })
+        // }
 
         // console.log('continue after registerUser call')
 
@@ -84,174 +119,178 @@ client.connect()
 
         // console.log('continue after loginUser call')
 
-        function retrieveUser(userId, callback) {
-            // TODO input validation
+        // function retrieveUser(userId, callback) {
+        // TODO input validation
 
-            users.findOne({ _id: new ObjectId(userId) }, { projection: { _id: 0, birthdate: 0, email: 0, password: 0 } })
-                .then(user => {
-                    if (!user) {
-                        callback(new Error('user not found'))
+        //users.findOne({ _id: new ObjectId(userId) }, { projection: { _id: 0, birthdate: 0, email: 0, password: 0 } })
+        //   .then(user => {
+        //       if (!user) {
+        //                callback(new Error('user not found'))
 
-                        return
-                    }
+        //      return
+        //      }
+    
 
-                    // sanitize (not needed if using projection)
-                    // delete user._id
-                    // delete user.email
-                    // delete user.password
+            // sanitize (not needed if using projection)
+            // delete user._id
+            // delete user.email
+            // delete user.password
 
-                    callback(null, user)
-                })
-                .catch(error => callback(error))
-        }
+      //      callback(null, user)
+      //  })
+   // .catch(error => callback(error))
+// }
 
-        // retrieveUser('6617c3ad89de5e9374288e40', (error, user) => {
-        //     if (error) {
-        //         console.error(error)
+// retrieveUser('6617c3ad89de5e9374288e40', (error, user) => {
+//     if (error) {
+//         console.error(error)
 
-        //         return
-        //     }
+//         return
+//     }
 
-        //     console.log('user retrieved', user)
-        // })
+//     console.log('user retrieved', user)
+// })
 
-        // console.log('continue after retrieveUser call')
+// console.log('continue after retrieveUser call')
 
-        // function createPost(userId, image, text, callback) {
-        //     // TODO input validation
+// function createPost(userId, image, text, callback) {
+//     // TODO input validation
 
-        //     users.findOne({ _id: new ObjectId(userId) })
-        //         .then(user => {
-        //             if (!user) {
-        //                 callback(new Error('user not found'))
+//     users.findOne({ _id: new ObjectId(userId) })
+//         .then(user => {
+//             if (!user) {
+//                 callback(new Error('user not found'))
 
-        //                 return
-        //             }
+//                 return
+//             }
 
-        //             const post = {
-        //                 author: user._id,
-        //                 image,
-        //                 text,
-        //                 date: new Date
-        //             }
+//             const post = {
+//                 author: user._id,
+//                 image,
+//                 text,
+//                 date: new Date
+//             }
 
-        //             posts.insertOne(post)
-        //                 .then(() => callback(null))
-        //                 .catch(error => callback(error))
-        //         })
-        //         .catch(error => callback(error))
-        // }
+//             posts.insertOne(post)
+//                 .then(() => callback(null))
+//                 .catch(error => callback(error))
+//         })
+//         .catch(error => callback(error))
+// }
 
-        // createPost('6617c3ad89de5e9374288e3f', 'https://www.boardinfinity.com/blog/content/images/2023/01/Mern.png', 'hello mern', error => {
-        //     if (error) {
-        //         console.error(error)
+// createPost('6617c3ad89de5e9374288e3f', 'https://www.boardinfinity.com/blog/content/images/2023/01/Mern.png', 'hello mern', error => {
+//     if (error) {
+//         console.error(error)
 
-        //         return
-        //     }
+//         return
+//     }
 
-        //     console.log('post created')
-        // })
+//     console.log('post created')
+// })
 
-        // console.log('continue after createPost call')
+// console.log('continue after createPost call')
 
-        // function retrievePosts(userId, callback) {
-        //     // TODO input validations
+// function retrievePosts(userId, callback) {
+//     // TODO input validations
 
-        //     users.findOne({ _id: new ObjectId(userId) })
-        //         .then(user => {
-        //             if (!user) {
-        //                 callback(new Error('user not found'))
+//     users.findOne({ _id: new ObjectId(userId) })
+//         .then(user => {
+//             if (!user) {
+//                 callback(new Error('user not found'))
 
-        //                 return
-        //             }
+//                 return
+//             }
 
-        //             let errorHappened = false
-        //             let postsProcessedCount = 0
+//             let errorHappened = false
+//             let postsProcessedCount = 0
 
-        //             posts.find({}).toArray()
-        //                 .then(posts => {
-        //                     posts.forEach(post => {
-        //                         users.findOne({ _id: post.author }, { projection: { username: 1 } })
-        //                             .then(user => {
-        //                                 if (errorHappened) return
+//             posts.find({}).toArray()
+//                 .then(posts => {
+//                     posts.forEach(post => {
+//                         users.findOne({ _id: post.author }, { projection: { username: 1 } })
+//                             .then(user => {
+//                                 if (errorHappened) return
 
-        //                                 if (!user) {
-        //                                     callback(new Error('owner user not found'))
+//                                 if (!user) {
+//                                     callback(new Error('owner user not found'))
 
-        //                                     errorHappened = true
+//                                     errorHappened = true
 
-        //                                     return
-        //                                 }
+//                                     return
+//                                 }
 
-        //                                 post.id = post._id.toString()
-        //                                 delete post._id
+//                                 post.id = post._id.toString()
+//                                 delete post._id
 
-        //                                 const author = {
-        //                                     id: post.author.toString(),
-        //                                     username: user.username
-        //                                 }
+//                                 const author = {
+//                                     id: post.author.toString(),
+//                                     username: user.username
+//                                 }
 
-        //                                 post.author = author
+//                                 post.author = author
 
-        //                                 postsProcessedCount++
+//                                 postsProcessedCount++
 
-        //                                 if (postsProcessedCount === posts.length)
-        //                                     callback(null, posts)
-        //                             })
-        //                             .catch(error => callback(error))
-        //                     })
-        //                 })
-        //                 .catch(error => callback(error))
-        //         })
-        //         .catch(error => callback(error))
-        // }
+//                                 if (postsProcessedCount === posts.length)
+//                                     callback(null, posts)
+//                             })
+//                             .catch(error => callback(error))
+//                     })
+//                 })
+//                 .catch(error => callback(error))
+//         })
+//         .catch(error => callback(error))
+// }
 
-        // retrievePosts('6617c3ad89de5e9374288e40', (error, posts) => {
-        //     if (error) {
-        //         console.error(error)
+// retrievePosts('6617c3ad89de5e9374288e40', (error, posts) => {
+//     if (error) {
+//         console.error(error)
 
-        //         return
-        //     }
+//         return
+//     }
 
-        //     console.log('retrieved posts', posts)
-        // })
+//     console.log('retrieved posts', posts)
+// })
 
-        // console.log('continue after retrievePosts call')
+// console.log('continue after retrievePosts call')
 
-        const server = express()
+// SERVER
 
-        server.get('/', (req, res) => res.json({ hello: 'client' }))
+const server = express()
 
-        server.get('/users/:userId', (req, res) => {
-            const userId = req.params.userId
+// server.get('/', (req, res) => res.json({ hello: 'client' }))
 
-            retrieveUser(userId, (error, user) => {
-                if (error) {
-                    res.status(404).json({ error: error.constructor.name, message: error.message })
+// server.get('/users/:userId', (req, res) => {
+//   const userId = req.params.userId
 
-                    return
-                }
+//   retrieveUser(userId, (error, user) => {
+//       if (error) {
+//           res.status(404).json({ error: error.constructor.name, message: error.message })
 
-                res.json(user)
-            })
-        })
+//           return
+//       }
 
-        const jsonBodyParser = express.json() // JSON.parse(...)
+//        res.json(user)
+//   })
+// })
 
-        server.post('/users', jsonBodyParser, (req, res) => {
-            const user = req.body
+const jsonBodyParser = express.json() // JSON.parse(...)
 
-            registerUser(user.name, user.birthdate, user.email, user.username, user.password, error => {
-                if (error) {
-                    res.status(404).json({ error: error.constructor.name, message: error.message })
+server.post('/users', jsonBodyParser, (req, res) => {
+    const { name, birthdate, email, username, password } = req.body
 
-                    return
-                }
+    try {
+        registerUser(name, birthdate, email, username, password)
+            .then(() => res.status(201).send())
+            .catch(error => res.status(500).json({ error: error.constructor.name, message: error.message }))
+    } catch (error) {
+        res.status(500).json({ error: error.constructor.name, message: error.message })
+    }
+})
 
-                res.status(201).send()
-            })
-        })
+    
 
-        server.listen(8080, () => console.log('API started'))
-    })
-    .catch(error => console.error(error))
+server.listen(8080, () => console.log('API started'))
+})
+
+    .catch (error => console.error(error))
