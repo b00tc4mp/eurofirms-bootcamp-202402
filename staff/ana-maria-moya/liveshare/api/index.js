@@ -1,51 +1,85 @@
 import mongodb from 'mongodb'
+import mongoose from 'mongoose'
 import express from 'express'
 
-const { MongoClient, ObjectId } = mongodb
+const { Schema, model } = mongoose
 
-const client = new MongoClient('mongodb://localhost:27017')
+const { Types: { ObjectId } } = Schema
 
+const user = new Schema({
+    name: {
+        type: String,
+        required: true
+    },
+    birthdate: {
+        type: Date,
+        required: true
+    },
+    email: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    username: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    password: {
+        type: String,
+        required: true
+    }
+})
 
-client.connect()
-    .then(connection => {
+const post = new Schema({
+    author: {
+        type: ObjectId,
+        required: true,
+        ref: 'User'
+    },
+    image: {
+        type: String,
+        requiered: true
+    },
+    text: {
+        type: String,
+        required: true
+    },
+    date: {
+        type: Date,
+        required: true
+    }
+})
+
+const User = model('User', user)
+const Post = model('Post', post)
+
+mongoose.connect('mongodb://localhost:27017/test')
+    .then(() => {
         console.log('DB connected')
-        const db = connection.db('test')
 
-        const users = db.collection('users')
-        const posts = db.collection('posts')
-
-        function registerUser(name, birthdate, email, username, password, callback) {
+        function registerUser(name, birthdate, email, username, password) {
             // TODO input validation
 
-            users.findOne({ $or: [{ email }, { username }] })
+            return User.findOne({ $or: [{ email }, { username }] })
+                .catch(error => { throw new Error(error.message) })
                 .then(user => {
-                    if (user) {
-                        callback(new Error('user already exists'))
-
-                        return
-                    }
-
-                    // TODO insert user in db
+                    if (user) throw new Error('user already exists')
 
                     user = { name, birthdate, email, username, password }
 
-                    users.insertOne(user)
-                        .then(() => callback(null))
-                        .catch(error => callback(error))
+                    return User.create(user)
 
                 })
-                .catch(error => callback(error))
+                .then(user => { })
         }
-
-        // registerUser('Pepito Grillo', '2000-01-01', 'pepito@grillo.com', 'pepitogrillo', '123123123', error => {
-        //     if (error) {
-        //         console.error(error)
-
-        //         return
-        //     }
-
-        //     console.log('user registered')
-        // })
+        // try {
+        //     registerUser('Pepito Grillo', '2000-01-01', 'pepito@grillo.com', 'pepitogrillo', '123123123')
+        //         .then(() => console.log('user registered'))
+        //         .catch(error => console.error(error))
+        // } catch (error) {
+        //     console.error(error)
+        // }
 
         // console.log('continue after registerUser call')
 
@@ -75,173 +109,175 @@ client.connect()
 
         // console.log('continue after loginUser call');
 
-        function retrieveUser(userId, callback) {
-            //TODO input validation
-            users.findOne({ _id: new ObjectId(userId) })
-                .then((user) => {
-                    if (!user) {
-                        callback(new Error('user not found'))
+        // function retrieveUser(userId, callback) {
+        //TODO input validation
+        // users.findOne({ _id: new ObjectId(userId) })
+        //     .then((user) => {
+        //         if (!user) {
+        //             callback(new Error('user not found'))
 
-                        return
-                    }
+        //             return
+        //         }
 
-                    //sanitaze (not needed if using projection)
-                    // delete user._id
-                    //delete user.email
-                    // delete user.password
+        //sanitaze (not needed if using projection)
+        // delete user._id
+        //delete user.email
+        // delete user.password
 
-                    callback(null, user)
-                })
-                .catch(error => callback(error))
-        }
+        //     callback(null, user)
+        // })
+        // .catch(error => callback(error))
+        // }
 
-    //     retrieveUser('6617a872150da642e7168d91', (error, user) => {
-    //         if (error) {
-    //             console.error(error)
+        //     retrieveUser('6617a872150da642e7168d91', (error, user) => {
+        //         if (error) {
+        //             console.error(error)
 
-    //             return
-    //         }
-    //         console.log('USERDATA')
-    //         console.log(user)
-    //     })
+        //             return
+        //         }
+        //         console.log('USERDATA')
+        //         console.log(user)
+        //     })
 
-    //     console.log('continue after retrieve user')
+        //     console.log('continue after retrieve user')
 
-    //     function createPost(author, text, image, callback) {
-    //         // TODO validate fields
-    //         users.findOne({ _id: new ObjectId(author) })
-    //             .then((user) => {
-    //                 if (!user) {
-    //                     callback(new Error('user not found'))
+        //     function createPost(author, text, image, callback) {
+        //         // TODO validate fields
+        //         users.findOne({ _id: new ObjectId(author) })
+        //             .then((user) => {
+        //                 if (!user) {
+        //                     callback(new Error('user not found'))
 
-    //                     return
-    //                 }
+        //                     return
+        //                 }
 
-    //                 const date = new Date().toISOString()
+        //                 const date = new Date().toISOString()
 
-    //                 const post = { author: new ObjectId(author), text, date, image }
+        //                 const post = { author: new ObjectId(author), text, date, image }
 
-    //                 posts.insertOne(post)
-    //                     .then(() => callback(null))
-    //                     .catch(error => callback(error))
-    //             })
-    //             .catch(error => callback(error))
+        //                 posts.insertOne(post)
+        //                     .then(() => callback(null))
+        //                     .catch(error => callback(error))
+        //             })
+        //             .catch(error => callback(error))
 
-    //         // check if author exist
-    //         // if author does not exist, throw an error
-    //         // oterwhise try to create the post
-    //         // then if post is successfully created, call callback without error
-    //         // otherwise call callback with the error
-    //     }
+        //         // check if author exist
+        //         // if author does not exist, throw an error
+        //         // oterwhise try to create the post
+        //         // then if post is successfully created, call callback without error
+        //         // otherwise call callback with the error
+        //     }
 
-    //     createPost('6617a872150da642e7168d91', 'Hola soy Pepito', 'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExd2Z1dDF2Zmk4ZmQxeXFoa3BpN28wa3BwdHoxd2l5eGZpYmEyOGFtcCZlcD12MV9naWZzX3RyZW5kaW5nJmN0PWc/uUP7F5A1rQR9uKls9P/giphy.gif', error => {
-    //         if (error) {
-    //             console.error(error)
+        //     createPost('6617a872150da642e7168d91', 'Hola soy Pepito', 'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExd2Z1dDF2Zmk4ZmQxeXFoa3BpN28wa3BwdHoxd2l5eGZpYmEyOGFtcCZlcD12MV9naWZzX3RyZW5kaW5nJmN0PWc/uUP7F5A1rQR9uKls9P/giphy.gif', error => {
+        //         if (error) {
+        //             console.error(error)
 
-    //             return
-    //         }
+        //             return
+        //         }
 
-    //         console.log('post created')
-    //     })
-    // })
-    // .catch(error => console.error(error))
-    // function retrievePosts(userId, callback) {
-//     // TODO input validations
+        //         console.log('post created')
+        //     })
+        // })
+        // .catch(error => console.error(error))
+        // function retrievePosts(userId, callback) {
+        //     // TODO input validations
 
-//     users.findOne({ _id: new ObjectId(userId) })
-//         .then(user => {
-//             if (!user) {
-//                 callback(new Error('user not found'))
+        //     users.findOne({ _id: new ObjectId(userId) })
+        //         .then(user => {
+        //             if (!user) {
+        //                 callback(new Error('user not found'))
 
-//                 return
-//             }
+        //                 return
+        //             }
 
-//             let errorHappened = false
-//             let postsProcessedCount = 0
+        //             let errorHappened = false
+        //             let postsProcessedCount = 0
 
-//             posts.find({}).toArray()
-//                 .then(posts => {
-//                     posts.forEach(post => {
-//                         users.findOne({ _id: post.author }, { projection: { username: 1 } })
-//                             .then(user => {
-//                                 if (errorHappened) return
+        //             posts.find({}).toArray()
+        //                 .then(posts => {
+        //                     posts.forEach(post => {
+        //                         users.findOne({ _id: post.author }, { projection: { username: 1 } })
+        //                             .then(user => {
+        //                                 if (errorHappened) return
 
-//                                 if (!user) {
-//                                     callback(new Error('owner user not found'))
+        //                                 if (!user) {
+        //                                     callback(new Error('owner user not found'))
 
-//                                     errorHappened = true
+        //                                     errorHappened = true
 
-//                                     return
-//                                 }
+        //                                     return
+        //                                 }
 
-//                                 post.id = post._id.toString()
-//                                 delete post._id
+        //                                 post.id = post._id.toString()
+        //                                 delete post._id
 
-//                                 const author = {
-//                                     id: post.author.toString(),
-//                                     username: user.username
-//                                 }
+        //                                 const author = {
+        //                                     id: post.author.toString(),
+        //                                     username: user.username
+        //                                 }
 
-//                                 post.author = author
+        //                                 post.author = author
 
-//                                 postsProcessedCount++
+        //                                 postsProcessedCount++
 
-//                                 if (postsProcessedCount === posts.length)
-//                                     callback(null, posts)
-//                             })
-//                             .catch(error => callback(error))
-//                     })
-//                 })
-//                 .catch(error => callback(error))
-//         })
-//         .catch(error => callback(error))
-// }
+        //                                 if (postsProcessedCount === posts.length)
+        //                                     callback(null, posts)
+        //                             })
+        //                             .catch(error => callback(error))
+        //                     })
+        //                 })
+        //                 .catch(error => callback(error))
+        //         })
+        //         .catch(error => callback(error))
+        // }
 
-// retrievePosts('6617c3ad89de5e9374288e40', (error, posts) => {
-//     if (error) {
-//         console.error(error)
+        // retrievePosts('6617c3ad89de5e9374288e40', (error, posts) => {
+        //     if (error) {
+        //         console.error(error)
 
-//         return
-//     }
+        //         return
+        //     }
 
-//     console.log('retrieved posts', posts)
-// })
+        //     console.log('retrieved posts', posts)
+        // })
 
-// console.log('continue after retrievePosts call')
-    })
+        // console.log('continue after retrievePosts call')
+        // })
 
-    const server = express()
+        //SERVER
 
-    server.get('/', (req, res) => res.json({ hello: 'client'}))
+        const server = express()
 
-    server.get('/users/:userId', (req,res) =>{
-        const userId = req.params.userId
-        retriveUser(userId, (error, user) => {
-            if (error) {
-                res.status(404).json({error: error.constructor.name, message: error.message})
+        // server.get('/', (req, res) => res.json({ hello: 'client' }))
 
-                return
+        // server.get('/users/:userId', (req, res) => {
+        //     const userId = req.params.userId
+        // retrieveUser(userId, (error, user) => {
+        //     if (error) {
+        //         res.status(404).json({ error: error.constructor.name, message: error.message })
+
+        //         return
+        //     }
+
+        //         res.json(user)
+        //     })
+        // })
+
+        const jsonBodyParser = express.json() // JSON.parse(...)
+
+        server.post('/users', jsonBodyParser, (req, res) => {
+            const { name, birthdate, email, username, password } = req.body
+
+            try {
+                registerUser(name, birthdate, email, username, password)
+                    .then(() => res.status(201).send())
+                    .catch(error => res.status(500).json({ error: error.constructor.name, message: error.message }))
+            } catch (error) {
+                res.status(500).json({ error: error.constructor.name, message: error.message })
             }
-
-            res.json(user)
         })
+
+        server.listen(8080, () => console.log('API started'))
+
     })
-
-    const jsonBodyParser = express.json() // JSON.parse(...)
-
-    server.post('/users', jsonBodyParser, (req, res) => {
-        const user = req.body
-
-        registerUser(user.name, user.birthdate, user.email, user.username, user.password, error => {
-            if(error) {
-                res.status(404).json({ error: error.constructor.name,message: error.message})
-
-                return
-            }
-            res.status(201).send()
-        })
-    })
-
-    server.listen(8080, () => console.log('API started'))
-})
-.catch(error => console.error(error))
+    .catch(error => console.error(error))
