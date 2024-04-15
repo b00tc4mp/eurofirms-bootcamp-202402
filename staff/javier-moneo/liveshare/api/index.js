@@ -177,64 +177,64 @@ client
 
     //----------------------------------------
 
-    // function retrievePosts(userId, callback) {
-    //   // TODO input validations
+    function retrievePosts(userId, callback) {
+      // TODO input validations
 
-    //   users
-    //     .findOne({ _id: new ObjectId(userId) })
-    //     .then((user) => {
-    //       if (!user) {
-    //         callback(new Error('user not found'));
+      users
+        .findOne({ _id: new ObjectId(userId) })
+        .then((user) => {
+          if (!user) {
+            callback(new Error('user not found'));
 
-    //         return;
-    //       }
+            return;
+          }
 
-    //       let errorHappened = false;
-    //       let postsProcessedCount = 0;
+          let errorHappened = false;
+          let postsProcessedCount = 0;
 
-    //       posts
-    //         .find({})
-    //         .toArray()
-    //         .then((posts) => {
-    //           posts.forEach((post) => {
-    //             users
-    //               .findOne(
-    //                 { _id: post.author },
-    //                 { projection: { username: 1 } }
-    //               )
-    //               .then((user) => {
-    //                 if (errorHappened) return;
+          posts
+            .find({})
+            .toArray()
+            .then((posts) => {
+              posts.forEach((post) => {
+                users
+                  .findOne(
+                    { _id: post.author },
+                    { projection: { username: 1 } }
+                  )
+                  .then((user) => {
+                    if (errorHappened) return;
 
-    //                 if (!user) {
-    //                   callback(new Error('owner user not found'));
+                    if (!user) {
+                      callback(new Error('owner user not found'));
 
-    //                   errorHappened = true;
+                      errorHappened = true;
 
-    //                   return;
-    //                 }
+                      return;
+                    }
 
-    //                 post.id = post._id.toString();
-    //                 delete post._id;
+                    post.id = post._id.toString();
+                    delete post._id;
 
-    //                 const author = {
-    //                   id: post.author.toString(),
-    //                   username: user.username,
-    //                 };
+                    const author = {
+                      id: post.author.toString(),
+                      username: user.username,
+                    };
 
-    //                 post.author = author;
+                    post.author = author;
 
-    //                 postsProcessedCount++;
+                    postsProcessedCount++;
 
-    //                 if (postsProcessedCount === posts.length)
-    //                   callback(null, posts);
-    //               })
-    //               .catch((error) => callback(error));
-    //           });
-    //         })
-    //         .catch((error) => callback(error));
-    //     })
-    //     .catch((error) => callback(error));
-    // }
+                    if (postsProcessedCount === posts.length)
+                      callback(null, posts);
+                  })
+                  .catch((error) => callback(error));
+              });
+            })
+            .catch((error) => callback(error));
+        })
+        .catch((error) => callback(error));
+    }
 
     // retrievePosts('6616a62cc474d0650d18fbae', (error, posts) => {
     //   if (error) {
@@ -249,45 +249,45 @@ client
 
     //------------------------------------------
 
-    // function retrievePost(userId, postId, callback) {
-    //   users
-    //     .findOne({ _id: new ObjectId(userId) })
-    //     .then((user) => {
-    //       if (!user) {
-    //         callback(new Error('user not found'));
-    //         return;
-    //       }
+    function retrievePost(userId, postId, callback) {
+      users
+        .findOne({ _id: new ObjectId(userId) })
+        .then((user) => {
+          if (!user) {
+            callback(new Error('user not found'));
+            return;
+          }
 
-    //       posts
-    //         .findOne({ _id: new ObjectId(postId) })
-    //         .then((post) => {
-    //           users
-    //             .findOne({
-    //               _id: post.author,
-    //             })
-    //             .then((userAuthor) => {
-    //               if (!userAuthor) {
-    //                 callback(new Error('author not found'));
-    //               }
-    //               post.id = post._id.toString();
-    //               delete post._id;
+          posts
+            .findOne({ _id: new ObjectId(postId) })
+            .then((post) => {
+              users
+                .findOne({
+                  _id: post.author,
+                })
+                .then((userAuthor) => {
+                  if (!userAuthor) {
+                    callback(new Error('author not found'));
+                  }
+                  post.id = post._id.toString();
+                  delete post._id;
 
-    //               const author = {
-    //                 id: post.author.toString(),
-    //                 username: userAuthor ? userAuthor.username : 'unknown',
-    //               };
-    //               post.author = author;
+                  const author = {
+                    id: post.author.toString(),
+                    username: userAuthor ? userAuthor.username : 'unknown',
+                  };
+                  post.author = author;
 
-    //               callback(null, post);
-    //             })
-    //             .catch((error) => callback(error));
-    //         })
-    //         .catch((error) => callback(error));
-    //     })
-    //     .catch((error) => callback(error));
-    // }
+                  callback(null, post);
+                })
+                .catch((error) => callback(error));
+            })
+            .catch((error) => callback(error));
+        })
+        .catch((error) => callback(error));
+    }
 
-    // // author, postId
+    // // userId, postId
     // retrievePost(
     //   '6616a62cc474d0650d18fbae',
     //   '6617e6c930e9691b13da7ba2',
@@ -352,19 +352,49 @@ client
       loginUser(user.username, user.password, (error) => {
         if (error) {
           res
-            .status(404)
+            .status(400)
             .json({ error: error.constructor.name, message: error.message });
 
           return;
         }
 
-        res.json({
+        res.status(200).json({
           error: null,
           data: 'exito bienvenido',
         });
       });
     });
 
+    server.get('/posts', (req, res) => {
+      const userId = req.headers.authorization;
+
+      retrievePosts(userId, (error, posts) => {
+        if (error) {
+          res
+            .status(404)
+            .json({ error: error.constructor.name, message: error.message });
+          return;
+        }
+        res.status(200).json(posts);
+      });
+    });
+
+    server.get('/posts/:postId', (req, res) => {
+      const userId = req.headers.authorization;
+      const postId = req.params.postId;
+
+      retrievePost(userId, postId, (error, post) => {
+        if (error) {
+          res
+            .status(404)
+            .json({ error: error.constructor.name, message: error.message });
+          return;
+        }
+        res.status(200).json(post);
+      });
+    });
+
+    //---------------------------------
     server.listen(8080, () => console.log('Api started'));
   })
 
