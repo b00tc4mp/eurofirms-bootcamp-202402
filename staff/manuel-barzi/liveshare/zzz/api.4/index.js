@@ -1,84 +1,52 @@
-import mongoose from 'mongoose'
+import mongodb from 'mongodb'
 import express from 'express'
 
-const { Schema, model } = mongoose
+const { MongoClient, ObjectId } = mongodb
 
-const { Types: { ObjectId } } = Schema
+const client = new MongoClient('mongodb://localhost:27017')
 
-const user = new Schema({
-    name: {
-        type: String,
-        required: true
-    },
-    birthdate: {
-        type: Date,
-        required: true
-    },
-    email: {
-        type: String,
-        required: true,
-        unique: true
-    },
-    username: {
-        type: String,
-        required: true,
-        unique: true
-    },
-    password: {
-        type: String,
-        required: true
-    }
-})
 
-const post = new Schema({
-    author: {
-        type: ObjectId,
-        required: true,
-        ref: 'User'
-    },
-    image: {
-        type: String,
-        required: true
-    },
-    text: {
-        type: String,
-        required: true
-    },
-    date: {
-        type: Date,
-        required: true
-    }
-})
-
-const User = model('User', user)
-const Post = model('Post', post)
-
-mongoose.connect('mongodb://localhost:27017/test')
-    .then(() => {
+client.connect()
+    .then(connection => {
         console.log('DB connected')
 
-        function registerUser(name, birthdate, email, username, password) {
+        const db = connection.db('test')
+
+        const users = db.collection('users')
+        const posts = db.collection('posts')
+
+        function registerUser(name, birthdate, email, username, password, callback) {
             // TODO input validation
 
-            return User.findOne({ $or: [{ email }, { username }] })
-                .catch(error => { throw new Error(error.message) })
+            users.findOne({ $or: [{ email }, { username }] })
                 .then(user => {
-                    if (user) throw new Error('user already exists')
+                    if (user) {
+                        callback(new Error('user already exists'))
+
+                        return
+                    }
+
+                    // TODO insert user in db
 
                     user = { name, birthdate, email, username, password }
 
-                    return User.create(user)
+                    users.insertOne(user)
+                        .then(() => callback(null))
+                        .catch(error => callback(error))
+
                 })
-                .then(user => { })
+                .catch(error => callback(error))
         }
 
-        // try {
-        //     registerUser('Pepito Grillo', '2000-01-01', 'pepito@grillo.com', 'pepitogrillo', '123123123')
-        //         .then(() => console.log('user registered'))
-        //         .catch(error => console.error(error))
-        // } catch (error) {
-        //     console.error(error)
-        // }
+        // registerUser('Pepito Grillo', '2000-01-01', 'pepito@grillo.com', 'pepitogrillo', '123123123', error => {
+        //     if (error) {
+        //         console.error(error)
+
+        //         return
+        //     }
+
+        //     console.log('user registered')
+        // })
 
         // console.log('continue after registerUser call')
 
@@ -116,26 +84,26 @@ mongoose.connect('mongodb://localhost:27017/test')
 
         // console.log('continue after loginUser call')
 
-        // function retrieveUser(userId, callback) {
-        //     // TODO input validation
+        function retrieveUser(userId, callback) {
+            // TODO input validation
 
-        //     users.findOne({ _id: new ObjectId(userId) }, { projection: { _id: 0, birthdate: 0, email: 0, password: 0 } })
-        //         .then(user => {
-        //             if (!user) {
-        //                 callback(new Error('user not found'))
+            users.findOne({ _id: new ObjectId(userId) }, { projection: { _id: 0, birthdate: 0, email: 0, password: 0 } })
+                .then(user => {
+                    if (!user) {
+                        callback(new Error('user not found'))
 
-        //                 return
-        //             }
+                        return
+                    }
 
-        //             // sanitize (not needed if using projection)
-        //             // delete user._id
-        //             // delete user.email
-        //             // delete user.password
+                    // sanitize (not needed if using projection)
+                    // delete user._id
+                    // delete user.email
+                    // delete user.password
 
-        //             callback(null, user)
-        //         })
-        //         .catch(error => callback(error))
-        // }
+                    callback(null, user)
+                })
+                .catch(error => callback(error))
+        }
 
         // retrieveUser('6617c3ad89de5e9374288e40', (error, user) => {
         //     if (error) {
@@ -250,38 +218,38 @@ mongoose.connect('mongodb://localhost:27017/test')
 
         // console.log('continue after retrievePosts call')
 
-        // SERVER
-
         const server = express()
 
-        //     server.get('/', (req, res) => res.json({ hello: 'client' }))
+        server.get('/', (req, res) => res.json({ hello: 'client' }))
 
-        //     server.get('/users/:userId', (req, res) => {
-        //         const userId = req.params.userId
+        server.get('/users/:userId', (req, res) => {
+            const userId = req.params.userId
 
-        //         retrieveUser(userId, (error, user) => {
-        //             if (error) {
-        //                 res.status(404).json({ error: error.constructor.name, message: error.message })
+            retrieveUser(userId, (error, user) => {
+                if (error) {
+                    res.status(404).json({ error: error.constructor.name, message: error.message })
 
-        //                 return
-        //             }
+                    return
+                }
 
-        //             res.json(user)
-        //         })
-        //     })
+                res.json(user)
+            })
+        })
 
         const jsonBodyParser = express.json() // JSON.parse(...)
 
         server.post('/users', jsonBodyParser, (req, res) => {
-            const { name, birthdate, email, username, password } = req.body
+            const user = req.body
 
-            try {
-                registerUser(name, birthdate, email, username, password)
-                    .then(() => res.status(201).send())
-                    .catch(error => res.status(500).json({ error: error.constructor.name, message: error.message }))
-            } catch (error) {
-                res.status(500).json({ error: error.constructor.name, message: error.message })
-            }
+            registerUser(user.name, user.birthdate, user.email, user.username, user.password, error => {
+                if (error) {
+                    res.status(404).json({ error: error.constructor.name, message: error.message })
+
+                    return
+                }
+
+                res.status(201).send()
+            })
         })
 
         server.listen(8080, () => console.log('API started'))
