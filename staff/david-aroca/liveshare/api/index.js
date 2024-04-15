@@ -1,74 +1,102 @@
-import mongodb from 'mongodb'
+import mongodb from 'mongoose'
 import express from 'express'
 
-const { MongoClient, ObjectId } = mongodb
 
-const client = new MongoClient('mongodb://localhost:27017')
+const { Schema, model } = mongoose
 
+const { Types: { ObjectId } } = Schema
+
+const user = new Schema({
+    name: {
+        type: String,
+        required: true
+    },
+    birthdate: {
+        type: Date,
+        required: true
+    },
+    email: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    username: {
+        type: String,
+        required: true,
+        unique: true
+
+    },
+    password: {
+        type: String,
+        required: true
+    },
+})
+
+const post = new Schema({
+    author: {
+        type: String,
+        required: true
+    },
+    post: {
+        type: String,
+        required: true
+    },
+    text: {
+        type: String,
+        required: true
+    },
+    date: {
+        type: String,
+        required: true
+    },
+
+})
+
+const User = model('User', user)
+const Post = model('Post', post)
+
+mongoose.connect('mongodb://localhost:21017/test')
 client.connect()
-    .then(connection => {
-        console.log('Conected')
+    .then(() => {
+        console.log('DB Conected')
 
-        const db = connection.db('test')
-
-        const users = db.collection('users')
-        const posts = db.collection('posts')
-
-        function registerUser(name, birthdate, email, username, password, callback) {
-            // TODO INPUT VALIDATION
-
-            users.findOne({ $or: [{ email }, { username }] })
+        function registerUser(name, birthdate, email, username, password) {
+            return User.findOne({ $or: [{ email }, { username }] })
+                .catch(error => { throw new Error(error.message) })
                 .then(user => {
-                    if (user) {
-                        callback(new Error('user already exists'))
-
-                        return
-                    }
-
-                    // TODO INSERT
+                    if (user) throw new Error('user already exists')
 
                     user = { name, birthdate, email, username, password }
 
-                    users.insertOne(user)
-                        .then(() => callback(null))
-                        .catch(error => callback(error))
-
+                    return User.create(user)
                 })
-                .catch(error => callback(error))
+            then(user => { })
         }
 
-        // registerUser('Pepito Grillo', '2000-01-01', 'pepito@grillo.com', 'pepitogrillo', '123123123123', error => {
-        //     if (error) {
-        //         console.error(error)
+        try {
+            registerUser('Pepito Grillo', '2000-01-01', 'pepito@grillo', 'pepitogrillo', '123123123')
+            then(() => console.log('user registered'))
+                .catch(error => console.log(error))
 
-        //         return
-        //     }
-
-        //     console.log('user registered')
-        // })
+        } catch (error) {
+            console.error(error)
+        }
 
         // console.log('continue after registerUser call')
 
-        // function loginUser(username, password, callback) {
+        function loginUser(username, password, callback) {
+            users.findOne({ username })
+                .then(user => {
+                    if (!user || user.password !== password) {
+                        callback(new Error('wrong credential  (-> cant log in)'))
+                        return
+                    }
+                    callback(null, user._id.toString())
+                })
+                .catch(error => callback(error))
 
-        //     users.findOne({ username })
-        //         .then((user) => {
-        //             if (!user) {
-        //                 callback(new Error('no valid credentials'))
+        }
 
-        //                 return
-        //             }
-
-        //             if (user.password !== password) {
-        //                 callback(new Error('invalid credentials'))
-
-        //                 return
-        //             }
-
-        //             callback(null, user._id.toString())
-        //         })
-        //         .catch(error => callback(error))
-        // }
 
         // loginUser('pepitogrillo', '123123123123', (error, userId) => {
         //     if (error) {
@@ -91,6 +119,7 @@ client.connect()
                         return
                     }
                     delete user._id
+                    delete user.email
                     delete user.password
 
                     callback(null, user)
@@ -234,21 +263,33 @@ client.connect()
 
         const server = express()
 
-        server.get('/', (req, res) => res.json({ hello: 'client' }))
+        // server.get('/', (req, res) => res.json({ hello: 'client' }))
 
-        server.get('/users/:userId', (req, res) => {
-            const userId = req.params.userId
+        // server.get('/users/:userId', (req, res) => {
+        //     const userId = req.params.userId
 
-            retrieveUser(userId, (error, user) => {
-                if (error) {
-                    res.status(404).json({ error: error.constructor.name, message: error.message })
+        //     retrieveUser(userId, (error, user) => {
+        //         if (error) {
+        //             res.status(404).json({ error: error.constructor.name, message: error.message })
 
-                    return
-                }
-                res.json(user)
-            })
-        })
+        //             return
+        //         }
+        //         res.json(user)
+        //     })
+        // })
         const jsonBodyParser = express.json() //JSON.PARSE(...)
+
+        server.post('/users', jsonBodyParser, (req, res) => {
+            const { name, birthdate, email, username, password } = req.body
+
+            try {
+                registerUser(name, birthdate, email, username, password)
+                    .then(() => res.status(201).send())
+                    .catch(error => res.status(500).json({ error: error.constructor.name, message: error.message }))
+            } catch (error) {
+                res.status(500).json({ error: error.constructor.name, message: error.message })
+            }
+        })
 
         server.post('/users', jsonBodyParser, (req, res) => {
             const user = req.body
@@ -264,5 +305,61 @@ client.connect()
         })
         server.listen(8080, () => console.log('API STARTED RUNNING'))
 
+
+        server.get('/posts', (req, res) => {
+            const userId = req.headers.authorization
+
+            retrievePosts(userId, (error, posts) => {
+                if (error) {
+
+                    res.status(404).json({ error: error.constructor.name, message: error.message })
+
+                    return
+                }
+                res.json
+            })
+        })
+
+        server.get('/posts/:postId', (req, res) => {
+            const userId = req.headers.authorization
+
+            retrievePosts(userId, (error, posts) => {
+                if (error) {
+
+                    res.status(404).json({ error: error.constructor.name, message: error.message })
+
+                    return
+                }
+                res.json
+            })
+        })
+
+        server.post('/login', jsonBodyParser, (req, res) => {
+            const user = req.body
+
+            loginUser(user.username, user.password, (error, userId) => {
+                if (error) {
+                    console.log(error)
+                    res.status(404).json({ error: error.constructor.name, message: error.message })
+
+                    return
+                }
+                res.json(user)
+            })
+        })
+
+        server.get('/posts/:userId,', (req, res) => {
+            const userId = req.headers.authorization
+
+            retrievePosts(userId, (error, posts) => {
+                if (error) {
+                    res.status(404).json({ error: error.constructor.name, message: error.message })
+
+                    return
+                }
+
+                res.json(posts)
+            })
+        })
     })
     .catch(error => console.error(error))

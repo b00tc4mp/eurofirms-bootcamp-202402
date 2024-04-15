@@ -1,0 +1,1 @@
+ curl -X GET -H 'authorization:661796c9fed8742582db7421' http://localhost:8080/login -v
