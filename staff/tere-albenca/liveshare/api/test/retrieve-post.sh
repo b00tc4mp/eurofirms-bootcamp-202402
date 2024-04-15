@@ -1,0 +1,1 @@
+curl -H 'authorization: 661ce2138966a5e180a4154a' http://localhost:8080/posts/661d077224fb23c22be06dba -v
