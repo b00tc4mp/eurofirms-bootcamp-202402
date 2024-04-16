@@ -1,7 +1,7 @@
 fetch('http://localhost:8080/users', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ name: 'Peter', lastname: 'Pan', birthdate: '2000-01-01', email: 'peter@pan.com', username: 'peterpan', password: '123123123' })
+    body: JSON.stringify({ name: 'Maria Teresa', lastname: 'Albenca', birthdate: '1984-06-05', email: 'terealbenca@gmail.com', username: 'alalluna', password: '123123123' })
 })
-    .then(res => console.log('registered'))
+    .then(res => console.log('user registered'))
     .catch(error => console.error(error))
