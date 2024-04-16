@@ -57,7 +57,9 @@ const Post = model('Post', post);
 
 mongoose
   .connect('mongodb://localhost:27017/test') // test es la base de datos
-  .then((connection) => {
+  .then(() => {
+    console.log('DB connected');
+
     function registerUser(name, birthdate, email, username, password) {
       // TODO: input validation
 
@@ -88,28 +90,25 @@ mongoose
     // console.log('continue after registerUser call');
 
     // //------------------------------
-    // function loginUser(username, password, callback) {
-    //   // TODO input validation
+    function loginUser(username, password) {
+      // TODO input validation
 
-    //   users
-    //     .findOne({ username })
-    //     .then((user) => {
-    //       if (!user) {
-    //         callback(new Error('user not found'));
+      return User.findOne({ username })
+        .catch((error) => {
+          throw new Error(error.message);
+        })
+        .then((user) => {
+          if (!user) {
+            throw new Error('user not found');
+          }
 
-    //         return;
-    //       }
+          if (user.password !== password) {
+            throw new Error('wrong credentials');
+          }
 
-    //       if (user.password !== password) {
-    //         callback(new Error('wrong credentials'));
-
-    //         return;
-    //       }
-
-    //       callback(null, user._id.toString());
-    //     })
-    //     .catch((error) => callback(error));
-    // }
+          return user._id.toString();
+        });
+    }
 
     // loginUser('uno', '12345678', (error, userId) => {
     //   if (error) {
@@ -123,31 +122,27 @@ mongoose
 
     // console.log('continue after loginUser call');
 
-    // //---------------------------------
-    // function retrieveUser(userId, callback) {
-    //   // TODO input validation
+    //---------------------------------
+    function retrieveUser(userId) {
+      // TODO input validation
 
-    //   users
-    //     .findOne(
-    //       { _id: new ObjectId(userId) },
-    //       { projection: { _id: 0, birthdate: 0, email: 0, password: 0 } }
-    //     )
-    //     .then((user) => {
-    //       if (!user) {
-    //         callback(new Error('user not found'));
+      return User.findById({ _id: userId }, 'name username -_id')
+        .catch((error) => {
+          throw new Error('error finding user');
+        })
+        .then((user) => {
+          if (!user) {
+            throw new Error('user not found');
+          }
 
-    //         return;
-    //       }
+          // sanitize (not needed if using projection)
+          // delete user._id
+          // delete user.email
+          // delete user.password
 
-    //       // sanitize (not needed if using projection)
-    //       // delete user._id
-    //       // delete user.email
-    //       // delete user.password
-
-    //       callback(null, user);
-    //     })
-    //     .catch((error) => callback(error));
-    // }
+          return user;
+        });
+    }
 
     // retrieveUser('6616a62cc474d0650d18fbae', (error, user) => {
     //   if (error) {
@@ -338,19 +333,26 @@ mongoose
 
     server.get('/', (req, res) => res.json({ hello: 'client' }));
 
-    // server.get('/users/:userId', (req, res) => {
-    //   const userId = req.params.userId;
+    server.get('/users/:userId', (req, res) => {
+      const userId = req.params.userId;
 
-    //   retrieveUser(userId, (error, user) => {
-    //     if (error) {
-    //       res
-    //         .status(404)
-    //         .json({ error: error.constructor.name, message: error.message });
-    //       return;
-    //     }
-    //     res.json(user);
-    //   });
-    // });
+      try {
+        retrieveUser(userId)
+          .then((user) => {
+            res.status(200).json(user);
+          })
+          .catch((error) => {
+            res
+              .status(404)
+              .json({ error: error.constructor.name, message: error.message });
+          });
+      } catch (error) {
+        console.error(error);
+        res
+          .status(500)
+          .json({ error: error.constructor.name, message: error.message });
+      }
+    });
 
     const jsonBodyParser = express.json(); // JSON.parse(...)
 
@@ -372,24 +374,29 @@ mongoose
       }
     });
 
-    // server.post('/login', jsonBodyParser, (req, res) => {
-    //   const user = req.body;
+    server.post('/login', jsonBodyParser, (req, res) => {
+      const user = req.body;
 
-    //   loginUser(user.username, user.password, (error) => {
-    //     if (error) {
-    //       res
-    //         .status(400)
-    //         .json({ error: error.constructor.name, message: error.message });
-
-    //       return;
-    //     }
-
-    //     res.status(200).json({
-    //       error: null,
-    //       data: 'exito bienvenido',
-    //     });
-    //   });
-    // });
+      try {
+        loginUser(user.username, user.password)
+          .then((userId) =>
+            res.status(200).json({
+              error: null,
+              userId,
+            })
+          )
+          .catch((error) =>
+            res
+              .status(500)
+              .json({ error: error.constructor.name, message: error.message })
+          );
+      } catch (error) {
+        console.error(error);
+        res
+          .status(500)
+          .json({ error: error.constructor.name, message: error.message });
+      }
+    });
 
     // server.get('/posts', (req, res) => {
     //   const userId = req.headers.authorization;
