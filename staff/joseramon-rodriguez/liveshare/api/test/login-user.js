@@ -3,5 +3,6 @@ fetch('http://localhost:8080/login', {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ username: 'pepitogrillo', password: '123123123' })
 })
-    .then(res => console.log('logged in'))
+    .then(res => res.json())
+    .then(event => console.log(event))
     .catch(error => console.error(error))
