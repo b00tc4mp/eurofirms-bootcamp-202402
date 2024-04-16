@@ -12,6 +12,7 @@ function registerUser(name, birthdate, email, username, password) {
             user = { name, birthdate, email, username, password }
 
             return User.create(user)
+                .catch(error => { throw new Error(error.message) })
         })
         .then(user => { })
 }

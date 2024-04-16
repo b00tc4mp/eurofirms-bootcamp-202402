@@ -1,13 +1,13 @@
-function createPost(userId, image, text, callback) {
+import { User, Post } from '../data/index.js'
+
+function createPost(userId, image, text) {
     // TODO input validation
 
-    users.findOne({ _id: new ObjectId(userId) })
+    return User.findById(userId)
+        .catch(error => { throw new Error(error.message) })
         .then(user => {
-            if (!user) {
-                callback(new Error('user not found'))
-
-                return
-            }
+            if (!user)
+                throw new Error('user not found')
 
             const post = {
                 author: user._id,
@@ -16,11 +16,10 @@ function createPost(userId, image, text, callback) {
                 date: new Date
             }
 
-            posts.insertOne(post)
-                .then(() => callback(null))
-                .catch(error => callback(error))
+            return Post.create(post)
+                .catch(error => { throw new Error(error.message) })
         })
-        .catch(error => callback(error))
+        .then(post => { })
 }
 
 export default createPost
