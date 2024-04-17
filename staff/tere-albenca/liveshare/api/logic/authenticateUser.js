@@ -1,7 +1,6 @@
 import { User } from '../data/index.js'
 
 function authenticateUser(username, password) {
-
     return User.findOne({ username })
         .catch(error => { throw new Error(error.message) })
         .then(user => {

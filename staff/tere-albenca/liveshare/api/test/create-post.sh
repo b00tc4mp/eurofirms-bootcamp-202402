@@ -1,1 +1,1 @@
- curl -X POST -H 'Authorization: Bearer 661e7c9ed5a64604bf056b39' -H 'Content-type: application/json' -d '{"image":"https://mir-s3-cdn-cf.behance.net/project_modules/1400/85a973130870077.6189923a30431.jpg","text":"Un dibujo"}'http://localhost:8080/posts -v
+ curl -X POST -H 'Authorization: Bearer 661e9c3cf8778ac5964d373f' -H 'Content-type: application/json' -d '{"image":"https://mir-s3-cdn-cf.behance.net/project_modules/1400/85a973130870077.6189923a30431.jpg","text":"Un dibujo"}' http://localhost:8080/posts -v

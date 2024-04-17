@@ -1,7 +1,6 @@
 import { User, Post } from '../data/index.js'
 
 function createPost(userId, image, text) {
-
     return User.findById(userId)
         .catch(error => { throw new Error(error.message) })
         .then(user => {

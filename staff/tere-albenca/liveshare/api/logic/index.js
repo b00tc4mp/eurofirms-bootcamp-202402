@@ -3,13 +3,15 @@ import retrieveUser from './retrieveUser.js'
 import retrievePosts from './retrievePosts.js'
 import authenticateUser from './authenticateUser.js'
 import createPost from './createPost.js'
+import deletePost from './deletePost.js'
 
 const logic = {
     registerUser,
     retrieveUser,
     retrievePosts,
     authenticateUser,
-    createPost
+    createPost,
+    deletePost
 }
 
 export default logic
