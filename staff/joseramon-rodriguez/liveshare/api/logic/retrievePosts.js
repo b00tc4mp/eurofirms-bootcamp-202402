@@ -7,16 +7,18 @@ function retrievePosts(userId) {
         .then(user => {
             if (!user) throw new Error('user not found')
 
-            return Post.find().populate('author', 'username').lean()
+            return Post.find().select('-__v').populate('author', 'username').lean()
                 .then(posts => {
                     posts.forEach(post => {
                         post.id = post._id.toString()
 
                         delete post._id
 
-                        post.author.id = post.author._id.toString()
+                        if (post.author._id) {
+                            post.author.id = post.author._id.toString()
 
-                        delete post.author._id
+                            delete post.author._id
+                        }
 
                     })
                     return posts

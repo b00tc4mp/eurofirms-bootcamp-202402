@@ -10,8 +10,9 @@ function createPost(author, text, image) {
 
             const post = { author: user._id, text, image, date }
             return Post.create(post)
+                .catch(error => { throw new Error(error.message) })
         })
-    //.then(post => { })
+        .then(post => { })
 }
 
 export default createPost
