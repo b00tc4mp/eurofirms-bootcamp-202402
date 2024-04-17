@@ -1,4 +1,4 @@
-import mongoose, { trusted } from 'mongoose';
+import mongoose from 'mongoose';
 import express from 'express';
 import logic from './logic/index.js';
 

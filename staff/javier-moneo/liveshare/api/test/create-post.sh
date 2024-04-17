@@ -1,0 +1,1 @@
+curl -X POST -H 'Authorization: Bearer 661d5398017fbdd3a49d091b' -H 'Content-type: application/json' -d '{"image":"http://image.com/something","text":"this is an image"}' http://localhost:8080/posts -v
