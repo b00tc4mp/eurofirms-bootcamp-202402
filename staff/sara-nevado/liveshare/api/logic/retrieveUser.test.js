@@ -1,11 +1,11 @@
 import mongoose from 'mongoose'
-import retrievePosts from './retrievePosts.js'
+import retrieveUser from './retrieveUser.js'
 
 mongoose.connect('mongodb://localhost:27017/test')
     .then(() => {
         try {
-            retrievePosts('661e7c9ed5a64604bf056b39')
-                .then(posts => console.log('retrieved posts', posts))
+            retrieveUser('6618bef85bbbcbe9a016c9b6', '661fe33b47d2d098ee4fd058')
+                .then(user => console.log('user retrieved', user))
                 .catch(error => console.error(error))
         } catch (error) {
             console.error(error)

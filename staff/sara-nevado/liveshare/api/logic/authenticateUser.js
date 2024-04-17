@@ -1,13 +1,20 @@
-import mongoose from 'mongoose'
-import authenticateUser from './authenticateUser.js'
+import { User } from '../data/index.js'
 
-mongoose.connect('mongodb://localhost:27017/test')
-    .then(() => {
-        try {
-            authenticateUser('manoloeldelbombo', '111111111')
-                .then(userId => console.log('user logged in', userId))
-                .catch(error => console.error(error))
-        } catch (error) {
-            console.error(error)
-        }
-    })
+function authenticateUser(username, password) {
+    //todo input validation
+
+    return User.findOne({ username })
+        .catch(error => { throw new Error(error.message) })
+        .then(user => {
+            if (!user)
+                throw new Error('user not found')
+
+
+            if (user.password !== password)
+                throw new Error('wrong credentials')
+
+            return user.id
+        })
+}
+
+export default authenticateUser
