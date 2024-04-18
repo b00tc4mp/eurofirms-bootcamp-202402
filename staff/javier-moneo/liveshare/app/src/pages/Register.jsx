@@ -13,9 +13,14 @@ function Register({ onUserRegistered, onLoginClick }) {
     const password = form.password.value;
 
     try {
-      logic.registerUser(name, birthdate, email, username, password);
+      logic
+        .registerUser(name, birthdate, email, username, password)
+        .then(() => onUserRegistered())
+        .catch((error) => {
+          console.error(error);
 
-      onUserRegistered();
+          alert(error.message);
+        });
     } catch (error) {
       console.error(error);
 

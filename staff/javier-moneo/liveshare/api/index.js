@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 import express from 'express';
 import logic from './logic/index.js';
+import cors from 'cors';
 
 // test es la base de datos
 mongoose
@@ -12,6 +13,20 @@ mongoose
     server.get('/', (req, res) => res.json({ hello: 'client' }));
 
     const jsonBodyParser = express.json(); // JSON.parse(...)
+
+    var whitelist = ['http://localhost:5173', 'http://example2.com']; // front page
+    var corsOptions = {
+      origin: function (origin, callback) {
+        if (whitelist.indexOf(origin) !== -1) {
+          callback(null, true);
+        } else {
+          callback(new Error('Not allowed by CORS'));
+        }
+      },
+    };
+
+    // server.use(cors()); // este hace que todos los dominios tengan acceso
+    server.use(cors(corsOptions));
 
     server.post('/users', jsonBodyParser, (req, res) => {
       try {

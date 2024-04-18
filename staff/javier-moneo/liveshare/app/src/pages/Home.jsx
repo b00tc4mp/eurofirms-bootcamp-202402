@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import logic from '../logic';
 
@@ -7,15 +7,24 @@ import CreatePost from '../components/CreatePost';
 
 function Home({ onUserLoggedOut }) {
   const [view, setView] = useState(null);
-  let user = null;
+  const [user, setUser] = useState(null);
 
-  try {
-    user = logic.retrieveUser();
-  } catch (error) {
-    console.error(error);
+  useEffect(() => {
+    try {
+      logic
+        .retrieveUser()
+        .then((user) => setUser(user))
+        .catch((error) => {
+          console.error(error);
 
-    alert(error.message);
-  }
+          alert(error.message);
+        });
+    } catch (error) {
+      console.error(error);
+
+      alert(error.message);
+    }
+  }, []);
 
   const handleLogout = () => {
     logic.logoutUser();
@@ -42,7 +51,8 @@ function Home({ onUserLoggedOut }) {
   return (
     <>
       <header className="header">
-        <h1>Hello, {user.name}!</h1>
+        {!user && <p>Loading...</p>}
+        {user && <h1>Hello, {user.name}!</h1>}
 
         <nav id="top-menu">
           <button className="button" id="chat-button">
@@ -55,7 +65,7 @@ function Home({ onUserLoggedOut }) {
       </header>
 
       <main className="main">
-        <Posts />
+        {/* <Posts /> */}
         {view === 'create-post' && (
           <CreatePost
             onCancelClick={handleCreatePostCancelClick}

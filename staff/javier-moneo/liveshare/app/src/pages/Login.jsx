@@ -10,9 +10,14 @@ function Login({ onUserLoggedIn, onRegisterClick }) {
     const password = form.password.value;
 
     try {
-      logic.loginUser(username, password);
+      logic
+        .loginUser(username, password)
+        .then(() => onUserLoggedIn())
+        .catch((error) => {
+          console.error(error);
 
-      onUserLoggedIn();
+          alert(error.message);
+        });
     } catch (error) {
       console.error(error);
       alert(error.message);
