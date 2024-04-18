@@ -1,25 +1,30 @@
 import logic from "../logic"
 import CreatePost from "../components/CreatePost"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Posts from "../components/Posts"
 import Chat from "../components/Chat"
 
 function Home({ onLogoutClick }) {
-    let posts = null
-    let user = null
-
-    try {
-        posts = logic.retrievePosts()
-        user = logic.retrieveUser()
-
-    } catch (error) {
-        console.error(error)
-
-        alert(error.message)
-    }
-
     const [view, setView] = useState('post')
     const [createPost, setCreatePost] = useState(null)
+    const [user, setUser] = useState(null)
+    //ASK
+    useEffect(() => {
+        try {
+            logic.retrieveUser()
+                .then(user => setUser(user))
+                .catch(error => {
+                    console.error(error)
+
+                    alert(error.message)
+                })
+        } catch (error) {
+            console.error(error)
+
+            alert(error.message)
+        }
+    }, [])
+
 
     const handleCreateClick = () => {
         setView('post')
@@ -54,7 +59,7 @@ function Home({ onLogoutClick }) {
             </nav>
         </header>
         {view === 'chat' && <Chat />}
-        {view === 'post' && <Posts />}
+        {/* {view === 'post' && <Posts />} */}
         {createPost === 'createPost' && <CreatePost onPostCreated={handleCreateClick}
             onCancelCreatePostClick={handleCancelCreatePostClick} />}
         <footer>

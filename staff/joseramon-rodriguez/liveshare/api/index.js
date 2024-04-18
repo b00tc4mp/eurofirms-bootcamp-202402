@@ -1,6 +1,7 @@
 import mongoose from "mongoose"
 import express from 'express'
 import logic from './logic/index.js'
+import cors from 'cors'
 
 mongoose.connect('mongodb://localhost:27017/test')
     .then(() => {
@@ -12,17 +13,23 @@ mongoose.connect('mongodb://localhost:27017/test')
 
         const server = express()
 
+        const jsonBodyParser = express.json()
+
+        server.use(cors())
+
         server.get('/', (req, res) => res.json({ hello: 'client' }))
 
-        server.get('/users/:userId', (req, res) => {
-            const userId = req.params.userId
+        server.get('/users/:targetUserId', (req, res) => {
+            const targetUserId = req.params.targetUserId
+
+            const { authorization } = req.headers
+
+            const userId = authorization.slice(7)
 
             try {
-                logic.retrieveUser(userId)
-                    .then((user) => res.status(200).json(user).send())
-                    .catch(error => res.status(500).json({
-                        error: error.constructor.name, message: error.message
-                    }))
+                logic.retrieveUser(userId, targetUserId)
+                    .then((user) => res.status(200).json(user))
+                    .catch(error => res.status(500).json({ error: error.constructor.name, message: error.message }))
 
             } catch (error) {
                 res.status(500).json({ error: error.constructor.name, message: error.message })
@@ -30,7 +37,7 @@ mongoose.connect('mongodb://localhost:27017/test')
             }
         })
 
-        const jsonBodyParser = express.json()
+
 
         server.post('/users', jsonBodyParser, (req, res) => {
             const { name, birthdate, email, username, password } = req.body
@@ -52,7 +59,7 @@ mongoose.connect('mongodb://localhost:27017/test')
 
             try {
                 logic.authenticateUser(user.username, user.password)
-                    .then((id) => res.status(201).json({ message: 'user logged in', userId: id }).send())
+                    .then((userId) => res.status(200).json(userId))
                     .catch(error => res.status(500).json({ error: error.constructor.name, message: error.message }))
             } catch (error) {
                 res.status(500).json({ error: error.constructor.name, message: error.message })
