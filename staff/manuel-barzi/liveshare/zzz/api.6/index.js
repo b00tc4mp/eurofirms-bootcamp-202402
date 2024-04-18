@@ -1,7 +1,6 @@
 import mongoose from 'mongoose'
 import express from 'express'
 import logic from './logic/index.js'
-import cors from 'cors'
 
 mongoose.connect('mongodb://localhost:27017/test')
     .then(() => {
@@ -12,18 +11,6 @@ mongoose.connect('mongodb://localhost:27017/test')
         server.get('/', (req, res) => res.json({ hello: 'client' }))
 
         const jsonBodyParser = express.json() // JSON.parse(...)
-
-        // const cors = (req, res, next) => {
-        //     res.setHeader('Access-Control-Allow-Origin', '*')
-        //     res.setHeader('Access-Control-Allow-Headers', '*')
-        //     res.setHeader('Access-Control-Allow-Methods', '*')
-
-        //     next()
-        // }
-
-        // server.use(cors)
-
-        server.use(cors())
 
         server.post('/users', jsonBodyParser, (req, res) => {
             try {

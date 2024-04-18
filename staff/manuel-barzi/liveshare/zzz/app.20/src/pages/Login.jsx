@@ -11,12 +11,8 @@ function Login({ onUserLoggedIn, onRegisterClick }) {
 
         try {
             logic.loginUser(username, password)
-                .then(() => onUserLoggedIn())
-                .catch(error => {
-                    console.error(error)
 
-                    alert(error.message)
-                })
+            onUserLoggedIn()
         } catch (error) {
             console.error(error)
 
