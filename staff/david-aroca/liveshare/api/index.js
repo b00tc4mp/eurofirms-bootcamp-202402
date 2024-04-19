@@ -1,6 +1,7 @@
 import mongoose from 'mongoose'
 import express from 'express'
 import logic from './logic/index.js'
+import cors from 'cors'
 
 mongoose.connect('mongodb://localhost:27017/test')
     .then(() => {
@@ -12,10 +13,11 @@ mongoose.connect('mongodb://localhost:27017/test')
 
         const jsonBodyParser = express.json() //JSON.PARSE(...)
 
-        server.post('/users', jsonBodyParser, (req, res) => {
-            const { name, birthdate, email, username, password } = req.body
+        server.use(cors())
 
+        server.post('/users', cors, jsonBodyParser, (req, res) => {
             try {
+                const { name, birthdate, email, username, password } = req.body
                 logic.registerUser(name, birthdate, email, username, password)
                     .then(() => res.status(201).send())
                     .catch(error => res.status(500).json({ error: error.constructor.name, message: error.message }))

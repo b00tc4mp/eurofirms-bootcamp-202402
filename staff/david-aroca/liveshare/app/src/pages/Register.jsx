@@ -14,8 +14,12 @@ function Register({ onUserRegistered, onLoginClick }) {
 
         try {
             logic.registerUser(name, birthdate, email, username, password)
+                .then(() => onUserRegistered())
+                .catch(error => {
+                    console.log(error)
 
-            onUserRegistered()
+                    alert(error.message)
+                })
         } catch (error) {
             console.error(error)
 
