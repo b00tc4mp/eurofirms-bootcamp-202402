@@ -1,6 +1,6 @@
-import logic from "../logic"
+import logic from "../logic/index.js"
 
-function Register({ onRegisterClick, onLoginClick }) {
+function Register({ onUserRegistered, onLoginClick }) {
 
     const handleSubmit = event => {
         event.preventDefault()
@@ -15,8 +15,9 @@ function Register({ onRegisterClick, onLoginClick }) {
 
         try {
             logic.registerUser(name, birthdate, email, username, password)
+                .then(() => onUserRegistered())
+                .catch(error => { console.error(error) })
 
-            onRegisterClick()
 
         } catch (error) {
             console.error(error)

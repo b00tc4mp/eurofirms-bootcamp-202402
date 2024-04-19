@@ -1,26 +1,52 @@
 
-import CreatePost from "./sections/CreatePost"
-import Posts from "./sections/Posts"
-import logic from "../logic"
-import Chat from "./sections/Chat"
-import { useState } from "react"
+import CreatePost from "./components/CreatePost.jsx"
+import Posts from "./components/Posts.jsx"
+import logic from "../logic/index.js"
+import Chat from "./components/Chat.jsx"
+import { useState, useEffect } from "react"
 
 function Home({ onLogoutClick }) {
-    let loggedUser
-    let initialPosts
 
-    try {
-        loggedUser = logic.retrieveUser()
-        initialPosts = logic.retrievePosts()
 
-    } catch (error) {
-        console.error(error)
-        alert(error.message)
-    }
-    const [user, setUser] = useState(loggedUser)
-    const [posts, setPosts] = useState(initialPosts)
+    const [user, setUser] = useState(null)
+    const [posts, setPosts] = useState(null)
     const [createPost, setCreatePost] = useState('hide')
     const [view, setView] = useState('posts')
+    const [timeStamp, setStamp] = useState(Date.now())
+
+    useEffect(() => {
+        try {
+            logic.retrieveUser()
+                .then(user => setUser(user))
+                .catch(error => {
+                    console.error(error)
+
+                    alert(error.message)
+                })
+
+            // initialPosts = logic.retrievePosts()
+
+        } catch (error) {
+            console.error(error)
+            alert(error.message)
+        }
+
+    }, [])
+
+    useEffect(() => {
+        try {
+            logic.retrievePosts()
+                .then(posts => setPosts(posts.toReversed()))
+                .catch(error => {
+                    console.error(error)
+
+                    alert(error.message)
+                })
+        } catch (error) {
+            console.error(error)
+            alert(error.message)
+        }
+    }, [timeStamp])
 
     const handleChatButton = () => setView('chat')
 
@@ -38,15 +64,17 @@ function Home({ onLogoutClick }) {
 
         setPosts(updatedPosts)
         setCreatePost('hide')
+        setStamp(Date.now())
     }
 
     const handleCancelCreateButton = () => setCreatePost('hide')
 
-    const username = user.username
+
     return <>
 
         <header>
-            <h1>{`Hola ${username}!`}</h1>
+            {!user && <p>Loading...</p>}
+            {user && <h1>{`Hola ${user.username}!`}</h1>}
 
             <nav id="top-menu">
                 <button className="button" id="chat-button" onClick={() => handleChatButton()}>💬</button>
@@ -55,10 +83,10 @@ function Home({ onLogoutClick }) {
         </header >
 
         <main>
-            {view === 'posts' && < Posts postToRender={posts} />}
+            {view === 'posts' && posts ? <Posts postToRender={posts} /> : <span>loading posts....</span>}
             {view === 'chat' && < Chat />}
             {createPost === 'show' && <CreatePost onSendClick={() => handleSendCreateButton()} onCancelCreateClick={() => handleCancelCreateButton()} />}
-        </main>
+        </main >
         <footer className="footer">
             <button className="button" id="posts-button" onClick={() => handlePostButton()}>🏚️</button>
             <button className="button" id="create-post-button" onClick={() => handleCreatePostButton()}>➕</button>

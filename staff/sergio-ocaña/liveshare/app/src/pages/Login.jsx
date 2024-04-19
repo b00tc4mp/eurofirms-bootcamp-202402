@@ -1,4 +1,4 @@
-import logic from "../logic"
+import logic from "../logic/index.js"
 
 function Login({ onUserLoggedIn, onRegisterClick }) {
     const handleSubmit = event => {
@@ -11,8 +11,12 @@ function Login({ onUserLoggedIn, onRegisterClick }) {
 
         try {
             logic.loginUser(username, password)
+                .then(() => onUserLoggedIn())
+                .catch(error => {
+                    console.error(error)
+                })
 
-            onUserLoggedIn()
+
         } catch (error) {
             alert(error.message)
 

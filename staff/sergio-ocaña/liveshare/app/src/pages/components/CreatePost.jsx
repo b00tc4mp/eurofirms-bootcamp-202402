@@ -1,4 +1,4 @@
-import logic from "../../logic"
+import logic from "../../logic/index.js"
 function CreatePost({ onSendClick, onCancelCreateClick }) {
     const handleSubmit = (event) => {
         event.preventDefault()
@@ -10,8 +10,8 @@ function CreatePost({ onSendClick, onCancelCreateClick }) {
 
         try {
             logic.createPost(image, text)
-
-            onSendClick()
+                .then(() => onSendClick())
+                .catch(error => { throw new Error(error.message) })
 
         } catch (error) {
             alert(error.message)

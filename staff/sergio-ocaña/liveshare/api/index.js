@@ -1,6 +1,8 @@
 import mongoose from 'mongoose'
 import express from 'express'
+import cors from 'cors'
 import logic from './logic/index.js'
+
 
 mongoose.connect('mongodb://localhost:27017/test')
     .then(() => {
@@ -9,6 +11,8 @@ mongoose.connect('mongodb://localhost:27017/test')
         const server = express()
 
         const jsonBodyParser = express.json()
+
+        server.use(cors())
 
         server.post('/users', jsonBodyParser, (req, res) => {
             const { name, birthdate, email, username, password } = req.body
@@ -38,7 +42,7 @@ mongoose.connect('mongodb://localhost:27017/test')
             try {
                 const { authorization } = req.headers
 
-                userId = authorization.slice(7)
+                const userId = authorization.slice(7)
 
                 const { targetUserId } = req.params
 

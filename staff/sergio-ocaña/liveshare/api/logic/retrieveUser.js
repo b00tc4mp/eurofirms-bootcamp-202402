@@ -9,8 +9,8 @@ function retrieveUser(userId, targetUserId) {
 
             return User.findById(targetUserId).select('-_id name username').lean()
                 .catch(error => { throw new Error(error.message) })
-                .then(targetUserId => {
-                    if (!targetUserId) throw new Error('target user not found')
+                .then(targetUser => {
+                    if (!targetUser) throw new Error('target user not found')
 
                     return targetUser
                 })
