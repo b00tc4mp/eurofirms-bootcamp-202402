@@ -1,4 +1,4 @@
-import { User } from '..data/index.js'
+import { User } from '../data/index.js'
 
 function authenticateUser(username, password) {
     // TODO input validation

@@ -32,4 +32,4 @@ function retrievePosts(userId) {
 
 }
 
-export default retrievePos
+export default retrievePosts
