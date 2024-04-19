@@ -1,5 +1,6 @@
 import { Post, User } from "../data/index.js";
 
+// Api logic methods
 
 function createPost(userId, image, text) {
     return User.findById(userId)

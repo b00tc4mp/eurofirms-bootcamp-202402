@@ -1,5 +1,7 @@
 import { User } from "../data/index.js"
 
+// Api logic methods
+
 function registerUser(name, birthdate, email, username, password) {
     return User.findOne({ $or: [{ email }, { username }] })
 

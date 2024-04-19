@@ -1,5 +1,5 @@
 import { User } from "../data/index.js"
-
+// Api logic methods
 function authenticateUser(username, password) {
 
     return User.findOne({ username })
