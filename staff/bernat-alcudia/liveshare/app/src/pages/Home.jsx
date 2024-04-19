@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import logic from "../logic"
 import Posts from "../components/Posts"
 import CreatePost from "../components/CreatePost"
@@ -6,30 +6,30 @@ import CreatePost from "../components/CreatePost"
 
 function Home(onUserLoggedOut) {
     const [view, setView] = useState(null)
-    let user = null
+    const [user, setUser] = useState(null)
 
-    try {
-        user = logic.retrieveUser()
-    } catch (error) {
-        console.error(error)
 
-        alert(error.message)
-    }
+    useEffect(() => {
+        try {
+            logic.retrieveUser()
+                .then(user => setUser(user))
+                .catch(error => {
+                    console.error(error)
+
+                    alert(error.message)
+                })
+        } catch (error) {
+            console.error(error)
+
+            alert(error.message)
+        }
+    }, [])
+
 
     const handleLogout = () => {
         logic.logoutUser()
 
         onUserLoggedOut()
-    }
-
-    let posts = []
-
-    try {
-        posts = logic.retrievePosts()
-    } catch (error) {
-        console.error(error)
-
-        alert(error.message)
     }
 
     const handleCreatePostClick = () => setView('create-post')
@@ -40,7 +40,8 @@ function Home(onUserLoggedOut) {
 
     return <>
         <header className="header">
-            <h1>Hello, {user.name}</h1>
+            {!user && <p>Loading...</p>}
+            {user && <h1>Hello, {user.name}</h1>}
             <nav id="top-menu">
                 <button id="chat-button">👩‍👧‍👦</button>
                 <button id="logout-button" onClick={handleLogout}>🚪</button>
@@ -48,30 +49,17 @@ function Home(onUserLoggedOut) {
         </header>
 
         <main className="main">
+
             <section id="posts-section">
 
                 <div id="posts-list" ></div>
             </section>
-            <section id="chat-section" className="chat-section--off">
-                <ul id="chat-users"><li className="chat-user chat-user-online">Esperanzaml</li><li className="chat-user chat-user-offline">Tomaml</li></ul>
+            {/* <Posts /> */}
 
-                <div id="chat" className="chat--off">
-                    <h3 id="chat-interlocutor">username</h3>
-
-                    <ul id="chat-messages"></ul>
-
-                    <form id="chat-form">
-                        <label htmlFor="text">Text</label>
-                        <input type="text" id="text" />
-                        <button type="submit">Send</button>
-                    </form>
-
-
-                </div>
-            </section>
-            <CreatePost></CreatePost>
+            {view === 'create-post' && <CreatePost onCancelClick={handleCreatePostCancelClick} onPostCreated={handlePostCreated} />}
 
         </main>
+
         <footer className="footer">
             <button className="button" >🏠</button>
             <button className="button" onClick={handleCreatePostClick}></button>
