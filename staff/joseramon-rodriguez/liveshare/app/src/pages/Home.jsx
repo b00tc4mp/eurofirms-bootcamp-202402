@@ -8,7 +8,8 @@ function Home({ onLogoutClick }) {
     const [view, setView] = useState('post')
     const [createPost, setCreatePost] = useState(null)
     const [user, setUser] = useState(null)
-    //ASK
+    const [timeStamp, setTimeStamp] = useState(Date.now())
+
     useEffect(() => {
         try {
             logic.retrieveUser()
@@ -28,6 +29,8 @@ function Home({ onLogoutClick }) {
 
     const handleCreateClick = () => {
         setView('post')
+        setCreatePost(null)
+        setTimeStamp(Date.now())
     }
 
     const handleCreatePostClick = () => {
@@ -52,14 +55,14 @@ function Home({ onLogoutClick }) {
     }
     return <>
         <header id="top-menu">
-            <h1>Hello , Home! {user.name}</h1>
+            {user ? <h1>Hello , Home! {user.name}</h1> : <span>Loading...</span>}
             <nav className="top-menu--right">
                 <button onClick={handleChatButton} id="chat-button">Chat</button>
                 <button onClick={handleLogOutButton} id="logout-button">Log-{`>`}out</button>
             </nav>
         </header>
         {view === 'chat' && <Chat />}
-        {/* {view === 'post' && <Posts />} */}
+        {view === 'post' && <Posts refreshPosts={timeStamp} />}
         {createPost === 'createPost' && <CreatePost onPostCreated={handleCreateClick}
             onCancelCreatePostClick={handleCancelCreatePostClick} />}
         <footer>

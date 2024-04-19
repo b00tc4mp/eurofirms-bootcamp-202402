@@ -1,21 +1,32 @@
+import { useEffect, useState } from "react"
 import logic from "../logic"
 import Post from "./Post"
-function Posts() {
-    let posts = null
+function Posts({ refreshPosts }) {
+    const [posts, setPost] = useState(null)
 
-    try {
-        posts = logic.retrievePosts()
+    useEffect(() => {
+        try {
+            logic.retrievePosts()
+                .then(postsList => {
+                    setPost(postsList.toReversed())
+                })
+                .catch(error => {
+                    console.error(error)
 
-    } catch (error) {
-        console.error(error)
+                    alert(error.message)
+                })
 
-        alert(error.message)
-    }
+        } catch (error) {
+            console.error(error)
+
+            alert(error.message)
+        }
+    }, [refreshPosts])
 
     return <section id="posts-section" className="posts-section">
         <h2>Posts</h2>
         <div id="posts-list">
-            {posts.map((post => <Post post={post} />))}
+            {posts ? posts.map((post => <Post key={post.id} post={post} />)) : <span>Loading...</span>}
         </div>
     </section>
 }

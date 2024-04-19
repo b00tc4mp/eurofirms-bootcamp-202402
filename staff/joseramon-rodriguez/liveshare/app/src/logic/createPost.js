@@ -1,7 +1,7 @@
 function createPost(image, text) {
     // validateText(image)
     // validateText(text)
-    fetch('http://localhost:8080/posts', {
+    return fetch('http://localhost:8080/posts', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'authorization': `Bearer ${sessionStorage.userId}` },
         body: JSON.stringify({ image, text })
@@ -19,7 +19,7 @@ function createPost(image, text) {
                 })
                 .catch(error => { throw new Error(error) })
         })
-        .catch(error => console.error(error))
+        .catch(error => { throw new Error(error) })
 
 }
 

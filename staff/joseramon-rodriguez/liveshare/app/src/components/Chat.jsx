@@ -14,7 +14,7 @@ function Chat() {
             </ul>
 
             <form id="chat-form">
-                <label for="text">Text</label>
+                <label htmlFor="text">Text</label>
                 <input type="text" id="text" />
 
                 <button type="submit">Send</button>

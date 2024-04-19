@@ -1,10 +1,10 @@
 function retrievePosts() {
-    fetch('http://localhost:8080/posts/', {
+    return fetch('http://localhost:8080/posts/', {
         method: 'GET',
         headers: { 'authorization': `Bearer ${sessionStorage.userId}` },
     })
         .then(res => {
-            if (res.status === 201) return res.json()//<--posts are here to be reversed
+            if (res.status === 200) return res.json()//<--posts are here to be reversed
 
             return res.json()
                 .then(body => {
@@ -16,7 +16,7 @@ function retrievePosts() {
                 })
                 .catch(error => { throw new Error(error) })
         })
-        .catch(error => console.error(error))
+        .catch(error => { throw new Error(error) })
 }
 
 export default retrievePosts

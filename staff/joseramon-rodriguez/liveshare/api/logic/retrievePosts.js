@@ -23,9 +23,9 @@ function retrievePosts(userId) {
                     })
                     return posts
                 })
-                .catch(error => console.error(error))
+                .catch(error => { throw new Error(error.message) })
         })
-        .catch(error => console.error(error.message))
+        .catch(error => { throw new Error(error.message) })
 
 }
 

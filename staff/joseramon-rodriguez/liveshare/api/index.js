@@ -67,11 +67,9 @@ mongoose.connect('mongodb://localhost:27017/test')
             }
         })
 
-        server.get('/posts/', (req, res) => {
+        server.get('/posts', (req, res) => {
             try {
-                const userId = req.headers.authorization
-
-                userId.slice(7)
+                const userId = req.headers.authorization.slice(7)
 
                 logic.retrievePosts(userId)
                     .then(posts => res.status(200).json(posts))
