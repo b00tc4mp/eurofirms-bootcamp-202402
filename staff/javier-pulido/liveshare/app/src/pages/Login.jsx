@@ -11,15 +11,19 @@ function Login({ onUserLoggedIn, onRegisterClick }) {
 
         try {
             logic.loginUser(username, password)
+                .then(() => onUserLoggedIn())
+                .catch(error => {
+                    console.error(error)
 
-            onUserLoggedIn()
+                    alert(error.message)
+                })
         } catch (error) {
             console.error(error)
 
             alert(error.message)
         }
     }
-
+    
     const handleRegisterClick = event => {
         event.preventDefault()
 
