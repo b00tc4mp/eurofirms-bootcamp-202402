@@ -1,4 +1,5 @@
-import logic from "../logic"
+import logic from '../logic'
+
 
 function Login({ onUserLoggedIn, onRegisterClick }) {
     const handleSubmit = event => {
@@ -11,8 +12,12 @@ function Login({ onUserLoggedIn, onRegisterClick }) {
 
         try {
             logic.loginUser(username, password)
+                .then(() => onUserLoggedIn())
+                .catch(error => {
+                    console.error(error)
 
-            onUserLoggedIn()
+                    alert(error.message)
+                })
         } catch (error) {
             console.error(error)
 
@@ -28,23 +33,21 @@ function Login({ onUserLoggedIn, onRegisterClick }) {
 
     console.debug('Login render')
 
-    return (
-        <main className="main main--thin">
-            <h1>Login</h1>
+    return <main className="main main--thin">
+        <h1>Login</h1>
 
-            <form className="form" onSubmit={handleSubmit}>
-                <label htmlFor="username">Username</label>
-                <input type="text" id="username" />
+        <form className="form" onSubmit={handleSubmit}>
+            <label htmlFor="username">Username</label>
+            <input className="input" type="text" id="username" />
 
-                <label htmlFor="password">Password</label>
-                <input type="password" id="password" />
+            <label htmlFor="password">Password</label>
+            <input className="input" type="password" id="password" />
 
-                <button className="button button--right" type="submit">Login</button>
-            </form>
+            <button className="button button--right" type="submit">Login</button>
+        </form>
 
-            <a className="link--center" href="" onClick={handleRegisterClick}>Register</a>
-        </main>
-    )
+        <a className="link--center" href="" onClick={handleRegisterClick}>Register</a>
+    </main>
 }
 
 export default Login
