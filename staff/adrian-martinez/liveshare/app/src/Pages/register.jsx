@@ -37,10 +37,10 @@ function Register(props){
     console.debug('Register render')
     return (
         <>
-            <main className="main--thin">
+            <main className="font-bold text-xl py-2 m-20">
                 <h1>Register</h1>
                 <hr/>
-                <form className="form" onSubmit={handleSubmit}>
+                <form className="form bg-midnight" onSubmit={handleSubmit}>
                     <label htmlFor="name">Name</label>
                     <input type="text" id="name"/>
 

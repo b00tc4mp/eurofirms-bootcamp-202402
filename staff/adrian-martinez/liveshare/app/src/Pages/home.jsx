@@ -50,7 +50,7 @@ function Home({ onUserLoggedOut }) {
     console.log('Home render')
 
     return <>
-        <header className="header">
+        <header className="header bg-blue-500 font-bold text-xl ">
         {!user && <p>Loading...</p>}
         {user && <h1>Hello, {user.name}!</h1>}
 
