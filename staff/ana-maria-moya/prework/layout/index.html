@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>layout</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <p>header</p>
+        </div>
+
+        <div class="container2">
+            <div class="left-navigation">
+                <p>left-navigation</p>
+            </div>
+            <div class="content">
+                <p>content</p>
+            </div>
+
+        </div>
+        <div class="footer">
+            <p>footer</p>
+        </div>
+    </div>
+    <style>
+        .container {
+            padding: 10px;
+            height: 100vh;
+            width: 100wh;
+            border-radius: 10pxs;
+        }
+
+        .header {
+            height: 200px;
+            width: 100%;
+            background-color: blue;
+            display: flex;
+            justify-content: center;
+            border-radius: 10px;
+        }
+
+        .footer {
+            height: 200px;
+            width: 100%;
+            background-color: green;
+            display: flex;
+            justify-content: center;
+            border-radius: 10px;
+
+        }
+            .container2 {
+                display: flex;
+                gap: 5px;
+            }
+
+            .left-navigation {
+                height: 400px;
+                width: 300px;
+                background-color: rgb(255, 145, 0);
+                border-radius: 10px;
+            }
+
+            .content {
+                height: 400px;
+                width: 85%;
+                background-color: gray;
+                border-radius: 10px;
+
+            }
+    </style>
+
+
+
+
+</body>
+
+</html>
