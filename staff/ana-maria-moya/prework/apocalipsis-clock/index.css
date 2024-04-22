@@ -1,0 +1,26 @@
+body{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    height: 100vh;
+
+}
+
+#clock{
+   display: flex;
+    flex-direction: row;
+    gap:5px;
+}
+
+.box{
+    padding: 2px;
+    display: flex;
+    flex-direction: column;
+}
+
+.box span:nth-child(even){
+    border:solid 1px black;
+    text-align: center;
+}
