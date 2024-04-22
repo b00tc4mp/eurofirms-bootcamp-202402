@@ -2,21 +2,25 @@ import logic from "../logic";
 
 function Register({ onUserRegistered, onLoginClick, onResetPasswordClick }) {
   const handleSubmit = (event) => {
-    event.preventDefault();
+    event.preventDefault()
 
-    const form = event.target;
+    const form = event.target
 
-    const name = form.name.value;
-    const lastname = form.lastname.value;
-    const birthdate = form.birthdate.value;
-    const email = form.email.value;
-    const username = form.username.value;
-    const password = form.password.value;
+    const name = form.name.value
+    const lastname = form.lastname.value
+    const birthdate = form.birthdate.value
+    const email = form.email.value
+    const username = form.username.value
+    const password = form.password.value
 
     try {
-      logic.registerUser(name, lastname, birthdate, email, username, password);
-
-      onUserRegistered();
+      logic.registerUser(name, lastname, birthdate, email, username, password)
+          .then (()=> onUserRegistered())
+          .catch(error=> {
+            console.error(error)
+            
+            alert(error.message)
+          })
     } catch (error) {
       console.error(error);
 

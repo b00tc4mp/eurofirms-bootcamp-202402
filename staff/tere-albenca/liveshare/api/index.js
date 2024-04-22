@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import express from 'express'
 import logic from './logic/index.js'
+import cors from 'cors'
 
 mongoose.connect("mongodb://localhost:27017/test")
   .then(() => {
@@ -8,9 +9,19 @@ mongoose.connect("mongodb://localhost:27017/test")
 
     const server = express()
 
-    server.get('/', (req, res) => res.json({ hello: 'client' }))
+    // server.get('/', (req, res) => res.json({ hello: 'client' }))
 
     const jsonBodyParser = express.json() // JSON.parse(...)
+    // const cors = (req, res, next) => {
+    //   res.setHeader('Access-Control-Allow-Origin', '*')
+    //   res.setHeader('Access-Control-Allow-Headers', '*')
+    //   res.setHeader('Access-Control-Allow-Methods', '*')
+
+    //   next()
+    // }
+    // server.use(cors)
+    server.use(cors())
+
     //registerUSer
     server.post('/users', jsonBodyParser, (req, res) => {
 
@@ -98,7 +109,7 @@ mongoose.connect("mongodb://localhost:27017/test")
 
     //deletePost
 
-    server.get('/posts/:postId', (req, res) => {
+    server.delete('/posts/:postId', (req, res) => {
       try {
         const { authorization } = req.headers
 
@@ -107,13 +118,33 @@ mongoose.connect("mongodb://localhost:27017/test")
         const { postId } = req.params
 
         logic.deletePost(userId, postId)
-          .then(post => res.status(200).json(post))
+          .then(post => res.status(204))
           .catch(error => res.status(500).json({ error: error.constructor.name, message: error.message }))
 
       } catch (error) {
         res.status(500).json({ error: error.constructor.name, message: error.message })
       }
     })
+
+    //updatePost
+    server.patch('/posts/:postId', jsonBodyParser, (req, res) => {
+      try {
+        const { authorization } = req.headers
+
+        const userId = authorization.slice(7)
+
+        const { postId } = req.params
+
+        const { text } = req.body
+
+        logic.updatePost(userId, postId, text)
+          .then(() => res.status(200).send())
+          .catch(error => res.status(500).json({ error: error.constructor.name, message: error.message }))
+      } catch (error) {
+        res.status(500).json({ error: error.constructor.name, message: error.message })
+      }
+    })
+
 
     server.listen(8080, () => console.log('API started'))
   })

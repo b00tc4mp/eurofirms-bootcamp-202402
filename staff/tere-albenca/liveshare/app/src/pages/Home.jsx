@@ -1,26 +1,38 @@
 import logic from "../logic";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import CreatePost from "../components/CreatePost";
 import Posts from "../components/Posts";
 
+// import Chat from "../components/Chat"
+
 function Home({ onUserLoggedOut }) {
   const [view, setView] = useState(null);
+  const [createPost, setCreatePost] = useState(null)
+  const [user,setuser] = useState(null)
 
-  let user = null;
+  useEffect(()=>{
+    try {
+      logic.retrieveUser()
+        .then(user =>setuser(user))
+        .catch(error =>{
+          console.error(error)
 
-  try {
-    user = logic.retrieveUser();
-  } catch (error) {
-    console.error(error);
+          alert(error.message)
+        })
 
-    alert(error.message);
-  }
+    } catch (error) {
+      console.error(error);
+  
+      alert(error.message);
+    }
+
+  }, [])
 
   const handleLogout = () => {
     logic.logoutUser();
 
-    onUserLoggedOut();
+    onLogoutClick();
   };
 
   const handleCreateClick = () => {
@@ -30,11 +42,11 @@ function Home({ onUserLoggedOut }) {
   };
 
   const handleCreatePost = () => {
-    setView("createPost");
+    setCreatePost("createPost");
   };
 
   const handleCancelClick = () => {
-    setView(null);
+    setCreatePost(null);
   };
 
   return (
@@ -54,9 +66,9 @@ function Home({ onUserLoggedOut }) {
         </nav>
       </header>
 
-      {/* <div className="h1">
-            <h1 className="homeTitlePost">Welcome, Home!</h1>
-        </div> */}
+      <div className="h1">
+            <h1 className="homeTitlePost">Welcome,  {user ? user.username:' cargando'}!</h1>
+        </div>
 
       {view === "createPost" && (
         <CreatePost
@@ -64,7 +76,7 @@ function Home({ onUserLoggedOut }) {
           onCancelClick={() => handleCancelClick()}
         />
       )}
-      <Posts />
+      {/* <Posts /> */}
       <footer>
         <div>&copy; 2024 Alalluna</div>
         <div className="right">

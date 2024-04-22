@@ -12,3 +12,4 @@ mongoose.connect('mongodb://localhost:27017/test')
             console.error(error)
         }
     })
+    .catch(error => console.error(error))
