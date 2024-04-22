@@ -31,24 +31,31 @@ function Login({ onUserLoggedIn, onRegisterClick }) {
   };
 
   return (
-    <main className="main main--thin">
-      <h1>Login</h1>
+    <main className="px-20">
+      <h1 className="font-bold text-2xl text-center mb-10">Login</h1>
 
-      <form className="form" onSubmit={handleSubmit}>
+      <form className="flex flex-col gap-2 mb-5" onSubmit={handleSubmit}>
         <label htmlFor="username">Username</label>
-        <input className="input" type="text" id="username" />
+        <input className="border-b-2 border-black" type="text" id="username" />
 
         <label htmlFor="password">Password</label>
-        <input className="input" type="password" id="password" />
+        <input
+          className="border-b-2 border-black"
+          type="password"
+          id="password"
+        />
 
-        <button className="button button--right" type="submit">
+        <button
+          className="rounded-xl border-2 border-black px-3 self-end"
+          type="submit"
+        >
           Login
         </button>
       </form>
 
       <a
-        className="link--center"
-        href="register.html"
+        className="underline block text-center"
+        href=""
         onClick={handleRegisterClick}
       >
         Register

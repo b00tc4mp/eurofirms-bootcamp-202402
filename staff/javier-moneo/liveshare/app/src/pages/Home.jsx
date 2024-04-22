@@ -50,15 +50,12 @@ function Home({ onUserLoggedOut }) {
 
   return (
     <>
-      <header className="header">
+      <header className="flex justify-between items-center border-b-2 border-black fixed top-0 w-full bg-white h-12 px-2 box-border">
         {!user && <p>Loading...</p>}
         {user && <h1>Hello, {user.name}!</h1>}
 
         <nav id="top-menu">
-          <button className="button" id="chat-button">
-            💬
-          </button>
-          <button className="button" id="logout-button" onClick={handleLogout}>
+          <button className="px-3" id="logout-button" onClick={handleLogout}>
             🚪
           </button>
         </nav>
@@ -74,15 +71,11 @@ function Home({ onUserLoggedOut }) {
         )}
       </main>
 
-      <footer className="footer">
-        <button className="button" id="posts-button">
+      <footer className="flex justify-center items-center border-t-2 border-black fixed bottom-0 w-full bg-white h-12 px-2 box-border">
+        <button className="px-3" id="posts-button">
           🏚️
         </button>
-        <button
-          className="button"
-          id="create-post-button"
-          onClick={handleCreatePostClick}
-        >
+        <button className="px-3" onClick={handleCreatePostClick}>
           ➕
         </button>
       </footer>
