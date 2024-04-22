@@ -1,0 +1,137 @@
+@import url('https://fonts.googleapis.com/css2?family=Madimi+One&display=swap');
+
+* {
+  margin: 0;
+}
+
+body{
+  background-color: f;
+}
+
+#app{
+  font-size: 52px;
+  font-family: "Madimi One";
+  float: left;
+}
+
+header{
+  margin-left: 2%;
+  margin-right: 2%;
+  padding: 30px;
+  margin-top: 10px;
+  border: 3px solid black;
+  background-color: lightskyblue;
+  color: black;
+  font-family: "Verdana";
+  font-weight: bold;
+  width: 92%;
+  min-width: 50%;
+  height:200px;
+  min-height: 50px;
+}
+
+button{
+  font-size: 18px;
+  font-weight: bold;
+  background-color: white;
+  color: black;
+  border: 3px solid black;
+  border-radius: 5%;
+  height: 30px;
+  cursor: pointer;
+}
+
+button:hover{
+  color: green;
+  font-size: 16px;
+}
+
+.titular{
+  position: relative;
+  float: left;
+  margin-left: 25%;
+  font-size: 28px;
+  font-weight: bold;
+  border-bottom: 3px solid;
+}
+
+#area-perfil{
+  position: relative;
+  float:right;
+  width: 20%;
+  height: 100px;
+  border: none;
+}
+
+#area-buscador{
+  position: relative;
+  margin-top: 120px;
+  margin-left: 40%;
+  float: left;
+  width: 40%;
+  height: 100px;
+  border: none;
+}
+
+.register{
+  margin-left: 50px;
+}
+
+.buscar{
+  margin-left: 30px;
+}
+
+main{
+  margin-left: 2%;
+  margin-right: 2%;
+  width: 92%;
+  display: flex;
+}
+
+#aside-left{
+  padding: 5px;
+  margin-top: 10px;
+  position: relative;
+  float: left;
+  border: 3px solid black;
+  background-color: lightskyblue;
+  color: black;
+  font-family: "Verdana";
+  font-size: 18px;
+  font-weight: bold;
+  width: 15%;
+  min-width: 5%;
+  height:200px;
+  min-height: 50px;
+}
+
+#container{
+  position: relative;
+  padding: 30px;
+  margin-top: 10px;
+  float: right;
+  margin-left: 2%;
+  border: 3px solid black;
+  background-color: white;
+  color: black;
+  font-family: "Verdana";
+  font-size: 18px;
+  width: 100%;
+  min-width: 30%;
+  height: auto;
+  min-height: auto;
+}
+
+nav > ul li{
+  display: flex;
+  text-align: left;
+  margin-top: 15px;
+  list-style-type: none;
+  cursor: pointer;
+}
+
+ul li:hover{
+  color: green;
+}
+
+
