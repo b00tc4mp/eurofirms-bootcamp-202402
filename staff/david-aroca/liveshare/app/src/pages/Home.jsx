@@ -42,12 +42,11 @@ function Home({ onUserLoggedOut }) {
     console.log('Home render')
 
     return <>
-        <header className="header">
+        <header className="flex justify-between items-center border-b-2 border-black fixed top-0 w-full bg-white h-12 px-2 box-border ">
             {user ? <h1>Hello,{user.name}!</h1> : <span>Loading...</span>}
 
             <nav id="top-menu">
-                <button className="button" id="chat-button">💬</button>
-                <button className="button" id="logout-button" onClick={handleLogout}>🚪</button>
+                <button className="px-3" id="logout-button" onClick={handleLogout}>🚪</button>
             </nav>
         </header>
 
@@ -57,9 +56,9 @@ function Home({ onUserLoggedOut }) {
             {view === 'create-post' && <CreatePost onCancelClick={handleCreatePostCancelClick} onPostCreated={handlePostCreated} />}
         </main>
 
-        <footer className="footer">
-            <button className="button">🏚️</button>
-            <button className="button" onClick={handleCreatePostClick}>➕</button>
+        <footer className="flex justify-between items-center border-b-2 border-black fixed top-0 w-full bg-white h-12 px-2 box-border">
+            <button className="px-3">🏚️</button>
+            <button className="px-3" onClick={handleCreatePostClick}>➕</button>
         </footer>
     </>
 }

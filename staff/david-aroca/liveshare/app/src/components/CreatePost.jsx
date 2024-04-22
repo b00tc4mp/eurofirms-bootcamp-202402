@@ -24,20 +24,20 @@ function CreatePost({ onCancelClick, onPostCreated }) {
 
     console.debug('CreatePost render')
 
-    return <section className="container container--border-top create-post">
-        <h2>Create Post</h2>
+    return <section className="mb-12 fixed bottom-0 left-0 bg-white w-full pb-2 border-t-2 border black flex flex-col box-border px-2">
+        <h2 className='font-bold text-xl py-2'>Create Post</h2>
 
-        <form className="form" onSubmit={handleSubmit}>
+        <form className="flex flex-col gap-2 mb-5" onSubmit={handleSubmit}>
             <label htmlFor="image">Image</label>
-            <input className="input" type="text" id="image" />
+            <input className="border-b-2 border-black" type="text" id="image" />
 
             <label htmlFor="text">Text</label>
-            <input className="input" type="text" id="text" />
+            <input className="rounded-xl border-2 border-black px-3 self-end" type="text" id="text" />
 
             <button className="button button--right" type="submit">Create</button>
         </form>
 
-        <button className="button button--center" onClick={handleCancelClick}>Cancel</button>
+        <button className="rounded-xl border-2 border-slateñ300 mx-auto px-3" onClick={handleCancelClick}>Cancel</button>
     </section>
 }
 
