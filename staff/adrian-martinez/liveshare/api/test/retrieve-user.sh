@@ -1,0 +1,1 @@
+curl -H "Authorization: Bearer 662111aacd767b5c2d7f4f88" http://localhost:8080/users/662111aacd767b5c2d7f4f89 -v
