@@ -9,10 +9,9 @@ function Home({ onLogoutClick }) {
 
 
     const [user, setUser] = useState(null)
-    const [posts, setPosts] = useState(null)
     const [createPost, setCreatePost] = useState('hide')
     const [view, setView] = useState('posts')
-    const [timeStamp, setStamp] = useState(Date.now())
+    const [timeStamp, setTimeStamp] = useState(Date.now())
 
     useEffect(() => {
         try {
@@ -24,7 +23,6 @@ function Home({ onLogoutClick }) {
                     alert(error.message)
                 })
 
-            // initialPosts = logic.retrievePosts()
 
         } catch (error) {
             console.error(error)
@@ -32,21 +30,6 @@ function Home({ onLogoutClick }) {
         }
 
     }, [])
-
-    useEffect(() => {
-        try {
-            logic.retrievePosts()
-                .then(posts => setPosts(posts.toReversed()))
-                .catch(error => {
-                    console.error(error)
-
-                    alert(error.message)
-                })
-        } catch (error) {
-            console.error(error)
-            alert(error.message)
-        }
-    }, [timeStamp])
 
     const handleChatButton = () => setView('chat')
 
@@ -60,11 +43,9 @@ function Home({ onLogoutClick }) {
     const handleCreatePostButton = () => setCreatePost('show')
 
     const handleSendCreateButton = () => {
-        const updatedPosts = logic.retrievePosts()
-
-        setPosts(updatedPosts)
         setCreatePost('hide')
-        setStamp(Date.now())
+
+        setTimeStamp(Date.now())
     }
 
     const handleCancelCreateButton = () => setCreatePost('hide')
@@ -83,7 +64,7 @@ function Home({ onLogoutClick }) {
         </header >
 
         <main>
-            {view === 'posts' && posts ? <Posts postToRender={posts} /> : <span>loading posts....</span>}
+            {view === 'posts' && <Posts timeStamp={timeStamp} />}
             {view === 'chat' && < Chat />}
             {createPost === 'show' && <CreatePost onSendClick={() => handleSendCreateButton()} onCancelCreateClick={() => handleCancelCreateButton()} />}
         </main >

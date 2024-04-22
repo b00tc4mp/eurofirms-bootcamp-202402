@@ -94,25 +94,27 @@ mongoose.connect('mongodb://localhost:27017/test')
                 const { postId } = req.params
 
                 logic.deletePost(userId, postId)
-                    .then(res.status(204).send())
-                    .catch(res.status(500).json({ error: error.constructor.name, message: error.message }))
+                    .then(() => res.status(204).send())
+                    .catch(error => res.status(500).json({ error: error.constructor.name, message: error.message }))
 
             } catch (error) {
                 res.status(500).json({ error: error.constructor.name, message: error.message })
             }
         })
 
-        server.put('/posts/', jsonBodyParser, (req, res) => {
+        server.patch('/posts/:postId', jsonBodyParser, (req, res) => {
             try {
                 const { authorization } = req.headers
 
                 const userId = authorization.slice(7)
 
-                const { postId, text } = req.body
+                const { text } = req.body
+
+                const { postId } = req.params
 
                 logic.updatePost(userId, postId, text)
-                    .then(res.status(200).send())
-                    .catch(res.status(500).json({ error: error.constructor.name, message: error.message }))
+                    .then(() => res.status(200).send())
+                    .catch(error => res.status(500).json({ error: error.constructor.name, message: error.message }))
             } catch (error) {
                 res.status(500).json({ error: error.constructor.name, message: error.message })
             }
