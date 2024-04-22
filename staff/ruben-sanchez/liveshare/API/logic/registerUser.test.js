@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import registerUser from '/registerUser.js'
+import registerUser from './registerUser.js'
 
 mongoose.connect('mongodb://localhost:27017/test')
     .then(() =>{

@@ -21,7 +21,7 @@ function createPost(userId, image, text) {
         throw new Error(error.message);
       });
     })
-    .then((post) => {});
+    .then((post) => { });
 }
 
 export default createPost;
