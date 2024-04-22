@@ -9,7 +9,7 @@ function retrieveUser() {
         .catch(error => { throw new Error(error.message) })
         .then(res => {
             if (res.status === 200)
-                return res.json
+                return res.json()
 
 
             return res.json()

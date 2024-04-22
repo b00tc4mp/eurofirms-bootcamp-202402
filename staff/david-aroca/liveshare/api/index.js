@@ -9,13 +9,13 @@ mongoose.connect('mongodb://localhost:27017/test')
 
         const server = express()
 
-        // server.get('/', (req, res) => res.json({ hello: 'client' }))
+        server.get('/', (req, res) => res.json({ hello: 'client' }))
 
         const jsonBodyParser = express.json() //JSON.PARSE(...)
 
         server.use(cors())
 
-        server.post('/users', cors, jsonBodyParser, (req, res) => {
+        server.post('/users', jsonBodyParser, (req, res) => {
             try {
                 const { name, birthdate, email, username, password } = req.body
                 logic.registerUser(name, birthdate, email, username, password)

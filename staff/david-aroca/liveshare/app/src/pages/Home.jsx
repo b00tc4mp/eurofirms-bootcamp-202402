@@ -14,7 +14,7 @@ function Home({ onUserLoggedOut }) {
             logic.retrieveUser()
                 .then(user => setUser(user))
                 .catch(error => {
-                    console.log(error)
+                    console.error(error)
 
                     alert(error.message)
                 })
@@ -43,7 +43,7 @@ function Home({ onUserLoggedOut }) {
 
     return <>
         <header className="header">
-            {user && <h1>Hello,{user.name}!</h1>}
+            {user ? <h1>Hello,{user.name}!</h1> : <span>Loading...</span>}
 
             <nav id="top-menu">
                 <button className="button" id="chat-button">💬</button>

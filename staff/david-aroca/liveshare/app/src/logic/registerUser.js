@@ -1,4 +1,6 @@
 function registerUser(name, birthdate, email, username, password) {
+
+
     return fetch('http://localhost:8080/users', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

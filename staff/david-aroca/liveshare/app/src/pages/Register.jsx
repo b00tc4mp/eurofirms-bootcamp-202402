@@ -16,7 +16,7 @@ function Register({ onUserRegistered, onLoginClick }) {
             logic.registerUser(name, birthdate, email, username, password)
                 .then(() => onUserRegistered())
                 .catch(error => {
-                    console.log(error)
+                    console.error(error)
 
                     alert(error.message)
                 })
@@ -33,6 +33,7 @@ function Register({ onUserRegistered, onLoginClick }) {
         onLoginClick()
     }
 
+    console.debug('Register render')
 
     return <main className="main main--thin ">
         <h1>Register</h1>
@@ -57,7 +58,7 @@ function Register({ onUserRegistered, onLoginClick }) {
             <button className="button button--right" type="submit">Register</button>
 
         </form>
-        <a className="link--center" href="" onClick={handleLoginClick}>Log in </a>
+        <a className="link--center" href="" onClick={handleLoginClick}>Login</a>
     </main>
 }
 
