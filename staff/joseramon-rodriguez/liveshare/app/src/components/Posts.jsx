@@ -8,7 +8,7 @@ function Posts({ refreshPosts }) {
         try {
             logic.retrievePosts()
                 .then(postsList => {
-                    setPost(postsList.toReversed())
+                    setPost(postsList)
                 })
                 .catch(error => {
                     console.error(error)

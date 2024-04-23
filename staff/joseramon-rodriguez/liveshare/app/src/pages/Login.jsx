@@ -1,4 +1,7 @@
 import logic from "../logic"
+import Button from "../components/Button"
+import Form from "../components/Form"
+import Input from "../components/Input"
 
 function Login({ onUserLoggedIn, onRegisterClick }) {
     const handleSubmit = event => {
@@ -34,16 +37,16 @@ function Login({ onUserLoggedIn, onRegisterClick }) {
     return <>
         <main className="px-20">
             <h1 className="font-bold text-2xl text-center mb-10">Login</h1>
-            <form className="flex flex-col gap-2 mb-5" onSubmit={handleSubmit}>
+            <Form onSubmit={handleSubmit}>
                 <label htmlFor="username">Username</label>
-                <input className="border-b-2 border-black" type="text" id="username" />
+                <Input id="username" />
 
                 <label htmlFor="password">Password</label>
-                <input className="border-b-2 border-black" type="password" id="password" />
+                <Input type="password" id="password" />
 
-                <button className="rounder-xl border-2 border-black px-3 self-end" type="submit">Login</button>
+                <Button className="rounder-xl border-2 border-black px-3 self-end" type="submit">Login</Button>
                 <a className="underline block text-center" href="register.html" onClick={handleRegisterClick}>Register</a>
-            </form>
+            </Form>
         </main>
     </>
 }

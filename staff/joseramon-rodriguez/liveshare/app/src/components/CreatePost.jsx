@@ -1,4 +1,7 @@
 import logic from "../logic"
+import Button from "./Button"
+import Form from "./Form"
+import Input from "./Input"
 
 function CreatePost({ onPostCreated, onCancelCreatePostClick }) {
     const handleSubmit = event => {
@@ -32,17 +35,17 @@ function CreatePost({ onPostCreated, onCancelCreatePostClick }) {
         <section id="create-post-section" className=" mb-10  fixed bottom-0 bg-slate-500 w-full pb-3">
             <h2>Create post</h2>
 
-            <form className=" flex  flex-col" id="create-post-form" onSubmit={handleSubmit}>
+            <Form className=" flex  flex-col" id="create-post-form" onSubmit={handleSubmit}>
                 <label htmlFor="image">Image</label>
-                <input type="text" id="image" />
+                <Input id="image" />
 
                 <label htmlFor="text">Text</label>
-                <input type="text" id="text" />
+                <Input id="text" />
 
-                <button type="submit">Create Post</button>
-            </form>
+                <Button type="submit">Create Post</Button>
+            </Form>
 
-            <button onClick={handleCancelCreatePostClick} id="create-post-cancel-button">Cancel create post</button>
+            <Button onClick={handleCancelCreatePostClick} id="create-post-cancel-button">Cancel create post</Button>
         </section>
     </>
 }

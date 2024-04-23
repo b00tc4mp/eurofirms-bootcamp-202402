@@ -1,4 +1,8 @@
 import logic from "../logic"
+import Button from "../components/Button"
+import Input from "../components/Input"
+import Form from "../components/Form"
+
 
 function Register({ onUserRegistered, onLoginClick }) {
     const handleSubmit = event => {
@@ -37,24 +41,24 @@ function Register({ onUserRegistered, onLoginClick }) {
     return <>
         <main className="px-20">
             <h1 className="font-bold text-2xl text-center mb-10">Register</h1>
-            <form className="flex flex-col gap-2 mb-5" onSubmit={handleSubmit}>
+            <Form className="flex flex-col gap-2 mb-5" onSubmit={handleSubmit}>
                 <label htmlFor="name">Name</label>
-                <input type="text" id="name" className="border-b-2 border-black" />
+                <Input id="name" />
 
                 <label htmlFor="birthdate">Birthdate</label>
-                <input type="date" id="birthdate" className="border-b-2 border-black" />
+                <Input type="date" id="birthdate" />
 
                 <label htmlFor="email">E-mail</label>
-                <input type="text" id="email" className="border-b-2 border-black" />
+                <Input id="email" />
 
                 <label htmlFor="username">Username</label>
-                <input type="text" id="username" className="border-b-2 border-black" />
+                <Input id="username" />
 
                 <label htmlFor="password">Password</label>
-                <input type="password" id="password" className="border-b-2 border-black" />
+                <Input type="password" id="password" />
 
-                <button type="rounded-xl border-2 border-black px-3 self-end">Register</button>
-            </form>
+                <Button type="rounded-xl border-2 border-black px-3 self-end">Register</Button>
+            </Form>
             <a className="underline block text-center" href="login.html" onClick={handleLoginClick}>Login</a>
         </main>
     </>
