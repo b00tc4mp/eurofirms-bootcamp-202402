@@ -2,12 +2,13 @@ import { useState, useEffect } from 'react'
 
 import logic from '../logic'
 
-// import Posts from '../components/Posts'
+import Posts from '../components/Posts'
 import CreatePost from '../components/CreatePost'
 
 function Home({ onUserLoggedOut }) {
     const [view, setView] = useState(null)
     const [user, setUser] = useState(null)
+    const [refreshStamp, setRefreshStamp] = useState(null)
 
     useEffect(() =>{
         try{
@@ -32,22 +33,14 @@ function Home({ onUserLoggedOut }) {
         onUserLoggedOut()
     }
 
-    // let posts = []
-
-    // try {
-    //     posts = logic.retrievePosts()
-    // } catch (error) {
-    //     console.error(error)
-
-    //     alert(error.message)
-    // }
-
     const handleCreatePostClick = () => setView('create-post')
 
     const handleCreatePostCancelClick = () => setView(null)
-
-    const handlePostCreated = () => setView(null)
-
+    
+    const handlePostCreated = () => {
+        setView(null)
+        setRefreshStamp(Date.now)
+    }
     console.log('Home render')
 
     return <>
@@ -61,7 +54,7 @@ function Home({ onUserLoggedOut }) {
         </header>
 
         <main className="main">
-            {/* <Posts /> */}
+            <Posts refreshStamp={refreshStamp} />
 
             {view === 'create-post' && <CreatePost onCancelClick={handleCreatePostCancelClick} onPostCreated={handlePostCreated} />}
         </main>

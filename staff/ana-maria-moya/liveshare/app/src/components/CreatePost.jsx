@@ -13,10 +13,16 @@ function CreatePost({ onCancelClick, onPostCreated}) {
 
         try{
             logic.createPost(image, text)
+            .then(() => onPostCreated())
+            .catch(error =>{
+                console.error(error)
+
+                alert(error.message)
+            })
 
             onPostCreated()
         } catch (error) {
-            console.error(error)
+            console.error(error) 
 
             alert(error.message)
         }

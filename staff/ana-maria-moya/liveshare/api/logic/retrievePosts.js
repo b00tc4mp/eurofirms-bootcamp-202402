@@ -9,7 +9,7 @@ function retrievePosts(userId) {
             if (!user)
                 throw new Error('user not found')
 
-            return Post.find().select('-__v').populate('author', 'username').lean()
+            return Post.find().sort({date:-1}).select('-__v').populate('author', 'username').lean()
                 .catch(error => { throw new Error(error.message) })
                 .then(posts => {
                     posts.forEach(post => {
