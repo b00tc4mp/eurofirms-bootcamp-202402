@@ -33,17 +33,17 @@ function Login({onUserLoggedIn, onRegisterClick}) {
     console.debug('Login render')
 
     return <>
-        <main className="main--thin">
-            <h1>Login</h1>
-            <form className="form" onSubmit={handleSubmit}>
+        <main className="px-20">
+            <h1 className= "font-bold text-2xl text-center mb-10">Login</h1>
+            <form className="flex flex-col gap-2 mb-5" onSubmit={handleSubmit}>
                 <label htmlFor="username">Username</label>
-                <input className="input" type="text" id="username" />
+                <input className="border-b-2 border-black" type="text" id="username" />
 
                 <label htmlFor="password">Password</label>
-                <input className="input" type="password" id="password" />
+                <input className="border-b-2 border-black" type="password" id="password" />
 
                 <button type="submit">Login</button>
-                <a className="link--center" href="register.html" onClick={handleRegisterClick}>Register</a>
+                <a className="underline block text--center" href="register.html" onClick={handleRegisterClick}>Register</a>
             </form>
 
         </main>
