@@ -39,27 +39,27 @@ function Register({ onUserRegistered, onLoginClick }) {
 
     return (
 
-        <main className="main main--thin">
-            <h1>Register</h1>
-            <form className="form" onSubmit={handleSubmit} >
+        <main className="px-20">
+            <h1 className="font-bold text-2x1 text-center mb-10">Register</h1>
+            <form className="flex flex-col gap-2 mb-5" onSubmit={handleSubmit} >
                 <label htmlFor="name">Name</label>
-                <input className="input" id="name" type="text" />
+                <input className="border-b-2 border-black" id="name" type="text" />
 
                 <label htmlFor="birthdate">Birthdate</label>
-                <input className="input" id="birthdate" type="date" />
+                <input className="border-b-2 border-black" id="birthdate" type="date" />
 
                 <label htmlFor="email">E-mail</label>
-                <input className="input" id="email" type="text" />
+                <input className="border-b-2 border-black" id="email" type="text" />
 
                 <label htmlFor="username">Username</label>
-                <input className="input" id="username" type="text" />
+                <input className="border-b-2 border-black" id="username" type="text" />
 
                 <label htmlFor="password">Passsword</label>
-                <input className="input" id="password" type="password" />
+                <input className="border-b-2 border-black" id="password" type="password" />
 
-                <button className="button button--right" id="buttonSubmit" type="submit">Register </button>
+                <button className="rounded-x1 border-2 border-black px-3 self-end" id="buttonSubmit" type="submit">Register </button>
             </form>
-            <a className="link--center" href="" onClick={handleLoginClick}>Login</a>
+            <a className="underline block text-center" href="" onClick={handleLoginClick}>Login</a>
         </main>
 
     )

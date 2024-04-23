@@ -1,5 +1,7 @@
 import { User, Post } from "../data/index.js"
 
+// Api logic methods
+
 function retrievePosts(userId) {
     return User.findById(userId)
         .catch(error => { throw new Error(error.message) })
@@ -22,7 +24,7 @@ function retrievePosts(userId) {
                             delete post.author._id
                         }
                     })
-                    return posts
+                    return posts.reverse()
                 })
         })
 }

@@ -1,6 +1,6 @@
-import cors from 'cors'
 import mongoose from 'mongoose'
 import express from 'express'
+import cors from 'cors'
 import logic from './logic/index.js'
 
 mongoose.connect('mongodb://localhost:27017/test')
