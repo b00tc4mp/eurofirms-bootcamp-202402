@@ -29,10 +29,10 @@ function CreatePost({ onPostCreated, onCancelCreatePostClick }) {
         onCancelCreatePostClick()
     }
     return <>
-        <section id="create-post-section" className="create-post-section">
+        <section id="create-post-section" className=" mb-10  fixed bottom-0 bg-slate-500 w-full pb-3">
             <h2>Create post</h2>
 
-            <form id="create-post-form" onSubmit={handleSubmit}>
+            <form className=" flex  flex-col" id="create-post-form" onSubmit={handleSubmit}>
                 <label htmlFor="image">Image</label>
                 <input type="text" id="image" />
 
