@@ -8,6 +8,7 @@ import CreatePost from '../components/CreatePost';
 function Home({ onUserLoggedOut }) {
   const [view, setView] = useState(null);
   const [user, setUser] = useState(null);
+  const [refreshStamp, setRefreshStamp] = useState(null);
 
   useEffect(() => {
     try {
@@ -46,7 +47,10 @@ function Home({ onUserLoggedOut }) {
 
   const handleCreatePostCancelClick = () => setView(null);
 
-  const handlePostCreated = () => setView(null);
+  const handlePostCreated = () => {
+    setView(null);
+    setRefreshStamp(Date.now());
+  };
 
   return (
     <>
@@ -54,7 +58,7 @@ function Home({ onUserLoggedOut }) {
         {!user && <p>Loading...</p>}
         {user && <h1>Hello, {user.name}!</h1>}
 
-        <nav id="top-menu">
+        <nav>
           <button className="px-3" id="logout-button" onClick={handleLogout}>
             🚪
           </button>
@@ -62,7 +66,8 @@ function Home({ onUserLoggedOut }) {
       </header>
 
       <main className="main">
-        {/* <Posts /> */}
+        <Posts refreshStamp={refreshStamp} />
+
         {view === 'create-post' && (
           <CreatePost
             onCancelClick={handleCreatePostCancelClick}
@@ -72,9 +77,7 @@ function Home({ onUserLoggedOut }) {
       </main>
 
       <footer className="flex justify-center items-center border-t-2 border-black fixed bottom-0 w-full bg-white h-12 px-2 box-border">
-        <button className="px-3" id="posts-button">
-          🏚️
-        </button>
+        <button className="px-3">🏚️</button>
         <button className="px-3" onClick={handleCreatePostClick}>
           ➕
         </button>

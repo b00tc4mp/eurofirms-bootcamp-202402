@@ -12,9 +12,14 @@ function CreatePost({ onCancelClick, onPostCreated }) {
     const text = form.text.value;
 
     try {
-      logic.createPost(image, text);
+      logic
+        .createPost(image, text)
+        .then(() => onPostCreated())
+        .catch((error) => {
+          console.error(error);
 
-      onPostCreated();
+          alert(error.message);
+        });
     } catch (error) {
       console.error(error);
 
@@ -24,7 +29,7 @@ function CreatePost({ onCancelClick, onPostCreated }) {
 
   return (
     <>
-      <section className="cmb-12 fixed bottom-0 left-0 bg-white w-full pb-2 border-t-2 border-black flex flex-col box-border px-2">
+      <section className="mb-[50px] cmb-12 fixed bottom-0 left-0 bg-white w-full pb-2 border-t-2 border-black flex flex-col box-border px-2">
         <h2 className="font-bold text-xl py-2">Create Post</h2>
 
         <form className="flex flex-col gap-2 mb-5" onSubmit={handleSubmit}>

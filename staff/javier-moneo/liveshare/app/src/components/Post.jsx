@@ -1,14 +1,11 @@
 function Post({ post }) {
   return (
     <>
-      <article key={post.id} className="post">
-        <h3>{post.author.username}</h3>
-        <img className="post-image" src={`${post.image}`}></img>
-        <p>
-          {post.text}
-          <br />
-          <sup>{post.date}</sup>
-        </p>
+      <article className="w-full">
+        <h3 className="font-bold">{post.author.username}</h3>
+        <img src={post.image} className="w-full" />
+        <p>{post.text}</p>
+        <time className="block text-right text-xs">{post.date}</time>
       </article>
     </>
   );
