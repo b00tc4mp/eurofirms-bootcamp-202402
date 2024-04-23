@@ -8,6 +8,7 @@ import CreatePost from '../components/CreatePost'
 function Home({ onUserLoggedOut }) {
     const [view, setView] = useState(null)
     const [user, setUser] = useState(null)
+    const [refreshStamp, setRefreshStamp] = useState(null)
 
     useEffect(() => {
         try {
@@ -35,7 +36,10 @@ function Home({ onUserLoggedOut }) {
 
     const handleCreatePostCancelClick = () => setView(null)
 
-    const handlePostCreated = () => setView(null)
+    const handlePostCreated = () => {
+        setView(null)
+        setRefreshStamp(Date.now())
+    }
 
     console.log('Home render')
 
@@ -50,7 +54,7 @@ function Home({ onUserLoggedOut }) {
         </header>
 
         <main className="main">
-            {/* <Posts /> */}
+            <Posts refreshStamp={refreshStamp} />
 
             {view === 'create-post' && <CreatePost onCancelClick={handleCreatePostCancelClick} onPostCreated={handlePostCreated} />}
         </main>

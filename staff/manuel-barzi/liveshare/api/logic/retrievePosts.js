@@ -26,7 +26,7 @@ function retrievePosts(userId) {
                         }
                     })
 
-                    return posts
+                    return posts.reverse()
                 })
         })
 

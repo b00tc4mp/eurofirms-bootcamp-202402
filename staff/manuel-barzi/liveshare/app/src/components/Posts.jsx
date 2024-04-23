@@ -1,26 +1,35 @@
+import { useState, useEffect } from 'react'
+
 import logic from '../logic'
 
 import Post from './Post'
 
-function Posts() {
-    let posts = []
+function Posts({ refreshStamp }) {
+    console.log('refreshStamp', refreshStamp)
 
-    try {
-        posts = logic.retrievePosts()
-    } catch (error) {
-        console.error(error)
+    const [posts, setPosts] = useState([])
 
-        alert(error.message)
-    }
+    useEffect(() => {
+        try {
+            logic.retrievePosts()
+                .then(posts => setPosts(posts))
+                .catch(error => {
+                    console.error(error)
+
+                    alert(error.message)
+                })
+        } catch (error) {
+            console.error(error)
+
+            alert(error.message)
+        }
+    }, [refreshStamp])
+
 
     console.log('Posts render')
 
-    return <section id="posts-section">
-        <h2>Posts</h2>
-
-        <div id="posts-list">
-            {posts.map(post => <Post key={post.id} post={post} />)}
-        </div>
+    return <section className="flex flex-col gap-6 px-2 py-14">
+        {posts.map(post => <Post key={post.id} post={post} />)}
     </section>
 }
 
