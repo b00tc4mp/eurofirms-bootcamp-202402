@@ -7,7 +7,7 @@ function Posts({ timeStamp }) {
     const refreshPosts = () => {
         try {
             logic.retrievePosts()
-                .then(posts => setPosts(posts.toReversed()))
+                .then(posts => setPosts(posts))
                 .catch(error => {
                     console.error(error)
 

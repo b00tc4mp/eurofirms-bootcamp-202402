@@ -1,4 +1,5 @@
 import logic from "../logic/index.js"
+import LabelInput from "./components/LabelInput.jsx"
 
 function Register({ onUserRegistered, onLoginClick }) {
 
@@ -31,29 +32,21 @@ function Register({ onUserRegistered, onLoginClick }) {
         onLoginClick()
     }
     return <>
-        <main className="main">
-            <h1>Register</h1>
-            <form className="form" onSubmit={handleSubmit}>
-                <label htmlFor="name">Name</label>
-                <input className="input" type="text" id="name" />
+        <main >
+            <h1 className=' px-[10px] text-[cornflowerblue] font-bold text-2xl text-center mb-10'>Register</h1>
 
-                <label htmlFor="birthdate">Birthdate</label>
-                <input className="input" type="date" id="birthdate" />
+            <form className="flex flex-col gap-2 mb-5" onSubmit={handleSubmit}>
+                <LabelInput text='Name' type='text' id='name' />
+                <LabelInput text='Birthdate' type='date' id='birthdate' />
+                <LabelInput text='E-mail' type='text' id='email' />
+                <LabelInput text='Username' type='text' id='username' />
+                <LabelInput text='Password' type='password' id='password' />
 
-                <label htmlFor="username">Username</label>
-                <input className="input" type="text" id="username" />
-
-                <label htmlFor="email">E-mail</label>
-                <input className="input" type="text" id="email" />
-
-                <label htmlFor="password">Password</label>
-                <input className="input" type="password" id="password" />
-
-                <button className="button button--right" type="submit"> Register </button>
+                <button className=" rounded-[10px] border-w-[1px] px-[10px] max-w- self-end" type="submit"> Register </button>
 
             </form>
 
-            <a className="link--center" href="login.html" onClick={handleLoginClick} >Login</a>
+            <a className="underline block text-center w-[100%]" href="" onClick={handleLoginClick} >Login</a>
         </main>
     </>
 }

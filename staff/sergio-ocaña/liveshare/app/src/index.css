@@ -1,4 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Sen:wght@400..800&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 * {
     font-family: "Sen";
@@ -42,10 +45,10 @@ h2 {
     padding-right: 10px;
 }
 
-.main--thin {
+/* .main--thin {
     padding-left: 20%;
     padding-right: 20%;
-}
+} */
 
 .container {
     display: flex;
@@ -113,7 +116,7 @@ h2 {
     justify-content: end;
 }
 
-#chat-section {
+/* #chat-section {
     border-width: 1px;
     border-color: black;
     border-style: solid;
@@ -171,7 +174,7 @@ sup {
 
 #chat-form>#text {
     width: 100
-}
+} */
 
 #posts-section {
     margin-bottom: 60px;
