@@ -35,26 +35,26 @@ function Register({ onUserRegistered, onLoginClick }) {
 
     console.debug('Register render')
 
-    return <main className="main main--thin">
-        <h1>Register</h1>
+    return <main className="px-20">
+        <h1 className='font-bold text-2xl text-center mb-10'>Register</h1>
 
-        <form className="form" onSubmit={handleSubmit}>
+        <form className="flex flex-col gap-2 mb-5" onSubmit={handleSubmit}>
             <label htmlFor="name">Name</label>
-            <input className="input" type="text" id="name" />
+            <input className="border-b-2 border-black" type="text" id="name" />
 
             <label htmlFor="birthdate">Birthdate</label>
-            <input className="input" type="date" id="birthdate" />
+            <input className="border-b-2 border-black" type="date" id="birthdate" />
 
             <label htmlFor="email">E-mail</label>
-            <input className="input" type="text" id="email" />
+            <input className="border-b-2 border-black" type="text" id="email" />
 
             <label htmlFor="username">Username</label>
-            <input className="input" type="text" id="username" />
+            <input className="border-b-2 border-black" type="text" id="username" />
 
             <label htmlFor="password">Password</label>
-            <input className="input" type="password" id="password" />
+            <input className="rounded-xl border-2 border-black px-3 self-end" type="password" id="password" />
 
-            <button className="button button--right" type="submit">Register</button>
+            <button className="underline block text-center" type="submit">Register</button>
         </form>
 
         <a className="link--center" href="" onClick={handleLoginClick}>Login</a>
