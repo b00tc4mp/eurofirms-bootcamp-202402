@@ -1,17 +1,29 @@
 import logic from "../logic";
 import Post from "./Post";
+import { useState, useEffect } from "react";
 
-function Posts(){
+function Posts({ refreshStamp }){
 
-    let posts = [];
-    try{
-        posts = logic.retrievePosts();
-    }
-    catch(error){
+    console.log("refreshStamp", refreshStamp);
+    const [posts, setPosts] = useState([]);
 
-        console.error(error);
-        alert(error.message);
-    }
+    useEffect(() => {
+        try{
+            logic.retrievePosts()
+            .then(posts => setPosts(posts))
+            .catch(error => {
+
+                console.error(error);
+                alert(error.message);
+            })
+        }
+        catch(error){
+    
+            console.error(error);
+            alert(error.message);
+        }
+    }, [refreshStamp])
+    
     console.log("Post render");
 
     return (

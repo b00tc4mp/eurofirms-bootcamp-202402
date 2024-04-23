@@ -8,6 +8,7 @@ import CreatePost from '../components/CreatePosts'
 function Home({ onUserLoggedOut }) {
     const [view, setView] = useState(null);
     const [user, setUser] = useState(null);
+    const [refreshStamp, setRefreshStamp] = useState(null);
 
     useEffect(() => {
         try {
@@ -45,12 +46,16 @@ function Home({ onUserLoggedOut }) {
 
     const handleCreatePostCancelClick = () => setView(null)
 
-    const handlePostCreated = () => setView(null)
+    const handlePostCreated = () => {
+        
+        setRefreshStamp(Date.now())
+        setView(null)
+    }
 
     console.log('Home render')
 
     return <>
-        <header className="header bg-blue-500 font-bold text-xl ">
+        <header className="bg-gray-100 border-solid border-4 border-black font-bold text-xl ">
         {!user && <p>Loading...</p>}
         {user && <h1>Hello, {user.name}!</h1>}
 
@@ -61,28 +66,7 @@ function Home({ onUserLoggedOut }) {
         </header>
 
         <main className="main">
-             {/* <Posts /> */}
-
-             {view === 'create-post' && <CreatePost onCancelClick={handleCreatePostCancelClick} onPostCreated={handlePostCreated} />}
-
-            <section id="chat-section" className="chat-section--off">
-                <h2>Chat</h2>
-
-                <ul id="chat-users"><li className="chat-user chat-user-online">wendydarling</li></ul>
-
-                <div id="chat" className="chat--off">
-                    <h3 id="chat-interlocutor">username</h3>
-
-                    <ul id="chat-messages"></ul>
-
-                    <form id="chat-form">
-                        <label htmlFor="text">Text</label>
-                        <input type="text" id="text" />
-
-                        <button className="button" type="submit">Send</button>
-                    </form>
-                </div>
-            </section>
+             <Posts refreshStamp={ refreshStamp }/>
 
             {view === 'create-post' && <CreatePost onCancelClick={handleCreatePostCancelClick} onPostCreated={handlePostCreated} />}
         </main>

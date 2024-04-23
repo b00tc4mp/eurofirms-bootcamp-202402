@@ -3,7 +3,7 @@ import loginUser from './loginUser'
 import retrieveUser from './retrieveUser'
 import logoutUser from './logoutUser'
 import getLoggedInUserId from './getLoggedInUserId'
-// import createPost from './createPost'
+import createPost from './createPost'
 import retrievePosts from './retrievePosts'
 
 const logic = {
@@ -12,7 +12,7 @@ const logic = {
     retrieveUser,
     logoutUser,
     getLoggedInUserId,
-    // createPost,
+    createPost,
     retrievePosts
 }
 

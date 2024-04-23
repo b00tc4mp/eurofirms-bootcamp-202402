@@ -16,10 +16,10 @@ body{
     margin-left: 2%;
     margin-right: 2%;
 }
-.form{
+/* .form{
     display: flex;
     flex-direction: column;
-}
+} */
 #top-menu{
     display: flex;
     justify-content: end;
@@ -53,10 +53,10 @@ nav > button:active{
     text-align: center;
     width: 100%;
 }
-header{
+/* header{
     background-color: lightgray;
     border: 4px solid black;
-}
+} */
 hr{
     height: 5px;
     background-color: rgb(4, 104, 254);

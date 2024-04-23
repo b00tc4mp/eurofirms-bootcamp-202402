@@ -13,9 +13,12 @@ function CreatePost({ onCancelClick, onPostCreated }){
         const text = form.text.value;
 
         try{
-            logic.createPost(image, text);
-
-            onPostCreated();
+            logic.createPost(image, text)
+                .then(() => onPostCreated())
+                .catch(error => {
+                    console.error(error);
+                    alert(error.message);
+                })
         }
         catch(error){
 
@@ -30,7 +33,7 @@ function CreatePost({ onCancelClick, onPostCreated }){
         <section className="container container--border-top create-post">
             <h2>Crear publicación</h2>
 
-            <form className="form" onSubmit={handleSubmit}>
+            <form className="flex flex-col" onSubmit={handleSubmit}>
                 <label htmlFor="image">Image</label>
                 <input className="input" type="text" id="image" />
 

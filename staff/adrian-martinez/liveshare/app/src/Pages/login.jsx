@@ -1,3 +1,4 @@
+import Form from "../components/Form";
 import logic from "../logic"
 
 function Login({ onUserLoggedIn, onRegisterClick }){
@@ -35,11 +36,11 @@ console.debug("Login render");
 
     return (
         <>
-          <main className="main--thin">
+          <main className="px-20">
             <h1>Login</h1>
             <hr/>
             
-            <form className="form" onSubmit={ handleSubmit }>
+            <Form onSubmit={ handleSubmit }>
                 <label htmlFor="username">Username</label>
                 <input type="text" id="username"/>
     
@@ -47,7 +48,7 @@ console.debug("Login render");
                 <input type="password" id="password"/>
     
                 <button type="submit">Login</button>
-            </form>
+            </Form>
             <button><a className="link--center" href="" onClick={ handleRegisterClick }>Register</a></button>
         </main>
         </>

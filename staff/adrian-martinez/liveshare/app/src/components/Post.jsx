@@ -7,7 +7,8 @@ function Post({ post }){
         <article className="post">
             <h3>{ post.author.username }</h3>
             <img src={post.image} className="post-image"/>
-            <p>{ post.text }<br/><sup>{ post.date }</sup></p>
+            <p>{ post.text }</p>
+            <time className="block text-right text-xs">{ post.date }</time>
         </article>
     )
 }

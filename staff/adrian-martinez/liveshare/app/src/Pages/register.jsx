@@ -1,3 +1,4 @@
+import Form from "../components/Form"
 import logic from "../logic"
 
 function Register(props){
@@ -40,7 +41,7 @@ function Register(props){
             <main className="font-bold text-xl py-2 m-20">
                 <h1>Register</h1>
                 <hr/>
-                <form className="form bg-midnight" onSubmit={handleSubmit}>
+                <Form onSubmit={handleSubmit}>
                     <label htmlFor="name">Name</label>
                     <input type="text" id="name"/>
 
@@ -57,7 +58,7 @@ function Register(props){
                     <input type="password" id="password"/>
 
                     <button className="button--right" type="submit">Registrar</button>
-                </form>
+                </Form>
                 <button><a className="link--center" href="" onClick={handleLoginClick}>Login</a></button>
             </main>
         </>
