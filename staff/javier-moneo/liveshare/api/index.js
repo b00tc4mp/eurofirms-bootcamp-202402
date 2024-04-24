@@ -91,6 +91,29 @@ mongoose
       }
     });
 
+    server.delete('/posts/:postId', (req, res) => {
+      try {
+        const { authorization } = req.headers;
+
+        const userId = authorization.slice(7);
+
+        const { postId } = req.params;
+
+        logic
+          .deletePost(userId, postId)
+          .then(() => res.json())
+          .catch((error) =>
+            res
+              .status(500)
+              .json({ error: error.constructor.name, message: error.message })
+          );
+      } catch (error) {
+        res
+          .status(500)
+          .json({ error: error.constructor.name, message: error.message });
+      }
+    });
+
     server.post('/posts', jsonBodyParser, (req, res) => {
       try {
         const { authorization } = req.headers;

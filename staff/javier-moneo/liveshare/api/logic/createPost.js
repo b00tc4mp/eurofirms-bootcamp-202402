@@ -1,6 +1,6 @@
 import { User, Post } from '../data/index.js';
 
-function createPost(userId, image, text, callback) {
+function createPost(userId, image, text) {
   // TODO input validation
 
   return User.findById(userId)
