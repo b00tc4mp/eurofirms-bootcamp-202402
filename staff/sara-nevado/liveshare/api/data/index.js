@@ -1,6 +1,5 @@
 import mongoose from 'mongoose'
 
-
 const { Schema, model } = mongoose
 
 const { Types: { ObjectId } } = Schema
@@ -50,10 +49,11 @@ const post = new Schema({
     }
 })
 
+
 const User = model('User', user)
 const Post = model('Post', post)
 
 export {
     User,
     Post
-}  //bucket
+} // bucket

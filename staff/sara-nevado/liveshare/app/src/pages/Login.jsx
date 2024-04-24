@@ -42,7 +42,7 @@ function Login({ onUserLoggedIn, onRegisterClick }) {
             <label htmlFor="password">Password</label>
             <input className="border-b-2 border-black" type="password" id="password" />
 
-            <button className="rounded-xl border-2 border-black px-3 self-end" type="submit">Login</button>
+            <button className="rounded-xl border-2 border-black px-4 self-end" type="submit">Login</button>
         </form>
 
         <a className="underline block text-center" href="" onClick={handleRegisterClick}>Register</a>

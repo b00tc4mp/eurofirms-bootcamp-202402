@@ -1,8 +1,8 @@
 
 function registerUser(name, birthdate, email, username, password) {
     //validateName(name)
-    // validateBirthdate(birthdate)
-    // validateEmail(email)
+    //validateBirthdate(birthdate)
+    //validateEmail(email)
     //validateUsername(username)
     //validatePassword(password)
 

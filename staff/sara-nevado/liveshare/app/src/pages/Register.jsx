@@ -57,7 +57,7 @@ function Register({ onUserRegistered, onLoginClick }) {
             <button className="rounded-xl border-2 border-black px-3 self-end" type="submit">Register</button>
         </form>
 
-        <a className="underline block text-center" href="" onClick={handleLoginClick}>Login</a>
+        <a className="underline block text-center" href=" " onClick={handleLoginClick}>Login</a>
     </main>
 }
 
