@@ -1,5 +1,8 @@
 import logic from "../logic/index.js"
 import LabelInput from "./components/LabelInput.jsx"
+import Form from "./components/Form.jsx"
+import HTag from "./components/HTags.jsx"
+import Button from "./components/Button.jsx"
 
 function Register({ onUserRegistered, onLoginClick }) {
 
@@ -33,18 +36,18 @@ function Register({ onUserRegistered, onLoginClick }) {
     }
     return <>
         <main >
-            <h1 className=' px-[10px] text-[cornflowerblue] font-bold text-2xl text-center mb-10'>Register</h1>
+            <HTag>Register</HTag>
 
-            <form className="flex flex-col gap-2 mb-5" onSubmit={handleSubmit}>
-                <LabelInput text='Name' type='text' id='name' />
+            <Form onSubmit={handleSubmit}>
+                <LabelInput text='Name' id='name' />
                 <LabelInput text='Birthdate' type='date' id='birthdate' />
-                <LabelInput text='E-mail' type='text' id='email' />
-                <LabelInput text='Username' type='text' id='username' />
+                <LabelInput text='E-mail' id='email' />
+                <LabelInput text='Username' id='username' />
                 <LabelInput text='Password' type='password' id='password' />
 
-                <button className=" rounded-[10px] border-w-[1px] px-[10px] max-w- self-end" type="submit"> Register </button>
+                <Button type="submit"> Register </Button>
 
-            </form>
+            </Form>
 
             <a className="underline block text-center w-[100%]" href="" onClick={handleLoginClick} >Login</a>
         </main>

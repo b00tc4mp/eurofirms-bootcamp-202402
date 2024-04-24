@@ -1,5 +1,6 @@
 import Post from "./Post"
 import logic from "../../logic"
+import HTag from "./HTags"
 import { useState, useEffect } from "react"
 function Posts({ timeStamp }) {
     const [posts, setPosts] = useState(null)
@@ -23,8 +24,8 @@ function Posts({ timeStamp }) {
         refreshPosts()
     }, [timeStamp])
 
-    return <section id="posts-section">
-        <h2>Posts</h2>
+    return <section className="flex flex-col gap-6 px-2 py-14">
+        <HTag level={2}>Posts</HTag>
         <div id="posts-list">
             {posts ? posts.map((post => <Post autoRefresh={refreshPosts} key={post.id} post={post} />)) : <span>loading posts....</span>}
         </div>

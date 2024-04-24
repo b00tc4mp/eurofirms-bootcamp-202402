@@ -1,4 +1,9 @@
 import logic from "../../logic/index.js"
+import Form from "./Form.jsx"
+import Button from "./Button.jsx"
+import LabelInput from "./LabelInput.jsx"
+import HTag from "./HTags.jsx"
+
 function CreatePost({ onSendClick, onCancelCreateClick }) {
     const handleSubmit = (event) => {
         event.preventDefault()
@@ -27,20 +32,19 @@ function CreatePost({ onSendClick, onCancelCreateClick }) {
     }
 
 
-    return <section id="create-post-section">
-        <h2>Create Post</h2>
+    return <section className="mb-8 fixed bottom-0 left-0 bg-white w-full pb-2 border-t-2 border-black flex flex-col box-border px-2">
+        <HTag level={2}>Create Post</HTag>
 
-        <form id="create-post-form" onSubmit={handleSubmit}>
-            <label htmlFor="image">Image</label>
-            <input className="input" type="text" id="image" />
+        <Form onSubmit={handleSubmit}>
 
-            <label htmlFor="text">Text</label>
-            <input className="input" type="text" id="text" />
+            <LabelInput text="Text" id="text" />
 
-            <button className="button button--right" type="submit">Create</button>
-        </form>
+            <LabelInput text="Image" type="text" id="image" />
 
-        <button className="button button--center" id="create-post-cancel-button" onClick={handleCancelCreateClick}>Cancel</button>
+            <Button type="submit">Create</Button>
+        </Form>
+
+        <Button className="w-full text-center" onClick={handleCancelCreateClick}>Cancel</Button>
     </section>
 }
 export default CreatePost

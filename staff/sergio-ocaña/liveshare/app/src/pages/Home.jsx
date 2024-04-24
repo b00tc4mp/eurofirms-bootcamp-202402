@@ -3,13 +3,14 @@ import CreatePost from "./components/CreatePost.jsx"
 import Posts from "./components/Posts.jsx"
 import logic from "../logic/index.js"
 import Chat from "./components/Chat.jsx"
+import Button from "./components/Button.jsx"
+import HTag from "./components/HTags.jsx"
+
 import { useState, useEffect } from "react"
 
 function Home({ onLogoutClick }) {
-
-
     const [user, setUser] = useState(null)
-    const [createPost, setCreatePost] = useState('hide')
+    const [createPost, setCreatePost] = useState(null)
     const [view, setView] = useState('posts')
     const [timeStamp, setTimeStamp] = useState(Date.now())
 
@@ -40,37 +41,37 @@ function Home({ onLogoutClick }) {
     }
     const handlePostButton = () => setView('posts')
 
-    const handleCreatePostButton = () => setCreatePost('show')
+    const handleCreatePostButton = () => setCreatePost(true)
 
     const handleSendCreateButton = () => {
-        setCreatePost('hide')
+        setCreatePost(null)
 
         setTimeStamp(Date.now())
     }
 
-    const handleCancelCreateButton = () => setCreatePost('hide')
+    const handleCancelCreateButton = () => setCreatePost(null)
 
 
     return <>
 
-        <header>
+        <header className="flex  justify-between  border-b-2 border-black fixed top-0 w-full bg-white h-12 px-2 py-3 box-border">
             {!user && <p>Loading...</p>}
-            {user && <h1>{`Hola ${user.username}!`}</h1>}
+            {user && <HTag>{`Hola ${user.username}!`}</HTag>}
 
-            <nav id="top-menu">
-                <button className="button" id="chat-button" onClick={() => handleChatButton()}>💬</button>
-                <button className="button" id="logout-button" onClick={() => handleLogoutButton()}>🚪</button>
+            <nav>
+                <Button onClick={handleChatButton}>💬</Button>
+                <Button onClick={handleLogoutButton}>🚪</Button>
             </nav>
         </header >
 
         <main>
             {view === 'posts' && <Posts timeStamp={timeStamp} />}
             {view === 'chat' && < Chat />}
-            {createPost === 'show' && <CreatePost onSendClick={() => handleSendCreateButton()} onCancelCreateClick={() => handleCancelCreateButton()} />}
+            {createPost && <CreatePost onSendClick={handleSendCreateButton} onCancelCreateClick={handleCancelCreateButton} />}
         </main >
-        <footer className="footer">
-            <button className="button" id="posts-button" onClick={() => handlePostButton()}>🏚️</button>
-            <button className="button" id="create-post-button" onClick={() => handleCreatePostButton()}>➕</button>
+        <footer className="flex justify-center border-t-2 border-black fixed bottom-0 w-full bg-white h-8 px-2 box-border">
+            <Button onClick={handlePostButton}>🏚️</Button>
+            <Button onClick={handleCreatePostButton}>➕</Button>
         </footer>
 
     </>

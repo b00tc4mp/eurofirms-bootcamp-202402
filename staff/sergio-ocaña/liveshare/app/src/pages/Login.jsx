@@ -1,4 +1,8 @@
 import logic from "../logic/index.js"
+import LabelInput from "./components/LabelInput.jsx"
+import HTag from './components/HTags.jsx'
+import Form from "./components/Form.jsx"
+import Button from "./components/Button.jsx"
 
 function Login({ onUserLoggedIn, onRegisterClick }) {
     const handleSubmit = event => {
@@ -32,17 +36,16 @@ function Login({ onUserLoggedIn, onRegisterClick }) {
 
     return <>
         <main className="main main--thin">
-            <h1>Login</h1>
-            <form className="form" onSubmit={handleSubmit}>
-                <label htmlFor="username">Username</label>
-                <input className="input" type="text" id="username" />
+            <HTag>Login</HTag>
+            <Form onSubmit={handleSubmit}>
+                <LabelInput text='Username' id="username" />
 
-                <label htmlFor="password">Password</label>
-                <input className="input" type="password" id="password" />
+                <LabelInput text='Password' type='password' id='password' />
 
-                <button className="button button--right" type="submit">Login</button>
-            </form>
-            <a className="link--center" href="register.html" onClick={handleRegisterClick}>Register</a>
+                <Button className='align-end' type="submit">Login</Button>
+            </Form>
+
+            <a className="underline block text-center w-[100%]" href="" onClick={handleRegisterClick}>Register</a>
         </main>
     </>
 }

@@ -5,24 +5,27 @@ import './index.css'
 import { useState } from 'react'
 
 function App() {
-    const [view, setView] = useState('login')
+    const login = 'login'
+    const home = 'home'
+    const register = 'register'
 
-    const handleUserRegistered = () => setView('login')
+    const [view, setView] = useState(login)
 
-    const handleUserLoggedIn = () => setView('home')
+    const handleUserRegistered = () => setView(login)
 
-    const handleLoginButton = () => setView('login')
+    const handleUserLoggedIn = () => setView(home)
 
-    const handleRegisterButton = () => setView('register')
+    const handleLoginButton = () => setView(login)
 
-    const handleLogoutButton = () => setView('login')
+    const handleRegisterButton = () => setView(register)
+
+    const handleLogoutButton = () => setView(login)
 
     return <>
-        {view === 'login' && <Login onUserLoggedIn={() => handleUserLoggedIn()} onRegisterClick={() => handleRegisterButton()} />}
-        {view === 'register' && <Register onUserRegistered={() => handleUserRegistered()} onLoginClick={() => handleLoginButton()} />}
-        {view === 'home' && <Home onLogoutClick={() => handleLogoutButton()} />}
+        {view === login && <Login onUserLoggedIn={() => handleUserLoggedIn()} onRegisterClick={() => handleRegisterButton()} />}
+        {view === register && <Register onUserRegistered={() => handleUserRegistered()} onLoginClick={() => handleLoginButton()} />}
+        {view === home && <Home onLogoutClick={() => handleLogoutButton()} />}
     </>
-
 }
 
 export default App

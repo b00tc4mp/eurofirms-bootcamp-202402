@@ -1,4 +1,8 @@
 import logic from "../../logic/index.js"
+import LabelInput from "./LabelInput.jsx"
+import Form from "./Form.jsx"
+import Button from "./Button.jsx"
+
 function EditPost({ post, handleUpdatedPost, handleCancel }) {
     const handleSubmit = event => {
         event.preventDefault()
@@ -25,15 +29,14 @@ function EditPost({ post, handleUpdatedPost, handleCancel }) {
     }
     const onCancelClick = () => handleCancel()
     return <>
-        <form className="post-form" onSubmit={handleSubmit}>
-            <label htmlFor="text"></label>
-            <input className="input" type="text" id="text" defaultValue={post.text} />
+        <Form onSubmit={handleSubmit}>
 
-            <button className="button button-right" type="submit">Update</button>
-        </form >
+            <LabelInput text="Text to update" id="text" defaultValue={post.text} />
 
-        <button className="button" onClick={onCancelClick}>Cancel</button>
+            <Button type="submit">Update</Button>
+        </Form >
+
+        <Button onClick={onCancelClick}>Cancel</Button>
     </>
-
 }
 export default EditPost
