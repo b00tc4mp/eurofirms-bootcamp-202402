@@ -1,14 +1,13 @@
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
+
 import logic from '../logic';
+
 import Post from './Post';
 
 function Posts({ refreshStamp }) {
   console.log('refreshStamp', refreshStamp);
-  const [posts, setPosts] = useState([]);
 
-  useEffect(() => {
-    refreshPosts();
-  }, [refreshStamp]);
+  const [posts, setPosts] = useState([]);
 
   const refreshPosts = () => {
     try {
@@ -27,38 +26,20 @@ function Posts({ refreshStamp }) {
     }
   };
 
-  const handleDeletePostClick = (postId) => {
-    // console.log('deleting... ', postId);
-    const confirmar = confirm('Estas seguro de eliminar este post?');
-    if (!confirmar) return;
-    try {
-      logic
-        .deletePost(postId)
-        .then(() => refreshPosts())
-        .catch((error) => {
-          console.error(error);
+  useEffect(() => {
+    refreshPosts();
+  }, [refreshStamp]);
 
-          alert(error.message);
-        });
-    } catch (error) {
-      console.error(error);
+  const handlePostRemoved = () => refreshPosts();
 
-      alert(error.message);
-    }
-  };
+  console.log('Posts render');
 
   return (
-    <>
-      <section className="flex flex-col gap-6 px-2 py-14">
-        {posts.map((post) => (
-          <Post
-            key={post.id}
-            post={post}
-            onDeletePostClick={handleDeletePostClick}
-          />
-        ))}
-      </section>
-    </>
+    <section className="flex flex-col gap-6 px-2 py-14">
+      {posts.map((post) => (
+        <Post key={post.id} post={post} onPostRemoved={handlePostRemoved} />
+      ))}
+    </section>
   );
 }
 

@@ -1,20 +1,17 @@
-function deletePost(postId) {
-  // validateText(image)
-  // validateText(text)
-  // TODO use sessionStorage.userId
+function removePost(postId) {
+  // validateText(postId)
 
   return fetch(`http://localhost:8080/posts/${postId}`, {
     method: 'DELETE',
     headers: {
       Authorization: `Bearer ${sessionStorage.userId}`,
-      'Content-type': 'application/json',
     },
   })
     .catch((error) => {
       throw new Error(error.message);
     })
     .then((res) => {
-      if (res.status === 200) return;
+      if (res.status === 204) return;
 
       return res.json().then((body) => {
         const { error, message } = body;
@@ -26,4 +23,4 @@ function deletePost(postId) {
     });
 }
 
-export default deletePost;
+export default removePost;

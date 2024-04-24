@@ -3,7 +3,7 @@ import authenticateUser from './authenticateUser.js';
 import retrieveUser from './retrieveUser.js';
 import createPost from './createPost.js';
 import retrievePosts from './retrievePosts.js';
-import deletePost from './deletePost.js';
+import removePost from './removePost.js';
 
 const logic = {
   registerUser,
@@ -11,7 +11,7 @@ const logic = {
   retrieveUser,
   createPost,
   retrievePosts,
-  deletePost
+  removePost,
 };
 
 export default logic;
