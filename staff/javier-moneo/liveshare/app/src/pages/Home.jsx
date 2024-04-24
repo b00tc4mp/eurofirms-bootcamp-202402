@@ -33,16 +33,6 @@ function Home({ onUserLoggedOut }) {
     onUserLoggedOut();
   };
 
-  let posts = [];
-
-  try {
-    posts = logic.retrievePosts();
-  } catch (error) {
-    console.error(error);
-
-    alert(error.message);
-  }
-
   const handleCreatePostClick = () => setView('create-post');
 
   const handleCreatePostCancelClick = () => setView(null);
