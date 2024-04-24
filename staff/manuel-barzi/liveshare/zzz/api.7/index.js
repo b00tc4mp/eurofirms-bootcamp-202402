@@ -11,11 +11,19 @@ mongoose.connect('mongodb://localhost:27017/test')
 
         server.get('/', (req, res) => res.json({ hello: 'client' }))
 
-        const jsonBodyParser = express.json()
+        const jsonBodyParser = express.json() // JSON.parse(...)
+
+        // const cors = (req, res, next) => {
+        //     res.setHeader('Access-Control-Allow-Origin', '*')
+        //     res.setHeader('Access-Control-Allow-Headers', '*')
+        //     res.setHeader('Access-Control-Allow-Methods', '*')
+
+        //     next()
+        // }
+
+        // server.use(cors)
 
         server.use(cors())
-
-        // TODO refine http response status for each route
 
         server.post('/users', jsonBodyParser, (req, res) => {
             try {
@@ -43,10 +51,12 @@ mongoose.connect('mongodb://localhost:27017/test')
 
         server.get('/users/:targetUserId', (req, res) => {
             try {
+                // const authorization = req.headers.authorization
                 const { authorization } = req.headers
 
                 const userId = authorization.slice(7)
 
+                //const targetUserId = req.params.targetUserId
                 const { targetUserId } = req.params
 
                 logic.retrieveUser(userId, targetUserId)
@@ -81,22 +91,6 @@ mongoose.connect('mongodb://localhost:27017/test')
 
                 logic.retrievePosts(userId)
                     .then(posts => res.json(posts))
-                    .catch(error => res.status(500).json({ error: error.constructor.name, message: error.message }))
-            } catch (error) {
-                res.status(500).json({ error: error.constructor.name, message: error.message })
-            }
-        })
-
-        server.delete('/posts/:postId', (req, res) => {
-            try {
-                const { authorization } = req.headers
-
-                const userId = authorization.slice(7)
-
-                const { postId } = req.params
-
-                logic.removePost(userId, postId)
-                    .then(() => res.status(204).send())
                     .catch(error => res.status(500).json({ error: error.constructor.name, message: error.message }))
             } catch (error) {
                 res.status(500).json({ error: error.constructor.name, message: error.message })
