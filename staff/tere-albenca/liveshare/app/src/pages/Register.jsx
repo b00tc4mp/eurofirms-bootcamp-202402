@@ -1,4 +1,6 @@
 import logic from "../logic";
+import Form from "../components/Form";
+import Button from "../components/Button";
 
 function Register({ onUserRegistered, onLoginClick, onResetPasswordClick }) {
   const handleSubmit = (event) => {
@@ -40,40 +42,36 @@ function Register({ onUserRegistered, onLoginClick, onResetPasswordClick }) {
     onResetPasswordClick();
   };
   return (
-    <div className="body-rlr">
-      <main className="main main--thin">
-        <h1>REGISTER</h1>
-        <form onSubmit={handleSubmit} className="form little-form">
-          <label htmlFor="name">Name</label>
-          <input type="text" id="name" />
+    <div className="flex flex-col justify-center item-center mt-3 mb-1">
+      <main className="w-3/5 flex flex-col justify-center item-center mb-8" >
+        <h1 className="text-center">REGISTER</h1>
+        <Form onSubmit={handleSubmit} className="max-w-sm">
+          <label htmlFor="name" className="mb-0.5">Name</label>
+          <input type="text" id="name" className="w-full p-2 rounded-xl border-lightgray mb-2 box-border hover:bg-[lightgray]"/>
 
-          <label htmlFor="lastname">Lastname</label>
-          <input type="text" id="lastname" />
+          <label htmlFor="lastname" className="mb-0.5">Lastname</label>
+          <input type="text" id="lastname" className="w-full p-2 rounded-md border-lightgray mb-2 box-border hover:bg-[lightgray]" />
+          <label htmlFor="birthdate" className="mb-0.5">Birthdate</label>
+          <input type="date" id="birthdate" className="w-full p-2 rounded-md border-lightgray mb-2 box-border hover:bg-[lightgray]" />
 
-          <label htmlFor="birthdate">Birthdate</label>
-          <input type="date" id="birthdate" />
+          <label htmlFor="email" className="mb-0.5">Email</label>
+          <input type="text" id="email" className="w-full p-2 rounded-md border-lightgray mb-2 box-border hover:bg-[lightgray]" />
 
-          <label htmlFor="email">Email</label>
-          <input type="text" id="email" />
+          <label htmlFor="username" className="mb-0.5">Username</label>
+          <input type="text" id="username" className="w-full p-2 rounded-md border-lightgray mb-2 box-border hover:bg-[lightgray]" />
 
-          <label htmlFor="username">Username</label>
-          <input type="text" id="username" />
+          <label htmlFor="password" className="mb-0.5">Password</label>
+          <input type="password" id="password" className="w-full p-2 rounded-md border-lightgray mb-2 box-border hover:bg-[lightgray]"/>
 
-          <label htmlFor="password">Password</label>
-          <input type="password" id="password" />
+          <Button type="submit" >Register</Button>
 
-          <button type="submit">Register</button>
-
-          <div className="container-a container-a-little">
-            <a onClick={handleResetPasswordClick}>RESET PASSWORD</a>
+          <div className="flex justify-center bg-[lightgray] hover:bg-[#c3c3c2] rounded-xl p-1 my-1">
+            <a onClick={handleResetPasswordClick} className="no-underline text-[#042e5a]">RESET PASSWORD</a>
           </div>
-          <div className="container-a container-a-little">
-            <a id="login" onClick={handleLoginClick}>
-              LOGIN
-            </a>
-            <br />
+          <div className="flex justify-center bg-[lightgray] hover:bg-[#c3c3c2] rounded-xl p-1 my-1">
+            <a id="login" onClick={handleLoginClick}  className="no-underline text-[#042e5a]">LOGIN</a>
           </div>
-        </form>
+        </Form>
       </main>
     </div>
   );

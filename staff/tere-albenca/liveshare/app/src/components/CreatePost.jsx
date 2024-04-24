@@ -1,4 +1,7 @@
 import logic from "../logic";
+import Form from "./Form"
+import Button from "./Button"
+import Input from "./Input"
 
 function CreatePost({ onPostCreated, onCancelClick }) {
   const handleCancelClick = () => onCancelClick();
@@ -24,17 +27,17 @@ function CreatePost({ onPostCreated, onCancelClick }) {
 
   return (
     <>
-      <section className="create-post-section">
-        <h2>CREATE POST</h2>
-        <form id="create-post-form" onSubmit={handleSubmit}>
-          <input type="text" placeholder="image" id="image" />
+      <section className=" mb-12 fixed bottom-0 left-0 bg-white w-full pb-2 border-t-2 border-black flex flex-col box-border px-2">
+        <h2 className="font-bold text-xl py-2">CREATE POST</h2>
+        <Form id="create-post-form" onSubmit={handleSubmit}>
+          <Input type="text" placeholder="image" id="image" />
 
-          <input type="text" placeholder="text" id="text" />
+          <Input type="text" placeholder="text" id="text" />
 
-          <button type="submit">create</button>
-        </form>
+          <Button type="submit">create</Button>
+        </Form>
 
-        <button onClick={handleCancelClick}>cancel</button>
+        <Button onClick={handleCancelClick}>cancel</Button>
       </section>
     </>
   );

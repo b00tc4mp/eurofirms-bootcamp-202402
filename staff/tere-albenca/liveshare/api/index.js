@@ -9,17 +9,8 @@ mongoose.connect("mongodb://localhost:27017/test")
 
     const server = express()
 
-    // server.get('/', (req, res) => res.json({ hello: 'client' }))
-
     const jsonBodyParser = express.json() // JSON.parse(...)
-    // const cors = (req, res, next) => {
-    //   res.setHeader('Access-Control-Allow-Origin', '*')
-    //   res.setHeader('Access-Control-Allow-Headers', '*')
-    //   res.setHeader('Access-Control-Allow-Methods', '*')
 
-    //   next()
-    // }
-    // server.use(cors)
     server.use(cors())
 
     //registerUSer

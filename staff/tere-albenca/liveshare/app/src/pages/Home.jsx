@@ -8,7 +8,7 @@ import Posts from "../components/Posts";
 
 function Home({ onUserLoggedOut }) {
   const [view, setView] = useState(null);
-  const [createPost, setCreatePost] = useState(null)
+  const [refreshStamp,setrefreshStamp] = useState(null)
   const [user,setuser] = useState(null)
 
   useEffect(()=>{
@@ -32,59 +32,54 @@ function Home({ onUserLoggedOut }) {
   const handleLogout = () => {
     logic.logoutUser();
 
-    onLogoutClick();
+    onUserLoggedOut();
   };
 
-  const handleCreateClick = () => {
-    // const newPosts = logic.retrievePosts();
-    // setState({ view: "post", posts: newPosts });
-    setView(null);
-  };
+  const handleCreateClick = () => setView('createPost');
 
-  const handleCreatePost = () => {
-    setCreatePost("createPost");
-  };
 
-  const handleCancelClick = () => {
-    setCreatePost(null);
+  const handleCancelClick = () => setView(null);
+
+
+  const handleCreatedPost = () => {
+    setView(null)
+    setrefreshStamp(Date.now())
   };
 
   return (
     <>
-      <header className="header">
+    <div className="m-0 p-0 max-w-[100vw] mt-[70px] mb-[60px]">
+    <header className="flex justify-between border-b border-black fixed top-0 w-full bg-[grey] h-12 py-[5px] px-1 box-border">
         <img
           src="src/assets/images/logo-cabecera-alalluna.png"
           alt="logo alalluna"
         />
 
-        <nav id="top-menu">
-          <button id="chat-button">💬</button>
-          <button id="posts-button">🏚️</button>
-          <button id="create-post-button" onClick={handleCreatePost}>
-            +
-          </button>
+        <nav className="flex items-center justify-end w-1/2">
+          <button id="chat-button" className="w-10 h-10 mr-2.5 rounded-sm shadow cursor-pointer hover:bg-[lightgray]">💬</button>
+          <button id="posts-button" className="w-10 h-10 mr-2.5 rounded-sm shadow cursor-pointer hover:bg-[lightgray]">🏚️</button>
+          <button id="create-post-button" onClick={handleCreateClick} className="w-10 h-10 mr-2.5 rounded-sm shadow cursor-pointer hover:bg-[lightgray]">+</button>
         </nav>
       </header>
 
-      <div className="h1">
-            <h1 className="homeTitlePost">Welcome,  {user ? user.username:' cargando'}!</h1>
+      <div >
+            <h1 className="text-center">Welcome,  {user ? user.username:'Loading'}!</h1>
         </div>
 
-      {view === "createPost" && (
-        <CreatePost
-          onPostCreated={() => handleCreateClick()}
-          onCancelClick={() => handleCancelClick()}
-        />
-      )}
+      <main>
+        <Posts refreshStamp={refreshStamp}/>
+        {view === "createPost" && <CreatePost onPostCreated={() => handleCreateClick()} onCancelClick={() => handleCancelClick()}/>}
+      </main>
       {/* <Posts /> */}
-      <footer>
+      <footer className="w-full bg-[dimgrey] text-[white] p-3 px-1 fixed bottom-0  flex justify-between items-center">
         <div>&copy; 2024 Alalluna</div>
-        <div className="right">
-          <button id="logoutButton" onClick={handleLogout}>
+        <div className="mr-[20px]">
+          <button className="bg-[white] hover:bg-[gainsboro] text-{#333333} border-0 px-[20px] py-3 rounded-xl" onClick={handleLogout}>
             Logout
           </button>
         </div>
       </footer>
+    </div>
     </>
   );
 }

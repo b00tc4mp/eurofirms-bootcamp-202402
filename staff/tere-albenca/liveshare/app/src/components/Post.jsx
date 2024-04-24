@@ -3,9 +3,9 @@ function Post({ post }) {
 
   return (
     <>
-      <article key={post.id} className="post">
+      <article className="w-full">
         <h3>{post.author.username}</h3>
-        <img className="post-image" src={`${post.image}`}></img>
+        <img className="w-[90%] px-2" src={`${post.image}`}></img>
         <p>
           {post.text}
           <br />
