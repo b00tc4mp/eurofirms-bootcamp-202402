@@ -6,7 +6,8 @@ import logoutUser from "./logoutUser"
 import getLoggedInUserId from "./getLoggedInUserId"
 import createPost from "./createPost"
 import retrievePosts from "./retrievePosts"
-
+import deletePost from "./deletePost"
+import updatePost from "./updatePost"
 
 //logic
 
@@ -17,7 +18,9 @@ const logic = {
     logoutUser,
     getLoggedInUserId,
     createPost,
-    retrievePosts
+    retrievePosts,
+    deletePost,
+    updatePost
 }
 
 export default logic

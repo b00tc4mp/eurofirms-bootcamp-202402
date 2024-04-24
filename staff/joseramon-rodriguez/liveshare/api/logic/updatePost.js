@@ -15,10 +15,11 @@ function updatePost(userId, postId, text) {
                     post.text = text
 
                     return post.save()
+                        .then(postUpdated => { })
                 })
                 .catch(error => { throw new Error(error.message) })
         })
-        .then(postUpdated => { })
+
 }
 
 export default updatePost

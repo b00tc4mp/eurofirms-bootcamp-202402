@@ -97,7 +97,7 @@ mongoose.connect('mongodb://localhost:27017/test')
             }
         })
 
-        server.delete('/posts/:postId', (req, res) => {
+        server.patch('/posts/:postId', jsonBodyParser, (req, res) => {
             try {
                 const { authorization } = req.headers
 
@@ -105,7 +105,9 @@ mongoose.connect('mongodb://localhost:27017/test')
 
                 const { postId } = req.params
 
-                logic.updatePost(userId, postId)
+                const { text } = req.body
+
+                logic.updatePost(userId, postId, text)
                     .then(() => { res.status(200).send() })
                     .catch(error => res.status(500).json({ error: error.constructor.name, message: error.message }))
 
@@ -115,7 +117,7 @@ mongoose.connect('mongodb://localhost:27017/test')
             }
         })
 
-        server.patch('/posts/:postId', jsonBodyParser, (req, res) => {
+        server.delete('/posts/:postId', (req, res) => {
             try {
                 const { authorization } = req.headers
 
