@@ -36,8 +36,8 @@ console.debug("Login render");
 
     return (
         <>
-          <main className="px-20">
-            <h1>Login</h1>
+          <main className="text-lg px-20">
+            <h1 className="font-mono font-bold text-3xl">Login</h1>
             <hr/>
             
             <Form onSubmit={ handleSubmit }>

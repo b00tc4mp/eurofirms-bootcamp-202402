@@ -32,16 +32,6 @@ function Home({ onUserLoggedOut }) {
         onUserLoggedOut()
     }
 
-    let posts = []
-
-    try {
-        posts = logic.retrievePosts()
-    } catch (error) {
-        console.error(error)
-
-        alert(error.message)
-    }
-
     const handleCreatePostClick = () => setView('create-post')
 
     const handleCreatePostCancelClick = () => setView(null)
@@ -52,12 +42,16 @@ function Home({ onUserLoggedOut }) {
         setView(null)
     }
 
+    const handleDeletePost = () => {
+        
+    }
+
     console.log('Home render')
 
     return <>
-        <header className="bg-gray-100 border-solid border-4 border-black font-bold text-xl ">
+        <header className="bg-gray-100 border-solid border-4 border-black font-bold text-xl m-1">
         {!user && <p>Loading...</p>}
-        {user && <h1>Hello, {user.name}!</h1>}
+        {user && <h1 className="p-3">Hello, {user.name}!</h1>}
 
             <nav id="top-menu">
                 <button className="button" id="chat-button">💬</button>
