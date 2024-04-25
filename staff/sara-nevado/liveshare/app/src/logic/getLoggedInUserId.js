@@ -1,5 +1,5 @@
 function getLoggedInUserId() {
-    return sessionStorage.user.getLoggedInUserId
+    return sessionStorage.userId
 }
 
 export default getLoggedInUserId

@@ -1,7 +1,5 @@
 import { useState, useEffect } from 'react'
-
 import logic from '../logic'
-
 import Post from './Post'
 
 function Posts({ refreshStamp }) {
@@ -9,7 +7,7 @@ function Posts({ refreshStamp }) {
 
     const [posts, setPosts] = useState([])
 
-    useEffect(() => {
+    const refreshPosts = () => {
         try {
             logic.retrievePosts()
                 .then(posts => setPosts(posts))
@@ -23,16 +21,19 @@ function Posts({ refreshStamp }) {
 
             alert(error.message)
         }
+    }
+
+    useEffect(() => {
+        refreshPosts()
     }, [refreshStamp])
 
+    const handleDeletedPost = () => refreshPosts()
 
     console.log('Posts render')
 
     return <section className="flex flex-col gap-6 px-2 py-14">
-        {posts.map(post => <Post key={post.id} post={post} />)}
+        {posts.map(post => <Post key={post.id} post={post} onPostDeleted={handleDeletedPost}/>)}
     </section>
 }
-
-
 
 export default Posts

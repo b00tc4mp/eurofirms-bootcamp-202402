@@ -96,6 +96,24 @@ mongoose.connect('mongodb://localhost:27017/test')
                 res.status(500).json({ error: error.constructor.name, message: error.message })
             }
         })
+        
+
+        server.delete('/posts/:postId', (req, res) => {
+            try {
+                const { authorization } = req.headers
+                const userId = authorization.slice(7)
+                const { postId } = req.params
+        
+                logic.deletePost(userId, postId)
+                    .then(() => res.status(204).send())
+                    .catch(error => res.status(500).json({ error: error.constructor.name, message: error.message }))
+            } catch (error) {
+                res.status(500).json({ error: error.constructor.name, message: error.message })
+            }
+        })
+        
+
+
 
         server.listen(8080, () => console.log('API started'))
     })

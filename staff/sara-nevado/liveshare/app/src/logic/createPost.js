@@ -5,10 +5,10 @@ function createPost(image, text) {
     //todo use sessionStorage.userId
 
 
-return fetch('http://localhost:8080(posts', {
-method: 'POST',
-headers: {
-    Authorization: `Bearer ${sessionStorage.userId}`,
+    return fetch('http://localhost:8080/posts', {
+        method: 'POST',
+        headers: {
+            Authorization: `Bearer ${sessionStorage.userId}`,
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({ image, text })

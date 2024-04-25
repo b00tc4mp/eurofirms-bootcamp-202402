@@ -36,7 +36,13 @@ function Home({ onUserLoggedOut }) {
 
     const handleCreatePostCancelClick = () => setView(null)
 
-    const handlePostCreated = () => setView(null)
+    const handlePostCreated = () => {
+        setView(null)
+        setRefreshStamp(Date.now())
+    }
+
+    const handleDeletePost = () => {
+ }
 
     console.log('Home render')
 
