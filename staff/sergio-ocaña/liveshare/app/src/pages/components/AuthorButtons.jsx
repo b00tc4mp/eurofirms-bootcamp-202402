@@ -2,9 +2,14 @@ import logic from "../../logic"
 import Button from "./Button"
 
 function AuthorButtons({ handleEdit, handleDeletedClick, postId }) {
-    const onEditClick = () => handleEdit()
+    const onEditClick = () => {
+        handleEdit()
+    }
+
     const onDeleteClick = () => {
         const deleteOrNot = confirm('Are you sure about to delete this post?')
+
+        if (!deleteOrNot) return
         try {
             logic.deletePost(postId)
                 .then(() => handleDeletedClick())

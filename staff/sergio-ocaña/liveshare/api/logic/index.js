@@ -5,6 +5,7 @@ import createPost from './createPost.js'
 import retrievePosts from './retrievePosts.js'
 import deletePost from './deletePost.js'
 import updatePost from './updatePost.js'
+import retrievePost from './retrievePost.js'
 
 const logic = {
     registerUser,
@@ -12,6 +13,7 @@ const logic = {
     retrieveUser,
     createPost,
     retrievePosts,
+    retrievePost,
     deletePost,
     updatePost
 }

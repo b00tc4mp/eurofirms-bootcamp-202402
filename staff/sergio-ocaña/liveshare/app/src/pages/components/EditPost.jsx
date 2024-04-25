@@ -3,7 +3,9 @@ import LabelInput from "./LabelInput.jsx"
 import Form from "./Form.jsx"
 import Button from "./Button.jsx"
 
-function EditPost({ post, handleUpdatedPost, handleCancel }) {
+function EditPost({ post, textUpdated, handleUpdatedPost, handleCancel }) {
+
+    console.log(textUpdated)
     const handleSubmit = event => {
         event.preventDefault()
 
@@ -31,7 +33,7 @@ function EditPost({ post, handleUpdatedPost, handleCancel }) {
     return <>
         <Form onSubmit={handleSubmit}>
 
-            <LabelInput text="Text to update" id="text" defaultValue={post.text} />
+            <LabelInput text="Text to update" id="text" defaultValue={textUpdated} />
 
             <Button type="submit">Update</Button>
         </Form >

@@ -7,11 +7,15 @@ import Button from "./components/Button.jsx"
 import HTag from "./components/HTags.jsx"
 
 import { useState, useEffect } from "react"
+const posts = 0
+const chat = 1
 
 function Home({ onLogoutClick }) {
+
+
     const [user, setUser] = useState(null)
     const [createPost, setCreatePost] = useState(null)
-    const [view, setView] = useState('posts')
+    const [view, setView] = useState(posts)
     const [timeStamp, setTimeStamp] = useState(Date.now())
 
     useEffect(() => {
@@ -32,14 +36,14 @@ function Home({ onLogoutClick }) {
 
     }, [])
 
-    const handleChatButton = () => setView('chat')
+    const handleChatButton = () => setView(chat)
 
     const handleLogoutButton = () => {
         logic.logoutUser()
 
         onLogoutClick()
     }
-    const handlePostButton = () => setView('posts')
+    const handlePostButton = () => setView(posts)
 
     const handleCreatePostButton = () => setCreatePost(true)
 
@@ -65,8 +69,8 @@ function Home({ onLogoutClick }) {
         </header >
 
         <main>
-            {view === 'posts' && <Posts timeStamp={timeStamp} />}
-            {view === 'chat' && < Chat />}
+            {view === posts && <Posts timeStamp={timeStamp} />}
+            {view === chat && < Chat />}
             {createPost && <CreatePost onSendClick={handleSendCreateButton} onCancelCreateClick={handleCancelCreateButton} />}
         </main >
         <footer className="flex justify-center border-t-2 border-black fixed bottom-0 w-full bg-white h-8 px-2 box-border">

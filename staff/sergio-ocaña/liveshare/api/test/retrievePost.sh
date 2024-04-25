@@ -1,0 +1,1 @@
+curl -H 'Authorization:Bearer 66222100a1579eef36527323' http://localhost:8080/post/66224d46f87cb91b3cbca235 -v
