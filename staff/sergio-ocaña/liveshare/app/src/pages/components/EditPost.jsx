@@ -4,8 +4,6 @@ import Form from "./Form.jsx"
 import Button from "./Button.jsx"
 
 function EditPost({ post, textUpdated, handleUpdatedPost, handleCancel }) {
-
-    console.log(textUpdated)
     const handleSubmit = event => {
         event.preventDefault()
 

@@ -20,6 +20,12 @@ function Posts({ timeStamp }) {
         }
     }
 
+    const handleUpdatePost = () => refreshPosts()
+
+    const handleDeletePost = () => refreshPosts()
+
+    const handleCancelPost = () => refreshPosts()
+
     useEffect(() => {
         refreshPosts()
     }, [timeStamp])
@@ -27,7 +33,9 @@ function Posts({ timeStamp }) {
     return <section className="flex flex-col gap-6 px-2 py-14">
         <HTag level={2}>Posts</HTag>
         <div id="posts-list">
-            {posts ? posts.map((post => <Post autoRefresh={refreshPosts} key={post.id} post={post} />)) : <span>loading posts....</span>}
+            {posts ? posts.map((post =>
+                <Post autoRefresh={refreshPosts} key={post.id} post={post} onHandleDeletePost={handleDeletePost} onHandleUpdatePost={handleUpdatePost} onHandleCancel={handleCancelPost} />)) :
+                <span>loading posts....</span>}
         </div>
     </section>
 }
