@@ -1,6 +1,6 @@
-fetch('http://localhost:8080/post/661cf737ea8f648ccb16c9b6', {
+fetch('http://localhost:8080/post/662244e2ce4373b1aca2b0e4', {
     method: 'GET',
-    headers: { 'Content-Type': 'application/json', 'authorization': 'bearer 6617d38e7197d5c4d62dc42d' },
+    headers: { 'Content-Type': 'application/json', 'authorization': 'bearer 66216b525f8dc92bbe2d13c6' },
 })
     .then(res => res.json())
     .then(post => console.log(post))

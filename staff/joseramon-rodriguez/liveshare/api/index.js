@@ -80,6 +80,8 @@ mongoose.connect('mongodb://localhost:27017/test')
             }
         })
 
+
+
         server.post('/posts', jsonBodyParser, (req, res) => {
             try {
                 const { authorization } = req.headers
@@ -130,6 +132,23 @@ mongoose.connect('mongodb://localhost:27017/test')
                     .then(() => { res.status(204).send() })
                     .catch(error => res.status(500).json({ error: error.constructor.name, message: error.message }))
 
+            } catch (error) {
+                res.status(500).json({ error: error.constructor.name, message: error.message })
+
+            }
+        })
+
+        server.get('/post/:postId', (req, res) => {
+            try {
+                const { authorization } = req.headers
+
+                const userId = authorization.slice(7)
+
+                const { postId } = req.params
+
+                logic.retrievePost(userId, postId)
+                    .then(post => res.status(200).json(post))
+                    .catch(error => res.status(500).json({ error: error.constructor.name, message: error.message }))
             } catch (error) {
                 res.status(500).json({ error: error.constructor.name, message: error.message })
 

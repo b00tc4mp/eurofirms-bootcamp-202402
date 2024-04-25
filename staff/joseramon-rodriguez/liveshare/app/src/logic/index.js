@@ -8,6 +8,7 @@ import createPost from "./createPost"
 import retrievePosts from "./retrievePosts"
 import deletePost from "./deletePost"
 import updatePost from "./updatePost"
+import retrievePost from "./retrievePost"
 
 //logic
 
@@ -19,6 +20,7 @@ const logic = {
     getLoggedInUserId,
     createPost,
     retrievePosts,
+    retrievePost,
     deletePost,
     updatePost
 }
