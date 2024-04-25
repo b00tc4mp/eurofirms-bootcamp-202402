@@ -1,7 +1,9 @@
-import logic from "../logic"
+import { useState } from 'react'
 
-function Post({ post, onPostRemoved }) {
-    console.debug('Post render')
+import logic from '../logic'
+
+function Post({ post, onPostRemoved, onPostModified }) {
+    const [modify, setModify] = useState(false)
 
     const handleRemovePost = () => {
         try {
@@ -20,12 +22,49 @@ function Post({ post, onPostRemoved }) {
         }
     }
 
+    const handleModifyPost = () => setModify(true)
+
+    const handleModifySubmit = event => {
+        event.preventDefault()
+
+        const form = event.target
+
+        const text = form.text.value
+
+        try {
+            logic.modifyPost(post.id, text)
+                .then(() => {
+                    onPostModified()
+
+                    setModify(false)
+                })
+                .catch(error => {
+                    console.error(error)
+
+                    alert(error.message)
+                })
+        } catch (error) {
+            console.error(error)
+
+            alert(error.message)
+        }
+    }
+
+    console.debug('Post render')
+
     return <article className="w-full">
         <h3 className="font-bold">{post.author.username}</h3>
         <img src={post.image} className="w-full" />
-        <p>{post.text}</p>
+        {!modify && <p>{post.text}</p>}
+        {modify && <form onSubmit={handleModifySubmit}>
+            <input type="text" defaultValue={post.text} name="text" />
+            <button className="px-3" type="submit">✅</button>
+        </form>}
         <time className="block text-right text-xs">{post.date}</time>
-        {post.author.id === logic.getLoggedInUserId() && <button className="px-3" onClick={handleRemovePost}>🗑️</button>}
+        {post.author.id === logic.getLoggedInUserId() && <div>
+            <button className="px-3" onClick={handleModifyPost}>📝</button>
+            <button className="px-3" onClick={handleRemovePost}>🗑️</button>
+        </div>}
     </article>
 }
 

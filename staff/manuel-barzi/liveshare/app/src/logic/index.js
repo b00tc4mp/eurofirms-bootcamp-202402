@@ -6,6 +6,7 @@ import getLoggedInUserId from './getLoggedInUserId'
 import createPost from './createPost'
 import retrievePosts from './retrievePosts'
 import removePost from './removePost'
+import modifyPost from './modifyPost'
 
 const logic = {
     registerUser,
@@ -15,7 +16,8 @@ const logic = {
     getLoggedInUserId,
     createPost,
     retrievePosts,
-    removePost
+    removePost,
+    modifyPost
 }
 
 export default logic

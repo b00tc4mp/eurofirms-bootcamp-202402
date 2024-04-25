@@ -31,10 +31,12 @@ function Posts({ refreshStamp }) {
 
     const handlePostRemoved = () => refreshPosts()
 
+    const handlePostUpdated = () => refreshPosts()
+
     console.log('Posts render')
 
     return <section className="flex flex-col gap-6 px-2 py-14">
-        {posts.map(post => <Post key={post.id} post={post} onPostRemoved={handlePostRemoved} />)}
+        {posts.map(post => <Post key={post.id} post={post} onPostRemoved={handlePostRemoved} onPostModified={handlePostUpdated} />)}
     </section>
 }
 
