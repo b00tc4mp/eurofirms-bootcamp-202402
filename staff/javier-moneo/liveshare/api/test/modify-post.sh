@@ -1,0 +1,1 @@
+curl -X PATCH -H "Origin: http://localhost:5173" -H 'Authorization: Bearer 662156f623da239c0823e28f' -H 'Content-Type: application/json' -d '{"text":"new text again"}' http://localhost:8080/posts/662a7f59aaee15959dd619b2 -v
