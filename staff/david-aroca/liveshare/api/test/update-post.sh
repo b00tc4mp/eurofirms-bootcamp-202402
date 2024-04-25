@@ -1,0 +1,1 @@
+ curl -X PATCH -H 'Authorization: Bearer 66226a4ac17de436a7a257c8' -H 'Content-type: application/json' -d '{"text":"pepito grillo"}' http://localhost:8080/posts/6628fbcc186f10d78c22946f -v

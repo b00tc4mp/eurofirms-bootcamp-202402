@@ -1,26 +1,42 @@
-import logic from "../logic";
+import { useEffect, useState } from "react"
 
-import Post from "./Post";
+import Post from "./Post"
 
-function Posts() {
-    let posts = []
+import logic from "../logic"
 
-    try {
-        posts = logic.retrievePosts()
-    } catch (error) {
-        console.error(error)
+function Posts({ refreshStamp }) {
 
-        alert(error.message)
+    const [posts, setPosts] = useState([])
+
+    const refreshPosts = () => {
+        try {
+            logic.retrievePosts()
+                .then(posts => setPosts(posts))
+                .catch(error => {
+                    console.error(error)
+
+                    alert(error.message)
+                })
+        } catch (error) {
+            console.error(error)
+
+            alert(error.message)
+        }
     }
 
-    console.log('Post render')
+    useEffect(() => {
+        refreshPosts()
+    }, [refreshStamp])
 
-    return <section id="post-section">
-        <h2>Posts</h2>
 
-        <div id="posts-list">
-            {posts.map(post => <Post key={post.id} post={post} />)}
-        </div>
+
+    const handleDeletedPost = () => refreshPosts()
+
+    const handlePostUpdated = () => refreshPosts()
+
+    return <section className="flex flex-col gap-6 px-2 py-14">
+        {posts.map(post => <Post key={post.id} post={post} onPostDeleted={handleDeletedPost} onPostEdit={handlePostUpdated}
+        />)}
     </section>
 }
 

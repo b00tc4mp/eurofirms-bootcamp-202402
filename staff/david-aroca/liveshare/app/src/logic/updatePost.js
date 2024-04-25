@@ -1,17 +1,15 @@
-function retrievePosts() {
-    return fetch('http://localhost:8080/posts', {
-        method: 'GET',
+function updatePost(postId, text) {
+    return fetch(`http://localhost:8080/posts/${postId}`, {
+        method: 'PATCH',
         headers: {
-            Authorization: `Bearer ${sessionStorage.userId}`
-        }
+            Authorization: `Bearer ${sessionStorage.userId}`,
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify({ text })
     })
-
         .catch(error => { throw new Error(error.message) })
         .then(res => {
-            if (res.status === 200)
-                return res.json()
-
-            // .then (posts => posts)
+            if (res.status === 204) return
 
             return res.json()
                 .then(body => {
@@ -24,4 +22,4 @@ function retrievePosts() {
         })
 }
 
-export default retrievePosts
+export default updatePost

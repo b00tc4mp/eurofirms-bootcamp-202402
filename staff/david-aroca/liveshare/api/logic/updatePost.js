@@ -5,14 +5,29 @@ function updatePost(userId, postId, text) {
     return User.findById(userId)
         .catch(error => { throw new Error(error.message) })
         .then((user) => {
-            if (!user) throw new Error('post not found ')
 
-            if (postId.author.toString() !== userId) throw new Error('you are not the author of this post')
+            if (!user) throw new Error('user not found ')
 
-            postId.text = text
+            return Post.findById(postId)
+                .catch(error => { throw new Error(error.message) })
 
-            return Post.bulkSave()
+                .then(post => {
+                    if (!post) throw new Error('post not found ')
+
+                    if (post.author.toString() !== user.id) throw new Error('you are not the post owner ')
+
+                    post.text = text
+
+                    return post.save()
+
+                        .then(() => { })
+
+                        .catch(error => { throw new new Error(error.message) })
+                })
+
         })
+
+
         .catch(error => { throw new Error(error.message) })
 }
 
