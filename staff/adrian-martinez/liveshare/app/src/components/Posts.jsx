@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 function Posts({ refreshStamp }){
 
     console.log("refreshStamp", refreshStamp);
+
     const [posts, setPosts] = useState([]);
 
     const refreshScreen = () => {
@@ -28,19 +29,25 @@ function Posts({ refreshStamp }){
 
         refreshScreen();
     }, [refreshStamp])
-    
-    console.log("Post render");
 
     const handleDeletePost = () => {
 
         refreshScreen();
     }
+
+    const handleUpdatePost = () => {
+
+        refreshScreen();
+    }
+
+    console.log("Post render");
+    
     return (
         <section id="posts-section">
             <h2 className="p-5">Posts</h2>
 
             <div id="posts-list">
-                { posts.map(post => <Post key={ post.id } post={ post } onPostDeleted={handleDeletePost}/>)}
+                { posts.map(post => <Post key={ post.id } post={ post } onPostDeleted={handleDeletePost} onPostUpdate={handleUpdatePost}/>)}
             </div>
         </section>
     )

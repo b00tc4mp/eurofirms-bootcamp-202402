@@ -1,8 +1,9 @@
+import { useState } from "react";
 import logic from "../logic"
 import Button from "./Button";
 
-function Post({ post, onPostDeleted}){
-    
+function Post({ post, onPostDeleted, onPostUpdate }){
+
     const handleDeletePost = () => {
 
         const deleteConfirmed = confirm("Delete ??????")
@@ -25,6 +26,53 @@ function Post({ post, onPostDeleted}){
         }
     }
 
+    const [changePost, setChangePost] = useState(false);
+
+    const handleUpdatePost = () => setChangePost(true);
+
+    const handleUpdateSubmit = event => {
+        event.preventDefault();
+
+        const form = event.target
+
+        const text = form.text.value
+
+        const updateConfirmed = confirm("Confirm changes ??????");
+        
+        if(!updateConfirmed) return;
+        //Si es falso se sigue con la ejecución
+        try{
+            logic.updatePost(post.id, text)
+                .then(() => {
+                    onPostUpdate();
+                    setChangePost(false);
+
+                    console.debug("Se tiene que cerrar");
+                })
+                .catch(error => {
+
+                console.error(error);
+                alert(error.message);
+            })
+        }
+        catch(error){
+            
+            console.error(error);
+            alert(error.message);
+        }
+    }
+
+    /* const handleShowForm = () => {
+
+        setChangePost(true);
+    }
+    */
+     const handleCancelChange = () => {
+
+        setChangePost(false);
+        
+    } 
+
     console.debug("Post render");
 
     return (
@@ -41,6 +89,21 @@ function Post({ post, onPostDeleted}){
             }  */}
             
             { post.author.id === logic.getLoggedInUserId() && <Button className="border-2 border-solid border-white bg-red-500 text-white" onClick={ handleDeletePost }>Borrar</Button> }
+            { post.author.id === logic.getLoggedInUserId() && <Button className="border-2 border-solid border-white bg-green-700 text-white" onClick={ handleUpdatePost }>Editar comentario</Button> }
+            {!changePost && <p>{post.text}</p>}
+            {changePost && 
+            <>
+                <form onSubmit={ handleUpdateSubmit }>
+                    <label htmlFor="text"></label>
+                    <input id="text"></input>
+                    <button type="submit">Publicar</button>
+                </form>
+                <time className="block text-right text-xs">{post.date}</time>
+                {post.author.id === logic.getLoggedInUserId() && <div>
+                    <Button className="border-2 border-solid border-white bg-green-500 text-white" onClick={handleCancelChange}>Cancelar</Button>
+                </div>}
+            </>
+            }       
         </article>
     )
 }

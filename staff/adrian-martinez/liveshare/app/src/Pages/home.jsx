@@ -42,10 +42,6 @@ function Home({ onUserLoggedOut }) {
         setView(null)
     }
 
-    const handleDeletePost = () => {
-        
-    }
-
     console.log('Home render')
 
     return <>
