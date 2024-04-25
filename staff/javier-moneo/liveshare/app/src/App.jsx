@@ -20,14 +20,14 @@ function App() {
     <>
       {view === 'login' && (
         <Login
-          onUserLoggedIn={() => handleUserLoggedIn()}
-          onRegisterClick={() => handleRegisterClick()}
+          onUserLoggedIn={handleUserLoggedIn}
+          onRegisterClick={handleRegisterClick}
         />
       )}
       {view === 'register' && (
         <Register
-          onUserRegistered={() => handleUserRegistered()}
-          onLoginClick={() => handleLoginClick()}
+          onUserRegistered={handleUserRegistered}
+          onLoginClick={handleLoginClick}
         />
       )}
       {view === 'home' && <Home onUserLoggedOut={handleUserLoggedOut} />}
