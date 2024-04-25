@@ -54,7 +54,7 @@ function Register({ onUserRegistered, onLoginClick }) {
                 <label htmlFor="username">Username</label>
                 <input className="border-b-2 border-black" id="username" type="text" />
 
-                <label htmlFor="password">Passsword</label>
+                <label htmlFor="password">Password</label>
                 <input className="border-b-2 border-black" id="password" type="password" />
 
                 <button className="rounded-x1 border-2 border-black px-3 self-end" id="buttonSubmit" type="submit">Register </button>

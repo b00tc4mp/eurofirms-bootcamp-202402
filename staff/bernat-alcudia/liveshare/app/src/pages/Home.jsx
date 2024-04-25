@@ -3,8 +3,7 @@ import logic from "../logic"
 import Posts from "../components/Posts"
 import CreatePost from "../components/CreatePost"
 
-
-function Home(onUserLoggedOut) {
+function Home({ onUserLoggedOut }) {
     const [view, setView] = useState(null)
     const [user, setUser] = useState(null)
     const [refreshStamp, setRefreshStamp] = useState(null)
@@ -32,6 +31,7 @@ function Home(onUserLoggedOut) {
 
         onUserLoggedOut()
     }
+    const handleHomeClick = () => setView(null)
 
     const handleCreatePostClick = () => setView('create-post')
 
@@ -65,7 +65,7 @@ function Home(onUserLoggedOut) {
         </main>
 
         <footer className="flex justify-center items-center border-t-2 border-black fixed bottom-0 w-full bg-white h-12px-2 box border">
-            <button className="px-3" >🏠</button>
+            <button onClick={handleHomeClick} className="px-3" >🏠</button>
             <button className="px-3" onClick={handleCreatePostClick}>📆</button>
         </footer>
     </>

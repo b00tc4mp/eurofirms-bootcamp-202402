@@ -71,6 +71,24 @@ mongoose.connect('mongodb://localhost:27017/test')
             }
         })
 
+        // -------------------------Delete Post----------------------------------------------------------------
+        server.delete('/posts/:postId', (req, res) => {
+            try {
+                const { authorization } = req.headers
+
+                const userId = authorization.slice(7)
+
+                const { postId } = req.params
+
+                logic.removePost(userId, postId)
+                    .then(() => res.status(204).send())
+                    .catch(error => res.status(500).json({ error: error.constructor.name, message: error.message }))
+
+            } catch (error) {
+                res.status(500).json({ error: error.constructor.name, message: error.message })
+            }
+        })
+
 
         // -------------------------Retrieve Post----------------------------------------------------------------
         server.get('/posts', (req, res) => {
@@ -86,9 +104,28 @@ mongoose.connect('mongodb://localhost:27017/test')
             }
         })
 
+        // -------------------------Update Post----------------------------------------------------------------
+        server.patch('/posts/:postId', jsonBodyParser, (req, res) => {
+            try {
+                const { authorization } = req.headers
+                const userId = authorization.slice(7)
+                const { postId } = req.params
+                const { text } = req.body
+
+                logic.updatePost(userId, postId, text)
+                    .then(() => res.status(204).send())
+                    .catch(error => res.status(500).json({ error: error.constructor.name, message: error.message }))
+
+
+            } catch (error) {
+                res.status(500).json({ error: error.constructor.name, message: error.message })
+            }
+        })
 
 
         server.listen(8080, () => console.log('Api started'))
     })
     .catch(error => console.error(error))
+
+
 

@@ -1,0 +1,1 @@
+curl -X PATCH -H 'Authorization: Bearer 661ff108192289d8debc9e2a' -H 'Content-type:application/json' -d '{"text":"sun update"}' http://localhost:8080/posts/661fe1f102d9e98ddad6422c -v 

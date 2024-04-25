@@ -16,7 +16,7 @@ function loginUser(username, password) {
                         sessionStorage.userId = userId
                     })
             }
-            return res, json()
+            return res.json()
                 .then(body => {
                     const { error, message } = body
 
