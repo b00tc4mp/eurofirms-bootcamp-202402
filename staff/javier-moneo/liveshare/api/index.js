@@ -3,6 +3,10 @@ import express from 'express';
 import logic from './logic/index.js';
 import cors from 'cors';
 
+import errors from './logic/errors.js';
+
+const { ContentError, DuplicityError } = errors;
+
 // test es la base de datos
 mongoose
   .connect('mongodb://localhost:27017/test')
@@ -35,14 +39,26 @@ mongoose
         logic
           .registerUser(name, birthdate, email, username, password)
           .then(() => res.status(201).send())
-          .catch((error) =>
+          .catch((error) => {
+            let status = 500;
+
+            if (error instanceof DuplicityError) status = 409;
             res
-              .status(500)
-              .json({ error: error.constructor.name, message: error.message })
-          );
+              .status(status)
+              .json({ error: error.constructor.name, message: error.message });
+          });
       } catch (error) {
+        let status = 500;
+
+        if (
+          error instanceof TypeError ||
+          error instanceof RangeError ||
+          error instanceof ContentError
+        )
+          status = 400;
+
         res
-          .status(500)
+          .status(status)
           .json({ error: error.constructor.name, message: error.message });
       }
     });
