@@ -1,9 +1,12 @@
+import errors from "./errors"
+import validate from "./validate"
+
 function registerUser(name, birthdate, email, username, password) {
-    // validateName(name)
-    // validateBirthdate(birthdate)
-    // validateEmail(email)
-    // validateUsername(username)
-    // validatePassword(password)
+    validate.name(name)
+    validate.birthdate(birthdate)
+    validate.email(email)
+    validate.username(username)
+    validate.password(password)
 
     return fetch('http://localhost:8080/users', {
         method: 'POST',
@@ -18,7 +21,7 @@ function registerUser(name, birthdate, email, username, password) {
                 .then(body => {
                     const { error, message } = body
 
-                    const constructor = window[error]
+                    const constructor = errors[error]
 
                     throw new constructor(message)
                 })

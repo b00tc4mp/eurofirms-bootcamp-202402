@@ -2,7 +2,9 @@ import mongoose from "mongoose"
 import express from 'express'
 import logic from './logic/index.js'
 import cors from 'cors'
+import errors from "./logic/errors.js"
 
+const { SystemError, DuplicityError, ContentError } = errors
 mongoose.connect('mongodb://localhost:27017/test')
     .then(() => {
         console.log('DB connected')
@@ -29,10 +31,21 @@ mongoose.connect('mongodb://localhost:27017/test')
             try {
                 logic.retrieveUser(userId, targetUserId)
                     .then((user) => res.status(200).json(user))
-                    .catch(error => res.status(500).json({ error: error.constructor.name, message: error.message }))
+                    .catch(error => {
+                        let status = 500
+                        if (error instanceof DuplicityError)
+                            status = 409
+
+                        res.status(status).json({ error: error.constructor.name, message: error.message })
+                    })
 
             } catch (error) {
-                res.status(500).json({ error: error.constructor.name, message: error.message })
+                let status = 500
+
+                if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
+                    status = 400
+
+                res.status(status).json({ error: error.constructor.name, message: error.message })
 
             }
         })

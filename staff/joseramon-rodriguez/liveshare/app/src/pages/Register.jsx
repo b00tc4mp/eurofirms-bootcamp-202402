@@ -2,7 +2,9 @@ import logic from "../logic"
 import Button from "../components/Button"
 import Input from "../components/Input"
 import Form from "../components/Form"
+import errors from "../logic/errors"
 
+const { ContentError, DuplicityError } = errors
 
 function Register({ onUserRegistered, onLoginClick }) {
     const handleSubmit = event => {
@@ -22,14 +24,26 @@ function Register({ onUserRegistered, onLoginClick }) {
                 .catch(error => {
                     console.error(error)
 
-                    alert(error.message)
+                    let feedback = error.message
+
+                    if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
+                        feedback = `${feedback}, please correct it`
+                    else if (error instanceof DuplicityError)
+                        feedback = `${feedback}, please try with another user`
+
+                    alert(feedback)
                 })
 
 
         } catch (error) {
             console.error(error)
 
-            alert(error.message)
+            let feedback = error.message
+
+            if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
+                feedback = `${feedback}, please correct it`
+
+            alert(feedback)
         }
     }
 

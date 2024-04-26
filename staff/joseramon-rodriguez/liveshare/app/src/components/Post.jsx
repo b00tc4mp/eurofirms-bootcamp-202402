@@ -43,13 +43,15 @@ function Post({ post, onDeletePost, onUpdatePost }) {
         <h3>{post.author.username}</h3>
         <img className="post-image" src={`${post.image}`}></img>
         {updatePost ? <> <Form onSubmit={handleSubmit}>
-            <label htmlFor="text">Edit post</label>
+            {/* <label htmlFor="text">Edit post</label> */}
             <input id="text" value={updateText} onChange={handleChange}></input>
             <Button type="submit" >Update</Button>
         </Form> < Button onClick={handleCancelUpdatePost}>Cancel</Button></> : post.text}
         <time>{post.date}</time>
-        {post.author.id === userId && <Button onClick={() => onDeletePost(post.id)}>Delete post</Button>}
-        {post.author.id === userId && <Button onClick={handleUpdatePost}>Update post</Button>}
+        {!updatePost && <div>
+            {post.author.id === userId && <Button onClick={() => onDeletePost(post.id)}>Delete post</Button>}
+            {post.author.id === userId && <Button onClick={handleUpdatePost}>Update post</Button>}
+        </div>}
 
 
     </article>
