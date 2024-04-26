@@ -4,7 +4,7 @@ function updatePost(postId, text){
 
         method: "PATCH",
         headers: {
-            "Autorization":`Bearer ${ sessionStorage.userId }`,
+            "Authorization":`Bearer ${ sessionStorage.userId }`,
             "Content-type": "application/json"
         },
 

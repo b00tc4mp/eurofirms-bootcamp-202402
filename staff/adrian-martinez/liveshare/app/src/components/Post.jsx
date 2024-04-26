@@ -79,7 +79,7 @@ function Post({ post, onPostDeleted, onPostUpdate }){
         <article className="border-2 border-solid border-black m-10">
             <h3 className="p-2">{ post.author.username }</h3>
             <img src={post.image} className="w-full hover:w-5/6"/>
-            <p className="p-2">{ post.text }</p>
+            {/* <p className="p-2">{ post.text }</p> */}
             <time className="block text-right text-xs">{ post.date }</time>
             {/* No se puede hacerlo con un if porque la condición tiene que devolver algo a la fuerza. 
                 los if no devuelven, solo cambian.
