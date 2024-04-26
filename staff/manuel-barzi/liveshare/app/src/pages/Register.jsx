@@ -1,5 +1,9 @@
 import logic from '../logic'
 
+import errors from '../logic/errors'
+
+const { ContentError, DuplicityError } = errors
+
 function Register({ onUserRegistered, onLoginClick }) {
     const handleSubmit = event => {
         event.preventDefault()
@@ -16,14 +20,26 @@ function Register({ onUserRegistered, onLoginClick }) {
             logic.registerUser(name, birthdate, email, username, password)
                 .then(() => onUserRegistered())
                 .catch(error => {
-                    console.error(error)
+                    console.error(error.message)
 
-                    alert(error.message)
+                    let feedback = error.message
+
+                    if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
+                        feedback = `${feedback}, please correct it`
+                    else if (error instanceof DuplicityError)
+                        feedback = `${feedback}, please try with another user`
+
+                    alert(feedback)
                 })
         } catch (error) {
-            console.error(error)
+            console.error(error.message)
 
-            alert(error.message)
+            let feedback = error.message
+
+            if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
+                feedback = `${feedback}, please correct it`
+
+            alert(feedback)
         }
     }
 
