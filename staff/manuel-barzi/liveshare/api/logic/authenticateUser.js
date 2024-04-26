@@ -1,17 +1,22 @@
 import { User } from '../data/index.js'
+import validate from './validate.js'
+import errors from './errors.js'
+
+const { SystemError, MatchError } = errors
 
 function authenticateUser(username, password) {
-    // TODO input validation
+    validate.username(username)
+    validate.password(password)
 
     return User.findOne({ username })
-        .catch(error => { throw new Error(error.message) })
+        .catch(error => { throw new SystemError(error.message) })
         .then(user => {
             if (!user)
-                throw new Error('user not found')
+                throw new MatchError('user not found')
 
 
             if (user.password !== password)
-                throw new Error('wrong credentials')
+                throw new MatchError('wrong credentials')
 
             return user.id
         })

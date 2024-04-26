@@ -28,6 +28,8 @@ function Register({ onUserRegistered, onLoginClick }) {
                         feedback = `${feedback}, please correct it`
                     else if (error instanceof DuplicityError)
                         feedback = `${feedback}, please try with another user`
+                    else
+                        feedback = 'sorry, there was an error, please try again later'
 
                     alert(feedback)
                 })
@@ -38,6 +40,8 @@ function Register({ onUserRegistered, onLoginClick }) {
 
             if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
                 feedback = `${feedback}, please correct it`
+            else
+                feedback = 'sorry, there was an error, please try again later'
 
             alert(feedback)
         }

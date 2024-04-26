@@ -5,7 +5,7 @@ import cors from 'cors'
 
 import errors from './logic/errors.js'
 
-const { ContentError, DuplicityError } = errors
+const { ContentError, DuplicityError, MatchError } = errors
 
 mongoose.connect('mongodb://localhost:27017/test')
     .then(() => {
@@ -51,9 +51,21 @@ mongoose.connect('mongodb://localhost:27017/test')
 
                 logic.authenticateUser(username, password)
                     .then(userId => res.status(200).json(userId))
-                    .catch(error => res.status(500).json({ error: error.constructor.name, message: error.message }))
+                    .catch(error => {
+                        let status = 500
+
+                        if (error instanceof MatchError)
+                            status = 401
+
+                        res.status(status).json({ error: error.constructor.name, message: error.message })
+                    })
             } catch (error) {
-                res.status(500).json({ error: error.constructor.name, message: error.message })
+                let status = 500
+
+                if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
+                    status = 400
+
+                res.status(status).json({ error: error.constructor.name, message: error.message })
             }
         })
 
