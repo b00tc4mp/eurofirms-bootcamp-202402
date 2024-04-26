@@ -5,7 +5,7 @@ import { useState } from 'react'
 
 
 function App() {
-   const [view, setView] = useState('login')
+    const [view, setView] = useState('login')
 
     const handleUserRegistered = () => {
         setView('login')
