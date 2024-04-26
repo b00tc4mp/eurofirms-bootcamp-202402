@@ -6,10 +6,10 @@ import { useState } from "react"
 
 
 function Post({ post, onHandleUpdatePost, onHandleDeletePost, onHandleCancel }) {
-    const [edit, setEdit] = useState(null)
+    const [isEditing, setIsEditing] = useState(false)
     const [text, setText] = useState(post.text)
 
-    const permissions = post.author.id === logic.getLoggedInUserId()
+    const isUserAuthor = post.author.id === logic.getLoggedInUserId()
 
     const handleEdit = () => {
         try {
@@ -17,7 +17,7 @@ function Post({ post, onHandleUpdatePost, onHandleDeletePost, onHandleCancel }) 
                 .then(res => {
                     if (post.text !== res.text) setText(res.text)
                     console.log(res)
-                    setEdit(true)
+                    setIsEditing(true)
                 })
                 .catch(error => {
                     console.error(error)
@@ -31,7 +31,7 @@ function Post({ post, onHandleUpdatePost, onHandleDeletePost, onHandleCancel }) 
     }
 
     const handleUpdatedPostClick = () => {
-        setEdit(null)
+        setIsEditing(null)
         onHandleUpdatePost()
     }
 
@@ -57,17 +57,21 @@ function Post({ post, onHandleUpdatePost, onHandleDeletePost, onHandleCancel }) 
     }
 
     const handleCancelClick = () => {
-        setEdit(null)
+        setIsEditing(null)
         if (text !== post.text) onHandleCancel()
     }
 
     return <article className="w-full">
         <HTag level={3}>{post.author.username}</HTag>
         <img src={post.image} className="w-full" />
-        {!edit && <><p>{post.text}</p> <time className="block text-right text-xs">{post.date}</time></>}
-        {permissions ?
-            (edit ? <EditPost post={post} textUpdated={text} handleUpdatedPost={handleUpdatedPostClick} handleCancel={handleCancelClick} /> :
-                <AuthorButtons handleDeletedClick={handleDeleteClick} handleEdit={handleEdit} />) : ""}
+        {isEditing ?
+            <EditPost post={post} textUpdated={text} handleUpdatedPost={handleUpdatedPostClick} handleCancel={handleCancelClick} /> :
+            <>
+                <p>{post.text}</p>
+                <time className="block text-right text-xs">{post.date}</time>
+            </>}
+
+        {isUserAuthor && !isEditing && <AuthorButtons handleDeletedClick={handleDeleteClick} handleEdit={handleEdit} />}
     </article>
 }
 

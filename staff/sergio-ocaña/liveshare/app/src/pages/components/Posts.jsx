@@ -34,7 +34,13 @@ function Posts({ timeStamp }) {
         <HTag level={2}>Posts</HTag>
         <div id="posts-list">
             {posts ? posts.map((post =>
-                <Post autoRefresh={refreshPosts} key={post.id} post={post} onHandleDeletePost={handleDeletePost} onHandleUpdatePost={handleUpdatePost} onHandleCancel={handleCancelPost} />)) :
+                <Post
+                    key={post.id}
+                    post={post}
+                    onHandleDeletePost={handleDeletePost}
+                    onHandleUpdatePost={handleUpdatePost}
+                    onHandleCancel={handleCancelPost} />
+            )) :
                 <span>loading posts....</span>}
         </div>
     </section>
