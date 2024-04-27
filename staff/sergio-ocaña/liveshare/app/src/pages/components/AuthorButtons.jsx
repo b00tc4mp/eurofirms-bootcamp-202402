@@ -1,5 +1,5 @@
-import logic from "../../logic"
 import Button from "./Button"
+
 
 function AuthorButtons({ handleEdit, handleDeletedClick }) {
     const onEditClick = () => {

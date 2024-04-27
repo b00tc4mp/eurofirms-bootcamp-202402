@@ -1,12 +1,19 @@
 import { Post } from '../data/index.js'
+import errors from './errors.js'
+import validate from './validate.js'
+
+const { SystemError, MatchError } = errors
 
 function updatePost(userId, postId, text) {
+    validate.userId(userId)
+    validate.postId(postId)
+    validate.text(text)
 
     return Post.findById(postId)
-        .catch(error => { throw new Error(error.message) })
+        .catch(error => { throw new SystemError(error.message) })
         .then(post => {
-            if (!post) throw new Error('There is not post with that id')
-            if (userId !== post.author.toString()) throw new Error('You can only modify your posts')
+            if (!post) throw new MatchError('There is not post with that id')
+            if (userId !== post.author.toString()) throw new MatchError('You can only modify your posts')
 
             post.text = text
 
@@ -14,7 +21,7 @@ function updatePost(userId, postId, text) {
 
                 // return Post.findByIdAndUpdate({ _id: postId }, { text })
                 .then(() => { })
-                .catch(error => { throw new Error(error.message) })
+                .catch(error => { throw new SystemError(error.message) })
         })
 }
 

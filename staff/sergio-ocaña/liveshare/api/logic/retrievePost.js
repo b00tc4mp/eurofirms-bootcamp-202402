@@ -1,15 +1,22 @@
 import { User, Post } from "../data/index.js"
+import errors from './errors.js'
+import validate from './validate.js'
+
+const { SystemError, MatchError } = errors
 
 function retrievePost(userId, postId) {
+    validate.userId(userId)
+    validate.postId(postId)
+
     return User.findById(userId)
-        .catch(error => { throw new Error(error.message) })
+        .catch(error => { throw new SystemError(error.message) })
         .then(user => {
-            if (!user) throw new Error("user not found")
+            if (!user) throw new MatchError("user not found")
 
             return Post.findById(postId).populate('author', 'username').lean()
-                .catch(error => { throw new Error(error.message) })
+                .catch(error => { throw new SystemError(error.message) })
                 .then(post => {
-                    if (!post) throw new Error('Post not found')
+                    if (!post) throw new MatchError('Post not found')
                     post.id = post._id.toString()
 
                     delete post._id

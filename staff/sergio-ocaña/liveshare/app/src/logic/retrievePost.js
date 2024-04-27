@@ -1,9 +1,19 @@
+import validate from "./validate"
+import errors from "./errors"
+
+const { SystemError } = errors
+
 function retrievePost(postId) {
+    const userId = sessionStorage.userId
+
+    validate.userId(userId)
+    validate.postId(postId)
+
     return fetch(`http://localhost:8080/post/${postId}`, {
         method: 'GET',
-        headers: { 'Authorization': `Bearer ${sessionStorage.userId}` }
+        headers: { 'Authorization': `Bearer ${userId}` }
     })
-        .catch(error => { throw new Error(error) })
+        .catch(error => { throw new SystemError(error) })
         .then(res => {
             if (res.status === 200) {
 

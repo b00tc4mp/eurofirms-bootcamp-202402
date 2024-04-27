@@ -1,9 +1,8 @@
-import logic from "../../logic/index.js"
 import LabelInput from "./LabelInput.jsx"
 import Form from "./Form.jsx"
 import Button from "./Button.jsx"
 
-function EditPost({ post, textUpdated, handleUpdatedPost, handleCancel }) {
+function EditPost({ post, textUpdated, handleUpdatedPost, handleCancel, onHandleSubmit }) {
     const handleSubmit = event => {
         event.preventDefault()
 
@@ -11,22 +10,10 @@ function EditPost({ post, textUpdated, handleUpdatedPost, handleCancel }) {
 
         const text = form.text.value
 
-        try {
-            logic.updatePost(post.id, text)
-                .then(() => handleUpdatedPost())
-                .catch(error => {
-                    console.error(error)
+        onHandleSubmit(post.id, text)
 
-                    alert(error.message)
-                })
-
-
-        } catch (error) {
-            console.error(error)
-
-            alert(error.message)
-        }
     }
+
     const onCancelClick = () => handleCancel()
     return <>
         <Form onSubmit={handleSubmit}>

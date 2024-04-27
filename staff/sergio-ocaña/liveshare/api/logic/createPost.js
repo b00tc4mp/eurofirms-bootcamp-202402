@@ -1,10 +1,18 @@
 import { User, Post } from '../data/index.js'
+import validate from './validate.js'
+import errors from './errors.js'
+
+const { SystemError, MatchError } = errors
 
 function createPost(userId, image, text) {
+    validate.userId(userId)
+    validate.image(image)
+    validate.text(text)
+
     return User.findById(userId)
-        .catch(error => { throw new Error(error.message) })
+        .catch(error => { throw new SystemError(error.message) })
         .then(user => {
-            if (!user) throw new Error('user not found')
+            if (!user) throw new MatchError('user not found')
 
             const post = {
                 author: user._id,
@@ -14,7 +22,7 @@ function createPost(userId, image, text) {
             }
 
             return Post.create(post)
-                .catch(error => { throw new Error(error.message) })
+                .catch(error => { throw new SystemError(error.message) })
         })
         .then(post => { })
 }

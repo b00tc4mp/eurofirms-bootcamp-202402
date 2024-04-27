@@ -1,7 +1,11 @@
-import Post from "./Post"
 import logic from "../../logic"
 import HTag from "./HTags"
+import Post from "./Post"
+import errors from "../../logic/errors"
 import { useState, useEffect } from "react"
+
+const { MatchError, ContentError } = errors
+
 function Posts({ timeStamp }) {
     const [posts, setPosts] = useState(null)
 
@@ -12,11 +16,32 @@ function Posts({ timeStamp }) {
                 .catch(error => {
                     console.error(error)
 
-                    alert(error.message)
+                    let feedback = error.message
+
+                    if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
+                        feedback = `${feedback},please correct it`
+
+                    else if (error instanceof MatchError)
+                        feedback = `${feedback},please verify credentials`
+
+                    else
+                        feedback = 'sorry, there was an error, please try again later'
+
+                    alert(feedback)
                 })
+
+
         } catch (error) {
             console.error(error)
-            alert(error.message)
+
+            let feedback = error.message
+
+            if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
+                feedback = `${feedback},please correct it`
+            else
+                feedback = 'sorry, there was an error, please try again later'
+
+            alert(feedback)
         }
     }
 

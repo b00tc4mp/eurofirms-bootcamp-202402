@@ -1,10 +1,8 @@
-
-import CreatePost from "./components/CreatePost.jsx"
-import Posts from "./components/Posts.jsx"
 import logic from "../logic/index.js"
-import Chat from "./components/Chat.jsx"
-import Button from "./components/Button.jsx"
-import HTag from "./components/HTags.jsx"
+
+import components from "./components"
+
+const { CreatePost, Posts, Chat, Button, HTag } = components
 
 import { useState, useEffect } from "react"
 const posts = 0
@@ -25,15 +23,33 @@ function Home({ onLogoutClick }) {
                 .catch(error => {
                     console.error(error)
 
-                    alert(error.message)
+                    let feedback = error.message
+
+                    if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
+                        feedback = `${feedback},please correct it`
+
+                    else if (error instanceof MatchError)
+                        feedback = `${feedback},please verify credentials`
+
+                    else
+                        feedback = 'sorry, there was an error, please try again later'
+
+                    alert(feedback)
                 })
 
 
         } catch (error) {
             console.error(error)
-            alert(error.message)
-        }
 
+            let feedback = error.message
+
+            if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
+                feedback = `${feedback},please correct it`
+            else
+                feedback = 'sorry, there was an error, please try again later'
+
+            alert(feedback)
+        }
     }, [])
 
     const handleChatButton = () => setView(chat)

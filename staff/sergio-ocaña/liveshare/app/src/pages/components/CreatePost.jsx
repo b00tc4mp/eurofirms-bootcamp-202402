@@ -3,6 +3,9 @@ import Form from "./Form.jsx"
 import Button from "./Button.jsx"
 import LabelInput from "./LabelInput.jsx"
 import HTag from "./HTags.jsx"
+import errors from "../../logic/errors.js"
+
+const { ContentError, MatchError } = errors
 
 function CreatePost({ onSendClick, onCancelCreateClick }) {
     const handleSubmit = (event) => {
@@ -16,12 +19,35 @@ function CreatePost({ onSendClick, onCancelCreateClick }) {
         try {
             logic.createPost(image, text)
                 .then(() => onSendClick())
-                .catch(error => { throw new Error(error.message) })
+                .catch(error => {
+                    console.error(error)
+
+                    let feedback = error.message
+
+                    if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
+                        feedback = `${feedback},please correct it`
+
+                    else if (error instanceof MatchError)
+                        feedback = `${feedback},please verify credentials`
+
+                    else
+                        feedback = 'sorry, there was an error, please try again later'
+
+                    alert(feedback)
+                })
+
 
         } catch (error) {
-            alert(error.message)
-
             console.error(error)
+
+            let feedback = error.message
+
+            if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
+                feedback = `${feedback},please correct it`
+            else
+                feedback = 'sorry, there was an error, please try again later'
+
+            alert(feedback)
         }
     }
 
