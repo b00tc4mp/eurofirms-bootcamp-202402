@@ -70,14 +70,27 @@ mongoose
         logic
           .authenticateUser(username, password)
           .then((userId) => res.status(200).json(userId))
-          .catch((error) =>
+          .catch((error) => {
+            let status = 500;
+
+            if (error instanceof MatchError) status = 401;
+
             res
-              .status(500)
-              .json({ error: error.constructor.name, message: error.message })
-          );
+              .status(status)
+              .json({ error: error.constructor.name, message: error.message });
+          });
       } catch (error) {
+        let status = 500;
+
+        if (
+          error instanceof TypeError ||
+          error instanceof RangeError ||
+          error instanceof ContentError
+        )
+          status = 400;
+
         res
-          .status(500)
+          .status(status)
           .json({ error: error.constructor.name, message: error.message });
       }
     });
