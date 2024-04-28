@@ -5,7 +5,7 @@ import cors from 'cors';
 
 import errors from './logic/errors.js';
 
-const { ContentError, DuplicityError } = errors;
+const { ContentError, DuplicityError, MatchError } = errors;
 
 // test es la base de datos
 mongoose
@@ -108,14 +108,27 @@ mongoose
         logic
           .retrieveUser(userId, targetUserId)
           .then((user) => res.json(user))
-          .catch((error) =>
+          .catch((error) => {
+            let status = 500;
+
+            if (error instanceof MatchError) status = 401;
+
             res
-              .status(500)
-              .json({ error: error.constructor.name, message: error.message })
-          );
+              .status(status)
+              .json({ error: error.constructor.name, message: error.message });
+          });
       } catch (error) {
+        let status = 500;
+
+        if (
+          error instanceof TypeError ||
+          error instanceof RangeError ||
+          error instanceof ContentError
+        )
+          status = 400;
+
         res
-          .status(500)
+          .status(status)
           .json({ error: error.constructor.name, message: error.message });
       }
     });
@@ -131,14 +144,27 @@ mongoose
         logic
           .createPost(userId, image, text)
           .then(() => res.status(201).send())
-          .catch((error) =>
+          .catch((error) => {
+            let status = 500;
+
+            if (error instanceof MatchError) status = 401;
+
             res
-              .status(500)
-              .json({ error: error.constructor.name, message: error.message })
-          );
+              .status(status)
+              .json({ error: error.constructor.name, message: error.message });
+          });
       } catch (error) {
+        let status = 500;
+
+        if (
+          error instanceof TypeError ||
+          error instanceof RangeError ||
+          error instanceof ContentError
+        )
+          status = 400;
+
         res
-          .status(500)
+          .status(status)
           .json({ error: error.constructor.name, message: error.message });
       }
     });
@@ -152,14 +178,27 @@ mongoose
         logic
           .retrievePosts(userId)
           .then((posts) => res.json(posts))
-          .catch((error) =>
+          .catch((error) => {
+            let status = 500;
+
+            if (error instanceof MatchError) status = 401;
+
             res
-              .status(500)
-              .json({ error: error.constructor.name, message: error.message })
-          );
+              .status(status)
+              .json({ error: error.constructor.name, message: error.message });
+          });
       } catch (error) {
+        let status = 500;
+
+        if (
+          error instanceof TypeError ||
+          error instanceof RangeError ||
+          error instanceof ContentError
+        )
+          status = 400;
+
         res
-          .status(500)
+          .status(status)
           .json({ error: error.constructor.name, message: error.message });
       }
     });
@@ -175,14 +214,27 @@ mongoose
         logic
           .removePost(userId, postId)
           .then(() => res.status(204).send())
-          .catch((error) =>
+          .catch((error) => {
+            let status = 500;
+
+            if (error instanceof MatchError) status = 401;
+
             res
-              .status(500)
-              .json({ error: error.constructor.name, message: error.message })
-          );
+              .status(status)
+              .json({ error: error.constructor.name, message: error.message });
+          });
       } catch (error) {
+        let status = 500;
+
+        if (
+          error instanceof TypeError ||
+          error instanceof RangeError ||
+          error instanceof ContentError
+        )
+          status = 400;
+
         res
-          .status(500)
+          .status(status)
           .json({ error: error.constructor.name, message: error.message });
       }
     });
@@ -200,14 +252,27 @@ mongoose
         logic
           .modifyPost(userId, postId, text)
           .then(() => res.status(204).send())
-          .catch((error) =>
+          .catch((error) => {
+            let status = 500;
+
+            if (error instanceof MatchError) status = 401;
+
             res
-              .status(500)
-              .json({ error: error.constructor.name, message: error.message })
-          );
+              .status(status)
+              .json({ error: error.constructor.name, message: error.message });
+          });
       } catch (error) {
+        let status = 500;
+
+        if (
+          error instanceof TypeError ||
+          error instanceof RangeError ||
+          error instanceof ContentError
+        )
+          status = 400;
+
         res
-          .status(500)
+          .status(status)
           .json({ error: error.constructor.name, message: error.message });
       }
     });

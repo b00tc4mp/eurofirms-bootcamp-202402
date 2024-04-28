@@ -1,5 +1,8 @@
+import validate from './validate';
+import errors from './errors';
+
 function modifyPost(postId, text) {
-  // validateText(postId)
+  validate.text(text);
 
   return fetch(`http://localhost:8080/posts/${postId}`, {
     method: 'PATCH',
@@ -18,7 +21,7 @@ function modifyPost(postId, text) {
       return res.json().then((body) => {
         const { error, message } = body;
 
-        const constructor = window[error];
+        const constructor = errors[error];
 
         throw new constructor(message);
       });

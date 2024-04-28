@@ -1,3 +1,6 @@
+import validate from './validate';
+import errors from './errors';
+
 function retrieveUser() {
   return fetch(`http://localhost:8080/users/${sessionStorage.userId}`, {
     method: 'GET',
@@ -15,7 +18,7 @@ function retrieveUser() {
       return res.json().then((body) => {
         const { error, message } = body;
 
-        const constructor = window[error];
+        const constructor = errors[error];
 
         throw new constructor(message);
       });

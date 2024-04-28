@@ -1,3 +1,6 @@
+import validate from './validate';
+import errors from './errors';
+
 function retrievePosts() {
   // TODO use sessionStorage.userId
 
@@ -16,7 +19,7 @@ function retrievePosts() {
       return res.json().then((body) => {
         const { error, message } = body;
 
-        const constructor = window[error];
+        const constructor = errors[error];
 
         throw new constructor(message);
       });

@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
-
 import logic from '../logic';
-
 import Posts from '../components/Posts';
 import CreatePost from '../components/CreatePost';
+import errors from '../logic/errors';
+
+const { ContentError, TypeError, RangeError, MatchError, DuplicityError } =
+  errors;
 
 function Home({ onUserLoggedOut }) {
   const [view, setView] = useState(null);
@@ -16,14 +18,36 @@ function Home({ onUserLoggedOut }) {
         .retrieveUser()
         .then((user) => setUser(user))
         .catch((error) => {
-          console.error(error);
+          console.error(error.message);
 
-          alert(error.message);
+          let feedback = error.message;
+
+          if (
+            error instanceof TypeError ||
+            error instanceof RangeError ||
+            error instanceof ContentError
+          )
+            feedback = `${feedback}, please correct it`;
+          else if (error instanceof MatchError)
+            feedback = `${feedback}, this user not exist`;
+          else feedback = 'sorry, there was an error, please try again later';
+
+          alert(feedback);
         });
     } catch (error) {
-      console.error(error);
+      console.error(error.message);
 
-      alert(error.message);
+      let feedback = error.message;
+
+      if (
+        error instanceof TypeError ||
+        error instanceof RangeError ||
+        error instanceof ContentError
+      )
+        feedback = `${feedback}, please correct it`;
+      else feedback = 'sorry, there was an error, please try again later';
+
+      alert(feedback);
     }
   }, []);
 

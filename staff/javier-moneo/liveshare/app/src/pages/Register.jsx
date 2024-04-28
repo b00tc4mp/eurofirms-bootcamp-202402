@@ -1,7 +1,8 @@
 import logic from '../logic';
 import errors from '../logic/errors';
 
-const { ContentError, DuplicityError } = errors;
+const { ContentError, TypeError, RangeError, MatchError, DuplicityError } =
+  errors;
 
 function Register({ onUserRegistered, onLoginClick }) {
   const handleSubmit = (event) => {

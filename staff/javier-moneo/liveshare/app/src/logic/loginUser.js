@@ -1,6 +1,9 @@
+import validate from './validate';
+import errors from './errors';
+
 function loginUser(username, password) {
-  // validateUsername(username)
-  // validatePassword(password)
+  validate.username(username);
+  validate.password(password);
 
   return fetch('http://localhost:8080/users/auth', {
     method: 'POST',
@@ -19,7 +22,7 @@ function loginUser(username, password) {
       return res.json().then((body) => {
         const { error, message } = body;
 
-        const constructor = window[error];
+        const constructor = errors[error];
 
         throw new constructor(message);
       });

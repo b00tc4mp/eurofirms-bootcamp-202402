@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
-
-import logic from '../logic';
-
 import Post from './Post';
+import logic from '../logic';
+import errors from '../logic/errors';
+
+const { ContentError, TypeError, RangeError, MatchError } = errors;
 
 function Posts({ refreshStamp }) {
   console.log('refreshStamp', refreshStamp);
@@ -15,14 +16,36 @@ function Posts({ refreshStamp }) {
         .retrievePosts()
         .then((posts) => setPosts(posts))
         .catch((error) => {
-          console.error(error);
+          console.error(error.message);
 
-          alert(error.message);
+          let feedback = error.message;
+
+          if (
+            error instanceof TypeError ||
+            error instanceof RangeError ||
+            error instanceof ContentError
+          )
+            feedback = `${feedback}, please correct it`;
+          else if (error instanceof MatchError)
+            feedback = `${feedback}, this user not exist`;
+          else feedback = 'sorry, there was an error, please try again later';
+
+          alert(feedback);
         });
     } catch (error) {
-      console.error(error);
+      console.error(error.message);
 
-      alert(error.message);
+      let feedback = error.message;
+
+      if (
+        error instanceof TypeError ||
+        error instanceof RangeError ||
+        error instanceof ContentError
+      )
+        feedback = `${feedback}, please correct it`;
+      else feedback = 'sorry, there was an error, please try again later';
+
+      alert(feedback);
     }
   };
 

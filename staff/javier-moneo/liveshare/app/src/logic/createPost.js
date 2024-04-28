@@ -1,6 +1,9 @@
+import validate from './validate';
+import errors from './errors';
+
 function createPost(image, text) {
-  // validateText(image)
-  // validateText(text)
+  validate.text(image);
+  validate.text(text);
   // TODO use sessionStorage.userId
 
   return fetch('http://localhost:8080/posts', {
@@ -20,7 +23,7 @@ function createPost(image, text) {
       return res.json().then((body) => {
         const { error, message } = body;
 
-        const constructor = window[error];
+        const constructor = errors[error];
 
         throw new constructor(message);
       });
