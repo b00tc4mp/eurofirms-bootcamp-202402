@@ -24,7 +24,7 @@ function retrievePost(postId) {
             return res.json(body => {
                 const { error, message } = body
 
-                constructor = window[error]
+                constructor = errors[error]
 
                 throw new constructor(message)
             })

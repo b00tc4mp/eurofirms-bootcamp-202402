@@ -23,7 +23,7 @@ function registerUser(name, birthdate, email, username, password) {
                 .then(body => {
                     const { error, message } = body
 
-                    const constructor = window[error]
+                    const constructor = errors[error]
 
                     throw new constructor(message)
                 })

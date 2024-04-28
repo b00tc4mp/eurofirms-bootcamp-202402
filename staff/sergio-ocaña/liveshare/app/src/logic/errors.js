@@ -34,6 +34,8 @@ const errors = {
     SystemError,
     ContentError,
     DuplicityError,
+    TypeError,
+    RangeError,
     MatchError
 }
 
