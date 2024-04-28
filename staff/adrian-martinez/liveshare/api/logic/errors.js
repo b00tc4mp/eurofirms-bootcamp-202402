@@ -1,0 +1,42 @@
+//Tipos de errores personalizador por nosotros
+class SystemError extends Error{
+
+    constructor(message){
+        super(message);
+
+        this.name = SystemError.name;
+    }
+}
+
+class ContentError extends Error{
+    constructor(message){
+        super(message);
+
+        this.name = SystemError.name;
+    }
+}
+
+class DuplicityError extends Error{
+    constructor(message){
+            super(message);
+
+            this.name = DuplicityError.name;
+        }
+}
+
+class MatchError extends Error {
+    constructor(message){
+        super(message);
+
+        this.name = MatchError.name;
+    }
+}
+
+const errors = {
+    SystemError,
+    ContentError,
+    DuplicityError,
+    MatchError
+}
+
+export default errors;

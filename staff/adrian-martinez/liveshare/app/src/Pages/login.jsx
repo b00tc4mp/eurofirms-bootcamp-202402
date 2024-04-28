@@ -1,5 +1,8 @@
 import Form from "../components/Form";
 import logic from "../logic"
+import errors from "../logic/errors"
+
+const { ContentError, MatchError } = errors;
 
 function Login({ onUserLoggedIn, onRegisterClick }){
 
@@ -15,14 +18,36 @@ function Login({ onUserLoggedIn, onRegisterClick }){
       logic.loginUser(username, password)
           .then(() => onUserLoggedIn())
           .catch(error => {
-              console.error(error)
+              console.error(error.message)
 
-              alert(error.message)
+              let feedback = error.message;
+
+              if(error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
+                  feedback = `${feedback}, please correct it`;
+
+              else if(error instanceof MatchError)
+                  feedback = `${feedback}, please verify credentials`;
+
+              else
+                  feedback = "Sorry, there was an error, please try again later";
+
+              alert(feedback);
           })
     } catch (error) {
-        console.error(error)
+        console.error(error.message)
 
-        alert(error.message)
+        let feedback = error.message;
+        
+        if(error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
+                  feedback = `${feedback}, please correct it`;
+
+              else if(error instanceof MatchError)
+                  feedback = `${feedback}, please verify credentials`;
+
+              else
+                  feedback = "Sorry, there was an error, please try again later";
+
+              alert(feedback);
     }
 }
 
