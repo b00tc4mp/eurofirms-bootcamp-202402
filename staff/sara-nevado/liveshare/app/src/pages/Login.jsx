@@ -14,39 +14,46 @@ function Login({ onUserLoggedIn, onRegisterClick }) {
                 .then(() => onUserLoggedIn())
                 .catch(error => {
                     console.error(error)
-
                     alert(error.message)
                 })
         } catch (error) {
             console.error(error)
-
             alert(error.message)
         }
     }
 
     const handleRegisterClick = event => {
         event.preventDefault()
-
         onRegisterClick()
     }
 
     console.debug('Login render')
 
-    return <main className="px-20">
-        <h1 className="font-bold text-2xl text-center mb-10">Login</h1>
+    return (
+      <main className="flex justify-center items-center h-screen bg-gray-100">
+        <div className="max-w-md w-full px-8 py-8 bg-white rounded-md shadow-md">
+          <h1 className="font-bold text-3xl text-center mb-6">Login</h1>
+      
+          <form onSubmit={handleSubmit} className="mb-6">
+            <div className="mb-4">
+              <label htmlFor="username" className="block text-lg font-semibold mb-2">Username</label>
+              <input className="border border-gray-300 rounded-md py-2 px-4 w-full focus:outline-none focus:border-blue-500" type="text" id="username" />
+            </div>
+      
+            <div className="mb-6">
+              <label htmlFor="password" className="block text-lg font-semibold mb-2">Password</label>
+              <input className="border border-gray-300 rounded-md py-2 px-4 w-full focus:outline-none focus:border-blue-500" type="password" id="password" />
+            </div>
+      
+            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-md w-full" type="submit">Login</button>
+          </form>
 
-        <form className="flex flex-col gap-2 mb-5" onSubmit={handleSubmit}>
-            <label htmlFor="username">Username</label>
-            <input className="border-b-2 border-black" type="text" id="username" />
-
-            <label htmlFor="password">Password</label>
-            <input className="border-b-2 border-black" type="password" id="password" />
-
-            <button className="rounded-xl border-2 border-black px-4 self-end" type="submit">Login</button>
-        </form>
-
-        <a className="underline block text-center" href="" onClick={handleRegisterClick}>Register</a>
-    </main>
+          <p className="text-center">
+            Don't have an account? <button className="text-blue-500" onClick={handleRegisterClick}>Register</button>
+          </p>
+        </div>
+      </main>
+    )
 }
 
 export default Login

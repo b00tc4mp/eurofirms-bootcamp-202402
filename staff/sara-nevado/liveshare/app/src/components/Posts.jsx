@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react'
-import logic from '../logic'
-import Post from './Post'
+import { useEffect, useState } from "react"
+import Post from "./Post"
+import logic from "../logic"
 
 function Posts({ refreshStamp }) {
     console.log('refreshStamp', refreshStamp)
 
-    const [posts, setPosts] = useState([])
+const [posts, setPosts] = useState([])
 
     const refreshPosts = () => {
         try {
@@ -29,11 +29,14 @@ function Posts({ refreshStamp }) {
 
     const handleDeletedPost = () => refreshPosts()
 
+    const handlePostUpdated = () => refreshPosts()
+
     console.log('Posts render')
 
-    return <section className="flex flex-col gap-6 px-2 py-14">
-        {posts.map(post => <Post key={post.id} post={post} onPostDeleted={handleDeletedPost}/>)}
-    </section>
+    return <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4 py-8">
+          {posts.map(post => <Post key={post.id} post={post} onPostDeleted={handleDeletedPost} onPostModified={handlePostUpdated} />)}
+          </section>
+      
 }
 
 export default Posts
