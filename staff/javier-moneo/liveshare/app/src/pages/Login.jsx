@@ -57,7 +57,7 @@ function Login({ onUserLoggedIn, onRegisterClick }) {
   };
 
   return (
-    <main className="px-20">
+    <main className="px-20 md:px-40 lg:px-[300px] xl:px-[500px] 2xl:px-[600px] container mx-auto">
       <h1 className="font-bold text-2xl text-center mb-10">Login</h1>
 
       <form className="flex flex-col gap-2 mb-5" onSubmit={handleSubmit}>
