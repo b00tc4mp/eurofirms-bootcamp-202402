@@ -1,6 +1,6 @@
 import Form from "../components/Form";
 import logic from "../logic"
-import errors from "../logic/errors"
+import { errors } from "com"
 //Esto sería opcional, react lanza un warning para tipar las props(últimas línea)
 import PropTypes from 'prop-types';
 

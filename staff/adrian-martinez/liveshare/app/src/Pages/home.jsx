@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react'
-
+import { errors } from "com"
 import logic from '../logic'
-
 import Posts from '../components/Posts'
-import CreatePost from '../components/CreatePosts'
+import CreatePost from '../components/CreatePost'
+
+const { ContentError, MatchError } = errors
 
 function Home({ onUserLoggedOut }) {
     const [view, setView] = useState(null);
@@ -15,14 +16,40 @@ function Home({ onUserLoggedOut }) {
             logic.retrieveUser()
                 .then(user => setUser(user))
                 .catch(error => {
-                    console.error(error)
+                    console.error(error.message)
 
-                    alert(error.message)
+                    let feedback = error.message;
+
+                    if(error instanceof TypeError || error instanceof RangeError || error instanceof ContentError){
+
+                        feedback = `${feedback}, please correct it`;
+                    }
+                    else if(error instanceof MatchError){
+
+                        feedback = `${feedback}, please verify user`;
+                    }
+                    else
+                        feedback = "Sorry, there was an error, please try again later";
+
+                    alert(feedback);
                 })
         } catch (error) {
-            console.error(error)
+            console.error(error.message)
 
-            alert(error.message)
+                let feedback = error.message;
+
+                if(error instanceof TypeError || error instanceof RangeError || error instanceof ContentError){
+
+                    feedback = `${feedback}, please correct it`;
+                 }
+                else if(error instanceof MatchError){
+
+                    feedback = `${feedback}, please verify user`;
+                }
+                else
+                   feedback = "Sorry, there was an error, please try again later";
+
+                    alert(feedback);
         }
     }, [])
 

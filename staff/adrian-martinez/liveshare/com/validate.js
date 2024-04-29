@@ -92,13 +92,15 @@ function validatePassword(password) {
     if (!password.length) throw new ContentError('password is empty')
 }
 
-function validateUserId(userId) {
+function validateUserId(userId, explain = "userId") {
 
-    if(typeof userId !== "string") throw new TypeError("userId is not string")
+    if(typeof userId !== "string") throw new TypeError(explain +" is not string")
 
-    if (userId.includes(' ')) throw new ContentError('userId has spaces')
+    if(userId.length !== 24) throw new RangeError(explain +" is not string")
 
-    if (!userId.length) throw new ContentError('userId is empty')
+    if (userId.includes(' ')) throw new ContentError(explain +" has spaces")
+
+    if (!userId.length) throw new ContentError(explain +" is empty")
 }
 
 function validateText(text) {

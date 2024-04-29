@@ -2,7 +2,7 @@ import mongoose from "mongoose"
 import express from "express"
 import logic from "./logic/index.js"
 import cors from "cors"
-import errors from "./logic/errors.js"
+import { errors } from "com"
 
 //Utilizamos los tipos de error que vayamos usar creados por nosotros
 const { ContentError, DuplicityError, MatchError} = errors;
@@ -86,9 +86,27 @@ mongoose.connect("mongodb://127.0.0.1:27017/test")
 
           logic.retrieveUser(userId, targetUserId)
               .then(user => res.json(user))
-              .catch(error => res.status(500).json({ error: error.constructor.name, message: error.message }))
+              .catch(error =>{
+                
+                let status = 500;
+
+                if(error instanceof MatchError){
+
+                    status = 404;
+                }
+
+                res.status(status).json({ error: error.constructor.name, message: error.message });
+              })
       } catch (error) {
-          res.status(500).json({ error: error.constructor.name, message: error.message })
+
+            let status = 500;
+
+            if(error instanceof TypeError || error instanceof RangeError || error instanceof ContentError){
+
+                status = 400
+            }
+
+            res.status(status).json({ error: error.constructor.name, message: error.message })
       }
   })
 

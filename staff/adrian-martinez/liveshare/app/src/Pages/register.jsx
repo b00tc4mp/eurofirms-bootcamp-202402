@@ -2,7 +2,7 @@
 import { useState } from "react";
 import Form from "../components/Form"
 import logic from "../logic"
-import errors from '../logic/errors'
+import { errors } from "com"
 
 const { ContentError, DuplicityError } = errors
 
@@ -52,8 +52,9 @@ function Register(props) {
 
         const isUserNameError = error.message.includes('username')
         const isNameError = error.message.includes('name')
+        const isBirthdate = error.message.includes("birthdate")
 
-        setError({ message: feedback, isUserNameError, isNameError });
+        setError({ message: feedback, isUserNameError, isNameError, isBirthdate });
     }
 
     const handleLoginClick = event => {
@@ -75,7 +76,7 @@ function Register(props) {
 
                     <label htmlFor="birthdate">Birthdate</label>
                     <input type="date" id="birthdate" />
-                    {}
+                    {error?.isBirthdate && <span className="text-red-500">{error.message}</span>}
 
                     <label htmlFor="username">Username</label>
                     <input type="text" id="username" />
@@ -83,6 +84,7 @@ function Register(props) {
 
                     <label htmlFor="email">Correo</label>
                     <input type="text" id="email" />
+                    {error?.is}
 
                     <label htmlFor="password">Contraseña</label>
                     <input type="password" id="password" />

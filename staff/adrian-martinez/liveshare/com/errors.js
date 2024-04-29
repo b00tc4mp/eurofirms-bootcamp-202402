@@ -30,6 +30,14 @@ class MatchError extends Error {
     }
 }
 
+//Bucket. Otra forma de hacerlo
+/* export = {
+    SystemError,
+    ContentError,
+    DuplicityError,
+    TypeError,
+    MatchError
+} */
 const errors = {
     SystemError,
     ContentError,

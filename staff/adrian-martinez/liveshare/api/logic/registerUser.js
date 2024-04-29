@@ -1,5 +1,5 @@
 import { User } from '../data/index.js'
-import errors from "./errors.js"
+import { errors, validate } from "com"
 
 //Utilizamos los tipos de error que vayamos usar creados por nosotros
 const { SystemError, DuplicityError } = errors;
