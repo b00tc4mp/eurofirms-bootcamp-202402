@@ -1,6 +1,10 @@
+import validate from './validate'
+import errors from './errors'
+
+const { SystemError } = errors
 function registerUser(name, birthdate, email, username, password) {
-    // validateName(name)
-    // validateBirthdate(birthdate)
+     validate.Name(name)
+     validate.Birthdate(birthdate)
     // validateEmail(email)
     // validateUsername(username)
     // validatePassword(password)
@@ -10,7 +14,7 @@ function registerUser(name, birthdate, email, username, password) {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ name, birthdate, email, username, password })
         })
-            .catch(error => { throw new Error(error.message) })
+            .catch(error => { throw new SystemError(error.message) })
             .then(res => {
                 if (res.status === 201) return
     
