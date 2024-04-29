@@ -1,9 +1,9 @@
-import logic from "../../logic/index.js"
+import logic from "../logic/index.js"
 import Form from "./Form.jsx"
 import Button from "./Button.jsx"
 import LabelInput from "./LabelInput.jsx"
 import HTag from "./HTags.jsx"
-import errors from "../../logic/errors.js"
+import errors from "../logic/errors.js"
 
 const { ContentError, MatchError } = errors
 

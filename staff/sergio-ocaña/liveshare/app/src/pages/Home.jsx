@@ -1,8 +1,6 @@
 import logic from "../logic/index.js"
 
-import components from "./components"
-
-const { CreatePost, Posts, Chat, Button, HTag } = components
+import { CreatePost, Posts, Chat, Button, HTag } from "../components"
 
 import { useState, useEffect } from "react"
 const posts = 0

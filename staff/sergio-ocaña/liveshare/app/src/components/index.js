@@ -11,7 +11,7 @@ import Posts from "./Posts";
 import Post from "./Post";
 import CreatePost from "./CreatePost";
 
-const components = {
+export {
     AuthorButtons,
     Button,
     EditPost,
@@ -25,5 +25,3 @@ const components = {
     Post,
     CreatePost
 }
-
-export default components

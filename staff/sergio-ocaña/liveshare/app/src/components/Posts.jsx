@@ -1,7 +1,7 @@
-import logic from "../../logic"
+import logic from "../logic"
 import HTag from "./HTags"
 import Post from "./Post"
-import errors from "../../logic/errors"
+import errors from "../logic/errors"
 import { useState, useEffect } from "react"
 
 const { MatchError, ContentError } = errors

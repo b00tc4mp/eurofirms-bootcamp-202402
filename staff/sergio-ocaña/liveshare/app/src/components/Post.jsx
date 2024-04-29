@@ -1,5 +1,5 @@
-import logic from '../../logic'
-import errors from '../../logic/errors'
+import logic from '../logic'
+import errors from '../logic/errors'
 import EditPost from './EditPost'
 import AuthorButtons from './AuthorButtons'
 import HTag from './HTags'
