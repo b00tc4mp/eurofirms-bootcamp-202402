@@ -1,7 +1,10 @@
-import validate from './validate';
-import errors from './errors';
+import { errors, validate } from 'com';
+
+const { SystemError } = errors;
 
 function retrieveUser() {
+  validate.id(sessionStorage.userId, 'userId');
+
   return fetch(`http://localhost:8080/users/${sessionStorage.userId}`, {
     method: 'GET',
     headers: {
@@ -9,10 +12,13 @@ function retrieveUser() {
     },
   })
     .catch((error) => {
-      throw new Error(error.message);
+      throw new SystemError(error.message);
     })
     .then((res) => {
-      if (res.status === 200) return res.json();
+      if (res.status === 200)
+        return res.json().catch((error) => {
+          throw new SystemError(error.message);
+        });
       //.then(user => user)
 
       return res.json().then((body) => {

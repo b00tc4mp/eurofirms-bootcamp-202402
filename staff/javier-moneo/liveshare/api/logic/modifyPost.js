@@ -1,10 +1,11 @@
 import { User, Post } from '../data/index.js';
-import validate from './validate.js';
-import errors from './errors.js';
+import { errors, validate } from 'com';
 
 const { SystemError, MatchError } = errors;
 
 function modifyPost(userId, postId, text) {
+  validate.id(userId, 'userId');
+  validate.id(postId, 'postId');
   validate.text(text);
 
   return User.findById(userId)

@@ -1,5 +1,6 @@
-import validate from './validate';
-import errors from './errors';
+import { errors, validate } from 'com';
+
+const { SystemError } = errors;
 
 function loginUser(username, password) {
   validate.username(username);
@@ -11,21 +12,31 @@ function loginUser(username, password) {
     body: JSON.stringify({ username, password }),
   })
     .catch((error) => {
-      throw new Error(error.message);
+      throw new SystemError(error.message);
     })
     .then((res) => {
       if (res.status === 200)
-        return res.json().then((userId) => {
-          sessionStorage.userId = userId;
+        return res
+          .json()
+          .catch((error) => {
+            throw new SystemError(error.message);
+          })
+          .then((userId) => {
+            sessionStorage.userId = userId;
+          });
+
+      return res
+        .json()
+        .catch((error) => {
+          throw new SystemError(error.message);
+        })
+        .then((body) => {
+          const { error, message } = body;
+
+          const constructor = errors[error];
+
+          throw new constructor(message);
         });
-
-      return res.json().then((body) => {
-        const { error, message } = body;
-
-        const constructor = errors[error];
-
-        throw new constructor(message);
-      });
     });
 }
 

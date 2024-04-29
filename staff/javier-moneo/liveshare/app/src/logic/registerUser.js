@@ -1,5 +1,6 @@
-import validate from './validate';
-import errors from './errors';
+import { errors, validate } from 'com';
+
+const { SystemError } = errors;
 
 function registerUser(name, birthdate, email, username, password) {
   validate.name(name);
@@ -14,18 +15,23 @@ function registerUser(name, birthdate, email, username, password) {
     body: JSON.stringify({ name, birthdate, email, username, password }),
   })
     .catch((error) => {
-      throw new Error(error.message);
+      throw new SystemError(error.message);
     })
     .then((res) => {
       if (res.status === 201) return;
 
-      return res.json().then((body) => {
-        const { error, message } = body;
+      return res
+        .json()
+        .catch((error) => {
+          throw new SystemError(error.message);
+        })
+        .then((body) => {
+          const { error, message } = body;
 
-        const constructor = errors[error];
+          const constructor = errors[error];
 
-        throw new constructor(message);
-      });
+          throw new constructor(message);
+        });
     });
 }
 

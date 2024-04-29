@@ -1,10 +1,10 @@
 import { User, Post } from '../data/index.js';
-import validate from './validate.js';
-import errors from './errors.js';
+import { errors, validate } from 'com';
 
 const { SystemError, MatchError } = errors;
 
 function createPost(userId, image, text) {
+  validate.id(userId, 'userId');
   validate.text(image);
   validate.text(text);
 

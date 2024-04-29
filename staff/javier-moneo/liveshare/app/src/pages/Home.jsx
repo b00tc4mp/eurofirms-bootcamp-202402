@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import logic from '../logic';
 import Posts from '../components/Posts';
 import CreatePost from '../components/CreatePost';
-import errors from '../logic/errors';
+import { errors } from 'com';
 
 const { ContentError, TypeError, RangeError, MatchError, DuplicityError } =
   errors;

@@ -3,7 +3,7 @@ import express from 'express';
 import logic from './logic/index.js';
 import cors from 'cors';
 
-import errors from './logic/errors.js';
+import { errors } from 'com';
 
 const { ContentError, DuplicityError, MatchError } = errors;
 
@@ -111,7 +111,7 @@ mongoose
           .catch((error) => {
             let status = 500;
 
-            if (error instanceof MatchError) status = 401;
+            if (error instanceof MatchError) status = 404;
 
             res
               .status(status)

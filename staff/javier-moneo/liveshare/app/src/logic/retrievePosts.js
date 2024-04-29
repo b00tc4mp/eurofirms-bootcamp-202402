@@ -1,8 +1,9 @@
-import validate from './validate';
-import errors from './errors';
+import { errors, validate } from 'com';
+
+const { SystemError } = errors;
 
 function retrievePosts() {
-  // TODO use sessionStorage.userId
+  validate.id(sessionStorage.userId);
 
   return fetch('http://localhost:8080/posts', {
     method: 'GET',
@@ -11,18 +12,26 @@ function retrievePosts() {
     },
   })
     .catch((error) => {
-      throw new Error(error.message);
+      throw new SystemError(error.message);
     })
     .then((res) => {
-      if (res.status === 200) return res.json();
+      if (res.status === 200)
+        return res.json().catch((error) => {
+          throw new SystemError(error.message);
+        });
 
-      return res.json().then((body) => {
-        const { error, message } = body;
+      return res
+        .json()
+        .catch((error) => {
+          throw new SystemError(error.message);
+        })
+        .then((body) => {
+          const { error, message } = body;
 
-        const constructor = errors[error];
+          const constructor = errors[error];
 
-        throw new constructor(message);
-      });
+          throw new constructor(message);
+        });
     });
 }
 

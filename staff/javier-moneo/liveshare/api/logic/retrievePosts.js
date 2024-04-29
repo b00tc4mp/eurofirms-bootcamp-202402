@@ -1,11 +1,10 @@
 import { User, Post } from '../data/index.js';
-import validate from './validate.js';
-import errors from './errors.js';
+import { errors, validate } from 'com';
 
 const { SystemError, MatchError } = errors;
 
 function retrievePosts(userId) {
-  // TODO input validations
+  validate.id(userId, 'userId');
 
   return User.findById(userId)
     .catch((error) => {
