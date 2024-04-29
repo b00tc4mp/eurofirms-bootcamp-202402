@@ -7,7 +7,7 @@ import errors from "./logic/errors.js"
 //Utilizamos los tipos de error que vayamos usar creados por nosotros
 const { ContentError, DuplicityError, MatchError} = errors;
 
-mongoose.connect("mongodb://localhost:27017/test")
+mongoose.connect("mongodb://127.0.0.1:27017/test")
   .then(() => {
       console.log("DB connected");
 

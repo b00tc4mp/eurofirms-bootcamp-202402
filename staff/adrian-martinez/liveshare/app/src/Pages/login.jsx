@@ -1,6 +1,8 @@
 import Form from "../components/Form";
 import logic from "../logic"
 import errors from "../logic/errors"
+//Esto sería opcional, react lanza un warning para tipar las props(últimas línea)
+import PropTypes from 'prop-types';
 
 const { ContentError, MatchError } = errors;
 
@@ -80,3 +82,9 @@ console.debug("Login render");
       )
 }
 export default Login;
+
+
+Login.propTypes = {
+    onRegisterClick: PropTypes.func.isRequired,
+    onUserLoggedIn: PropTypes.func.isRequired
+  }
