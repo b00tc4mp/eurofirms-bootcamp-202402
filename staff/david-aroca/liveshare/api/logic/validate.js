@@ -24,7 +24,6 @@ function validateName(name) {
 function validateBirthdate(birthdate) {
     if (typeof birthdate !== 'string') throw new TypeError('birthdate is not a string')
 
-
     if (birthdate.length !== 10)
         throw new RangeError('birthdate does not have 10 characters')
 
@@ -90,7 +89,6 @@ function validateUserId(userId) {
     if (typeof userId !== 'string') throw new TypeError('userId is not a string')
 
     if (userId.includes(' ')) throw new ContentError('userId has spaces')
-
     if (!userId.length) throw new ContentError('userId is empty')
 }
 

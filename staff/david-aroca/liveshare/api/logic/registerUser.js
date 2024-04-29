@@ -1,16 +1,25 @@
 import { User } from '../data/index.js'
+import validate from '../../app/src/logic/validate.js'
+import errors from './errors.js'
+
+const { SystemError, DuplicityError } = errors
 
 function registerUser(name, birthdate, email, username, password) {
+    validate.name(name)
+    validate.birthdate(birthdate)
+    validate.username(username)
+    validate.email(email)
+    validate.password(password)
 
     return User.findOne({ $or: [{ email }, { username }] })
-        .catch(error => { throw new Error(error.message) })
+        .catch(error => { throw new SystemError(error.message) })
         .then(user => {
-            if (user) throw new Error('user already exists')
+            if (user) throw new DuplicityError('user already exists')
 
             user = { name, birthdate, email, username, password }
 
             return User.create(user)
-                .catch(error => { throw new Error(error.message) })
+                .catch(error => { throw new SystemError(error.message) })
         })
         .then(user => { })
 }

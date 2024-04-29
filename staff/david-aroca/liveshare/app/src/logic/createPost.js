@@ -1,4 +1,14 @@
+import errors from "./errors.js"
+import validate from "./validate.js"
+
+const { SystemError } = errors
+
 function createPost(image, text) {
+    const userId = sessionStorage.userId
+
+    validate.text(text)
+    validate.image(image)
+    validate.userId(userId)
 
     return fetch('http://localhost:8080/posts', {
         method: 'POST',
@@ -9,7 +19,7 @@ function createPost(image, text) {
         body: JSON.stringify({ image, text })
     })
 
-        .catch(error => { throw new Error(error.message) })
+        .catch(error => { throw new SystemError(error.message) })
         .then(res => {
             if (res.status === 201)
                 return
@@ -18,7 +28,7 @@ function createPost(image, text) {
                 .then(body => {
                     const { error, message } = body
 
-                    const constructor = window[error]
+                    const constructor = errors[error]
 
                     throw new constructor(message)
                 })

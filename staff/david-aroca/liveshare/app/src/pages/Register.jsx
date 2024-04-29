@@ -1,5 +1,9 @@
 import logic from "../logic"
 
+import errors from "../logic/errors.js"
+
+const { SystemError, ContentError, DuplicityError } = errors
+
 function Register({ onUserRegistered, onLoginClick }) {
     const handleSubmit = event => {
         event.preventDefault()
@@ -18,12 +22,28 @@ function Register({ onUserRegistered, onLoginClick }) {
                 .catch(error => {
                     console.error(error)
 
-                    alert(error.message)
+                    let feedback = error.message
+
+                    if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
+                        feedback = `${feedback}, please correct it `
+                    else if (error instanceof DuplicityError)
+                        feedback = `${feedback},please try with another user`
+                    else
+                        feedback = `sorry,there was an error,please try again later`
+
+                    alert(feedback)
                 })
         } catch (error) {
             console.error(error)
 
-            alert(error.message)
+            let feedback = error.message
+
+            if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
+                feedback = `${feedback}, please correct it `
+            else
+                feedback = `sorry,there was an error,please try again later`
+
+            alert(feedback)
         }
     }
 
@@ -33,7 +53,7 @@ function Register({ onUserRegistered, onLoginClick }) {
         onLoginClick()
     }
 
-    console.debug('Register render')
+    console.log(count)
 
     return <main className="px-20 ">
         <h1 className="font-bold text-2xl text-center mb-10">Register</h1>

@@ -2,8 +2,8 @@ import { Post } from "../data/index.js";
 
 function deletePost(userId, postId) {
 
-    return Post.findById(postId).lean()
-        .catch(error => { throw new Error('error in found post') })
+    return Post.findById(postId)
+        .catch(error => { throw new Error(error.message) })
         .then(post => {
             if (!post) throw new Error('post does not exist')
 
@@ -11,7 +11,7 @@ function deletePost(userId, postId) {
 
             return Post.findByIdAndDelete(postId)
                 .then(() => { })
-                .catch(error => { throw new Error('error in delete process') })
+                .catch(error => { throw new Error(error.message) })
 
         })
 }

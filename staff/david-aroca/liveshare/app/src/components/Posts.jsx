@@ -8,6 +8,14 @@ function Posts({ refreshStamp }) {
 
     const [posts, setPosts] = useState([])
 
+    useEffect(() => {
+        const intervalId = setInterval(() => {
+            refreshPosts()
+        }, 10000)
+
+        return () => clearInterval(intervalId)
+    }, [])
+
     const refreshPosts = () => {
         try {
             logic.retrievePosts()

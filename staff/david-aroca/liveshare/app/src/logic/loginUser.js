@@ -1,11 +1,18 @@
+import validate from "./validate"
+import errors from "./errors"
+
+const { SystemError } = errors
+
 function loginUser(username, password) {
+    validate.username(username)
+    validate.password(password)
 
     return fetch('http://localhost:8080/users/auth', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password })
     })
-        .catch(error => { throw new Error(error.message) })
+        .catch(error => { throw new SystemError(error.message) })
         .then(res => {
             if (res.status === 200)
                 return res.json()
@@ -17,7 +24,7 @@ function loginUser(username, password) {
                 .then(body => {
                     const { error, message } = body
 
-                    const constructor = window[error]
+                    const constructor = errors[error]
 
                     throw new constructor(message)
                 })

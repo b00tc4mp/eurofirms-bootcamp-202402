@@ -7,6 +7,8 @@ import deletePost from './deletePost.js'
 import updatePost from './updatePost.js'
 
 
+
+
 const logic = {
     registerUser,
     authenticateUser,
@@ -14,7 +16,7 @@ const logic = {
     createPost,
     retrievePosts,
     deletePost,
-    updatePost
+    updatePost,
 }
 
 export default logic

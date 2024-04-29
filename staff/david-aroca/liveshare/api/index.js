@@ -2,6 +2,10 @@ import mongoose from 'mongoose'
 import express from 'express'
 import logic from './logic/index.js'
 import cors from 'cors'
+import errors from './logic/errors.js'
+
+
+const { ContentError, DuplucityError, MatchError, SystemError } = errors
 
 mongoose.connect('mongodb://localhost:27017/test')
     .then(() => {
@@ -20,8 +24,20 @@ mongoose.connect('mongodb://localhost:27017/test')
                 const { name, birthdate, email, username, password } = req.body
                 logic.registerUser(name, birthdate, email, username, password)
                     .then(() => res.status(201).send())
-                    .catch(error => res.status(500).json({ error: error.constructor.name, message: error.message }))
+                    .catch(error => {
+
+                        let status = 500
+                        if (error instanceof DuplucityError)
+                            status = 409
+                        res.status(status).json({ error: error.constructor.name, message: error.message })
+                    })
+
             } catch (error) {
+                let status = 500
+
+                if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
+                    status = 400
+
                 res.status(500).json({ error: error.constructor.name, message: error.message })
             }
         })
@@ -32,9 +48,22 @@ mongoose.connect('mongodb://localhost:27017/test')
 
                 logic.authenticateUser(username, password)
                     .then(userId => res.status(200).json(userId))
-                    .catch(error => res.status(500).json({ error: error.constructor.name, message: error.message }))
+                    .catch(error => {
+                        let status = 500
+
+                        if (error instanceof MatchError)
+                            status = 401
+
+                        res.status(status).json({ error: error.constructor.name, message: error.message })
+
+                    })
             } catch (error) {
-                res.status(500).json({ error: error.constructor.name, message: error.message })
+                let status = 500
+
+                if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
+                    status = 400
+
+                res.status(status).json({ error: error.constructor.name, message: error.message })
             }
         })
 
@@ -64,9 +93,24 @@ mongoose.connect('mongodb://localhost:27017/test')
 
                 logic.createPost(userId, image, text)
                     .then(() => res.status(201).send())
-                    .catch(error => res.status(500).json({ error: error.constructor.name, message: error.message }))
+                    .catch(error => {
+                        let status = 500
+
+                        if (error instanceof MatchError)
+                            status = 401
+
+                        res.status(status).json({ error: error.constructor.name, message: error.message })
+                    })
+
+
             } catch (error) {
-                (res.status(500).json({ error: error.constructor.name, message: error.message }))
+                let status = 500
+
+                if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
+
+                    status = 400
+
+                        (res.status(status).json({ error: error.constructor.name, message: error.message }))
             }
         })
 
@@ -113,10 +157,18 @@ mongoose.connect('mongodb://localhost:27017/test')
 
                 logic.updatePost(userId, postId, text)
                     .then(() => res.status(204).send())
-                    .catch(error => res.status(500).json({ error: error.constructor.name, message: error.message }))
+                    .catch(error => {
+                        let status = 500
+
+                        if (error instanceof ContentError || error instanceof TypeError || error instanceof RangeError)
+
+                            res.status(status).json({ error: error.constructor.name, message: error.message })
+                    })
 
             } catch (error) {
-                res.status(500).json({ error: error.constructor.name, message: error.message })
+                let status = 500
+
+                res.status(status).json({ error: error.constructor.name, message: error.message })
             }
         })
 

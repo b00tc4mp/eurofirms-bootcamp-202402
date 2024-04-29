@@ -1,4 +1,10 @@
 import logic from '../logic'
+import errors from '../logic/errors.js'
+
+//exactamente igual que los errores de el login 
+//tener en cuenta cuando se haga mas tarde
+
+const { ContentError, MatchError } = errors
 
 function CreatePost({ onCancelClick, onPostCreated }) {
     const handleCancelClick = () => onCancelClick()
@@ -17,10 +23,25 @@ function CreatePost({ onCancelClick, onPostCreated }) {
                 .catch(error => {
                     console.error(error)
 
-                    alert(error.message)
+                    let feedback = error.message
+
+                    if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
+                        feedback = `${feedback},please correct it`
+                    else if (error instanceof MatchError)
+                        feedback = `${feedback},please verify credentials`
+                    else
+
+                        alert(error.message)
                 })
         } catch (error) {
             console.error(error)
+
+            let feedback = error.message
+
+            if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
+                feedback`${feedback},please correct it`
+            else
+                feedback = 'sorry there was an error,please try later'
 
             alert(error.message)
         }

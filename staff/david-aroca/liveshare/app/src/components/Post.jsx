@@ -1,11 +1,9 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import logic from "../logic"
 
 
 function Post({ post, onPostDeleted, onPostEdit }) {
     const [edit, setEdit] = useState(false)
-
-
 
     const handleDeletePost = () => {
         try {

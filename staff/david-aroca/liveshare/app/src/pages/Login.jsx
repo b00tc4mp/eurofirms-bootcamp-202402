@@ -1,5 +1,9 @@
 import logic from "../logic"
 
+import errors from "../logic/errors.js"
+
+const { ContentError, MatchError } = errors
+
 function Login({ onUserLoggedIn, onRegisterClick }) {
     const handleSubmit = event => {
         event.preventDefault()
@@ -15,12 +19,28 @@ function Login({ onUserLoggedIn, onRegisterClick }) {
                 .catch(error => {
                     console.log(error)
 
-                    alert(error.message)
+                    let feedback = error.message
+
+                    if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
+                        feedback = `${feedback},please correct it`
+                    else if (error instanceof MatchError)
+                        feedback = `${feedback},please verify credentials`
+
+                    else
+
+                        alert(error.message)
                 })
         } catch (error) {
             console.error(error)
 
-            alert(error.message)
+            let feedback = error.message
+
+            if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
+                feedback = `${feedback},please correct it`
+            else
+                feedback = 'sorry,there was an error,please try later'
+
+            alert(feedback)
         }
     }
 
