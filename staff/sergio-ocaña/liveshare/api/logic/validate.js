@@ -91,6 +91,8 @@ function validateUserId(userId) {
     if (userId.includes(' ')) throw new ContentError('userId has spaces')
 
     if (!userId.length) throw new ContentError('userId is empty')
+
+    if (userId.length !== 24) throw new RangeError('userId has not valid length')
 }
 
 
@@ -100,6 +102,8 @@ function validatePostId(postId) {
     if (postId.includes(' ')) throw new ContentError('postId has spaces')
 
     if (!postId.length) throw new ContentError('postId is empty')
+
+    if (postId.length !== 24) throw new RangeError('postId has not valid length')
 }
 
 
