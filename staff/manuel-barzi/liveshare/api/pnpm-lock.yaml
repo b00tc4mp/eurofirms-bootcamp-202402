@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  com:
+    specifier: link:../com
+    version: link:../com
   cors:
     specifier: ^2.8.5
     version: 2.8.5

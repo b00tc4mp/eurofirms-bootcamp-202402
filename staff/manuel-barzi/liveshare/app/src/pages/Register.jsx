@@ -1,6 +1,6 @@
-import logic from '../logic'
+import { errors } from 'com'
 
-import errors from '../logic/errors'
+import logic from '../logic'
 
 const { ContentError, DuplicityError } = errors
 

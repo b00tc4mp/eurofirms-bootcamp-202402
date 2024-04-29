@@ -83,12 +83,14 @@ function validatePassword(password) {
         throw new ContentError('password has space character')
 }
 
-function validateUserId(userId) {
-    if (typeof userId !== 'string') throw new TypeError('userId is not a string')
+function validateId(id, explain = 'id') {
+    if (typeof id !== 'string') throw new TypeError(`${explain} is not a string`)
 
-    if (userId.includes(' ')) throw new ContentError('userId has spaces')
+    if (id.length !== 24) throw new RangeError(`${explain} length is not 24`)
 
-    if (!userId.length) throw new ContentError('userId is empty')
+    if (id.includes(' ')) throw new ContentError(`${explain} has spaces`)
+
+    if (!id.length) throw new ContentError(`${explain} is empty`)
 }
 
 function validateText(text) {
@@ -103,7 +105,7 @@ const validate = {
     email: validateEmail,
     username: validateUsername,
     password: validatePassword,
-    userId: validateUserId,
+    id: validateId,
     text: validateText
 }
 

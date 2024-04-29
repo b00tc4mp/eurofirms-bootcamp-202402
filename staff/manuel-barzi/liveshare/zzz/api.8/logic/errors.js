@@ -30,10 +30,19 @@ class MatchError extends Error {
     }
 }
 
+export {
+    SystemError,
+    ContentError,
+    DuplicityError,
+    MatchError
+}
+
 const errors = {
     SystemError,
     ContentError,
     DuplicityError,
+    TypeError,
+    RangeError,
     MatchError
 }
 
