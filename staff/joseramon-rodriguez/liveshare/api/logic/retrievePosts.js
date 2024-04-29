@@ -1,11 +1,14 @@
 import { User, Post } from '../data/index.js'
+import { validate, errors } from 'com'
+
+const { MatchError, SystemError } = errors
 
 function retrievePosts(userId) {
-    //TODO input validations
+    validate.id(userId, 'user id')
 
     return User.findById(userId)
         .then(user => {
-            if (!user) throw new Error('user not found')
+            if (!user) throw new MatchError('user not found')
 
             return Post.find().sort({ date: -1 }).select('-__v').populate('author', 'username').lean()
                 .then(posts => {
@@ -23,9 +26,9 @@ function retrievePosts(userId) {
                     })
                     return posts
                 })
-                .catch(error => { throw new Error(error.message) })
+                .catch(error => { throw new SystemError(error.message) })
         })
-        .catch(error => { throw new Error(error.message) })
+        .catch(error => { throw new SystemError(error.message) })
 
 }
 

@@ -2,21 +2,48 @@ import { useState } from "react"
 import logic from "../logic"
 import Button from "./Button"
 import Form from "./Form"
-import Input from "./Input"
+import { errors } from 'com'
 
+const { ContentError, MatchError } = errors
 
-
-function Post({ post, onDeletePost, onUpdatePost }) {
+function Post({ post, onDeletePost, onUpdatePost, error, }) {
     const [updatePost, setUpdatePost] = useState(false)
     const [updateText, setUpdateText] = useState(post.text)
 
     const userId = logic.getLoggedInUserId()
 
     const handleUpdatePost = () => {
-        logic.retrievePost(post.id)
-            .then(postToUpdate => setUpdateText(postToUpdate.text))
+        try {
+            logic.retrievePost(post.id)
+                .then(postToUpdate => setUpdateText(postToUpdate.text))
+                .catch(error => {
+                    console.error(error)
 
-        setUpdatePost(true)
+                    let feedback = error.message
+
+                    if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
+                        feedback = `${feedback}, please correct it`
+                    if (error instanceof MatchError)
+                        feedback = `${feedback}, please try with a registered user`
+                    else
+                        feedback = 'sorry, there was an error, please try again later'
+
+                    alert(feedback)
+                })
+            setUpdatePost(true)
+
+        } catch (error) {
+            console.error(error.message)
+
+            let feedback = error.message
+
+            if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
+                feedback = `${feedback}, please correct it`
+            else
+                feedback = 'sorry, there was an error, please try again later'
+
+            alert(feedback)
+        }
     }
     const handleCancelUpdatePost = () => {
         setUpdatePost(false)
@@ -29,7 +56,7 @@ function Post({ post, onDeletePost, onUpdatePost }) {
 
         const text = form.text.value
 
-        setUpdatePost(false)
+        setUpdatePost(setUpdatePost)
 
         onUpdatePost(post.id, text)
     }
@@ -45,6 +72,7 @@ function Post({ post, onDeletePost, onUpdatePost }) {
         {updatePost ? <> <Form onSubmit={handleSubmit}>
             {/* <label htmlFor="text">Edit post</label> */}
             <input id="text" value={updateText} onChange={handleChange}></input>
+            {error?.isTextError && <span className="text-red-500">{error.message}</span>}
             <Button type="submit" >Update</Button>
         </Form> < Button onClick={handleCancelUpdatePost}>Cancel</Button></> : post.text}
         <time>{post.date}</time>

@@ -2,11 +2,40 @@ import logic from "../logic"
 import Button from "../components/Button"
 import Input from "../components/Input"
 import Form from "../components/Form"
-import errors from "../logic/errors"
+import { errors } from 'com'
+import { useState } from "react"
 
 const { ContentError, DuplicityError } = errors
 
 function Register({ onUserRegistered, onLoginClick }) {
+    const [error, setError] = useState(null)
+
+    const errorHandler = (error) => {
+        console.error(error)
+
+        let feedback = error.message
+
+        if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
+            feedback = `${feedback}, please correct it`
+        else if (error instanceof DuplicityError)
+            feedback = `${feedback}, please try with another user`
+        else
+            feedback = 'sorry, there was an error, please try again later'
+
+        // alert(feedback)
+        const isUserNameError = error.message.includes('username')
+        let isNameError = false
+        if (!isUserNameError) {
+            isNameError = error.message.includes('name')
+        }
+
+        const isBirthdateError = error.message.includes('birthdate')
+        const isEmailError = error.message.includes('email')
+        const isPasswordError = error.message.includes('password')
+
+        setError({ message: feedback, isUserNameError, isNameError, isBirthdateError, isEmailError, isPasswordError })
+    }
+
     const handleSubmit = event => {
         event.preventDefault()
 
@@ -22,28 +51,12 @@ function Register({ onUserRegistered, onLoginClick }) {
             logic.registerUser(name, birthdate, email, username, password)
                 .then(() => onUserRegistered())
                 .catch(error => {
-                    console.error(error)
-
-                    let feedback = error.message
-
-                    if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
-                        feedback = `${feedback}, please correct it`
-                    else if (error instanceof DuplicityError)
-                        feedback = `${feedback}, please try with another user`
-
-                    alert(feedback)
+                    errorHandler(error)
                 })
 
 
         } catch (error) {
-            console.error(error)
-
-            let feedback = error.message
-
-            if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
-                feedback = `${feedback}, please correct it`
-
-            alert(feedback)
+            errorHandler(error)
         }
     }
 
@@ -58,18 +71,24 @@ function Register({ onUserRegistered, onLoginClick }) {
             <Form className="flex flex-col gap-2 mb-5" onSubmit={handleSubmit}>
                 <label htmlFor="name">Name</label>
                 <Input id="name" />
+                {error?.isNameError && <span className="text-red-500">{error.message}</span>}
 
                 <label htmlFor="birthdate">Birthdate</label>
                 <Input type="date" id="birthdate" />
+                {error?.isBirthdateError && <span className="text-red-500">{error.message}</span>}
 
                 <label htmlFor="email">E-mail</label>
                 <Input id="email" />
+                {error?.isEmailError && <span className="text-red-500">{error.message}</span>}
 
                 <label htmlFor="username">Username</label>
                 <Input id="username" />
+                {error?.isUserNameError && <span className="text-red-500">{error.message}</span>}
+
 
                 <label htmlFor="password">Password</label>
                 <Input type="password" id="password" />
+                {error?.isPasswordError && <span className="text-red-500">{error.message}</span>}
 
                 <Button type="rounded-xl border-2 border-black px-3 self-end">Register</Button>
             </Form>

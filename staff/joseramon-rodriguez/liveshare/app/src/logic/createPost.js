@@ -1,6 +1,12 @@
+import { validate, errors } from 'com'
+
+const { SystemError } = errors
+
 function createPost(image, text) {
-    // validateText(image)
-    // validateText(text)
+    validate.image(image)
+    validate.text(text)
+    validate.id(sessionStorage.userId, 'user id')
+
     return fetch('http://localhost:8080/posts', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'authorization': `Bearer ${sessionStorage.userId}` },
@@ -13,13 +19,13 @@ function createPost(image, text) {
                 .then(body => {
                     const { error, message } = body
 
-                    const constructor = window[error]
+                    const constructor = errors[error]
 
                     throw new constructor(message)
                 })
-                .catch(error => { throw new Error(error) })
+                .catch(error => { throw new SystemError(error) })
         })
-        .catch(error => { throw new Error(error) })
+        .catch(error => { throw new SystemError(error) })
 
 }
 

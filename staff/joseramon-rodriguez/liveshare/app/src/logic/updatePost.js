@@ -1,4 +1,12 @@
+import { validate, errors } from 'com'
+
+const { SystemError } = errors
+
 function updatePost(postId, text) {
+    validate.id(postId, 'post id')
+    validate.id(sessionStorage.userId, 'user id')
+    validate.text(text)
+
     return fetch(`http://localhost:8080/posts/${postId}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json', 'authorization': `bearer ${sessionStorage.userId}` },
@@ -11,14 +19,14 @@ function updatePost(postId, text) {
                 .then(body => {
                     const { error, message } = body
 
-                    const constructor = window[error]
+                    const constructor = errors[error]
 
                     throw new constructor(message)
                 })
-                .catch(error => { throw new Error(error) })
+                .catch(error => { throw new SystemError(error) })
         })
 
-        .catch(error => { throw new Error(error) })
+        .catch(error => { throw new SystemError(error) })
 }
 
 export default updatePost

@@ -1,4 +1,10 @@
+import { validate, errors } from 'com'
+
+const { SystemError } = errors
+
 function retrieveUser() {
+    validate.id(sessionStorage.userId, 'user id')
+
     return fetch(`http://localhost:8080/users/${sessionStorage.userId}`, {
         method: 'GET',
         headers: { 'authorization': `Bearer ${sessionStorage.userId}` },
@@ -10,13 +16,13 @@ function retrieveUser() {
                 .then(res => {
                     const { error, message } = res
 
-                    const constructor = Window[error]
+                    const constructor = errors[error]
 
                     throw new constructor(message)
                 })
-                .catch(error => { throw new Error(error) })
+                .catch(error => { throw new SystemError(error.message) })
         })
-        .catch(error => console.error(error))
+        .catch(error => { throw new SystemError(error.message) })
 }
 
 export default retrieveUser

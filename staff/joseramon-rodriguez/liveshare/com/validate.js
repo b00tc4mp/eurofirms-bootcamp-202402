@@ -88,22 +88,37 @@ function validatePassword(password) {
         throw new ContentError('password is empty')
 }
 //userId validations
-function validateUserId(userId) {
-    if (typeof userId !== 'string')
-        throw new TypeError('userID is not a string')
+function validateId(id, explain = 'id') {
+    if (typeof id !== 'string')
+        throw new TypeError(`${explain} is not a string`)
 
-    if (userId.includes(' '))
-        throw new ContentError('userId has space characters')
+    if (id.includes(' '))
+        throw new ContentError(`${explain} has space characters`)
 
-    if (!userId.length)
-        throw new ContentError('userId is empty')
+    if (!id.length)
+        throw new ContentError(`${explain} is empty`)
+
+    if (id.length !== 24)
+        throw new RangeError(`${explain} length is not 24`)
 }
 //text validations
 function validateText(text) {
     if (typeof text !== 'string')
         throw new TypeError('text is not a string')
+
     if (!text.length)
         throw new ContentError('text is empty')
+}
+
+function validateImage(image) {
+    if (typeof image !== 'string')
+        throw new TypeError('image is not a string')
+
+    if (!image.length)
+        throw new ContentError('image is empty')
+
+    if (!image.startsWith('http'))
+        throw new ContentError('image must start with http')
 }
 
 const validate = {
@@ -112,8 +127,9 @@ const validate = {
     username: validateUsername,
     email: validateEmail,
     password: validatePassword,
-    userId: validateUserId,
-    text: validateText
+    id: validateId,
+    text: validateText,
+    image: validateImage
 }
 
 export default validate

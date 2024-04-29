@@ -1,4 +1,10 @@
+import { validate, errors } from 'com'
+
+const { SystemError } = errors
+
 function retrievePosts() {
+    validate.id(sessionStorage.userId, 'user id')
+
     return fetch('http://localhost:8080/posts/', {
         method: 'GET',
         headers: { 'authorization': `Bearer ${sessionStorage.userId}` },
@@ -10,13 +16,13 @@ function retrievePosts() {
                 .then(body => {
                     const { error, message } = body
 
-                    const constructor = window[error]
+                    const constructor = errors[error]
 
                     throw new constructor(message)
                 })
-                .catch(error => { throw new Error(error) })
+                .catch(error => { throw new SystemError(error) })
         })
-        .catch(error => { throw new Error(error) })
+        .catch(error => { throw new SystemError(error) })
 }
 
 export default retrievePosts

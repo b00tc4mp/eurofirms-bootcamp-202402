@@ -22,10 +22,21 @@ class DuplicityError extends Error {
     }
 }
 
+class MatchError extends Error {
+    constructor(message) {
+        super(message)
+
+        this.name = MatchError.name
+    }
+}
+
 const errors = {
     SystemError,
     ContentError,
-    DuplicityError
+    DuplicityError,
+    MatchError,
+    TypeError,
+    RangeError
 }
 
 export default errors

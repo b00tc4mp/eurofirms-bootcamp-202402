@@ -1,8 +1,37 @@
 import { useEffect, useState } from "react"
 import logic from "../logic"
 import Post from "./Post"
+import { errors } from 'com'
+
+const { ContentError, MatchError } = errors
+
 function Posts({ refreshPosts }) {
     const [posts, setPosts] = useState(null)
+    const [error, setError] = useState(null)
+    const [edit, setEdit] = useState(false)
+
+    const errorHandler = error => {
+        console.error(error)
+
+        let feedback = error.message
+
+        if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
+            feedback = `${feedback}, please correct it`
+        else if (error instanceof MatchError)
+            feedback = `${feedback}, please try with a registered user`
+        else
+            feedback = 'sorry, there was an error, please try again later'
+
+        if (error.message.includes('user id') || error.message.includes('post id')) {
+            alert(feedback)
+
+            return
+        }
+
+        const isTextError = error.message.includes('text')
+
+        setError({ message: feedback, isTextError })
+    }
 
     useEffect(() => {
         handleRefreshPosts()
@@ -15,16 +44,10 @@ function Posts({ refreshPosts }) {
                 .then(postsList => {
                     setPosts(postsList)
                 })
-                .catch(error => {
-                    console.error(error)
-
-                    alert(error.message)
-                })
+                .catch(error => errorHandler(error))
 
         } catch (error) {
-            console.error(error)
-
-            alert(error.message)
+            errorHandler(error)
         }
     }
     const handleDeletePost = (postId) => {
@@ -35,15 +58,9 @@ function Posts({ refreshPosts }) {
         try {
             logic.deletePost(postId)
                 .then(() => handleRefreshPosts())
-                .catch(error => {
-                    console.error(error)
-
-                    alert(error.message)
-                })
+                .catch(error => errorHandler(error))
         } catch (error) {
-            console.error(error)
-
-            alert(error.message)
+            errorHandler(error)
         }
     }
 
@@ -54,23 +71,21 @@ function Posts({ refreshPosts }) {
 
         try {
             logic.updatePost(postId, text)
-                .then(() => { handleRefreshPosts() })
-                .catch(error => {
-                    console.error(error)
+                .then(() => {
+                    handleRefreshPosts()
 
-                    alert(error.message)
+                    // afterUpdatePost()
                 })
+                .catch(error => errorHandler(error))
         } catch (error) {
-            console.error(error)
-
-            alert(error.message)
+            errorHandler(error)
         }
     }
 
     return <section id="posts-section" className="posts-section">
         <h2>Posts</h2>
         <div id="posts-list">
-            {posts ? posts.map((post => <Post key={post.id} post={post} onDeletePost={handleDeletePost} onUpdatePost={handleUpdatePost} />)) : <span>Loading...</span>}
+            {posts ? posts.map((post => <Post edit={edit} error={error} key={post.id} post={post} onDeletePost={handleDeletePost} onUpdatePost={handleUpdatePost} />)) : <span>Loading...</span>}
         </div>
     </section>
 }
