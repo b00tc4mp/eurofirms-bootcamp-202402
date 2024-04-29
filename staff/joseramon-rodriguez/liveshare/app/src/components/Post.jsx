@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import logic from "../logic"
 import Button from "./Button"
 import Form from "./Form"
@@ -6,11 +6,13 @@ import { errors } from 'com'
 
 const { ContentError, MatchError } = errors
 
-function Post({ post, onDeletePost, onUpdatePost, error, }) {
+function Post({ post, onDeletePost, onUpdatePost, error, updated }) {//
     const [updatePost, setUpdatePost] = useState(false)
     const [updateText, setUpdateText] = useState(post.text)
 
     const userId = logic.getLoggedInUserId()
+
+    useEffect(() => { setUpdatePost(false) }, [updated])
 
     const handleUpdatePost = () => {
         try {
@@ -59,6 +61,7 @@ function Post({ post, onDeletePost, onUpdatePost, error, }) {
         setUpdatePost(setUpdatePost)
 
         onUpdatePost(post.id, text)
+
     }
 
     const handleChange = event => {

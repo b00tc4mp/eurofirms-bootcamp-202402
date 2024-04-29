@@ -8,7 +8,7 @@ const { ContentError, MatchError } = errors
 function Posts({ refreshPosts }) {
     const [posts, setPosts] = useState(null)
     const [error, setError] = useState(null)
-    const [edit, setEdit] = useState(false)
+    const [updated, setUpdated] = useState(false)
 
     const errorHandler = error => {
         console.error(error)
@@ -74,7 +74,7 @@ function Posts({ refreshPosts }) {
                 .then(() => {
                     handleRefreshPosts()
 
-                    // afterUpdatePost()
+                    setUpdated(prevValue => !prevValue)
                 })
                 .catch(error => errorHandler(error))
         } catch (error) {
@@ -85,7 +85,7 @@ function Posts({ refreshPosts }) {
     return <section id="posts-section" className="posts-section">
         <h2>Posts</h2>
         <div id="posts-list">
-            {posts ? posts.map((post => <Post edit={edit} error={error} key={post.id} post={post} onDeletePost={handleDeletePost} onUpdatePost={handleUpdatePost} />)) : <span>Loading...</span>}
+            {posts ? posts.map((post => <Post updated={updated} error={error} key={post.id} post={post} onDeletePost={handleDeletePost} onUpdatePost={handleUpdatePost} />)) : <span>Loading...</span>}
         </div>
     </section>
 }
