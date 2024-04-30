@@ -1,1 +1,1 @@
- curl -X PATCH -H 'Authorization: Bearer 66222c1a419c80a764c86966' -H 'Content-Type: application/json' -d '{"text":"new text again"}' http://localhost:8080/posts/6627b18d2c2587a4da244cd1 -v
+ curl -X PATCH -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NjIyMmMxYTQxOWM4MGE3NjRjODY5NjYiLCJpYXQiOjE3MTQ0OTA2NTgsImV4cCI6MTcxNDQ5MDcxOH0.R_tjGaRepkEb8OhGUSlmcMo1rGMEy4CRyYetYPxRSQg' -H 'Content-Type: application/json' -d '{"text":"new text again"}' http://localhost:8080/posts/663108c56d4156a465c93015 -v

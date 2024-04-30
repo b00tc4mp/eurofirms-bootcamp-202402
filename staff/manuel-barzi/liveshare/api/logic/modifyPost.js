@@ -1,29 +1,36 @@
 import { User, Post } from '../data/index.js'
 
-function removePost(userId, postId, text) {
-    // TODO input validation
+import { validate, errors } from 'com'
+
+const { SystemError, MatchError } = errors
+
+function modifyPost(userId, postId, text) {
+    validate.id(userId, 'userId')
+    validate.id(postId, 'postId')
+    validate.text(text)
 
     return User.findById(userId)
-        .catch(error => { throw new Error(error.message) })
+        .catch(error => { throw new SystemError(error.message) })
         .then(user => {
             if (!user)
-                throw new Error('user not found')
+                throw new MatchError('user not found')
 
             return Post.findById(postId)
-                .catch(error => { throw new Error(error.message) })
+                .catch(error => { throw new SystemError(error.message) })
         })
         .then(post => {
             if (!post)
-                throw new Error('post not found')
+                throw new MatchError('post not found')
 
             if (post.author.toString() !== userId)
-                throw new Error('post does not belong user')
+                throw new MatchError('post does not belong user')
 
             post.text = text
 
             return post.save()
+                .catch(error => { throw new SystemError(error.message) })
         })
         .then(result => { })
 }
 
-export default removePost
+export default modifyPost

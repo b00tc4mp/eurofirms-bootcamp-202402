@@ -1,6 +1,6 @@
 import errors from './errors.js'
 
-const { ContentError } = errors
+const { ContentError, MatchError } = errors
 
 function validateName(name) {
     if (typeof name !== 'string') throw new TypeError('name is not string')
@@ -93,10 +93,34 @@ function validateId(id, explain = 'id') {
     if (!id.length) throw new ContentError(`${explain} is empty`)
 }
 
-function validateText(text) {
-    if (typeof text !== 'string') throw new TypeError('text is not a string')
+function validateText(text, explain = 'text') {
+    if (typeof text !== 'string') throw new TypeError(`${explain} is not a string`)
 
-    if (!text.length) throw new ContentError('text is empty')
+    if (!text.length) throw new ContentError(`${explain} is empty`)
+}
+
+function validateUrl(url, explain = 'url') {
+    if (typeof url !== 'string') throw new TypeError(`${explain} is not a string`)
+
+    if (!url.length) throw new ContentError(`${explain} is empty`)
+
+    if (!url.startsWith('http')) throw new ContentError(`${explain} is not an http address`)
+}
+
+function validateToken(token, explain = 'token') {
+    if (typeof token !== 'string') throw new TypeError(`${explain} is not a string`)
+
+    if (!token.length) throw new ContentError(`${explain} is empty`)
+
+    const [, payload64,] = token.split('.')
+    const payloadJSON = atob(payload64)
+    const payload = JSON.parse(payloadJSON)
+
+    const { exp } = payload
+
+    const now = Date.now() / 1000
+
+    if (exp < now) throw new MatchError(`${explain} expired`)
 }
 
 const validate = {
@@ -106,7 +130,9 @@ const validate = {
     username: validateUsername,
     password: validatePassword,
     id: validateId,
-    text: validateText
+    text: validateText,
+    url: validateUrl,
+    token: validateToken
 }
 
 export default validate
