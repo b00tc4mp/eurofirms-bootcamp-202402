@@ -16,7 +16,6 @@ function retrievePost(postId) {
         .then(res => {
             if (res.status === 200) {
 
-                console.log(res)
                 return res.json()
                     .catch(error => { throw new SystemError(error.message) })
             }
