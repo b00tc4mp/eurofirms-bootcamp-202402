@@ -27,7 +27,9 @@ function Login({ onUserLoggedIn, onRegisterClick }) {
         const isUserNameError = error.message.includes('username')
         const isPasswordError = error.message.includes('password')
 
-        setError({ message: feedback, isUserNameError, isPasswordError })
+        const isAnotherError = !isUserNameError && !isPasswordError
+
+        setError({ message: feedback, isUserNameError, isPasswordError, isAnotherError })
     }
 
     const handleSubmit = event => {
@@ -68,6 +70,8 @@ function Login({ onUserLoggedIn, onRegisterClick }) {
 
 
                 <Button className="rounder-xl border-2 border-black px-3 self-end" type="submit">Login</Button>
+                {error?.isAnotherError && <span className="text-red-500">{error.message}</span>}
+
                 <a className="underline block text-center" href="register.html" onClick={handleRegisterClick}>Register</a>
             </Form>
         </main>

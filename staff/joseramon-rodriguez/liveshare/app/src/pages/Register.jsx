@@ -33,7 +33,9 @@ function Register({ onUserRegistered, onLoginClick }) {
         const isEmailError = error.message.includes('email')
         const isPasswordError = error.message.includes('password')
 
-        setError({ message: feedback, isUserNameError, isNameError, isBirthdateError, isEmailError, isPasswordError })
+        const isAnotherError = !isUserNameError && !isNameError && !isBirthdateError && !isEmailError && !isPasswordError
+
+        setError({ message: feedback, isUserNameError, isNameError, isBirthdateError, isEmailError, isPasswordError, isAnotherError })
     }
 
     const handleSubmit = event => {
@@ -93,6 +95,7 @@ function Register({ onUserRegistered, onLoginClick }) {
                 <Button type="rounded-xl border-2 border-black px-3 self-end">Register</Button>
             </Form>
             <a className="underline block text-center" href="login.html" onClick={handleLoginClick}>Login</a>
+            {error?.isAnotherError && <span className="text-red-500">{error.message}</span>}
         </main>
     </>
 }

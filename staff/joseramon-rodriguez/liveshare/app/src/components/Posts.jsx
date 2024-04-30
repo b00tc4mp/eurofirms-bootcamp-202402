@@ -7,8 +7,7 @@ const { ContentError, MatchError } = errors
 
 function Posts({ refreshPosts }) {
     const [posts, setPosts] = useState(null)
-    const [error, setError] = useState(null)
-    const [updated, setUpdated] = useState(false)
+    const [error, setError] = useState(null)//error handler for loading post
 
     const errorHandler = error => {
         console.error(error)
@@ -16,21 +15,13 @@ function Posts({ refreshPosts }) {
         let feedback = error.message
 
         if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
-            feedback = `${feedback}, please correct it`
+            feedback = `${feedback}, please use valid data`
         else if (error instanceof MatchError)
             feedback = `${feedback}, please try with a registered user`
         else
             feedback = 'sorry, there was an error, please try again later'
 
-        if (error.message.includes('user id') || error.message.includes('post id')) {
-            alert(feedback)
-
-            return
-        }
-
-        const isTextError = error.message.includes('text')
-
-        setError({ message: feedback, isTextError })
+        setError({ message: feedback, isError: true })
     }
 
     useEffect(() => {
@@ -50,43 +41,18 @@ function Posts({ refreshPosts }) {
             errorHandler(error)
         }
     }
-    const handleDeletePost = (postId) => {
-        const deleteConfirmed = confirm('delete?')
 
-        if (!deleteConfirmed) return
 
-        try {
-            logic.deletePost(postId)
-                .then(() => handleRefreshPosts())
-                .catch(error => errorHandler(error))
-        } catch (error) {
-            errorHandler(error)
-        }
-    }
+    const handleUpdatePost = () => handleRefreshPosts()
 
-    const handleUpdatePost = (postId, text) => {
-        const updateConfirmed = confirm('update?')
-
-        if (!updateConfirmed) return
-
-        try {
-            logic.updatePost(postId, text)
-                .then(() => {
-                    handleRefreshPosts()
-
-                    setUpdated(prevValue => !prevValue)
-                })
-                .catch(error => errorHandler(error))
-        } catch (error) {
-            errorHandler(error)
-        }
-    }
+    const handleDeletePost = () => handleRefreshPosts()
 
     return <section id="posts-section" className="posts-section">
         <h2>Posts</h2>
         <div id="posts-list">
-            {posts ? posts.map((post => <Post updated={updated} error={error} key={post.id} post={post} onDeletePost={handleDeletePost} onUpdatePost={handleUpdatePost} />)) : <span>Loading...</span>}
+            {posts ? posts.map((post => <Post key={post.id} post={post} onDeletePost={handleDeletePost} onUpdatePost={handleUpdatePost} />)) : <span>Loading...</span>}
         </div>
+        {error?.isError && <span className="text-red-500">{error.message}</span>}
     </section>
 }
 

@@ -12,6 +12,7 @@ function Home({ onLogoutClick }) {
     const [createPost, setCreatePost] = useState(null)
     const [user, setUser] = useState(null)
     const [timeStamp, setTimeStamp] = useState(Date.now())
+    const [error, setError] = useState(null)
 
     useEffect(() => {
         try {
@@ -29,7 +30,7 @@ function Home({ onLogoutClick }) {
                     else
                         feedback = 'sorry, there was an error, please try again later'
 
-                    alert(feedback)
+                    setError({ message: feedback, isError: true })
                 })
         } catch (error) {
             console.error(error.message)
@@ -41,7 +42,7 @@ function Home({ onLogoutClick }) {
             else
                 feedback = 'sorry, there was an error, please try again later'
 
-            alert(feedback)
+            setError({ message: feedback, isError: true })
         }
     }, [])
 
