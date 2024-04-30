@@ -3,11 +3,15 @@ import LabelInput from "../components/LabelInput.jsx"
 import HTag from '../components/HTags.jsx'
 import Form from "../components/Form.jsx"
 import Button from "../components/Button.jsx"
+import SpanError from "../components/SpanError.jsx"
+import { useState } from "react"
 
-import errors from "../logic/errors.js"
+import { errors } from 'com'
 const { ContentError, MatchError } = errors
 
 function Login({ onUserLoggedIn, onRegisterClick }) {
+    const [error, setError] = useState(null)
+
     const handleSubmit = event => {
         event.preventDefault()
 
@@ -20,37 +24,33 @@ function Login({ onUserLoggedIn, onRegisterClick }) {
             logic.loginUser(username, password)
                 .then(() => onUserLoggedIn())
                 .catch(error => {
-                    console.error(error)
-
-                    let feedback = error.message
-
-                    if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
-                        feedback = `${feedback},please correct it`
-
-                    else if (error instanceof MatchError)
-                        feedback = `${feedback},please verify credentials`
-
-                    else
-                        feedback = 'sorry, there was an error, please try again later'
-
-                    alert(feedback)
+                    errorHandler(error)
                 })
 
-
         } catch (error) {
-            console.error(error)
-
-            let feedback = error.message
-
-            if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
-                feedback = `${feedback},please correct it`
-            else
-                feedback = 'sorry, there was an error, please try again later'
-
-            alert(feedback)
+            errorHandler(error)
         }
     }
 
+    const errorHandler = error => {
+        console.error(error)
+
+        let feedback = error.message
+
+        if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
+            feedback = `${feedback}, please correct it`
+        else if (error instanceof MatchError)
+            feedback = `${feedback}, please verify credetials`
+        else
+            feedback = 'sorry, there was an error,please try again later'
+
+        const isUsernameError = error.message.includes('username')
+
+        const isPasswordError = error.message.includes('password')
+
+        setError({ message: feedback, isUsernameError, isPasswordError })
+
+    }
     const handleRegisterClick = event => {
         event.preventDefault()
 
@@ -62,9 +62,9 @@ function Login({ onUserLoggedIn, onRegisterClick }) {
             <HTag>Login</HTag>
             <Form onSubmit={handleSubmit}>
                 <LabelInput text='Username' id="username" />
-
+                {error?.isUsernameError && <SpanError>{error.message}</SpanError>}
                 <LabelInput text='Password' type='password' id='password' />
-
+                {error?.isPasswordError && <SpanError>{error.message}</SpanError>}
                 <Button className='align-end' type="submit">Login</Button>
             </Form>
 

@@ -1,6 +1,5 @@
 import { Post } from '../data/index.js'
-import errors from './errors.js'
-import validate from './validate.js'
+import { errors, validate } from 'com'
 
 const { SystemError, MatchError } = errors
 

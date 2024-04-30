@@ -1,6 +1,5 @@
 import { User } from '../data/index.js'
-import validate from './validate.js'
-import errors from './errors.js'
+import { errors, validate } from 'com'
 
 const { SystemError, MatchError } = errors
 

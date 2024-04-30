@@ -1,52 +1,45 @@
 import logic from "../logic/index.js"
-
+import { errors } from 'com'
 import { CreatePost, Posts, Chat, Button, HTag } from "../components"
+
+const { MatchError, ContentError } = errors
 
 import { useState, useEffect } from "react"
 const posts = 0
 const chat = 1
 
 function Home({ onLogoutClick }) {
-
-
     const [user, setUser] = useState(null)
     const [createPost, setCreatePost] = useState(null)
     const [view, setView] = useState(posts)
     const [timeStamp, setTimeStamp] = useState(Date.now())
+
+
+    const errorHandler = error => {
+        console.error(error)
+
+        let feedback = error.message
+
+        if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
+            feedback = `${feedback}, please correct it`
+        else if (error instanceof MatchError)
+            feedback = `${feedback}, please try to relog again`
+        else
+            feedback = 'sorry, there was an error, please try again later'
+
+        alert(feedback)
+    }
 
     useEffect(() => {
         try {
             logic.retrieveUser()
                 .then(user => setUser(user))
                 .catch(error => {
-                    console.error(error)
-
-                    let feedback = error.message
-
-                    if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
-                        feedback = `${feedback},please correct it`
-
-                    else if (error instanceof MatchError)
-                        feedback = `${feedback},please verify credentials`
-
-                    else
-                        feedback = 'sorry, there was an error, please try again later'
-
-                    alert(feedback)
+                    errorHandler(error)
                 })
 
-
         } catch (error) {
-            console.error(error)
-
-            let feedback = error.message
-
-            if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
-                feedback = `${feedback},please correct it`
-            else
-                feedback = 'sorry, there was an error, please try again later'
-
-            alert(feedback)
+            errorHandler(error)
         }
     }, [])
 

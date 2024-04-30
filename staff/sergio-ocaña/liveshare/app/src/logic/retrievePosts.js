@@ -1,5 +1,4 @@
-import validate from "./validate"
-import errors from "./errors"
+import { errors, validate } from 'com'
 
 const { SystemError } = errors
 
@@ -16,8 +15,10 @@ function retrievePosts() {
         .then(res => {
             if (res.status === 200)
                 return res.json()
+                    .catch(error => { throw new SystemError(error.message) })
 
             return res.json()
+                .catch(error => { throw new SystemError(error.message) })
                 .then(body => {
                     const { error, message } = body
 

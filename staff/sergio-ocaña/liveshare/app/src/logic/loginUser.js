@@ -1,5 +1,4 @@
-import validate from "./validate"
-import errors from "./errors"
+import { errors, validate } from 'com'
 
 const { SystemError } = errors
 
@@ -20,6 +19,7 @@ function loginUser(username, password) {
                         sessionStorage.userId = userId
                     })
             return res.json()
+                .catch(error => { throw new SystemError(error.message) })
                 .then(body => {
 
                     const { error, message } = body

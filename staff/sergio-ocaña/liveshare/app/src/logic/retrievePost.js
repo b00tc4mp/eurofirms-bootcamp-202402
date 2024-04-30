@@ -1,5 +1,4 @@
-import validate from "./validate"
-import errors from "./errors"
+import { errors, validate } from 'com'
 
 const { SystemError } = errors
 
@@ -19,6 +18,7 @@ function retrievePost(postId) {
 
                 console.log(res)
                 return res.json()
+                    .catch(error => { throw new SystemError(error.message) })
             }
 
             return res.json(body => {
@@ -27,7 +27,7 @@ function retrievePost(postId) {
                 constructor = errors[error]
 
                 throw new constructor(message)
-            })
+            }).catch(error => { throw new SystemError(error.message) })
         })
 }
 export default retrievePost

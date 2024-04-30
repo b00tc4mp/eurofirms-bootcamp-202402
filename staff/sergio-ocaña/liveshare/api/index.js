@@ -2,9 +2,9 @@ import mongoose from 'mongoose'
 import express from 'express'
 import cors from 'cors'
 import logic from './logic/index.js'
-import errors from './logic/errors.js'
+import { errors } from 'com'
 
-const { SystemError, MatchError, ContentError, DuplicityError } = errors
+const { MatchError, ContentError, DuplicityError } = errors
 
 mongoose.connect('mongodb://localhost:27017/test')
     .then(() => {
@@ -78,7 +78,7 @@ mongoose.connect('mongodb://localhost:27017/test')
                         let status = 500
 
                         if (error instanceof MatchError)
-                            status = 401
+                            status = 404
 
                         res.status(status).json({ error: error.constructor.name, message: error.message })
                     })

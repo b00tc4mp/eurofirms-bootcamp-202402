@@ -1,8 +1,9 @@
 import LabelInput from "./LabelInput.jsx"
 import Form from "./Form.jsx"
 import Button from "./Button.jsx"
+import SpanError from "./SpanError.jsx"
 
-function EditPost({ post, textUpdated, handleUpdatedPost, handleCancel, onHandleSubmit }) {
+function EditPost({ post, textUpdated, error, handleCancel, onHandleSubmit }) {
     const handleSubmit = event => {
         event.preventDefault()
 
@@ -11,7 +12,6 @@ function EditPost({ post, textUpdated, handleUpdatedPost, handleCancel, onHandle
         const text = form.text.value
 
         onHandleSubmit(post.id, text)
-
     }
 
     const onCancelClick = () => handleCancel()
@@ -19,7 +19,7 @@ function EditPost({ post, textUpdated, handleUpdatedPost, handleCancel, onHandle
         <Form onSubmit={handleSubmit}>
 
             <LabelInput text="Text to update" id="text" defaultValue={textUpdated} />
-
+            {error?.isTextError && <SpanError>{error.message}</SpanError>}
             <Button type="submit">Update</Button>
         </Form >
 

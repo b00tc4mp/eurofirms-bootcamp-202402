@@ -3,11 +3,36 @@ import Form from "./Form.jsx"
 import Button from "./Button.jsx"
 import LabelInput from "./LabelInput.jsx"
 import HTag from "./HTags.jsx"
-import errors from "../logic/errors.js"
+import { errors } from 'com'
+import SpanError from "./SpanError.jsx"
 
 const { ContentError, MatchError } = errors
 
 function CreatePost({ onSendClick, onCancelCreateClick }) {
+    const [error, setError] = useState(null)
+
+    const errorHandler = error => {
+        console.error(error)
+
+        let feedback = error.message
+
+        if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
+            feedback = `${feedback}, please correct it`
+        else if (error instanceof MatchError)
+            feedback = `${feedback}, please try with a registered user`
+        else
+            feedback = 'sorry, there was an error, please try again later'
+
+        if (error.message.includes('userId'))
+            alert(feedback)
+
+        const isImageError = error.message.includes('image')
+
+        const isTextError = error.message.includes('text')
+
+        setError({ message: feedback, isImageError, isTextError })
+    }
+
     const handleSubmit = (event) => {
         event.preventDefault()
 
@@ -19,35 +44,10 @@ function CreatePost({ onSendClick, onCancelCreateClick }) {
         try {
             logic.createPost(image, text)
                 .then(() => onSendClick())
-                .catch(error => {
-                    console.error(error)
-
-                    let feedback = error.message
-
-                    if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
-                        feedback = `${feedback},please correct it`
-
-                    else if (error instanceof MatchError)
-                        feedback = `${feedback},please verify credentials`
-
-                    else
-                        feedback = 'sorry, there was an error, please try again later'
-
-                    alert(feedback)
-                })
-
+                .catch(error => errorHandler(error))
 
         } catch (error) {
-            console.error(error)
-
-            let feedback = error.message
-
-            if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
-                feedback = `${feedback},please correct it`
-            else
-                feedback = 'sorry, there was an error, please try again later'
-
-            alert(feedback)
+            errorHandler(error)
         }
     }
 
@@ -64,8 +64,10 @@ function CreatePost({ onSendClick, onCancelCreateClick }) {
         <Form onSubmit={handleSubmit}>
 
             <LabelInput text="Text" id="text" />
+            {error?.isTextError && <SpanError>{error.message}</SpanError>}
 
             <LabelInput text="Image" type="text" id="image" />
+            {error?.isImageError && <SpanError>{error.message}</SpanError>}
 
             <Button type="submit">Create</Button>
         </Form>

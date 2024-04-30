@@ -1,5 +1,5 @@
 import logic from '../logic'
-import errors from '../logic/errors'
+import { errors } from 'com'
 import EditPost from './EditPost'
 import AuthorButtons from './AuthorButtons'
 import HTag from './HTags'
@@ -11,9 +11,34 @@ const { MatchError, ContentError } = errors
 function Post({ post, onHandleUpdatePost, onHandleDeletePost, onHandleCancel }) {
     const [isEditing, setIsEditing] = useState(false)
     const [text, setText] = useState(post.text)
+    const [error, setError] = useState(null)
 
     const isUserAuthor = post.author.id === logic.getLoggedInUserId()
 
+    const errorHandler = error => {
+        console.error(error)
+
+        let feedback = error.message
+
+        if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError) {
+            if (error.message.includes('userId') || error.message.includes('postId'))
+                feedback = `${feedback}, please try to relog`
+            else
+                feedback = `${feedback}, please correct it`
+        }
+        else if (error instanceof MatchError)
+            feedback = `${feedback}, please try to relog`
+        else
+            feedback = 'sorry, there was an error, please try again later'
+
+        if (error.message.includes('userId') || error.message.includes('postId')) {
+            alert(feedback)
+        }
+
+        const isTextError = error.message.includes('text')
+
+        setError({ message: feedback, isTextError })
+    }
     const handleForm = (postId, text) => {
 
         try {
@@ -22,76 +47,25 @@ function Post({ post, onHandleUpdatePost, onHandleDeletePost, onHandleCancel }) 
                     setIsEditing(null)
                     onHandleUpdatePost()
                 })
-                .catch(error => {
-                    console.error(error)
-
-                    let feedback = error.message
-
-                    if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
-                        feedback = `${feedback},please correct it`
-
-                    else if (error instanceof MatchError)
-                        feedback = `${feedback},please verify credentials`
-
-                    else
-                        feedback = 'sorry, there was an error, please try again later'
-
-                    alert(feedback)
-                })
+                .catch(error => errorHandler(error))
 
         } catch (error) {
-            console.error(error)
-
-            let feedback = error.message
-
-            if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
-                feedback = `${feedback},please correct it`
-            else
-                feedback = 'sorry, there was an error, please try again later'
-
-            alert(feedback)
+            errorHandler(error)
         }
     }
-
-
 
     const handleEdit = () => {
         try {
             logic.retrievePost(post.id)
                 .then(res => {
-                    if (post.text !== res.text) setText(res.text)
-                    console.log(res)
+                    setText(res.text)
+
                     setIsEditing(true)
                 })
-                .catch(error => {
-                    console.error(error)
-
-                    let feedback = error.message
-
-                    if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
-                        feedback = `${feedback},please correct it`
-
-                    else if (error instanceof MatchError)
-                        feedback = `${feedback},please verify credentials`
-
-                    else
-                        feedback = 'sorry, there was an error, please try again later'
-
-                    alert(feedback)
-                })
-
+                .catch(error => errorHandler(error))
 
         } catch (error) {
-            console.error(error)
-
-            let feedback = error.message
-
-            if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
-                feedback = `${feedback},please correct it`
-            else
-                feedback = 'sorry, there was an error, please try again later'
-
-            alert(feedback)
+            errorHandler(error)
         }
     }
 
@@ -102,34 +76,10 @@ function Post({ post, onHandleUpdatePost, onHandleDeletePost, onHandleCancel }) 
         try {
             logic.deletePost(post.id)
                 .then(() => onHandleDeletePost())
-                .catch(error => {
-                    console.error(error)
-
-                    let feedback = error.message
-
-                    if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
-                        feedback = `${feedback},please correct it`
-
-                    else if (error instanceof MatchError)
-                        feedback = `${feedback},please verify credentials`
-
-                    else
-                        feedback = 'sorry, there was an error, please try again later'
-
-                    alert(feedback)
-                })
+                .catch(error => errorHandler(error))
 
         } catch (error) {
-            console.error(error)
-
-            let feedback = error.message
-
-            if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
-                feedback = `${feedback},please correct it`
-            else
-                feedback = 'sorry, there was an error, please try again later'
-
-            alert(feedback)
+            errorHandler(error)
         }
     }
 
@@ -142,9 +92,11 @@ function Post({ post, onHandleUpdatePost, onHandleDeletePost, onHandleCancel }) 
         <HTag level={3}>{post.author.username}</HTag>
         <img src={post.image} className="w-full" />
         {isEditing ?
-            <EditPost post={post} textUpdated={text}
+            <EditPost post={post}
+                textUpdated={text}
                 handleCancel={handleCancelClick}
                 onHandleSubmit={handleForm}
+                error={error}
             /> :
             <>
                 <p>{post.text}</p>
