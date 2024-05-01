@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { errors } from "com"
 import logic from '../logic'
 import Posts from '../components/Posts'
-import CreatePost from '../components/CreatePost'
+import CreatePost from '../components/CreatePosts'
 
 const { ContentError, MatchError } = errors
 

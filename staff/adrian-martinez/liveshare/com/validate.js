@@ -1,7 +1,7 @@
 import errors from "./errors.js"
 
 //Utilizamos el tipo de error que vayamos usar creado por nosotros
-const { ContentError } = errors;
+const { ContentError, MatchError} = errors;
 
 function validateName(name) {
 
@@ -92,22 +92,55 @@ function validatePassword(password) {
     if (!password.length) throw new ContentError('password is empty')
 }
 
-function validateUserId(userId, explain = "userId") {
+function validateId(id, explain = "id") {
 
-    if(typeof userId !== "string") throw new TypeError(explain +" is not string")
+    if(typeof id !== "string") throw new TypeError(explain +" is not string")
 
-    if(userId.length !== 24) throw new RangeError(explain +" is not string")
+    if(id.length !== 24) throw new RangeError(explain +" is not string")
 
-    if (userId.includes(' ')) throw new ContentError(explain +" has spaces")
+    if (id.includes(' ')) throw new ContentError(explain +" has spaces")
 
-    if (!userId.length) throw new ContentError(explain +" is empty")
+    if (!id.length) throw new ContentError(explain +" is empty")
 }
 
-function validateText(text) {
+function validateText(text, explain="text") {
 
-    if (typeof text !== 'string') throw new TypeError('text is not a string')
+    if (typeof text !== 'string') throw new TypeError(`${explain} text is not a string`)
 
-    if (!text.length) throw new ContentError('text is empty')
+    if (!text.length) throw new ContentError(`${explain} text is empty`)
+
+}
+
+function validateUrl(url, explain = "url"){
+
+    if (typeof url !== 'string') throw new TypeError(`${explain} is not a string`)
+
+    if (!url.length) throw new ContentError(`${explain} is empty`) 
+    
+    if (!url.startsWith('http')) throw new TypeError(`${explain} is not an http address`)
+}
+
+function validateToken(token, explain = "token"){
+
+    if(typeof token !== "string"){
+        throw new ContentError(`${explain} is not a string`)
+    }
+        
+    if(!token.length){
+        throw new ContentError(`${explain} is empty`)
+    }
+
+    const [ ,payload64, ] = token.split(".");
+    const payloadJSON = atob(payload64);
+    const payload = JSON.parse(payloadJSON);
+
+    const { exp } = payload;
+
+    //Pasamos la fecha actual a segundos
+    const TimeNow = Date.now() / 1000
+
+    //Si la fecha de expiración es menor que la actual, echamos al usuario
+    if(exp < now) throw new MatchError(`${explain} expired`);
 }
 
 const validate = {
@@ -116,8 +149,10 @@ const validate = {
     email: validateEmail,
     username: validateUsername,
     password: validatePassword,
-    userId: validateUserId,
-    text: validateText
+    id: validateId,
+    text: validateText,
+    url: validateUrl,
+    token: validateToken
 }
 
 export default validate;

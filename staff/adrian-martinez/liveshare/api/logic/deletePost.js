@@ -7,6 +7,9 @@
 //Si existe pero el usuario no es el author lanzamos un error
 //Si el author es el usuario se borra
 import { User, Post } from "../data/index.js";
+import { errors, validate } from "com";
+
+const { SystemError, MatchError } = errors;
 
 function deletePost(userId, postId ){
 

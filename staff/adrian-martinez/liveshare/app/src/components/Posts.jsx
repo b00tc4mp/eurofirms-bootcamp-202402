@@ -44,7 +44,7 @@ function Posts({ refreshStamp }){
     
     return (
         <section id="posts-section">
-            <h2 className="p-5">Posts</h2>
+            <h2 className="p-10 font-semibold text-3xl">Publicaciones recientes</h2>
 
             <div id="posts-list">
                 { posts.map(post => <Post key={ post.id } post={ post } onPostDeleted={handleDeletePost} onPostUpdate={handleUpdatePost}/>)}

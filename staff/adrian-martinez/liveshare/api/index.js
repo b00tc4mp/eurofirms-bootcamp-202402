@@ -3,6 +3,10 @@ import express from "express"
 import logic from "./logic/index.js"
 import cors from "cors"
 import { errors } from "com"
+import jwt from "jsonwebtoken"
+
+//Utilizamos el tipo de error del token y de la fecha de expiración
+const { JsonWebTokenError, TokenExpiredError } = jwt
 
 //Utilizamos los tipos de error que vayamos usar creados por nosotros
 const { ContentError, DuplicityError, MatchError} = errors;
@@ -56,7 +60,15 @@ mongoose.connect("mongodb://127.0.0.1:27017/test")
           const { username, password } = req.body
 
           logic.authenticateUser(username, password)
-              .then(userId => res.status(200).json(userId))
+              .then(userId => {
+                
+                const token = jwt.sign(
+                  { sub: userId },
+                  "las personas del bootcamp 2024 somos la hostia",
+                  { expiresIn: "30m"}
+                )
+                res.status(200).json(token);
+              })
               .catch(error =>{
                     let status = 500;
 
@@ -120,11 +132,22 @@ mongoose.connect("mongodb://127.0.0.1:27017/test")
 
           logic.createPost(userId, image, text)
               .then(() => res.status(201).send())
-              .catch(error => res.status(500).json({ error: error.constructor.name, message: error.message }))
-      } catch (error) {
-          res.status(500).json({ error: error.constructor.name, message: error.message })
-      }
-  })
+              .catch(error =>{
+                let status = 500;
+
+                if(error instanceof MatchError) status = 401;
+
+                res.status(status).json({ error: error.constructor.name, message: error.message })
+          })
+  } 
+  catch(error){
+    let status = 500;
+
+    if(error instanceof TypeError || error instanceof RangeError || error instanceof ContentError) status = 400;
+
+    res.status(status).json({ error: error.constructor.name, message: error.message })
+  }
+})
 
   server.get('/posts', (req, res) => {
       try {
@@ -134,11 +157,22 @@ mongoose.connect("mongodb://127.0.0.1:27017/test")
 
           logic.retrievePosts(userId)
               .then(posts => res.json(posts))
-              .catch(error => res.status(500).json({ error: error.constructor.name, message: error.message }))
-      } catch (error) {
-          res.status(500).json({ error: error.constructor.name, message: error.message })
-      }
-  })
+              .catch(error =>{
+                let status = 500;
+
+                if(error instanceof MatchError) status = 401;
+
+                res.status(status).json({ error: error.constructor.name, message: error.message })
+          })
+  } 
+  catch(error){
+    let status = 500;
+
+    if(error instanceof TypeError || error instanceof RangeError || error instanceof ContentError) status = 400;
+
+    res.status(status).json({ error: error.constructor.name, message: error.message })
+  }
+})
 
   server.delete('/posts/:postId', (req, res) => {
     try {
@@ -150,10 +184,21 @@ mongoose.connect("mongodb://127.0.0.1:27017/test")
 
         logic.deletePost(userId, postId)
             .then(() => res.status(204).send())
-            .catch(error => res.status(500).json({ error: error.constructor.name, message: error.message }))
-    } catch (error) {
-        res.status(500).json({ error: error.constructor.name, message: error.message })
-    }
+            .catch(error =>{
+                let status = 500;
+
+                if(error instanceof MatchError) status = 401;
+
+                res.status(status).json({ error: error.constructor.name, message: error.message })
+          })
+  } 
+  catch(error){
+    let status = 500;
+
+    if(error instanceof TypeError || error instanceof RangeError || error instanceof ContentError) status = 400;
+
+    res.status(status).json({ error: error.constructor.name, message: error.message })
+  }
 })
 
 server.patch('/posts/:postId', jsonBodyParser, (req, res) => {
@@ -168,10 +213,21 @@ server.patch('/posts/:postId', jsonBodyParser, (req, res) => {
 
         logic.updatePost(userId, postId, text)
             .then(() => res.status(204).send())
-            .catch(error => res.status(500).json({ error: error.constructor.name, message: error.message }))
-    } catch (error) {
-        res.status(500).json({ error: error.constructor.name, message: error.message })
-    }
+            .catch(error =>{
+                let status = 500;
+
+                if(error instanceof MatchError) status = 401;
+
+                res.status(status).json({ error: error.constructor.name, message: error.message })
+          })
+  } 
+  catch(error){
+    let status = 500;
+
+    if(error instanceof TypeError || error instanceof RangeError || error instanceof ContentError) status = 400;
+
+    res.status(status).json({ error: error.constructor.name, message: error.message })
+  }
 })
 
     server.listen(8080, () => console.log("API started"));
