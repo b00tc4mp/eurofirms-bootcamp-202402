@@ -21,9 +21,7 @@ function loginUser(username, password) {
           .catch((error) => {
             throw new SystemError(error.message);
           })
-          .then((userId) => {
-            sessionStorage.userId = userId;
-          });
+          .then((token) => (sessionStorage.token = token));
 
       return res
         .json()

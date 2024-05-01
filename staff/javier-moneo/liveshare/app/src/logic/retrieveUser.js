@@ -1,14 +1,16 @@
-import { errors, validate } from 'com';
+import { errors, validate, utils } from 'com';
 
 const { SystemError } = errors;
 
 function retrieveUser() {
-  validate.id(sessionStorage.userId, 'userId');
+  validate.token(sessionStorage.token);
 
-  return fetch(`http://localhost:8080/users/${sessionStorage.userId}`, {
+  const { sub: userId } = utils.extractPayload(sessionStorage.token);
+
+  return fetch(`http://localhost:8080/users/${userId}`, {
     method: 'GET',
     headers: {
-      Authorization: `Bearer ${sessionStorage.userId}`,
+      Authorization: `Bearer ${sessionStorage.token}`,
     },
   })
     .catch((error) => {
@@ -16,18 +18,25 @@ function retrieveUser() {
     })
     .then((res) => {
       if (res.status === 200)
-        return res.json().catch((error) => {
+        return res
+          .json()
+          .catch((error) => {
+            throw new SystemError(error.message);
+          })
+          .then((user) => user);
+
+      return res
+        .json()
+        .catch((error) => {
           throw new SystemError(error.message);
+        })
+        .then((body) => {
+          const { error, message } = body;
+
+          const constructor = errors[error];
+
+          throw new constructor(message);
         });
-      //.then(user => user)
-
-      return res.json().then((body) => {
-        const { error, message } = body;
-
-        const constructor = errors[error];
-
-        throw new constructor(message);
-      });
     });
 }
 

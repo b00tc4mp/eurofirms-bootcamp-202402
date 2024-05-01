@@ -1,1 +1,1 @@
-curl -H 'Authorization: Bearer 661d5398017fbdd3a49d091b' http://localhost:8080/users/661ea29c0d03b5694c934d80 -v
+curl -H "Origin: http://localhost:5173" -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NjIxNTZmNjIzZGEyMzljMDgyM2UyOGYiLCJpYXQiOjE3MTQ1NTQ4MDksImV4cCI6MTcxNDU1NjYwOX0.YoeN7P2V--DxNgFBuqBBDuc2kVHG05qzMhqnvdgANg0' http://localhost:8080/users/662156f623da239c0823e28f -v

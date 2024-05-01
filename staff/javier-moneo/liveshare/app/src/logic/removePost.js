@@ -1,15 +1,15 @@
-import { errors, validate } from 'com';
+import { validate, errors } from 'com';
 
 const { SystemError } = errors;
 
 function removePost(postId) {
+  validate.token(sessionStorage.token);
   validate.id(postId, 'postId');
-  validate.id(sessionStorage.userId);
 
   return fetch(`http://localhost:8080/posts/${postId}`, {
     method: 'DELETE',
     headers: {
-      Authorization: `Bearer ${sessionStorage.userId}`,
+      Authorization: `Bearer ${sessionStorage.token}`,
     },
   })
     .catch((error) => {

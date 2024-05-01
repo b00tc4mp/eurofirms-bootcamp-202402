@@ -1,1 +1,1 @@
-curl -X "DELETE" -H "Origin: http://localhost:5173" -H 'Authorization: Bearer 662156f623da239c0823e28f' http://localhost:8080/posts/6627c21b6da17d8ed22624a6 -v
+curl -X "DELETE" -H "Origin: http://localhost:5173" -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NjIxNTZmNjIzZGEyMzljMDgyM2UyOGYiLCJpYXQiOjE3MTQ1NTQ4MDksImV4cCI6MTcxNDU1NjYwOX0.YoeN7P2V--DxNgFBuqBBDuc2kVHG05qzMhqnvdgANg0' http://localhost:8080/posts/6632080febcf90681b823aab -v

@@ -5,7 +5,7 @@ const { SystemError, MatchError } = errors;
 
 function createPost(userId, image, text) {
   validate.id(userId, 'userId');
-  validate.text(image);
+  validate.url(image, 'image');
   validate.text(text);
 
   return User.findById(userId)

@@ -3,15 +3,15 @@ import { errors, validate } from 'com';
 const { SystemError } = errors;
 
 function createPost(image, text) {
-  validate.id(sessionStorage.userId, 'userId');
-  validate.text(image);
+  validate.token(sessionStorage.token);
+  validate.url(image, 'image');
   validate.text(text);
 
   return fetch('http://localhost:8080/posts', {
     method: 'POST',
     headers: {
-      Authorization: `Bearer ${sessionStorage.userId}`,
-      'Content-type': 'application/json',
+      Authorization: `Bearer ${sessionStorage.token}`,
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify({ image, text }),
   })

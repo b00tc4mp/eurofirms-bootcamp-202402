@@ -1,14 +1,16 @@
-import { errors, validate } from 'com';
+import { validate, errors } from 'com';
 
 const { SystemError } = errors;
 
 function modifyPost(postId, text) {
+  validate.token(sessionStorage.token);
+  validate.id(postId, 'postId');
   validate.text(text);
 
   return fetch(`http://localhost:8080/posts/${postId}`, {
     method: 'PATCH',
     headers: {
-      Authorization: `Bearer ${sessionStorage.userId}`,
+      Authorization: `Bearer ${sessionStorage.token}`,
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({ text }),
