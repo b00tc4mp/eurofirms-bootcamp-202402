@@ -1,25 +1,33 @@
 import { User, Post } from "../data/index.js"
+import { errors, validate } from 'com'
+
+const { MatchError, SystemError } = errors
 
 function updatePost(userId, postId, text) {
+    validate.id(userId, 'userId')
+    validate.id(postId, 'postId')
+    validate.text(text)
+
+
     return User.findById(userId)
-        .catch(error => { throw new Error(error.message) })
+        .catch(error => { throw new SystemError(error.message) })
         .then(user => {
             if (!user) {
-                throw new Error('user not found')
+                throw new MatchError('user not found')
             }
             return Post.findById(postId)
                 .then(post => {
                     if (!post) {
-                        throw new Error('post not found')
+                        throw new MatchError('post not found')
                     }
                     if (userId !== post.author.toString()) {
-                        throw new Error('you cant edit this post')
+                        throw new MatchError('you cant edit this post')
                     }
 
                     post.text = text
                     return post.save()
                 })
-                .catch(error => { throw new Error(error.message) })
+                .catch(error => { throw new SystemError(error.message) })
                 .then(() => { })
         })
 }

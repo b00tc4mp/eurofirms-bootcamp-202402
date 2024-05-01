@@ -1,4 +1,11 @@
+import { useState } from "react"
 import logic from "../logic"
+
+import { errors, validate } from 'com'
+
+const { ContentError, MatchError } = errors
+
+const [error, setError] = useState(null)
 
 function Login({ OnUserLoggedIn, OnRegisterClick }) {
 
@@ -14,19 +21,34 @@ function Login({ OnUserLoggedIn, OnRegisterClick }) {
             logic.loginUser(username, password)
                 .then(() => OnUserLoggedIn())
                 .catch(error => {
-                    console.error(error)
-
-                    alert(error.message)
+                    errorHandler(error)
                 })
 
 
 
         } catch (error) {
-            console.error(error)
-
-            alert(error.message)
+            errorHandler(error)
         }
     }
+
+    //Errors function
+    const errorHandler = (error) => {
+        console.error(error.message)
+        let feedback = error.message;
+        if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
+            feedback = `${feedback}, please correct it`;
+        else if (error instanceof MatchError)
+            feedback = `${feedback}, please verify credentials`;
+        else {
+            feedback = "Sorry, there was an error, please try again later";
+            alert(feedback)
+        }
+
+        const isUserNameError = error.message.includes("username");
+        const isPasswordError = error.message.includes("password");
+        setError({ message: feedback, isUserNameError, isPasswordError })
+    }
+
 
     const handleRegisterClick = event => {
         event.preventDefault()

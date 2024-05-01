@@ -1,13 +1,22 @@
+import { errors, validate, utils } from 'com'
+
+const { SystemError } = errors
+
 function retrieveUser() {
+    validate.token(sessionStorage.token)
+
+
+    const { sub: userId } = utils.extractPayload(sessionStorage.token)
+
     return fetch(`http://localhost:8080/users/${sessionStorage.userId}`,
         {
             method: 'GET',
             headers: {
-                Authorization: `Bearer ${sessionStorage.userId}`
+                Authorization: `Bearer ${sessionStorage.token}`
             }
         })
 
-        .catch(error => { throw new Error(error.message) })
+        .catch(error => { throw new SystemError(error.message) })
         .then(res => {
             if (res.status === 200) {
                 return res.json()
