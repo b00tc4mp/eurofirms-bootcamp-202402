@@ -15,8 +15,8 @@ function loginUser(username, password) {
         .then(res => {
             if (res.status === 200)
                 return res.json()
-                    .then(userId => {
-                        sessionStorage.userId = userId
+                    .then(token => {
+                        sessionStorage.token = token
                     })
             return res.json()
                 .catch(error => { throw new SystemError(error.message) })

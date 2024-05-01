@@ -1,19 +1,21 @@
-import { User, Post } from '../data/index.js'
+import { Post, User } from '../data/index.js'
 import { errors, validate } from 'com'
 
 const { SystemError, MatchError } = errors
 
-function retrievePosts(userId) {
-    validate.id(userId)
+function retrieveUserPosts(userId, targetUserId) {
+    validate.id(userId, 'userId')
+    validate.id(targetUserId, 'targetUserId')
 
     return User.findById(userId)
         .catch(error => { throw new SystemError(error.message) })
         .then(user => {
-            if (!user) throw new MatchError('user not found')
+            if (!user) throw new MatchError('userId not found')
 
-            return Post.find().sort({ date: -1 }).select('-_v').populate('author', 'username').lean()
+            return Post.find({ author: targetUserId }).select('-__v').sort({ date: -1 }).populate('author', 'username').lean()
                 .catch(error => { throw new SystemError(error.message) })
                 .then(posts => {
+                    if (posts.length === 0) throw new MatchError('Upload post before come here')
                     posts.forEach(post => {
                         if (post._id) {
                             post.id = post._id.toString()
@@ -31,5 +33,4 @@ function retrievePosts(userId) {
                 })
         })
 }
-
-export default retrievePosts
+export default retrieveUserPosts

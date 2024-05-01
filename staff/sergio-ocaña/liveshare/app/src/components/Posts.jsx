@@ -6,7 +6,7 @@ import { useState, useEffect } from "react"
 
 const { MatchError, ContentError } = errors
 
-function Posts({ timeStamp }) {
+function Posts({ timeStamp, targetUserId }) {
     const [posts, setPosts] = useState(null)
 
     const errorHandler = error => {
@@ -26,9 +26,13 @@ function Posts({ timeStamp }) {
 
     const refreshPosts = () => {
         try {
-            logic.retrievePosts()
-                .then(posts => setPosts(posts))
-                .catch(error => errorHandler(error))
+            !targetUserId ?
+                logic.retrievePosts()
+                    .then(posts => setPosts(posts))
+                    .catch(error => errorHandler(error)) :
+                logic.retrieveUserIdPosts(targetUserId)
+                    .then(posts => setPosts(posts))
+                    .catch(error => errorHandler(error))
 
         } catch (error) {
             errorHandler(error)

@@ -3,15 +3,13 @@ import { errors, validate } from 'com'
 const { SystemError } = errors
 
 function updatePost(postId, text) {
-    const userId = sessionStorage.userId
-
-    validate.userId(userId)
-    validate.postId(postId)
+    validate.token(sessionStorage.token)
+    validate.id(postId, 'postId')
     validate.text(text)
 
     return fetch(`http://localhost:8080/posts/${postId}`, {
         method: 'PATCH',
-        headers: { 'Content-Type': 'application/json', authorization: `Bearer ${userId}` },
+        headers: { 'Content-Type': 'application/json', authorization: `Bearer ${sessionStorage.token}` },
         body: JSON.stringify({ text: text })
     })
 

@@ -1,6 +1,6 @@
 import errors from "./errors.js"
 
-const { ContentError } = errors
+const { ContentError, MatchError } = errors
 
 function validateName(name) {
     if (typeof name !== 'string') throw new TypeError('name is not a string')
@@ -85,27 +85,15 @@ function validatePassword(password) {
     if (!password.length) throw new ContentError('password is empty')
 }
 
-function validateUserId(userId, explain = 'userId') {
-    if (typeof userId !== 'string') throw new TypeError(`${explain} is not a string`)
+function validateId(id, explain = 'userId') {
+    if (typeof id !== 'string') throw new TypeError(`${explain} is not a string`)
 
-    if (userId.includes(' ')) throw new ContentError(`${explain} has spaces`)
+    if (id.includes(' ')) throw new ContentError(`${explain} has spaces`)
 
-    if (!userId.length) throw new ContentError(`${explain} is empty`)
+    if (!id.length) throw new ContentError(`${explain} is empty`)
 
-    if (userId.length !== 24) throw new RangeError(`${explain}has not valid length`)
+    if (id.length !== 24) throw new RangeError(`${explain}has not valid length`)
 }
-
-
-function validatePostId(postId) {
-    if (typeof postId !== 'string') throw new TypeError('postId is not a string')
-
-    if (postId.includes(' ')) throw new ContentError('postId has spaces')
-
-    if (!postId.length) throw new ContentError('postId is empty')
-
-    if (postId.length !== 24) throw new RangeError('postId has not valid length')
-}
-
 
 function validateText(text) {
     if (typeof text !== 'string') throw new TypeError('text is not a string')
@@ -119,6 +107,22 @@ function validateImage(image) {
 
     if (!image.startsWith('http')) throw new ContentError('image is not a url')
 }
+function validateToken(token, explain = 'token') {
+    if (typeof token !== 'string') throw new TypeError(`${explain} is not a string`)
+
+    if (!token.length) throw new ContentError(`${explain} is empty`)
+
+    const [, payload64,] = token.split('.')
+    const payloadJSON = atob(payload64)
+    const payload = JSON.parse(payloadJSON)
+
+    const { exp } = payload
+
+    const now = Date.now() / 1000
+
+    if (exp < now) throw new MatchError(`${explain} expired`)
+
+}
 
 const validate = {
     name: validateName,
@@ -126,9 +130,9 @@ const validate = {
     birthdate: validateBirthdate,
     password: validatePassword,
     email: validateEmail,
-    userId: validateUserId,
-    postId: validatePostId,
+    id: validateId,
     text: validateText,
-    image: validateImage
+    image: validateImage,
+    token: validateToken
 }
 export default validate

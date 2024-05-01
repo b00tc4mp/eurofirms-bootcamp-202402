@@ -4,8 +4,8 @@ import { errors, validate } from 'com'
 const { SystemError, MatchError } = errors
 
 function updatePost(userId, postId, text) {
-    validate.userId(userId)
-    validate.postId(postId)
+    validate.id(userId)
+    validate.id(postId, 'posId')
     validate.text(text)
 
     return Post.findById(postId)

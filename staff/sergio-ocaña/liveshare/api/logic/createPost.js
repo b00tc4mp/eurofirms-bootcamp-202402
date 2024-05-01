@@ -4,7 +4,7 @@ import { errors, validate } from 'com'
 const { SystemError, MatchError } = errors
 
 function createPost(userId, image, text) {
-    validate.userId(userId)
+    validate.id(userId)
     validate.image(image)
     validate.text(text)
 

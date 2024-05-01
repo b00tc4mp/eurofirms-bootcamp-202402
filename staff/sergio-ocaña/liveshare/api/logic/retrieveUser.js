@@ -4,8 +4,8 @@ import { errors, validate } from 'com'
 const { SystemError, MatchError } = errors
 
 function retrieveUser(userId, targetUserId) {
-    validate.userId(userId)
-    validate.userId(targetUserId)
+    validate.id(userId)
+    validate.id(targetUserId, 'targetUserId')
 
     return User.findById(userId)
         .catch(error => { throw new SystemError(error.message) })

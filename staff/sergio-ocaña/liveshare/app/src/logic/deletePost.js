@@ -3,14 +3,12 @@ import { errors, validate } from 'com'
 const { SystemError } = errors
 
 function deletePost(postId) {
-    const userId = sessionStorage.userId
-
-    validate.userId(userId)
-    validate.postId(postId)
+    validate.token(sessionStorage.token)
+    validate.id(postId, 'postId')
 
     return fetch(`http://localhost:8080/posts/${postId}`, {
         method: 'DELETE',
-        headers: { authorization: `Bearer ${userId}` }
+        headers: { authorization: `Bearer ${sessionStorage.token}` }
     })
         .catch(error => { throw new SystemError(error.message) })
         .then(res => {

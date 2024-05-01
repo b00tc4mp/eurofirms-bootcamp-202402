@@ -3,14 +3,12 @@ import { errors, validate } from 'com'
 const { SystemError } = errors
 
 function retrievePost(postId) {
-    const userId = sessionStorage.userId
-
-    validate.userId(userId)
-    validate.postId(postId)
+    validate.token(sessionStorage.token)
+    validate.id(postId, 'postId')
 
     return fetch(`http://localhost:8080/post/${postId}`, {
         method: 'GET',
-        headers: { 'Authorization': `Bearer ${userId}` }
+        headers: { 'Authorization': `Bearer ${sessionStorage.token}` }
     })
         .catch(error => { throw new SystemError(error) })
         .then(res => {
