@@ -5,7 +5,6 @@ import { CreatePost, Posts, Chat, Button, HTag } from "../components"
 const { MatchError, ContentError } = errors
 
 import { useState, useEffect } from "react"
-import getLoggedInUserId from "../logic/getLoggedInUserId.js"
 
 const posts = 0
 const chat = 1

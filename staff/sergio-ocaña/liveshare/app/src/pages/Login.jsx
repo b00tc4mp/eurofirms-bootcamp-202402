@@ -1,9 +1,5 @@
 import logic from "../logic/index.js"
-import LabelInput from "../components/LabelInput.jsx"
-import HTag from '../components/HTags.jsx'
-import Form from "../components/Form.jsx"
-import Button from "../components/Button.jsx"
-import SpanError from "../components/SpanError.jsx"
+import { LabelInput, HTag, Form, Button, SpanError } from '../components'
 import { useState } from "react"
 
 import { errors } from 'com'

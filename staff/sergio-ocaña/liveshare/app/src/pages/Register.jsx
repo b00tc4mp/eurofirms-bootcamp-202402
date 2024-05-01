@@ -1,11 +1,8 @@
 import logic from '../logic/index.js'
-import LabelInput from '../components/LabelInput.jsx'
-import Form from '../components/Form.jsx'
-import HTag from '../components/HTags.jsx'
-import Button from '../components/Button.jsx'
+import { LabelInput, Form, HTag, Button, SpanError } from '../components'
 import { errors } from 'com'
 import { useState } from 'react'
-import SpanError from '../components/SpanError.jsx'
+
 
 const { ContentError, DuplicityError } = errors
 
