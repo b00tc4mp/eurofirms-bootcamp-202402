@@ -3,13 +3,13 @@ import { validate, errors } from 'com'
 const { SystemError } = errors
 
 function createPost(image, text) {
-    validate.image(image)
+    validate.token(sessionStorage.token)
+    validate.url(image, 'image')
     validate.text(text)
-    validate.id(sessionStorage.userId, 'user id')
 
     return fetch('http://localhost:8080/posts', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'authorization': `Bearer ${sessionStorage.userId}` },
+        headers: { 'Content-Type': 'application/json', 'authorization': `Bearer ${sessionStorage.token}` },
         body: JSON.stringify({ image, text })
     })
         .then(res => {

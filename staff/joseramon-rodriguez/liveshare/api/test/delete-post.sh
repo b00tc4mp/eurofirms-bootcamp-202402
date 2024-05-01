@@ -1,1 +1,1 @@
- curl -X DELETE -H 'authorization:bearer 661cf59cfc7f631ce40a4c94' http://localhost:8080/posts/661ee97874c7bbcdf246f76e -v
+ curl -X DELETE -H 'authorization:bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NjIxNmI1MjVmOGRjOTJiYmUyZDEzYzYiLCJpYXQiOjE3MTQ1NzAxNTEsImV4cCI6MTcxNDU3MTk1MX0.SUdfLnPOjzS1rXzfnfFNrUvaIzBKcUPB409wmfgVOtw' http://localhost:8080/posts/6632447d6a4f2e410805c6dd -v
