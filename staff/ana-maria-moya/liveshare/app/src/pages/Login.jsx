@@ -1,5 +1,5 @@
 import logic from "../logic"
-import errors from '../logic/errors'
+import {errors} from 'com'
 
 const { ContentError, MatchError } = errors
 
@@ -38,7 +38,7 @@ function Login({onUserLoggedIn, onRegisterClick}) {
             if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
                 feedback = `${feedback}, please correct it`
             else
-                feedback = 'sorry, there was an error, please try again later
+                feedback = 'sorry, there was an error, please try again later'
 
             alert(feedback)
         }

@@ -1,5 +1,5 @@
 import logic from '../logic'
-import errors from '../logic/errors'
+import {errors} from 'com'
 
 const { ContentError, DuplicityError} = errors
 function Register({onUserRegistered, onLoginClick}) {

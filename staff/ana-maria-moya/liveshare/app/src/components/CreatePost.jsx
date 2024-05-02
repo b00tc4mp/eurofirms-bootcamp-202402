@@ -1,4 +1,5 @@
 import logic from '../logic'
+import {errors} from 'com'
 
 function CreatePost({ onCancelClick, onPostCreated}) {
     const handleCancelClick = () => onCancelClick()

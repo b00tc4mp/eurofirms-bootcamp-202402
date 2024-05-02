@@ -1,5 +1,5 @@
 import { User } from '../data/index.js'
-import validate from './errors.js'
+import {errors, validate} from 'com'
 
 const { SystemError, DuplicityError} = errors
 

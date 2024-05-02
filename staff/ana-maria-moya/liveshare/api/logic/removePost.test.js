@@ -1,6 +1,7 @@
 import mongoose from 'mongoose'
 import removePost from './removePost.js'
 
+
 mongoose.connect('mongodb://localhost:27017/test')
     .then(() => {
         try {
