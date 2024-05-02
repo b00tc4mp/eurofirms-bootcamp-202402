@@ -7,7 +7,7 @@ function updatePost(postId, text) {
     validate.id(postId, 'post id')
     validate.text(text)
 
-    return fetch(`http://localhost:8080/posts/${postId}`, {
+    return fetch(`${import.meta.env.VITE_API_URL}/posts/${postId}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json', 'authorization': `bearer ${sessionStorage.token}` },
         body: JSON.stringify({ text })

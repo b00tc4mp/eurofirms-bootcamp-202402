@@ -7,7 +7,7 @@ function createPost(author, text, image) {
     // TODO input validations
     validate.id(author, 'user id')
     validate.text(text)
-    validate.image(image)
+    validate.url(image, 'image')
 
     return User.findById(author)
         .catch(error => { throw new SystemError(error.message) })

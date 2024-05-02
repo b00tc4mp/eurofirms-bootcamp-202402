@@ -5,9 +5,9 @@ const { SystemError } = errors
 function retrievePost(postId) {
     validate.id(postId, 'post id')
 
-    return fetch(`http://localhost:8080/post/${postId}`, {
+    return fetch(`${import.meta.env.VITE_API_URL}/post/${postId}`, {
         method: 'GET',
-        headers: { 'authorization': 'bearer 66216b525f8dc92bbe2d13c6' },
+        headers: { 'authorization': `bearer ${sessionStorage.token}` },
     })
         .catch(error => { throw new SystemError(error) })
         .then(res => {
