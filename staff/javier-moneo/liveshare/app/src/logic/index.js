@@ -7,6 +7,7 @@ import createPost from './createPost';
 import retrievePosts from './retrievePosts';
 import removePost from './removePost';
 import modifyPost from './modifyPost';
+import isUserLoggedIn from './isUserLoggedIn';
 
 const logic = {
   registerUser,
@@ -14,10 +15,11 @@ const logic = {
   retrieveUser,
   logoutUser,
   getLoggedInUserId,
+  isUserLoggedIn,
   createPost,
   retrievePosts,
   removePost,
-  modifyPost
+  modifyPost,
 };
 
 export default logic;
