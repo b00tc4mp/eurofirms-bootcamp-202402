@@ -2,15 +2,18 @@ import { validate, errors } from 'com'
 
 const { SystemError } = errors
 
-function removePost(postId) {
+function modifyPost(postId, text) {
     validate.token(sessionStorage.token)
     validate.id(postId, 'postId')
+    validate.text(text)
 
-    return fetch(`${import.meta.env.VITE_API_URL}/posts/${postId}`, {
-        method: 'DELETE',
+    return fetch(`http://localhost:8080/posts/${postId}`, {
+        method: 'PATCH',
         headers: {
-            Authorization: `Bearer ${sessionStorage.token}`
-        }
+            Authorization: `Bearer ${sessionStorage.token}`,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ text })
     })
         .catch(error => { throw new SystemError(error.message) })
         .then(res => {
@@ -29,4 +32,4 @@ function removePost(postId) {
         })
 }
 
-export default removePost
+export default modifyPost

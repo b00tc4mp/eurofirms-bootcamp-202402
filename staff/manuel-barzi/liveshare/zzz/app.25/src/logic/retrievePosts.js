@@ -1,24 +1,22 @@
-import { errors, validate, utils } from 'com'
+import { validate, errors } from 'com'
 
 const { SystemError } = errors
 
-function retrieveUser() {
+function retrievePosts() {
     validate.token(sessionStorage.token)
 
-    const { sub: userId } = utils.extractPayload(sessionStorage.token)
-
-    return fetch(`${import.meta.env.VITE_API_URL}/users/${userId}`, {
+    return fetch('http://localhost:8080/posts', {
         method: 'GET',
         headers: {
             Authorization: `Bearer ${sessionStorage.token}`
         }
     })
-        .catch(error => { throw new SystemError(error.message) })
+        .catch(error => { throw new Error(error.message) })
         .then(res => {
             if (res.status === 200)
                 return res.json()
                     .catch(error => { throw new SystemError(error.message) })
-                    .then(user => user)
+                    .then(posts => posts)
 
             return res.json()
                 .catch(error => { throw new SystemError(error.message) })
@@ -32,4 +30,4 @@ function retrieveUser() {
         })
 }
 
-export default retrieveUser
+export default retrievePosts

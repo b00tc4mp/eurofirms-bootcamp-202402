@@ -1,24 +1,21 @@
-import { errors, validate, utils } from 'com'
+import { validate, errors } from 'com'
 
 const { SystemError } = errors
 
-function retrieveUser() {
+function removePost(postId) {
     validate.token(sessionStorage.token)
+    validate.id(postId, 'postId')
 
-    const { sub: userId } = utils.extractPayload(sessionStorage.token)
-
-    return fetch(`${import.meta.env.VITE_API_URL}/users/${userId}`, {
-        method: 'GET',
+    return fetch(`http://localhost:8080/posts/${postId}`, {
+        method: 'DELETE',
         headers: {
             Authorization: `Bearer ${sessionStorage.token}`
         }
     })
         .catch(error => { throw new SystemError(error.message) })
         .then(res => {
-            if (res.status === 200)
-                return res.json()
-                    .catch(error => { throw new SystemError(error.message) })
-                    .then(user => user)
+            if (res.status === 204)
+                return
 
             return res.json()
                 .catch(error => { throw new SystemError(error.message) })
@@ -32,4 +29,4 @@ function retrieveUser() {
         })
 }
 
-export default retrieveUser
+export default removePost
