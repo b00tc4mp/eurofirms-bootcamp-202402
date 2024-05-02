@@ -7,7 +7,7 @@ function retrieveUser() {
 
   const { sub: userId } = utils.extractPayload(sessionStorage.token);
 
-  return fetch(`http://localhost:8080/users/${userId}`, {
+  return fetch(`${import.meta.env.VITE_API_URL}/users/${userId}`, {
     method: 'GET',
     headers: {
       Authorization: `Bearer ${sessionStorage.token}`,

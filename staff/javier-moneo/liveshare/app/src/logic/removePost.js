@@ -6,7 +6,7 @@ function removePost(postId) {
   validate.token(sessionStorage.token);
   validate.id(postId, 'postId');
 
-  return fetch(`http://localhost:8080/posts/${postId}`, {
+  return fetch(`${import.meta.env.VITE_API_URL}/posts/${postId}`, {
     method: 'DELETE',
     headers: {
       Authorization: `Bearer ${sessionStorage.token}`,
