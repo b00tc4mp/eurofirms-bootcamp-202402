@@ -4,8 +4,12 @@ import { errors } from 'com';
 
 const { ContentError, TypeError, RangeError, MatchError } = errors;
 
-function Post({ post, onPostRemoved, onPostModified }) {
+function Post({ post, onPostRemoved, onPostModified, onProfileClick }) {
   const [modify, setModify] = useState(false);
+
+  const handleProfileClick = () => {
+    onProfileClick(post.author.id);
+  };
 
   const handleRemovePost = () => {
     try {
@@ -102,7 +106,9 @@ function Post({ post, onPostRemoved, onPostModified }) {
 
   return (
     <article className="w-full">
-      <h3 className="font-bold">{post.author.username}</h3>
+      <h3 className="font-bold" onClick={handleProfileClick}>
+        {post.author.username}
+      </h3>
       <img src={post.image} className="w-full" />
       {!modify && <p>{post.text}</p>}
       {modify && (

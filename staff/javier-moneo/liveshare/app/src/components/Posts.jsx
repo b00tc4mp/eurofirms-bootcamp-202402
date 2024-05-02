@@ -1,14 +1,18 @@
 import { useState, useEffect } from 'react';
 import Post from './Post';
 import logic from '../logic';
-import { errors } from 'com'
+import { errors } from 'com';
 
 const { ContentError, TypeError, RangeError, MatchError } = errors;
 
-function Posts({ refreshStamp }) {
+function Posts({ refreshStamp, onProfileClick }) {
   console.log('refreshStamp', refreshStamp);
 
   const [posts, setPosts] = useState([]);
+
+  const handleProfileClick = (userTargetId) => {
+    onProfileClick(userTargetId);
+  };
 
   const refreshPosts = () => {
     try {
@@ -67,6 +71,7 @@ function Posts({ refreshStamp }) {
           post={post}
           onPostRemoved={handlePostRemoved}
           onPostModified={handlePostUpdated}
+          onProfileClick={() => handleProfileClick(post.author.id)}
         />
       ))}
     </section>

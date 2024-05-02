@@ -250,6 +250,55 @@ mongoose
       }
     });
 
+    server.get('/posts/:targetUserId', (req, res) => {
+      try {
+        const { authorization } = req.headers;
+
+        const token = authorization.slice(7);
+
+        const { sub: userId } = jwt.verify(
+          token,
+          'las personas del bootcamp 2024 somos la hostia'
+        );
+
+        const { targetUserId } = req.params;
+
+        logic
+          .retrievePostsFromUser(userId, targetUserId)
+          .then((posts) => res.json(posts))
+          .catch((error) => {
+            let status = 500;
+
+            if (error instanceof MatchError) status = 404;
+
+            res
+              .status(status)
+              .json({ error: error.constructor.name, message: error.message });
+          });
+      } catch (error) {
+        let status = 500;
+
+        if (
+          error instanceof TypeError ||
+          error instanceof RangeError ||
+          error instanceof ContentError
+        )
+          status = 400;
+        else if (
+          error instanceof JsonWebTokenError ||
+          error instanceof TokenExpiredError
+        ) {
+          status = 401;
+
+          error = new MatchError(error.message);
+        }
+
+        res
+          .status(status)
+          .json({ error: error.constructor.name, message: error.message });
+      }
+    });
+
     server.delete('/posts/:postId', (req, res) => {
       try {
         const { authorization } = req.headers;

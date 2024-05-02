@@ -3,14 +3,22 @@ import logic from '../logic';
 import Posts from '../components/Posts';
 import CreatePost from '../components/CreatePost';
 import { errors } from 'com';
+import Profile from './Profile';
 
 const { ContentError, TypeError, RangeError, MatchError, DuplicityError } =
   errors;
 
 function Home({ onUserLoggedOut }) {
-  const [view, setView] = useState(null);
+  const [createPostView, setCreatePostView] = useState(null);
+  const [view, setView] = useState('posts');
+  const [targetUserId, setTargetUserId] = useState(null);
   const [user, setUser] = useState(null);
   const [refreshStamp, setRefreshStamp] = useState(null);
+
+  const handleProfileClick = (targetUserId) => {
+    setTargetUserId(targetUserId);
+    setView('profile');
+  };
 
   useEffect(() => {
     try {
@@ -57,12 +65,12 @@ function Home({ onUserLoggedOut }) {
     onUserLoggedOut();
   };
 
-  const handleCreatePostClick = () => setView('create-post');
+  const handleCreatePostClick = () => setCreatePostView('create-post');
 
-  const handleCreatePostCancelClick = () => setView(null);
+  const handleCreatePostCancelClick = () => setCreatePostView(null);
 
   const handlePostCreated = () => {
-    setView(null);
+    setCreatePostView(null);
     setRefreshStamp(Date.now());
   };
 
@@ -80,9 +88,15 @@ function Home({ onUserLoggedOut }) {
       </header>
 
       <main className="main">
-        <Posts refreshStamp={refreshStamp} />
+        {view === 'posts' && (
+          <Posts
+            refreshStamp={refreshStamp}
+            onProfileClick={(targetUserId) => handleProfileClick(targetUserId)}
+          />
+        )}
+        {view === 'profile' && <Profile targetUserId={targetUserId} />}
 
-        {view === 'create-post' && (
+        {createPostView === 'create-post' && (
           <CreatePost
             onCancelClick={handleCreatePostCancelClick}
             onPostCreated={handlePostCreated}
