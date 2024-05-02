@@ -1,3 +1,7 @@
+import dotenv from 'dotenv'
+
+dotenv. confing()
+
 import mongoose from 'mongoose'
 import express from 'express'
 import logic from './logic/index.js'
@@ -8,9 +12,11 @@ import { errors } from 'com'
 const { JsonWebTokenError, TokenExpiredError } = jwt
 const { ContentError, DuplicityError, MatchError } = errors
 
-mongoose.connect('mongodb://localhost:27017/test')
+const { PORT, MONGO_URL, JWT_SECRET } = process.env
+
+mongoose.connect(MONGO_URL)
     .then(() => {
-        console.log('DB connected')
+        console.log('DB connected at ${MONGO_URL}')
 
         const server = express()
 
@@ -19,7 +25,7 @@ mongoose.connect('mongodb://localhost:27017/test')
         const jsonBodyParser = express.json()
 
         server.use(cors())
-        // TODO refine http response status for each route
+        
         //registerUser
 
         server.post('/users', jsonBodyParser, (req, res) => {
@@ -55,7 +61,8 @@ mongoose.connect('mongodb://localhost:27017/test')
 
                 logic.authenticateUser(username, password)
                     .then(userId => {
-                        const token = jwt.sign({ sub: userId }, 'el bootcamp 2024 es la hostia', { expiresIn: '30m' })
+                        const token = jwt.sign({ sub: userId }, JWT_SECRET, { expiresIn: '30m' })
+
 
                         res.status(200).json(token)
                     })
@@ -85,7 +92,7 @@ mongoose.connect('mongodb://localhost:27017/test')
 
                 const token = authorization.slice(7)
 
-                const { sub: userId } = jwt.verify(token, 'el bootcamp 2024 es la hostia')
+                const { sub: userId } = jwt.verify(token, JWT_SECRET)
 
                 const { targetUserId } = req.params
 
@@ -123,7 +130,8 @@ mongoose.connect('mongodb://localhost:27017/test')
 
                 const token = authorization.slice(7)
 
-                const { sub: userId } = jwt.verify(token, 'el bootcamp 2024 es la hostia')
+                const { sub: userId } = jwt.verify(token, JWT_SECRET)
+
 
                 const { image, text } = req.body
 
@@ -158,7 +166,8 @@ mongoose.connect('mongodb://localhost:27017/test')
 
                 const token = authorization.slice(7)
 
-                const { sub: userId } = jwt.verify(token, 'el bootcamp 2024 es la hostia')
+                const { sub: userId } = jwt.verify(token, JWT_SECRET)
+
 
                 logic.retrievePosts(userId)
                     .then(posts => res.json(posts))
@@ -191,7 +200,8 @@ mongoose.connect('mongodb://localhost:27017/test')
 
                 const token = authorization.slice(7)
 
-                const { sub: userId } = jwt.verify(token, 'el bootcamp 2024 es la hostia')
+                const { sub: userId } = jwt.verify(token, JWT_SECRET)
+
 
                 const { postId } = req.params
 
@@ -226,7 +236,8 @@ mongoose.connect('mongodb://localhost:27017/test')
 
                 const token = authorization.slice(7)
 
-                const { sub: userId } = jwt.verify(token, 'el bootcamp 2024 es la hostia')
+                const { sub: userId } = jwt.verify(token, JWT_SECRET)
+
 
                 const { postId } = req.params
 
@@ -257,6 +268,6 @@ mongoose.connect('mongodb://localhost:27017/test')
             }
         })
 
-        server.listen(8080, () => console.log('API started'))
+        server.listen(PORT, () => console.log('API started on port ${PORT}'))
     })
     .catch(error => console.error(error))

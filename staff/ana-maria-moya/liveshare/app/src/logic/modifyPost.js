@@ -1,6 +1,6 @@
 import {errors, validate} from 'com'
 function modifyPost(postId, text) {
-    return fetch(`http://localhost:8080/posts/${postId}`, {
+    return fetch(`${import.meta.env.VITE_API_URL}/posts`, {
         method: 'PATCH',
         headers: {
             Authorization: `Bearer ${sessionStorage.token}`,
