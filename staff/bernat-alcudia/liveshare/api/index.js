@@ -1,3 +1,7 @@
+import dotenv from 'dotenv'
+
+dotenv.config()
+
 import mongoose from 'mongoose'
 import express from 'express'
 import cors from 'cors'
@@ -8,8 +12,10 @@ import { errors, validate } from 'com'
 
 const { JsonWebTokenError, TokenExpiredError } = jwt
 const { ContentError, DuplicityError, MatchError } = errors
+const { PORT, MONGO_URL, JWT_SECRET } = process.env
 
-mongoose.connect('mongodb://localhost:27017/test')
+
+mongoose.connect(MONGO_URL)
     .then(() => {
 
         const server = express()
@@ -47,7 +53,7 @@ mongoose.connect('mongodb://localhost:27017/test')
             try {
                 const user = req.body
                 logic.authenticateUser(username, password)
-                    .then((userId) => { const token = jwt.sign({ sub: userId }, 'las personas del bootcamp 2024 somos la hostia', { expiresIn: '30m' }) })
+                    .then((userId) => { const token = jwt.sign({ sub: userId }, JWT_SECRET, { expiresIn: '30m' }) })
                     .catch(error => {
                         let status = 500
 
@@ -70,7 +76,7 @@ mongoose.connect('mongodb://localhost:27017/test')
             try {
                 const { authorization } = req.headers
                 const token = authorization.slice(7)
-                const { sub: userId } = jwt.verify(token, 'las personas del bootcamp somos la hostia')
+                const { sub: userId } = jwt.verify(token, JWT_SECRET)
                 const { targetUserId } = req.params
 
                 logic.retrieveUser(userId, targetUserId)
@@ -145,7 +151,7 @@ mongoose.connect('mongodb://localhost:27017/test')
 
                 const token = authorization.slice(7)
 
-                const { sub: userId } = jwt.verify(token, 'las personas del bootcamp 2024 somos la hostia')
+                const { sub: userId } = jwt.verify(token, JWT_SECRET)
 
                 const { postId } = req.params
 
@@ -214,7 +220,7 @@ mongoose.connect('mongodb://localhost:27017/test')
                 const { authorization } = req.headers
                 const token = authorization.slice(7)
 
-                const { sub: userId } = jwt.verify(token, 'las personas del bootcamp somos la hostia')
+                const { sub: userId } = jwt.verify(token, JWT_SECRET)
 
                 const { postId } = req.params
                 const { text } = req.body
@@ -247,7 +253,7 @@ mongoose.connect('mongodb://localhost:27017/test')
             }
         })
 
-        server.listen(8080, () => console.log('Api started'))
+        server.listen(PORT, () => console.log(`Api started on port ${PORT}`))
     })
     .catch(error => console.error(error))
 
