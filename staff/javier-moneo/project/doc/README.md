@@ -70,5 +70,116 @@ BanBoardUsers:
 - Api (server)
 - App (client)
 
-### Data Model
+## Data Model
+
+### Model of predefined database
+
+Edition
+- id (string, required)
+- alias (string, required)
+- name (string, required)
+- languageNative (string, required)
+- codeLanguage (string, required)
+- countryNameNative (string, required)
+- codeCountry (string, required)
+- isActive (boolean, required)
+
+Country
+- id (string, required)
+- code (string, required)
+- nativeName (string, required)
+
+Language
+- id (string, required)
+- code (string, required)
+- languageNative (string, required)
+
+MenuSearchTag
+- id (string, required)
+- name (string, required)
+- editionAlias (string, required)
+- searchType (string, required)
+- index (number, required)
+
+MenuSearchType
+- id (string, required)
+- searcherName (string, required)
+- editionAlias (string, required)
+- index (number, required)
+- menuName (string, required)
+- searchType (string, required)
+
+SearchType
+- id (string, required)
+- name (string, required)
+
+Searcher
+- id (string, required)
+- alias (string, required)
+- displayName (string, required)
+- searcherType (string, required)
+- isActive (boolean, required)
+- index (number, required)
+
+SearcherUrls
+- id (string, required)
+- searcherAlias (string, required)
+- editionAlias (string, required)
+- searcherType (string, required)
+- searchType (string, required)
+- url (string, required)
+- urlExample (string, required)
+
+Tag
+- id (string, required)
+- name (string, required)
+- editionAlias (string, required)
+- description (string, required)
+
+TagAgregatorUrl
+- id (string, required)
+- tagName (string, required)
+- editionAlias (string, required)
+- searchType (string, required)
+- service (string, required)
+- url (string, required)
+
+## Model new on database
+
+User
+- id (string, required)
+- username (string, required)
+- email (string, required, unique)
+- password (string, required)
+- birthdate (date, required)
+- edition (objectid, required)
+
+Role (user, moderator, admin)
+- id (string, required)
+- name (string, required)
+
+
+Search
+- id (string, required)
+- url (string, required)
+- query (string, required)
+- user (objectid, required)
+- edition (objectid, required)
+- tag (objectid, required)
+- searcher (objectid, required) "google", "bing", "youtube", "x", "giphy",
+- searchType (objectid, required) "web", "image", "video", "news", "maps", "socialGlobal", "person", "image/video", "gifs"
+- isBanned (boolean)
+- dateBanned (date)
+- ownerBan (objectid)
+- createdAt (Date, by default is added in all models)
+
+SearchList
+- id (string, required)
+- search (objectid, required)
+- listType (string, required) "best", "popular", "top", "rising", "new(goes into search, not necesary here)"
+- edition (objectid, required)
+- tag (objectid, required)
+- searcher (objectid, required) "google", "bing", "youtube", "x", "giphy",
+- searchType (objectid, required) "web", "image", "video", "news", "maps", "socialGlobal", "person", "image/video", "gifs"
+- dateCreationList (Date, required)
 
