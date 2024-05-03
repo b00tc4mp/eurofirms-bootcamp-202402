@@ -1,13 +1,17 @@
+import { errors, validate } from "com"
+
+const { SystemError } = errors;
+
 function createPost(image, text){
-    // validateText(image)
-    // validateText(text)
+    
+    validate.token(sessionStorage.token)
+    validate.url(image, "image")
+    validate.text(text)
 
-    // TODO use sessionStorage.userId
-
-    return fetch('http://localhost:8080/posts', {
+    return fetch(`${import.meta.env.VITE_API_URL}/posts`, {
         method: 'POST',
         headers: {
-            Authorization: `Bearer ${sessionStorage.userId}`,
+            Authorization: `Bearer ${sessionStorage.token}`,
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({ image, text })
@@ -18,10 +22,11 @@ function createPost(image, text){
                 return
 
             return res.json()
+                .catch(error => { throw new SystemError(error.message) })
                 .then(body => {
                     const { error, message } = body
 
-                    const constructor = window[error]
+                    const constructor = errors[error]
 
                     throw new constructor(message)
                 })

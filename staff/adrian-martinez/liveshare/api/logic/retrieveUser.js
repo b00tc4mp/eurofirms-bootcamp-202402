@@ -5,8 +5,8 @@ const { MatchError, SystemError } = errors;
 
 function retrieveUser(userId, targetUserId) {
     
-    validate.userId(userId, "userId");
-    validate.userId(targetUserId, "targetUserId");
+    validate.id(userId, "userId");
+    validate.id(targetUserId, "targetUserId");
 
     return User.findById(userId)
         .catch(error => { throw new SystemError(error.message) })

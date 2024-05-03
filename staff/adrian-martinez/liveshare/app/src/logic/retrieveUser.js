@@ -1,15 +1,17 @@
-import { errors, validate } from "com"
+import { errors, validate, utils } from "com"
 
 const { SystemError } = errors;
 
 function retrieveUser() {
 
-    validate.userId(sessionStorage.userId, "userId");
+    validate.token(sessionStorage.token);
 
-    return fetch(`http://localhost:8080/users/${sessionStorage.userId}`, {
+    const { sub: userId } = utils.extractPayload(sessionStorage.token);
+
+    return fetch(`http://localhost:8080/users/${userId}`, {
         method: 'GET',
         headers: {
-            Authorization: `Bearer ${sessionStorage.userId}`
+            Authorization: `Bearer ${sessionStorage.token}`
         }
     })
         .catch(error => { throw new SystemError(error.message) })
@@ -24,7 +26,7 @@ function retrieveUser() {
                 .then(body => {
                     const { error, message } = body
 
-                    const constructor = error[error]
+                    const constructor = errors[error]
 
                     throw new constructor(message)
                 })

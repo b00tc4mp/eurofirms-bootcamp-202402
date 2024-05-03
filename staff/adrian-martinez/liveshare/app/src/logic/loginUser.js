@@ -19,8 +19,8 @@ function loginUser(username, password) {
 
                         throw new SystemError(error.message);
                     })
-                    .then(userId => {
-                        sessionStorage.userId = userId
+                    .then(token => {
+                        sessionStorage.token = token
                     })
 
             return res.json()

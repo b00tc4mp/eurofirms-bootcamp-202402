@@ -13,32 +13,35 @@ const { SystemError, MatchError } = errors;
 
 function deletePost(userId, postId ){
 
-    //TODO inputValidation
-    return User.findById(userId)
-    .then(user => {
-        if(!user){
-            throw new Error("The user no exist.")
-        }
+    validate.id(userId, "userId");
+    validate.id(postId, "postId");
 
-        return Post.findById(postId)
+    return User.findById(userId)
+        .catch(error => { throw new SystemError(error.message) })
+        .then(user => {
+            if(!user){
+                throw new Error("The user no exist.")
+            }
+
+            return Post.findById(postId)
+                .catch(error => { throw new SystemError(error.message)})
+        })
         .then(post => {
             if(!post){
-                throw new Error("The post no exist");
+                throw new MatchError("The post no exist");
             }
+
             if(userId !== post.author.toString()){
 
-                throw new Error("The post is not yours");
+                throw new MatchError("The post is not yours");
             }
-            
-            return Post.findByIdAndDelete(postId)
-            .catch( error => {
-                throw new Error(error.message);
+                
+            return Post.deleteOne({ _id: post._id })
+                .catch( error => {
+                    throw new SystemError(error.message);
+                })
             })
-        })
-        .catch(error => {throw new Error(error.message)})
-    })
-    .catch(error => {throw new Error(error.message)})
-    .then( postDeleted => {})
+        .then( postDeleted => {})
 }
 
 export default deletePost;

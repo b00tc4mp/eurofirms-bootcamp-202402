@@ -140,7 +140,7 @@ function validateToken(token, explain = "token"){
     const TimeNow = Date.now() / 1000
 
     //Si la fecha de expiración es menor que la actual, echamos al usuario
-    if(exp < now) throw new MatchError(`${explain} expired`);
+    if(exp < TimeNow) throw new MatchError(`${explain} expired`);
 }
 
 const validate = {

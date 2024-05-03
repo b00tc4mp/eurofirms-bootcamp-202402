@@ -4,6 +4,9 @@ import logic from "./logic/index.js"
 import cors from "cors"
 import { errors } from "com"
 import jwt from "jsonwebtoken"
+import dotenv from "dotenv"
+
+dotenv.config();
 
 //Utilizamos el tipo de error del token y de la fecha de expiración
 const { JsonWebTokenError, TokenExpiredError } = jwt
@@ -11,9 +14,12 @@ const { JsonWebTokenError, TokenExpiredError } = jwt
 //Utilizamos los tipos de error que vayamos usar creados por nosotros
 const { ContentError, DuplicityError, MatchError} = errors;
 
-mongoose.connect("mongodb://127.0.0.1:27017/test")
+//Le cambios el puerto a la App de esta forma
+const { PORT, MONGO_URL, JWT_SECRET } = process.env
+
+mongoose.connect(MONGO_URL)
   .then(() => {
-      console.log("DB connected");
+      console.log(`DB connected at ${MONGO_URL}`);
 
     //Server
 
@@ -91,8 +97,11 @@ mongoose.connect("mongodb://127.0.0.1:27017/test")
           // const authorization = req.headers.authorization
           const { authorization } = req.headers
 
-          const userId = authorization.slice(7)
+          //Esto hacerlo en cada peticion
+          const token = authorization.slice(7)
 
+          const { sub: userId } = jwt.verify(token, 'las personas del bootcamp 2024 somos la hostia')
+          
           //const targetUserId = req.params.targetUserId
           const { targetUserId } = req.params
 
@@ -126,7 +135,9 @@ mongoose.connect("mongodb://127.0.0.1:27017/test")
       try {
           const { authorization } = req.headers
 
-          const userId = authorization.slice(7)
+          const token = authorization.slice(7)
+
+          const { sub: userId } = jwt.verify(token, 'las personas del bootcamp 2024 somos la hostia')
 
           const { image, text } = req.body
 
@@ -153,7 +164,9 @@ mongoose.connect("mongodb://127.0.0.1:27017/test")
       try {
           const { authorization } = req.headers
 
-          const userId = authorization.slice(7)
+          const token = authorization.slice(7)
+
+          const { sub: userId } = jwt.verify(token, 'las personas del bootcamp 2024 somos la hostia')
 
           logic.retrievePosts(userId)
               .then(posts => res.json(posts))
@@ -178,7 +191,9 @@ mongoose.connect("mongodb://127.0.0.1:27017/test")
     try {
         const { authorization } = req.headers
 
-        const userId = authorization.slice(7)
+        const token = authorization.slice(7)
+
+        const { sub: userId } = jwt.verify(token, 'las personas del bootcamp 2024 somos la hostia')
 
         const { postId } = req.params;
 
@@ -205,7 +220,9 @@ server.patch('/posts/:postId', jsonBodyParser, (req, res) => {
     try {
         const { authorization } = req.headers
 
-        const userId = authorization.slice(7)
+        const token = authorization.slice(7)
+
+        const { sub: userId } = jwt.verify(token, 'las personas del bootcamp 2024 somos la hostia')
 
         const { postId } = req.params
 
