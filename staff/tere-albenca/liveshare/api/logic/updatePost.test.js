@@ -5,7 +5,7 @@ mongoose.connect('mongodb://localhost:27017/test')
 
     .then(() => {
         try {
-            updatePost('6616a745373730a8e163ae8a', '661f9a428840cfb63e7b70eb', 'hemos cambiado este post')
+            updatePost('662272488b304ab4ec85e812', '6628b6e7abb6a874cb87325e', 'hemos cambiado el post')
                 .then(() => console.log('this post has been updated'))
                 .catch(error => console.error(error))
 

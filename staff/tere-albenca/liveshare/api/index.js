@@ -1,11 +1,23 @@
+import dotenv from 'dotenv'
+
+dotenv.config()
+
 import mongoose from "mongoose";
 import express from 'express'
 import logic from './logic/index.js'
 import cors from 'cors'
+import jwt from 'jsonwebtoken'
+import { errors } from 'com'
 
-mongoose.connect("mongodb://localhost:27017/test")
+const { JsonWebTokenError, TokenExpiredError } = jwt
+const { ContentError, DuplicityError, MatchError } = errors
+
+
+const { PORT, MONGO_URL, JWT_SECRET } = process.env
+
+mongoose.connect(MONGO_URL)
   .then(() => {
-    console.log('DB connected')
+    console.log(`DB connected at ${MONGO_URL}`)
 
     const server = express()
 
@@ -21,10 +33,21 @@ mongoose.connect("mongodb://localhost:27017/test")
 
         logic.registerUser(name, lastname, birthdate, email, username, password)
           .then(() => res.status(201).send())
-          .catch(error => res.status(500).json({ error: error.constructor.name, message: error.message }))
+          .catch(error => {
+            let status = 500
 
+            if (error instanceof DuplicityError)
+              status = 409
+
+            res.status(status).json({ error: error.constructor.name, message: error.message })
+          })
       } catch (error) {
-        res.status(500).json({ error: error.constructor.name, message: error.message })
+        let status = 500
+
+        if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
+          status = 400
+
+        res.status(status).json({ error: error.constructor.name, message: error.message })
       }
     })
 
@@ -35,11 +58,27 @@ mongoose.connect("mongodb://localhost:27017/test")
         const { username, password } = req.body
 
         logic.authenticateUser(username, password)
-          .then(userId => res.status(200).json(userId))
-          .catch(error => res.status(500).json({ error: error.constructor.name, message: error.message }))
+          .then(userId => {
+            const token = jwt.sign({ sub: userId }, JWT_SECRET, { expiresIn: '60m' })
+
+            res.status(200).json(token)
+          })
+          .catch(error => {
+            let status = 500
+
+            if (error instanceof MatchError)
+              status = 401
+
+            res.status(status).json({ error: error.constructor.name, message: error.message })
+          })
 
       } catch (error) {
-        res.status(500).json({ error: error.constructor.name, message: error.message })
+        let status = 500
+
+        if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
+          status = 400
+
+        res.status(status).json({ error: error.constructor.name, message: error.message })
       }
     })
 
@@ -49,16 +88,36 @@ mongoose.connect("mongodb://localhost:27017/test")
       try {
         const { authorization } = req.headers
 
-        const userId = authorization.slice(7)
+        const token = authorization.slice(7)
+
+        const { sub: userId } = jwt.verify(token, JWT_SECRET)
 
         const { targetUserId } = req.params
 
         logic.retrieveUser(userId, targetUserId)
           .then((user) => res.status(200).json(user))
-          .catch(error => res.status(500).json({ error: error.constructor.name, message: error.message }))
+          .catch(error => {
+            let status = 500
 
-      } catch {
-        res.status(500).json({ error: error.constructor.name, message: error.message })
+            if (error instanceof MatchError)
+              status = 401
+
+            res.status(status).json({ error: error.constructor.name, message: error.message })
+          })
+
+      } catch (error) {
+        let status = 500
+
+        if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
+          status = 400
+
+        else if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError) {
+          status = 401
+
+          error = new MatchError(error.message)
+        }
+
+        res.status(status).json({ error: error.constructor.name, message: error.message })
       }
     })
 
@@ -68,16 +127,36 @@ mongoose.connect("mongodb://localhost:27017/test")
       try {
         const { authorization } = req.headers
 
-        const userId = authorization.slice(7)
+        const token = authorization.slice(7)
+
+        const { sub: userId } = jwt.verify(token, JWT_SECRET)
 
         const { image, text } = req.body
 
         logic.createPost(userId, image, text)
           .then(() => res.status(201).send())
-          .catch(error => res.status(500).json({ error: error.constructor.name, message: error.message }))
+          .catch(error => {
+            let status = 500
+
+            if (error instanceof MatchError)
+              status = 401
+
+            res.status(status).json({ error: error.constructor.name, message: error.message })
+          })
 
       } catch (error) {
-        res.status(500).json({ error: error.constructor.name, message: error.message })
+        let status = 500
+
+        if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
+          status = 400
+
+        else if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError) {
+          status = 401
+
+          error = new MatchError(error.message)
+        }
+
+        res.status(status).json({ error: error.constructor.name, message: error.message })
       }
     })
 
@@ -87,33 +166,74 @@ mongoose.connect("mongodb://localhost:27017/test")
       try {
         const { authorization } = req.headers
 
-        const userId = authorization.slice(7)
+        const token = authorization.slice(7)
+
+        const { sub: userId } = jwt.verify(token, JWT_SECRET)
 
         logic.retrievePosts(userId)
           .then(posts => res.status(200).json(posts))
-          .catch(error => res.status(500).json({ error: error.constructor.name, message: error.message }))
+          .catch(error => {
+            let status = 500
+
+            if (error instanceof MatchError)
+              status = 401
+
+            res.status(status).json({ error: error.constructor.name, message: error.message })
+          })
 
       } catch (error) {
-        res.status(500).json({ error: error.constructor.name, message: error.message })
+        let status = 500
+
+        if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
+          status = 400
+
+        else if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError) {
+          status = 401
+
+          error = new MatchError(error.message)
+        }
+
+        res.status(status).json({ error: error.constructor.name, message: error.message })
       }
     })
 
-    //deletePost
+    //removePost
 
     server.delete('/posts/:postId', (req, res) => {
       try {
         const { authorization } = req.headers
 
-        const userId = authorization.slice(7)
+        const token = authorization.slice(7)
+
+        const { sub: userId } = jwt.verify(token, JWT_SECRET)
 
         const { postId } = req.params
 
-        logic.deletePost(userId, postId)
-          .then(post => res.status(204))
-          .catch(error => res.status(500).json({ error: error.constructor.name, message: error.message }))
+        logic.removePost(userId, postId)
+          .then(post => res.status(204).send())
+          .catch(error => {
+            let status = 500
+
+            if (error instanceof MatchError)
+              status = 401
+
+            res.status(status).json({ error: error.constructor.name, message: error.message })
+          })
 
       } catch (error) {
-        res.status(500).json({ error: error.constructor.name, message: error.message })
+        let status = 500
+
+        if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
+          status = 400
+
+        else if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError) {
+          status = 401
+
+          error = new MatchError(error.message)
+        }
+
+
+        res.status(status).json({ error: error.constructor.name, message: error.message })
       }
     })
 
@@ -122,21 +242,43 @@ mongoose.connect("mongodb://localhost:27017/test")
       try {
         const { authorization } = req.headers
 
-        const userId = authorization.slice(7)
+        const token = authorization.slice(7)
+
+        const { sub: userId } = jwt.verify(token, JWT_SECRET)
 
         const { postId } = req.params
 
         const { text } = req.body
 
         logic.updatePost(userId, postId, text)
-          .then(() => res.status(200).send())
-          .catch(error => res.status(500).json({ error: error.constructor.name, message: error.message }))
+          .then(() => res.status(204).send())
+          .catch(error => {
+            let status = 500
+
+            if (error instanceof MatchError)
+              status = 401
+
+            res.status(status).json({ error: error.constructor.name, message: error.message })
+          })
+
       } catch (error) {
-        res.status(500).json({ error: error.constructor.name, message: error.message })
+        let status = 500
+
+        if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
+          status = 400
+
+        else if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError) {
+          status = 401
+
+          error = new MatchError(error.message)
+        }
+
+
+        res.status(status).json({ error: error.constructor.name, message: error.message })
       }
     })
 
 
-    server.listen(8080, () => console.log('API started'))
+    server.listen(PORT, () => console.log('API started at port ' + PORT))
   })
   .catch(error => console.error(error));

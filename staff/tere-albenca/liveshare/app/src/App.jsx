@@ -2,49 +2,34 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import ResetPassword from "./pages/ResetPassword";
 import Home from "./pages/Home";
-import { useState } from "react";
+import { Routes, Route, Navigate, useNavigate } from 'react-router-dom'
+import logic from './logic'
 
 function App() {
-  const [view, setView] = useState("login");
+  const navigate = useNavigate()
 
-  const handleUserRegistered = () => setView("login");
+  const handleUserRegistered = () => navigate('/login')
 
-  const handleUserLoggedIn = () => setView("home");
+  const handleUserLoggedIn = () => navigate('/')
 
-  const handleUserResetPassword = () => setView("login");
+  const handleUserResetPassword = () => navigate('/login')
 
-  const handleRegisterClick = () => setView("register");
+  const handleRegisterClick = () => navigate('/register')
 
-  const handleLoginClick = () => setView("login");
+  const handleLoginClick = () => navigate('/login')
 
-  const handleResetPasswordClick = () => setView("resetpassword");
+  const handleResetPasswordClick = () => navigate('/resetpassword')
 
-  const handleLogout = () => setView("login");
+  const handleLogout = () => navigate('/login')
 
   return (
     <>
-      {view === "login" && (
-        <Login
-          onUserLoggedIn={handleUserLoggedIn}
-          onRegisterClick={handleRegisterClick}
-          onResetPasswordClick={handleResetPasswordClick}
-        />
-      )}
-      {view === "register" && (
-        <Register
-          onUserRegistered={handleUserRegistered}
-          onLoginClick={handleLoginClick}
-          onResetPasswordClick={handleResetPasswordClick}
-        />
-      )}
-      {view === "resetpassword" && (
-        <ResetPassword
-          onUserResetPassword={handleUserResetPassword}
-          onRegisterClick={handleRegisterClick}
-          onLoginClick={handleLoginClick}
-        />
-      )}
-      {view === "home" && <Home onUserLoggedOut={handleLogout} />}
+      <Routes>
+      <Route path="/login" element={logic.isUserLoggedIn() ? <Navigate to="/" /> : <Login onUserLoggedIn={handleUserLoggedIn} onRegisterClick={handleRegisterClick} onResetPasswordClick={handleResetPasswordClick}/>} />
+      <Route path="/register" element={logic.isUserLoggedIn() ? <Navigate to="/" /> : <Register onUserRegistered={() => handleUserRegistered()} onLoginClick={handleLoginClick} onResetPasswordClick={handleResetPasswordClick}/>} />
+      <Route path="/resetpassword" element={logic.isUserLoggedIn() ? <Navigate to="/" /> : <ResetPassword onUserResetPassword={() => handleUserResetPassword()} onLoginClick={handleLoginClick} onRegisterClick={handleRegisterClick}/>} />
+      <Route path="/" element={logic.isUserLoggedIn() ? <Home onUserLoggedOut={handleLogout} /> : <Navigate to="/login" />} />
+    </Routes>
     </>
   );
 }

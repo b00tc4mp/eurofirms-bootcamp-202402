@@ -1,1 +1,1 @@
-curl -X PATCH -H 'Authorization: Bearer 661e9c3cf8778ac5964d373f' -H 'Content-type: application/json' -d '{"text":"volvemos a cambiar este post"}' http://localhost:8080/posts/661f9a428840cfb63e7b70eb -v
+curl -X PATCH -H 'Authorization: Bearer 661e9c3cf8778ac5964d373f' -H 'Content-type: application/json' -d '{"text":"volvemos a cambiar este post"}' http://localhost:8080/posts/662b5e7a0b5f511c1d7f938e -v

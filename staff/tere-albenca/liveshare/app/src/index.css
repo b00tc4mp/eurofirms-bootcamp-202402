@@ -8,6 +8,42 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+    font-family: "anaheim"
+}
+
+h1 {
+    font-size: 30px;
+    font-weight: bold;
+    color: midnightblue;
+    margin-bottom: 15px;
+
+}
+
+h2 {
+    font-size: 23px;
+    font-weight: bold;
+    color: midnightblue;
+    margin-bottom: 20px;
+}
+
+/* create-post */
+#create-post-section {
+    margin-bottom: 40px;
+    position: fixed;
+    bottom: 0;
+    background-color: darkgray;
+    width: 100%;
+    padding-bottom: 20px;
+}
+
+
+
+#create-post-form {
+    display: flex;
+    flex-direction: column;
+}
+
 /* @layer base {
     @font-face {
         font-family: 'Roboto';
@@ -18,9 +54,7 @@
     }
 } */
 
-* {
-    font-family: "anaheim"
-}
+
 
 /* body {
     margin: 0;
@@ -65,20 +99,7 @@
     margin-bottom: 80px;
 } */
 
-h1 {
-    font-size: 30px;
-    font-weight: bold;
-    color: midnightblue;
-    margin-bottom: 15px;
 
-}
-
-h2 {
-    font-size: 23px;
-    font-weight: bold;
-    color: midnightblue;
-    margin-bottom: 20px;
-}
 
 /* h1,
 h2,
@@ -306,26 +327,12 @@ sup {
     width: 90%;
 } */
 
-/* create-post */
-#create-post-section {
-    margin-bottom: 40px;
-    position: fixed;
-    bottom: 0;
-    background-color: darkgray;
-    width: 100%;
-    padding-bottom: 20px;
-}
+
 
 /* 
 .create-post-section--off {
     display: none;
 } */
-
-#create-post-form {
-    display: flex;
-    flex-direction: column;
-}
-
 /* footer */
 /* footer {
 

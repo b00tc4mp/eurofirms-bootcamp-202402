@@ -2,25 +2,53 @@ import logic from "../logic";
 import Form from "../components/Form";
 import Button from "../components/Button";
 import Input from "../components/Input";
+import { errors } from "../../../com"
+import { useState } from "react";
+
+const { ContentError, MatchError} = errors
 
 function Login({ onUserLoggedIn, onRegisterClick, onResetPasswordClick }) {
+
+  const [error, setError]= useState(null)
+  
+  const errorHandle = (error) =>{
+    console.error(error.message)
+        
+    let feedback = error.message
+
+    if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
+        feedback = `${feedback}, please correct it`
+    else if (error instanceof MatchError)
+        feedback = `${feedback}, please verify credentials`
+    else
+        feedback = 'sorry, there was an error, please try again later'
+
+    const isUsernameError = error.message.includes('username')
+    const isPasswordError = error.message.includes('password')
+    const anotherError = !isUsernameError && !isPasswordError
+
+    setError({message: feedback,isUsernameError,isPasswordError, anotherError})
+  }
+
   const handleSubmit = (event) => {
+
     event.preventDefault();
 
     const form = event.target;
 
     const username = form.username.value;
     const password = form.password.value;
-
+    
     try {
-      logic.loginUser(username, password);
-
-      onUserLoggedIn();
+      logic.loginUser(username, password)
+      .then(()=> { onUserLoggedIn()})
+      .catch(error => {
+          errorHandle(error)
+      })
     } catch (error) {
-      console.error(error);
-
-      alert(error.message);
+      errorHandle(error)
     }
+
   };
 
   const handleRegisterClick = (event) => {
@@ -42,11 +70,14 @@ function Login({ onUserLoggedIn, onRegisterClick, onResetPasswordClick }) {
           <Form onSubmit={handleSubmit} className="max-w-sm">
             <label htmlFor="username">Username</label>
             <Input type="text" id="username"/>
+            {error?.isUsernameError && <span className=" text-[red]">{error.message}</span>}
 
             <label htmlFor="password">Password</label>
             <input type="password" id="password" className="w-full p-2 rounded-xl border-lightgray mb-2 box-border hover:bg-[lightgray]"/>
-
+            {error?.isPasswordError && <span className=" text-[red]">{error.message}</span>}
+            
             <Button type="submit">LOGIN</Button>
+            {error?.anotherError && <span className=" text-[red]">{error.message}</span>}
 
             <div className="flex justify-center bg-[lightgray] hover:bg-[#c3c3c2] rounded-xl p-1 my-1">
               <a onClick={handleResetPasswordClick} className="no-underline text-[#042e5a]">Reset password</a>

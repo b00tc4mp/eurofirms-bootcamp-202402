@@ -3,7 +3,7 @@ import retrieveUser from './retrieveUser.js'
 import retrievePosts from './retrievePosts.js'
 import authenticateUser from './authenticateUser.js'
 import createPost from './createPost.js'
-import deletePost from './deletePost.js'
+import removePost from './removePost.js'
 import updatePost from './updatePost.js'
 
 const logic = {
@@ -12,7 +12,7 @@ const logic = {
     retrievePosts,
     authenticateUser,
     createPost,
-    deletePost,
+    removePost,
     updatePost
 }
 

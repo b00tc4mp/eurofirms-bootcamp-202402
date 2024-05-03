@@ -2,28 +2,56 @@ import logic from "../logic";
 import Form from "./Form"
 import Button from "./Button"
 import Input from "./Input"
+import { errors } from 'com'
 
-function CreatePost({ onPostCreated, onCancelClick }) {
-  const handleCancelClick = () => onCancelClick();
+const { MatchError} = errors
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+function CreatePost({ onCancelClick, onPostCreated }) {
+  const handleCancelClick = () => onCancelClick()
 
-    const form = event.target;
+  const handleSubmit = event => {
+      event.preventDefault()
 
-    const image = form.image.value;
-    const text = form.text.value;
+      const form = event.target
 
-    try {
-      logic.createPost(image, text);
+      const image = form.image.value
+      const text = form.text.value
 
-      onPostCreated();
-    } catch (error) {
-      console.error(error);
+      try {
+          logic.createPost(image, text)
+              .then(() => onPostCreated())
+              .catch(error => {
+                  console.error(error)
 
-      alert(error.message);
-    }
-  };
+                  let feedback = error.message
+
+                  if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
+                    feedback = `${feedback},please correct it`
+
+                  else if (error instanceof MatchError)
+                    feedback = `${feedback}, use valid data`
+
+                  else
+                    feedback = 'sorry, there was an error, please try again later'
+
+                  alert(feedback)
+              })
+
+
+      } catch (error) {
+        console.error(error)
+
+        let feedback = error.message
+
+        if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
+          feedback = `${feedback},please correct it`
+        else
+          feedback = 'sorry, there was an error, please try again later'
+
+        alert(feedback)
+      }
+
+  }
 
   return (
     <>

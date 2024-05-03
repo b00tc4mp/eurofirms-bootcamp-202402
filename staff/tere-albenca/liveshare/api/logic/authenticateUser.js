@@ -1,12 +1,18 @@
 import { User } from '../data/index.js'
+import { errors, validate } from 'com'
+
+const { SystemError, MatchError } = errors
 
 function authenticateUser(username, password) {
-    return User.findOne({ username })
-        .catch(error => { throw new Error(error.message) })
-        .then(user => {
-            if (!user) throw new Error('user does not exist')
+    validate.username(username)
+    validate.password(password)
 
-            if (user.password !== password) throw new Error('incorrect password')
+    return User.findOne({ username })
+        .catch(error => { throw new SystemError(error.message) })
+        .then(user => {
+            if (!user) throw new MatchError('user does not exist')
+
+            if (user.password !== password) throw new MatchError('incorrect password')
 
             return user.id
         })

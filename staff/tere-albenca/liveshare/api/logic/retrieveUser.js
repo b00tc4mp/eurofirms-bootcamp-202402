@@ -1,16 +1,22 @@
 import { User } from '../data/index.js'
+import { errors, validate } from 'com'
+
+const { SystemError, MatchError } = errors
 
 function retrieveUser(userId, targetUserId) {
+    validate.id(userId, 'userId')
+    validate.id(targetUserId, 'targetUserId')
+
     return User.findById(userId)
-        .catch(error => { throw new Error(error.message) })
+        .catch(error => { throw new SystemError(error.message) })
         .then(user => {
-            if (!user) { throw new Error('user not found') }
+            if (!user) { throw new MatchError('user not found') }
 
 
             return User.findById(targetUserId).select('-_id name username').lean()
-                .catch(error => { throw new Error(error.message) })
+                .catch(error => { throw new SystemError(error.message) })
                 .then(targetUser => {
-                    if (!targetUserId) { throw new Error(' target user not found') }
+                    if (!targetUserId) { throw new MatchError(' target user not found') }
 
                     return targetUser
 
