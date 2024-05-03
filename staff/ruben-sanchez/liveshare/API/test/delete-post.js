@@ -1,1 +1,0 @@
-curl -X DELETE -H 'Authorization: Bearer 661fcd0d3fecf76fd1ab4697' -H 'Content-type: application/json'  http://localhost:8080/posts -v

@@ -1,15 +1,24 @@
-import {User } from '../data/index.js'
+import { User } from '../data/index.js'
+import { errors, validate } from 'com'
 
-function authenticateUser(username, password){
+const { SystemError, MatchError } = errors
 
-    return User.findOne(({username}))
-        .catch(error =>{ throw new Error(error.message) } )
-        .then(user =>{
-            if (!user) throw new Error('user does not exist')
+function authenticateUser(username, password) {
+    validate.username(username)
+    validate.password(password)
 
-            if (user.password !== password)  throw new Error ('incorrect password')
+    return User.findOne({ username })
+        .catch(error => { throw new SystemError(error.message) })
+        .then(user => {
+            if (!user)
+                throw new MatchError('user not found')
 
-            return user.id  
+
+            if (user.password !== password)
+                throw new MatchError('wrong credentials')
+
+            return user.id
         })
 }
-export default authenticateUser 
+
+export default authenticateUser

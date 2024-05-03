@@ -1,27 +1,31 @@
-import { User, Post } from "../data/index.js";
+import { User, Post } from '../data/index.js'
+
+import { validate, errors } from 'com'
+
+const { SystemError, MatchError } = errors
 
 function createPost(userId, image, text) {
-  // Todo user validation
+    validate.id(userId, 'userId')
+    validate.url(image, 'image')
+    validate.text(text)
 
-  return User.findById(userId)
-    .catch((error) => {
-      throw new Error(error.message);
-    })
-    .then((user) => {
-      if (!user) throw new Error("user not found");
+    return User.findById(userId)
+        .catch(error => { throw new SystemError(error.message) })
+        .then(user => {
+            if (!user)
+                throw new MatchError('user not found')
 
-      const post = {
-        author: user._id,
-        image,
-        text,
-        date: new Date(),
-      };
+            const post = {
+                author: user._id,
+                image,
+                text,
+                date: new Date
+            }
 
-      return Post.create(post).catch((error) => {
-        throw new Error(error.message);
-      });
-    })
-    .then((post) => { });
+            return Post.create(post)
+                .catch(error => { throw new SystemError(error.message) })
+        })
+        .then(post => { })
 }
 
-export default createPost;
+export default createPost
