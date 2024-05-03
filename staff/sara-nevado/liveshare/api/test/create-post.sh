@@ -1,1 +1,1 @@
- curl -X POST -H 'Authorization: Bearer 66163cb3a9730c303816c9b6' -H 'Content-type: application/json' -d '{"image":"http://image.com/something","text":"this is an image"}' http://localhost:8080/posts -v
+ curl -X POST -H 'Authorization: Bearer 66163cb3a9730c303816c9b6' -H 'Content-type: application/json' -d '{"image":"https://media4.giphy.com/media/Z5xk7fGO5FjjTElnpT/giphy.webp?cid=82a1493btat08c6hit84zj7fwvtm3jwj2jtz19016djffq4i&ep=v1_gifs_trending&rid=giphy.webp&ct=g","text":"imagen"}' http://localhost:8080/posts -v

@@ -1,5 +1,5 @@
 function logoutUser() {
-    //todo delete sessionStorage.userId
+    delete sessionStorage.token
 }
 
 export default logoutUser

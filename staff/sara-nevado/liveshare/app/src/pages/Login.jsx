@@ -1,4 +1,8 @@
+import { errors } from 'com'
+
 import logic from '../logic'
+
+const { ContentError, MatchError } = errors
 
 function Login({ onUserLoggedIn, onRegisterClick }) {
     const handleSubmit = event => {
@@ -13,22 +17,41 @@ function Login({ onUserLoggedIn, onRegisterClick }) {
             logic.loginUser(username, password)
                 .then(() => onUserLoggedIn())
                 .catch(error => {
-                    console.error(error)
-                    alert(error.message)
+                    console.error(error.message)
+
+                    let feedback = error.message
+
+                    if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
+                        feedback = `${feedback}, please correct it`
+                    else if (error instanceof MatchError)
+                        feedback = `${feedback}, please verify credentials`
+                    else
+                        feedback = 'sorry, there was an error, please try again later'
+
+                    alert(feedback)
                 })
         } catch (error) {
-            console.error(error)
-            alert(error.message)
+            console.error(error.message)
+
+            let feedback = error.message
+
+            if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
+                feedback = `${feedback}, please correct it`
+            else
+                feedback = 'sorry, there was an error, please try again later'
+
+            alert(feedback)
         }
     }
 
     const handleRegisterClick = event => {
         event.preventDefault()
+
         onRegisterClick()
     }
 
     console.debug('Login render')
-
+    
     return (
       <main className="flex justify-center items-center h-screen bg-gray-100">
         <div className="max-w-md w-full px-8 py-8 bg-white rounded-md shadow-md">
