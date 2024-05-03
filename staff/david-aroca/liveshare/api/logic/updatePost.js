@@ -1,13 +1,10 @@
 import { User, Post } from "../data/index.js";
-import errors from "./errors.js";
-import validate from "./validate.js";
+import { validate, errors } from 'com'
 
 const { MatchError, SystemError } = errors
 
 function updatePost(userId, postId, text) {
-
-    validate.userId(userId)
-    validate.postId(postId)
+    validate.id(userId, 'userId')
     validate.text(text)
 
     return User.findById(userId)
@@ -27,15 +24,11 @@ function updatePost(userId, postId, text) {
                     post.text = text
 
                     return post.save()
-
                         .then(() => { })
 
                         .catch(error => { throw new new SystemError(error.message) })
                 })
-
         })
-
-
         .catch(error => { throw new Error(error.message) })
 }
 

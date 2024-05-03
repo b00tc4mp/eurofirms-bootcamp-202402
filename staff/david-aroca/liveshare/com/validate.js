@@ -1,6 +1,6 @@
 import errors from "./errors.js"
 
-const { ContentError } = errors
+const { ContentError, MatchError } = errors
 
 function validateName(name) {
     if (typeof name !== 'string') throw new TypeError('name is not a string')
@@ -85,25 +85,26 @@ function validatePassword(password) {
     if (!password.length) throw new ContentError('password is empty')
 }
 
-function validateUserId(userId) {
-    if (typeof userId !== 'string') throw new TypeError('userId is not a string')
+function validateId(id, explain = 'id') {
+    if (typeof id !== 'string') throw new TypeError(`${explain} is not a string`)
 
-    if (userId.includes(' ')) throw new ContentError('userId has spaces')
-    if (!userId.length) throw new ContentError('userId is empty')
+    if (id.length !== 24) throw new RangeError(`${explain} length is not 24`)
+    if (id.includes(' ')) throw new ContentError(' has spaces')
+    if (!id.length) throw new ContentError(' is empty')
 }
 
-function validateText(text) {
-    if (typeof text !== 'string') throw new TypeError('text is not a string')
+function validateText(text, explain = 'text') {
+    if (typeof text !== 'string') throw new TypeError(`${explain} is not a string`)
 
-    if (!text.length) throw new ContentError('text is empty')
+    if (!text.length) throw new ContentError(`${explain} is empty`)
 }
 
-function postId(postId) {
-    if (typeof postId !== 'string') throw new TypeError('postId is not a string')
+function postId(postId, explain = 'id') {
+    if (typeof postId !== 'string') throw new TypeError(`${explain}postId is not a string`)
 
-    if (postId.includes(' ')) throw new ContentError('postId has spaces')
+    if (postId.includes(' ')) throw new ContentError(`${explain}postId has spaces`)
 
-    if (!postId.length) throw new ContentError('postId is empty')
+    if (!postId.length) throw new ContentError(`${explain}postId is empty `)
 }
 
 function image(image) {
@@ -114,6 +115,30 @@ function image(image) {
     if (!image.startsWith('http')) throw new ContentError('image is not a URL')
 }
 
+function validateUrl(url, explain = 'url') {
+    if (typeof url !== 'string') throw new TypeError(`${explain} is not a string`)
+
+    if (!url.length) throw new ContentError(`${explain} is empty`)
+
+    if (!url.startsWith('http')) throw new ContentError(`${explain} is not an http address`)
+}
+
+function validateToken(token, explain = 'token') {
+    if (typeof token !== 'string') throw new TypeError(`${explain} is not a string`)
+
+    if (!token.length) throw new ContentError(`${explain} is empty`)
+
+    const [, payload64,] = token.split('.')
+    const payloadJSON = atob(payload64)
+    const payload = JSON.parse(payloadJSON)
+
+    const { exp } = payload
+
+    const now = Date.now() / 1000
+
+    if (exp < now) throw new MatchError(`${explain} expired`)
+}
+
 
 
 const validate = {
@@ -122,10 +147,13 @@ const validate = {
     username: validateUsername,
     email: validateEmail,
     password: validatePassword,
-    userId: validateUserId,
+    id: validateId,
     text: validateText,
     postId: postId,
-    image: image
+    image: image,
+    url: validateUrl,
+    token: validateToken
+
 }
 
 export default validate

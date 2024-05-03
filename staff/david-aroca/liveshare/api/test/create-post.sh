@@ -1,1 +1,1 @@
- curl -X POST -H 'Authorization: Bearer 661796c9fed8742582db7421' -H 'Content-type: application/json' -d '{"image":"http://image.com/something","text":"this is an image"}' http://localhost:8080/posts -v
+ curl -X POST -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NjIyNmE0YWMxN2RlNDM2YTdhMjU3YzgiLCJpYXQiOjE3MTQ2NTI4NTYsImV4cCI6MTcxNDY1NTU1Nn0.KU4X3vZorc3jSHuMoo7nJtWlZ7hYZwjSGHRECwFknWQ' -H 'Content-type: application/json' -d '{"image":"http://image.com/something","text":"this is an image"}' http://localhost:8080/posts -v

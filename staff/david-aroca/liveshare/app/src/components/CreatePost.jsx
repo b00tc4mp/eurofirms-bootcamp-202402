@@ -1,6 +1,5 @@
 import logic from '../logic'
-import errors from '../logic/errors.js'
-
+import { errors } from 'com'
 //exactamente igual que los errores de el login 
 //tener en cuenta cuando se haga mas tarde
 

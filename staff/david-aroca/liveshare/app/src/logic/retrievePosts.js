@@ -1,8 +1,13 @@
+import { validate, errors } from "com"
+
+const { SystemError } = errors
+
 function retrievePosts() {
-    return fetch('http://localhost:8080/posts', {
+    validate.token(sessionStorage.token)
+    return fetch(`${import.meta.env.VITE_API_URL}/posts`, {
         method: 'GET',
         headers: {
-            Authorization: `Bearer ${sessionStorage.userId}`
+            Authorization: `Bearer ${sessionStorage.token}`
         }
     })
 
@@ -11,13 +16,14 @@ function retrievePosts() {
             if (res.status === 200)
                 return res.json()
 
-            // .then (posts => posts)
+                    .catch(error => { throw new SystemError(error.message) })
+                    .then(posts => posts)
 
             return res.json()
                 .then(body => {
                     const { error, message } = body
 
-                    const constructor = window[error]
+                    const constructor = errors[error]
 
                     throw new constructor(message)
                 })

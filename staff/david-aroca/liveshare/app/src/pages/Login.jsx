@@ -1,10 +1,13 @@
-import logic from "../logic"
+import { errors } from "com"
 
-import errors from "../logic/errors.js"
+import logic from "../logic"
+import { useState } from "react"
 
 const { ContentError, MatchError } = errors
 
 function Login({ onUserLoggedIn, onRegisterClick }) {
+    const [error, setError] = useState(null)
+
     const handleSubmit = event => {
         event.preventDefault()
 
@@ -27,8 +30,12 @@ function Login({ onUserLoggedIn, onRegisterClick }) {
                         feedback = `${feedback},please verify credentials`
 
                     else
+                        feedback = `sorry, there was an error,please try again`
 
-                        alert(error.message)
+                    alert(feedback)
+
+                    const isUserNameError = error.message.includes('username')
+                    const isPasswordError = error.message.includes('password')
                 })
         } catch (error) {
             console.error(error)

@@ -1,1 +1,1 @@
- curl -X PATCH -H 'Authorization: Bearer 66226a4ac17de436a7a257c8' -H 'Content-type: application/json' -d '{"text":"pepito grillo"}' http://localhost:8080/posts/6628fbcc186f10d78c22946f -v
+ curl -X PATCH -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NjIyNmE0YWMxN2RlNDM2YTdhMjU3YzgiLCJpYXQiOjE3MTQ2NTI4NTYsImV4cCI6MTcxNDY1NTU1Nn0.KU4X3vZorc3jSHuMoo7nJtWlZ7hYZwjSGHRECwFknWQ' -H 'Content-type: application/json' -d '{"text":"pepepepepepepepe"}' http://localhost:8080/posts/662b8339cd175024f9c1454a -v

@@ -1,21 +1,30 @@
+import { validate, errors } from "com"
+
+const { SystemError } = errors
+
 function updatePost(postId, text) {
-    return fetch(`http://localhost:8080/posts/${postId}`, {
+    validate.token(sessionStorage.token)
+    validate.id(postId, 'postId')
+    validate.text(text)
+
+    return fetch(`${import.meta.env.VITE_API_URL}/posts/${postId}`, {
         method: 'PATCH',
         headers: {
-            Authorization: `Bearer ${sessionStorage.userId}`,
+            Authorization: `Bearer ${sessionStorage.token}`,
             'content-type': 'application/json'
         },
         body: JSON.stringify({ text })
     })
-        .catch(error => { throw new Error(error.message) })
+        .catch(error => { throw new SystemError(error.message) })
         .then(res => {
             if (res.status === 204) return
 
             return res.json()
+                .catch(error => { throw new SystemError(error.message) })
                 .then(body => {
                     const { error, message } = body
 
-                    const constructor = window[error]
+                    const constructor = errors[error]
 
                     throw new constructor(message)
                 })

@@ -1,4 +1,10 @@
+import { validate, utils } from "com"
+
 function getLoggedInUserId() {
-    return sessionStorage.userId
+    validate.token(sessionStorage.token)
+
+    const { sub: userId } = utils.extractPayload(sessionStorage.token)
+
+    return userId
 }
 export default getLoggedInUserId

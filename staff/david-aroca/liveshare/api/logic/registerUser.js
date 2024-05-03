@@ -1,6 +1,5 @@
 import { User } from '../data/index.js'
-import validate from '../../app/src/logic/validate.js'
-import errors from './errors.js'
+import { validate, errors } from 'com'
 
 const { SystemError, DuplicityError } = errors
 

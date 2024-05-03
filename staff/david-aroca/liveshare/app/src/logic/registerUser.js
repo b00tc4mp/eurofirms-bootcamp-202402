@@ -1,16 +1,15 @@
-import validate from "./validate.js"
-import errors from "./errors.js"
+import { validate, errors } from 'com'
 
 const { SystemError } = errors
 
 function registerUser(name, birthdate, email, username, password) {
     validate.name(name)
     validate.birthdate(birthdate)
-    validate.username(username)
     validate.email(email)
+    validate.username(username)
     validate.password(password)
 
-    return fetch('http://localhost:8080/users', {
+    return fetch(`${import.meta.env.VITE_API_URL}/users`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, birthdate, email, username, password })

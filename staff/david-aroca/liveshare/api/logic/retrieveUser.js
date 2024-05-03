@@ -1,19 +1,23 @@
 import { User } from '../data/index.js'
+import { validate, errors } from 'com'
+
+const { SystemError, MatchError } = errors
 
 function retrieveUser(userId, targetUserId) {
-    // TODO input validation
+    validate.id(userId, 'userId')
+    validate.id(targetUserId, 'targetUserId')
 
-    return User.findById(userId)
-        .catch(error => { throw new Error(error.message) })
+    return User.findById(userId, 'userId')
+        .catch(error => { throw new SystemError(error.message) })
         .then(user => {
             if (!user)
-                throw new Error('user not found')
+                throw new MatchError('user not found')
 
             return User.findById(targetUserId).select('-_id name username').lean() // { name username }
-                .catch(error => { throw new Error(error.message) })
+                .catch(error => { throw new SystemError(error.message) })
                 .then(targetUser => {
                     if (!targetUser)
-                        throw new Error('target user not found')
+                        throw new MatchError('target user not found')
 
                     return targetUser
                 })

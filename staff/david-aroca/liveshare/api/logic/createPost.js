@@ -1,13 +1,12 @@
-import validate from './validate.js'
 import { User, Post } from '../data/index.js'
-import errors from './errors.js'
+import { validate, errors } from 'com'
 
 const { SystemError, MatchError } = errors
 
 function createPost(userId, image, text) {
-    validate.userId(userId)
+    validate.id(userId, 'userId')
+    validate.url(image, 'image')
     validate.text(text)
-    validate.image(image)
 
     return User.findById(userId)
         .catch(error => { throw new SystemError(error.message) })
