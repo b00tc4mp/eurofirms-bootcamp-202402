@@ -9,6 +9,7 @@ import retrievePosts from "./retrievePosts"
 import deletePost from "./deletePost"
 import updatePost from "./updatePost"
 import retrievePost from "./retrievePost"
+import isUserLoggedIn from "./isUserLoggedIn"
 
 //logic
 
@@ -18,6 +19,7 @@ const logic = {
     retrieveUser,
     logoutUser,
     getLoggedInUserId,
+    isUserLoggedIn,
     createPost,
     retrievePosts,
     retrievePost,

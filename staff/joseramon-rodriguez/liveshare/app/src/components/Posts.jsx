@@ -47,7 +47,7 @@ function Posts({ refreshPosts }) {
 
     const handleDeletePost = () => handleRefreshPosts()
 
-    return <section id="posts-section" className="posts-section">
+    return <section id="posts-section" className=" flex flex-col gap-6 px-2 py-14">
         <h2>Posts</h2>
         <div id="posts-list">
             {posts ? posts.map((post => <Post key={post.id} post={post} onDeletePost={handleDeletePost} onUpdatePost={handleUpdatePost} />)) : <span>Loading...</span>}

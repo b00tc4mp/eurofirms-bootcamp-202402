@@ -111,7 +111,7 @@ function Post({ post, onDeletePost, onUpdatePost }) {
         }
     }
 
-    return <article className="post">
+    return <article className=" w-full border-2 border-black ">
         <h3>{post.author.username}</h3>
         <img className="post-image" src={`${post.image}`}></img>
         {updateText !== null ? <> <Form onSubmit={handleSubmit}>
