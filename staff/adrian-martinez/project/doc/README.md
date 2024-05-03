@@ -14,7 +14,9 @@ El usuario va poder comentarios sobre sus notas o trabajos echos por trimeste en
 
 La empresa va mirar con todo detalle aquellas secciones que le interesa de su currículun y va poder guardar el usuario en favoritos si le gusta su perfil para tenerlo a mano. Además si el usuario hace un cambio en su perfil le va a salir un punto amarillo en su "market" de la lista de favoritos para que vea sus últimos cambios.
 
-### Use Cases
+## Functional Description
+
+### Brief
 
 ##### Usuarios
 
@@ -24,11 +26,34 @@ Todo usuario mayor de edad se va poder registrar y tener su perfil. Una vez que 
 - El estudiante puede añadir estudios, así como las asignaturas o tecnologías que curse.
 - El estudiante puede añadir las notas de cada asignatura por trimestre o publicar sus trabajos si hace un bootcamp.
 - El estudiante puede inscribirse en las ofertas de trabajo que le vaya aparenciendo y así compartir su perfil con la empresa.
-- El estudiante puede y tiene que adjuntar la certificación académica o matrícula para verificar que tiene o está cursando esa estudios.
+- El estudiante puede y tiene que adjuntar la certificación académica o matrícula para verificar que tiene o está cursando esa estudios
 
 ##### Empresas
 - La empresa va poder publicar sus ofertas de empleo.
 - La empresa va poder seguir el perfil de un usuario si este se apunta a la oferta.
+
+### Use Cases
+
+Student
+- add career
+- delete career
+- add subject (in career)
+- delete subject
+- add score (to subject)
+- add comment (to subject)
+- add certification (to subject)
+- filter companies
+- view company
+- view offers (from company)
+
+Company
+- add offer
+- delete offer
+- filter students
+- view student
+
+
+## Technical Description
 
 ### Tecnologies 
 
@@ -40,17 +65,42 @@ Todo usuario mayor de edad se va poder registrar y tener su perfil. Una vez que 
 
 ### Modules
 
-- API (Funcionalidad)
+- API (Server)
 - App (Programa)
-- MongoDB (Base de Datos)
 - COM (Paquete o librería propia que se usa en comúm en todos los archivos)
+
+### UI Design
+
+- Figma<br>Enlace al diseño UI -> 
+<https://www.figma.com/file/2dek9Awzi4rIL1RpaI8EuR/Untitled?type=design&node-id=0-1&mode=design&t=PZWYtFxGQf7x22pK-0>
 
 ### Data Model
 
-- USERS
-- POST
-- ASIGNATURES
-- FILES
-- PROFILE
-- COMPANIES
+User
+- id (auto, required)
+- name (string, required)
+- surname (string, required)
+- role (string, enum: student|company)
+
+Career
+- id (auto)
+- student (User.id)
+- title (string, required)
+- description (string, required)
+- certification (string, required)
+
+Subject
+- id (auto)
+- career (Career.id, required)
+- score (number, optional)
+- comment (string, optional)
+
+Offer
+- id (auto)
+- title (string, required)
+- description (string, requried)
+- minSalary (number, optional)
+- maxSalary (number, optional)
+- publishDate (date, requried)
+- expirationDate (date, requried)
 
