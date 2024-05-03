@@ -2,7 +2,7 @@ import logic from "../logic/index.js"
 import Form from "./Form.jsx"
 import Button from "./Button.jsx"
 import LabelInput from "./LabelInput.jsx"
-import HTag from "./HTags.jsx"
+import HTag from "./HTag.jsx"
 import { errors } from 'com'
 import SpanError from "./SpanError.jsx"
 import { useState } from "react"

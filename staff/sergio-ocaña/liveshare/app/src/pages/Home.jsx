@@ -17,7 +17,6 @@ function Home({ onLogoutClick }) {
     const [timeStamp, setTimeStamp] = useState(Date.now())
     const [targetUserId, setTargetUserId] = useState(null)
 
-
     const errorHandler = error => {
         console.error(error)
 
@@ -81,11 +80,11 @@ function Home({ onLogoutClick }) {
             {!user && <p>Loading...</p>}
             {user && <HTag>{`Hola ${user.username}!`}</HTag>}
 
-            <nav>
+            {view !== chat || !view !== posts && <nav>
                 <Button onClick={handleProfileButton}>👥</Button>
                 <Button onClick={handleChatButton}>💬</Button>
                 <Button onClick={handleLogoutButton}>🚪</Button>
-            </nav>
+            </nav>}
         </header >
 
         <main>

@@ -1,5 +1,5 @@
 import logic from "../logic"
-import HTag from "./HTags"
+import HTag from "./HTag"
 import Post from "./Post"
 import { errors } from 'com'
 import { useState, useEffect } from "react"

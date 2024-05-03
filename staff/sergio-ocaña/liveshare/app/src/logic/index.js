@@ -9,6 +9,7 @@ import retrievePost from './retrievePost'
 import deletePost from './deletePost'
 import updatePost from './updatePost'
 import retrieveUserIdPosts from './retrieveUserIdPosts'
+import isUserLoggedIn from './isUserLoggedIn'
 
 const logic = {
     registerUser,
@@ -21,7 +22,8 @@ const logic = {
     retrievePosts,
     retrieveUserIdPosts,
     deletePost,
-    updatePost
+    updatePost,
+    isUserLoggedIn
 }
 
 export default logic

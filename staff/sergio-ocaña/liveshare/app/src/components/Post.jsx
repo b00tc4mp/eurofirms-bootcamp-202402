@@ -2,7 +2,7 @@ import logic from '../logic'
 import { errors } from 'com'
 import EditPost from './EditPost'
 import AuthorButtons from './AuthorButtons'
-import HTag from './HTags'
+import HTag from './HTag'
 
 import { useState } from "react"
 

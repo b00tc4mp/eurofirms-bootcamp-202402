@@ -6,7 +6,7 @@ function retrievePost(postId) {
     validate.token(sessionStorage.token)
     validate.id(postId, 'postId')
 
-    return fetch(`http://localhost:8080/post/${postId}`, {
+    return fetch(`${import.meta.env.VITE_API_URL}/${postId}`, {
         method: 'GET',
         headers: { 'Authorization': `Bearer ${sessionStorage.token}` }
     })

@@ -1,17 +1,19 @@
-import mongoose, { set } from 'mongoose'
+import mongoose from 'mongoose'
 import express from 'express'
 import cors from 'cors'
 import logic from './logic/index.js'
 import { errors } from 'com'
 import jwt from 'jsonwebtoken'
+import dotenv from 'dotenv'
+
+dotenv.config()
 
 const { JsonWebTokenError, TokenExpiredError } = jwt
 const { MatchError, ContentError, DuplicityError } = errors
+const { PORT, MONGO_URL, JWT_SECRET } = process.env
 
-mongoose.connect('mongodb://localhost:27017/test')
+mongoose.connect(MONGO_URL)
     .then(() => {
-        const secret = (Math.random() * 10 ** 10 + 57).toString()
-
         console.log('DB conected')
 
         const server = express()
@@ -49,7 +51,7 @@ mongoose.connect('mongodb://localhost:27017/test')
 
                 logic.authenticateUser(username, password)
                     .then(userId => {
-                        const token = jwt.sign({ sub: userId }, secret, { expiresIn: '1h' })
+                        const token = jwt.sign({ sub: userId }, JWT_SECRET, { expiresIn: '1h' })
 
                         res.status(200).json(token)
                     })
@@ -78,7 +80,7 @@ mongoose.connect('mongodb://localhost:27017/test')
 
                 const token = authorization.slice(7)
 
-                const { sub: userId } = jwt.verify(token, secret)
+                const { sub: userId } = jwt.verify(token, JWT_SECRET)
 
                 const { targetUserId } = req.params
 
@@ -112,7 +114,7 @@ mongoose.connect('mongodb://localhost:27017/test')
 
                 const token = authorization.slice(7)
 
-                const { sub: userId } = jwt.verify(token, secret)
+                const { sub: userId } = jwt.verify(token, JWT_SECRET)
 
                 const { image, text } = req.body
 
@@ -146,7 +148,7 @@ mongoose.connect('mongodb://localhost:27017/test')
 
                 const token = authorization.slice(7)
 
-                const { sub: userId } = jwt.verify(token, secret)
+                const { sub: userId } = jwt.verify(token, JWT_SECRET)
 
                 const { postId } = req.params
 
@@ -182,7 +184,7 @@ mongoose.connect('mongodb://localhost:27017/test')
 
                 const token = authorization.slice(7)
 
-                const { sub: userId } = jwt.verify(token, secret)
+                const { sub: userId } = jwt.verify(token, JWT_SECRET)
 
                 logic.retrieveUserPosts(userId, targetUserId)
                     .then(posts => res.json(posts))
@@ -214,7 +216,7 @@ mongoose.connect('mongodb://localhost:27017/test')
 
                 const token = authorization.slice(7)
 
-                const { sub: userId } = jwt.verify(token, secret)
+                const { sub: userId } = jwt.verify(token, JWT_SECRET)
 
                 logic.retrievePosts(userId)
                     .then(posts => res.json(posts))
@@ -246,7 +248,7 @@ mongoose.connect('mongodb://localhost:27017/test')
 
                 const token = authorization.slice(7)
 
-                const { sub: userId } = jwt.verify(token, secret)
+                const { sub: userId } = jwt.verify(token, JWT_SECRET)
 
                 const { postId } = req.params
 
@@ -281,7 +283,7 @@ mongoose.connect('mongodb://localhost:27017/test')
 
                 const token = authorization.slice(7)
 
-                const { sub: userId } = jwt.verify(token, secret)
+                const { sub: userId } = jwt.verify(token, JWT_SECRET)
 
                 const { text } = req.body
 
@@ -312,6 +314,6 @@ mongoose.connect('mongodb://localhost:27017/test')
             }
         })
 
-        server.listen(8080, () => console.log('API started'))
+        server.listen(PORT, () => console.log('API started'))
     })
     .catch(error => console.error(error))
