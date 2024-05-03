@@ -18,7 +18,7 @@ function Login({onUserLoggedIn, onRegisterClick}) {
             .catch(error =>{
                 console.error(error.message)
 
-                let feedback = error. message
+                let feedback = error.message
 
                 if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
                         feedback = `${feedback}, please correct it`

@@ -5,7 +5,7 @@ function loginUser(username,password) {
      validate.username(username)
      validate.password(password)
 
-     return fetch(`${import.meta.env.VITE_API_URL}/posts`, {
+     return fetch(`${import.meta.env.VITE_API_URL}/users/auth`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password })
@@ -16,14 +16,15 @@ function loginUser(username,password) {
                 return res.json()
                     .then(token => sessionStorage.token = token)
             return res.json()
-                .then(body => {
+            .catch(error => {throw new SystemError(error.message)})  
+            .then(body => {
                     const { error, message } = body
 
                     const constructor = errors[error]
 
                     throw new constructor(message)
                 })
-                .catch(error => {throw new SystemError(error.message)})
+                
         })
 }
 export default loginUser

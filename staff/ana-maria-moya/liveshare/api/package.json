@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "inspect": "node --inspect-brk index.js",
-    "start": "node.",
+    "start": "node .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

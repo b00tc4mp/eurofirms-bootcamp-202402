@@ -1,6 +1,6 @@
 import dotenv from 'dotenv'
 
-dotenv. confing()
+dotenv.config()
 
 import mongoose from 'mongoose'
 import express from 'express'
@@ -16,7 +16,7 @@ const { PORT, MONGO_URL, JWT_SECRET } = process.env
 
 mongoose.connect(MONGO_URL)
     .then(() => {
-        console.log('DB connected at ${MONGO_URL}')
+        console.log(`DB connected at ${MONGO_URL}`)
 
         const server = express()
 
@@ -79,6 +79,7 @@ mongoose.connect(MONGO_URL)
 
                 if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
                     status = 400
+              
 
                 res.status(status).json({ error: error.constructor.name, message: error.message })
             }
@@ -268,6 +269,6 @@ mongoose.connect(MONGO_URL)
             }
         })
 
-        server.listen(PORT, () => console.log('API started on port ${PORT}'))
+        server.listen(PORT, () => console.log(`API started on port ${PORT}`))
     })
     .catch(error => console.error(error))

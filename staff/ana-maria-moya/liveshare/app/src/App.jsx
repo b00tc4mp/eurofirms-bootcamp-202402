@@ -1,36 +1,39 @@
 import Home from './pages/Home'
 import Login from './pages/Login'
 import Register from './pages/Register'
-import { useState } from 'react'
+import { Routes, Route, Navigate, useNavigate } from 'react-router-dom'
+import logic from './logic'
 
 
 function App() {
-    const [view, setView] = useState('login')
+    const navigate = useNavigate()
 
     const handleUserRegistered = () => {
-        setView('login')
+        navigate('/login')
     }
 
     const handleUserLoggedIn = () => {
-        setView('home')
+        navigate('/')
     }
 
     const handleRegisterClick = () => {
-        setView('register')
+        navigate('/register')
     }
 
     const handleLoginClick = () => {
-        setView('login')
+        navigate('/login')
     }
 
-    const handleLogoutClick = () => {
-        setView('login')
+    const handleUserLoggedOut = () => {
+       navigate('/login')
     }
 
     return <>
-        {view === 'login' && <Login onUserLoggedIn={handleUserLoggedIn} onRegisterClick={handleRegisterClick} />}
-        {view === 'register' && <Register onUserRegistered={handleUserRegistered} onLoginClick={handleLoginClick} />}
-        {view === 'home' && <Home onUserLoggedOut={handleLogoutClick} />}
+       <Routes>
+      <Route path="/login" element={logic.isUserLoggedIn() ? <Navigate to="/" /> : <Login onUserLoggedIn={handleUserLoggedIn} onRegisterClick={handleRegisterClick} />} />
+      <Route path="/register" element={logic.isUserLoggedIn() ? <Navigate to="/" /> : <Register onUserRegistered={() => handleUserRegistered()} onLoginClick={handleLoginClick} />} />
+      <Route path="/" element={logic.isUserLoggedIn() ? <Home onUserLoggedOut={handleUserLoggedOut} /> : <Navigate to="/login" />} />
+    </Routes>
     </>
 }
 

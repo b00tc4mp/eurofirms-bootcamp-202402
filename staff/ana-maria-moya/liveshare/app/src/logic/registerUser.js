@@ -8,7 +8,7 @@ function registerUser(name, birthdate, email, username, password) {
     validate.username(username)
     validate.password(password)
 
-    return fetch(`${import.meta.env.VITE_API_URL}/posts`, {
+    return fetch(`${import.meta.env.VITE_API_URL}/users`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, birthdate, email, username, password })
@@ -21,7 +21,7 @@ function registerUser(name, birthdate, email, username, password) {
                 .then(body => {
                     const { error, message } = body
 
-                    const constructor = window[error]
+                    const constructor = errors[error]
 
                     throw new constructor(message)
                 })
