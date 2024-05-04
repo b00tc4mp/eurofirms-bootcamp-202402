@@ -55,6 +55,7 @@ User
 - username (string,required)
 - email (string, required)
 - password (string, required)
+- birthdate (date, required)
 - wallet (number)
 
 Player 
@@ -66,7 +67,7 @@ Event
 - name (string, required)
 - description (string, required)
 - players (array of Player.id, required)
-- winner (Player.id) //TODO change name player
+- winner (Player.id) 
 - endDate (date, required)
 - startDate (date, required)
 - status (string, enum: open|closed)
