@@ -4,6 +4,7 @@ function Home() {
     <>
         <header className="header">
             <div id="app">FormativeLife</div>
+            <span className="mx-100">Prueba</span>
             <div className="titular"><i>Busca o atrae talento</i></div>
             <div id="area-perfil">
                 <button className="login">Cerrar Sesión</button>
