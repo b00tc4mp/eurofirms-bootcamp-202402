@@ -1,0 +1,56 @@
+[
+  {
+    "alias": "goog",
+    "name": "google",
+    "displayName": "Google",
+    "searcherType": "global",
+    "searchType": ["web", "image", "video", "news"],
+    "isActive": true,
+    "index": 0
+  },
+  {
+    "alias": "bing",
+    "name": "bing",
+    "displayName": "Bing",
+    "searcherType": "global",
+    "searchType": ["web", "image", "video", "news", "maps"],
+    "isActive": true,
+    "index": 1
+  },
+  {
+    "alias": "youtu",
+    "name": "youtube",
+    "displayName": "YouTube",
+    "searcherType": "onlyVideo",
+    "searchType": ["video"],
+    "isActive": true,
+    "index": 2
+  },
+  {
+    "alias": "x",
+    "name": "x",
+    "displayName": "X",
+    "searcherType": "social",
+    "searchType": ["socialGlobal", "person", "image/video"],
+    "isActive": true,
+    "index": 3
+  },
+  {
+    "alias": "giphy",
+    "name": "giphy",
+    "displayName": "Giphy",
+    "searcherType": "gifs",
+    "searchType": ["gifs"],
+    "isActive": true,
+    "index": 4
+  },
+  {
+    "alias": "pornhub",
+    "name": "pornhub",
+    "displayName": "PornHub",
+    "searcherType": "adult",
+    "searchType": ["video"],
+    "isActive": false,
+    "index": 5
+  }
+]

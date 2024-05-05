@@ -1,0 +1,11 @@
+[
+  { "name": "NoTagged", "editionAlias": "en_GB", "description": "" },
+  { "name": "United Kingdom", "editionAlias": "en_GB", "description": "" },
+  { "name": "World", "editionAlias": "en_GB", "description": "" },
+  { "name": "Business", "editionAlias": "en_GB", "description": "" },
+  { "name": "Technology", "editionAlias": "en_GB", "description": "" },
+  { "name": "Entertainment", "editionAlias": "en_GB", "description": "" },
+  { "name": "Sports", "editionAlias": "en_GB", "description": "" },
+  { "name": "Science", "editionAlias": "en_GB", "description": "" },
+  { "name": "Health", "editionAlias": "en_GB", "description": "" }
+]

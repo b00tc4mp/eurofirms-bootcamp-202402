@@ -1,0 +1,11 @@
+[
+  { "name": "NoTagged", "editionAlias": "ca_ES", "description": "" },
+  { "name": "Espanya", "editionAlias": "ca_ES", "description": "" },
+  { "name": "Internacional", "editionAlias": "ca_ES", "description": "" },
+  { "name": "Negocis", "editionAlias": "ca_ES", "description": "" },
+  { "name": "Tecnologia", "editionAlias": "ca_ES", "description": "" },
+  { "name": "Entreteniment", "editionAlias": "ca_ES", "description": "" },
+  { "name": "Esports", "editionAlias": "ca_ES", "description": "" },
+  { "name": "Ciència", "editionAlias": "ca_ES", "description": "" },
+  { "name": "Salut", "editionAlias": "ca_ES", "description": "" }
+]

@@ -1,0 +1,38 @@
+[
+  {
+    "searcherAlias": "goog",
+    "searcher": "google",
+    "editionAlias": "es_VE",
+    "searcherType": "global",
+    "searchType": "web",
+    "url": "https://www.google.co.ve/search?",
+    "urlExample": "https://www.google.co.ve/search?q=busca"
+  },
+  {
+    "searcherAlias": "goog",
+    "searcher": "google",
+    "editionAlias": "es_VE",
+    "searcherType": "global",
+    "searchType": "image",
+    "url": "https://www.google.co.ve/search?tbm=isch",
+    "urlExample": "https://www.google.co.ve/search?q=busca&tbm=isch"
+  },
+  {
+    "searcherAlias": "goog",
+    "searcher": "google",
+    "editionAlias": "es_VE",
+    "searcherType": "global",
+    "searchType": "video",
+    "url": "https://www.google.co.ve/search?tbm=vid&hl=es",
+    "urlExample": "https://www.google.co.ve/search?q=busca&tbm=vid&hl=es"
+  },
+  {
+    "searcherAlias": "goog",
+    "searcher": "google",
+    "editionAlias": "es_VE",
+    "searcherType": "global",
+    "searchType": "news",
+    "url": "https://news.google.co.ve/search?hl=es-419&gl=VE&ceid=VE%3Aes-419",
+    "urlExample": "https://news.google.co.ve/search?q=busca&hl=es-419&gl=VE&ceid=VE%3Aes-419"
+  }
+]

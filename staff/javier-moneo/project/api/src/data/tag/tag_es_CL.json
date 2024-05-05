@@ -1,0 +1,10 @@
+[
+  { "name": "NoTagged", "editionAlias": "es_CL", "description": "" },
+  { "name": "Chile", "editionAlias": "es_CL", "description": "" },
+  { "name": "Internacional", "editionAlias": "es_CL", "description": "" },
+  { "name": "Negocios", "editionAlias": "es_CL", "description": "" },
+  { "name": "CienciaYTecnología", "editionAlias": "es_CL", "description": "" },
+  { "name": "Entretenimiento", "editionAlias": "es_CL", "description": "" },
+  { "name": "Deportes", "editionAlias": "es_CL", "description": "" },
+  { "name": "Salud", "editionAlias": "es_CL", "description": "" }
+]

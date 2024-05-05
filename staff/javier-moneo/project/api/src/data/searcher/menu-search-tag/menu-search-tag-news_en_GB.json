@@ -1,0 +1,65 @@
+[
+  {
+    "name": "United Kingdom",
+    "tagName": "United Kingdom",
+    "editionAlias": "en_GB",
+    "searchType": "news",
+    "index": 0
+  },
+  {
+    "name": "World",
+    "tagName": "World",
+    "editionAlias": "en_GB",
+    "searchType": "news",
+    "index": 1
+  },
+  {
+    "name": "Business",
+    "tagName": "Business",
+    "editionAlias": "en_GB",
+    "searchType": "news",
+    "index": 2
+  },
+  {
+    "name": "Technology",
+    "tagName": "Technology",
+    "editionAlias": "en_GB",
+    "searchType": "news",
+    "index": 3
+  },
+  {
+    "name": "Entertainment",
+    "tagName": "Entertainment",
+    "editionAlias": "en_GB",
+    "searchType": "news",
+    "index": 4
+  },
+  {
+    "name": "Sports",
+    "tagName": "Sports",
+    "editionAlias": "en_GB",
+    "searchType": "news",
+    "index": 5
+  },
+  {
+    "name": "Science",
+    "tagName": "Science",
+    "editionAlias": "en_GB",
+    "searchType": "news",
+    "index": 6
+  },
+  {
+    "name": "Health",
+    "tagName": "Health",
+    "editionAlias": "en_GB",
+    "searchType": "news",
+    "index": 7
+  },
+  {
+    "name": "NoTagged",
+    "tagName": "NoTagged",
+    "editionAlias": "en_GB",
+    "searchType": "news",
+    "index": 8
+  }
+]

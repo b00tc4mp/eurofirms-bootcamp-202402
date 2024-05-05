@@ -1,0 +1,44 @@
+[
+  {
+    "tagName": "Cuba",
+    "editionAlias": "es_CU",
+    "searchType": "news",
+    "service": "googleNews",
+    "url": "https://news.google.com/topics/CAAqKAgKIiJDQkFTRXdvSkwyMHZNR1F3TkhvMkVnWmxjeTAwTVRrb0FBUAE?hl=es-419&gl=CU&ceid=CU%3Aes-419"
+  },
+  {
+    "tagName": "Internacional",
+    "editionAlias": "es_CU",
+    "searchType": "news",
+    "service": "googleNews",
+    "url": "https://news.google.com/topics/CAAqLAgKIiZDQkFTRmdvSUwyMHZNRGx1YlY4U0JtVnpMVFF4T1JvQ1ExVW9BQVAB?hl=es-419&gl=CU&ceid=CU%3Aes-419"
+  },
+  {
+    "tagName": "Negocios",
+    "editionAlias": "es_CU",
+    "searchType": "news",
+    "service": "googleNews",
+    "url": "https://news.google.com/topics/CAAqLAgKIiZDQkFTRmdvSUwyMHZNRGx6TVdZU0JtVnpMVFF4T1JvQ1ExVW9BQVAB?hl=es-419&gl=CU&ceid=CU%3Aes-419"
+  },
+  {
+    "tagName": "CienciaYTecnología",
+    "editionAlias": "es_CU",
+    "searchType": "news",
+    "service": "googleNews",
+    "url": "https://news.google.com/topics/CAAqLQgKIidDQkFTRndvSkwyMHZNR1ptZHpWbUVnWmxjeTAwTVRrYUFrTlZLQUFQAQ?hl=es-419&gl=CU&ceid=CU%3Aes-419"
+  },
+  {
+    "tagName": "Entretenimiento",
+    "editionAlias": "es_CU",
+    "searchType": "news",
+    "service": "googleNews",
+    "url": "https://news.google.com/topics/CAAqLAgKIiZDQkFTRmdvSUwyMHZNREpxYW5RU0JtVnpMVFF4T1JvQ1ExVW9BQVAB?hl=es-419&gl=CU&ceid=CU%3Aes-419"
+  },
+  {
+    "tagName": "Deportes",
+    "editionAlias": "es_CU",
+    "searchType": "news",
+    "service": "googleNews",
+    "url": "https://news.google.com/topics/CAAqLAgKIiZDQkFTRmdvSUwyMHZNRFp1ZEdvU0JtVnpMVFF4T1JvQ1ExVW9BQVAB?hl=es-419&gl=CU&ceid=CU%3Aes-419"
+  }
+]

@@ -1,0 +1,58 @@
+[
+  {
+    "name": "España",
+    "tagName": "España",
+    "editionAlias": "es",
+    "searchType": "image",
+    "index": 0
+  },
+  {
+    "name": "Internacional",
+    "tagName": "Internacional",
+    "editionAlias": "es",
+    "searchType": "image",
+    "index": 1
+  },
+  {
+    "name": "Economía",
+    "tagName": "Economía",
+    "editionAlias": "es",
+    "searchType": "image",
+    "index": 2
+  },
+  {
+    "name": "CienciaYTecnología",
+    "tagName": "CienciaYTecnología",
+    "editionAlias": "es",
+    "searchType": "image",
+    "index": 3
+  },
+  {
+    "name": "Entretenimiento",
+    "tagName": "Entretenimiento",
+    "editionAlias": "es",
+    "searchType": "image",
+    "index": 4
+  },
+  {
+    "name": "Deportes",
+    "tagName": "Deportes",
+    "editionAlias": "es",
+    "searchType": "image",
+    "index": 5
+  },
+  {
+    "name": "Salud",
+    "tagName": "Salud",
+    "editionAlias": "es",
+    "searchType": "image",
+    "index": 6
+  },
+  {
+    "name": "NoTagged",
+    "tagName": "NoTagged",
+    "editionAlias": "es",
+    "searchType": "image",
+    "index": 7
+  }
+]

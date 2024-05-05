@@ -1,0 +1,65 @@
+[
+  {
+    "name": "Ireland",
+    "tagName": "Ireland",
+    "editionAlias": "en_IE",
+    "searchType": "video",
+    "index": 0
+  },
+  {
+    "name": "World",
+    "tagName": "World",
+    "editionAlias": "en_IE",
+    "searchType": "video",
+    "index": 1
+  },
+  {
+    "name": "Business",
+    "tagName": "Business",
+    "editionAlias": "en_IE",
+    "searchType": "video",
+    "index": 2
+  },
+  {
+    "name": "Technology",
+    "tagName": "Technology",
+    "editionAlias": "en_IE",
+    "searchType": "video",
+    "index": 3
+  },
+  {
+    "name": "Entertainment",
+    "tagName": "Entertainment",
+    "editionAlias": "en_IE",
+    "searchType": "video",
+    "index": 4
+  },
+  {
+    "name": "Sports",
+    "tagName": "Sports",
+    "editionAlias": "en_IE",
+    "searchType": "video",
+    "index": 5
+  },
+  {
+    "name": "Science",
+    "tagName": "Science",
+    "editionAlias": "en_IE",
+    "searchType": "video",
+    "index": 6
+  },
+  {
+    "name": "Health",
+    "tagName": "Health",
+    "editionAlias": "en_IE",
+    "searchType": "video",
+    "index": 7
+  },
+  {
+    "name": "NoTagged",
+    "tagName": "NoTagged",
+    "editionAlias": "en_IE",
+    "searchType": "video",
+    "index": 8
+  }
+]

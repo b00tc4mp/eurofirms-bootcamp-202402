@@ -1,0 +1,58 @@
+[
+  {
+    "tagName": "Ireland",
+    "editionAlias": "en_IE",
+    "searchType": "news",
+    "service": "googleNews",
+    "url": "https://news.google.com/topics/CAAqJQgKIh9DQkFTRVFvSUwyMHZNRE55ZERrU0JXVnVMVWRDS0FBUAE?hl=en-IE&gl=IE&ceid=IE%3Aen"
+  },
+  {
+    "tagName": "World",
+    "editionAlias": "en_IE",
+    "searchType": "news",
+    "service": "googleNews",
+    "url": "https://news.google.com/topics/CAAqKggKIiRDQkFTRlFvSUwyMHZNRGx1YlY4U0JXVnVMVWRDR2dKSlJTZ0FQAQ?hl=en-IE&gl=IE&ceid=IE%3Aen"
+  },
+  {
+    "tagName": "Business",
+    "editionAlias": "en_IE",
+    "searchType": "news",
+    "service": "googleNews",
+    "url": "https://news.google.com/topics/CAAqKggKIiRDQkFTRlFvSUwyMHZNRGx6TVdZU0JXVnVMVWRDR2dKSlJTZ0FQAQ?hl=en-IE&gl=IE&ceid=IE%3Aen"
+  },
+  {
+    "tagName": "Technology",
+    "editionAlias": "en_IE",
+    "searchType": "news",
+    "service": "googleNews",
+    "url": "https://news.google.com/topics/CAAqKggKIiRDQkFTRlFvSUwyMHZNRGRqTVhZU0JXVnVMVWRDR2dKSlJTZ0FQAQ?hl=en-IE&gl=IE&ceid=IE%3Aen"
+  },
+  {
+    "tagName": "Entertainment",
+    "editionAlias": "en_IE",
+    "searchType": "news",
+    "service": "googleNews",
+    "url": "https://news.google.com/topics/CAAqKggKIiRDQkFTRlFvSUwyMHZNREpxYW5RU0JXVnVMVWRDR2dKSlJTZ0FQAQ?hl=en-IE&gl=IE&ceid=IE%3Aen"
+  },
+  {
+    "tagName": "Sports",
+    "editionAlias": "en_IE",
+    "searchType": "news",
+    "service": "googleNews",
+    "url": "https://news.google.com/topics/CAAqKggKIiRDQkFTRlFvSUwyMHZNRFp1ZEdvU0JXVnVMVWRDR2dKSlJTZ0FQAQ?hl=en-IE&gl=IE&ceid=IE%3Aen"
+  },
+  {
+    "tagName": "Science",
+    "editionAlias": "en_IE",
+    "searchType": "news",
+    "service": "googleNews",
+    "url": "https://news.google.com/topics/CAAqKggKIiRDQkFTRlFvSUwyMHZNRFp0Y1RjU0JXVnVMVWRDR2dKSlJTZ0FQAQ?hl=en-IE&gl=IE&ceid=IE%3Aen"
+  },
+  {
+    "tagName": "Health",
+    "editionAlias": "en_IE",
+    "searchType": "news",
+    "service": "googleNews",
+    "url": "https://news.google.com/topics/CAAqJQgKIh9DQkFTRVFvSUwyMHZNR3QwTlRFU0JXVnVMVWRDS0FBUAE?hl=en-IE&gl=IE&ceid=IE%3Aen"
+  }
+]

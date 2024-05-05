@@ -8,6 +8,7 @@
     "start": "node src/index.js",
     "startindex": "node src/index.js",
     "dev": "nodemon src/index.js",
+    "testengine": "node src/libs-data/engine-url-get/engine.test.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

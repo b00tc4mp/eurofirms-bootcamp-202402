@@ -1,0 +1,10 @@
+[
+  { "name": "NoTagged", "editionAlias": "es_AR", "description": "" },
+  { "name": "Argentina", "editionAlias": "es_AR", "description": "" },
+  { "name": "Internacional", "editionAlias": "es_AR", "description": "" },
+  { "name": "Negocios", "editionAlias": "es_AR", "description": "" },
+  { "name": "CienciaYTecnología", "editionAlias": "es_AR", "description": "" },
+  { "name": "Entretenimiento", "editionAlias": "es_AR", "description": "" },
+  { "name": "Deportes", "editionAlias": "es_AR", "description": "" },
+  { "name": "Salud", "editionAlias": "es_AR", "description": "" }
+]

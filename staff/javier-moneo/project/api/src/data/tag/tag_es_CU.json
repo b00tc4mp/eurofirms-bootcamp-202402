@@ -1,0 +1,10 @@
+[
+  { "name": "NoTagged", "editionAlias": "es_CU", "description": "" },
+  { "name": "Cuba", "editionAlias": "es_CU", "description": "" },
+  { "name": "Internacional", "editionAlias": "es_CU", "description": "" },
+  { "name": "Negocios", "editionAlias": "es_CU", "description": "" },
+  { "name": "CienciaYTecnología", "editionAlias": "es_CU", "description": "" },
+  { "name": "Entretenimiento", "editionAlias": "es_CU", "description": "" },
+  { "name": "Deportes", "editionAlias": "es_CU", "description": "" },
+  { "name": "Salud", "editionAlias": "es_CU", "description": "" }
+]
