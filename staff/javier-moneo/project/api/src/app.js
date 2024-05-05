@@ -1,7 +1,17 @@
 import express from 'express';
 import morgan from 'morgan';
 
+// creación de base de datos con datos iniciales
 import { createRoles } from './libs/initialSetup.js';
+import {
+  createLanguages,
+  createCountries,
+  createEditions,
+  createSearchTypes,
+  createSearcherTypes,
+  createSearcher,
+  createTags,
+} from './libs-data/initialSetupData.js';
 
 import pkg from '../package.json' assert { type: 'json' };
 import productRoutes from './routes/products.routes.js';
@@ -10,7 +20,18 @@ import userRoutes from './routes/user.routes.js';
 
 const app = express();
 
-createRoles();
+// creación de base de datos con datos iniciales
+// NO CAMBIAR EL ORDEN DE EJECUCION
+console.log('initialSetups.js starting to create data');
+await createRoles();
+console.log('initialSetupsData.js starting to create data');
+await createLanguages();
+await createCountries();
+await createEditions();
+await createSearchTypes();
+await createSearcherTypes();
+await createSearcher();
+await createTags();
 
 app.set('pkg', pkg);
 
