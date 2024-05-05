@@ -49,7 +49,7 @@ function validateDate(date, explain = 'birthdate') {
             const age = currentYear - birthdateYear
 
             if (age < 18)
-                throw new ContentError('you must be at least 18 years old')
+                throw new ContentError('invalid birthdate you must be at least 18 years old')
 
             break
 
