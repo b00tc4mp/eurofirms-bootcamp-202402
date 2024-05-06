@@ -31,7 +31,9 @@ const user = new Schema({
 
 const player = new Schema({
     name: {
-        type: String
+        type: String,
+        unique: true,
+        required: true
     }
 })
 
@@ -49,13 +51,14 @@ const event = new Schema({
         required: true
     },
     winner: {
-        type: ObjectId
+        type: String,
+        default: ''
     },
-    endDate: {
+    startDate: {
         type: Date,
         required: true
     },
-    startDate: {
+    endDate: {
         type: Date,
         required: true
     },

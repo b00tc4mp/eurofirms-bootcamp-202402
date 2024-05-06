@@ -37,33 +37,33 @@ function validateDate(date, explain = 'birthdate') {
     if (date.indexOf('-') !== 4 || date.lastIndexOf('-') !== 7)
         throw new ContentError(`${explain} dashes must be in correct place`)
 
+}
+
+function validateIsAdult(birthdate) {
     const now = new Date()
-    const dateToCheck = new Date(date)
+    const birthDate = new Date(birthdate)
 
-    switch (explain) {
-        case 'birthdate':
-            const currentYear = now.getFullYear()
+    const diffTime = Math.abs(now - birthDate);
 
-            const birthdateYear = date.split('-')[0]
+    const age = Math.floor(diffTime / (1000 * 60 * 60 * 24 * 365))
 
-            const age = currentYear - birthdateYear
+    if (age < 18)
+        throw new MatchError('invalid birthdate you must be at least 18 years old')
+}
 
-            if (age < 18)
-                throw new ContentError('invalid birthdate you must be at least 18 years old')
+function validateEventDates(start, end) {
+    const now = new Date()
+    const dateStart = new Date(start)
+    const dateEnd = new Date(end)
 
-            break
+    if (dateStart < now)
+        throw new MatchError(`start date must be a future date`)
 
-        case 'startdate' || 'enddate':
-            if (dateToCheck < now)
-                throw new ContentError(`${explain} must be a future date`)
+    if (dateEnd < now)
+        throw new MatchError('end date must be a future date')
 
-            break
-
-        default:
-            break
-    }
-
-
+    if (dateEnd < dateStart)
+        throw new MatchError('start date must be before end date')
 }
 
 function validateEmail(email) {
@@ -162,23 +162,31 @@ function validateAmount(amount) {
 }
 
 function validatePlayers(players) {
-    if (typeof players !== 'array')
-        throw new TypeError('players must be a string')
+    if (!players instanceof Array)
+        throw new TypeError('players must be an array')
 
-    players.forEach(playerId => validateId(playerId, 'playerid'))
 }
 
 function validateStatus(status) {
     if (typeof status !== 'string')
         throw new TypeError('status must be a string')
 
-    if (status !== 'open' || status !== 'closed')
+    if (status === 'open' || status === 'closed')
+        return
+    else
         throw new ContentError('status must be -> open <- or -> closed <-')
+}
+
+function validateWinner(winner) {
+    if (typeof winner !== 'string')
+        throw new TypeError('winner must be a string')
 }
 
 const validate = {
     name: validateName,
     date: validateDate,
+    adult: validateIsAdult,
+    eventDates: validateEventDates,
     email: validateEmail,
     password: validatePassword,
     id: validateId,
@@ -187,7 +195,8 @@ const validate = {
     wallet: validateWallet,
     amount: validateAmount,
     players: validatePlayers,
-    status: validateStatus
+    status: validateStatus,
+    winner: validateWinner
 }
 
 export default validate

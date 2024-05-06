@@ -8,6 +8,7 @@ function registerUser(username, email, password, birthdate, wallet) {
     validate.email(email)
     validate.password(password)
     validate.date(birthdate, 'birthdate')
+    validate.adult(birthdate)
     validate.wallet(wallet)
 
     return User.findOne({ email })

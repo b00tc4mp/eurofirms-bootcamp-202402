@@ -52,15 +52,15 @@ https://www.figma.com/file/gtyR9PFYvfgJNzlr6GLXni/Register?type=design&node-id=0
 
 User
 - id (auto)
-- username (string,required)
-- email (string, required)
+- username (string,required, unique)
+- email (string, required,unique)
 - password (string, required)
 - birthdate (date, required)
-- wallet (number)
+- wallet (number, min: 0)
 
 Player 
 - id
-- name
+- name (string, required, unique)
 
 Event
 - id (auto)
@@ -68,8 +68,8 @@ Event
 - description (string, required)
 - players (array of Player.id, required)
 - winner (Player.id) 
-- endDate (date, required)
 - startDate (date, required)
+- endDate (date, required)
 - status (string, enum: open|closed)
 
 Bet
@@ -77,4 +77,4 @@ Bet
 - event(Event.id, required)
 - player (Player.id, required)
 - user (User.id, requried)
-- amount (number,required)
+- amount (number,required,min:1)
