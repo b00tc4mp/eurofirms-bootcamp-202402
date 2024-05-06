@@ -1,8 +1,19 @@
 import Edition from '../models/Edition.js';
 
 export const getEditions = async (req, res) => {
-  const editions = await Edition.find();
-  return res.json(editions);
+  try {
+    const editions = await Edition.find({}, '-_id', {
+      sort: { name: 1 },
+    })
+      .populate('language', '-_id')
+      .populate('country', '-_id')
+      .exec();
+
+    return res.json(editions);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: error.message });
+  }
 };
 
 export const getEditionByCode = async (req, res) => {

@@ -1,5 +1,6 @@
 import express from 'express';
 import morgan from 'morgan';
+import cors from 'cors';
 
 // creación de base de datos con datos iniciales
 import { createRoles } from './libs/initialSetup.js';
@@ -47,6 +48,7 @@ app.set('pkg', pkg);
 
 app.use(express.json());
 app.use(morgan('dev')); // sirve para depurar, para que muestre en consola las peticiones
+app.use(cors());
 
 app.get('/', (req, res) => {
   res.json({
