@@ -1,35 +1,26 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import Login from './pages/Login'
+import Register from './pages/Register'
+import Home from './pages/Home'
+import { Routes, Route, Navigate, useNavigate } from 'react-router-dom'
+import logic from './logic'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const navigate = useNavigate()
+  const handleUserRegistered = () => navigate('/login')
+  const handleUserLoggedIn = () => navigate('/')
+  const handleRegisterClick = () => navigate('/register')
+  const handleLoginClick = () => navigate('/login')
+  const handleUserLoggedOut = () => navigate('/login')
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+  console.debug('App render')
+
+  return <>
+    <Routes>
+      <Route path="/login" element={logic.isUserLoggedIn() ? <Navigate to="/" /> : <Login onUserLoggedIn={handleUserLoggedIn} onRegisterClick={handleRegisterClick} />} />
+      <Route path="/register" element={logic.isUserLoggedIn() ? <Navigate to="/" /> : <Register onUserRegistered={() => handleUserRegistered()} onLoginClick={handleLoginClick} />} />
+      <Route path="/" element={logic.isUserLoggedIn() ? <Home onUserLoggedOut={handleUserLoggedOut} /> : <Navigate to="/login" />} />
+    </Routes>
+  </>
 }
 
 export default App
