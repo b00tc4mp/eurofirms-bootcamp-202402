@@ -14,19 +14,24 @@ There is a part where moderators can block harmful or spam content. They can als
 ### Use Cases
 
 regular
+
 - share search
 - comment search
 - list searches
+- vote searches
+- vote comments
 - report harmful search
 - report user
 - report comment
 
 moderator
+
 - ban search
 - ban user
 - ban comment
 
 root
+
 - list users
 - change role to user
 
@@ -35,7 +40,6 @@ root
 Search:
 
 ![](https://res.cloudinary.com/dgwllavpn/image/upload/v1714724906/sertuxBootcamp/searchAdvanced-2024-05-03_094257_w0fizy.png)
-
 
 SearchesBy:
 
@@ -85,6 +89,7 @@ BanBoardUsers:
 ### Model of predefined database from JSON files
 
 Edition
+
 - id (auto)
 - alias (string, required)
 - name (string, required)
@@ -95,16 +100,19 @@ Edition
 - isActive (boolean, required)
 
 Country
+
 - id (auto)
 - code (string, required)
 - nativeName (string, required)
 
 Language
+
 - id (auto)
 - code (string, required)
 - languageNative (string, required)
 
 MenuSearchTag
+
 - id (auto)
 - name (string, required)
 - tagName (string, required)
@@ -113,6 +121,7 @@ MenuSearchTag
 - index (number, required)
 
 MenuSearchType
+
 - id (auto)
 - searcherName (string, required)
 - editionAlias (string, required)
@@ -121,10 +130,12 @@ MenuSearchType
 - searchType (string, required) Enumerable
 
 SearchType
+
 - id (auto)
 - name (string, required)
 
 Searcher
+
 - id (auto)
 - name
 - alias (string, required)
@@ -134,6 +145,7 @@ Searcher
 - index (number, required)
 
 SearcherUrls
+
 - id (auto)
 - searcherAlias (string, required)
 - searcher (string, required)
@@ -144,12 +156,14 @@ SearcherUrls
 - urlExample (string, required)
 
 Tag
+
 - id (auto)
 - name (string, required)
 - editionAlias (string, required)
 - description (string, required)
 
 TagAgregatorUrl
+
 - id (auto)
 - tagName (string, required)
 - editionAlias (string, required)
@@ -160,108 +174,105 @@ TagAgregatorUrl
 ### Model from JSON to entities
 
 Edition
+
 - id (auto)
-- alias (string, required)
+- code (string, required, unique)
 - name (string, required)
-- languageNative (string, required)
-- codeLanguage (string, required)
-- countryNameNative (string, required)
-- codeCountry (string, required)
-- languageModel (Language.id)
-- countryModel (Country.id)
+- language (Language.id)
+- country (Country.id)
 - isActive (boolean, required)
 
 Country
+
 - id (auto)
-- code (string, required)
+- code (string, required, unique)
 - nativeName (string, required)
 
 Language
+
 - id (auto)
-- code (string, required)
+- code (string, required, unique)
 - languageNative (string, required)
 
 MenuSearchTag
+
 - id (auto)
 - name (string, required)
-- tagName (string, required)
-- editionAlias (string, required)
-- searchType (string, required)
-- editionModel (Edition.id)
-- searchTypeModel (SearchType.id)
-- tagModel (Tag.id)
+- edition (Edition.id)
+- searchType (SearchType.id)
+- tag (Tag.id)
 - index (number, required)
 
 MenuSearchType
+
 - id (auto)
-- searcherName (string, required)
-- editionAlias (string, required)
+- name (string, required)
 - index (number, required)
-- menuName (string, required)
-- searchType (string, required) Enumerable
-- searcherModel (Searcher.id)
-- editionModel (Edition.id)
-- searchTypeModel (SearchType.id)
+- searchType (SearchType.id, required)
+- searcher (Searcher.id)
+- edition (Edition.id)
 
 SearchType
+
 - id (auto)
 - name (string, required)
 
 Searcher
+
 - id (auto)
-- name
+- name (string, required, unique)
 - alias (string, required)
 - displayName (string, required)
-- searcherType (string, required)
 - isActive (boolean, required)
 - index (number, required)
-- searcherTypeModel (SearcherType.id)
+- searchTypes[] (SearchType.id)
+- searcherType (SearcherType.id)
 
 SearcherUrls
+
 - id (auto)
-- searcherAlias (string, required)
-- searcher (string, required)
-- editionAlias (string, required)
-- searcherType (string, required)
-- searchType (string, required)
 - url (string, required)
 - urlExample (string, required)
-- searcherModel (Searcher.id)
-- editionModel (Edition.id)
-- searcherTypeModel (SearcherType.id)
-- seachrTypeModel (SearchType.id)
+- searcher (Searcher.id)
+- edition (Edition.id)
+- searcherType (SearcherType.id)
+- seachrType (SearchType.id)
 
 Tag
+
 - id (auto)
 - name (string, required)
-- editionAlias (string, required)
 - description (string, required)
+- isBanned (boolean)
 - editionModel (Edition.id)
 
 TagAgregatorUrl
+
 - id (auto)
-- tagName (string, required)
-- editionAlias (string, required)
-- searchType (string, required)
 - service (string, required)
 - url (string, required)
-- tagModel (Tag.id)
-- editionModel (Edition.id)
-- searchTypeModel (SearchType.id)
+- tag (Tag.id)
+- edition (Edition.id)
+- searchType (SearchType.id)
 
 ## Model new on database
 
 User
+
 - id (auto)
 - username (string, required)
 - email (string, required, unique)
 - password (string, required)
 - birthdate (date, required)
 - edition (Edtition.id, required)
-- role (string, enumerable: "regular", "moderator", "root")
 
+Role
+
+- id (auto)
+- name (string required) -> 'user', 'admin', 'moderator'
 
 Search
+
 - id (auto)
 - url (string, required)
 - query (string, required)
@@ -276,6 +287,7 @@ Search
 - createdAt (Date, by default is added in all models)
 
 Analysis V2
+
 - id (auto)
 - edition (Edition.id, required)
 - listType (string, enum: "best", "popular", "top", "rising")
@@ -287,19 +299,39 @@ Analysis V2
 - endDate (Date)
 
 SearchList V2
+
 - id (auto)
 - analysis (Analysis.id, required)
 - search (Search.id, required)
 - dateCreationList (Date, required)
 
 Comment
+
 - id (auto)
 - search (Search.id, required)
 - user (User.id, required)
 - text (string, required)
+- isBanned (boolean)
+- dateBanned (date)
+- ownerBan (User.id)
 - createdAt (Date, by default is added in all models)
 
+VoteComment
+
+- id (auto)
+- comment (Comment.id, required)
+- isvoteUp (boolean, required)
+- ip (string)
+
+VoteSearch
+
+- id (auto)
+- comment (Comment.id, required)
+- isvoteUp (boolean, required)
+- ip (string)
+
 ReportedSearch
+
 - id (auto)
 - edition (Edition.id, required)
 - search (Search.id, required)
@@ -308,6 +340,7 @@ ReportedSearch
 - createdAt (Date, by default is added in all models)
 
 ReportedUser
+
 - id (auto)
 - edition (Edition.id, required)
 - user (User.id, required)
@@ -315,6 +348,7 @@ ReportedUser
 - createdAt (Date, by default is added in all models)
 
 ReportedComment
+
 - id (auto)
 - edition (Edition.id, required)
 - comment (Comment.id, required)
