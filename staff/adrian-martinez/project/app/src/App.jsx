@@ -1,43 +1,48 @@
+//import logic from "./logic"
+import { Routes, Route, Navigate, useNavigate } from "react-router-dom"
+
+//Todas las páginas no tienen por qué estar en este archivo 
 import Inicio from "./Pages/index"
 import ParaQuienEs from "./Pages/paraQuienEs"
 import Tutorial from "./Pages/tutorial"
 import Contacto from "./Pages/contacto"
 import Login from "./Pages/login"
 import Register from "./Pages/register"
-import { useState } from "react"
-import ResetPassword from "./Pages/resetPassword"
-import Home from "./Pages/home"
+//import ResetPassword from "./Pages/resetPassword"
+//import Home from "./Pages/home"
 import ListaUsuarios from "./Pages/listaUsuarios"
+//import HomeEmpresa from "./Pages/homeEmpresa"
 
-//Para manejar las vistas hay que hacerlo a través de un clase
 function App() {
-  const [view, setView] = useState('index');
+  
+  const navigate = useNavigate()
 
-  const handleUserLogin = () => setView('login');
-  const handleUserRegister = () => setView('register');
-  const handleListarUsers = () => setView('listaUsuarios');
-  const handleResetPassword = () => setView('resetPassword');
-  const handlePerfil = () => setView('home');
+  const handleUserLogin = () => navigate('/login');
+  const handleUserRegister = () => navigate('/register');
+  const handleListarUsers = () => navigate('/listaUsuarios');
+  const handleResetPassword = () => navigate('/resetPassword');
+  const handlePerfil = () => navigate('/');
   
   //Menú navegación
-  const handleParaQuienEs = () => setView('paraQuienEs');
-  const handleTutorial = () => setView('tutorial');
-  const handleContacto = () => setView('contacto');
+  const handleInicio = () => navigate("/");
+  const handleParaQuienEs = () => navigate('/paraQuienEs');
+  const handleTutorial = () => navigate('/tutorial');
+  const handleContacto = () => navigate('/contacto');
 
   console.debug('App render')
 
-  return <>
-    { view === "index" && <Inicio onClickLogin={handleUserLogin} onClickRegister={handleUserRegister} onClickParaQuienEs={handleParaQuienEs} onClickTutorial={handleTutorial} onClickContacto={handleContacto} onClickListarUsers={handleListarUsers}/> }
-    { view === "login" && <Login onClickPerfil={handlePerfil} onClickResetPassword={handleResetPassword}/> }
-    { view === "register" && <Register onClickRegister={handleUserRegister} onClickLogin={handleUserLogin}/> }
-    { view === 'paraQuienEs' && <ParaQuienEs />}
-    { view === 'tutorial' && <Tutorial />}
-    { view === 'contacto' && <Contacto />}
-    { view === 'home' && <Home />}
-    {/* { view === 'homeEmpresa' && <HomeEmpresa />} */}
-    { view === 'listaUsuarios' && <ListaUsuarios />}
-    { view === 'resetPassword' && <ResetPassword />}
-  </>
+  return (
+      <Routes>
+          <Route path="/" element={<Inicio onClickLogin={handleUserLogin} onClickRegister={handleUserRegister} onClickParaQuienEs={handleParaQuienEs} onClickTutorial={handleTutorial} onClickContacto={handleContacto} onClickListarUsers={handleListarUsers} />} /> 
+          <Route path="/login" element={<Login onClickPerfil={handlePerfil} onClickResetPassword={handleResetPassword} onClickInicio={handleInicio}/> }/>
+          <Route path="/register" element={<Register onClickRegister={handleUserRegister} onClickLogin={handleUserLogin} onClickInicio={handleInicio}/> }/>
+          <Route path="/paraQuienEs" element={<ParaQuienEs onClickParaQuienEs={handleParaQuienEs} onClickTutorial={handleTutorial} onClickLogin={handleUserLogin} onClickRegister={handleUserRegister} onClickInicio={handleInicio}/>}/>
+          <Route path="/tutorial" element={<Tutorial onClickTutorial={handleTutorial} onClickParaQuienEs={handleParaQuienEs} onClickContacto={handleContacto} onClickLogin={handleUserLogin} onClickRegister={handleUserRegister} onClickInicio={handleInicio}/>}/>
+          <Route path="/contacto" element={<Contacto onClickContacto={handleContacto} onClickParaQuienEs={handleParaQuienEs} onClickTutorial={handleTutorial} onClickLogin={handleUserLogin} onClickRegister={handleUserRegister} onClickInicio={handleInicio}/>}/>
+          {/* <Route path="/listaUsuarios" element={logic.isUserLoggedIn() ? <ListaUsuarios /> : <Navigate to="/" />}/> */}
+          {/* {view === 'resetPassword' && <ResetPassword />} */}
+      </Routes>
+  )
 }
 
 export default App

@@ -1,4 +1,4 @@
-function Tutorial() {
+function Tutorial(props) {
 
     return (
     <>
@@ -6,8 +6,8 @@ function Tutorial() {
             <div id="app">FormativeLife</div>
             <div className="titular"><i>Busca o atrae talento</i></div>
             <div id="area-perfil">
-                <button className="login">Iniciar Sesión</button>
-                <button className="register">Crear cuenta</button>
+                <button className="login" onClick={props.onClickLogin}>Iniciar Sesión</button>
+                <button className="register" onClick={props.onClickRegister}>Crear cuenta</button>
             </div>
             <div id="area-buscador">
                 <form className="form" onSubmit="">
@@ -24,17 +24,25 @@ function Tutorial() {
             <aside id="aside-left">
                 <nav>
                     <ul>
-                        <li>Inicio</li>
-                        <li>¿Para quien es?</li>
-                        <li>Tutorial de uso</li>
-                        <li>Contacto</li>
+                        <li onClick={props.onClickInicio}>Inicio</li>
+                        <li onClick={props.onClickParaQuienEs}>¿Para quien es?</li>
+                        <li onClick={props.onClickTutorial}>Tutorial de uso</li>
+                        <li onClick={props.onClickContacto}>Contacto</li>
                     </ul>
                 </nav>
             </aside>
             <container id="container">
                 <section>
                     <h2>Tutorial de uso</h2><br/>
-                    <p>Pequeña guía sobre como usar este sitio web para los nuevos usuarios.</p>                    
+                    <p>Si eres nuevo y no sabes como utilizar este sitio, aquí está pequeña guía:</p>
+                    <br/><br/>
+                    <ul>
+                        <li>1. Navega por las distintas páginas para tener una idea del objetivo del sitio web.
+                        </li><br/>
+                        <li>
+                            2. 
+                        </li>
+                    </ul>                    
                 </section>
             </container>
         </main>

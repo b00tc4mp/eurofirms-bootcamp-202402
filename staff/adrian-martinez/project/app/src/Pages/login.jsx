@@ -1,4 +1,4 @@
-function Login({onClickPerfil, onClickResetPassword}) {
+function Login({onClickPerfil, onClickResetPassword, onClickInicio}) {
 
     const handleClickHome = () => {
 
@@ -29,6 +29,7 @@ function Login({onClickPerfil, onClickResetPassword}) {
                         <button type="submit">Iniciar Sesion</button><br/><br/>
                     </form>
                     <button onClick={handleClickResetPassword}>Olvidé mi Contraseña</button>
+                    <button onClick={onClickInicio}>Volver</button>
                 </section>
             </container>
         </main>

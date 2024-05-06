@@ -1,8 +1,8 @@
-function Register({ onClickLogin }) {
+function Register(props) {
 
     const handleClickUserLogin = () => {
       
-        onClickLogin();
+        props.onClickLogin();
     } 
 
     /* const handleClickUserRegister = () => {
@@ -39,8 +39,9 @@ function Register({ onClickLogin }) {
                         <label forhtml="password">Contraseña: </label>
                         <input type="password" id="password" placeholder="Entre 8 y 16 caracteres" required /><br/><br/>
 
-                        <button type="submit">Registrarse</button><br/>
+                        <button type="submit">Registrarse</button>
                         </form>
+                        <button onClick={props.onClickInicio}>Volver</button>
                 </section>
             </container>
         </main>

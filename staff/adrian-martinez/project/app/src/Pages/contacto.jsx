@@ -1,4 +1,4 @@
-function Contacto() {
+function Contacto(props) {
 
     return (
     <>
@@ -24,10 +24,10 @@ function Contacto() {
             <aside id="aside-left">
                 <nav>
                     <ul>
-                        <li>Inicio</li>
-                        <li>¿Para quien es?</li>
-                        <li>Tutorial de uso</li>
-                        <li>Contacto</li>
+                        <li onClick={props.onClickInicio}>Inicio</li>
+                        <li onClick={props.onClickParaQuienEs}>¿Para quien es?</li>
+                        <li onClick={props.onClickTutorial}>Tutorial de uso</li>
+                        <li onClick={props.onClickContacto}>Contacto</li>
                     </ul>
                 </nav>
             </aside>
