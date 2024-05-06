@@ -21,6 +21,8 @@ import pkg from '../package.json' assert { type: 'json' };
 import productRoutes from './routes/products.routes.js';
 import authRoutes from './routes/auth.routes.js';
 import userRoutes from './routes/user.routes.js';
+import editionRoutes from './routes/edition.routes.js';
+import searcherRoutes from './routes/searcher.routes.js';
 
 const app = express();
 
@@ -58,5 +60,7 @@ app.get('/', (req, res) => {
 app.use('/api/products', productRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
+app.use('/api/editions', editionRoutes);
+app.use('/api/searchers', searcherRoutes);
 
 export default app;

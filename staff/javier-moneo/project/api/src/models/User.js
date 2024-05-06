@@ -15,6 +15,17 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
+    birthdate: {
+      type: Date,
+    },
+    edition: {
+      ref: 'Edition',
+      type: Schema.Types.ObjectId,
+    },
+    searcher: {
+      ref: 'Searcher',
+      type: Schema.Types.ObjectId,
+    },
     roles: [
       {
         ref: 'Role',
