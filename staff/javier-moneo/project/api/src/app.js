@@ -11,6 +11,10 @@ import {
   createSearcherTypes,
   createSearcher,
   createTags,
+  createTagAggregators,
+  createSearchUrls,
+  createMenuSearchTags,
+  createMenuSearchTypes,
 } from './libs-data/initialSetupData.js';
 
 import pkg from '../package.json' assert { type: 'json' };
@@ -32,6 +36,10 @@ await createSearchTypes();
 await createSearcherTypes();
 await createSearcher();
 await createTags();
+await createTagAggregators();
+await createSearchUrls();
+await createMenuSearchTags();
+await createMenuSearchTypes();
 
 app.set('pkg', pkg);
 
