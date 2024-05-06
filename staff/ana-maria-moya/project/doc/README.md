@@ -44,6 +44,7 @@ User
 - id (auto)
 - name (string, required)
 - surname (string, required)
+- birthdate (string, required)
 - email (string, required)
 - password (string, required)
 - role (string, required, enum: regular|admin, default: regular)
@@ -54,7 +55,7 @@ Post
 - image (string, optional)
 - video (string, optional)
 - text (string, required)
-- date (date, requried)
+- date (date, required)
 
 Comment
 - id (auto)
