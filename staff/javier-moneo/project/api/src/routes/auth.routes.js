@@ -7,8 +7,15 @@ const router = Router();
 // registro
 router.post(
   '/signup',
-  [verifySignup.checkDuplicateUserNameOrEmail, verifySignup.checkRolesExisted],
+  [verifySignup.checkDuplicateUserNameOrEmail],
   authCtrl.signUp
+);
+
+// registro con roles
+router.post(
+  '/signuproles',
+  [verifySignup.checkDuplicateUserNameOrEmail, verifySignup.checkRolesExisted],
+  authCtrl.signUpWithRoles
 );
 
 // login

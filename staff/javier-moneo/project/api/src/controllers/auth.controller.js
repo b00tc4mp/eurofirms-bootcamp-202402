@@ -1,10 +1,12 @@
 import User from '../models/User.js';
 import Role from '../models/Role.js';
 import jwt from 'jsonwebtoken';
+import Edition from '../models/Edition.js';
+import Searcher from '../models/Searcher.js';
 // import config from '../config.js';
 
-// registro
-export const signUp = async (req, res) => {
+// registro con roles
+export const signUpWithRoles = async (req, res) => {
   const { username, email, password, roles } = req.body;
   // console.log(req.body);
 
@@ -34,6 +36,55 @@ export const signUp = async (req, res) => {
   }); // 24 horas
 
   res.status(200).json({ token });
+};
+
+// registro sin roles
+export const signUp = async (req, res) => {
+  try {
+    const { username, email, birthdate, password, editionCode, searcherName } =
+      req.body;
+    // console.log(req.body);
+
+    const edition = await Edition.findOne({ code: editionCode });
+    const searcher = await Searcher.findOne({ name: searcherName });
+    const role = await Role.findOne({ name: 'user' }); // por defecto el user normal
+
+    if (!edition) {
+      return res.status(404).json({ message: 'No edition found' });
+    }
+    if (!searcher) {
+      return res.status(404).json({ message: 'No searcher found' });
+    }
+    if (!role) {
+      return res.status(404).json({ message: 'No role found' });
+    }
+
+    const newUser = new User({
+      username,
+      email,
+      birthdate,
+      password: await User.encryptPassword(password),
+      edition: edition._id,
+      searcher: searcher._id,
+    });
+    newUser.roles = [role._id];
+
+    // console.log(newUser);
+
+    const savedUser = await newUser.save();
+
+    // todo el id es el sub
+    // todo poner secret en .env
+    // const token = jwt.sign({ id: savedUser._id }, process.env.JWT_SECRET, {
+    //   expiresIn: 86400,
+    // }); // 24 horas
+
+    // res.status(200).json({ token });
+    return res.status(201).send();
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: error.message });
+  }
 };
 
 // login
