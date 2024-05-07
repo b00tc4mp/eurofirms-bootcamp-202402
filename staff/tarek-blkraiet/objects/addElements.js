@@ -1,14 +1,45 @@
 //TODO
-function removeElements(object, index, count){}
-console.log('CASE 1: remove at index 3, 2 elments from cars')
+function addElements(object) {
 
-var cars = {0:'peugeot',1:'ford',2:'renault',3:'audi',4:'bmw',5:'mercedez',6:'bentley',7:'ferrari',
-    length: 8
+    // #1 { 0: 'peugeot', 1: 'ford', 2: 'renault', 3: 'audi, 4:'bmw', 5:'mercedez', length :6 }
+    // object -> #1
+    // arguments -> { 0: '#1', 1: 'ford', 2: 'renault', 3: 'audi, 4:'bmw', 5:'mercedez', length :6 }
+
+
+    for (var i = 1; i < arguments.length; i++) {
+        //para que serve el arguments
+        var elem = arguments[i]
+
+        object[object.length] = elem
+
+        object.length++
+
+    }
+    // #1 { 0: 'peugeot', 1: 'ford', 2: 'renault', 3: 'audi, 4:'bmw', 5:'mercedez', 6:'bentley', length: 6 }
+    // #1 { 0: 'peugeot', 1: 'ford', 2: 'renault', 3: 'audi, 4:'bmw', 5:'mercedez', 6:'bentley', length: 7 }
+    // #1 { 0: 'peugeot', 1: 'ford', 2: 'renault', 3: 'audi, 4:'bmw', 5:'mercedez', 6:'bentley', 7:'ferrari' length: 7 }
+    // #1 { 0: 'peugeot', 1: 'ford', 2: 'renault', 3: 'audi, 4:'bmw', 5:'mercedez', 6:'bentley', 7:'ferrari' length: 8 }
+
 }
+console.log('CASE 1: add "bentley", "ferrari" to cars')
 
-var removed = removeElements(cars, 3, 2)
+var cars = {
+    0: 'peugeot',
+    1: 'ford',
+    2: 'renault',
+    3: 'audi',
+    4: 'bmw',
+    5: 'mercedez',
 
-console.log('CASE 2: remove at index 1, 3 elements from nums')
+    length: 6
+}
+addElements(cars, "bentley", "ferrari")
+
+console.log(cars)
+
+
+
+console.log('CASE 2: add 600,700 1 to nums')
 
 var nums = {
     0: 100,
@@ -19,6 +50,6 @@ var nums = {
     length: 5
 }
 
-var removed = removeElements(nums, 1, 3)
+addElements(nums, 600, 700)
 
-console.log(removed)
+console.log(nums)

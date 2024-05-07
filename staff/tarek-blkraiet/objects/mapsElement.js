@@ -1,4 +1,5 @@
-//  el motodo map da un array con cambio de valores o las operaciones que queria hacer nuveo iniciando desde un array hay existe y mantiene el antigo array. y la misma length
+//  el motodo map da un array con cambio de valores o las operaciones que queria hacer nuevo iniciando desde un array hay existe y mantiene el antigo array. y la misma length
+
 
 
 var mixcWords={
