@@ -1,11 +1,11 @@
 import mongoose from 'mongoose'
-import registerCompany from './registerCompany.js'
+import autenticateUser from './autenticateUser.js'
 
 mongoose.connect('mongodb://localhost:27017/FormativeLife')
     .then(() => {
         try {
-            registerCompany("BySideCar",null,null,"Calle Real, Nº5 - A Coruña","Diseño Web",'admin@bysidecar.com','12345678')
-                .then(() => console.log('Company registered'))
+            autenticateUser('admin@bysidecar.com', '12345678')
+                .then(userId => console.log('user logged in', userId))
                 .catch(error => console.error(error))
         } catch (error) {
             console.error(error)

@@ -8,18 +8,22 @@ const user = new Schema({
         type: String,
         required: true
     },
-    surNames: {
+    surnames: {
         type: String,
-        required: true
-    },
-    age: {
-        type: Number,
-        required: true
     },
     role: {
         type: String,
-        enum: ["company", "student"],
-        required: true
+        required: true,
+        enum: ["student","company"]
+    },
+    age: {
+        type: Number,
+    },
+    address: {
+        type: String,
+    },
+    activity: {
+        type: String,
     },
     email: {
         type: String,
@@ -32,7 +36,7 @@ const user = new Schema({
     }
 })
 
-const User = model("User", user);
+const User = model("user", user);
 
 //Bucket
 export {

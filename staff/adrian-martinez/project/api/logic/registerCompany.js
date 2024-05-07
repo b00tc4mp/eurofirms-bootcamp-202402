@@ -3,12 +3,12 @@ import { errors, validate } from "com"
 
 const { SystemError, DuplicityError } = errors;
 
-function registerCompany(name, email, password){
-    /* validate.name(name);
-    validate.surNames(surNames);
-    validate.age(age);
+function registerCompany(name, surnames, age, address, activity, email, password){
+    validate.name(name);
+    validate.direccion(address);
+    validate.actividad(activity);
     validate.email(email);
-    validate.password(password); */
+    validate.password(password);
 
     //Esta variable no va cambiar en esta función al ser el registro de la compañía, por eso no necesita que el usuario le pase este dato
     const role = "company";
@@ -16,10 +16,9 @@ function registerCompany(name, email, password){
 
         .catch(error => { throw new SystemError(error.message) })
         .then(user => {
-            if(user) throw new DuplicityError("user already exists")
+            if(user) throw new DuplicityError("company already exists")
 
-            else 
-                user = { name, role, email, password }
+            user = { name, surnames, role, age, address, activity, email, password }
 
             return User.create(user)
                 .catch(error => { throw new SystemError(error.message) })     
