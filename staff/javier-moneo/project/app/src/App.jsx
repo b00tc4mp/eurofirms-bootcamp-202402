@@ -3,6 +3,7 @@ import Register from './pages/Register';
 import Home from './pages/Home';
 import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import logic from './logic';
+import NavBar from './components/NavBar';
 
 function App() {
   const navigate = useNavigate();
@@ -52,6 +53,11 @@ function App() {
 
         <Route
           path="/"
+          element={<Home onUserLoggedOut={handleUserLoggedOut} />}
+        />
+
+        {/* <Route
+          path="/"
           element={
             logic.isUserLoggedIn() ? (
               <Home onUserLoggedOut={handleUserLoggedOut} />
@@ -59,7 +65,7 @@ function App() {
               <Navigate to="/login" />
             )
           }
-        />
+        /> */}
       </Routes>
     </>
   );
