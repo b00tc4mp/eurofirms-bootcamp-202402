@@ -35,6 +35,7 @@ function App() {
             )
           }
         />
+
         <Route
           path="/register"
           element={
@@ -48,6 +49,7 @@ function App() {
             )
           }
         />
+
         <Route
           path="/"
           element={

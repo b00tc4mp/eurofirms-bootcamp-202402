@@ -39,6 +39,35 @@ export const getUsers = async (req, res) => {
 };
 
 export const getUser = async (req, res) => {
-  const user = await User.findById(req.params.userId);
-  return res.json(user);
+  try {
+    const user = await User.findById(req.params.userId, '-password')
+      .populate('edition', '-createdAt -updatedAt')
+      .populate('searcher', '-createdAt -updatedAt')
+      .lean()
+      .exec();
+
+    if (!user) {
+      return res.status(404).json({ message: 'User no found' });
+    }
+
+    if (user._id) {
+      user.id = user._id;
+      delete user._id;
+    }
+
+    if (user.edition?._id) {
+      user.edition.id = user.edition._id;
+      delete user.edition._id;
+    }
+
+    if (user.searcher?._id) {
+      user.searcher.id = user.searcher._id;
+      delete user.searcher._id;
+    }
+
+    return res.json(user);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: error.message });
+  }
 };

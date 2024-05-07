@@ -11,4 +11,6 @@ router.post(
   userCtrl.createUser
 );
 
+router.get('/:userId', userCtrl.getUser);
+
 export default router;

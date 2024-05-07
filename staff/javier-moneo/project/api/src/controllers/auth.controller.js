@@ -31,11 +31,14 @@ export const signUpWithRoles = async (req, res) => {
 
   // todo el id es el sub
   // todo poner secret en .env
-  const token = jwt.sign({ id: savedUser._id }, process.env.JWT_SECRET, {
+  // const token = jwt.sign({ id: savedUser._id }, process.env.JWT_SECRET, {
+  //   expiresIn: 86400,
+  // }); // 24 horas
+  const token = jwt.sign({ sub: savedUser._id }, process.env.JWT_SECRET, {
     expiresIn: 86400,
   }); // 24 horas
 
-  res.status(200).json({ token });
+  res.status(200).json(token);
 };
 
 // registro sin roles
@@ -107,11 +110,14 @@ export const signIn = async (req, res) => {
   }
 
   // TODO: id sera sub
-  const token = jwt.sign({ id: userFound._id }, process.env.JWT_SECRET, {
+  // const token = jwt.sign({ id: userFound._id }, process.env.JWT_SECRET, {
+  //   expiresIn: 86400,
+  // });
+  const token = jwt.sign({ sub: userFound._id }, process.env.JWT_SECRET, {
     expiresIn: 86400,
   });
 
   console.log(userFound);
 
-  return res.json({ token });
+  return res.json(token);
 };

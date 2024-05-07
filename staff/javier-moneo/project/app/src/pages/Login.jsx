@@ -1,4 +1,73 @@
+import { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import logic from '../logic';
+
 function Register({ onUserLoggedIn, onRegisterClick }) {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    watch,
+    setValue,
+    reset,
+  } = useForm({
+    // defaultValues: {
+    //   edition: '',
+    // },
+  });
+
+  const onSubmit = handleSubmit((data) => {
+    // console.log('data...');
+    // console.log(data);
+    // console.log(data.foto);
+
+    // alert('enviando datos');
+
+    // setValue('correo', ''); // lo ponemos a vacio para resetear
+
+    try {
+      logic
+        .loginUser(data.email, data.password)
+        .then(() => onUserLoggedIn())
+        .catch((error) => {
+          console.error(error.message);
+
+          let feedback = error.message;
+
+          if (
+            error instanceof TypeError ||
+            error instanceof RangeError ||
+            error instanceof ContentError
+          )
+            feedback = `${feedback}, please correct it`;
+          else if (error instanceof MatchError)
+            feedback = `${feedback}, please verify credentials`;
+          else feedback = 'sorry, there was an error, please try again later';
+
+          alert(feedback);
+        });
+    } catch (error) {
+      console.error(error.message);
+
+      let feedback = error.message;
+
+      if (
+        error instanceof TypeError ||
+        error instanceof RangeError ||
+        error instanceof ContentError
+      )
+        feedback = `${feedback}, please correct it`;
+      else feedback = 'sorry, there was an error, please try again later';
+
+      alert(feedback);
+    }
+
+    //podemos ejecutar el reset tambien
+    reset();
+    // antes de enviar
+    // fetch
+  });
+
   const handleRegisterClick = (event) => {
     event.preventDefault();
 
@@ -20,7 +89,8 @@ function Register({ onUserLoggedIn, onRegisterClick }) {
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form className="space-y-6" action="#" method="POST">
+          <form className="space-y-6" onSubmit={onSubmit}>
+            {/* email */}
             <div>
               <label
                 htmlFor="email"
@@ -30,16 +100,25 @@ function Register({ onUserLoggedIn, onRegisterClick }) {
               </label>
               <div className="mt-2">
                 <input
-                  id="email"
-                  name="email"
                   type="email"
                   autoComplete="email"
-                  required
+                  {...register('email', {
+                    required: { value: true, message: 'Email is required' },
+                    pattern: {
+                      value:
+                        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                      message: 'Email no valid',
+                    },
+                  })}
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
+                {errors.email && (
+                  <span className="text-red-500">{errors.email.message}</span>
+                )}
               </div>
             </div>
 
+            {/* password */}
             <div>
               <div className="flex items-center justify-between">
                 <label
@@ -48,24 +127,25 @@ function Register({ onUserLoggedIn, onRegisterClick }) {
                 >
                   Password
                 </label>
-                <div className="text-sm">
-                  <a
-                    href="#"
-                    className="font-semibold text-indigo-600 hover:text-indigo-500"
-                  >
-                    Forgot password?
-                  </a>
-                </div>
               </div>
               <div className="mt-2">
                 <input
-                  id="password"
-                  name="password"
                   type="password"
                   autoComplete="current-password"
-                  required
+                  {...register('password', {
+                    required: { value: true, message: 'Password is required' },
+                    minLength: {
+                      value: 6,
+                      message: 'Password must be at least 6 characters',
+                    },
+                  })}
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
+                {errors.password && (
+                  <span className="text-red-500">
+                    {errors.password.message}
+                  </span>
+                )}
               </div>
             </div>
 
