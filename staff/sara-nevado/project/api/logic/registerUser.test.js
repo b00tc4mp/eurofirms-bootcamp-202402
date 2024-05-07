@@ -1,10 +1,10 @@
 import mongoose from 'mongoose'
 import registerUser from './registerUser.js'
 
-mongoose.connect('mongodb://localhost:27017/test')
+mongoose.connect('mongodb://localhost:27017/project')
     .then(() => {
         try {
-            registerUser('Pepito Grillo 2', '2000-01-01', 'pepito@grillo2.com', 'pepitogrillo2', '123123123')
+            registerUser('Pepito','Grillo','pepito@grillo.com', '123123123')
                 .then(() => console.log('user registered'))
                 .catch(error => console.error(error))
         } catch (error) {

@@ -3,11 +3,17 @@ import { errors, validate } from 'com'
 
 const { SystemError, MatchError } = errors
 
-function authenticateUser(username, password) {
-validate.username(username)
-validate.password(password)
+function authenticateUser(email, password) {
+    validate.email(email)
+    validate.password(password)
 
-    return User.findOne({ username })
+
+    //const predefinedKey = '8989'
+    //if (providedKey !== predefinedKey) {
+    //throw new ContentError('the entered key is not valid')
+    //}
+
+    return User.findOne({ email })
         .catch(error => { throw new SystemError(error.message) })
         .then(user => {
             if (!user)
@@ -17,7 +23,11 @@ validate.password(password)
             if (user.password !== password)
                 throw new MatchError('wrong credentials')
 
-            return user.id
+            return {
+                id: user.id,
+                role: user.role
+            }
+
         })
 }
 

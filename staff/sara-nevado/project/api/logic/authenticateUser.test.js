@@ -1,11 +1,11 @@
 import mongoose from 'mongoose'
 import authenticateUser from './authenticateUser.js'
 
-mongoose.connect('mongodb://localhost:27017/test')
+mongoose.connect('mongodb://localhost:27017/project')
     .then(() => {
         try {
-            authenticateUser('luita', '123123123')
-                .then(userId => console.log('user logged in', userId))
+            authenticateUser ('pepito@grillo.com','123123123')
+                .then(user => console.log('user logged in', user))
                 .catch(error => console.error(error))
         } catch (error) {
             console.error(error)

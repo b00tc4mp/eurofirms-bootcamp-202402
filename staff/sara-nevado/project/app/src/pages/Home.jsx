@@ -43,6 +43,12 @@ function Home({ onUserLoggedOut }) {
     }
 
     console.log('Home render')
+
+
+
+
+
+    
     return (
         <>
             <header className="flex justify-between items-center border-b-2 border-white fixed top-0 w-full bg-black h-13 px-4 text-white">
@@ -54,7 +60,7 @@ function Home({ onUserLoggedOut }) {
             </header>
 
             <footer className="flex justify-center items-center border-t-2 border-white fixed bottom-0 w-full bg-black h-13 px-3 text-white">
-                <button className="px-4 text-white">posible boton</button>
+            <button className="px-3 text-white">🏚️</button>
             </footer>
         </>
     )

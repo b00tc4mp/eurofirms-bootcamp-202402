@@ -57,11 +57,11 @@ mongoose.connect(MONGO_URL)
         //authenticateUser
         server.post('/users/auth', jsonBodyParser, (req, res) => {
             try {
-                const { username, password } = req.body
+                const { email, password } = req.body
 
-                logic.authenticateUser(username, password)
-                    .then(userId => {
-                        const token = jwt.sign({ sub: userId }, 'las personas del bootcamp 2024 somos la hostia', { expiresIn: '30m' })
+                logic.authenticateUser(email, password)
+                    .then(user => {
+                        const token = jwt.sign({ sub: user.id, role: user.role }, 'las personas del bootcamp 2024 somos la hostia', { expiresIn: '30m' })
 
                         res.status(200).json(token)
                     })
@@ -115,6 +115,71 @@ mongoose.connect(MONGO_URL)
                 res.status(status).json({ error: error.constructor.name, message: error.message })
             }
         })
+
+// authenticateAdmin
+server.post('/admins/auth', jsonBodyParser, (req, res) => {
+    try {
+        const { username, password } = req.body
+
+logic.authenticateAdmin(username, password)
+            .then(adminId => {
+                const token = jwt.sign({ sub: adminId }, 'secret_key_for_admins', { expiresIn: '30m' })
+
+                res.status(200).json(token)
+            })
+            .catch(error => {
+                let status = 500
+
+                if (error instanceof MatchError)
+                    status = 401
+
+                res.status(status).json({ error: error.constructor.name, message: error.message })
+            })
+    } catch (error) {
+        let status = 500
+
+        if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
+            status = 400
+
+        res.status(status).json({ error: error.constructor.name, message: error.message })
+    }
+})
+
+// retrieveAdmin
+server.get('/admins/:targetAdminId', (req, res) => {
+    try {
+        const { authorization } = req.headers
+        const token = authorization.slice(7)
+        const { sub: adminId } = jwt.verify(token, 'secret_key_for_admins')
+        const { targetAdminId } = req.params
+
+        logic.retrieveAdmin(adminId, targetAdminId)
+            .then(admin => res.json(admin))
+            .catch(error => {
+                let status = 500
+
+                if (error instanceof MatchError)
+                    status = 404
+
+                res.status(status).json({ error: error.constructor.name, message: error.message })
+            })
+    } catch (error) {
+        let status = 500
+
+        if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
+            status = 400
+        else if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError) {
+            status = 401
+
+            error = new MatchError(error.message)
+        }
+
+        res.status(status).json({ error: error.constructor.name, message: error.message })
+    }
+})
+
+
+
 
        
         

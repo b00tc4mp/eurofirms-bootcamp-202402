@@ -3,19 +3,23 @@ import { errors, validate } from 'com'
 
 const { SystemError, DuplicityError } = errors
 
-function registerUser(name, birthdate, email, username, password) {
+function registerUser(name, surname, email, password) {
     validate.name(name)
-    validate.birthdate(birthdate)
+    validate.surname(surname)
     validate.email(email)
-    validate.username(username)
     validate.password(password)
 
-    return User.findOne({ $or: [{ email }, { username }] })
+    //const predefinedKey = '8989'
+    //if (providedKey !== predefinedKey) {
+    //throw new ContentError('the entered key is not valid')
+    //}
+
+    return User.findOne({ email })
         .catch(error => { throw new SystemError(error.message) })
         .then(user => {
             if (user) throw new DuplicityError('user already exists')
 
-            user = { name, birthdate, email, username, password }
+            user = { name, surname, email, password, role: 'regular' }
 
             return User.create(user)
                 .catch(error => { throw new SystemError(error.message) })

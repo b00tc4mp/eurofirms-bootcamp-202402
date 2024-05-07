@@ -21,34 +21,27 @@ function validateName(name) {
         throw new ContentError('name is blank')
 }
 
-function validateBirthdate(birthdate) {
-    if (typeof birthdate !== 'string') throw new TypeError('birthdate is not string')
+function validateSurname(surname) {
+    if (typeof surname !== 'string') throw new TypeError('surname is not string')
 
+    if (surname.length < 1)
+        throw new RangeError('surname is lower than 1 character')
 
-    if (birthdate.length !== 10)
-        throw new RangeError('birthdate does not have 10 characters')
+    var surnameIsBlank = true
 
-    if (birthdate.includes(' '))
-        throw new ContentError('birthdate has a space character')
+    for (var i = 0; i < surname.length && surnameIsBlank; i++) {
+        var char = surname[i]
 
-    if (birthdate.indexOf('-') !== 4 || birthdate.lastIndexOf('-') !== 7)
-        throw new ContentError('birthdate dashes are not in correct position')
+        if (char !== ' ')
+            surnameIsBlank = false
 
-   }
-
-function validateUsername(username) {
-   
- if (typeof username !== 'string') throw new TypeError('username is not a string')
-
-    if (username.length < 3)
-        throw new RangeError('username is lower than 3 characters')
-
-    if (username.includes(' '))
-        throw new ContentError('username has a space character')
+    }
+    if (surnameIsBlank)
+        throw new ContentError('surname is blank')
 }
 
 function validateEmail(email) {
-   
+
     if (typeof email !== 'string') throw new TypeError('email is not string')
 
     if (email.length < 6)
@@ -95,8 +88,8 @@ function validateId(id, explain = 'id') {
     if (!id.length) throw new ContentError(`${explain} is empty`)
 }
 
-function validateText(text, explain ='text') {
-    if (typeof text !== 'string') throw new TypeError(`${ explain } is not a string`)
+function validateText(text, explain = 'text') {
+    if (typeof text !== 'string') throw new TypeError(`${explain} is not a string`)
 
     if (!text.length) throw new ContentError(`${explain} is empty`)
 }
@@ -129,9 +122,8 @@ function validateToken(token, explain = 'token') {
 
 const validate = {
     name: validateName,
-    birthdate: validateBirthdate,
+    surname: validateSurname,
     email: validateEmail,
-    username: validateUsername,
     password: validatePassword,
     id: validateId,
     text: validateText,
