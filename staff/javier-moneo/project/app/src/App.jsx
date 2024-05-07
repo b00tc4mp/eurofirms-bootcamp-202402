@@ -4,6 +4,8 @@ import Home from './pages/Home';
 import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import logic from './logic';
 import NavBar from './components/NavBar';
+import AppLayout from './AppLayout';
+import Comments from './pages/Comments';
 
 function App() {
   const navigate = useNavigate();
@@ -50,11 +52,18 @@ function App() {
             )
           }
         />
+        <Route element={<AppLayout />}>
+          <Route
+            path="/"
+            element={<Home onUserLoggedOut={handleUserLoggedOut} />}
+          />
+          <Route path="/comments" element={<Comments />} />
+        </Route>
 
-        <Route
+        {/* <Route
           path="/"
           element={<Home onUserLoggedOut={handleUserLoggedOut} />}
-        />
+        /> */}
 
         {/* <Route
           path="/"
