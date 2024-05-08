@@ -9,7 +9,7 @@ const { ContentError, MatchError } = errors;
 function Home() {
   const [user, setUser] = useState(null);
   const [editionCode, setEditionCode] = useState('es');
-  const [searcherName, setSearcherName] = useState('google');
+  const [searcherName, setSearcherName] = useState('google');// default google
   const [tagName, setTagName] = useState('NoTagged'); // recuerda edition y name
   const [searchTypeName, setSearchTypeName] = useState('web');
 

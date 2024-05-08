@@ -90,11 +90,58 @@ export default function SearcherHome({
     }
   }, []);
 
+  useEffect(() => {
+    try {
+      if (edition && searcherIdSelected) {
+        logic
+          .retrieveMenuSearchTypesByEditionAndSearcherId(
+            edition.id,
+            searcherIdSelected
+          )
+          .then((menuSearchTypes) => {
+            // console.log(menuSearchTypes);
+            setMenuSeachTypes(menuSearchTypes);
+
+            // select searchType by default to the first option menu
+            if (menuSearchTypes.length > 0) {
+              setSearchType(menuSearchTypes[0].searchType);
+            }
+          })
+          .catch((error) => {
+            errorHandler(error);
+          });
+      }
+    } catch (error) {
+      errorHandler(error);
+    }
+  }, [searcherIdSelected]);
+
   const handleChangeSearcher = (event) => {
     const searcherId = event.target.value;
     console.log(searcherId);
-    // TODO: al cambiar este campo que se ejecute un useffect para refrescar el menu
+    // al cambiar este campo que se ejecute un useffect para refrescar el menu
     setSearcherIdSelected(searcherId);
+  };
+
+  const handleLinkMenuSearchTypesClick = (searchTypeName) => {
+    // cargar el searchType y setearlo
+    console.log(searchTypeName);
+    try {
+      if (searchTypeName) {
+        // searchTypeName
+        logic
+          .retrieveSearchTypeByName(searchTypeName)
+          .then((searchType) => {
+            // console.log(searchType);
+            setSearchType(searchType);
+          })
+          .catch((error) => {
+            errorHandler(error);
+          });
+      }
+    } catch (error) {
+      errorHandler(error);
+    }
   };
 
   const handleResetSearchButton = () => {
@@ -189,6 +236,11 @@ export default function SearcherHome({
                     <a
                       key={menuSearchType.id}
                       href="#"
+                      onClick={() =>
+                        handleLinkMenuSearchTypesClick(
+                          menuSearchType.searchType.name
+                        )
+                      }
                       className={
                         searchType.name === menuSearchType.searchType.name
                           ? 'mx-2 font-medium text-blue-800 dark:text-blue-500 hover:underline'
@@ -220,7 +272,7 @@ export default function SearcherHome({
               id="tag"
               value={inputTagField}
               onChange={(e) => setInputTagField(e.target.value)}
-              className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 placeholder:pl-4 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              className="block w-full rounded-md border-0 py-1.5 pl-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               placeholder="Hashtag here..."
             />
           </div>
