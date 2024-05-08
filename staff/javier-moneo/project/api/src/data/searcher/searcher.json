@@ -31,7 +31,7 @@
     "name": "x",
     "displayName": "X",
     "searcherType": "social",
-    "searchType": ["socialGlobal", "person", "image/video"],
+    "searchType": ["socialGlobal", "person", "image-video"],
     "isActive": true,
     "index": 3
   },

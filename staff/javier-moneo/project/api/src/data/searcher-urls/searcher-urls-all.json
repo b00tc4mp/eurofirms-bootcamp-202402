@@ -1192,7 +1192,7 @@
     "searcher": "x",
     "editionAlias": "ca_ES",
     "searcherType": "social",
-    "searchType": "image/video",
+    "searchType": "image-video",
     "url": "https://twitter.com/search?src=typed_query&f=media",
     "urlExample": "https://twitter.com/search?q=busca&src=typed_query&f=media"
   },
@@ -1219,7 +1219,7 @@
     "searcher": "x",
     "editionAlias": "en_GB",
     "searcherType": "social",
-    "searchType": "image/video",
+    "searchType": "image-video",
     "url": "https://twitter.com/search?src=typed_query&f=media",
     "urlExample": "https://twitter.com/search?q=busca&src=typed_query&f=media"
   },
@@ -1246,7 +1246,7 @@
     "searcher": "x",
     "editionAlias": "en_IE",
     "searcherType": "social",
-    "searchType": "image/video",
+    "searchType": "image-video",
     "url": "https://twitter.com/search?src=typed_query&f=media",
     "urlExample": "https://twitter.com/search?q=busca&src=typed_query&f=media"
   },
@@ -1273,7 +1273,7 @@
     "searcher": "x",
     "editionAlias": "en_US",
     "searcherType": "social",
-    "searchType": "image/video",
+    "searchType": "image-video",
     "url": "https://twitter.com/search?src=typed_query&f=media",
     "urlExample": "https://twitter.com/search?q=busca&src=typed_query&f=media"
   },
@@ -1300,7 +1300,7 @@
     "searcher": "x",
     "editionAlias": "es_AR",
     "searcherType": "social",
-    "searchType": "image/video",
+    "searchType": "image-video",
     "url": "https://twitter.com/search?src=typed_query&f=media",
     "urlExample": "https://twitter.com/search?q=busca&src=typed_query&f=media"
   },
@@ -1327,7 +1327,7 @@
     "searcher": "x",
     "editionAlias": "es_CL",
     "searcherType": "social",
-    "searchType": "image/video",
+    "searchType": "image-video",
     "url": "https://twitter.com/search?src=typed_query&f=media",
     "urlExample": "https://twitter.com/search?q=busca&src=typed_query&f=media"
   },
@@ -1354,7 +1354,7 @@
     "searcher": "x",
     "editionAlias": "es_CO",
     "searcherType": "social",
-    "searchType": "image/video",
+    "searchType": "image-video",
     "url": "https://twitter.com/search?src=typed_query&f=media",
     "urlExample": "https://twitter.com/search?q=busca&src=typed_query&f=media"
   },
@@ -1381,7 +1381,7 @@
     "searcher": "x",
     "editionAlias": "es_CU",
     "searcherType": "social",
-    "searchType": "image/video",
+    "searchType": "image-video",
     "url": "https://twitter.com/search?src=typed_query&f=media",
     "urlExample": "https://twitter.com/search?q=busca&src=typed_query&f=media"
   },
@@ -1408,7 +1408,7 @@
     "searcher": "x",
     "editionAlias": "es",
     "searcherType": "social",
-    "searchType": "image/video",
+    "searchType": "image-video",
     "url": "https://twitter.com/search?src=typed_query&f=media",
     "urlExample": "https://twitter.com/search?q=busca&src=typed_query&f=media"
   },
@@ -1435,7 +1435,7 @@
     "searcher": "x",
     "editionAlias": "es_MX",
     "searcherType": "social",
-    "searchType": "image/video",
+    "searchType": "image-video",
     "url": "https://twitter.com/search?src=typed_query&f=media",
     "urlExample": "https://twitter.com/search?q=busca&src=typed_query&f=media"
   },
@@ -1462,7 +1462,7 @@
     "searcher": "x",
     "editionAlias": "es_PE",
     "searcherType": "social",
-    "searchType": "image/video",
+    "searchType": "image-video",
     "url": "https://twitter.com/search?src=typed_query&f=media",
     "urlExample": "https://twitter.com/search?q=busca&src=typed_query&f=media"
   },
@@ -1489,7 +1489,7 @@
     "searcher": "x",
     "editionAlias": "es_US",
     "searcherType": "social",
-    "searchType": "image/video",
+    "searchType": "image-video",
     "url": "https://twitter.com/search?src=typed_query&f=media",
     "urlExample": "https://twitter.com/search?q=busca&src=typed_query&f=media"
   },
@@ -1516,7 +1516,7 @@
     "searcher": "x",
     "editionAlias": "es_VE",
     "searcherType": "social",
-    "searchType": "image/video",
+    "searchType": "image-video",
     "url": "https://twitter.com/search?src=typed_query&f=media",
     "urlExample": "https://twitter.com/search?q=busca&src=typed_query&f=media"
   },

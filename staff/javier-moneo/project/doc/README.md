@@ -280,7 +280,7 @@ Search
 - edition (Edition.id, required)
 - tag (Tag.id, required)
 - searcher (Searcher.id, required) "google", "bing", "youtube", "x", "giphy",
-- searchType (SearchType.id, required) "web", "image", "video", "news", "maps", "socialGlobal", "person", "image/video", "gifs"
+- searchType (SearchType.id, required) "web", "image", "video", "news", "maps", "socialGlobal", "person", "image-video", "gifs"
 - isBanned (boolean)
 - dateBanned (date)
 - ownerBan (User.id)
@@ -293,7 +293,7 @@ Analysis V2
 - listType (string, enum: "best", "popular", "top", "rising")
 - tag (Tag.id, required)
 - searcher (Searcher.id, required) "google", "bing", "youtube", "x", "giphy",
-- searchType (SearchType.id, required) "web", "image", "video", "news", "maps", "socialGlobal", "person", "image/video", "gifs"
+- searchType (SearchType.id, required) "web", "image", "video", "news", "maps", "socialGlobal", "person", "image-video", "gifs"
 - counterSearchesAdded (number, required)
 - startDate (Date)
 - endDate (Date)

@@ -6,6 +6,6 @@
   { "name": "maps" },
   { "name": "socialGlobal" },
   { "name": "person" },
-  { "name": "image/video" },
+  { "name": "image-video" },
   { "name": "gifs" }
 ]

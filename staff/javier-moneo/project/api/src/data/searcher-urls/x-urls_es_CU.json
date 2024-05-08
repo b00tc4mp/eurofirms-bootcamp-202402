@@ -22,7 +22,7 @@
     "searcher": "x",
     "editionAlias": "es_CU",
     "searcherType": "social",
-    "searchType": "image/video",
+    "searchType": "image-video",
     "url": "https://twitter.com/search?src=typed_query&f=media",
     "urlExample": "https://twitter.com/search?q=busca&src=typed_query&f=media"
   }
