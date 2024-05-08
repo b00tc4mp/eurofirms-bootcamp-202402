@@ -81,7 +81,7 @@ mongoose.connect(MONGO_URL)
 
                 logic.authenticateUser(username, password)
                     .then(userId => {
-                        const token = jwt.sign({ sub: userId }, JWT_SECRET, { expiresIn: '45m' })
+                        const token = jwt.sign({ sub: userId, role: user.role }, JWT_SECRET, { expiresIn: '59m' })
 
                         res.status(200).json(token)
                     })
@@ -137,6 +137,43 @@ mongoose.connect(MONGO_URL)
             }
 
         })
+
+        server.post('/exercise', jsonBodyParser, (req, res) => {
+            try {
+                const { authorization } = req.headers
+
+                const token = authorization.slice(7)
+
+                const { sub: user } = jwt.verify(token, JWT_SECRET)
+
+                const { title, image } = req.body
+
+                logic.createExercise(user.id, title, image)
+                    .then(() => res.status(201).send())
+                    .catch(error => {
+                        let status = 500
+
+                        if (error instanceof MatchError)
+                            status = 404
+
+                        res.status(status).json({ error: error.constructor.name })
+                    })
+            } catch (error) {
+                let status = 500
+
+                if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
+
+                    status = 400
+                else if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError) {
+                    status = 401
+
+                    error = new MatchError(error.message)
+                }
+                res.status(status).json({ error: error.constructor.name, message: error.message })
+            }
+        })
+
+
 
         // cuando tenga que llamar a la api con cualquier cosa que utilize un user id hay que pasar el user y luego acceder a la propiedad id
         // const { sub: user } = jwt.verify(token, JWT_SECRET)

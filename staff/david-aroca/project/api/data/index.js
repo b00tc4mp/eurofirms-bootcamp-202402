@@ -49,17 +49,17 @@ const exercise = new Schema({
         type: String,
         required: true
     },
-    description: {
-        type: String,
-        required: true
-    },
     image: {
         type: String,
         required: true
     },
     video: {
         type: String,
-        required: true
+        // required: true
+    },
+    description: {
+        type: String,
+        // required: true
     }
 })
 
@@ -73,15 +73,15 @@ const diet = new Schema({
         type: String,
         required: true
     },
-    description: {
-        type: String,
-        required: true
-    },
     image: {
         type: String,
         required: true
     },
     video: {
+        type: String,
+        required: true
+    },
+    description: {
         type: String,
         required: true
     }

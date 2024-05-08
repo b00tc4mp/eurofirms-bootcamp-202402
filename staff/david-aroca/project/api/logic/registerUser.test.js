@@ -12,7 +12,7 @@ mongoose.connect('mongodb://localhost:27017/project')
         }
     })
 
-//     logica comprobada ya he registrado el usuario y hecho la prueba todo ok
+//     logica comprobada ya he registrado el usuario antes y hecho la prueba todo ok
 //     $ node registerUser.test.js
 // DuplicityError: user already exists
 //     at file:///C:/Users/emime/Desktop/eurofirms-bootcamp-202402/staff/david-aroca/project/api/logic/registerUser.js:16:29

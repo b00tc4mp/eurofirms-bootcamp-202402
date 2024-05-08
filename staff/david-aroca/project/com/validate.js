@@ -33,9 +33,6 @@ function validateBirthdate(birthdate) {
     if (birthdate.indexOf('-') !== 4 || birthdate.lastIndexOf('-') !== 7)
         throw new ContentError('birthdate dashes are not in correct position')
 
-    // TODO check that birthdate has only 2 dashes
-    // TODO check that birthdate has no alphabet characters (only numbers and 2 dashes)
-    // TODO check that birthdate is equal or greater than 18 years old
 }
 
 function validateUsername(username) {

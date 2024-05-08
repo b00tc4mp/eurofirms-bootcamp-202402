@@ -1,0 +1,1 @@
+ curl -X PATCH -H 'Authorization: Bearer FALTATOKEN' -H 'Content-Type: application/json' -d '{"text":"new text again"}' http://localhost:4025/RUTA?/USER? -v

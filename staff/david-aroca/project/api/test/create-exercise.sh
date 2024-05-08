@@ -1,0 +1,1 @@
+ curl -X POST -H 'Authorization: Bearer FALTAPONERTOKEN' -H 'Content-type: application/json' -d '{"image":"http://image.com/something","text":"this is an image"}' http://localhost:4025/FALTAPONERRUTA -v

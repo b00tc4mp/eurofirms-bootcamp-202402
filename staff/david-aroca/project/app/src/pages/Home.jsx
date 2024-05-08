@@ -1,17 +1,20 @@
 import { useState, useEffect } from "react"
-import { errors } from "../../../com"
+import { errors } from "com"
+import { Routes, Route, useNavigate } from 'react-router-dom'
 
 import logic from "../logic"
 
-// importar de el componente los post TODO
+// importacion de el componente 
+import Measures from "../components/Measures"
+import Routine from "../components/Routine"
+import Diet from "../components/Diet"
 
 const { ContentError, MatchError } = errors
 
 function Home({ onUserLoggedOut }) {
-    // const [view, setView] = useState(null)
     const [user, setUser] = useState(null)
-    // const [refreshStamp, setRefreshStamp] = useState(null)
 
+    const navigate = useNavigate()
 
     useEffect(() => {
         try {
@@ -43,14 +46,84 @@ function Home({ onUserLoggedOut }) {
 
     }, [])
 
+    const handleLogout = () => {
+        logic.logoutUser()
 
+        onUserLoggedOut()
+    }
 
+    const handleMeasureNavigate = () => {
+        navigate('/measurements')
+    }
+
+    // const handleHomeNavigate = () => {
+    //     navigate('/')
+
+    // }
+
+    const handleDietNavigate = () => {
+        navigate('/diet')
+
+    }
+
+    const handleRoutineNavigate = () => {
+        navigate('/routine')
+
+    }
+
+    console.log('HOME RENDER 💀')
 
     return <>
-        <header className=" flex justify-between items-center border-b-2 border to-black fixed top-0 w-full bg-white ">
-            {user ? <h1> Hello,{user.name}</h1> : <p>Loading ...</p>}
+        {/* header */}
+        <header className="flex justify-between items-center border-b-2 border-black fixed top-0 w-full bg-gray-200 px-6 py-4">
+            {user ? <h1 className="text-gray-800 text-xl font-bold">Hello, {user.name}</h1> : <p className="text-gray-800">Loading...</p>}
+
+            <nav>
+                <button className="bg-gray-800 text-white hover:bg-gray-700 font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onClick={handleLogout}>Exit</button>
+            </nav>
         </header>
 
+        <Routes>
+            <Route path="/measurements" element={<Measures />} />
+            <Route path="/diet" element={<Diet />} />
+            <Route path="/routine" element={<Routine />} />
+            {/* <Route path="/" element={<Home />} /> */}
+
+
+        </Routes>
+
+
+        {/* Hay que solucionar el hecho de que se ve en todas las
+         vistas cuando solo se tiene que ver en el home */}
+        {/* 
+        <div className='mt-20'>
+            <input
+                type="text"
+                className="border border-gray-500 rounded-md px-4 py-2 mb-4"
+                placeholder="Search diets or exercise..."
+            />
+
+            <ul className="list-disc pl-6 mb-8">
+                aqui va a ir el contenido de la lista
+            </ul>
+        </div> */}
+
+
+        {/* footer con sus respectivos botones comentados porque si no da error */}
+        <footer className="flex justify-between items-center border-t-2 border-black fixed bottom-0 w-full bg-gray-200 px-6 py-4">
+            <button className="text-gray-800 font-semibold hover:underline focus:outline-none focus:shadow-outline"
+                onClick={handleMeasureNavigate}
+            >Measure</button>
+            <button className="text-gray-800 font-semibold hover:underline focus:outline-none focus:shadow-outline"
+            // onClick={handleHomeNavigate}
+            >Home</button>
+            <button className="text-gray-800 font-semibold hover:underline focus:outline-none focus:shadow-outline"
+                onClick={handleDietNavigate}
+            >Diet</button>
+            <button className="text-gray-800 font-semibold hover:underline focus:outline-none focus:shadow-outline"
+                onClick={handleRoutineNavigate}
+            >Routine</button>
+        </footer>
     </>
 
 }
