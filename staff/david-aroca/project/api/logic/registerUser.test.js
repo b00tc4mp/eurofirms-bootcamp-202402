@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import registerUser from "./registerUser";
+import registerUser from "./registerUser.js";
 
 mongoose.connect('mongodb://localhost:27017/project')
     .then(() => {
@@ -11,3 +11,9 @@ mongoose.connect('mongodb://localhost:27017/project')
             console.log(error)
         }
     })
+
+//     logica comprobada ya he registrado el usuario y hecho la prueba todo ok
+//     $ node registerUser.test.js
+// DuplicityError: user already exists
+//     at file:///C:/Users/emime/Desktop/eurofirms-bootcamp-202402/staff/david-aroca/project/api/logic/registerUser.js:16:29
+//     at process.processTicksAndRejections (node:internal/process/task_queues:95:5

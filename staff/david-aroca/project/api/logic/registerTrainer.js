@@ -3,7 +3,7 @@ import { errors, validate } from "com"
 
 const { SystemError, DuplicityError } = errors
 
-function registerUser(name, birthdate, email, username, password) {
+function registerTrainer(name, birthdate, email, username, password) {
     validate.name(name)
     validate.birthdate(birthdate)
     validate.email(email)
@@ -15,7 +15,7 @@ function registerUser(name, birthdate, email, username, password) {
         .then(user => {
             if (user) throw new DuplicityError('user already exists')
 
-            user = { name, birthdate, email, username, password, role: 'trainee' }
+            user = { name, birthdate, email, username, password, role: 'trainer' }
 
             return User.create(user)
                 .catch(error => { throw new SystemError(error.message) })
@@ -23,4 +23,4 @@ function registerUser(name, birthdate, email, username, password) {
         .then(user => { })
 }
 
-export default registerUser
+export default registerTrainer

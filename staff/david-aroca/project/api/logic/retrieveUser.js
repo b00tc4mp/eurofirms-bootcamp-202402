@@ -1,5 +1,5 @@
-import { User } from "../data";
-import { errors, validate } from "../../com";
+import { User } from "../data/index.js"
+import { errors, validate } from "com";
 
 const { MatchError, SystemError } = errors
 

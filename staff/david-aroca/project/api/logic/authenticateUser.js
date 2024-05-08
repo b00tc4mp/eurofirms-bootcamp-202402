@@ -1,5 +1,5 @@
-import { User } from "../data"
-import { errors, validate } from "../../com"
+import { User } from "../data/index.js"
+import { errors, validate } from "com"
 
 const { SystemError, MatchError } = errors
 
@@ -14,9 +14,12 @@ function authenticateUser(username, password) {
                 throw new MatchError('user not found')
 
             if (user.password !== password)
-                throw new MatchError('worn credentials please check it')
+                throw new MatchError('wrong credentials please check it')
 
-            return user.id
+            return {
+                id: user.id,
+                role: user.role
+            }
         })
 }
 

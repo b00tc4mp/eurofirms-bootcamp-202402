@@ -1,0 +1,1 @@
+ curl -X POST -H 'Content-type: application/json' -d '{"name":"JOSEMAMADO","birthdate":"2000-01-01","email":"JOSE@MAMADO.COM","username":"JOSEMAMADO","password":"123123123"}' http://localhost:4025/users -v

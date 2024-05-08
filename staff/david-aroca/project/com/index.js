@@ -1,6 +1,6 @@
-import validate from "./validate";
-import errors from "./errors";
-import utils from "./utils";
+import validate from "./validate.js"
+import errors from "./errors.js";
+import utils from "./utils.js";
 
 export {
     errors,

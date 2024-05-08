@@ -36,8 +36,6 @@ const user = new Schema({
     },
     following: {
         type: String,
-        required: true,
-
     }
 })
 
@@ -57,11 +55,11 @@ const exercise = new Schema({
     },
     image: {
         type: String,
-        required: optional
+        required: true
     },
     video: {
         type: String,
-        required: optional
+        required: true
     }
 })
 
@@ -81,11 +79,11 @@ const diet = new Schema({
     },
     image: {
         type: String,
-        required: optional
+        required: true
     },
     video: {
         type: String,
-        required: optional
+        required: true
     }
 })
 
