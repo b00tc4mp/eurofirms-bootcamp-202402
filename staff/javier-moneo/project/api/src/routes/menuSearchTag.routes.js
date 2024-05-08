@@ -4,6 +4,9 @@ import { authJwt } from '../middlewares/index.js';
 
 const router = Router();
 
-router.get('/:editionId', menuSearchTagCtrl.getMenuSearchTagsByEditionId);
+router.get(
+  '/:editionId/:searchTypeId',
+  menuSearchTagCtrl.getMenuSearchTagsByEditionIdAndSearchTypeId
+);
 
 export default router;

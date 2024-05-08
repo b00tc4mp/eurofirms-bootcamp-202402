@@ -12,6 +12,7 @@ import retrieveUser from './retrieveUser';
 import retrieveSearcherByName from './retrieveSearcherByName';
 import retrieveEditionByCode from './retrieveEditionByCode';
 import retrieveMenuSearchTypesByEditionAndSearcherId from './retrieveMenuSearchTypesByEditionAndSearcherId';
+import retrieveSearchTypeByName from './retrieveSearchTypeByName';
 
 const logic = {
   isUserLoggedIn,
@@ -25,6 +26,7 @@ const logic = {
   retrieveSearcherByName,
   retrieveEditionByCode,
   retrieveMenuSearchTypesByEditionAndSearcherId,
+  retrieveSearchTypeByName
 };
 
 export default logic;

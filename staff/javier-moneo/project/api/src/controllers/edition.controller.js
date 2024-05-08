@@ -12,7 +12,9 @@ export const getEditions = async (req, res) => {
     return res.json(editions);
   } catch (error) {
     console.error(error);
-    return res.status(500).json({ message: error.message });
+    return res
+      .status(500)
+      .json({ error: error.constructor.name, message: error.message });
   }
 };
 
@@ -36,6 +38,8 @@ export const getEditionByCode = async (req, res) => {
     return res.json(edition);
   } catch (error) {
     console.error(error);
-    return res.status(500).json({ message: error.message });
+    return res
+      .status(500)
+      .json({ error: error.constructor.name, message: error.message });
   }
 };

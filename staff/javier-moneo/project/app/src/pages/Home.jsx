@@ -11,6 +11,7 @@ function Home() {
   const [editionCode, setEditionCode] = useState('es');
   const [searcherName, setSearcherName] = useState('google');
   const [tagName, setTagName] = useState('NoTagged'); // recuerda edition y name
+  const [searchTypeName, setSearchTypeName] = useState('web');
 
   useEffect(() => {
     try {
@@ -18,7 +19,7 @@ function Home() {
         logic
           .retrieveUser()
           .then((user) => {
-            // console.log('hey setting user');
+            console.log('hey setting user', user);
             setUser(user);
             setEditionCode(user.edition.code);
             setSearcherName(user.searcher.name);
@@ -60,11 +61,12 @@ function Home() {
 
   return (
     <>
-      <h1>Hola desde home {user && user.email}</h1>
+      {/* <h1>Hola desde home {user && user.email}</h1> */}
       <SearcherHome
         editionCode={editionCode}
         searcherName={searcherName}
         tagName={tagName}
+        searchTypeName={searchTypeName}
       />
     </>
   );

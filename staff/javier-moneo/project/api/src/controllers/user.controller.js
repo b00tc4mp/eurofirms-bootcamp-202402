@@ -29,7 +29,9 @@ export const createUser = async (req, res) => {
     });
   } catch (error) {
     console.error(error);
-    return res.status(500).json({ message: error.message });
+    return res
+      .status(500)
+      .json({ error: error.constructor.name, message: error.message });
   }
 };
 
@@ -68,6 +70,8 @@ export const getUser = async (req, res) => {
     return res.json(user);
   } catch (error) {
     console.error(error);
-    return res.status(500).json({ message: error.message });
+    return res
+      .status(500)
+      .json({ error: error.constructor.name, message: error.message });
   }
 };

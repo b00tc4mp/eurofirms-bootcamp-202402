@@ -35,6 +35,8 @@ export const getMenuSearchTypesByEditionAndSearcher = async (req, res) => {
     return res.json(menuSearchTypes);
   } catch (error) {
     console.error(error);
-    return res.status(500).json({ message: error.message });
+    return res
+      .status(500)
+      .json({ error: error.constructor.name, message: error.message });
   }
 };

@@ -2,17 +2,45 @@ import Searcher from '../models/Searcher.js';
 
 export const getSearchers = async (req, res) => {
   try {
-    const searchers = await Searcher.find({ isActive: true }, '-_id', {
+    const searchers = await Searcher.find({ isActive: true }, '', {
       sort: { name: 1 },
     })
-      .populate('searcherType', '-_id')
-      .populate('searchTypes', '-_id')
+      .populate('searcherType')
+      .populate('searchTypes')
+      .lean()
       .exec();
+
+    if (!searchers) {
+      return res.status(400).json({ message: 'Searchers no found' });
+    }
+
+    searchers.map((searcher) => {
+      if (searcher._id) {
+        searcher.id = searcher._id;
+        delete searcher._id;
+      }
+
+      if (searcher.searcherType?._id) {
+        searcher.searcherType.id = searcher.searcherType._id;
+        delete searcher.searcherType._id;
+      }
+
+      if (searcher.searchTypes) {
+        searcher.searchTypes.map((searchType) => {
+          if (searchType._id) {
+            searchType.id = searchType._id;
+            delete searchType._id;
+          }
+        });
+      }
+    });
 
     return res.json(searchers);
   } catch (error) {
     console.error(error);
-    return res.status(500).json({ message: error.message });
+    return res
+      .status(500)
+      .json({ error: error.constructor.name, message: error.message });
   }
 };
 
@@ -49,6 +77,8 @@ export const getSearcherByName = async (req, res) => {
     return res.json(searcher);
   } catch (error) {
     console.error(error);
-    return res.status(500).json({ message: error.message });
+    return res
+      .status(500)
+      .json({ error: error.constructor.name, message: error.message });
   }
 };
