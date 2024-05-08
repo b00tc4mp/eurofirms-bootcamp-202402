@@ -17,15 +17,38 @@ export const getSearchers = async (req, res) => {
 };
 
 export const getSearcherByName = async (req, res) => {
-  const name = req.params.name;
-  // console.log(name);
+  try {
+    const name = req.params.name;
+    // console.log(name);
 
-  const searcher = await Searcher.findOne({ name: name });
+    const searcher = await Searcher.findOne({ name: name })
+      .populate('searcherType')
+      .populate('searchTypes')
+      .lean()
+      .exec();
 
-  // console.log(searcher);
-  if (!searcher) {
-    return res.status(404).json({ message: 'Searcher no found' });
+    // console.log(searcher);
+    if (!searcher) {
+      return res.status(404).json({ message: 'Searcher no found' });
+    }
+
+    if (searcher._id) {
+      searcher.id = searcher._id;
+      delete searcher._id;
+    }
+    if (searcher.searcherType._id) {
+      searcher.searcherType.id = searcher.searcherType._id;
+      delete searcher.searcherType._id;
+    }
+
+    searcher.searchTypes.map((searchType) => {
+      searchType.id = searchType._id;
+      delete searchType._id;
+    });
+
+    return res.json(searcher);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: error.message });
   }
-
-  return res.json(searcher);
 };

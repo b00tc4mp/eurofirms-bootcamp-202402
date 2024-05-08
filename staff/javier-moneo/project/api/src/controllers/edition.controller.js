@@ -17,15 +17,25 @@ export const getEditions = async (req, res) => {
 };
 
 export const getEditionByCode = async (req, res) => {
-  const code = req.params.code;
-  // console.log(code);
+  try {
+    const code = req.params.code;
+    // console.log(code);
 
-  const edition = await Edition.findOne({ code: code });
+    const edition = await Edition.findOne({ code: code }).lean().exec();
 
-  // console.log(edition);
-  if (!edition) {
-    return res.status(404).json({ message: 'Edition no found' });
+    // console.log(edition);
+    if (!edition) {
+      return res.status(404).json({ message: 'Edition no found' });
+    }
+
+    if (edition._id) {
+      edition.id = edition._id;
+      delete edition._id;
+    }
+
+    return res.json(edition);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: error.message });
   }
-
-  return res.json(edition);
 };

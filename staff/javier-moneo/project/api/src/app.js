@@ -24,6 +24,8 @@ import authRoutes from './routes/auth.routes.js';
 import userRoutes from './routes/user.routes.js';
 import editionRoutes from './routes/edition.routes.js';
 import searcherRoutes from './routes/searcher.routes.js';
+import menuSearchTypeRoutes from './routes/menuSearchType.routes.js';
+import menuSearchTagRoutes from './routes/menuSearchTag.routes.js';
 
 const app = express();
 
@@ -64,5 +66,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/editions', editionRoutes);
 app.use('/api/searchers', searcherRoutes);
+app.use('/api/menuSearchTypes', menuSearchTypeRoutes);
+app.use('/api/menuSearchTags', menuSearchTagRoutes);
 
 export default app;

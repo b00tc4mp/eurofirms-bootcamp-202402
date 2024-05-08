@@ -2,11 +2,15 @@ import { useEffect, useState } from 'react';
 import { errors } from '../com';
 
 import logic from '../logic';
+import SearcherHome from '../components/SearcherHome';
 
 const { ContentError, MatchError } = errors;
 
 function Home() {
   const [user, setUser] = useState(null);
+  const [editionCode, setEditionCode] = useState('es');
+  const [searcherName, setSearcherName] = useState('google');
+  const [tagName, setTagName] = useState('NoTagged'); // recuerda edition y name
 
   useEffect(() => {
     try {
@@ -16,6 +20,8 @@ function Home() {
           .then((user) => {
             // console.log('hey setting user');
             setUser(user);
+            setEditionCode(user.edition.code);
+            setSearcherName(user.searcher.name);
           })
           .catch((error) => {
             console.error(error.message);
@@ -54,49 +60,12 @@ function Home() {
 
   return (
     <>
-      <h1>Hola desde home{user && user.email}</h1>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero ad,
-        laborum aliquid consequuntur officiis et voluptas in error quae velit
-        neque veniam esse. Numquam officia reiciendis earum. Voluptate, mollitia
-        deleniti?
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero ad,
-        laborum aliquid consequuntur officiis et voluptas in error quae velit
-        neque veniam esse. Numquam officia reiciendis earum. Voluptate, mollitia
-        deleniti?
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero ad,
-        laborum aliquid consequuntur officiis et voluptas in error quae velit
-        neque veniam esse. Numquam officia reiciendis earum. Voluptate, mollitia
-        deleniti?
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero ad,
-        laborum aliquid consequuntur officiis et voluptas in error quae velit
-        neque veniam esse. Numquam officia reiciendis earum. Voluptate, mollitia
-        deleniti?
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero ad,
-        laborum aliquid consequuntur officiis et voluptas in error quae velit
-        neque veniam esse. Numquam officia reiciendis earum. Voluptate, mollitia
-        deleniti?
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero ad,
-        laborum aliquid consequuntur officiis et voluptas in error quae velit
-        neque veniam esse. Numquam officia reiciendis earum. Voluptate, mollitia
-        deleniti?
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero ad,
-        laborum aliquid consequuntur officiis et voluptas in error quae velit
-        neque veniam esse. Numquam officia reiciendis earum. Voluptate, mollitia
-        deleniti?
-      </p>
+      <h1>Hola desde home {user && user.email}</h1>
+      <SearcherHome
+        editionCode={editionCode}
+        searcherName={searcherName}
+        tagName={tagName}
+      />
     </>
   );
 }
