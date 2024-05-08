@@ -8,6 +8,7 @@ import SearcherHome from '../components/SearcherHome';
 const { ContentError, MatchError } = errors;
 
 function Home() {
+  const { urlEditionCode } = useParams();
   const [user, setUser] = useState(null);
   const [editionCode, setEditionCode] = useState('es');
   const [edition, setEdition] = useState(null);
@@ -23,18 +24,31 @@ function Home() {
           .then((user) => {
             console.log('hey setting user', user);
             setUser(user);
-            setEditionCode(user.edition.code);
             setSearcherName(user.searcher.name);
-
-            //load user edition
-            logic
-              .retrieveEditionByCode(user.edition.code)
-              .then((editionRetrieved) => {
-                setEdition(editionRetrieved);
-              })
-              .catch((error) => {
-                errorHandler(error);
-              });
+            if (urlEditionCode) {
+              console.log('changed editionCode from url');
+              setEditionCode(urlEditionCode);
+              //load user edition
+              logic
+                .retrieveEditionByCode(urlEditionCode)
+                .then((editionRetrieved) => {
+                  setEdition(editionRetrieved);
+                })
+                .catch((error) => {
+                  errorHandler(error);
+                });
+            } else {
+              setEditionCode(user.edition.code);
+              //load user edition
+              logic
+                .retrieveEditionByCode(user.edition.code)
+                .then((editionRetrieved) => {
+                  setEdition(editionRetrieved);
+                })
+                .catch((error) => {
+                  errorHandler(error);
+                });
+            }
           })
           .catch((error) => {
             errorHandler(error);
@@ -42,19 +56,47 @@ function Home() {
       } else {
         // User no loggedIn
         //load default edition
-        logic
-          .retrieveEditionByCode(editionCode)
-          .then((editionRetrieved) => {
-            setEdition(editionRetrieved);
-          })
-          .catch((error) => {
-            errorHandler(error);
-          });
+        if (urlEditionCode) {
+          console.log('changed editionCode from url');
+          setEditionCode(urlEditionCode);
+          logic
+            .retrieveEditionByCode(urlEditionCode)
+            .then((editionRetrieved) => {
+              setEdition(editionRetrieved);
+            })
+            .catch((error) => {
+              errorHandler(error);
+            });
+        } else {
+          logic
+            .retrieveEditionByCode(editionCode)
+            .then((editionRetrieved) => {
+              setEdition(editionRetrieved);
+            })
+            .catch((error) => {
+              errorHandler(error);
+            });
+        }
       }
     } catch (error) {
       errorHandler(error);
     }
   }, []);
+
+  useEffect(() => {
+    if (urlEditionCode) {
+      console.log('changed on useffect editionCode from url');
+      setEditionCode(urlEditionCode);
+    }
+    logic
+      .retrieveEditionByCode(editionCode)
+      .then((editionRetrieved) => {
+        setEdition(editionRetrieved);
+      })
+      .catch((error) => {
+        errorHandler(error);
+      });
+  }, [urlEditionCode]);
 
   const errorHandler = (error) => {
     console.error(error.message);
@@ -84,6 +126,7 @@ function Home() {
         searcherName={searcherName}
         tagName={tagName}
         searchTypeName={searchTypeName}
+        urlEditionCode={urlEditionCode}
       />
 
       {edition && (

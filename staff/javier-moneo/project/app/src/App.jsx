@@ -58,7 +58,11 @@ function App() {
             path="/"
             element={<Home onUserLoggedOut={handleUserLoggedOut} />}
           />
-          <Route path="/editionsList/:editionCode" element={<EditionsList />} />
+          <Route
+            path="/:urlEditionCode"
+            element={<Home onUserLoggedOut={handleUserLoggedOut} />}
+          />
+          <Route path="/editionsList/:urlEditionCode" element={<EditionsList />} />
           <Route path="/comments" element={<Comments />} />
         </Route>
 

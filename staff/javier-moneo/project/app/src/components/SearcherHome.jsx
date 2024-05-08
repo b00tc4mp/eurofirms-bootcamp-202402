@@ -1,12 +1,17 @@
 import { useEffect, useState } from 'react';
 import logic from '../logic';
-import { XMarkIcon, PlusIcon } from '@heroicons/react/20/solid';
+import {
+  XMarkIcon,
+  PlusIcon,
+  MagnifyingGlassPlusIcon,
+} from '@heroicons/react/20/solid';
 
 export default function SearcherHome({
   editionCode,
   searcherName,
   tagName,
   searchTypeName,
+  urlEditionCode,
 }) {
   const [edition, setEdition] = useState(null);
   const [searcher, setSearcher] = useState(null);
@@ -30,6 +35,9 @@ export default function SearcherHome({
       // el tag de momento no es necesario
 
       // pedir edition by code
+      if (urlEditionCode) {
+        editionCode = urlEditionCode;
+      }
       logic
         .retrieveEditionByCode(editionCode)
         .then((edition) => {
@@ -217,12 +225,24 @@ export default function SearcherHome({
                 className="block w-full rounded-full border-0 px-4 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 placeholder="Search here..."
               />
+
               {/* button addsearch */}
               <button
                 type="button"
                 className="rounded-full ml-2  bg-indigo-600 p-2 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
                 <PlusIcon className="h-5 w-5" aria-hidden="true" />
+              </button>
+
+              {/* button addsearch and go */}
+              <button
+                type="button"
+                className="rounded-full ml-2  bg-indigo-600 p-2 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              >
+                <MagnifyingGlassPlusIcon
+                  className="h-5 w-5"
+                  aria-hidden="true"
+                />
               </button>
             </div>
           </div>
