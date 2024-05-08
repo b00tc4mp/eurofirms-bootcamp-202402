@@ -57,6 +57,9 @@ const post = new Schema({
         type: Date,
         required: true,
     },
+    likes: {
+        type: [{ type: ObjectId, ref: 'User' }]
+    }
 })
 
 const comment = new Schema({

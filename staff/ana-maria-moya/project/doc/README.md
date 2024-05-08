@@ -56,6 +56,7 @@ Post
 - video (string, optional)
 - text (string, required)
 - date (date, required)
+- likes ([userId, optional])
 
 Comment
 - id (auto)
