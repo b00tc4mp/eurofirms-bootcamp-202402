@@ -21,6 +21,30 @@ function validateName(name) {
         throw new ContentError('name is blank')
 }
 
+function validateSurnames(surnames){
+    if(typeof surnames !== "string") throw new TypeError("surname is not string");
+}
+
+function validateAge(age){
+    if(typeof age !== "number") throw new TypeError("age is not a number");
+}
+
+function validateEmail(email){
+    if(typeof email !== "string") throw new TypeError("email is not string");
+}
+
+function validatePassword(password){
+    if(typeof password !== "string") throw new TypeError("password is not string");
+}
+
+function validateDireccion(address){
+    if(typeof address !== "string") throw new TypeError("adrress is not string");
+}
+
+function validateActividad(activity){
+    if(typeof activity !== "string") throw new TypeError("activity is not string");
+}
+
 function validateUrl(url, explain = 'url') {
     if (typeof url !== 'string') throw new TypeError(`${explain} is not a string`)
 
@@ -47,6 +71,12 @@ function validateToken(token, explain = 'token') {
 
 const validate = {
     name: validateName,
+    surnames: validateSurnames,
+    age: validateAge,
+    email: validateEmail,
+    password: validatePassword,
+    direccion: validateDireccion,
+    actividad: validateActividad,
     url: validateUrl,
     token: validateToken
 }

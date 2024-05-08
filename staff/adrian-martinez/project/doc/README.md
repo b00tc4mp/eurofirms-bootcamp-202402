@@ -80,11 +80,22 @@ User
 - id (auto, required)
 - name (string, required)
 - surname (string, required)
-- role (string, enum: student|company)
+- role (string, required)
+- age (number, required)
+- email (string, required)
+- password (string, required)
+
+Company
+- id (auto, required)
+- name (string, required)
+- address (string, required)
+- activity (string, required)
+- email (string, required)
+- password (string, required)
 
 Career
 - id (auto)
-- student (User.id)
+- student (Student.id)
 - title (string, required)
 - description (string, required)
 - certification (string, required)
@@ -97,6 +108,7 @@ Subject
 
 Offer
 - id (auto)
+- company (company.id)
 - title (string, required)
 - description (string, requried)
 - minSalary (number, optional)

@@ -1,5 +1,5 @@
 //import logic from "./logic"
-import { Routes, Route, Navigate, useNavigate } from "react-router-dom"
+import { Routes, Route, Navigate, useNavigate } from "react-router-dom" 
 
 //Todas las páginas no tienen por qué estar en este archivo 
 import Inicio from "./Pages/index"
@@ -9,7 +9,7 @@ import Contacto from "./Pages/contacto"
 import Login from "./Pages/login"
 import Register from "./Pages/register"
 //import ResetPassword from "./Pages/resetPassword"
-//import Home from "./Pages/home"
+import Home from "./Pages/home"
 import ListaUsuarios from "./Pages/listaUsuarios"
 //import HomeEmpresa from "./Pages/homeEmpresa"
 
@@ -21,7 +21,7 @@ function App() {
   const handleUserRegister = () => navigate('/register');
   const handleListarUsers = () => navigate('/listaUsuarios');
   const handleResetPassword = () => navigate('/resetPassword');
-  const handlePerfil = () => navigate('/');
+  const handlePerfil = () => navigate('/home');
   
   //Menú navegación
   const handleInicio = () => navigate("/");
@@ -39,6 +39,7 @@ function App() {
           <Route path="/paraQuienEs" element={<ParaQuienEs onClickParaQuienEs={handleParaQuienEs} onClickTutorial={handleTutorial} onClickLogin={handleUserLogin} onClickRegister={handleUserRegister} onClickInicio={handleInicio}/>}/>
           <Route path="/tutorial" element={<Tutorial onClickTutorial={handleTutorial} onClickParaQuienEs={handleParaQuienEs} onClickContacto={handleContacto} onClickLogin={handleUserLogin} onClickRegister={handleUserRegister} onClickInicio={handleInicio}/>}/>
           <Route path="/contacto" element={<Contacto onClickContacto={handleContacto} onClickParaQuienEs={handleParaQuienEs} onClickTutorial={handleTutorial} onClickLogin={handleUserLogin} onClickRegister={handleUserRegister} onClickInicio={handleInicio}/>}/>
+          <Route path="/home" element={<Home onClickPerfil={handlePerfil} onClickResetPassword={handleResetPassword} onClickInicio={handleInicio} />} /> 
           {/* <Route path="/listaUsuarios" element={logic.isUserLoggedIn() ? <ListaUsuarios /> : <Navigate to="/" />}/> */}
           {/* {view === 'resetPassword' && <ResetPassword />} */}
       </Routes>

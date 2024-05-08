@@ -19,7 +19,7 @@ function Register(props) {
         </header>
         <main>
             <container id="container">
-                <section>
+                <section className="">
                     <form className="form" onSubmit={ handleClickUserLogin }>
                         <label forhtml="username">Nombre: </label>
                         <input type="text" id="username" placeholder="" required /><br/><br/>
