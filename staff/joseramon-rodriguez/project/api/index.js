@@ -113,6 +113,104 @@ mongoose.connect(MONGO_URL)
             }
         })
 
+        server.post('/event', jsonBodyParser, (req, res) => {
+            try {
+                const { authorization } = req.headers
+                const token = authorization.slice(7)
+                const { sub: userId } = jwt.verify(token, JWT_SECRET)
+                const { name, description, players, startDate, endDate } = req.body
+
+                logic.createEvent(userId, name, description, players, startDate, endDate)
+                    .then(() => res.status(201).send())
+                    .catch(error => {
+                        let status = 500
+
+                        if (error instanceof DuplicityError)
+                            status = 409
+
+                        res.status(status).json({ error: error.constructor.name, message: error.message })
+
+                    })
+            } catch (error) {
+                let status = 500
+
+                if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
+                    status = 400
+                else if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError) {
+                    status = 401
+
+                    error = new MatchError(error.message)
+                }
+
+                res.status(status).json({ error: error.constructor.name, message: error.message })
+            }
+        })
+
+        server.get('/events', (req, res) => {
+            try {
+                const { authorization } = req.headers
+                const token = authorization.slice(7)
+
+                const { sub: userId } = jwt.verify(token, JWT_SECRET)
+
+                logic.retrieveEvents(userId)
+                    .then(events => res.json(events))
+                    .catch(error => {
+                        let status = 500
+
+                        if (error instanceof MatchError)
+                            status = 401
+
+                        res.status(status).json({ error: error.constructor.name, message: error.message })
+                    })
+
+            } catch (error) {
+                let status = 500
+
+                if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError) {
+                    status = 401
+
+                    error = new MatchError(error.message)
+                }
+
+                res.status(status).json({ error: error.constructor.name, message: error.message })
+            }
+        })
+
+        server.get('/event/:targetEventId', (req, res) => {
+            try {
+                const { authorization } = req.headers
+
+                const token = authorization.slice(7)
+
+                const { sub: userId } = jwt.verify(token, JWT_SECRET)
+
+                const { targetEventId } = req.params
+
+                logic.retrieveEvent(userId, targetEventId)
+                    .then(event => res.json(event))
+                    .catch(error => {
+                        let status = 500
+
+                        if (error instanceof MatchError)
+                            status = 401
+
+                        res.status(status).json({ error: error.constructor.name, message: error.message })
+                    })
+            } catch (error) {
+                let status = 500
+
+                if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
+                    status = 400
+                else if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError) {
+                    status = 401
+
+                    error = new MatchError(error.message)
+                }
+
+                res.status(status).json({ error: error.constructor.name, message: error.message })
+            }
+        })
         server.listen(PORT, () => console.log(`API started on port ${PORT}`))
     })
     .catch(error => console.error(error))

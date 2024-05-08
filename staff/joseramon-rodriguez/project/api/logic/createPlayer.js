@@ -7,11 +7,13 @@ function createPlayer(userId, name) {
     validate.name(name, 'playerName')
 
     return User.findById(userId)
+        .catch(error => { throw new SystemError(error.message) })
         .then(user => {
             if (!user)
                 throw new MatchError('user not found - cant create player')
 
             return Player.findOne({ name })
+                .catch(error => { throw new SystemError(error.message) })
                 .then(player => {
                     if (player)
                         throw new DuplicityError('player already exists -> cant create player')
@@ -22,9 +24,7 @@ function createPlayer(userId, name) {
                         .then(playerCreated => { })
                         .catch(error => { throw new SystemError(error.message) })
                 })
-                .catch(error => { throw new SystemError(error.message) })
         })
-        .catch(error => { throw new SystemError(error.message) })
 }
 
 export default createPlayer

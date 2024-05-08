@@ -4,7 +4,8 @@ import registerUser from './registerUser'
 import loginUser from './loginUser'
 import logoutUser from './logoutUser'
 import retrieveUser from './retrieveUser'
-
+import retrieveEvents from './retrieveEvents'
+import retrieveEvent from './retrieveEvent'
 
 const logic = {
     getLoggedInUserId,
@@ -12,7 +13,9 @@ const logic = {
     registerUser,
     loginUser,
     logoutUser,
-    retrieveUser
+    retrieveUser,
+    retrieveEvents,
+    retrieveEvent
 }
 
 export default logic

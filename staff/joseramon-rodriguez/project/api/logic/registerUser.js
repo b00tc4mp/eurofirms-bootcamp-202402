@@ -7,7 +7,7 @@ function registerUser(username, email, password, birthdate, wallet) {
     validate.name(username, 'username')
     validate.email(email)
     validate.password(password)
-    validate.date(birthdate, 'birthdate')
+    validate.birthdate(birthdate)
     validate.adult(birthdate)
     validate.wallet(wallet)
 
@@ -17,6 +17,7 @@ function registerUser(username, email, password, birthdate, wallet) {
             if (user) throw new DuplicityError('email already exists')
 
             return User.findOne({ username })
+                .catch(error => { throw new SystemError(error.message) })
                 .then(user => {
                     if (user) throw new DuplicityError('username alreadty exists')
 
@@ -25,9 +26,6 @@ function registerUser(username, email, password, birthdate, wallet) {
                     return User.create(user)
                         .catch(error => { throw new SystemError(error.message) })
                 })
-                .catch(error => { throw new SystemError(error.message) })
-
-
         })
         .then(userCreated => { })
 }

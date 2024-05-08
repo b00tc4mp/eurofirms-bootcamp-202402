@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { errors } from 'com'
 import Button from '../components/Button'
 import logic from '../logic'
+import Events from '../components/Events'
 
 const { ContentError, MatchError } = errors
 
@@ -49,13 +50,14 @@ function Home({ onLogoutClick }) {
     return <>
         <header className='flex flex-row justify-end'>
             <Button>Your Bets</Button>
-            <Button>Wallet ={user.wallet}</Button>
+            <Button>Wallet ={user?.wallet}</Button>
             <Button onClick={handleLogoutClick}>LOG OUT</Button>
         </header>
         {user ? <h1>HELLO HOME {user.username}</h1> : <span>Loading...</span>}
         <main className='flex flex-col'>
             <Button>Search Events</Button>
-            <span>Upcoming Events</span>
+
+            <Events />
         </main>
 
     </>

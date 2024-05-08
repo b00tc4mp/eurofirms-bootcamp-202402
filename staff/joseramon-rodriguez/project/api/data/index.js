@@ -38,21 +38,26 @@ const player = new Schema({
 })
 
 const event = new Schema({
+    code: {
+        type: String,
+        required: true,
+        unique: true
+    },
     name: {
         type: String,
-        required: true
+        required: true,
     },
     description: {
         type: String,
         required: true,
     },
     players: {
-        type: Array,
+        type: [{ type: ObjectId, ref: 'Player' }],
         required: true
     },
     winner: {
-        type: String,
-        default: ''
+        type: ObjectId,
+        ref: 'Player'
     },
     startDate: {
         type: Date,
@@ -64,7 +69,9 @@ const event = new Schema({
     },
     status: {
         type: String,
-        enum: ['open', 'closed']
+        enum: ['open', 'closed'],
+        required: true,
+        default: 'open'
     }
 })
 

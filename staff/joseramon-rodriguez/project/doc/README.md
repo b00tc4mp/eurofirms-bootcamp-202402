@@ -64,6 +64,7 @@ Player
 
 Event
 - id (auto)
+- code (String, required, unique)
 - name (string, required)
 - description (string, required)
 - players (array of Player.id, required)

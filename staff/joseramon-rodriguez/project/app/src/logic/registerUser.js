@@ -6,7 +6,7 @@ function registerUser(username, email, password, birthdate) {
     validate.name(username, 'username')
     validate.email(email)
     validate.password(password)
-    validate.date(birthdate, 'birthdate')
+    validate.birthdate(birthdate)
     validate.adult(birthdate)
 
     const wallet = 0

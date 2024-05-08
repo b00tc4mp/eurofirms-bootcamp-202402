@@ -5,7 +5,7 @@ import Form from '../components/Form'
 import { errors } from 'com'
 import { useState } from 'react'
 
-const { ContentError, DuplicityError } = errors
+const { ContentError, DuplicityError, MatchError } = errors
 
 function Register({ onUserRegistered, onLoginClick }) {
     const [error, SetError] = useState(null)
@@ -19,6 +19,8 @@ function Register({ onUserRegistered, onLoginClick }) {
             feedback = `${feedback}, please correct it`
         else if (error instanceof DuplicityError)
             feedback = `${feedback}, please try with another user`
+        else if (error instanceof MatchError)
+            feedback = feedback
         else
             feedback = 'sorry, there was an error,please try again later'
 
