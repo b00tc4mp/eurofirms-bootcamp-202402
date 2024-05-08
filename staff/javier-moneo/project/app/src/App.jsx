@@ -6,6 +6,7 @@ import logic from './logic';
 import NavBar from './components/NavBar';
 import AppLayout from './AppLayout';
 import Comments from './pages/Comments';
+import EditionsList from './pages/EditionsList';
 
 function App() {
   const navigate = useNavigate();
@@ -57,6 +58,7 @@ function App() {
             path="/"
             element={<Home onUserLoggedOut={handleUserLoggedOut} />}
           />
+          <Route path="/editionsList/:editionCode" element={<EditionsList />} />
           <Route path="/comments" element={<Comments />} />
         </Route>
 

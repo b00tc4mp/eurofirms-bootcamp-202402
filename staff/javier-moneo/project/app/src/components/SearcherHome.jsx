@@ -177,7 +177,7 @@ export default function SearcherHome({
           {/* searchers */}
           <div className="sm:col-span-3">
             <div className="mt-2">
-              {searchers && searcherIdSelected && (
+              {searchers && searcherIdSelected && edition && (
                 <>
                   <select
                     id="searcher"
@@ -188,7 +188,7 @@ export default function SearcherHome({
                   >
                     {searchers.map(({ id, name, displayName }) => (
                       <option key={name} value={id}>
-                        {displayName}
+                        {displayName} - {edition.name}
                       </option>
                     ))}
                   </select>
