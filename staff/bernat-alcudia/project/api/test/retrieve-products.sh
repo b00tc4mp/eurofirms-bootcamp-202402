@@ -1,0 +1,1 @@
+curl -H 'Auhthorization: Bearer ' http://localhost:9010/products -v

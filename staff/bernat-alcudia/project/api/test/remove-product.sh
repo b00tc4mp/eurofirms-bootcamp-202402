@@ -1,0 +1,1 @@
+curl -X DELETE -H 'Authorization: Bearer ' http://localhost:9010/products/ -v 

@@ -1,16 +1,17 @@
-import dotenv from "dotenv";
+import dotenv from 'dotenv'
 
 dotenv.config()
 
-import mongoose from 'mongoose';
+import mongoose from 'mongoose'
 import express from 'express'
-import logic from '/.logic/index.js'
+import logic from './logic/index.js'
 import cors from 'cors'
 import jwt from 'jsonwebtoken'
 
-import { errors } from "com";
+import { errors } from 'com'
 
 const { JsonWebTokenError, TokenExpiredError } = jwt
+const { ContentError, DuplicityError, MatchError } = errors
 
 const { PORT, MONGO_URL, JWT_SECRET } = process.env
 
@@ -25,7 +26,7 @@ mongoose.connect(MONGO_URL)
         server.use(cors())
 
         // ---------------------------------Register Buyer---------------------------------
-        server.post('/user/buyer', jsonBodyParser, (req, res) => {
+        server.post('/users/buyer', jsonBodyParser, (req, res) => {
             try {
                 const { email, name, password, username, birthdate } = req.body
 
@@ -50,7 +51,7 @@ mongoose.connect(MONGO_URL)
         })
 
         // ---------------------------------Register Seller---------------------------------
-        server.post('/user/seller', jsonBodyParser, (req, res) => {
+        server.post('/users/seller', jsonBodyParser, (req, res) => {
             try {
                 const { email, name, password, username, birthdate } = req.body //Get params from body
 
@@ -75,13 +76,13 @@ mongoose.connect(MONGO_URL)
         })
 
         // ---------------------------------Authenticate User---------------------------------
-        server.post('/users/buyers-sellers/auth', jsonBodyParser, (req, res) => {
+        server.post('/users/auth', jsonBodyParser, (req, res) => {
             try {
                 const { username, password } = req.body
 
                 logic.authenticateUser(username, password)
-                    .then(userId => {
-                        const token = jwt.sign({ sub: userId, sub: role }, JWT_SECRET, { expiresIn: '60m' })
+                    .then(user => {
+                        const token = jwt.sign({ sub: user.userId, role: user.role }, JWT_SECRET, { expiresIn: '60m' })
 
                         res.status(200).json(token)
                     })
@@ -136,7 +137,6 @@ mongoose.connect(MONGO_URL)
                 const token = authorization.slice(7)
 
                 const { sub: userId } = jwt.verify(token, JWT_SECRET)
-
                 const { images, title, description, brand, price, state, stock, likes } = req.body
 
                 logic.createProduct(userId, images, title, description, brand, price, state, stock, likes)
@@ -162,7 +162,7 @@ mongoose.connect(MONGO_URL)
         })
 
         // ---------------------------------Retrieve Products---------------------------------
-        server.get('/posts', (req, res) => {
+        server.get('/products', (req, res) => {
             try {
                 const { authorization } = req.headers
 
@@ -190,4 +190,80 @@ mongoose.connect(MONGO_URL)
             }
             res.status(status).json({ error: error.constructor.name, message: error.message })
         })
+
+
+        // ---------------------------------Remove Products---------------------------------
+
+        server.delete('/products/productsId'), (req, res) => {
+            try {
+                const { authorization } = req.headers
+
+                const token = authorization.slice(7)
+
+                const { sub: userId } = jwt.verify(token, JWT_SECRET)
+
+                const { productId } = req.params
+
+                logic.removeProduct(userId, productId)
+                    .then(() => res.status(204).send())
+                    .catch(error => {
+                        let status = 500
+
+                        if (error instanceof MatchError) status = 404
+
+                        res.status(status).json({ error: error.constructor.name, message: error.message })
+                    })
+            } catch (error) {
+                let status = 500
+
+                if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError) status = 400
+                else if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError) {
+                    status = 401
+
+                    error = new MatchError(error.message)
+                }
+                res.status(status).json({ error: error.constructor.name, message: error.message })
+            }
+        }
+
+        // ---------------------------------Modify Products---------------------------------
+
+        server.patch('/products/:productId', jsonBodyParser, (req, res) => {
+            try {
+                const { authorization } = req.headers
+
+                const token = authorization.slice(7)
+
+                const { sub: userId } = jwt.verify(token, JWT_SECRET)
+
+                const { productId } = req.params
+
+                const { images, title, description, brand, price, state, stock } = req.body
+
+                logic.modifyProduct(userId, productId, images, title, description, brand, price, state, stock)
+                    .then(() => res.status(204).send())
+                    .catch(error => {
+                        let status = 500
+
+                        if (error instanceof MatchError) status = 404
+
+                        res.status(status).json({ error: error.constructor.name, message: error.message })
+                    })
+            } catch (error) {
+                let status = 500
+
+                if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError) status = 400
+
+                else if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError) {
+                    status = 401
+
+                    error = new MatchError(error.message)
+                }
+                res.status(status).json({ error: error.constructor.name, message: error.message })
+            }
+        })
+
+
+        server.listen(PORT, () => console.log(`API started on port ${PORT}`))
     })
+    .catch(error => console.error(error))

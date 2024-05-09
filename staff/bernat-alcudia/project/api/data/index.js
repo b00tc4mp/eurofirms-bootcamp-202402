@@ -32,11 +32,16 @@ const user = new Schema({
         required: true,
         enum: ['seller', 'buyer'],
         default: 'buyer'
+    },
+    saved: {
+        type: [{ type: ObjectId, ref: 'Product' }]
     }
+
+
 })
 
 const product = new Schema({
-    user: {
+    author: {
         type: ObjectId,
         ref: 'User',
         required: true
@@ -58,15 +63,18 @@ const product = new Schema({
     },
     price: {
         type: Number,
-        required: true
+        required: true,
+        min: 0
     },
     state: {
+        type: String,
         enum: ['used', 'new'],
         required: true
     },
     stock: {
         type: Number,
-        required: true
+        required: true,
+        min: 0
     },
     date: {
         type: Date,
@@ -76,6 +84,38 @@ const product = new Schema({
         type: [{ type: ObjectId, ref: 'User' }],
     }
 })
+
+const message = new Schema({
+    from: {
+        type: ObjectId,
+        ref: 'User1'
+    },
+    to: {
+        type: ObjectId,
+        ref: 'User2'
+    },
+    text: {
+        type: String,
+        required: true
+    }
+})
+
+const chat = new Schema({
+    userFrom: {
+        type: ObjectId,
+        ref: 'User1'
+    },
+    userTo: {
+        type: ObjectId,
+        ref: 'User2'
+    },
+    messages: [{ type: String }],
+    date: {
+        type: Date
+    }
+})
+
+
 
 const User = model('User', user)
 const Product = model('Product', product)

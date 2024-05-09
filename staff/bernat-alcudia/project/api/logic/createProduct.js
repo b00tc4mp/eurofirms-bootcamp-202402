@@ -4,9 +4,9 @@ import { validate, errors } from "com";
 
 const { SystemError, MatchError } = errors
 
-function createProduct(userId, images, title, description, brand, price, state, stock, likes) {
+function createProduct(userId, images, title, description, brand, price, state, stock) {
     validate.id(userId, 'userId')
-    validate.url(images, 'images')
+    validate.urls(images)
     validate.string(title, 'title')
     validate.description(description)
     validate.string(brand)
@@ -20,6 +20,8 @@ function createProduct(userId, images, title, description, brand, price, state, 
         .then(user => {
             if (!user) throw new MatchError('user not found')
 
+            const date = new Date()
+
             const product = {
                 author: user._id,
                 images,
@@ -29,7 +31,7 @@ function createProduct(userId, images, title, description, brand, price, state, 
                 price,
                 state,
                 stock,
-                likes
+                date
             }
 
             return Product.create(product)

@@ -7,7 +7,7 @@ const { SystemError, MatchError } = errors
 function modifyProduct(userId, productId, images, title, description, brand, price, state, stock) {
     validate.id(userId, 'userId')
     validate.id(productId, 'product id')
-    validate.url(images)
+    validate.urls(images)
     validate.string(title)
     validate.description(description)
     validate.string(brand)
@@ -29,6 +29,11 @@ function modifyProduct(userId, productId, images, title, description, brand, pri
 
             if (product.author.toString() !== userId) throw new MatchError('product does not belong user')
 
+
+
+            const date = new Date()
+
+            product.date = date
             product.images = images
             product.title = title
             product.description = description

@@ -12,7 +12,7 @@ function retrieveProducts(userId) {
         .then(user => {
             if (!user) throw new MatchError('user not found')
 
-            return Product.find().select('-___V').populate('author', 'username').lean()
+            return Product.find().select('-__v').populate('author', 'username').lean()
                 .catch(error => { throw new SystemError(error.message) })
                 .then(products => {
                     products.forEach(product => {
