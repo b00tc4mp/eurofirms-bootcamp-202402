@@ -1,4 +1,4 @@
-import { User, Exercise, Diet } from "../data";
+import { User, Exercise } from "../data";
 
 function retrievePosts() { }
 

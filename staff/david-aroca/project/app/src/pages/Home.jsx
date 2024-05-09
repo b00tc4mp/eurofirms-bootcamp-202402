@@ -8,6 +8,7 @@ import logic from "../logic"
 import Measures from "../components/Measures"
 import Routine from "../components/Routine"
 import Diet from "../components/Diet"
+// import search from "../components/Search"
 
 const { ContentError, MatchError } = errors
 
@@ -87,16 +88,15 @@ function Home({ onUserLoggedOut }) {
             <Route path="/measurements" element={<Measures />} />
             <Route path="/diet" element={<Diet />} />
             <Route path="/routine" element={<Routine />} />
+            {/* <Route path="/" element={<Search />} /> */}
             {/* <Route path="/" element={<Home />} /> */}
-
-
         </Routes>
 
-
+        {/* TODO */}
         {/* Hay que solucionar el hecho de que se ve en todas las
          vistas cuando solo se tiene que ver en el home */}
-        {/* 
-        <div className='mt-20'>
+
+        {/* <div className='mt-20'>
             <input
                 type="text"
                 className="border border-gray-500 rounded-md px-4 py-2 mb-4"

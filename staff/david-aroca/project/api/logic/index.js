@@ -1,18 +1,25 @@
 import registerUser from './registerUser.js'
 import authenticateUser from './authenticateUser.js'
 import retrieveUser from './retrieveUser.js'
-// import createPost from './createPost.js'
+import createExercise from './createExercise.js'
+import createDiet from './createDiet.js'
+import removeDiet from './removeDiet.js'
+import removeExercise from './removeExercise.js'
+
+
 // import retrievePosts from './retrievePosts.js'
-// import removePost from './removePost.js'
 // import modifyPost from './modifyPost.js'
 
 const logic = {
     registerUser,
     authenticateUser,
     retrieveUser,
-    // createPost,
+    createExercise,
+    createDiet,
+    removeDiet,
+    removeExercise,
+
     // retrievePosts,
-    // removePost,
     // modifyPost
 }
 

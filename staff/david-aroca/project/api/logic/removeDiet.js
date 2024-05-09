@@ -1,12 +1,12 @@
-import { User, Exercise } from "../data/index.js";
+import { User, Diet } from "../data/index.js";
 
 import { validate, errors } from "com";
 
 const { SystemError, MatchError } = errors
 
-function removeExercise(userId, exerciseId) {
+function removeDiet(userId, dietId) {
     validate.id(userId, 'userId')
-    validate.id(exerciseId, 'exerciseId')
+    validate.id(dietId, 'dietId')
     // TODO LA VALIDACION ES CORRECTA ? VALIDO EL POST O EL EXERCISE
 
     return User.findById(userId)
@@ -15,20 +15,20 @@ function removeExercise(userId, exerciseId) {
             if (!user)
                 throw new MatchError('user not found')
 
-            return Exercise.findById(exerciseId)
+            return Diet.findById(dietId)
                 .catch(error => { throw new SystemError(error.message) })
         })
-        .then(exercise => {
-            if (!exercise)
-                throw new MatchError('exercise not found')
+        .then(diet => {
+            if (!diet)
+                throw new MatchError('diet not found')
 
-            if (exercise.author.toString() !== userId)
-                throw new MatchError('exercise does not belong to the user')
+            if (diet.author.toString() !== userId)
+                throw new MatchError('diet does not belong to the user')
 
-            return Exercise.deleteOne({ _id: exerciseId })
+            return Diet.deleteOne({ _id: dietId })
                 .catch(error => { throw new SystemError(error.message) })
         })
         .then(result => { })
 }
 
-export default removeExercise
+export default removeDiet

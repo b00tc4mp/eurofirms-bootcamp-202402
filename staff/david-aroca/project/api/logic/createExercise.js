@@ -5,12 +5,11 @@ import { validate, errors } from "com";
 const { SystemError, MatchError } = errors
 
 function createExercise(userId, title, image, video, description) {
-    // validate.id(userId, 'userId')
-    // validate.text(text)
-    // validate.url(image, 'image')
-
-    // crear validacione video y description
-    // TODO
+    validate.id(userId, 'userId')
+    validate.text(title, 'title')
+    validate.url(image, 'image')
+    validate.video(video, 'video')
+    validate.description(description, 'description')
 
     return User.findById(userId)
         .catch(error => { throw new SystemError(error.message) })

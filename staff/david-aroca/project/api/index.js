@@ -50,6 +50,8 @@ mongoose.connect(MONGO_URL)
             }
         })
 
+        // --------------------------------------------------------------------//
+
         server.post('/users', jsonBodyParser, (req, res) => {
             try {
                 const { name, birthdate, email, username, password } = req.body
@@ -75,13 +77,16 @@ mongoose.connect(MONGO_URL)
         })
 
 
+        // --------------------------------------------------------------------//
+
+
         server.post('/users/auth', jsonBodyParser, (req, res) => {
             try {
                 const { username, password } = req.body
 
                 logic.authenticateUser(username, password)
                     .then(userId => {
-                        const token = jwt.sign({ sub: userId, role: user.role }, JWT_SECRET, { expiresIn: '59m' })
+                        const token = jwt.sign({ sub: userId }, JWT_SECRET, { expiresIn: '59m' })
 
                         res.status(200).json(token)
                     })
@@ -102,6 +107,7 @@ mongoose.connect(MONGO_URL)
                 res.status(status).json({ error: error.constructor.name, message: error.message })
             }
         })
+        // --------------------------------------------------------------------//
 
         server.get('/users/:targetUserId', (req, res) => {
             try {
@@ -138,6 +144,8 @@ mongoose.connect(MONGO_URL)
 
         })
 
+        // --------------------------------------------------------------------//
+
         server.post('/exercise', jsonBodyParser, (req, res) => {
             try {
                 const { authorization } = req.headers
@@ -146,9 +154,9 @@ mongoose.connect(MONGO_URL)
 
                 const { sub: user } = jwt.verify(token, JWT_SECRET)
 
-                const { title, image } = req.body
+                const { title, image, video, description } = req.body
 
-                logic.createExercise(user.id, title, image)
+                logic.createExercise(user.id, title, image, video, description)
                     .then(() => res.status(201).send())
                     .catch(error => {
                         let status = 500
@@ -156,7 +164,7 @@ mongoose.connect(MONGO_URL)
                         if (error instanceof MatchError)
                             status = 404
 
-                        res.status(status).json({ error: error.constructor.name })
+                        res.status(status).json({ error: error.constructor.name, message: error.message })
                     })
             } catch (error) {
                 let status = 500
@@ -170,6 +178,118 @@ mongoose.connect(MONGO_URL)
                     error = new MatchError(error.message)
                 }
                 res.status(status).json({ error: error.constructor.name, message: error.message })
+            }
+        })
+        // --------------------------------------------------------------------//
+
+
+        server.post('/diet', jsonBodyParser, (req, res) => {
+            try {
+                const { authorization } = req.headers
+
+                const token = authorization.slice(7)
+
+                const { sub: user } = jwt.verify(token, JWT_SECRET)
+
+                const { title, image, video, description } = req.body
+
+                logic.createDiet(user.id, title, image, video, description)
+                    .then(() => res.status(201).send())
+                    .catch(error => {
+                        let status = 500
+
+                        if (error instanceof MatchError)
+                            status = 404
+
+                        res.status(status).json({ error: error.constructor.name, message: error.message })
+                    })
+            } catch (error) {
+                let status = 500
+
+                if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
+
+                    status = 400
+                else if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError) {
+                    status = 401
+
+                    error = new MatchError(error.message)
+                }
+                res.status(status).json({ error: error.constructor.name, message: error.message })
+            }
+        })
+
+        // --------------------------------------------------------------------//
+
+
+        server.delete('/exercise/:exerciseId', (req, res) => {
+
+            try {
+                const { authorization } = req.headers
+
+                const token = authorization.slice(7)
+
+                const { sub: user } = jwt.verify(token, JWT_SECRET)
+
+                const { exerciseId } = req.params
+
+                logic.removeExercise(user.id, exerciseId)
+                    .then(() => res.status(204).send)
+                    .catch(error => {
+                        let status = 500
+
+                        if (error instanceof MatchError)
+                            status = 404
+
+                        res.status(status).json({ error: errors.constructor.name, message: error.message })
+                    })
+            } catch (error) {
+                let status = 500
+
+                if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
+                    status = 400
+                else if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError) {
+                    status = 401
+
+                    error = new MatchError(error.message)
+                }
+                res.status(status).json({ error: errors.constructor.name, message: error.message })
+            }
+        })
+
+        // --------------------------------------------------------------------//
+
+        server.delete('/diet/:dietId', (req, res) => {
+
+            try {
+                const { authorization } = req.headers
+
+                const token = authorization.slice(7)
+
+                const { sub: user } = jwt.verify(token, JWT_SECRET)
+
+                const { dietId } = req.params
+
+                logic.removeDiet(user.id, dietId)
+                    .then(() => res.status(204).send)
+                    .catch(error => {
+                        let status = 500
+
+                        if (error instanceof MatchError)
+                            status = 404
+
+                        res.status(status).json({ error: errors.constructor.name, message: error.message })
+                    })
+            } catch (error) {
+                let status = 500
+
+                if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
+                    status = 400
+                else if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError) {
+                    status = 401
+
+                    error = new MatchError(error.message)
+                }
+                res.status(status).json({ error: errors.constructor.name, message: error.message })
             }
         })
 

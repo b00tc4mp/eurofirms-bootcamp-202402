@@ -101,7 +101,7 @@ function validateUrl(url, explain = 'url') {
 
     if (!url.length) throw new ContentError(`${explain} is empty`)
 
-    if (!url.startsWith('http')) throw new ContentError(`${explain} is not an http address`)
+    // if (!url.startsWith('http')) throw new ContentError(`${explain} is not an http address`)
 }
 
 function validateToken(token, explain = 'token') {
@@ -120,6 +120,19 @@ function validateToken(token, explain = 'token') {
     if (exp < now) throw new MatchError(`${explain} expired`)
 }
 
+function validateVideo(video, explain = 'video') {
+    // if (!video.length) throw new ContentError(`${explain} is empty`)
+    // TODO VALIDACIONES MAS COMPLETAS
+
+    if (typeof video !== 'string') throw new TypeError(`${explain} is not a string`)
+}
+
+function validateDescription(description, explain = 'description') {
+    // if (!description.length) throw new ContentError(`${explain} is empty`)
+    // TODO VALIDACIONES MAS COMPLETAS
+    if (typeof description !== 'string') throw new TypeError(`${explain} is not a string`)
+}
+
 const validate = {
     name: validateName,
     birthdate: validateBirthdate,
@@ -129,7 +142,10 @@ const validate = {
     id: validateId,
     text: validateText,
     url: validateUrl,
-    token: validateToken
+    token: validateToken,
+    video: validateVideo,
+    description: validateDescription
+
 }
 
 export default validate
