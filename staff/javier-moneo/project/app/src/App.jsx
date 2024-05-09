@@ -7,6 +7,7 @@ import NavBar from './components/NavBar';
 import AppLayout from './AppLayout';
 import Comments from './pages/Comments';
 import EditionsList from './pages/EditionsList';
+import NewSearches from './pages/NewSearches';
 
 function App() {
   const navigate = useNavigate();
@@ -54,6 +55,7 @@ function App() {
           }
         />
         <Route element={<AppLayout />}>
+          {/* HOME */}
           <Route
             path="/"
             element={<Home onUserLoggedOut={handleUserLoggedOut} />}
@@ -62,7 +64,18 @@ function App() {
             path="/:urlEditionCode"
             element={<Home onUserLoggedOut={handleUserLoggedOut} />}
           />
-          <Route path="/editionsList/:urlEditionCode" element={<EditionsList />} />
+
+          {/* NEW SEARCHES */}
+          <Route
+            path="/newSearches/:urlEditionCode?/:urlSearcherName?/:urlSearchTypeName?/:urlTagName?"
+            element={<NewSearches />}
+          />
+
+          {/* EDITION LIST */}
+          <Route
+            path="/editionsList/:urlEditionCode"
+            element={<EditionsList />}
+          />
           <Route path="/comments" element={<Comments />} />
         </Route>
 

@@ -144,3 +144,32 @@ export const createSearch = async (req, res) => {
       .json({ error: error.constructor.name, message: error.message });
   }
 };
+
+export const getSearchesByEditionIdAndSearcherId = async (req, res) => {
+  try {
+    const { editionId, searcherId } = req.params;
+    validate.id(editionId);
+    validate.id(searcherId);
+
+    const searches = await Search.find({
+      edition: editionId,
+      searcher: searcherId,
+    });
+    return res.status(200).json(searches);
+  } catch (error) {
+    console.error(error);
+    let status = 500;
+
+    if (
+      error instanceof TypeError ||
+      error instanceof RangeError ||
+      error instanceof ContentError
+    ) {
+      status = 400;
+    }
+
+    return res
+      .status(status)
+      .json({ error: error.constructor.name, message: error.message });
+  }
+};
