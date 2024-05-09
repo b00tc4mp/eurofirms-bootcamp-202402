@@ -8,4 +8,6 @@ router.get('/', searcherCtrl.getSearchers);
 
 router.get('/:name', searcherCtrl.getSearcherByName);
 
+router.get('/searcherId/:searcherId', searcherCtrl.getSearcherById);
+
 export default router;

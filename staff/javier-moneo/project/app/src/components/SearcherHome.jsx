@@ -5,7 +5,7 @@ import {
   PlusIcon,
   MagnifyingGlassPlusIcon,
 } from '@heroicons/react/20/solid';
-import { useNavigate } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 
 export default function SearcherHome({
   editionCode,
@@ -73,9 +73,6 @@ export default function SearcherHome({
             .catch((error) => {
               errorHandler(error);
             });
-
-          // TODO: eesto no hace falta de momento
-          // pedimos MenuSearchTag po editionId
         })
         .catch((error) => {
           errorHandler(error);
@@ -118,6 +115,15 @@ export default function SearcherHome({
             if (menuSearchTypes.length > 0) {
               setSearchType(menuSearchTypes[0].searchType);
             }
+          })
+          .catch((error) => {
+            errorHandler(error);
+          });
+
+        logic
+          .retrieveSearcherById(searcherIdSelected)
+          .then((searcherRetrieved) => {
+            setSearcher(searcherRetrieved);
           })
           .catch((error) => {
             errorHandler(error);
@@ -358,7 +364,7 @@ export default function SearcherHome({
                   <span class="block sm:inline">{message}</span>
                   <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
                     <svg
-                    onClick={handleCloseMessageButton}
+                      onClick={handleCloseMessageButton}
                       class="fill-current h-6 w-6 text-red-500"
                       role="button"
                       xmlns="http://www.w3.org/2000/svg"
@@ -373,6 +379,17 @@ export default function SearcherHome({
             </>
           )}
         </form>
+
+        {edition && searcher && (
+          <>
+            <Link
+              to={`/newSearches/${edition.code}/${searcher.name}`}
+              className="w-full block text-center mt-10 rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            >
+              New Searches - {searcher.name} - {edition.name}
+            </Link>
+          </>
+        )}
       </div>
     </>
   );
