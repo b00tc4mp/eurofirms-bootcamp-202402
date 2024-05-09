@@ -25,8 +25,8 @@ function validateName(name) {
 function validateSurname(surname) {
     if (typeof surname !== 'string') throw new TypeError('surname is not string')
 
-    if (surname.length < 1)
-        throw new RangeError('surname is lower than 1 character')
+    if (surname.length < 2)
+        throw new RangeError('surname is lower than 2 character')
 
     var surnameIsBlank = true
 

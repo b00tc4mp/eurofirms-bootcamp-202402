@@ -30,12 +30,11 @@ const user = new Schema({
         required: true,
         enum: ['student', 'teacher'],
         default: 'student'
-        //student = 1 | teacher= 0
     }
 })
 
 const work = new Schema({
-    student: {
+    author: {
         type: ObjectId,
         required: true,
         ref: 'User'
@@ -51,7 +50,7 @@ const work = new Schema({
         required: true,
     },
 
-    description: {
+    text: {
         type: String
     },
 
@@ -61,7 +60,7 @@ const work = new Schema({
     }
 })
 
-const porpuse = new Schema({
+const proposal = new Schema({
     teacher: {
         type: ObjectId,
         required: true,
@@ -120,12 +119,12 @@ const comment = new Schema({
 
 const User = model('User', user)
 const Work = model('Work', work)
-const Porpuse = model('Porpuse', porpuse)
+const Proposal = model('Proposal', proposal)
 const Comment = model('Comment', comment)
 
 export {
     User,
     Work,
-    Porpuse,
+    Proposal,
     Comment
 }

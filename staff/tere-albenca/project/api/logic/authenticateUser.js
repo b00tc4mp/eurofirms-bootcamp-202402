@@ -17,7 +17,10 @@ function authenticateUser(email, password) {
             if (user.password !== password)
                 throw new MatchError('wrong credentials')
 
-            return user.id
+            return {
+                id: user.id,
+                role: user.role
+            }
         })
 }
 

@@ -1,12 +1,11 @@
-import logic from "../logic";
-//import components from "../components";
+import logic from "../logic"
 import Form from '../components/Form.jsx'
 import Button from '../components/Button.jsx'
 import Hone from '../components/Hone.jsx'
 import Span from '../components/Span.jsx'
 import Input from '../components/Input.jsx'
 import { errors } from 'com'
-import { useState } from "react";
+import { useState } from "react"
 
 const { ContentError, DuplicityError} = errors
 
@@ -88,10 +87,10 @@ function RegisterStudent({ onStudentRegistered, onLoginClick }) {
         <Hone className="text-center">REGISTER</Hone>
         <Form onSubmit={handleSubmit} className="max-w-sm">
 
-          <Input type="text" id="Name" placeholder="name"/><br/>
+          <Input type="text" id="name" placeholder="Name"/><br/>
           {error?.isNameError && <Span></Span>}
 
-          <Input type="text" id="Surname" placeholder="Surname"/><br/>
+          <Input type="text" id="surname" placeholder="Surname"/><br/>
           {error?.isSurnameError && <Span></Span>}
 
           <Input type="text" id="email" placeholder="Email" /><br/>

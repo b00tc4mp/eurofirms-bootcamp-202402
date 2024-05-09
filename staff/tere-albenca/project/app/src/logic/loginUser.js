@@ -1,6 +1,6 @@
 import { errors, validate } from 'com'
 
-const { SystemError, MatchError } = errors
+const { SystemError } = errors
 
 function loginUser(email, password) {
     validate.email(email)
@@ -15,13 +15,19 @@ function loginUser(email, password) {
         .then(res => {
             if (res.status === 200)
                 return res.json()
-                    .catch(error => { throw new MatchError(error.message) })
+                    .catch(error => { throw new SystemError(error.message) })
                     .then(token => sessionStorage.token = token)
 
             return res.json()
                 .catch(error => { throw new SystemError(error.message) })
                 .then(body => {
+                    const { error, message } = body
+
+                    const constructor = errors[error]
+
+                    throw new constructor(message)
                 })
         })
 }
+
 export default loginUser

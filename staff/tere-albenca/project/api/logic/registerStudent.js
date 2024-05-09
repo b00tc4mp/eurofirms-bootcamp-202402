@@ -14,7 +14,7 @@ function registerStudent(name, surname, email, password) {
         .then(user => {
             if (user) throw new DuplicityError('this student already exists')
 
-            user = { name, surname, email, password }
+            user = { name, surname, email, password, role: 'student' }
 
             return User.create(user)
                 .catch(error => { throw new SystemError(error.message) })

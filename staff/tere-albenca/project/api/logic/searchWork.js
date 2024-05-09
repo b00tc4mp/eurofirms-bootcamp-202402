@@ -1,26 +1,24 @@
-import { User } from '../data/index.js'
+import { User, Work } from '../data/index.js'
 import { errors, validate } from 'com'
 
 const { SystemError, MatchError } = errors
 
-function retrieveUser(userId, targetUserId) {
+function searchWork(userId, searchQuery) {
     validate.id(userId, 'userId')
-    validate.id(targetUserId, 'targetUserId')
+    validate.text(searchQuery, 'searchQuery')
 
     return User.findById(userId)
         .catch(error => { throw new SystemError(error.message) })
         .then(user => {
             if (!user) { throw new MatchError('user not found') }
 
-
-            return User.findById(targetUserId).select('-__v -password').lean()
+            return Work.find({ "title": { "$regex": searchQuery, "$options": "i" } }).select('-__v').populate('author', 'name surname').lean()
                 .catch(error => { throw new SystemError(error.message) })
-                .then(targetUser => {
-                    if (!targetUserId) { throw new MatchError(' target user not found') }
+                .then(works => {
+                    // TODO sanitize
 
-                    return targetUser
-
+                    return works
                 })
         })
 }
-export default retrieveUser
+export default searchWork

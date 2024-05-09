@@ -1,14 +1,13 @@
+import retrieveUserWorks from './retrieveUserWorks.js'
 import mongoose from 'mongoose'
-import registerStudent from './registerStudent.js'
 
 mongoose.connect('mongodb://localhost:27017/project')
     .then(() => {
         try {
-            registerStudent('Goku', 'mono', 'goku@nomo.com', '123123123')
-                .then(() => console.log('student registered'))
+            retrieveUserWorks('663b3fa28392558d89324990', '663b3fa28392558d89324990')
+                .then(works => console.log('retrieved works', works))
                 .catch(error => console.error(error))
         } catch (error) {
             console.error(error)
         }
     })
-    .catch(error => console.error(error))
