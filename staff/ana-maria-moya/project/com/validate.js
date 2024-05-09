@@ -5,9 +5,9 @@ const { ContentError, MatchError } = errors
 function validateName(name) {
     if (typeof name !== 'string') throw new TypeError('name is not string')
 
-    if(name.length < 1)
+    if (name.length < 1)
         throw new RangeError('name is shorter than 1 character')
-    
+
     var nameIsBlank = true
 
     for (var i = 0; i < name.length && nameIsBlank; i++) {
@@ -24,9 +24,9 @@ function validateName(name) {
 function validateSurname(name) {
     if (typeof name !== 'string') throw new TypeError('name is not string')
 
-    if(name.length < 1)
+    if (name.length < 1)
         throw new RangeError('name is shorter than 1 character')
-    
+
     var nameIsBlank = true
 
     for (var i = 0; i < name.length && nameIsBlank; i++) {
@@ -40,7 +40,7 @@ function validateSurname(name) {
         throw new ContentError('name is blank')
 }
 
-function validateBirthdate(birthdate){
+function validateBirthdate(birthdate) {
     if (typeof birthdate !== 'string') throw new TypeError('birthdate is not string')
 
     if (birthdate.length !== 10)
@@ -107,9 +107,9 @@ function validateText(text, explain = 'text') {
 function validateUrl(url, explain = 'url') {
     if (typeof url !== 'string') throw new TypeError(`${explain} is not a string`)
 
-        if (!url.length) throw new ContentError(`${explain} is empty`)
-    
-        if (!url.startsWith('http')) throw new ContentError(`${explain} is not an http address`) 
+    if (!url.length) throw new ContentError(`${explain} is empty`)
+
+    if (!url.startsWith('http')) throw new ContentError(`${explain} is not an http address`)
 }
 
 function validateToken(token, explain = 'token') {
@@ -128,6 +128,25 @@ function validateToken(token, explain = 'token') {
     if (exp < now) throw new MatchError(`${explain} expired`)
 }
 
+function validateTitle(title) {
+    if (typeof title !== 'string') throw new TypeError('title is not string')
+
+    if (title.length < 1)
+        throw new RangeError('title is shorter than 1 character')
+
+    var titleIsBlank = true
+
+    for (var i = 0; i < title.length && titleIsBlank; i++) {
+        var char = title[i]
+
+        if (char !== ' ')
+            titleIsBlank = false
+    }
+
+    if (titleIsBlank)
+        throw new ContentError('title is blank')
+}
+
 const validate = {
     name: validateName,
     surname: validateSurname,
@@ -137,7 +156,8 @@ const validate = {
     id: validateId,
     text: validateText,
     url: validateUrl,
-    token: validateToken
+    token: validateToken,
+    title: validateTitle
 }
 
 export default validate
