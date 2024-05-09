@@ -4,6 +4,7 @@ import Searcher from '../models/Searcher.js';
 import SearchType from '../models/SearchType.js';
 import Tag from '../models/Tag.js';
 import SearcherUrl from '../models/SearcherUrl.js';
+import validate from '../libs/com/validate.js';
 
 export const createSearch = async (req, res) => {
   try {
@@ -32,13 +33,15 @@ export const createSearch = async (req, res) => {
     }
 
     // Verificar que tag existe, si no, se crea.
-    const tag = await Tag.findOne({ name: tagName, edition: editionId });
+    validate.tagName(tagName);
+    const tagNameTrimed = tagName.trim();
+    const tag = await Tag.findOne({ name: tagNameTrimed, edition: editionId });
     let tagId;
     if (!tag) {
       // Create tag
       console.log('new tag saved');
       const newTag = new Tag({
-        name: tagName,
+        name: tagNameTrimed,
         edition: editionId,
         user: userId,
       });
@@ -47,18 +50,22 @@ export const createSearch = async (req, res) => {
     } else {
       if (tag.isBanned) {
         return res.status(400).json({
-          message: `Tag ${tagName} is banned, you can not add searches to this tag`,
+          message: `Tag ${tagNameTrimed} is banned, you can not add searches to this tag`,
         });
       }
       tagId = tag._id;
     }
+
+    // verificar longitudes
+    validate.searchQuery(query);
+    const queryTrimed = query.trim();
 
     // Si search existe previamente no la crea pero da un mensaje correcto de 200
     const search = await Search.findOne({
       edition: editionId,
       searcher: searcherId,
       searchType: searchTypeId,
-      query: query,
+      query: queryTrimed,
       tag: tagId,
     });
 
@@ -85,19 +92,19 @@ export const createSearch = async (req, res) => {
     let url = new URL(searcherUrl.url);
     switch (searcher.name) {
       case 'google':
-        url.searchParams.append('q', query);
+        url.searchParams.append('q', queryTrimed);
         break;
       case 'giphy':
-        url.searchParams.append('q', query);
+        url.searchParams.append('q', queryTrimed);
         break;
       case 'bing':
-        url.searchParams.append('q', query);
+        url.searchParams.append('q', queryTrimed);
         break;
       case 'youtube':
-        url.searchParams.append('search_query', query);
+        url.searchParams.append('search_query', queryTrimed);
         break;
       case 'x':
-        url.searchParams.append('q', query);
+        url.searchParams.append('q', queryTrimed);
       default:
         console.error(`Sorry no searcher combination exists.`);
         return res.status(400).json({
@@ -108,7 +115,7 @@ export const createSearch = async (req, res) => {
 
     const newSearch = new Search({
       url: url.toString(),
-      query: query,
+      query: queryTrimed,
       user: userId,
       edition: editionId,
       tag: tagId,
@@ -120,7 +127,7 @@ export const createSearch = async (req, res) => {
 
     return res
       .status(201)
-      .json({ url: url.toString(), message: 'búsqueda creada' });
+      .json({ url: url.toString(), message: 'search created' });
   } catch (error) {
     console.error(error);
     return res
