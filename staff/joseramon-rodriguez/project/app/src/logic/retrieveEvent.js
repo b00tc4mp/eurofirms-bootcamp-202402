@@ -4,11 +4,11 @@ const { SystemError } = errors
 
 function retrieveEvent(eventId) {
     validate.token(sessionStorage.token)
-    vaalidate.id(eventId, 'event id')
+    validate.id(eventId, 'event id')
 
     const { sub: userId } = utils.extractPayload(sessionStorage.token)
 
-    return fetch(`${import.meta.env.VITE_API_URL}/users/${eventId}`, {
+    return fetch(`${import.meta.env.VITE_API_URL}/events/${eventId}`, {
         method: 'GET',
         headers: { authorization: `Bearer ${sessionStorage.token}` }
     })

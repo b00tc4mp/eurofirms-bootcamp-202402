@@ -1,8 +1,11 @@
 import { useEffect, useState } from 'react'
 import { errors } from 'com'
+import { Routes, Route, Navigate } from 'react-router-dom'
+
 import Button from '../components/Button'
 import logic from '../logic'
 import Events from '../components/Events'
+import Event from '../components/Event'
 
 const { ContentError, MatchError } = errors
 
@@ -57,7 +60,13 @@ function Home({ onLogoutClick }) {
         <main className='flex flex-col'>
             <Button>Search Events</Button>
 
-            <Events />
+
+            <Routes>
+                <Route path='/events' element={<Events />} />
+                <Route path='/events/:eventId' element={<Event />} />
+
+                <Route path='/*' element={<Navigate to="/events" />} />
+            </Routes>
         </main>
 
     </>

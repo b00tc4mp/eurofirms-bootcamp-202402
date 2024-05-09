@@ -177,7 +177,7 @@ mongoose.connect(MONGO_URL)
             }
         })
 
-        server.get('/event/:targetEventId', (req, res) => {
+        server.get('/events/:targetEventId', (req, res) => {
             try {
                 const { authorization } = req.headers
 

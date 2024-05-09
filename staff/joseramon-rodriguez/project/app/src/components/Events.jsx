@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Routes, Route, useNavigate, useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { errors } from 'com'
 import Button from '../components/Button'
 import logic from '../logic'
@@ -8,7 +8,7 @@ function Events() {
     const [events, setEvents] = useState(null)
 
     const navigate = useNavigate()
-    let params = useParams()
+
     useEffect(() => {
         try {
             logic.retrieveEvents()
@@ -21,25 +21,20 @@ function Events() {
     }, [])
 
     const handleEventClick = eventId => {
-        navigate(`/event/${eventId}`)
+        navigate(`/events/${eventId}`)
     }
     return <>
-        <Routes>
-            <Route path='/event' >
-                <Route path=':eventId' element={<Event />} />
-            </Route>
-        </Routes>
+
         <h2>Upcoming Events</h2>
         {events ? events.map(event => {
             return <section key={event.id} className=' border-black border-2'>
-                <h3><a onClick={handleEventClick(event.id)}>{event.name}</a></h3>
+                <h3><a onClick={() => handleEventClick(event.id)}>{event.name}</a></h3>
                 <p>{event.description}</p>
 
             </section>
 
         }
         ) : <span>Loading</span>}
-
     </>
 
 }

@@ -12,12 +12,19 @@ function retrieveEvent(userId, enventId) {
             if (!user)
                 throw new MatchError('user not found -> cant retrieveEvent')
 
-            return Event.findById(enventId).select('-__v -_id -code').populate().lean()
+            return Event.findById(enventId).select('-__v -_id -code').populate('players', ' name').lean()
                 .catch(error => { throw new SystemError(error.message) })
                 .then(event => {
                     if (!event)
                         throw new MatchError('event not found -> cant retrieve event')
 
+                    event.players.forEach(player => {
+                        const id = player._id.toString()
+
+                        player.id = id
+
+                        delete player._id
+                    })
                     return event
                 })
         })

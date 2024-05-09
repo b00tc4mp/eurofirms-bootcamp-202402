@@ -31,7 +31,7 @@ function App() {
           onLoginClick={handleLoginClick} />}
       />
 
-      <Route path='/' element={logic.isUserLoggedIn() ?
+      <Route path='/*' element={logic.isUserLoggedIn() ?
         <Home onLogoutClick={handleLogoutClick} /> :
         <Navigate to={'/login'} />}
       />
