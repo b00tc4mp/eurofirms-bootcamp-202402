@@ -124,6 +124,42 @@ function validateToken(token, explain = 'token') {
   if (exp < now) throw new MatchError(`${explain} expired`);
 }
 
+function validateSearchQuery(query) {
+  if (typeof query !== 'string') throw new TypeError(`query is not a string`);
+
+  if (!query.length) throw new ContentError(`query is empty`);
+
+  if (!/\S/.test(query)) {
+    // string is empty and just whitespace
+    throw new ContentError(`query is empty or contains whitespace`);
+  }
+  if (query.length > 280) {
+    throw new ContentError(`query is greather than 280 characters`);
+  }
+}
+
+function validateTagName(name) {
+  if (typeof name !== 'string') throw new TypeError(`tag name is not a string`);
+
+  if (!name.length) throw new ContentError(`tag name is empty`);
+
+  if (!/\S/.test(name)) {
+    // string is empty and just whitespace
+    throw new ContentError(`tag name is empty or contains whitespace`);
+  }
+  if (name.length > 280) {
+    throw new ContentError(`tag name is greather than 280 characters`);
+  }
+
+  for (var i = 0; i < name.length; i++) {
+    var char = name[i];
+
+    if (char === ' ') {
+      throw new ContentError('tag name contains blank');
+    }
+  }
+}
+
 const validate = {
   name: validateName,
   birthdate: validateBirthdate,
@@ -134,6 +170,8 @@ const validate = {
   text: validateText,
   url: validateUrl,
   token: validateToken,
+  searchQuery: validateSearchQuery,
+  tagName: validateTagName,
 };
 
 export default validate;

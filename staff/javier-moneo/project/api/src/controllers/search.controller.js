@@ -5,31 +5,34 @@ import SearchType from '../models/SearchType.js';
 import Tag from '../models/Tag.js';
 import SearcherUrl from '../models/SearcherUrl.js';
 import validate from '../libs/com/validate.js';
+import errors from '../libs/com/errors.js';
+
+const { ContentError, DuplicityError, MatchError } = errors;
 
 export const createSearch = async (req, res) => {
   try {
     const userId = req.userId; // porque la hemos pasado en middleware verifyToken
-    console.log('createSearch: userId', userId);
+    // console.log('createSearch: userId', userId);
     // console.log(req.body)
 
     const { query, editionId, tagName, searcherId, searchTypeId } = req.body;
-    console.log({ query, editionId, tagName, searcherId, searchTypeId });
+    // console.log({ query, editionId, tagName, searcherId, searchTypeId });
 
     // La verificación de si es user banned lo verificamos con middleware
     // verificar que los ids pasados tienen sus entidades
     const edition = await Edition.findById(editionId);
     if (!edition) {
-      return res.status(400).json({ message: 'No edition found' });
+      throw new MatchError('No edition found');
     }
 
     const searcher = await Searcher.findById(searcherId);
     if (!searcher) {
-      return res.status(400).json({ message: 'No searcher found' });
+      throw new MatchError('No searcher found');
     }
 
     const searchType = await SearchType.findById(searchTypeId);
     if (!searchType) {
-      return res.status(400).json({ message: 'No searchType found' });
+      throw new MatchError('No searchType found');
     }
 
     // Verificar que tag existe, si no, se crea.
@@ -39,7 +42,7 @@ export const createSearch = async (req, res) => {
     let tagId;
     if (!tag) {
       // Create tag
-      console.log('new tag saved');
+      // console.log('new tag saved');
       const newTag = new Tag({
         name: tagNameTrimed,
         edition: editionId,
@@ -49,9 +52,9 @@ export const createSearch = async (req, res) => {
       tagId = tagSaved._id;
     } else {
       if (tag.isBanned) {
-        return res.status(400).json({
-          message: `Tag ${tagNameTrimed} is banned, you can not add searches to this tag`,
-        });
+        throw new MatchError(
+          `Tag ${tagNameTrimed} is banned, you can not add searches to this tag`
+        );
       }
       tagId = tag._id;
     }
@@ -83,9 +86,7 @@ export const createSearch = async (req, res) => {
       searchType: searchTypeId,
     });
     if (!searcherUrl) {
-      return res.status(400).json({
-        message: `No exists searcherUrl`,
-      });
+      throw new MatchError('No exists searcherUrl');
     }
 
     // generamos url
@@ -107,9 +108,7 @@ export const createSearch = async (req, res) => {
         url.searchParams.append('q', queryTrimed);
       default:
         console.error(`Sorry no searcher combination exists.`);
-        return res.status(400).json({
-          message: `Sorry no searcher combination exists.`,
-        });
+        throw new MatchError(`Sorry no searcher combination exists.`);
         break;
     }
 
@@ -130,8 +129,18 @@ export const createSearch = async (req, res) => {
       .json({ url: url.toString(), message: 'search created' });
   } catch (error) {
     console.error(error);
+    let status = 500;
+
+    if (
+      error instanceof TypeError ||
+      error instanceof RangeError ||
+      error instanceof ContentError
+    ) {
+      status = 400;
+    }
+
     return res
-      .status(500)
+      .status(status)
       .json({ error: error.constructor.name, message: error.message });
   }
 };

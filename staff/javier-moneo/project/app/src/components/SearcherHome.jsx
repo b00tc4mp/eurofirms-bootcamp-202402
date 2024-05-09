@@ -23,6 +23,8 @@ export default function SearcherHome({
   const [searcherIdSelected, setSearcherIdSelected] = useState(null);
   const [inputSearchField, setInputSearchField] = useState('');
   const [inputTagField, setInputTagField] = useState('');
+  const [messageStrong, setMessageStrong] = useState(null);
+  const [message, setMessage] = useState(null);
 
   useEffect(() => {
     console.log({
@@ -164,11 +166,37 @@ export default function SearcherHome({
       return;
     }
 
-    if (event.nativeEvent?.submitter?.name === 'addSearch') {
-      console.log(event.nativeEvent?.submitter?.name);
-    } else if(event.nativeEvent?.submitter?.name === 'addSearchAndGo'){
-      console.log(event.nativeEvent?.submitter?.name);
+    try {
+      logic
+        .createSearch(
+          inputSearchField,
+          edition.id,
+          inputTagField,
+          searcher.id,
+          searchType.id
+        )
+        .then((searchUrlAndMessage) => {
+          console.log(searchUrlAndMessage);
+          setMessageStrong(searchUrlAndMessage.message);
+          setMessage(inputSearchField);
+          if (event.nativeEvent?.submitter?.name === 'addSearch') {
+            console.log(event.nativeEvent?.submitter?.name);
+          } else if (event.nativeEvent?.submitter?.name === 'addSearchAndGo') {
+            console.log(event.nativeEvent?.submitter?.name);
+            window.open(searchUrlAndMessage.url, '_blank'); // open new tab with search
+          }
+        })
+        .catch((error) => {
+          errorHandler(error);
+        });
+    } catch (error) {
+      errorHandler(error);
     }
+  };
+
+  const handleCloseMessageButton = () => {
+    setMessageStrong(null);
+    setMessage(null);
   };
 
   const handleResetSearchButton = () => {
@@ -317,6 +345,33 @@ export default function SearcherHome({
               placeholder="Hashtag here..."
             />
           </div>
+
+          {/* message output */}
+          {messageStrong && (
+            <>
+              <div className="sm:col-span-3 mt-4 ">
+                <div
+                  class="bg-blue-100 border border-blue-400 text-blue-700 px-4 py-3 rounded relative"
+                  role="alert"
+                >
+                  <strong class="font-bold">{messageStrong}! </strong>
+                  <span class="block sm:inline">{message}</span>
+                  <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
+                    <svg
+                    onClick={handleCloseMessageButton}
+                      class="fill-current h-6 w-6 text-red-500"
+                      role="button"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 20 20"
+                    >
+                      <title>Close</title>
+                      <path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z" />
+                    </svg>
+                  </span>
+                </div>
+              </div>
+            </>
+          )}
         </form>
       </div>
     </>

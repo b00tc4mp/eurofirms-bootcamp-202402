@@ -13,8 +13,10 @@ import retrieveSearcherByName from './retrieveSearcherByName';
 import retrieveEditionByCode from './retrieveEditionByCode';
 import retrieveMenuSearchTypesByEditionAndSearcherId from './retrieveMenuSearchTypesByEditionAndSearcherId';
 import retrieveSearchTypeByName from './retrieveSearchTypeByName';
+import createSearch from './createSearch';
 
 const logic = {
+  createSearch,
   isUserLoggedIn,
   getLoggedInUserId,
   logoutUser,
@@ -26,7 +28,7 @@ const logic = {
   retrieveSearcherByName,
   retrieveEditionByCode,
   retrieveMenuSearchTypesByEditionAndSearcherId,
-  retrieveSearchTypeByName
+  retrieveSearchTypeByName,
 };
 
 export default logic;
