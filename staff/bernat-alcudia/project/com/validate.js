@@ -96,6 +96,19 @@ function validateUrl(url, explain = 'url') {
     if (!url.startsWith('http')) throw new ContentError(`${explain} is not an http address`)
 }
 
+function validateUrls(urls) {
+    if (!(urls instanceof Array)) throw new TypeError('url array is not an array')
+
+    for (var i = 0; i < urls.length; i++) {
+        const url = urls[i]
+
+        if (typeof url !== 'string') throw new TypeError('url is not a string')
+        if (!url.length) throw new ContentError('url is empty')
+        if (!url.startsWith('http')) throw new ContentError('url is not an http address')
+    }
+}
+
+
 function validateDescription(description) {
     if (typeof description !== 'string') throw new TypeError('description is not a string')
 }
@@ -130,6 +143,7 @@ const validate = {
     password: validatePassword,
     id: validateId,
     url: validateUrl,
+    urls: validateUrls,
     description: validateDescription,
     state: validateState,
     token: validateToken
