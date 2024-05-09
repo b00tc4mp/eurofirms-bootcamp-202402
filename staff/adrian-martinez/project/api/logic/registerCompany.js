@@ -3,7 +3,7 @@ import { errors, validate } from "com"
 
 const { SystemError, DuplicityError } = errors;
 
-function registerCompany(name, surnames, age, address, activity, email, password){
+function registerCompany(name, address, activity, email, password){
     validate.name(name);
     validate.direccion(address);
     validate.actividad(activity);

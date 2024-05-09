@@ -3,7 +3,7 @@ import { errors, validate } from "com"
 
 const { SystemError, DuplicityError } = errors;
 
-function registerStudent(name, surnames, age, address, activity, email, password){    
+function registerStudent(name, surnames, age, email, password){    
     validate.name(name);
     validate.surnames(surnames);
     validate.age(age);
@@ -18,7 +18,7 @@ function registerStudent(name, surnames, age, address, activity, email, password
         .then(user => {
             if(user) throw new DuplicityError("student already exists")
 
-            user = { name, surnames, role, age, address, activity, email, password }
+            user = { name, surnames, role, age, email, password }
 
             return User.create(user)
                 .catch(error => { throw new SystemError(error.message) })     

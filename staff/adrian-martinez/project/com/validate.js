@@ -45,6 +45,17 @@ function validateActividad(activity){
     if(typeof activity !== "string") throw new TypeError("activity is not string");
 }
 
+function validateId(id, explain = "id") {
+
+    if(typeof id !== "string") throw new TypeError(explain +" is not string")
+
+    if(id.length !== 24) throw new RangeError(explain +" is not string")
+
+    if (id.includes(' ')) throw new ContentError(explain +" has spaces")
+
+    if (!id.length) throw new ContentError(explain +" is empty")
+}
+
 function validateUrl(url, explain = 'url') {
     if (typeof url !== 'string') throw new TypeError(`${explain} is not a string`)
 
@@ -78,7 +89,8 @@ const validate = {
     direccion: validateDireccion,
     actividad: validateActividad,
     url: validateUrl,
-    token: validateToken
+    token: validateToken,
+    id: validateId
 }
 
 export default validate

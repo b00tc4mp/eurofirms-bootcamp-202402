@@ -1,1 +1,1 @@
-curl -X POST -H 'Content-type: application/json' -d '{"name":"Adrián","surnames":"Martínez Insua","age":35,"address":null,"activity":null,"email":"adrianmi.info@gmail.com","password":"12345678"}' http://localhost:8080/users -v
+curl -X POST -H 'Content-type: application/json' -d '{"name":"Adrián","surnames":"Martínez Insua","age":35,"email":"pablomi.ino@gmail.com","password":"12345678"}' http://127.0.0.1:8989/users/students -v

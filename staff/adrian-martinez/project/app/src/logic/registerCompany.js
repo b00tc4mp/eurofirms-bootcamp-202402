@@ -9,7 +9,7 @@ function registerCompany(name, address, activity, email, password) {
     validate.email(email);
     validate.password(password);
 
-    return fetch('http://127.0.0.1:8989/users', {
+    return fetch(`${import.meta.env.VITE_API_URL}/users/company`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, address, activity, email, password })

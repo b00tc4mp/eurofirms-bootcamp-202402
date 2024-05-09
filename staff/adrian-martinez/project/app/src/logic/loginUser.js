@@ -6,10 +6,10 @@ function loginUser(email, password) {
     validate.email(email)
     validate.password(password)
 
-    return fetch('http://localhost:8989/users/auth', {
+    return fetch(`${import.meta.env.VITE_API_URL}/users/auth`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password })
+        body: JSON.stringify({ email, password })
     })
         .catch(error => { throw new SystemError(error.message) })
         .then(res => {

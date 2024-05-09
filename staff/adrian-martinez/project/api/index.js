@@ -30,8 +30,8 @@ mongoose.connect(MONGO_URL)
         server.use(cors());
 
         //Le pasamos los datos del registro a la ruta de la API si se validó todo correctamente
-        server.post("/users/student", (req, res) => {
-            try{
+        server.post("/users/students", jsonBodyParser, (req, res) => {
+            try {
                 const { name, surnames, age, email, password } = req.body;
 
                 logic.registerStudent(name, surnames, age, email, password)
@@ -40,24 +40,24 @@ mongoose.connect(MONGO_URL)
 
                         let status = 500;
 
-                        if(error instanceof DuplicityError) status = 409;
+                        if (error instanceof DuplicityError) status = 409;
 
                         res.status(status).json({ error: error.constructor.name, message: error.message });
                     })
             }
-            catch(error){
+            catch (error) {
 
                 let status = 500;
 
-                if(error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
+                if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
                     status = 400;
 
                 res.status(status).json({ error: error.constructor.name, message: error.message })
             }
         })
 
-        server.post("/users/company", (req, res) => {
-            try{
+        server.post("/users/companies", (req, res) => {
+            try {
                 const { name, address, activity, email, password } = req.body;
 
                 logic.registerCompany(name, address, activity, email, password)
@@ -66,90 +66,90 @@ mongoose.connect(MONGO_URL)
 
                         let status = 500;
 
-                        if(error instanceof DuplicityError) status = 409;
+                        if (error instanceof DuplicityError) status = 409;
 
                         res.status(status).json({ error: error.constructor.name, message: error.message });
                     })
             }
-            catch(error){
+            catch (error) {
 
                 let status = 500;
 
-                if(error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
+                if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
                     status = 400;
 
                 res.status(status).json({ error: error.constructor.name, message: error.message })
             }
         })
+
         //Creamos el token del usuario con un ID existente en la base de datos
         server.post('/users/auth', jsonBodyParser, (req, res) => {
             try {
                 const { email, password } = req.body
-      
+
                 logic.autenticateUser(email, password)
                     .then(user => {
-                      
-                      const token = jwt.sign(
-                        { sub: user.id, role: user.role },
-                        "esta app va ser disrruptiva en la forma de encontrar trabajo",
-                        { expiresIn: "30m"}
-                      )
-                      res.status(200).json(token);
-                    })
-                    .catch(error =>{
-                          let status = 500;
-      
-                          if(error instanceof MatchError) status = 401;
-      
-                          res.status(status).json({ error: error.constructor.name, message: error.message })
-                    })
-            } 
-            catch(error){
-              let status = 500;
-      
-              if(error instanceof TypeError || error instanceof RangeError || error instanceof ContentError) status = 400;
-      
-              res.status(status).json({ error: error.constructor.name, message: error.message })
-            }
 
-            //TODO retrieveUser
-            server.get('/users/:targetUserId', (req, res) => {
-                try {
-                    
-                    const { authorization } = req.headers
-          
-                    const token = authorization.slice(7)
-          
-                    const { sub: userId } = jwt.verify(token, 'esta app va ser disrruptiva en la forma de encontrar trabajo')
-                    
-                    const { targetUserId } = req.params
-          
-                    logic.retrieveUser(userId, targetUserId)
-                        .then(user => res.json(user))
-                        .catch(error =>{
-                          
-                          let status = 500;
-          
-                          if(error instanceof MatchError){
-          
-                              status = 404;
-                          }
-          
-                          res.status(status).json({ error: error.constructor.name, message: error.message });
-                        })
-                } catch (error) {
-          
-                      let status = 500;
-          
-                      if(error instanceof TypeError || error instanceof RangeError || error instanceof ContentError){
-          
-                          status = 400
-                      }
-          
-                      res.status(status).json({ error: error.constructor.name, message: error.message })
+                        const token = jwt.sign(
+                            { sub: user.id, role: user.role },
+                            "esta app va ser disrruptiva en la forma de encontrar trabajo",
+                            { expiresIn: "30m" }
+                        )
+                        res.status(200).json(token);
+                    })
+                    .catch(error => {
+                        let status = 500;
+
+                        if (error instanceof MatchError) status = 401;
+
+                        res.status(status).json({ error: error.constructor.name, message: error.message })
+                    })
+            }
+            catch (error) {
+                let status = 500;
+
+                if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError) status = 400;
+
+                res.status(status).json({ error: error.constructor.name, message: error.message })
+            }
+        })
+
+        server.get('/users/:targetUserId', (req, res) => {
+            try {
+
+                const { authorization } = req.headers
+
+                const token = authorization.slice(7)
+
+                const { sub: userId } = jwt.verify(token, JWT_SECRET)
+
+                const { targetUserId } = req.params
+
+                logic.retrieveUser(userId, targetUserId)
+                    .then(user => res.json(user))
+                    .catch(error => {
+
+                        let status = 500;
+
+                        if (error instanceof MatchError) {
+
+                            status = 404;
+                        }
+
+                        res.status(status).json({ error: error.constructor.name, message: error.message });
+                    })
+            } catch (error) {
+
+                let status = 500;
+
+                if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError) {
+
+                    status = 400
                 }
-            })
-        })      
+
+                res.status(status).json({ error: error.constructor.name, message: error.message })
+            }
+        })
         server.listen(PORT, () => console.log("API started"));
     })
     .catch((error) => console.error(error));
