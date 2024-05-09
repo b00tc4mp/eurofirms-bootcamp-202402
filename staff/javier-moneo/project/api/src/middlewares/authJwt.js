@@ -30,7 +30,8 @@ export const verifyToken = async (req, res, next) => {
     // console.log(token);
 
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    req.userId = decoded.id;
+    // req.userId = decoded.id;
+    req.userId = decoded.sub; // sub porque en mi app interna use sub en vez de id
 
     const user = await User.findById(req.userId, { password: 0 });
     if (!user) {
@@ -43,6 +44,31 @@ export const verifyToken = async (req, res, next) => {
   } catch (error) {
     console.log(error.message);
     res.status(500).json({ message: 'Unauthorized' });
+  }
+};
+
+/**
+ * Primero debes ejecutar el verifyToken
+ * @param {*} req
+ * @param {*} res
+ * @param {*} next
+ * @returns
+ */
+export const isUserBanned = async (req, res, next) => {
+  try {
+    // porque hemos pasado en verifyToken el userId
+    const user = await User.findById(req.userId);
+
+    if (user.isUserBanned) {
+      return res.status(403).json({ message: 'User is banned' });
+    }
+
+    next();
+  } catch (error) {
+    console.error(error);
+    return res
+      .status(500)
+      .json({ error: error.constructor.name, message: error.message });
   }
 };
 

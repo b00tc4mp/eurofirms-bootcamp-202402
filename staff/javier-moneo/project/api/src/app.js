@@ -27,6 +27,7 @@ import searcherRoutes from './routes/searcher.routes.js';
 import menuSearchTypeRoutes from './routes/menuSearchType.routes.js';
 import menuSearchTagRoutes from './routes/menuSearchTag.routes.js';
 import searchTypeRoutes from './routes/searchType.routes.js';
+import searchRoutes from './routes/search.routes.js';
 
 const app = express();
 
@@ -70,5 +71,6 @@ app.use('/api/searchers', searcherRoutes);
 app.use('/api/menuSearchTypes', menuSearchTypeRoutes);
 app.use('/api/menuSearchTags', menuSearchTagRoutes);
 app.use('/api/searchTypes', searchTypeRoutes);
+app.use('/api/searches', searchRoutes);
 
 export default app;

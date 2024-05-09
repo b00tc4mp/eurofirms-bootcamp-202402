@@ -5,6 +5,7 @@ import {
   PlusIcon,
   MagnifyingGlassPlusIcon,
 } from '@heroicons/react/20/solid';
+import { useNavigate } from 'react-router-dom';
 
 export default function SearcherHome({
   editionCode,
@@ -13,6 +14,7 @@ export default function SearcherHome({
   searchTypeName,
   urlEditionCode,
 }) {
+  const navigate = useNavigate();
   const [edition, setEdition] = useState(null);
   const [searcher, setSearcher] = useState(null);
   const [searchers, setSearchers] = useState([]);
@@ -152,6 +154,23 @@ export default function SearcherHome({
     }
   };
 
+  const onSubmit = (event) => {
+    event.preventDefault();
+
+    //if use no logged in redirect to login
+    if (!logic.isUserLoggedIn()) {
+      console.log('navigate to login');
+      navigate('/login');
+      return;
+    }
+
+    if (event.nativeEvent?.submitter?.name === 'addSearch') {
+      console.log(event.nativeEvent?.submitter?.name);
+    } else if(event.nativeEvent?.submitter?.name === 'addSearchAndGo'){
+      console.log(event.nativeEvent?.submitter?.name);
+    }
+  };
+
   const handleResetSearchButton = () => {
     setInputSearchField('');
   };
@@ -181,7 +200,7 @@ export default function SearcherHome({
   return (
     <>
       <div>
-        <form>
+        <form onSubmit={onSubmit}>
           {/* searchers */}
           <div className="sm:col-span-3">
             <div className="mt-2">
@@ -228,7 +247,8 @@ export default function SearcherHome({
 
               {/* button addsearch */}
               <button
-                type="button"
+                type="submit"
+                name="addSearch"
                 className="rounded-full ml-2  bg-indigo-600 p-2 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
                 <PlusIcon className="h-5 w-5" aria-hidden="true" />
@@ -236,7 +256,8 @@ export default function SearcherHome({
 
               {/* button addsearch and go */}
               <button
-                type="button"
+                type="submit"
+                name="addSearchAndGo"
                 className="rounded-full ml-2  bg-indigo-600 p-2 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
                 <MagnifyingGlassPlusIcon

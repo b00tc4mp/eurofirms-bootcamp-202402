@@ -12,6 +12,10 @@ const tagSchema = new Schema(
     isBanned: {
       type: Boolean,
     },
+    user: {
+      ref: 'User',
+      type: Schema.Types.ObjectId,
+    },
     edition: {
       ref: 'Edition',
       type: Schema.Types.ObjectId,
