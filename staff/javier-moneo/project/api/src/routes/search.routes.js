@@ -10,4 +10,9 @@ router.post(
   searchesCtrl.createSearch
 );
 
+router.post(
+  '/getByAllParamsId',
+  searchesCtrl.getSearchesByEditionIdAndSearcherIdAndSearchTypeIdAndTagId
+);
+
 export default router;

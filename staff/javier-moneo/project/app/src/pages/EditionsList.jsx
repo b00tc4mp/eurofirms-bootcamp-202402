@@ -40,6 +40,7 @@ export default function EditionsList() {
 
     alert(feedback);
   };
+  
   return (
     <>
       <div>

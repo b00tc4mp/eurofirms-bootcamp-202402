@@ -15,6 +15,8 @@ import retrieveMenuSearchTypesByEditionAndSearcherId from './retrieveMenuSearchT
 import retrieveSearchTypeByName from './retrieveSearchTypeByName';
 import createSearch from './createSearch';
 import retrieveSearcherById from './retrieveSearcherById';
+import retrieveTagByEditionIdAndName from './retrieveTagByEditionIdAndName';
+import retrieveSearchesByEditionIdAndSearcherIdAndSearchTypeIdAndTagId from './retrieveSearchesByEditionIdAndSearcherIdAndSearchTypeIdAndTagId';
 
 const logic = {
   createSearch,
@@ -31,6 +33,8 @@ const logic = {
   retrieveMenuSearchTypesByEditionAndSearcherId,
   retrieveSearchTypeByName,
   retrieveSearcherById,
+  retrieveTagByEditionIdAndName,
+  retrieveSearchesByEditionIdAndSearcherIdAndSearchTypeIdAndTagId,
 };
 
 export default logic;

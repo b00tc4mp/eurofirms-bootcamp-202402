@@ -188,3 +188,243 @@ export const getSearchesByEditionIdAndSearcherId = async (req, res) => {
       .json({ error: error.constructor.name, message: error.message });
   }
 };
+
+export const getSearchesByEditionIdAndSearcherIdAndSearchTypeIdAndTagId =
+  async (req, res) => {
+    try {
+      const { editionId, searcherId, searchTypeId, tagId } = req.body;
+      console.log(editionId, searcherId, searchTypeId, tagId);
+      // solo validamos el edition porque vamos
+      // ha cargar las searches en función de los parametros que vienen
+
+      if (editionId && searcherId && searchTypeId && tagId) {
+        validate.id(editionId);
+        validate.id(searcherId);
+        validate.id(searchTypeId);
+        validate.id(tagId);
+
+        const searches = await Search.find({
+          edition: editionId,
+          searcher: searcherId,
+          searchType: searchTypeId,
+          tag: tagId,
+        })
+          .populate('user', '_id username')
+          .populate('edition', '_id code name')
+          .populate('tag', '_id name edition')
+          .populate('searcher', '_id name displayName')
+          .populate('searchType', '_id name')
+          .lean()
+          .exec();
+        // console.log('editionId && searcherId && searchTypeId && tagId');
+        // console.log(searches);
+
+        if (searches) {
+          searches.map((search) => {
+            if (search._id) {
+              search.id = search._id;
+              delete search._id;
+            }
+
+            if (search.user?._id) {
+              search.user.id = search.user._id;
+              delete search.user._id;
+            }
+
+            if (search.edition?._id) {
+              search.edition.id = search.edition._id;
+              delete search.edition._id;
+            }
+
+            if (search.tag?._id) {
+              search.tag.id = search.tag._id;
+              delete search.tag._id;
+            }
+
+            if (search.searcher?._id) {
+              search.searcher.id = search.searcher._id;
+              delete search.searcher._id;
+            }
+
+            if (search.searchType?._id) {
+              search.searchType.id = search.searchType._id;
+              delete search.searchType._id;
+            }
+          });
+        }
+
+        return res.status(200).json(searches);
+      } else if (editionId && searcherId && searchTypeId && !tagId) {
+        validate.id(editionId);
+        validate.id(searcherId);
+        validate.id(searchTypeId);
+
+        const searches = await Search.find({
+          edition: editionId,
+          searcher: searcherId,
+          searchType: searchTypeId,
+        })
+          .populate('user', '_id username')
+          .populate('edition', '_id code name')
+          .populate('tag', '_id name edition')
+          .populate('searcher', '_id name displayName')
+          .populate('searchType', '_id name')
+          .lean()
+          .exec();
+
+        if (searches) {
+          searches.map((search) => {
+            if (search._id) {
+              search.id = search._id;
+              delete search._id;
+            }
+
+            if (search.user?._id) {
+              search.user.id = search.user._id;
+              delete search.user._id;
+            }
+
+            if (search.edition?._id) {
+              search.edition.id = search.edition._id;
+              delete search.edition._id;
+            }
+
+            if (search.tag?._id) {
+              search.tag.id = search.tag._id;
+              delete search.tag._id;
+            }
+
+            if (search.searcher?._id) {
+              search.searcher.id = search.searcher._id;
+              delete search.searcher._id;
+            }
+
+            if (search.searchType?._id) {
+              search.searchType.id = search.searchType._id;
+              delete search.searchType._id;
+            }
+          });
+        }
+
+        return res.status(200).json(searches);
+      } else if (editionId && searcherId && !searchTypeId && !tagId) {
+        validate.id(editionId);
+        validate.id(searcherId);
+
+        const searches = await Search.find({
+          edition: editionId,
+          searcher: searcherId,
+        })
+          .populate('user', '_id username')
+          .populate('edition', '_id code name')
+          .populate('tag', '_id name edition')
+          .populate('searcher', '_id name displayName')
+          .populate('searchType', '_id name')
+          .lean()
+          .exec();
+
+        if (searches) {
+          searches.map((search) => {
+            if (search._id) {
+              search.id = search._id;
+              delete search._id;
+            }
+
+            if (search.user?._id) {
+              search.user.id = search.user._id;
+              delete search.user._id;
+            }
+
+            if (search.edition?._id) {
+              search.edition.id = search.edition._id;
+              delete search.edition._id;
+            }
+
+            if (search.tag?._id) {
+              search.tag.id = search.tag._id;
+              delete search.tag._id;
+            }
+
+            if (search.searcher?._id) {
+              search.searcher.id = search.searcher._id;
+              delete search.searcher._id;
+            }
+
+            if (search.searchType?._id) {
+              search.searchType.id = search.searchType._id;
+              delete search.searchType._id;
+            }
+          });
+        }
+
+        return res.status(200).json(searches);
+      } else if (editionId && !searcherId && !searchTypeId && !tagId) {
+        validate.id(editionId);
+
+        const searches = await Search.find({
+          edition: editionId,
+        })
+          .populate('user', '_id username')
+          .populate('edition', '_id code name')
+          .populate('tag', '_id name edition')
+          .populate('searcher', '_id name displayName')
+          .populate('searchType', '_id name')
+          .lean()
+          .exec();
+
+        if (searches) {
+          searches.map((search) => {
+            if (search._id) {
+              search.id = search._id;
+              delete search._id;
+            }
+
+            if (search.user?._id) {
+              search.user.id = search.user._id;
+              delete search.user._id;
+            }
+
+            if (search.edition?._id) {
+              search.edition.id = search.edition._id;
+              delete search.edition._id;
+            }
+
+            if (search.tag?._id) {
+              search.tag.id = search.tag._id;
+              delete search.tag._id;
+            }
+
+            if (search.searcher?._id) {
+              search.searcher.id = search.searcher._id;
+              delete search.searcher._id;
+            }
+
+            if (search.searchType?._id) {
+              search.searchType.id = search.searchType._id;
+              delete search.searchType._id;
+            }
+          });
+        }
+
+        return res.status(200).json(searches);
+      } else {
+        //devolver algo
+        throw new ContentError('specifies search values');
+      }
+    } catch (error) {
+      console.error(error);
+      let status = 500;
+
+      if (
+        error instanceof TypeError ||
+        error instanceof RangeError ||
+        error instanceof ContentError
+      ) {
+        status = 400;
+      }
+
+      return res
+        .status(status)
+        .json({ error: error.constructor.name, message: error.message });
+    }
+  };

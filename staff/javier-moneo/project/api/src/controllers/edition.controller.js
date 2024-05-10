@@ -1,4 +1,7 @@
 import Edition from '../models/Edition.js';
+import errors from '../libs/com/errors.js';
+
+const { ContentError, DuplicityError, MatchError } = errors;
 
 export const getEditions = async (req, res) => {
   try {
@@ -27,7 +30,7 @@ export const getEditionByCode = async (req, res) => {
 
     // console.log(edition);
     if (!edition) {
-      return res.status(404).json({ message: 'Edition no found' });
+      throw new MatchError('Edition no found');
     }
 
     if (edition._id) {
@@ -38,8 +41,18 @@ export const getEditionByCode = async (req, res) => {
     return res.json(edition);
   } catch (error) {
     console.error(error);
+    let status = 500;
+
+    if (
+      error instanceof TypeError ||
+      error instanceof RangeError ||
+      error instanceof ContentError
+    ) {
+      status = 400;
+    }
+
     return res
-      .status(500)
+      .status(status)
       .json({ error: error.constructor.name, message: error.message });
   }
 };
