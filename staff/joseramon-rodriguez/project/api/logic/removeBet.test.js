@@ -1,11 +1,11 @@
 import mongoose from 'mongoose'
-import authenticateUser from './authenticateUser.js'
+import removeBet from './removeBet.js'
 
 mongoose.connect('mongodb://localhost:27017/project')
     .then(() => {
         try {
-            authenticateUser('pep', '123123123')
-                .then(userId => console.log('user authecticated', userId))
+            removeBet('663def289961e38f028c2289', '663df5e05768098082bfdf46')
+                .then(() => console.log('bet removed'))
                 .catch(error => console.error(error))
         } catch (error) {
             console.error(error)

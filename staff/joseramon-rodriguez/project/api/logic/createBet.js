@@ -1,5 +1,5 @@
 import { validate, errors } from 'com'
-import { User, Event, Player } from '../data/index.js'
+import { User, Event, Player, Bet } from '../data/index.js'
 
 const { SystemError, MatchError } = errors
 function createBet(userId, eventId, playerId, amount) {
@@ -14,17 +14,40 @@ function createBet(userId, eventId, playerId, amount) {
             if (!user)
                 throw new MatchError('user not found -> cant create bet')
 
+            if (amount > user.wallet)
+                throw new MatchError('you cannot bet more money than you have in your wallet -> cant create bet')
+
             return Event.findById(eventId)
                 .catch(error => { throw new SystemError(error.message) })
                 .then(event => {
                     if (!event)
-                        console.log("TODO")
-                    //TODO
-                    // check if event exists
-                    // check if player exists    
-                    //check ammount
-                    //check if wallet > ammount
-                    //place bet
+                        throw new MatchError('event not found -> cant create bet')
+
+                    if (event.status === 'closed')
+                        throw new MatchError('you cannot bet on closed events -> cant create bet')
+
+                    return Player.findById(playerId)
+                        .catch(error => { throw new SystemError(error.message) })
+                        .then(player => {
+                            if (!player)
+                                throw new MatchError('player not found -> cant create bet')
+
+                            if (!event.players.includes(player._id))
+                                throw new MatchError('player is not playing in that event -> cant create bet')
+
+                            const newWallet = user.wallet - amount
+
+                            return User.findByIdAndUpdate(userId, { wallet: newWallet })
+                                .catch(error => { throw new SystemError(error.message) })
+                                .then(() => {
+                                    const bet = { user: userId, event: eventId, player: playerId, amount }
+
+                                    return Bet.create(bet)
+                                        .catch(error => { throw new SystemError(error.message) })
+                                        .then(betCreated => { })
+
+                                })
+                        })
                 })
         })
 }
