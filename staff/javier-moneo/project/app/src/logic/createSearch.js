@@ -1,6 +1,13 @@
 import { errors, validate, utils } from '../com';
 
-const { SystemError } = errors;
+const {
+  SystemError,
+  ContentError,
+  MatchError,
+  DuplicityError,
+  RangeError,
+  TypeError,
+} = errors;
 
 function createSearch(query, editionId, tagName, searcherId, searchTypeId) {
   validate.token(sessionStorage.token);

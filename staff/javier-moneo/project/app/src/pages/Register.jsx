@@ -1,6 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import logic from '../logic';
+import { errors } from '../com';
+
+const { ContentError, MatchError, DuplicityError, RangeError, TypeError } =
+  errors;
 
 function Register({ onUserRegistered, onLoginClick }) {
   const [editions, setEditions] = useState(null);

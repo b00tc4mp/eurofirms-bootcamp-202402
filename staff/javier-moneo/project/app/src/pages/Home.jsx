@@ -5,7 +5,8 @@ import { errors } from '../com';
 import logic from '../logic';
 import SearcherHome from '../components/SearcherHome';
 
-const { ContentError, MatchError } = errors;
+const { ContentError, MatchError, DuplicityError, RangeError, TypeError } =
+  errors;
 
 function Home() {
   const { urlEditionCode } = useParams();

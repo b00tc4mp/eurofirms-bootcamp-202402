@@ -141,23 +141,24 @@ function validateSearchQuery(query) {
 function validateTagName(name) {
   if (typeof name !== 'string') throw new TypeError(`tag name is not a string`);
 
-  if (!name.length) throw new ContentError(`tag name is empty`);
+  // if (!name.length) throw new ContentError(`tag name is empty`);
 
-  if (!/\S/.test(name)) {
-    // string is empty and just whitespace
-    throw new ContentError(`tag name is empty or contains whitespace`);
-  }
+  // if (!/\S/.test(name)) {
+  //   // string is empty and just whitespace
+  //   throw new ContentError(`tag name is empty or contains whitespace`);
+  // }
+
   if (name.length > 280) {
     throw new ContentError(`tag name is greather than 280 characters`);
   }
 
-  for (var i = 0; i < name.length; i++) {
-    var char = name[i];
+  // for (var i = 0; i < name.length; i++) {
+  //   var char = name[i];
 
-    if (char === ' ') {
-      throw new ContentError('tag name contains blank');
-    }
-  }
+  //   if (char === ' ') {
+  //     throw new ContentError('tag name contains blank');
+  //   }
+  // }
 }
 
 const validate = {

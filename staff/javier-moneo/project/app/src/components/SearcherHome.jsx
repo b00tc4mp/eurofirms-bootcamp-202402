@@ -6,6 +6,10 @@ import {
   MagnifyingGlassPlusIcon,
 } from '@heroicons/react/20/solid';
 import { Link, useParams, useNavigate } from 'react-router-dom';
+import { errors } from '../com';
+
+const { ContentError, MatchError, DuplicityError, RangeError, TypeError } =
+  errors;
 
 export default function SearcherHome({
   editionCode,
@@ -357,15 +361,15 @@ export default function SearcherHome({
             <>
               <div className="sm:col-span-3 mt-4 ">
                 <div
-                  class="bg-blue-100 border border-blue-400 text-blue-700 px-4 py-3 rounded relative"
+                  className="bg-blue-100 border border-blue-400 text-blue-700 px-4 py-3 rounded relative"
                   role="alert"
                 >
-                  <strong class="font-bold">{messageStrong}! </strong>
-                  <span class="block sm:inline">{message}</span>
-                  <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
+                  <strong className="font-bold">{messageStrong}! </strong>
+                  <span className="block sm:inline">{message}</span>
+                  <span className="absolute top-0 bottom-0 right-0 px-4 py-3">
                     <svg
                       onClick={handleCloseMessageButton}
-                      class="fill-current h-6 w-6 text-red-500"
+                      className="fill-current h-6 w-6 text-red-500"
                       role="button"
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 20 20"

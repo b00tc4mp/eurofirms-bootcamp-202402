@@ -1,5 +1,9 @@
 import { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import { errors } from '../com';
+
+const { ContentError, MatchError, DuplicityError, RangeError, TypeError } =
+  errors;
 
 export default function NewSearches() {
   const { urlEditionCode, urlSearcherName, urlSearchTypeName, urlTagName } =

@@ -36,8 +36,23 @@ export const createSearch = async (req, res) => {
     }
 
     // Verificar que tag existe, si no, se crea.
-    validate.tagName(tagName);
-    const tagNameTrimed = tagName.trim();
+    // validate.tagName(tagName);// No validamos esto asi porque el comportamiento es especial
+    let tagNameTrimed = tagName.trim();
+    if (!/\S/.test(tagName)) {
+      // string is empty and just whitespace
+      tagNameTrimed = 'NoTagged'; // este es el valor que se le da cuando utilizas cadena vacia
+    }
+    if (tagNameTrimed.length > 280) {
+      throw new ContentError(`tag name is greather than 280 characters`);
+    }
+
+    for (var i = 0; i < tagNameTrimed.length; i++) {
+      var char = tagNameTrimed[i];
+
+      if (char === ' ') {
+        throw new ContentError('tag name contains blank');
+      }
+    }
     const tag = await Tag.findOne({ name: tagNameTrimed, edition: editionId });
     let tagId;
     if (!tag) {
