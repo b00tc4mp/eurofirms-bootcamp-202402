@@ -1,4 +1,4 @@
-package com.nombreapp
+package com.app
 
 import android.app.Application
 import android.content.res.Configuration
