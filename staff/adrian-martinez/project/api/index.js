@@ -114,6 +114,9 @@ mongoose.connect(MONGO_URL)
             }
         })
 
+        //TODO
+        //Hacer las rutas del updateInfoStudents y de deleteStudents
+
         server.get('/users/:targetUserId', (req, res) => {
             try {
 
