@@ -15,6 +15,7 @@ import {
 } from '@heroicons/react/24/outline';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import { errors } from '../com';
+import SearchesListMenuOptionsComponent from './SearchesListMenuOptionsComponent';
 
 const { ContentError, MatchError, DuplicityError, RangeError, TypeError } =
   errors;
@@ -41,10 +42,11 @@ export default function SearchesListComponent({ searches }) {
                     </a>
                   </div>
                   <div className="ml-2 flex items-center bg-slate-50 text-[#717171]">
-                    <EllipsisHorizontalIcon
+                    <SearchesListMenuOptionsComponent search={search} />
+                    {/* <EllipsisHorizontalIcon
                       className="h-5 w-5 rounded-full hover:fill-gray-700"
                       aria-hidden="true"
-                    />
+                    /> */}
                   </div>
                 </div>
 
