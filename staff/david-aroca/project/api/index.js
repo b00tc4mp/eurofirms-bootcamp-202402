@@ -86,7 +86,7 @@ mongoose.connect(MONGO_URL)
 
                 logic.authenticateUser(username, password)
                     .then(userId => {
-                        const token = jwt.sign({ sub: userId }, JWT_SECRET, { expiresIn: '59m' })
+                        const token = jwt.sign({ sub: userId }, JWT_SECRET, { expiresIn: '180m' })
 
                         res.status(200).json(token)
                     })
@@ -220,6 +220,80 @@ mongoose.connect(MONGO_URL)
 
         // --------------------------------------------------------------------//
 
+        server.get('/exercises', (req, res) => {
+            try {
+
+                const { authorization } = req.headers
+
+                const token = authorization.slice(7)
+
+                const { sub: user } = jwt.verify(token, JWT_SECRET)
+
+                logic.retrieveExercises(user.id)
+                    .then(exercises => res.json(exercises))
+                    .catch(error => {
+                        let status = 500
+
+                        if (error instanceof MatchError)
+                            status = 404
+
+                        res.status(status).json({ error: message.constructor.names, message: error.message })
+                    })
+
+            } catch (error) {
+                let status = 500
+
+                if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
+                    status = 400
+                else if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError) {
+
+                    status = 401
+
+                    error = new MatchError(error.message)
+                }
+                res.status(status).json({ error: message.constructor.names, message: error.message })
+            }
+        })
+
+        // --------------------------------------------------------------------//
+        server.get('/diets', (req, res) => {
+            try {
+
+                const { authorization } = req.headers
+
+                const token = authorization.slice(7)
+
+                const { sub: user } = jwt.verify(token, JWT_SECRET)
+
+                logic.retrieveDiet(user.id)
+                    .then(diets => res.json(diets))
+                    .catch(error => {
+                        let status = 500
+
+                        if (error instanceof MatchError)
+                            status = 404
+
+                        res.status(status).json({ error: message.constructor.names, message: error.message })
+                    })
+
+            } catch (error) {
+                let status = 500
+
+                if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
+                    status = 400
+                else if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError) {
+
+                    status = 401
+
+                    error = new MatchError(error.message)
+                }
+                res.status(status).json({ error: message.constructor.names, message: error.message })
+            }
+        })
+
+
+        // --------------------------------------------------------------------//
+
 
         server.delete('/exercise/:exerciseId', (req, res) => {
 
@@ -233,7 +307,7 @@ mongoose.connect(MONGO_URL)
                 const { exerciseId } = req.params
 
                 logic.removeExercise(user.id, exerciseId)
-                    .then(() => res.status(204).send)
+                    .then(() => res.status(204).send())
                     .catch(error => {
                         let status = 500
 
@@ -270,7 +344,7 @@ mongoose.connect(MONGO_URL)
                 const { dietId } = req.params
 
                 logic.removeDiet(user.id, dietId)
-                    .then(() => res.status(204).send)
+                    .then(() => res.status(204).send())
                     .catch(error => {
                         let status = 500
 
@@ -292,6 +366,81 @@ mongoose.connect(MONGO_URL)
                 res.status(status).json({ error: errors.constructor.name, message: error.message })
             }
         })
+        // --------------------------------------------------------------------//
+        server.patch('/exercises/:exerciseId', jsonBodyParser, (req, res) => {
+            try {
+                const { authorization } = req.headers
+
+                const token = authorization.slice(7)
+
+                const { sub: user } = jwt.verify(token, JWT_SECRET)
+
+                const { exerciseId } = req.params
+
+                const { title, image, video, description } = req.body
+
+                logic.modifyExercise(user.id, exerciseId, title, image, video, description)
+                    .then(() => res.status(204).send())
+                    .catch(error => {
+                        let status = 500
+                        if (error instanceof MatchError)
+                            status = 404
+
+                        res.status(status).json({ error: errors.constructor.name, message: error.message })
+                    })
+            } catch (error) {
+                let status = 500
+
+                if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
+                    status = 400
+                else if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError) {
+                    status = 401
+
+                    error = new MatchError(error.message)
+                }
+                res.status(status).json({ error: errors.constructor.name, message: error.message })
+            }
+        })
+
+        // --------------------------------------------------------------------//
+
+        server.patch('/diets/:dietId', jsonBodyParser, (req, res) => {
+            try {
+                const { authorization } = req.headers
+
+                const token = authorization.slice(7)
+
+                const { sub: user } = jwt.verify(token, JWT_SECRET)
+
+                const { dietId } = req.params
+
+                const { title, image, video, description } = req.body
+
+                logic.modifyDiet(user.id, dietId, title, image, video, description)
+                    .then(() => res.status(204).send())
+                    .catch(error => {
+                        let status = 500
+                        if (error instanceof MatchError)
+                            status = 404
+
+                        res.status(status).json({ error: errors.constructor.name, message: error.message })
+                    })
+            } catch (error) {
+                let status = 500
+
+                if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
+                    status = 400
+                else if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError) {
+                    status = 401
+
+                    error = new MatchError(error.message)
+                }
+                res.status(status).json({ error: errors.constructor.name, message: error.message })
+            }
+        })
+
+        // --------------------------------------------------------------------//
+
 
 
 

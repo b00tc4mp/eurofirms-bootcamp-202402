@@ -57,10 +57,10 @@ function Home({ onUserLoggedOut }) {
         navigate('/measurements')
     }
 
-    // const handleHomeNavigate = () => {
-    //     navigate('/')
+    const handleHomeNavigate = () => {
+        navigate('/')
 
-    // }
+    }
 
     const handleDietNavigate = () => {
         navigate('/diet')
@@ -84,30 +84,19 @@ function Home({ onUserLoggedOut }) {
             </nav>
         </header>
 
+
         <Routes>
             <Route path="/measurements" element={<Measures />} />
             <Route path="/diet" element={<Diet />} />
             <Route path="/routine" element={<Routine />} />
-            {/* <Route path="/" element={<Search />} /> */}
-            {/* <Route path="/" element={<Home />} /> */}
+            {/* <Route path="/" element={<HomeContent />} /> */}
+            {/* no puedo tener contenido en home sin rutas a excepcion del footer y el header */}
+            {/* <TODO></TODO> */}
         </Routes>
 
         {/* TODO */}
         {/* Hay que solucionar el hecho de que se ve en todas las
          vistas cuando solo se tiene que ver en el home */}
-
-        {/* <div className='mt-20'>
-            <input
-                type="text"
-                className="border border-gray-500 rounded-md px-4 py-2 mb-4"
-                placeholder="Search diets or exercise..."
-            />
-
-            <ul className="list-disc pl-6 mb-8">
-                aqui va a ir el contenido de la lista
-            </ul>
-        </div> */}
-
 
         {/* footer con sus respectivos botones comentados porque si no da error */}
         <footer className="flex justify-between items-center border-t-2 border-black fixed bottom-0 w-full bg-gray-200 px-6 py-4">
@@ -115,7 +104,7 @@ function Home({ onUserLoggedOut }) {
                 onClick={handleMeasureNavigate}
             >Measure</button>
             <button className="text-gray-800 font-semibold hover:underline focus:outline-none focus:shadow-outline"
-            // onClick={handleHomeNavigate}
+                onClick={handleHomeNavigate}
             >Home</button>
             <button className="text-gray-800 font-semibold hover:underline focus:outline-none focus:shadow-outline"
                 onClick={handleDietNavigate}

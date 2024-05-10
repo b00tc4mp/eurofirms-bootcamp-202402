@@ -1,1 +1,0 @@
- curl -X DELETE -H 'Authorization: Bearer TOKEN?' http://localhost:4025/RUTA?/USER? -v
