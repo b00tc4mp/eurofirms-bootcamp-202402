@@ -87,12 +87,47 @@ const diet = new Schema({
     }
 })
 
+
+const measurement = new Schema({
+    author: {
+        type: ObjectId,
+        required: true,
+        ref: 'User'
+    },
+    date: {
+        type: Date,
+        required: true
+    },
+    weight: {
+        type: Number,
+        required: true,
+    },
+    torso: {
+        type: Number,
+        required: true,
+    },
+    legs: {
+        type: Number,
+        required: true
+    },
+})
+
+// Measurement
+// - id (auto)
+// - user(User.id,required)
+// - date(date,required)
+// - weight(number,required)
+// - upperBody(number,required)
+// - legs(number,required)
+
 const User = model('User', user)
 const Exercise = model('Exercise', exercise)
 const Diet = model('Diet', diet)
+const Measurement = model('Measurement', measurement)
 
 export {
     User,
     Exercise,
-    Diet
+    Diet,
+    Measurement
 }//bucket

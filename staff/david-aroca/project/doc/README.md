@@ -74,6 +74,15 @@ User
 - role (string, required, enum: trainee|trainer)
 - following (array of User.id, optional)
 
+Measurement
+- id (auto)
+- user(User.id,required)
+- date(date,required)
+- weight(number,required)
+- torso(number,required)
+- legs(number,required)
+
+
 Exercise
 - id (auto)
 - title (string, required)
