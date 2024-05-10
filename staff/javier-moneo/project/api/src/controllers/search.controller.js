@@ -209,6 +209,7 @@ export const getSearchesByEditionIdAndSearcherIdAndSearchTypeIdAndTagId =
           searchType: searchTypeId,
           tag: tagId,
         })
+          .sort({ createdAt: -1 })
           .populate('user', '_id username')
           .populate('edition', '_id code name')
           .populate('tag', '_id name edition')
@@ -264,6 +265,7 @@ export const getSearchesByEditionIdAndSearcherIdAndSearchTypeIdAndTagId =
           searcher: searcherId,
           searchType: searchTypeId,
         })
+          .sort({ createdAt: -1 })
           .populate('user', '_id username')
           .populate('edition', '_id code name')
           .populate('tag', '_id name edition')
@@ -315,6 +317,7 @@ export const getSearchesByEditionIdAndSearcherIdAndSearchTypeIdAndTagId =
           edition: editionId,
           searcher: searcherId,
         })
+          .sort({ createdAt: -1 })
           .populate('user', '_id username')
           .populate('edition', '_id code name')
           .populate('tag', '_id name edition')
@@ -364,6 +367,7 @@ export const getSearchesByEditionIdAndSearcherIdAndSearchTypeIdAndTagId =
         const searches = await Search.find({
           edition: editionId,
         })
+          .sort({ createdAt: -1 })
           .populate('user', '_id username')
           .populate('edition', '_id code name')
           .populate('tag', '_id name edition')
