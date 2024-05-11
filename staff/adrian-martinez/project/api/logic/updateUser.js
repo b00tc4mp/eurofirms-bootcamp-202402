@@ -5,7 +5,7 @@ const { SystemError, MatchError } = errors;
 
 //Pasarle como parámetro los text de los todos los inputs que tengamos, aunque solo cambiamos un campo
 //TODO
-function updateInfoStudent(userId, age){
+function updateUser(userId, age){
     validate.id(userId, "userId");
     validate.age(age);
 
@@ -22,4 +22,4 @@ function updateInfoStudent(userId, age){
         .then(result => { })
 }
 
-export default updateInfoStudent;
+export default updateUser;

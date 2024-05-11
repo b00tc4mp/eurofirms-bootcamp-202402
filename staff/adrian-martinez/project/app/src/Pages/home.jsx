@@ -71,7 +71,7 @@ function Home(props) {
                     {!user && <p>Loading...</p>}
                     {user && 
                     <>
-                        <h1 className="text-3xl font-bold">Hola {user.name}, {user.surname}!</h1>
+                        <h1 className="text-3xl font-bold">Hola {user.name} {user.surname}!</h1>
                         <h1 className="text-xl">Tienes {user.age} años.</h1>
                         <h1 className="text-xl ">Tu correo es {user.email}</h1>
                     </>
