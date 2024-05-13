@@ -122,7 +122,7 @@ export default function NewSearches() {
       {/* first option */}
       {urlEditionCode && urlSearcherName && urlSearchTypeName && urlTagName && (
         <>
-          <div className="flex items-center justify-center mt-4">
+          <div className="flex items-center justify-center">
             <Link
               to={`/newSearches/${urlEditionCode}/${urlSearcherName}/${urlSearchTypeName}`}
               className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
@@ -140,7 +140,7 @@ export default function NewSearches() {
         urlSearchTypeName &&
         !urlTagName && (
           <>
-            <div className="flex items-center justify-center mt-4">
+            <div className="flex items-center justify-center">
               <Link
                 to={`/newSearches/${urlEditionCode}/${urlSearcherName}`}
                 className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
@@ -158,7 +158,7 @@ export default function NewSearches() {
         !urlSearchTypeName &&
         !urlTagName && (
           <>
-            <div className="flex items-center justify-center mt-4">
+            <div className="flex items-center justify-center">
               <Link
                 to={`/newSearches/${urlEditionCode}`}
                 className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
@@ -176,7 +176,7 @@ export default function NewSearches() {
         !urlSearchTypeName &&
         !urlTagName && (
           <>
-            <div className="flex items-center justify-center mt-4">
+            <div className="flex items-center justify-center ">
               <span>{urlEditionCode}</span>
             </div>
           </>
