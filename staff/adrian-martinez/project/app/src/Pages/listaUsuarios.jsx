@@ -1,10 +1,12 @@
+import logic from "../logic";
+
 function ListaUsuarios() {
 
     return (
     <>
         <header className="header">
             <div id="app">FormativeLife</div>
-            <div className="titular"><i>Busca o atrae talento</i></div>
+            <div className="titular"><i>Lista de Usuarios</i></div>
             <div id="area-perfil">
                 <button className="login">Iniciar Sesión</button>
                 <button className="register">Crear cuenta</button>
@@ -24,7 +26,7 @@ function ListaUsuarios() {
             <container id="container">
                 <section>
                     <h2>Lista de Usuarios filtrados por profesión</h2>
-                    
+                    {logic.retrieveUsers()}             
                 </section>
             </container>
         </main>

@@ -153,6 +153,7 @@ mongoose.connect(MONGO_URL)
                 res.status(status).json({ error: error.constructor.name, message: error.message })
             }
         })
+
         server.listen(PORT, () => console.log("API started"));
     })
     .catch((error) => console.error(error));

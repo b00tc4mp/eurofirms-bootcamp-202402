@@ -1,4 +1,4 @@
-//import logic from "./logic"
+import logic from "./logic"
 import { Routes, Route, Navigate, useNavigate } from "react-router-dom" 
 
 //Todas las páginas no tienen por qué estar en este archivo 
@@ -21,7 +21,13 @@ function App() {
   const handleUserRegister = () => navigate('/Register');
   const handleListarUsers = () => navigate('/ListaUsuarios');
   const handleResetPassword = () => navigate('/ResetPassword');
-  const handlePerfil = () => navigate('/Home');
+  const handleUserLoggedIn = () => {
+    const role = logic.getLoggedInUserRole()
+                    
+    if(role === "student") navigate('/Home')
+    
+     else if(role === "company") navigate('/HomeEmpresa')
+  };
   
   //Menú navegación
   const handleInicio = () => navigate("/");
@@ -34,13 +40,13 @@ function App() {
   return (
       <Routes>
           <Route path="/" element={<Inicio onClickLogin={handleUserLogin} onClickRegister={handleUserRegister} onClickParaQuienEs={handleParaQuienEs} onClickTutorial={handleTutorial} onClickContacto={handleContacto} onClickListarUsers={handleListarUsers} />} /> 
-          <Route path="/Login" element={<Login onClickPerfil={handlePerfil} onClickResetPassword={handleResetPassword} onClickInicio={handleInicio}/> }/>
+          <Route path="/Login" element={<Login onUserLoggedIn={handleUserLoggedIn} onClickResetPassword={handleResetPassword} onClickInicio={handleInicio}/> }/>
           <Route path="/Register" element={<Register onClickRegister={handleUserRegister} onClickLogin={handleUserLogin} onClickInicio={handleInicio}/> }/>
           <Route path="/ParaQuienEs" element={<ParaQuienEs onClickParaQuienEs={handleParaQuienEs} onClickTutorial={handleTutorial} onClickLogin={handleUserLogin} onClickRegister={handleUserRegister} onClickInicio={handleInicio}/>}/>
           <Route path="/Tutorial" element={<Tutorial onClickTutorial={handleTutorial} onClickParaQuienEs={handleParaQuienEs} onClickContacto={handleContacto} onClickLogin={handleUserLogin} onClickRegister={handleUserRegister} onClickInicio={handleInicio}/>}/>
           <Route path="/Contacto" element={<Contacto onClickContacto={handleContacto} onClickParaQuienEs={handleParaQuienEs} onClickTutorial={handleTutorial} onClickLogin={handleUserLogin} onClickRegister={handleUserRegister} onClickInicio={handleInicio}/>}/>
-          <Route path="/Home" element={<Home onClickPerfil={handlePerfil} onClickResetPassword={handleResetPassword} onClickInicio={handleInicio} />} /> 
-          {/* <Route path="/listaUsuarios" element={logic.isUserLoggedIn() ? <ListaUsuarios /> : <Navigate to="/" />}/> */}
+          <Route path="/Home" element={<Home onClickListarUsers={handleListarUsers} onClickResetPassword={handleResetPassword} onClickInicio={handleInicio} />} /> 
+          <Route path="/listaUsuarios" element={logic.isUserLoggedIn() ? <ListaUsuarios onClickListarUsers={handleListarUsers}/> : <Navigate to="/" />}/>
           {/* {view === 'resetPassword' && <ResetPassword />} */}
       </Routes>
   )

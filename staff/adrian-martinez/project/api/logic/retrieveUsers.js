@@ -1,0 +1,26 @@
+import { User } from '../data/index.js'
+
+import { validate, errors } from 'com'
+
+const { SystemError, MatchError } = errors
+
+function retrieveUsers() {
+
+    return User.find()
+        .catch(error => { throw new SystemError(error.message) })
+        .then(user => {
+            if (!user)
+                throw new MatchError('user not found')
+
+            return User.find().select('-_id -__v').lean()
+                .then(users => {
+                    //const users = [];
+                    users.forEach(user => {
+
+                        return user;
+                    })
+                })
+        })
+}
+
+export default retrieveUsers;

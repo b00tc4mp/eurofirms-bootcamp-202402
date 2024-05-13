@@ -4,7 +4,7 @@ import { errors, validate} from "com"
 
 const { SystemError, MatchError} = errors;
 
-function Login({onClickPerfil, onClickResetPassword, onClickInicio}) {
+function Login({onUserLoggedIn, onClickResetPassword, onClickInicio}) {
 
     const [error, setError] = useState(null);
 
@@ -15,10 +15,10 @@ function Login({onClickPerfil, onClickResetPassword, onClickInicio}) {
 
         const email = form.user.value;
         const password = form.password.value;
-
+       
         try{
             logic.loginUser(email, password)
-                .then(() => onClickPerfil())
+                .then(() => onUserLoggedIn())
                 .catch(error => {
                     errorHandler(error);
                 })

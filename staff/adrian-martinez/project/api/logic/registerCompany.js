@@ -18,7 +18,7 @@ function registerCompany(name, address, activity, email, password){
         .then(user => {
             if(user) throw new DuplicityError("company already exists")
 
-            user = { name, surnames, role, age, address, activity, email, password }
+            user = { name, role, address, activity, email, password }
 
             return User.create(user)
                 .catch(error => { throw new SystemError(error.message) })     

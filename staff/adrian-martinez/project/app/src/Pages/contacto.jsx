@@ -6,8 +6,8 @@ function Contacto(props) {
             <div id="app">FormativeLife</div>
             <div className="titular"><i>Busca o atrae talento</i></div>
             <div id="area-perfil">
-                <button className="login">Iniciar Sesión</button>
-                <button className="register">Crear cuenta</button>
+                <button className="login" onClick={props.onClickLogin}>Iniciar Sesión</button>
+                <button className="register" onClick={props.onClickRegister}>Crear cuenta</button>
             </div>
             <div id="area-buscador">
                 <form className="form" onSubmit="">

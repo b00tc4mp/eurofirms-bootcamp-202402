@@ -50,7 +50,7 @@ function Home(props) {
     <>
         <header className="header">
             <div id="app">FormativeLife</div>
-            <div className="titular"><i>Busca o atrae talento</i></div>
+            <div className="titular"><i>Actualiza tu perfil</i></div>
             <div id="area-perfil">
                 <button className="login" onClick={handleLogout}>Cerrar Sesión</button>
             </div>
@@ -61,7 +61,7 @@ function Home(props) {
 
                     &nbsp;<label htmlFor="ciudad">Área profesional: </label>
                     <input className="input" type="text" id="ciudad" placeholder="Ejemplo: Desarrollo Web"/>
-                    <button className="buscar" type="submit">Buscar</button>
+                    <button className="buscar" onClick={props.onClickListarUsers}>Buscar</button>
                 </form>
             </div>
         </header>

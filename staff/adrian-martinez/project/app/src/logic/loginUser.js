@@ -9,7 +9,7 @@ function loginUser(email, password) {
     return fetch(`${import.meta.env.VITE_API_URL}/users/auth`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password })
+        body: JSON.stringify({ email, password})
     })
         .catch(error => { throw new SystemError(error.message) })
         .then(res => {

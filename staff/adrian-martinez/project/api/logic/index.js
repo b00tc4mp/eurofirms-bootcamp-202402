@@ -4,6 +4,7 @@ import autenticateUser from "./autenticateUser.js";
 import retrieveUser from "./retrieveUser.js";
 import updateUser from "./updateUser.js";
 import deleteUser from "./deleteUser.js";
+import retrieveUsers from "./retrieveUsers.js";
 
 const logic = {
     registerStudent,
@@ -11,7 +12,8 @@ const logic = {
     autenticateUser,
     retrieveUser,
     updateUser,
-    deleteUser
+    deleteUser,
+    retrieveUsers
 }
 
 export default logic;

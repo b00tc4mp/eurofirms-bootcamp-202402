@@ -37,20 +37,20 @@ function Register(props) {
     }
 
     //TODO
-    /* const handleSubmitCompany = event => {
+    const handleSubmitCompany = event => {
 
         event.preventDefault();
 
         const form = event.target;
 
         const name = form.name.value;
-        const address = form.surnames.value;
+        const address = form.address.value;
         const activity = form.activity.value;
         const email = form.email.value;
         const password = form.password.value;
 
         try{
-            logic.registerStudent(name, address, activity, email, password)
+            logic.registerCompany(name, address, activity, email, password)
                 .then(() => props.onClickLogin())
                 .catch(error => {
                     errorHandler(error)
@@ -59,14 +59,14 @@ function Register(props) {
         catch(error){
             errorHandler(error)
         }
-    } */
+    }
 
     //TODO Añadir y eliminar el classname del formulario según el que elija
     /* function formStudent(){
-
+        
     }
 
-    function formEmpresa(){
+    function FormCompany(){
 
     } */
 
@@ -105,7 +105,7 @@ function Register(props) {
         <main>
             <container id="container">
                 <section className="">
-                    <form className="form" onSubmit={ handleSubmitStudent }>
+                    <form className="form invisible" onSubmit={ handleSubmitStudent }>
                         <label forhtml="name">Nombre: </label>
                         <input type="text" id="name" placeholder="" required /><br/><br/>
 
@@ -124,7 +124,7 @@ function Register(props) {
                         <button type="submit">Registrarse</button>
                     </form>
 
-                    {/* <form className="form" onSubmit={ handleSubmitCompany }>
+                    <form className="form visible" onSubmit={ handleSubmitCompany }>
                         <label forhtml="name">Nombre: </label>
                         <input type="text" id="name" placeholder="" required /><br/><br/>
 
@@ -141,10 +141,10 @@ function Register(props) {
                         <input type="password" id="password" placeholder="Entre 8 y 16 caracteres" required /><br/><br/>
 
                         <button type="submit">Registrarse</button>
-                    </form> */}
+                    </form>
 
-                    {/* <button onClick={ FormStudent() }>Registrarse como Estudiante</button>
-                    <button onClick={ FormCompany() }>Registrarse como Empresa</button> */}
+                    {/* <button onClick={ FormStudent() }>Registrarse como Estudiante</button> */}
+                    {/* <button onClick={ FormCompany() }>Registrarse como Empresa</button> */}
                     <button onClick={props.onClickInicio}>Volver</button>
                 </section>
             </container>
