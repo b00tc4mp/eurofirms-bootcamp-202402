@@ -320,13 +320,15 @@ VoteComment
 
 - id (auto)
 - comment (Comment.id, required)
+- user (User.id, required)
 - isvoteUp (boolean, required)
 - ip (string)
 
 VoteSearch
 
 - id (auto)
-- comment (Comment.id, required)
+- search (Search.id, required)
+- user (User.id, required)
 - isvoteUp (boolean, required)
 - ip (string)
 
