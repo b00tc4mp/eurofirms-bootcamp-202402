@@ -21,6 +21,50 @@ const { ContentError, MatchError, DuplicityError, RangeError, TypeError } =
   errors;
 
 export default function SearchesListComponent({ searches }) {
+  const handleVoteUpClick = (searchId) => {
+    console.log('vote up', searchId);
+    logic
+      .voteSearch(searchId, true)
+      .then(() => {
+        console.log('vote up confirmed !!');
+        // const searchFound = searches.filter((search) => search.id === searchId);
+        // searchFound.isVoteUp = true;
+      })
+      .catch((error) => {
+        errorHandler(error);
+      });
+  };
+
+  const handleVoteDownClick = (searchId) => {
+    console.log('vote up', searchId);
+    logic
+      .voteSearch(searchId, false)
+      .then(() => {
+        console.log('vote down confirmed !!');
+      })
+      .catch((error) => {
+        errorHandler(error);
+      });
+  };
+
+  const errorHandler = (error) => {
+    console.error(error.message);
+
+    let feedback = error.message;
+
+    if (
+      error instanceof TypeError ||
+      error instanceof RangeError ||
+      error instanceof ContentError
+    )
+      feedback = `${feedback}, please correct it`;
+    else if (error instanceof DuplicityError)
+      feedback = `${feedback}, please try with another user`;
+    else feedback = 'sorry, there was an error, please try again later';
+
+    alert(feedback);
+  };
+
   return (
     <>
       <div>
@@ -81,10 +125,16 @@ export default function SearchesListComponent({ searches }) {
 
                   {/* action buttons vote comments share */}
                   <div className="flex">
-                    <div className="m-1 p-1 rounded text-black">
+                    <div
+                      className="m-1 p-1 rounded text-black"
+                      onClick={() => handleVoteUpClick(search.id)}
+                    >
                       <HandThumbUpIcon className="h-5 w-5" aria-hidden="true" />
                     </div>
-                    <div className="m-1 p-1 rounded text-black">
+                    <div
+                      className="m-1 p-1 rounded text-black"
+                      onClick={() => handleVoteDownClick(search.id)}
+                    >
                       <HandThumbDownIcon
                         className="h-5 w-5"
                         aria-hidden="true"

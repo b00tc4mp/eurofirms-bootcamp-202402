@@ -20,6 +20,7 @@ import retrieveSearchesByEditionIdAndSearcherIdAndSearchTypeIdAndTagId from './r
 import reportSearch from './reportSearch';
 import reportUser from './reportUser';
 import reportTag from './reportTag';
+import voteSearch from './voteSearch';
 
 const logic = {
   createSearch,
@@ -41,6 +42,7 @@ const logic = {
   reportSearch,
   reportUser,
   reportTag,
+  voteSearch,
 };
 
 export default logic;

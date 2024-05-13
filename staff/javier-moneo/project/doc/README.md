@@ -320,17 +320,28 @@ VoteComment
 
 - id (auto)
 - comment (Comment.id, required)
+- edition (Edition.id, required)
+- tag (tag.id, required)
+- searcher (tag.id, required)
+- searchType (searchType.id, required)
+- search (Search.id, required)
 - user (User.id, required)
 - isvoteUp (boolean, required)
-- ip (string)
+- ip (string) - V2
+- createdAt (Date, by default is added in all models)
 
 VoteSearch
 
 - id (auto)
+- edition (Edition.id, required)
+- tag (tag.id, required)
+- searcher (tag.id, required)
+- searchType (searchType.id, required)
 - search (Search.id, required)
 - user (User.id, required)
 - isvoteUp (boolean, required)
-- ip (string)
+- ip (string) - V2
+- createdAt (Date, by default is added in all models)
 
 ReportedSearch
 

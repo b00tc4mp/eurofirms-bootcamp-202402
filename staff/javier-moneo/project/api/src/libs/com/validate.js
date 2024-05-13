@@ -161,6 +161,12 @@ function validateTagName(name) {
   // }
 }
 
+function validateBoolean(value) {
+  if (typeof value != 'boolean') {
+    throw new TypeError('No boolean detected');
+  }
+}
+
 const validate = {
   name: validateName,
   birthdate: validateBirthdate,
@@ -173,6 +179,7 @@ const validate = {
   token: validateToken,
   searchQuery: validateSearchQuery,
   tagName: validateTagName,
+  boolean: validateBoolean,
 };
 
 export default validate;
