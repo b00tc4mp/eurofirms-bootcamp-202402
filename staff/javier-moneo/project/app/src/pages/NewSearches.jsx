@@ -182,7 +182,7 @@ export default function NewSearches() {
           </>
         )}
 
-      <SearchesListComponent searches={searches} />
+      <SearchesListComponent initialSearches={searches} />
     </>
   );
 }

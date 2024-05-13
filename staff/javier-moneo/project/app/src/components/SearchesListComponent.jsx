@@ -1,11 +1,9 @@
 import { useEffect, useState } from 'react';
 import logic from '../logic';
-// import {
-//   EllipsisHorizontalIcon,
-//   HandThumbUpIcon,
-//   HandThumbDownIcon,
-//   ChatBubbleBottomCenterTextIcon,
-// } from '@heroicons/react/20/solid';
+import {
+  HandThumbUpIcon as HandThumbUpIconSolid,
+  HandThumbDownIcon as HandThumbDownIconSolid,
+} from '@heroicons/react/20/solid';
 import {
   EllipsisHorizontalIcon,
   HandThumbUpIcon,
@@ -20,27 +18,59 @@ import SearchesListMenuOptionsComponent from './SearchesListMenuOptionsComponent
 const { ContentError, MatchError, DuplicityError, RangeError, TypeError } =
   errors;
 
-export default function SearchesListComponent({ searches }) {
-  const handleVoteUpClick = (searchId) => {
-    console.log('vote up', searchId);
+export default function SearchesListComponent({ initialSearches }) {
+  const [searches, setSearches] = useState(null);
+
+  useEffect(() => {
+    setSearches(initialSearches);
+  }, [initialSearches]);
+
+  const handleVoteUpClick = (search) => {
+    console.log('vote up', search.id);
     logic
-      .voteSearch(searchId, true)
+      .voteSearch(search.id, true)
       .then(() => {
         console.log('vote up confirmed !!');
-        // const searchFound = searches.filter((search) => search.id === searchId);
-        // searchFound.isVoteUp = true;
+        // console.log(searches);
+
+        setSearches(
+          searches.map((elemenSearch) => {
+            if (elemenSearch.id === search.id) {
+              elemenSearch.isVoteUp = true;
+              if (elemenSearch.isVoted) {
+                elemenSearch.isVoted = true;
+              } else {
+                elemenSearch.isVoted = true;
+              }
+            }
+            return elemenSearch;
+          })
+        );
       })
       .catch((error) => {
         errorHandler(error);
       });
   };
 
-  const handleVoteDownClick = (searchId) => {
-    console.log('vote up', searchId);
+  const handleVoteDownClick = (search) => {
+    console.log('vote up', search.id);
     logic
-      .voteSearch(searchId, false)
+      .voteSearch(search.id, false)
       .then(() => {
         console.log('vote down confirmed !!');
+        setSearches(
+          searches.map((elemenSearch) => {
+            if (elemenSearch.id === search.id) {
+              elemenSearch.isVoteUp = false;
+              if (elemenSearch.isVoted) {
+                elemenSearch.isVoted = true;
+              } else {
+                elemenSearch.isVoted = true;
+              }
+            }
+            return elemenSearch;
+          })
+        );
       })
       .catch((error) => {
         errorHandler(error);
@@ -127,18 +157,36 @@ export default function SearchesListComponent({ searches }) {
                   <div className="flex">
                     <div
                       className="m-1 p-1 rounded text-black"
-                      onClick={() => handleVoteUpClick(search.id)}
+                      onClick={() => handleVoteUpClick(search)}
                     >
-                      <HandThumbUpIcon className="h-5 w-5" aria-hidden="true" />
+                      {search.isVoteUp && search.isVoted && (
+                        <HandThumbUpIconSolid
+                          className="h-5 w-5"
+                          aria-hidden="true"
+                        />
+                      )}
+                      {!(search.isVoteUp && search.isVoted) && (
+                        <HandThumbUpIcon
+                          className="h-5 w-5"
+                          aria-hidden="true"
+                        />
+                      )}
                     </div>
                     <div
                       className="m-1 p-1 rounded text-black"
-                      onClick={() => handleVoteDownClick(search.id)}
+                      onClick={() => handleVoteDownClick(search)}
                     >
-                      <HandThumbDownIcon
-                        className="h-5 w-5"
-                        aria-hidden="true"
-                      />
+                      {!search.isVoteUp && search.isVoted ? (
+                        <HandThumbDownIconSolid
+                          className="h-5 w-5"
+                          aria-hidden="true"
+                        />
+                      ) : (
+                        <HandThumbDownIcon
+                          className="h-5 w-5"
+                          aria-hidden="true"
+                        />
+                      )}
                     </div>
                     <div className="m-1 p-1 rounded text-[#717171]">
                       <ChatBubbleBottomCenterTextIcon
