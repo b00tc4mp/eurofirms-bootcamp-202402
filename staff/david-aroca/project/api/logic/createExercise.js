@@ -26,8 +26,8 @@ function createExercise(userId, title, image, video, description) {
             }
             return Exercise.create(exercise)
                 .catch(error => { throw new SystemError(error.message) })
-                .then(exercise => { })
         })
+        .then(exercise => { })
 }
 
 export default createExercise

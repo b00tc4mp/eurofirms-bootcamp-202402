@@ -112,14 +112,6 @@ const measurement = new Schema({
     },
 })
 
-// Measurement
-// - id (auto)
-// - user(User.id,required)
-// - date(date,required)
-// - weight(number,required)
-// - upperBody(number,required)
-// - legs(number,required)
-
 const User = model('User', user)
 const Exercise = model('Exercise', exercise)
 const Diet = model('Diet', diet)

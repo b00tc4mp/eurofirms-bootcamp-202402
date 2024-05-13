@@ -440,6 +440,145 @@ mongoose.connect(MONGO_URL)
         })
 
         // --------------------------------------------------------------------//
+        server.post('/measurements', jsonBodyParser, (req, res) => {
+            try {
+                const { authorization } = req.headers
+
+                const token = authorization.slice(7)
+
+                const { sub: user } = jwt.verify(token, JWT_SECRET)
+
+                const { date, weight, torso, legs } = req.body
+
+                logic.createMeasurement(user.id, date, weight, torso, legs)
+                    .then(() => res.status(201).send())
+                    .catch(error => {
+                        let status = 500
+                        if (error instanceof MatchError)
+                            status = 404
+
+                        res.status(status).json({ error: errors.constructor.name, message: error.message })
+                    })
+            } catch (error) {
+                let status = 500
+
+                if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
+                    status = 400
+                else if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError) {
+                    status = 401
+
+                    error = new MatchError(error.message)
+                }
+                res.status(status).json({ error: errors.constructor.name, message: error.message })
+            }
+
+        })
+        // --------------------------------------------------------------------//
+        server.get('/measurements', (req, res) => {
+            try {
+                const { authorization } = req.headers
+
+                const token = authorization.slice(7)
+
+                const { sub: user } = jwt.verify(token, JWT_SECRET)
+
+                logic.retrieveMeasurement(user.id)
+                    .then(measurements => res.json(measurements))
+                    .catch(error => {
+                        let status = 500
+
+                        if (error instanceof MatchError)
+                            status = 404
+
+                        res.status(status).json({ error: errors.constructor.name, message: error.message })
+                    })
+
+            } catch (error) {
+                let status = 500
+
+                if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
+                    status = 400
+                else if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError) {
+                    status = 401
+
+                    error = new MatchError(error.message)
+                }
+                res.status(status).json({ error: errors.constructor.name, message: error.message })
+            }
+        })
+        // --------------------------------------------------------------------//
+        server.patch('/measurements/:measurementId', jsonBodyParser, (req, res) => {
+            try {
+                const { authorization } = req.headers
+
+                const token = authorization.slice(7)
+
+                const { sub: user } = jwt.verify(token, JWT_SECRET)
+
+                const { measurementId } = req.params
+
+                const { date, weight, torso, legs } = req.body
+
+                logic.modifyMeasurement(user.id, measurementId, date, weight, torso, legs)
+                    .then(() => res.status(204).send())
+                    .catch(error => {
+                        let status = 500
+
+                        if (error instanceof MatchError)
+                            status = 404
+
+                        res.status(status).json({ error: errors.constructor.name, message: error.message })
+                    })
+            } catch (error) {
+                let status = 500
+
+                if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
+                    status = 400
+                else if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError) {
+                    status = 401
+
+                    error = new MatchError(error.message)
+                }
+                res.status(status).json({ error: errors.constructor.name, message: error.message })
+            }
+        })
+        // --------------------------------------------------------------------//
+
+        server.delete('/measurements/:measurementId', (req, res) => {
+            try {
+                const { authorization } = req.headers
+
+                const token = authorization.slice(7)
+
+                const { sub: user } = jwt.verify(token, JWT_SECRET)
+
+                const { measurementId } = req.params
+
+                logic.removeMeasurement(user.id, measurementId)
+                    .then(() => res.status(204).send())
+                    .catch(error => {
+                        let status = 500
+                        if (error instanceof MatchError)
+                            status = 404
+
+                        res.status(status).json({ error: errors.constructor.name, message: error.message })
+                    })
+            } catch (error) {
+                let status = 500
+
+                if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
+                    status = 400
+                else if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError) {
+                    status = 401
+
+                    error = new MatchError(error.message)
+                }
+                res.status(status).json({ error: errors.constructor.name, message: error.message })
+            }
+        })
+
+        // --------------------------------------------------------------------//
+
 
 
 

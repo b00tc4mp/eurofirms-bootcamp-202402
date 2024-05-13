@@ -4,15 +4,19 @@ import retrieveUser from './retrieveUser.js'
 
 import createExercise from './createExercise.js'
 import createDiet from './createDiet.js'
+import createMeasurement from './createMeasurement.js'
 
 import removeDiet from './removeDiet.js'
 import removeExercise from './removeExercise.js'
+import removeMeasurement from './removeMeasurement.js'
 
 import retrieveExercises from './retrieveExercise.js'
 import retrieveDiet from './retrieveDiet.js'
+import retrieveMeasurement from './retrieveMeasurement.js'
 
 import modifyExercise from './modifyExercise.js'
 import modifyDiet from './modifyDiet.js'
+import modifyMeasurement from './modifyMeasurement.js'
 
 const logic = {
     registerUser,
@@ -25,8 +29,11 @@ const logic = {
     retrieveExercises,
     retrieveDiet,
     modifyExercise,
-    modifyDiet
-
+    modifyDiet,
+    createMeasurement,
+    removeMeasurement,
+    retrieveMeasurement,
+    modifyMeasurement
 }
 
 export default logic

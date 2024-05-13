@@ -133,6 +133,20 @@ function validateDescription(description, explain = 'description') {
     if (typeof description !== 'string') throw new TypeError(`${explain} is not a string`)
 }
 
+function validateDate(date, explain = 'date') {
+    if (typeof date !== 'string') throw new TypeError('date is not string')
+
+    if (date.length !== 10)
+        throw new RangeError('date does not have 10 characters')
+
+    if (date.includes(' '))
+        throw new ContentError('date has a space character')
+
+    if (date.indexOf('-') !== 4 || date.lastIndexOf('-') !== 7)
+        throw new ContentError('date dashes are not in correct position')
+
+}
+
 const validate = {
     name: validateName,
     birthdate: validateBirthdate,
@@ -144,8 +158,8 @@ const validate = {
     url: validateUrl,
     token: validateToken,
     video: validateVideo,
-    description: validateDescription
-
+    description: validateDescription,
+    date: validateDate
 }
 
 export default validate
