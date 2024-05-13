@@ -11,8 +11,6 @@ function registerUser(username, email, password, birthdate) {
 
     const wallet = 0
 
-    validate.wallet(wallet)
-
     return fetch(`${import.meta.env.VITE_API_URL}/users`, {
         method: 'POST',
         headers: { 'Content-type': 'application/json' },

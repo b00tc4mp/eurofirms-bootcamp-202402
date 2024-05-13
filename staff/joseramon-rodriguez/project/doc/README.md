@@ -27,7 +27,6 @@ The app will check at the end of the day which events are finished and the payof
 
 ### UI Design
 
-TODO Figma
 
 https://www.figma.com/file/gtyR9PFYvfgJNzlr6GLXni/Register?type=design&node-id=0%3A1&mode=design&t=6d1895YbXlem0hjX-1
 
