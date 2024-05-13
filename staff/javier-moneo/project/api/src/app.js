@@ -31,6 +31,7 @@ import searchRoutes from './routes/search.routes.js';
 import tagRoutes from './routes/tag.routes.js';
 import reportSearchRoutes from './routes/reportSearch.routes.js';
 import reportUserRoutes from './routes/reportUser.routes.js';
+import reportTagRoutes from './routes/reportTag.routes.js';
 
 const app = express();
 
@@ -78,5 +79,6 @@ app.use('/api/searches', searchRoutes);
 app.use('/api/tags', tagRoutes);
 app.use('/api/reportSearches', reportSearchRoutes);
 app.use('/api/reportUsers', reportUserRoutes);
+app.use('/api/reportTags', reportTagRoutes);
 
 export default app;

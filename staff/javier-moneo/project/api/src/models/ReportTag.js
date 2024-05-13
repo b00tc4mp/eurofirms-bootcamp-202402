@@ -1,17 +1,12 @@
 import { Schema, model } from 'mongoose';
 
-const reportUserSchema = new Schema(
+const reportTagSchema = new Schema(
   {
     status: {
       type: String,
       required: true,
       enum: ['pending', 'discarded', 'accepted'],
       default: 'pending',
-    },
-    user: {
-      ref: 'User',
-      type: Schema.Types.ObjectId,
-      required: true,
     },
     userOwnerReport: {
       ref: 'User',
@@ -23,8 +18,13 @@ const reportUserSchema = new Schema(
       type: Schema.Types.ObjectId,
       required: true,
     },
+    tag: {
+      ref: 'Tag',
+      type: Schema.Types.ObjectId,
+      required: true,
+    },
   },
   { timestamps: true, versionKey: false }
 );
 
-export default model('ReportUser', reportUserSchema);
+export default model('ReportTag', reportTagSchema);

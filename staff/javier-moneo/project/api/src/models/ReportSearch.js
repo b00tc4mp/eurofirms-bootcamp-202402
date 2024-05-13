@@ -1,6 +1,6 @@
 import { Schema, model } from 'mongoose';
 
-const searchSchema = new Schema(
+const reportSearchSchema = new Schema(
   {
     status: {
       type: String,
@@ -27,4 +27,4 @@ const searchSchema = new Schema(
   { timestamps: true, versionKey: false }
 );
 
-export default model('ReportSearch', searchSchema);
+export default model('ReportSearch', reportSearchSchema);

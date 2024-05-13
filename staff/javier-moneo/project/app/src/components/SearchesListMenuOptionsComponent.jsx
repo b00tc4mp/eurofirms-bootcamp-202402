@@ -11,6 +11,7 @@ import {
   UserMinusIcon,
   UserPlusIcon,
   HashtagIcon,
+  MagnifyingGlassMinusIcon,
 } from '@heroicons/react/20/solid';
 import { EllipsisHorizontalIcon } from '@heroicons/react/24/outline';
 import { DialogReportUser } from './DialogReportUser';
@@ -34,7 +35,7 @@ export default function SearchesListMenuOptionsComponent({ search }) {
       logic
         .reportUser(search.edition?.id, search.user?.id)
         .then(() => {
-          console.log('reported user');
+          console.log('user reported');
         })
         .catch((error) => {
           errorHandler(error);
@@ -52,7 +53,7 @@ export default function SearchesListMenuOptionsComponent({ search }) {
       logic
         .reportSearch(search.edition?.id, search.id)
         .then(() => {
-          console.log('reported search');
+          console.log('search reported');
         })
         .catch((error) => {
           errorHandler(error);
@@ -67,6 +68,14 @@ export default function SearchesListMenuOptionsComponent({ search }) {
     }
     if (confirm('Are you sure you want to report tag?')) {
       console.log('Reporting tag', search.tag?.id);
+      logic
+        .reportTag(search.edition?.id, search.tag?.id)
+        .then(() => {
+          console.log('tag reported');
+        })
+        .catch((error) => {
+          errorHandler(error);
+        });
     }
   };
 
@@ -139,7 +148,7 @@ export default function SearchesListMenuOptionsComponent({ search }) {
                       'group flex items-center px-4 py-2 text-sm'
                     )}
                   >
-                    <TrashIcon
+                    <MagnifyingGlassMinusIcon
                       className="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500"
                       aria-hidden="true"
                     />
