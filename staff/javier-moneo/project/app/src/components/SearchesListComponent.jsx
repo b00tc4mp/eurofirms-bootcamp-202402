@@ -19,6 +19,7 @@ const { ContentError, MatchError, DuplicityError, RangeError, TypeError } =
   errors;
 
 export default function SearchesListComponent({ initialSearches }) {
+  const navigate = useNavigate();
   const [searches, setSearches] = useState(null);
 
   useEffect(() => {
@@ -27,6 +28,10 @@ export default function SearchesListComponent({ initialSearches }) {
 
   const handleVoteUpClick = (search) => {
     console.log('vote up', search.id);
+    if (!logic.isUserLoggedIn()) {
+      navigate('/login');
+      return;
+    }
     logic
       .voteSearch(search.id, true)
       .then(() => {
@@ -54,6 +59,10 @@ export default function SearchesListComponent({ initialSearches }) {
 
   const handleVoteDownClick = (search) => {
     console.log('vote up', search.id);
+    if (!logic.isUserLoggedIn()) {
+      navigate('/login');
+      return;
+    }
     logic
       .voteSearch(search.id, false)
       .then(() => {
@@ -103,7 +112,7 @@ export default function SearchesListComponent({ initialSearches }) {
             {searches.map((search) => (
               <div
                 key={search.id}
-                className="bg-white p-2 my-2  rounded shadow"
+                className="bg-white p-1 my-1  rounded shadow"
               >
                 {/* query */}
                 <div className="flex w-full">
