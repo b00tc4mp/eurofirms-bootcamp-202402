@@ -10,21 +10,82 @@ import {
   TrashIcon,
   UserMinusIcon,
   UserPlusIcon,
+  HashtagIcon,
 } from '@heroicons/react/20/solid';
 import { EllipsisHorizontalIcon } from '@heroicons/react/24/outline';
 import { DialogReportUser } from './DialogReportUser';
+import logic from '../logic';
+import { useNavigate } from 'react-router-dom';
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
 }
 
 export default function SearchesListMenuOptionsComponent({ search }) {
+  const navigate = useNavigate();
+
   const handleReportUserClick = () => {
-    console.log('Reporting user', search.user.id);
+    if (!logic.isUserLoggedIn()) {
+      navigate('/login');
+      return;
+    }
+    if (confirm('Are you sure you want to report user?')) {
+      console.log('Reporting user', search?.user?.id);
+      logic
+        .reportUser(search.edition?.id, search.user?.id)
+        .then(() => {
+          console.log('reported user');
+        })
+        .catch((error) => {
+          errorHandler(error);
+        });
+    }
   };
 
-  const hadleReportSearchClick = () => {
-    console.log('Reporting search', search.id);
+  const handleReportSearchClick = () => {
+    if (!logic.isUserLoggedIn()) {
+      navigate('/login');
+      return;
+    }
+    if (confirm('Are you sure you want to report search?')) {
+      console.log('Reporting search', search.id);
+      logic
+        .reportSearch(search.edition?.id, search.id)
+        .then(() => {
+          console.log('reported search');
+        })
+        .catch((error) => {
+          errorHandler(error);
+        });
+    }
+  };
+
+  const handleReportTagClick = () => {
+    if (!logic.isUserLoggedIn()) {
+      navigate('/login');
+      return;
+    }
+    if (confirm('Are you sure you want to report tag?')) {
+      console.log('Reporting tag', search.tag?.id);
+    }
+  };
+
+  const errorHandler = (error) => {
+    console.error(error.message);
+
+    let feedback = error.message;
+
+    if (
+      error instanceof TypeError ||
+      error instanceof RangeError ||
+      error instanceof ContentError
+    )
+      feedback = `${feedback}, please correct it`;
+    else if (error instanceof DuplicityError)
+      feedback = `${feedback}, please try with another user`;
+    else feedback = 'sorry, there was an error, please try again later';
+
+    alert(feedback);
   };
 
   return (
@@ -72,7 +133,7 @@ export default function SearchesListMenuOptionsComponent({ search }) {
                 {({ active }) => (
                   <a
                     href="#"
-                    onClick={hadleReportSearchClick}
+                    onClick={handleReportSearchClick}
                     className={classNames(
                       active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                       'group flex items-center px-4 py-2 text-sm'
@@ -83,6 +144,24 @@ export default function SearchesListMenuOptionsComponent({ search }) {
                       aria-hidden="true"
                     />
                     Report Search
+                  </a>
+                )}
+              </Menu.Item>
+              <Menu.Item>
+                {({ active }) => (
+                  <a
+                    href="#"
+                    onClick={handleReportTagClick}
+                    className={classNames(
+                      active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                      'group flex items-center px-4 py-2 text-sm'
+                    )}
+                  >
+                    <HashtagIcon
+                      className="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500"
+                      aria-hidden="true"
+                    />
+                    Report Hashtag
                   </a>
                 )}
               </Menu.Item>

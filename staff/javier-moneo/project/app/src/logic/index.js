@@ -17,6 +17,8 @@ import createSearch from './createSearch';
 import retrieveSearcherById from './retrieveSearcherById';
 import retrieveTagByEditionIdAndName from './retrieveTagByEditionIdAndName';
 import retrieveSearchesByEditionIdAndSearcherIdAndSearchTypeIdAndTagId from './retrieveSearchesByEditionIdAndSearcherIdAndSearchTypeIdAndTagId';
+import reportSearch from './reportSearch';
+import reportUser from './reportUser';
 
 const logic = {
   createSearch,
@@ -35,6 +37,8 @@ const logic = {
   retrieveSearcherById,
   retrieveTagByEditionIdAndName,
   retrieveSearchesByEditionIdAndSearcherIdAndSearchTypeIdAndTagId,
+  reportSearch,
+  reportUser,
 };
 
 export default logic;

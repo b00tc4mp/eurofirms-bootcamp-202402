@@ -335,7 +335,7 @@ ReportedSearch
 - id (auto)
 - edition (Edition.id, required)
 - search (Search.id, required)
-- user (User.id, required)
+- userOwnerReport (User.id, required)
 - status (string, required, enum: "pending", "discarded", "accepted")
 - createdAt (Date, by default is added in all models)
 
@@ -344,6 +344,15 @@ ReportedUser
 - id (auto)
 - edition (Edition.id, required)
 - user (User.id, required)
+- userOwnerReport (User.id, required)
+- status (string, required, enum: "pending", "discarded", "accepted")
+- createdAt (Date, by default is added in all models)
+
+-ReportTag
+
+- id(auto)
+- edition (Edition.id, required)
+- userOwnerReport (User.id, required)
 - status (string, required, enum: "pending", "discarded", "accepted")
 - createdAt (Date, by default is added in all models)
 
@@ -352,5 +361,6 @@ ReportedComment
 - id (auto)
 - edition (Edition.id, required)
 - comment (Comment.id, required)
+- userOwnerReport (User.id, required)
 - status (string, required, enum: "pending", "discarded", "accepted")
 - createdAt (Date, by default is added in all models)
