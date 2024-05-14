@@ -49,7 +49,7 @@ function Home(props) {
     return (
     <>
         <header className="header">
-            <div id="app">FormativeLife</div>
+            <div id="app" onClick={props.onClickInicio}>FormativeLife</div>
             <div className="titular"><i>Actualiza tu perfil</i></div>
             <div id="area-perfil">
                 <button className="login" onClick={handleLogout}>Cerrar Sesión</button>

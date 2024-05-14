@@ -64,17 +64,16 @@ button:hover{
   position: relative;
   float:right;
   width: 20%;
-  height: 100px;
-  border: none;
+  border: 1px solid;
 }
 
 #area-buscador{
   position: relative;
-  margin-top: 120px;
+  margin-top: 20px;
   margin-left: 40%;
   float: left;
   width: 40%;
-  height: 100px;
+  height: auto;
   border: none;
 }
 

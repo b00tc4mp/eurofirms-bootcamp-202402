@@ -4,6 +4,8 @@ import logic from "../logic"
 import { errors } from "com"
 
 const { ContentError, DuplicityError } = errors
+ 
+let nUsers = 4;
 
 function Register(props) {
 
@@ -30,6 +32,7 @@ function Register(props) {
                 .catch(error => {
                     errorHandler(error)
                 })
+
         }
         catch(error){
             errorHandler(error)
@@ -105,7 +108,7 @@ function Register(props) {
         <main>
             <container id="container">
                 <section className="">
-                    <form className="form invisible" onSubmit={ handleSubmitStudent }>
+                    <form className="form visible" onSubmit={ handleSubmitStudent }>
                         <label forhtml="name">Nombre: </label>
                         <input type="text" id="name" placeholder="" required /><br/><br/>
 
@@ -121,10 +124,10 @@ function Register(props) {
                         <label forhtml="password">Contraseña: </label>
                         <input type="password" id="password" placeholder="Entre 8 y 16 caracteres" required /><br/><br/>
 
-                        <button type="submit">Registrarse</button>
+                        <button type="submit">Registrarse como estudiante</button>
                     </form>
 
-                    <form className="form visible" onSubmit={ handleSubmitCompany }>
+                    <form className="form visible float-right my--8" onSubmit={ handleSubmitCompany }>
                         <label forhtml="name">Nombre: </label>
                         <input type="text" id="name" placeholder="" required /><br/><br/>
 
@@ -140,7 +143,7 @@ function Register(props) {
                         <label forhtml="password">Contraseña: </label>
                         <input type="password" id="password" placeholder="Entre 8 y 16 caracteres" required /><br/><br/>
 
-                        <button type="submit">Registrarse</button>
+                        <button type="submit">Registrarse como empresa</button>
                     </form>
 
                     {/* <button onClick={ FormStudent() }>Registrarse como Estudiante</button> */}
@@ -152,6 +155,9 @@ function Register(props) {
         <footer>
             
         </footer>
+        {/* <Routes>
+          <Route path="/" element={<Inicio numUsers={nUsers} />} /> 
+        </Routes> */}
     </>
     )
 }

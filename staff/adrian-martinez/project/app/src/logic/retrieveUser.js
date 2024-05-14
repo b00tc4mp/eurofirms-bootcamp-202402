@@ -2,10 +2,12 @@ import { errors, validate, utils } from 'com'
 
 const { SystemError } = errors
 
-function retrieveUser() {
+function retrieveUser(targetUserId) {
     validate.token(sessionStorage.token)
 
-    const { sub: userId } = utils.extractPayload(sessionStorage.token)
+    const { sub } = utils.extractPayload(sessionStorage.token)
+
+    const userId = targetUserId ? targetUserId : sub
 
     return fetch(`${import.meta.env.VITE_API_URL}/users/${userId}`, {
         method: 'GET',

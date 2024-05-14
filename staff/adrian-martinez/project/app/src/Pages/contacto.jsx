@@ -3,7 +3,7 @@ function Contacto(props) {
     return (
     <>
         <header className="header">
-            <div id="app">FormativeLife</div>
+            <div id="app" onClick={props.onClickInicio}>FormativeLife</div>
             <div className="titular"><i>Busca o atrae talento</i></div>
             <div id="area-perfil">
                 <button className="login" onClick={props.onClickLogin}>Iniciar Sesión</button>

@@ -1,5 +1,9 @@
+import logic from "../logic";
+import { errors, validate } from "com"
 
-function Inicio({ onClickLogin , onClickRegister, onClickParaQuienEs, onClickTutorial, onClickContacto, onClickListarUsers}) {
+const { SystemError } = errors;
+
+function Inicio({ onClickLogin , onClickRegister, onClickParaQuienEs, onClickTutorial, onClickContacto, onClickListarUsers, numUsers}) {
 
     const handleClickUserLogin = () => {
       
@@ -36,19 +40,12 @@ function Inicio({ onClickLogin , onClickRegister, onClickParaQuienEs, onClickTut
         <header className="header">
             <div id="app">FormativeLife</div>
             <div className="titular"><i>Busca o atrae talento</i></div>
-            <div id="area-perfil">
+            <div id="area-perfil h-14">
                 <button className="login" onClick={handleClickUserLogin}>Iniciar Sesión</button>
                 <button className="register" onClick={handleClickUserRegister}>Crear cuenta</button>
-            </div>
-            <div id="area-buscador">
-                <form className="form" onSubmit={handleClickListarUsers}>
-                    <label htmlFor="ciudad">Ciudad: </label>
-                    <input className="input" type="text" id="ciudad" placeholder="Ejemplo: Coruña"/>
-
-                    &nbsp;<label htmlFor="ciudad">Área profesional: </label>
-                    <input className="input" type="text" id="ciudad" placeholder="Ejemplo: Desarrollo Web"/>
-                    <button className="buscar" type="submit">Buscar</button>
-                </form>
+            </div><br/><br/>
+            <div id="area-perfil mt-10">
+                Usuarios registrados: 4
             </div>
         </header>
         <main>

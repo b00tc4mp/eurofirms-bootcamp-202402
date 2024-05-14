@@ -36,9 +36,83 @@ const user = new Schema({
     }
 })
 
+const career = new Schema ({
+    student: {
+      type: ObjectId,
+      required: true,
+      ref: "User" //Campo que vincula los post de un usuario
+    },
+    title: {
+      type: String,
+      required: true,
+    },
+    description: {
+      type: String,
+      required: true,
+    },
+    certification: {
+      type: String,
+      required: true,
+    }
+})
+
+const subject = new Schema ({
+    career: {
+      type: ObjectId,
+      required: true,
+      ref: "Career" //Campo que vincula los post de un usuario
+    },
+    score: {
+      type: Number,
+      required: false
+    },
+    comment: {
+      type: String,
+      required: false
+    }
+})
+
+const offer = new Schema ({
+    company: {
+      type: ObjectId,
+      required: true,
+      ref: "User" //Campo que vincula los post de un usuario
+    },
+    title: {
+      type: String,
+      required: true
+    },
+    description: {
+      type: String,
+      required: true
+    },
+    minSalary: {
+      type: Number,
+      required: true
+    },
+    maxSalary: {
+        type: Number,
+        required: false
+    },
+    publishDate: {
+        type: Date,
+        required: true
+    },
+    expirationDate: {
+        type: Date,
+        required: true
+    }
+})
+
 const User = model("user", user);
+const Career = model("career", career);
+const Subject = model("subject", subject);
+const Offer = model("offer", offer);
 
 //Bucket
 export {
-    User
+    User,
+    Career,
+    Subject,
+    Offer
 }

@@ -79,23 +79,17 @@ Company
 User
 - id (auto, required)
 - name (string, required)
-- surname (string, required)
+- surname (string)
+- address (string)
+- activity (string)
 - role (string, required)
-- age (number, required)
-- email (string, required)
-- password (string, required)
-
-Company
-- id (auto, required)
-- name (string, required)
-- address (string, required)
-- activity (string, required)
+- age (number)
 - email (string, required)
 - password (string, required)
 
 Career
 - id (auto)
-- student (Student.id)
+- student (User.id, required)
 - title (string, required)
 - description (string, required)
 - certification (string, required)
@@ -108,11 +102,11 @@ Subject
 
 Offer
 - id (auto)
-- company (company.id)
+- company (User.id, required)
 - title (string, required)
-- description (string, requried)
-- minSalary (number, optional)
+- description (string, required)
+- minSalary (number, required)
 - maxSalary (number, optional)
-- publishDate (date, requried)
+- publishDate (date, required)
 - expirationDate (date, requried)
 

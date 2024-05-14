@@ -11,6 +11,7 @@ import Register from "./Pages/Register"
 //import ResetPassword from "./Pages/resetPassword"
 import Home from "./Pages/Home"
 import ListaUsuarios from "./Pages/ListaUsuarios"
+import HomeEmpresa from "./Pages/HomeEmpresa"
 //import HomeEmpresa from "./Pages/homeEmpresa"
 
 function App() {
@@ -22,11 +23,11 @@ function App() {
   const handleListarUsers = () => navigate('/ListaUsuarios');
   const handleResetPassword = () => navigate('/ResetPassword');
   const handleUserLoggedIn = () => {
-    const role = logic.getLoggedInUserRole()
+      const role = logic.getLoggedInUserRole()
                     
-    if(role === "student") navigate('/Home')
+      if(role === "student") navigate('/Home')
     
-     else if(role === "company") navigate('/HomeEmpresa')
+      else if(role === "company") navigate('/HomeEmpresa')
   };
   
   //Menú navegación
@@ -46,7 +47,8 @@ function App() {
           <Route path="/Tutorial" element={<Tutorial onClickTutorial={handleTutorial} onClickParaQuienEs={handleParaQuienEs} onClickContacto={handleContacto} onClickLogin={handleUserLogin} onClickRegister={handleUserRegister} onClickInicio={handleInicio}/>}/>
           <Route path="/Contacto" element={<Contacto onClickContacto={handleContacto} onClickParaQuienEs={handleParaQuienEs} onClickTutorial={handleTutorial} onClickLogin={handleUserLogin} onClickRegister={handleUserRegister} onClickInicio={handleInicio}/>}/>
           <Route path="/Home" element={<Home onClickListarUsers={handleListarUsers} onClickResetPassword={handleResetPassword} onClickInicio={handleInicio} />} /> 
-          <Route path="/listaUsuarios" element={logic.isUserLoggedIn() ? <ListaUsuarios onClickListarUsers={handleListarUsers}/> : <Navigate to="/" />}/>
+          <Route path="/HomeEmpresa" element={<HomeEmpresa onClickListarUsers={handleListarUsers} onClickResetPassword={handleResetPassword} onClickInicio={handleInicio} />} /> 
+          <Route path="/ListaUsuarios" element={logic.isUserLoggedIn() ? <ListaUsuarios onClickListarUsers={handleListarUsers} onUserLoggedIn={handleUserLoggedIn}/> : <Navigate to="/" />}/>
           {/* {view === 'resetPassword' && <ResetPassword />} */}
       </Routes>
   )

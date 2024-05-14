@@ -48,7 +48,7 @@ function HomeEmpresa(props) {
     return (
     <>
         <header className="header">
-            <div id="app">FormativeLife</div>
+            <div id="app" onClick={props.onClickInicio}>FormativeLife</div>
             <span className="mx-100">Prueba</span>
             <div className="titular"><i>Busca o atrae talento</i></div>
             <div id="area-perfil">
@@ -72,7 +72,6 @@ function HomeEmpresa(props) {
                         {user && 
                         <>
                             <h1 className="text-3xl font-bold">Hola {user.name} {user.surname}!</h1>
-                            <h1 className="text-xl">Tienes {user.age} años.</h1>
                             <h1 className="text-xl ">Tu correo es {user.email}</h1>
                         </>
                         }
