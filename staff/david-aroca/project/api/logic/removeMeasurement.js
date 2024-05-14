@@ -5,9 +5,9 @@ import { validate, errors } from "com"
 const { SystemError, MatchError } = errors
 
 function removeMeasurement(userId, measurementId) {
-    // TODO VALICACIONES
-    // validate.id(userId, 'userId')
-    // validate.date(date, 'date')
+    validate.id(userId, 'userId')
+    validate.id(measurementId, 'measurementId')
+
 
     return User.findById(userId)
         .catch(error => { throw new SystemError(error.message) })

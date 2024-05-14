@@ -146,7 +146,7 @@ mongoose.connect(MONGO_URL)
 
         // --------------------------------------------------------------------//
 
-        server.post('/exercise', jsonBodyParser, (req, res) => {
+        server.post('/exercises', jsonBodyParser, (req, res) => {
             try {
                 const { authorization } = req.headers
 
@@ -183,7 +183,7 @@ mongoose.connect(MONGO_URL)
         // --------------------------------------------------------------------//
 
 
-        server.post('/diet', jsonBodyParser, (req, res) => {
+        server.post('/diets', jsonBodyParser, (req, res) => {
             try {
                 const { authorization } = req.headers
 
@@ -295,7 +295,7 @@ mongoose.connect(MONGO_URL)
         // --------------------------------------------------------------------//
 
 
-        server.delete('/exercise/:exerciseId', (req, res) => {
+        server.delete('/exercises/:exerciseId', (req, res) => {
 
             try {
                 const { authorization } = req.headers
@@ -332,7 +332,7 @@ mongoose.connect(MONGO_URL)
 
         // --------------------------------------------------------------------//
 
-        server.delete('/diet/:dietId', (req, res) => {
+        server.delete('/diets/:dietId', (req, res) => {
 
             try {
                 const { authorization } = req.headers

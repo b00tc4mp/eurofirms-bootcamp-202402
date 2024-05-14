@@ -5,9 +5,12 @@ import { validate, errors } from "com"
 const { SystemError, MatchError } = errors
 
 function modifyMeasurement(userId, measurementId, date, weight, torso, legs) {
-    // TODO VALICACIONES
-    // validate.id(userId, 'userId')
-    // validate.date(date, 'date')
+    validate.id(userId, 'userId')
+    validate.id(measurementId, 'measurementId')
+    validate.date(date, 'date')
+    validate.weight(weight, 'weight')
+    validate.torso(torso, 'torso')
+    validate.legs(legs, 'legs')
 
     return User.findById(userId)
         .catch(error => { throw new SystemError(error.message) })

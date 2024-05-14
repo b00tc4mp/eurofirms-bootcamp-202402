@@ -121,15 +121,12 @@ function validateToken(token, explain = 'token') {
 }
 
 function validateVideo(video, explain = 'video') {
-    // if (!video.length) throw new ContentError(`${explain} is empty`)
-    // TODO VALIDACIONES MAS COMPLETAS
 
     if (typeof video !== 'string') throw new TypeError(`${explain} is not a string`)
 }
 
 function validateDescription(description, explain = 'description') {
-    // if (!description.length) throw new ContentError(`${explain} is empty`)
-    // TODO VALIDACIONES MAS COMPLETAS
+
     if (typeof description !== 'string') throw new TypeError(`${explain} is not a string`)
 }
 
@@ -146,6 +143,25 @@ function validateDate(date, explain = 'date') {
         throw new ContentError('date dashes are not in correct position')
 
 }
+function validateWeight(weight, explain = 'weight') {
+
+    if (typeof weight !== 'number' || isNaN(weight))
+        throw new TypeError(`${explain} is not a number`);
+
+}
+function validateTorso(torso, explain = 'torso') {
+    if (typeof torso !== 'number' || isNaN(torso)) {
+        throw new TypeError(`${explain} is not a number`);
+    }
+}
+function validateLegs(legs, explain = 'legs') {
+    if (typeof legs !== 'number' || isNaN(legs)) {
+        throw new TypeError(`${explain} is not a number`);
+    }
+}
+
+
+// date, weight, torso, legs
 
 const validate = {
     name: validateName,
@@ -159,7 +175,10 @@ const validate = {
     token: validateToken,
     video: validateVideo,
     description: validateDescription,
-    date: validateDate
+    date: validateDate,
+    weight: validateWeight,
+    torso: validateTorso,
+    legs: validateLegs
 }
 
 export default validate

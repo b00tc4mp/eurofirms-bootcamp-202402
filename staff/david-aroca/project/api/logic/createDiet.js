@@ -11,7 +11,6 @@ function createDiet(userId, title, image, video, description) {
     validate.video(video, 'video')
     validate.description(description, 'description')
 
-    // TODO VALIDACIONES
     return User.findById(userId)
         .catch(error => { throw new SystemError(error.message) })
         .then(user => {

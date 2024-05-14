@@ -7,7 +7,6 @@ const { SystemError, MatchError } = errors
 function removeDiet(userId, dietId) {
     validate.id(userId, 'userId')
     validate.id(dietId, 'dietId')
-    // TODO LA VALIDACION ES CORRECTA ? VALIDO EL POST O EL EXERCISE
 
     return User.findById(userId)
         .catch(error => { throw new SystemError(error.message) })
