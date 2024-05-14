@@ -4,7 +4,7 @@ import logic from '../logic'
 
 import Post from './Post'
 
-function Posts({ refreshStamp }) {
+function Posts({ refreshStamp, userRole }) {
     console.log('refreshStamp', refreshStamp)
 
     const [posts, setPosts] = useState([])
@@ -36,7 +36,7 @@ function Posts({ refreshStamp }) {
     console.log('Posts render')
 
     return <section className="flex flex-col gap-6 px-2 py-14">
-        {posts.map(post => <Post key={post.id} post={post} onPostRemoved={handlePostRemoved} onPostModified={handlePostUpdated} />)}
+        {posts.map(post => <Post userRole={userRole} key={post.id} post={post} onPostRemoved={handlePostRemoved} onPostModified={handlePostUpdated} />)}
     </section>
 }
 

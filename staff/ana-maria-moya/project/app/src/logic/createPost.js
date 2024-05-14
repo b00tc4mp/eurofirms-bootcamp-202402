@@ -1,20 +1,30 @@
 import { errors, validate } from 'com'
 
-const { SystemError } = errors
+const { MatchError, SystemError} = errors
 
-function createPost( title, text, image, video) {
+function createPost(title, image, video, text) {
     validate.token(sessionStorage.token)
-    validate.url(image, 'image')
+    validate.text(title, 'title')
+    
+    if (image) {
+        if (video) throw new MatchError('image and video are both set')
+            validate.url(image, 'image')
+    }
+    else validate.url(video, 'video')
+    
+    const payload = { title, text }
+    
+    if (image) payload.image = image
+    else if (video) payload.video = video
+    
     validate.text(text)
-    validate.title(title)
-
     return fetch(`${import.meta.env.VITE_API_URL}/posts`, {
         method: 'POST',
         headers: {
             Authorization: `Bearer ${sessionStorage.token}`,
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ title, text, image, video })
+        body: JSON.stringify(payload)
     })
         .catch(error => { throw new SystemError(error.message) })
         .then(res => {

@@ -1,15 +1,11 @@
-import { validate, errors } from 'com'
+import { errors } from 'com'
 
 const { SystemError } = errors
 
 function retrievePosts() {
-    validate.token(sessionStorage.token)
 
     return fetch(`${import.meta.env.VITE_API_URL}/posts`, {
         method: 'GET',
-        headers: {
-            Authorization: `Bearer ${sessionStorage.token}`
-        }
     })
         .catch(error => { throw new Error(error.message) })
         .then(res => {

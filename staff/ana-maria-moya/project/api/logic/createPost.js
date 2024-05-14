@@ -2,19 +2,19 @@ import { User, Post } from '../data/index.js'
 
 import { validate, errors } from 'com'
 
-const { SystemError, MatchError } = errors
+const { SystemError, MatchError} = errors
 
-function createPost({ userId, title, text, image, video }) {
+function createPost({ userId, title, image, video, text }) {
     validate.id(userId, 'userId')
-    validate.text(text)
-    validate.title(title)
-
+    validate.text(title, 'title')
+    
     if (image) {
-        if (video) throw new ContentError('You have to upload a video or a image, no both')
+        if (video) throw new MatchError('image and video are both set')
         validate.url(image, 'image')
     }
     else validate.url(video, 'video')
 
+    validate.text(text)
 
     return User.findById(userId)
         .catch(error => { throw new SystemError(error.message) })
@@ -27,6 +27,8 @@ function createPost({ userId, title, text, image, video }) {
             const post = {
                 author: user._id,
                 title,
+                image,
+                video,
                 text,
                 date: new Date()
             }

@@ -13,7 +13,7 @@ function retrieveUser(userId, targetUserId) {
         if (!user)
             throw new MatchError('user not found')
 
-        return User.findById(targetUserId).select('-_id name surname').lean() 
+        return User.findById(targetUserId).select('-_id name surname role').lean() 
             .catch(error => { throw new SystemError(error.message) })
             .then(targetUser => {
                 if (!targetUser)

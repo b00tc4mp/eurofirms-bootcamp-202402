@@ -13,8 +13,9 @@ function removePost(userId, postId) {
         .then(user => {
             if (!user)
                 throw new MatchError('user not found')
-
-            return Post.findById(postId)
+            if (user.role !== 'admin') throw new MatchError('Only admins can create posts')
+            
+                return Post.findById(postId)
                 .catch(error => { throw new SystemError(error.message) })
         })
         .then(post => {

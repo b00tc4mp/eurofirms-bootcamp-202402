@@ -1,39 +1,29 @@
-import { User, Post } from '../data/index.js'
+import { Post } from '../data/index.js'
 
-import { validate, errors } from 'com'
+import { errors } from 'com'
 
-const { SystemError, MatchError } = errors
+const { SystemError } = errors
 
-function retrievePosts(userId) {
-    validate.id(userId, 'userId')
-
-    return User.findById(userId)
+function retrievePosts() {
+    return Post.find().select('-__v').populate('author', 'name surname').lean()
         .catch(error => { throw new SystemError(error.message) })
-        .then(user => {
-            if (!user)
-                throw new MatchError('user not found')
+        .then(posts => {
+            posts.forEach(post => {
+                if (post._id) {
+                    post.id = post._id.toString()
 
-            return Post.find().select('-__v').populate('author', 'name surname').lean()
-                .catch(error => { throw new SystemError(error.message) })
-                .then(posts => {
-                    posts.forEach(post => {
-                        if (post._id) {
-                            post.id = post._id.toString()
+                    delete post._id
+                }
 
-                            delete post._id
-                        }
+                if (post.author._id) {
+                    post.author.id = post.author._id.toString()
 
-                        if (post.author._id) {
-                            post.author.id = post.author._id.toString()
+                    delete post.author._id
+                }
+            })
 
-                            delete post.author._id
-                        }
-                    })
-
-                    return posts.reverse()
-                })
+            return posts.reverse()
         })
-
 }
 
 export default retrievePosts

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { errors } from 'com'
-
+import { useNavigate } from 'react-router-dom'
 import logic from '../logic'
 
 import Posts from '../components/Posts'
@@ -8,48 +8,13 @@ import CreatePost from '../components/CreatePost'
 
 const { ContentError, MatchError } = errors
 
-function Gallery({ onUserLoggedOut }) {
+function Gallery({ userRole }) {
     const [view, setView] = useState(null)
-    const [user, setUser] = useState(null)
     const [refreshStamp, setRefreshStamp] = useState(null)
-
-    useEffect(() => {
-        try {
-            logic.retrieveUser()
-                .then(user => setUser(user))
-                .catch(error => {
-                    console.error(error.message)
-
-                    let feedback = error.message
-
-                    if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
-                        feedback = `${feedback}, please correct it`
-                    else if (error instanceof MatchError)
-                        feedback = `${feedback}, please verify user`
-                    else
-                        feedback = 'sorry, there was an error, please try again later'
-
-                    alert(feedback)
-                })
-        } catch (error) {
-            console.error(error.message)
-
-            let feedback = error.message
-
-            if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
-                feedback = `${feedback}, please correct it`
-            else
-                feedback = 'sorry, there was an error, please try again later'
-
-            alert(feedback)
-        }
-    }, [])
-
-    const handleLogout = () => {
-        logic.logoutUser()
-
-        onUserLoggedOut()
-    }
+    
+    const navigate = useNavigate()
+    
+    const handleHomeClick = () => navigate('/')
 
     const handleCreatePostClick = () => setView('create-post')
 
@@ -63,19 +28,16 @@ function Gallery({ onUserLoggedOut }) {
     console.log('Gallery render')
 
     return <>
-       
-        <main className="main">
-            {!user && <p>GALERIA</p>}
-            {user && <h1>Hello, {user.name}!</h1>}
 
-            <Posts refreshStamp={refreshStamp} />
+        <main className="main">
+            <Posts userRole={userRole} refreshStamp={refreshStamp} />
 
             {view === 'create-post' && <CreatePost onCancelClick={handleCreatePostCancelClick} onPostCreated={handlePostCreated} />}
-            <button className="px-3">🏚️</button>
+            <button className="px-3" onClick={handleHomeClick}>🏚️</button>
             <button className="px-3" onClick={handleCreatePostClick}>➕</button>
         </main>
 
-       
+
     </>
 }
 

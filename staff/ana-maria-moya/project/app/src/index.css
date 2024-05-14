@@ -7,3 +7,11 @@
 * {
     font-family: Sen;
 }
+
+.burger {
+    color: white;
+    height: 30px;
+    width: 30px;
+    position: fixed;
+    z-index: 1000000000;
+}

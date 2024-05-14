@@ -147,6 +147,7 @@ function validateTitle(title) {
         throw new ContentError('title is blank')
 }
 
+
 const validate = {
     name: validateName,
     surname: validateSurname,

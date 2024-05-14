@@ -6,23 +6,17 @@ import isUserLoggedIn from '../logic/isUserLoggedIn'
 
 
 
-function Home({ onRegisterIn, onLoginIn, onRecursesIn, onDonateIn, onGalleryIn, onContactIn }) {
-    const [refreshStamp, setRefreshStamp] = useState(null)
-    const handleLogout = () => {
-        logic.logoutUser()
+function Home() {
 
-        onUserLoggedOut()
-    }
-
-   
     console.log('Home render')
 
     return <div className="flex flex-col height-full   ">
+        <main className=' bg-green-500 w-full h-50'>
+            <h1 className=' mt-40 text-center text-white'>HOME</h1>
 
-        
 
+        </main>
 
-       
 
     </div>
 }

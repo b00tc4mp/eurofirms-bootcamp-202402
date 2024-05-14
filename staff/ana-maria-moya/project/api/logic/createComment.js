@@ -1,10 +1,9 @@
-import { User, Post } from '../data/index.js'
-
-import { validate, errors } from 'com'
+import { User, Post, Comment } from '../data/index.js'
+import { errors, validate } from 'com'
 
 const { SystemError, MatchError } = errors
 
-function modifyPost(userId, postId, text) {
+function createComment(userId, postId, text) {
     validate.id(userId, 'userId')
     validate.id(postId, 'postId')
     validate.text(text)
@@ -17,20 +16,24 @@ function modifyPost(userId, postId, text) {
 
             return Post.findById(postId)
                 .catch(error => { throw new SystemError(error.message) })
+
                 .then(post => {
                     if (!post)
                         throw new MatchError('post not found')
 
-                    if (user.role !== 'admin')
-                        throw new MatchError('only admin users can modify posts')
+                    const comment = {
+                        author: user._id,
+                        post: post._id,
+                        text,
+                        date: new Date
+                    }
 
-                    post.text = text
+                    return Comment.create(comment)
+                        .catch(error => { throw new SystemError(error.message) });
 
-                    return post.save()
-                        .catch(error => { throw new SystemError(error.message) })
                 })
+                .then(comment => { })
         })
-        .then(result => { })
 }
 
-export default modifyPost
+export default createComment
