@@ -165,7 +165,7 @@ export default function SearchesListComponent({ initialSearches }) {
                   {/* action buttons vote comments share */}
                   <div className="flex">
                     <div
-                      className="m-1 p-1 rounded text-black"
+                      className="m-1 p-1 rounded text-black cursor-pointer"
                       onClick={() => handleVoteUpClick(search)}
                     >
                       {search.isVoteUp && search.isVoted && (
@@ -182,7 +182,7 @@ export default function SearchesListComponent({ initialSearches }) {
                       )}
                     </div>
                     <div
-                      className="m-1 p-1 rounded text-black"
+                      className="m-1 p-1 rounded text-black cursor-pointer"
                       onClick={() => handleVoteDownClick(search)}
                     >
                       {!search.isVoteUp && search.isVoted ? (
@@ -197,12 +197,16 @@ export default function SearchesListComponent({ initialSearches }) {
                         />
                       )}
                     </div>
+                    {/* comments */}
                     <div className="m-1 p-1 rounded text-[#717171]">
-                      <ChatBubbleBottomCenterTextIcon
-                        className="h-5 w-5"
-                        aria-hidden="true"
-                      />
+                      <Link key={search.id} to={`/comments/${search.id}`}>
+                        <ChatBubbleBottomCenterTextIcon
+                          className="h-5 w-5"
+                          aria-hidden="true"
+                        />
+                      </Link>
                     </div>
+                    {/* share */}
                     <div className="m-1 p-1 rounded text-[#717171]">
                       <ShareIcon className="h-5 w-5" aria-hidden="true" />
                     </div>

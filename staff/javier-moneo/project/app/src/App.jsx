@@ -76,24 +76,9 @@ function App() {
             path="/editionsList/:urlEditionCode"
             element={<EditionsList />}
           />
-          <Route path="/comments" element={<Comments />} />
+          {/* COMMENTS */}
+          <Route path="/comments/:urlSearchId" element={<Comments />} />
         </Route>
-
-        {/* <Route
-          path="/"
-          element={<Home onUserLoggedOut={handleUserLoggedOut} />}
-        /> */}
-
-        {/* <Route
-          path="/"
-          element={
-            logic.isUserLoggedIn() ? (
-              <Home onUserLoggedOut={handleUserLoggedOut} />
-            ) : (
-              <Navigate to="/login" />
-            )
-          }
-        /> */}
       </Routes>
     </>
   );
