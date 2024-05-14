@@ -1,4 +1,5 @@
 import errors from './errors.js'
+import utils from './utils.js'
 
 const { ContentError, MatchError } = errors
 
@@ -112,9 +113,7 @@ function validateToken(token, explain = 'token') {
 
     if (!token.length) throw new ContentError(`${explain} is empty`)
 
-    const [, payload64,] = token.split('.')
-    const payloadJSON = atob(payload64)
-    const payload = JSON.parse(payloadJSON)
+    const payload = utils.extractPayload(token)
 
     const { exp } = payload
 
