@@ -6,6 +6,9 @@ import logoutUser from './logoutUser'
 import retrieveUser from './retrieveUser'
 import retrieveEvents from './retrieveEvents'
 import retrieveEvent from './retrieveEvent'
+import createBet from './createBet'
+import retrieveBetsFromUser from './retrieveBetsFromUser'
+import retrieveBet from './retrieveBet'
 
 const logic = {
     getLoggedInUserId,
@@ -15,7 +18,10 @@ const logic = {
     logoutUser,
     retrieveUser,
     retrieveEvents,
-    retrieveEvent
+    retrieveEvent,
+    createBet,
+    retrieveBetsFromUser,
+    retrieveBet
 }
 
 export default logic

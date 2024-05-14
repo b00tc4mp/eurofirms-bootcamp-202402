@@ -6,19 +6,19 @@ import Button from "./Button"
 import Form from "./Form"
 import { utils } from "com"
 
-function Event({ onBetCreated }) {
-    let params = useParams()
-    const [event, setEvent] = useState(null)
+function Bet({ onBetCreated }) {
+    const [bet, setBet] = useState(null)
     const [timeStamp, setTimeStamp] = useState(null)
     const [eventStarted, setEventStarted] = useState(false)
 
+    let params = useParams()
     const navigate = useNavigate()
 
     useEffect(() => {
         try {
-            logic.retrieveEvent(params.eventId)
-                .then(event => {
-                    setEvent(event)
+            logic.retrieveBet(params.betId)
+                .then(bet => {
+                    setBet(bet)
                     setTimeStamp(new Date())
                 })
         } catch (error) {
@@ -31,7 +31,7 @@ function Event({ onBetCreated }) {
     useEffect(() => {
         setTimeout(() => {
             const timeStamp = new Date().getTime()
-            const eventStartDate = new Date(event?.startDate).getTime()
+            const eventStartDate = new Date(bet?.event.startDate).getTime()
 
             if (timeStamp >= eventStartDate)
                 setEventStarted(true)
@@ -50,7 +50,7 @@ function Event({ onBetCreated }) {
 
             const amount = Number(form.amount.value)
 
-            logic.createBet(event.id, player, amount)
+            logic.createBet(event.id, player, amount)//modifyBet
                 .then(() => {
                     console.log('Bet created -> navigate to home')
                     onBetCreated()
@@ -67,30 +67,32 @@ function Event({ onBetCreated }) {
             alert(error.message)
         }
     }
+    //TODO
+    //implement modifyBET and REMOVE BET
     return <>
         {timeStamp && <span>{timeStamp.toString()}</span>}
-        {event ? <section>
+        {bet ? <section>
             <div>
-                <h3>{event.name}</h3>
-                <p>{event.description}</p>
-                <p>Start : {utils.formatDate(event.startDate)}</p>
+                <h3>{bet.event.name}</h3>
+                <p>{bet.event.description}</p>
+                <p>Start : {utils.formatDate(bet.event.startDate)}</p>
+                <span>Player you bet for</span>
                 <ul>
-                    {event.players.map(player => { return <li key={player.name}>{player.name}</li> })}
+                    <li >{bet.player.name}</li>
                 </ul>
+                <span>Amount you betted : {bet.amount}</span>
             </div>
             <div>
-                {!eventStarted && <Form onSubmit={handleSubmit}>
-                    <label htmlFor="amount">Amount to bet</label>
-                    <Input type="text" id="amount"></Input>
-                    <Button type="submit">Bet</Button>
-                    <select name="player" id="player" key='123'>
-                        {event.players.map(player => { return <option key={player.id} value={player.id}>{player.name}</option> })}
-                    </select>
-                </Form>}
-
+                {!eventStarted && <>
+                    <Form onSubmit={handleSubmit}>
+                        <label htmlFor="amount">Amount to bet</label>
+                        <Input type="text" id="amount"></Input>
+                        <Button type="submit">Modify</Button>
+                    </Form>
+                    <Button>Delete Bet</Button> </>}
             </div>
         </section> : <span>loading...</span>}
     </>
 }
 
-export default Event
+export default Bet

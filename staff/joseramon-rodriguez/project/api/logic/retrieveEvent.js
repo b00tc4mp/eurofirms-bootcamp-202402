@@ -12,7 +12,7 @@ function retrieveEvent(userId, enventId) {
             if (!user)
                 throw new MatchError('user not found -> cant retrieveEvent')
 
-            return Event.findById(enventId).select('-__v -_id -code').populate('players', ' name').lean()
+            return Event.findById(enventId).select('-__v -code').populate('players', ' name').lean()
                 .catch(error => { throw new SystemError(error.message) })
                 .then(event => {
                     if (!event)
@@ -25,6 +25,12 @@ function retrieveEvent(userId, enventId) {
 
                         delete player._id
                     })
+
+                    const id = event._id.toString()
+
+                    delete event._id
+
+                    event.id = id
                     return event
                 })
         })

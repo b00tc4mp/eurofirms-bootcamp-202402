@@ -13,7 +13,7 @@ function retrieveBetsFromUser(userId, targetUserId) {
             if (!user)
                 throw new MatchError('user not found -> cant retrieve events')
 
-            return Bet.find().select('__v').populate().lean()
+            return Bet.find().select('-__v -user').populate('event', '-_id name description').populate('player', '-_id name').lean()
                 .catch(error => { throw new SystemError(error.message) })
                 .then(bets => {
 
@@ -21,25 +21,11 @@ function retrieveBetsFromUser(userId, targetUserId) {
                         throw new MatchError('bets not found -> cant retrieve bets')
 
                     bets.forEach(bet => {
-                        //TODO
-                        // fix field to be extracted as strings
                         const idToString = bet._id.toString()
-
-                        const eventToString = bet.event.toString()
-
-                        const playerToString = bet.player.toString()
-
-                        const userToString = bet.user.toString()
 
                         delete bet._id
 
                         bet.id = idToString
-
-                        bet.event = eventToString
-
-                        bet.player = playerToString
-
-                        bet.user = userToString
 
                     })
 

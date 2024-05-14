@@ -78,15 +78,18 @@ const event = new Schema({
 const bet = new Schema({
     event: {
         type: ObjectId,
-        required: true
+        required: true,
+        ref: 'Event'
     },
     player: {
         type: ObjectId,
-        required: true
+        required: true,
+        ref: 'Player'
     },
     user: {
         type: ObjectId,
-        required: true
+        required: true,
+        ref: 'User'
     },
     amount: {
         type: Number,

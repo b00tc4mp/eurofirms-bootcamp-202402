@@ -7,6 +7,8 @@ import retrieveEvent from './retrieveEvent.js'
 import createBet from './createBet.js'
 import removeBet from './removeBet.js'
 import modifyBet from './modifyBet.js'
+import retrieveBetsFromUser from './retrieveBetsFromUser.js'
+import retrieveBet from './retrieveBet.js'
 
 const logic = {
     registerUser,
@@ -17,7 +19,9 @@ const logic = {
     retrieveEvent,
     createBet,
     removeBet,
-    modifyBet
+    modifyBet,
+    retrieveBetsFromUser,
+    retrieveBet
 }
 
 export default logic

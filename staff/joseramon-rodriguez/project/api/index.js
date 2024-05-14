@@ -217,9 +217,9 @@ mongoose.connect(MONGO_URL)
                 const { authorization } = req.headers
                 const token = authorization.slice(7)
                 const { sub: userId } = jwt.verify(token, JWT_SECRET)
-                const { event, player, amount } = req.body
+                const { eventId, playerId, amount } = req.body
 
-                logic.createBet(userId, event, player, amount)
+                logic.createBet(userId, eventId, playerId, amount)
                     .then(() => res.status(201).send())
                     .catch(error => {
                         let status = 500
@@ -314,6 +314,74 @@ mongoose.connect(MONGO_URL)
                 res.status(status).json({ error: error.constructor.name, message: error.message })
             }
         })
+        //retrieveBetsFromUser
+        server.get('/bets/:targetUserId', (req, res) => {
+            try {
+                const { authorization } = req.headers
+                const token = authorization.slice(7)
+
+                const { sub: userId } = jwt.verify(token, JWT_SECRET)
+
+                const { targetUserId } = req.params
+
+                logic.retrieveBetsFromUser(userId, targetUserId)
+                    .then(betsFromUser => res.json(betsFromUser))
+                    .catch(error => {
+                        let status = 500
+
+                        if (error instanceof MatchError)
+                            status = 401
+
+                        res.status(status).json({ error: error.constructor.name, message: error.message })
+                    })
+
+            } catch (error) {
+                let status = 500
+
+                if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError) {
+                    status = 401
+
+                    error = new MatchError(error.message)
+                }
+
+                res.status(status).json({ error: error.constructor.name, message: error.message })
+            }
+        })
+        //retrieveBet
+        server.get('/bet/:targetBetId', (req, res) => {
+            try {
+                const { authorization } = req.headers
+                const token = authorization.slice(7)
+
+                const { sub: userId } = jwt.verify(token, JWT_SECRET)
+
+                const { targetBetId } = req.params
+
+                logic.retrieveBet(userId, targetBetId)
+                    .then(bet => res.json(bet))
+                    .catch(error => {
+                        let status = 500
+
+                        if (error instanceof MatchError)
+                            status = 401
+
+                        res.status(status).json({ error: error.constructor.name, message: error.message })
+                    })
+
+            } catch (error) {
+                let status = 500
+
+                if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError) {
+                    status = 401
+
+                    error = new MatchError(error.message)
+                }
+
+                res.status(status).json({ error: error.constructor.name, message: error.message })
+            }
+        })
+
+
         server.listen(PORT, () => console.log(`API started on port ${PORT}`))
     })
     .catch(error => console.error(error))
