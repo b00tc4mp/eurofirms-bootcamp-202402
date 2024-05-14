@@ -169,8 +169,109 @@ export const getSearchesByEditionIdAndSearcherId = async (req, res) => {
     const searches = await Search.find({
       edition: editionId,
       searcher: searcherId,
-    });
+    })
+      .populate('user', '_id username')
+      .populate('edition', '_id code name')
+      .populate('tag', '_id name edition')
+      .populate('searcher', '_id name displayName')
+      .populate('searchType', '_id name')
+      .lean()
+      .exec();
+
+    if (search._id) {
+      search.id = search._id;
+      delete search._id;
+    }
+
+    if (search.user?._id) {
+      search.user.id = search.user._id;
+      delete search.user._id;
+    }
+
+    if (search.edition?._id) {
+      search.edition.id = search.edition._id;
+      delete search.edition._id;
+    }
+
+    if (search.tag?._id) {
+      search.tag.id = search.tag._id;
+      delete search.tag._id;
+    }
+
+    if (search.searcher?._id) {
+      search.searcher.id = search.searcher._id;
+      delete search.searcher._id;
+    }
+
+    if (search.searchType?._id) {
+      search.searchType.id = search.searchType._id;
+      delete search.searchType._id;
+    }
+
     return res.status(200).json(searches);
+  } catch (error) {
+    console.error(error);
+    let status = 500;
+
+    if (
+      error instanceof TypeError ||
+      error instanceof RangeError ||
+      error instanceof ContentError
+    ) {
+      status = 400;
+    }
+
+    return res
+      .status(status)
+      .json({ error: error.constructor.name, message: error.message });
+  }
+};
+
+export const getSearchById = async (req, res) => {
+  try {
+    const { searchId } = req.params;
+    validate.id(searchId);
+
+    const search = await Search.findById(searchId)
+      .populate('user', '_id username')
+      .populate('edition', '_id code name')
+      .populate('tag', '_id name edition')
+      .populate('searcher', '_id name displayName')
+      .populate('searchType', '_id name')
+      .lean()
+      .exec();
+
+    if (search._id) {
+      search.id = search._id;
+      delete search._id;
+    }
+
+    if (search.user?._id) {
+      search.user.id = search.user._id;
+      delete search.user._id;
+    }
+
+    if (search.edition?._id) {
+      search.edition.id = search.edition._id;
+      delete search.edition._id;
+    }
+
+    if (search.tag?._id) {
+      search.tag.id = search.tag._id;
+      delete search.tag._id;
+    }
+
+    if (search.searcher?._id) {
+      search.searcher.id = search.searcher._id;
+      delete search.searcher._id;
+    }
+
+    if (search.searchType?._id) {
+      search.searchType.id = search.searchType._id;
+      delete search.searchType._id;
+    }
+
+    return res.status(200).json(search);
   } catch (error) {
     console.error(error);
     let status = 500;

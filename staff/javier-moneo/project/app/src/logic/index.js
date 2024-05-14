@@ -18,9 +18,13 @@ import reportSearch from './reportSearch';
 import reportUser from './reportUser';
 import reportTag from './reportTag';
 import voteSearch from './voteSearch';
+import retrieveSearchById from './retrieveSearchById';
+import createComment from './createComment';
+import retrieveCommentsBySearchId from './retrieveCommentsBySearchId';
 
 const logic = {
   createSearch,
+  createComment,
   isUserLoggedIn,
   getLoggedInUserId,
   logoutUser,
@@ -36,9 +40,11 @@ const logic = {
   retrieveSearcherById,
   retrieveTagByEditionIdAndName,
   retrieveSearchesByEditionIdAndSearcherIdAndSearchTypeIdAndTagId,
+  retrieveSearchById,
   reportSearch,
   reportUser,
   reportTag,
+  retrieveCommentsBySearchId,
   voteSearch,
 };
 

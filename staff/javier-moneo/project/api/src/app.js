@@ -33,6 +33,7 @@ import reportSearchRoutes from './routes/reportSearch.routes.js';
 import reportUserRoutes from './routes/reportUser.routes.js';
 import reportTagRoutes from './routes/reportTag.routes.js';
 import voteSearchRoutes from './routes/voteSearch.routes.js';
+import commentRoutes from './routes/comment.routes.js';
 
 const app = express();
 
@@ -82,5 +83,6 @@ app.use('/api/reportSearches', reportSearchRoutes);
 app.use('/api/reportUsers', reportUserRoutes);
 app.use('/api/reportTags', reportTagRoutes);
 app.use('/api/voteSearches', voteSearchRoutes);
+app.use('/api/comments', commentRoutes);
 
 export default app;

@@ -15,4 +15,6 @@ router.post(
   searchesCtrl.getSearchesByEditionIdAndSearcherIdAndSearchTypeIdAndTagId
 );
 
+router.get('/:searchId', searchesCtrl.getSearchById);
+
 export default router;

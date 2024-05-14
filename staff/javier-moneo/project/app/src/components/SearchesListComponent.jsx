@@ -27,66 +27,6 @@ export default function SearchesListComponent({ initialSearches }) {
     setSearches(initialSearches);
   }, [initialSearches]);
 
-  // const handleVoteUpClick = (search) => {
-  //   console.log('vote up', search.id);
-  //   if (!logic.isUserLoggedIn()) {
-  //     navigate('/login');
-  //     return;
-  //   }
-  //   logic
-  //     .voteSearch(search.id, true)
-  //     .then(() => {
-  //       console.log('vote up confirmed !!');
-  //       // console.log(searches);
-
-  //       setSearches(
-  //         searches.map((elemenSearch) => {
-  //           if (elemenSearch.id === search.id) {
-  //             elemenSearch.isVoteUp = true;
-  //             if (elemenSearch.isVoted) {
-  //               elemenSearch.isVoted = true;
-  //             } else {
-  //               elemenSearch.isVoted = true;
-  //             }
-  //           }
-  //           return elemenSearch;
-  //         })
-  //       );
-  //     })
-  //     .catch((error) => {
-  //       errorHandler(error);
-  //     });
-  // };
-
-  // const handleVoteDownClick = (search) => {
-  //   console.log('vote up', search.id);
-  //   if (!logic.isUserLoggedIn()) {
-  //     navigate('/login');
-  //     return;
-  //   }
-  //   logic
-  //     .voteSearch(search.id, false)
-  //     .then(() => {
-  //       console.log('vote down confirmed !!');
-  //       setSearches(
-  //         searches.map((elemenSearch) => {
-  //           if (elemenSearch.id === search.id) {
-  //             elemenSearch.isVoteUp = false;
-  //             if (elemenSearch.isVoted) {
-  //               elemenSearch.isVoted = true;
-  //             } else {
-  //               elemenSearch.isVoted = true;
-  //             }
-  //           }
-  //           return elemenSearch;
-  //         })
-  //       );
-  //     })
-  //     .catch((error) => {
-  //       errorHandler(error);
-  //     });
-  // };
-
   const errorHandler = (error) => {
     console.error(error.message);
 
@@ -111,7 +51,7 @@ export default function SearchesListComponent({ initialSearches }) {
         {searches && (
           <>
             {searches.map((search) => (
-              <SearchComponent initialSearch={search} key={search.id}/>
+              <SearchComponent initialSearch={search} key={search.id} />
             ))}
           </>
         )}

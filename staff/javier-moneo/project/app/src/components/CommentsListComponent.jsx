@@ -4,25 +4,27 @@ import logic from '../logic';
 import { errors } from '../com';
 import SearchComponent from '../components/SearchComponent';
 import AddSearchComment from '../components/AddSearchComment';
-import CommentsListComponent from '../components/CommentsListComponent';
+import CommentComponent from './CommentComponent';
 
 const { ContentError, MatchError, DuplicityError, RangeError, TypeError } =
   errors;
 
-export default function Comments() {
-  const { urlSearchId } = useParams();
-  const [search, setSearch] = useState(null);
+export default function CommentsListComponent({ initialSearch }) {
+  const [comments, setComments] = useState(null);
 
   useEffect(() => {
-    logic
-      .retrieveSearchById(urlSearchId)
-      .then((searchRetrieved) => {
-        setSearch(searchRetrieved);
-      })
-      .catch((error) => {
-        errorHandler(error);
-      });
-  }, [urlSearchId]);
+    if (initialSearch) {
+      logic
+        .retrieveCommentsBySearchId(initialSearch.id)
+        .then((commentsRetrieved) => {
+          console.log(commentsRetrieved);
+          setComments(commentsRetrieved);
+        })
+        .catch((error) => {
+          errorHandler(error);
+        });
+    }
+  }, [initialSearch]);
 
   const errorHandler = (error) => {
     console.error(error.message);
@@ -44,10 +46,12 @@ export default function Comments() {
 
   return (
     <>
-      <div>
-        {search && <SearchComponent initialSearch={search} />}
-        <AddSearchComment initialSearch={search} />
-        <CommentsListComponent initialSearch={search}/>
+      <div className="bg-amber-100 p-1 my-1  rounded shadow">
+        Comments:
+        {comments &&
+          comments.map((comment) => (
+            <CommentComponent initialComment={comment} key={comment.id} />
+          ))}
       </div>
     </>
   );
