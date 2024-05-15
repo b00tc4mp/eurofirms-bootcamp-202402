@@ -1,6 +1,6 @@
 import { Schema, model } from 'mongoose';
 
-const commentSchema = new Schema(
+const reportCommentSchema = new Schema(
   {
     edition: {
       ref: 'Edition',
@@ -12,27 +12,24 @@ const commentSchema = new Schema(
       type: Schema.Types.ObjectId,
       required: true,
     },
-    user: {
+    comment: {
+      ref: 'Comment',
+      type: Schema.Types.ObjectId,
+      required: true,
+    },
+    userOwnerReport: {
       ref: 'User',
       type: Schema.Types.ObjectId,
       required: true,
     },
-    text: {
+    status: {
       type: String,
       required: true,
-    },
-    isBanned: {
-      type: Boolean,
-    },
-    dateBanned: {
-      type: Date,
-    },
-    ownerBan: {
-      ref: 'User',
-      type: Schema.Types.ObjectId,
+      enum: ['pending', 'discarded', 'accepted'],
+      default: 'pending',
     },
   },
   { timestamps: true, versionKey: false }
 );
 
-export default model('Comment', commentSchema);
+export default model('ReportComment', reportCommentSchema);

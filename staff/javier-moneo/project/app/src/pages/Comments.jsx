@@ -12,6 +12,7 @@ const { ContentError, MatchError, DuplicityError, RangeError, TypeError } =
 export default function Comments() {
   const { urlSearchId } = useParams();
   const [search, setSearch] = useState(null);
+  const [refreshTimestap, setRefreshTimestamp] = useState(null);
 
   useEffect(() => {
     logic
@@ -46,8 +47,14 @@ export default function Comments() {
     <>
       <div>
         {search && <SearchComponent initialSearch={search} />}
-        <AddSearchComment initialSearch={search} />
-        <CommentsListComponent initialSearch={search}/>
+        <AddSearchComment
+          initialSearch={search}
+          setRefreshTimestamp={setRefreshTimestamp}
+        />
+        <CommentsListComponent
+          initialSearch={search}
+          refreshTimestap={refreshTimestap}
+        />
       </div>
     </>
   );

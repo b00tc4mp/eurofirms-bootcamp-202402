@@ -44,7 +44,7 @@ export default function CommentReportListMenuOptionsComponent({
     if (confirm('Are you sure you want to report comment?')) {
       console.log('Reporting comment', comment.id);
       logic
-        .reportComment(comment.id)
+        .reportComment(comment.search, comment.id)
         .then(() => {
           console.log('comment reported');
         })

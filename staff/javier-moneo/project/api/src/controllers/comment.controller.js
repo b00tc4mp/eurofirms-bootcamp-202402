@@ -23,6 +23,7 @@ export const createComment = async (req, res) => {
     }
 
     const newComment = new Comment({
+      edition: search.edition,
       search: searchId,
       user: userId,
       text: text,

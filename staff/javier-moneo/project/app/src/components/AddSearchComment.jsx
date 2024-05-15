@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import logic from '../logic';
 import { errors } from '../com';
 import SearchComponent from '../components/SearchComponent';
@@ -7,7 +7,8 @@ import SearchComponent from '../components/SearchComponent';
 const { ContentError, MatchError, DuplicityError, RangeError, TypeError } =
   errors;
 
-export default function AddSearchComment({ initialSearch }) {
+export default function AddSearchComment({ initialSearch, setRefreshTimestamp }) {
+  const navigate = useNavigate();
   const [comment, setComment] = useState('');
 
   const onSubmit = (event) => {
@@ -26,6 +27,7 @@ export default function AddSearchComment({ initialSearch }) {
         .then(() => {
           console.log('comment created!');
           setComment('');
+          setRefreshTimestamp(new Date().getTime())
         })
         .catch((error) => {
           errorHandler(error);

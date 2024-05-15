@@ -9,11 +9,15 @@ import CommentComponent from './CommentComponent';
 const { ContentError, MatchError, DuplicityError, RangeError, TypeError } =
   errors;
 
-export default function CommentsListComponent({ initialSearch }) {
+export default function CommentsListComponent({
+  initialSearch,
+  refreshTimestap,
+}) {
   const [comments, setComments] = useState(null);
 
   useEffect(() => {
     if (initialSearch) {
+      // console.log(initialSearch);
       logic
         .retrieveCommentsBySearchId(initialSearch.id)
         .then((commentsRetrieved) => {
@@ -24,7 +28,7 @@ export default function CommentsListComponent({ initialSearch }) {
           errorHandler(error);
         });
     }
-  }, [initialSearch]);
+  }, [initialSearch, refreshTimestap]);
 
   const errorHandler = (error) => {
     console.error(error.message);

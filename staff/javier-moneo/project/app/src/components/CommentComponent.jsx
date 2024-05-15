@@ -20,8 +20,10 @@ import CommentReportListMenuOptionsComponent from './CommentReportListMenuOption
 
 export default function CommentComponent({ initialComment }) {
   const [comment, setComment] = useState(initialComment);
+
   return (
     <>
+    {/* <pre>{JSON.stringify(comment, null, 2)}</pre> */}
       <div className="bg-amber-50 p-1 my-1  rounded shadow">
         <div className="flex">
           <div className="flex items-center w-full">

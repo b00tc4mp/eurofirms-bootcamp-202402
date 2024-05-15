@@ -32,6 +32,7 @@ import tagRoutes from './routes/tag.routes.js';
 import reportSearchRoutes from './routes/reportSearch.routes.js';
 import reportUserRoutes from './routes/reportUser.routes.js';
 import reportTagRoutes from './routes/reportTag.routes.js';
+import reportCommentRoutes from './routes/reportComment.routes.js';
 import voteSearchRoutes from './routes/voteSearch.routes.js';
 import commentRoutes from './routes/comment.routes.js';
 
@@ -82,6 +83,7 @@ app.use('/api/tags', tagRoutes);
 app.use('/api/reportSearches', reportSearchRoutes);
 app.use('/api/reportUsers', reportUserRoutes);
 app.use('/api/reportTags', reportTagRoutes);
+app.use('/api/reportComments', reportCommentRoutes);
 app.use('/api/voteSearches', voteSearchRoutes);
 app.use('/api/comments', commentRoutes);
 

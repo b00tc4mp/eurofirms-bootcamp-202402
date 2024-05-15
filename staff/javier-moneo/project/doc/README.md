@@ -343,7 +343,7 @@ VoteSearch
 - ip (string) - V2
 - createdAt (Date, by default is added in all models)
 
-ReportedSearch
+ReportSearch
 
 - id (auto)
 - edition (Edition.id, required)
@@ -352,7 +352,7 @@ ReportedSearch
 - status (string, required, enum: "pending", "discarded", "accepted")
 - createdAt (Date, by default is added in all models)
 
-ReportedUser
+ReportUser
 
 - id (auto)
 - edition (Edition.id, required)
@@ -369,10 +369,11 @@ ReportedUser
 - status (string, required, enum: "pending", "discarded", "accepted")
 - createdAt (Date, by default is added in all models)
 
-ReportedComment
+ReportComment
 
 - id (auto)
 - edition (Edition.id, required)
+- search (Search.id, required)
 - comment (Comment.id, required)
 - userOwnerReport (User.id, required)
 - status (string, required, enum: "pending", "discarded", "accepted")
