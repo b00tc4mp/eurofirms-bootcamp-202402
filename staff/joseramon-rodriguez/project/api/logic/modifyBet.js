@@ -23,6 +23,9 @@ function modifyBet(userId, betId, amount) {
                     if (bet.user.toString() !== userId)
                         throw new MatchError('you can only modify your own bets -> cant modify bet')
 
+                    if (bet.amount === amount)
+                        throw new MatchError('you cant modify bet with the same ammount')
+
                     return Event.findById(bet.event)
                         .catch(error => { throw new SystemError(error.message) })
                         .then(event => {
@@ -56,10 +59,6 @@ function modifyBet(userId, betId, amount) {
 
                 })
         })
-    //TODO
-    //check if amount + bet.amount <= user.wallet
-    //modify bet
-    //update wallet
 }
 
 export default modifyBet

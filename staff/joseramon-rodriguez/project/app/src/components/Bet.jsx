@@ -6,7 +6,7 @@ import Button from "./Button"
 import Form from "./Form"
 import { utils } from "com"
 
-function Bet({ onBetCreated }) {
+function Bet({ onBetModified, onBetRemoved }) {
     const [bet, setBet] = useState(null)
     const [timeStamp, setTimeStamp] = useState(null)
     const [eventStarted, setEventStarted] = useState(false)
@@ -46,14 +46,12 @@ function Bet({ onBetCreated }) {
 
             const form = formEvent.target
 
-            const player = form.player.value
-
             const amount = Number(form.amount.value)
 
-            logic.createBet(event.id, player, amount)//modifyBet
+            logic.modifyBet(bet.id, amount)//modifyBet
                 .then(() => {
-                    console.log('Bet created -> navigate to home')
-                    onBetCreated()
+                    console.log('Bet modified -> navigate to home')
+                    onBetModified()
                     navigate('/')
                 })
                 .catch(error => {
@@ -67,19 +65,36 @@ function Bet({ onBetCreated }) {
             alert(error.message)
         }
     }
+
+    const handleDeleteClick = () => {
+        try {
+            const confirm = window.confirm('are you sure you want to delete this bet?')
+
+            if (confirm) {
+                logic.removeBet(bet.id)
+                    .then(() => {
+                        console.log('bet removed -> navigate to home')
+                        navigate('/')
+                        onBetRemoved()
+                    })
+            }
+        } catch (error) {
+            console.error(error)
+
+            alert(error.message)
+        }
+    }
     //TODO
-    //implement modifyBET and REMOVE BET
+    //implement and REMOVE BET
     return <>
         {timeStamp && <span>{timeStamp.toString()}</span>}
         {bet ? <section>
             <div>
-                <h3>{bet.event.name}</h3>
-                <p>{bet.event.description}</p>
-                <p>Start : {utils.formatDate(bet.event.startDate)}</p>
-                <span>Player you bet for</span>
-                <ul>
-                    <li >{bet.player.name}</li>
-                </ul>
+                <h2>STATUS : {bet.event.status}</h2>
+                <h3>Event name: {bet.event.name}</h3>
+                <p>Event description: {bet.event.description}</p>
+                <p>Start: {utils.formatDate(bet.event.startDate)}</p>
+                <span>Player you bet for: {bet.player.name}</span>
                 <span>Amount you betted : {bet.amount}</span>
             </div>
             <div>
@@ -89,7 +104,7 @@ function Bet({ onBetCreated }) {
                         <Input type="text" id="amount"></Input>
                         <Button type="submit">Modify</Button>
                     </Form>
-                    <Button>Delete Bet</Button> </>}
+                    <Button onClick={handleDeleteClick}>Delete Bet</Button> </>}
             </div>
         </section> : <span>loading...</span>}
     </>

@@ -14,7 +14,7 @@ function retrieveBet(userId, betId) {
 
             return Bet.findById(betId).select('-__v -user').populate({
                 path: 'event',
-                select: 'name , description startDate endDate',
+                select: 'name description startDate endDate status',
                 populate: {
                     path: 'players',
                     model: 'Player'
@@ -24,8 +24,7 @@ function retrieveBet(userId, betId) {
                 .then(bet => {
                     if (!bet)
                         throw new MatchError('bet not found -> cant retrieve bet')
-                    //TODO
-                    //fix data to be returned as strings
+
                     const betIdString = bet._id.toString()
 
                     const eventIdString = bet.event._id.toString()

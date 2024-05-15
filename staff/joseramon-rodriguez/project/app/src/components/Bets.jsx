@@ -33,7 +33,7 @@ function Bets() {
                 <h3><a onClick={() => handleBetClick(bet.id)}>{bet.event.name}</a></h3>
                 <p>{bet.event.description}</p>
                 <span>BET AMOUNT :{bet.amount}</span>
-
+                <h4>Status: {bet.event.status}</h4>
             </section>
 
         }

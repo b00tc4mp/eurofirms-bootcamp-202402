@@ -30,6 +30,7 @@ function Events() {
             return <section key={event.id} className=' border-black border-2'>
                 <h3><a onClick={() => handleEventClick(event.id)}>{event.name}</a></h3>
                 <p>{event.description}</p>
+                <p>Status:  {event.status}</p>
 
             </section>
 

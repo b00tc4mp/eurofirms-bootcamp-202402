@@ -68,24 +68,26 @@ function Event({ onBetCreated }) {
         }
     }
     return <>
-        {timeStamp && <span>{timeStamp.toString()}</span>}
         {event ? <section>
             <div>
+                <h2>Status: {event.status}</h2>
                 <h3>{event.name}</h3>
                 <p>{event.description}</p>
                 <p>Start : {utils.formatDate(event.startDate)}</p>
+                <p>List of players:</p>
                 <ul>
                     {event.players.map(player => { return <li key={player.name}>{player.name}</li> })}
                 </ul>
             </div>
             <div>
                 {!eventStarted && <Form onSubmit={handleSubmit}>
-                    <label htmlFor="amount">Amount to bet</label>
-                    <Input type="text" id="amount"></Input>
-                    <Button type="submit">Bet</Button>
+                    <label htmlFor="player">Player to bet</label>
                     <select name="player" id="player" key='123'>
                         {event.players.map(player => { return <option key={player.id} value={player.id}>{player.name}</option> })}
                     </select>
+                    <label htmlFor="amount">Amount to bet</label>
+                    <Input type="text" id="amount"></Input>
+                    <Button type="submit">Bet</Button>
                 </Form>}
 
             </div>

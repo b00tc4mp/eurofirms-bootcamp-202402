@@ -28,6 +28,15 @@ function Home({ onLogoutClick }) {
         navigate(`/bets/${user.id}`)
     }
 
+    const handleAfterBetOperation = () => {
+        setTimeStamp(Date.now())
+    }
+
+    const handleSearchClick = () => {
+        navigate('/')
+        setTimeStamp(Date.now())
+    }
+
     useEffect(() => {
         try {
             logic.retrieveUser()
@@ -67,14 +76,14 @@ function Home({ onLogoutClick }) {
         </header>
         {user ? <h1>HELLO HOME {user.username}</h1> : <span>Loading...</span>}
         <main className='flex flex-col'>
-            <Button >Search Events</Button>
+            <Button onClick={handleSearchClick}>Search Events</Button>
 
 
             <Routes>
                 <Route path='/events' element={<Events />} />
-                <Route path='/events/:eventId' element={<Event onBetCreated={() => setTimeStamp(Date.now())} />} />
+                <Route path='/events/:eventId' element={<Event onBetCreated={handleAfterBetOperation} />} />
                 <Route path='/bets/:userId' element={<Bets />} />
-                <Route path='/bet/:betId' element={<Bet />} />
+                <Route path='/bet/:betId' element={<Bet onBetModified={handleAfterBetOperation} onBetRemoved={handleAfterBetOperation} />} />
                 <Route path='/*' element={<Navigate to="/events" />} />
             </Routes>
         </main>
