@@ -1,34 +1,34 @@
-import { errors, validate } from 'com'
+import { errors, validate, utils } from "com";
 
 const { SystemError } = errors
 
-function retrieveMeasurement() {
+function retrieveUser() {
     validate.token(sessionStorage.token)
 
-    return fetch(`${import.meta.env.VITE_API_URL}/exercises`, {
+    const { sub: user } = utils.extractPayload(sessionStorage.token)
+
+    return fetch(`${import.meta.env.VITE_API_URL}/users/${user.id}`, {
         method: 'GET',
-        headers: {
-            Authorization: `Bearer ${sessionStorage.token}`
-        }
+        headers: { Authorization: `Bearer ${sessionStorage.token}` },
     })
+
         .catch(error => { throw new SystemError(error.message) })
         .then(res => {
             if (res.status === 200)
                 return res.json()
                     .catch(error => { throw new SystemError(error.message) })
-                    .then(measurements => measurements)
+
 
             return res.json()
                 .catch(error => { throw new SystemError(error.message) })
                 .then(body => {
                     const { error, message } = body
 
-                    const constructor = error[error]
+                    const constructor = errors[error]
 
                     throw new constructor(message)
                 })
-
         })
 }
 
-export default retrieveMeasurement
+export default retrieveUser

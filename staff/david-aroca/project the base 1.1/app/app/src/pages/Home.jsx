@@ -7,13 +7,14 @@ import logic from "../logic"
 // importacion de el componente 
 import Measures from "../components/Measures"
 import Routine from "../components/Routine"
-import Diets from "../components/Diets"
-// import search from "../components/Search"
+import Diet from "../components/Diet"
 
 const { ContentError, MatchError } = errors
 
 function Home({ onUserLoggedOut }) {
+    // const [view, setView] = useState(null)
     const [user, setUser] = useState(null)
+    // const [refreshStamp, setRefreshStamp] = useState(null)
 
     const navigate = useNavigate()
 
@@ -57,13 +58,13 @@ function Home({ onUserLoggedOut }) {
         navigate('/measurements')
     }
 
-    const handleHomeNavigate = () => {
-        navigate('/')
+    // const handleHomeNavigate = () => {
+    //     navigate('/')
 
-    }
+    // }
 
     const handleDietNavigate = () => {
-        navigate('/diets')
+        navigate('/diet')
 
     }
 
@@ -84,34 +85,29 @@ function Home({ onUserLoggedOut }) {
             </nav>
         </header>
 
-
         <Routes>
             <Route path="/measurements" element={<Measures />} />
-            <Route path="/diets" element={<Diets />} />
+            <Route path="/diet" element={<Diet />} />
             <Route path="/routine" element={<Routine />} />
-            {/* <Route path="/" element={<HomeContent />} /> */}
-            {/* no puedo tener contenido en home sin rutas a excepcion del footer y el header */}
-            {/* <TODO></TODO> */}
-        </Routes>
+            {/* <Route path="/" element={<Home />} /> */}
 
-        {/* TODO */}
-        {/* Hay que solucionar el hecho de que se ve en todas las
-         vistas cuando solo se tiene que ver en el home */}
+
+        </Routes>
 
         {/* footer con sus respectivos botones comentados porque si no da error */}
         <footer className="flex justify-between items-center border-t-2 border-black fixed bottom-0 w-full bg-gray-200 px-6 py-4">
             <button className="text-gray-800 font-semibold hover:underline focus:outline-none focus:shadow-outline"
                 onClick={handleMeasureNavigate}
-            >Measures</button>
+            >Measure</button>
             <button className="text-gray-800 font-semibold hover:underline focus:outline-none focus:shadow-outline"
-                onClick={handleHomeNavigate}
+            // onClick={handleHomeNavigate}
             >Home</button>
             <button className="text-gray-800 font-semibold hover:underline focus:outline-none focus:shadow-outline"
                 onClick={handleDietNavigate}
-            >Diets</button>
+            >Diet</button>
             <button className="text-gray-800 font-semibold hover:underline focus:outline-none focus:shadow-outline"
                 onClick={handleRoutineNavigate}
-            >Routines</button>
+            >Routine</button>
         </footer>
     </>
 
