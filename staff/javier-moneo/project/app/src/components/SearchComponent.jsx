@@ -49,7 +49,7 @@ export default function SearchComponent({ initialSearch }) {
   };
 
   const handleVoteDownClick = (search) => {
-    console.log('vote up', search.id);
+    console.log('vote down', search.id);
     if (!logic.isUserLoggedIn()) {
       navigate('/login');
       return;

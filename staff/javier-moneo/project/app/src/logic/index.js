@@ -22,6 +22,7 @@ import retrieveSearchById from './retrieveSearchById';
 import createComment from './createComment';
 import retrieveCommentsBySearchId from './retrieveCommentsBySearchId';
 import reportComment from './reportComment';
+import voteComment from './voteComment';
 
 const logic = {
   createSearch,
@@ -48,6 +49,7 @@ const logic = {
   reportComment,
   retrieveCommentsBySearchId,
   voteSearch,
+  voteComment,
 };
 
 export default logic;

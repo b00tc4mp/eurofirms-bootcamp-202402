@@ -34,6 +34,7 @@ import reportUserRoutes from './routes/reportUser.routes.js';
 import reportTagRoutes from './routes/reportTag.routes.js';
 import reportCommentRoutes from './routes/reportComment.routes.js';
 import voteSearchRoutes from './routes/voteSearch.routes.js';
+import voteCommentRoutes from './routes/voteComment.routes.js';
 import commentRoutes from './routes/comment.routes.js';
 
 const app = express();
@@ -85,6 +86,7 @@ app.use('/api/reportUsers', reportUserRoutes);
 app.use('/api/reportTags', reportTagRoutes);
 app.use('/api/reportComments', reportCommentRoutes);
 app.use('/api/voteSearches', voteSearchRoutes);
+app.use('/api/voteComments', voteCommentRoutes);
 app.use('/api/comments', commentRoutes);
 
 export default app;

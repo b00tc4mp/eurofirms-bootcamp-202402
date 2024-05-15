@@ -322,7 +322,7 @@ VoteComment
 - comment (Comment.id, required)
 - edition (Edition.id, required)
 - tag (tag.id, required)
-- searcher (tag.id, required)
+- searcher (Searcher.id, required)
 - searchType (searchType.id, required)
 - search (Search.id, required)
 - user (User.id, required)
