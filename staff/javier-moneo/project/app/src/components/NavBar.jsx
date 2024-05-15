@@ -6,7 +6,7 @@ import {
   XMarkIcon,
   UserCircleIcon,
 } from '@heroicons/react/24/outline';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import logic from '../logic';
 
 const navigation = [
@@ -65,7 +65,7 @@ export default function NavBar() {
                 </div>
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
-                    {navigation.map((item) => (
+                    {/* {navigation.map((item) => (
                       <a
                         key={item.name}
                         href={item.href}
@@ -79,7 +79,19 @@ export default function NavBar() {
                       >
                         {item.name}
                       </a>
-                    ))}
+                    ))} */}
+                    <Link
+                      to="/"
+                      className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
+                    >
+                      Home
+                    </Link>
+                    <Link
+                      to="/dashboard"
+                      className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
+                    >
+                      Dashboard
+                    </Link>
                   </div>
                 </div>
               </div>

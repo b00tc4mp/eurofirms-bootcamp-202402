@@ -8,6 +8,7 @@ import AppLayout from './AppLayout';
 import Comments from './pages/Comments';
 import EditionsList from './pages/EditionsList';
 import NewSearches from './pages/NewSearches';
+import Dashboard from './pages/Dashboard';
 
 function App() {
   const navigate = useNavigate();
@@ -78,6 +79,8 @@ function App() {
           />
           {/* COMMENTS */}
           <Route path="/comments/:urlSearchId" element={<Comments />} />
+          {/* DASHBOARD */}
+          <Route path="/dashboard" element={<Dashboard />} />
         </Route>
       </Routes>
     </>
