@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useSearchParams } from 'react-router-dom';
 import logic from '../logic';
 import { errors } from '../com';
 import SearchComponent from '../components/SearchComponent';
@@ -11,8 +11,11 @@ const { ContentError, MatchError, DuplicityError, RangeError, TypeError } =
 
 export default function Comments() {
   const { urlSearchId } = useParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const [search, setSearch] = useState(null);
   const [refreshTimestap, setRefreshTimestamp] = useState(null);
+  const [limit, setLimit] = useState(10);
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
     logic
@@ -24,6 +27,11 @@ export default function Comments() {
         errorHandler(error);
       });
   }, [urlSearchId]);
+
+  useEffect(() => {
+    setLimit(searchParams.get('limit'));
+    setPage(searchParams.get('page'));
+  }, [searchParams]);
 
   const errorHandler = (error) => {
     console.error(error.message);
@@ -53,8 +61,11 @@ export default function Comments() {
         />
         <CommentsListComponent
           initialSearch={search}
+          initialLimit={limit}
+          initialPage={page}
           refreshTimestap={refreshTimestap}
         />
+
         <Link
           to={`/`}
           className="w-full block text-center mt-10 rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"

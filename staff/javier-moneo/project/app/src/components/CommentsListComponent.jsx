@@ -5,30 +5,33 @@ import { errors } from '../com';
 import SearchComponent from '../components/SearchComponent';
 import AddSearchComment from '../components/AddSearchComment';
 import CommentComponent from './CommentComponent';
+import PaginationComments from './PaginationComments';
 
 const { ContentError, MatchError, DuplicityError, RangeError, TypeError } =
   errors;
 
 export default function CommentsListComponent({
   initialSearch,
+  initialLimit,
+  initialPage,
   refreshTimestap,
 }) {
-  const [comments, setComments] = useState(null);
+  const [commentsPaginated, setCommentsPaginated] = useState(null);
 
   useEffect(() => {
     if (initialSearch) {
       // console.log(initialSearch);
       logic
-        .retrieveCommentsBySearchId(initialSearch.id)
+        .retrieveCommentsBySearchId(initialSearch.id, initialLimit, initialPage)
         .then((commentsRetrieved) => {
           console.log(commentsRetrieved);
-          setComments(commentsRetrieved);
+          setCommentsPaginated(commentsRetrieved);
         })
         .catch((error) => {
           errorHandler(error);
         });
     }
-  }, [initialSearch, refreshTimestap]);
+  }, [initialSearch, initialLimit, initialPage, refreshTimestap]);
 
   const errorHandler = (error) => {
     console.error(error.message);
@@ -52,10 +55,16 @@ export default function CommentsListComponent({
     <>
       <div className="bg-amber-100 p-1 my-1  rounded shadow">
         Comments:
-        {comments &&
-          comments.map((comment) => (
+        {commentsPaginated &&
+          commentsPaginated.docs.map((comment) => (
             <CommentComponent initialComment={comment} key={comment.id} />
           ))}
+        {commentsPaginated && (
+          <PaginationComments
+            initialSearch={initialSearch}
+            initialCommentsPaginated={commentsPaginated}
+          />
+        )}
       </div>
     </>
   );

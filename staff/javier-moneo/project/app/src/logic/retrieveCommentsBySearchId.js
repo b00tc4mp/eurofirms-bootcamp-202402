@@ -2,12 +2,18 @@ import { validate, errors } from '../com';
 
 const { SystemError } = errors;
 
-function retrieveCommentsBySearchId(searchId) {
+function retrieveCommentsBySearchId(searchId, limit, page) {
   validate.id(searchId);
+  console.log({ limit, page });
 
-  return fetch(`${import.meta.env.VITE_API_URL}/comments/${searchId}`, {
-    method: 'GET',
-  })
+  return fetch(
+    `${
+      import.meta.env.VITE_API_URL
+    }/comments/${searchId}?limit=${limit}&page=${page}`,
+    {
+      method: 'GET',
+    }
+  )
     .catch((error) => {
       throw new Error(error.message);
     })
