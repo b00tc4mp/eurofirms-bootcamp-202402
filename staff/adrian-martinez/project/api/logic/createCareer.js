@@ -8,7 +8,7 @@ function createCareer(studentUserId, title, description, certification) {
     validate.id(studentUserId, "userId");
     validate.text(title);
     validate.text(description);
-    validate.url(certification)
+    validate.url(certification);
 
     return User.findById(studentUserId)
         .catch(error => { throw new SystemError(error.message) })

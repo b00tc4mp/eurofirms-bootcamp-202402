@@ -62,6 +62,10 @@ const subject = new Schema ({
       required: true,
       ref: "Career" //Campo que vincula los post de un usuario
     },
+    title: {
+      type: String,
+      required: true
+    },
     score: {
       type: Number,
       required: false
@@ -95,13 +99,19 @@ const offer = new Schema ({
         required: false
     },
     publishDate: {
-        type: Date,
+        type: String,
         required: true
     },
     expirationDate: {
         type: Date,
-        required: true
-    }
+        required: false
+    },
+    candidates: [
+      {
+        type: ObjectId,
+        ref: "User"
+      }
+    ]
 })
 
 const User = model("user", user);

@@ -46,9 +46,16 @@ function validateActividad(activity){
 }
 
 function validateText(text){
-    if(typeof text !== "string") throw new TypeError("activity is not string");
+    if(typeof text !== "string") throw new TypeError("text is not string");
 }
 
+function validateSalary(salary){
+    if(typeof salary !== "number") throw new TypeError("salary is not a number");
+}
+
+function validateScore(score){
+    if(typeof score !== "number") throw new TypeError("age is not a number");
+}
 
 function validateId(id, explain = "id") {
 
@@ -96,7 +103,9 @@ const validate = {
     url: validateUrl,
     token: validateToken,
     id: validateId,
-    text: validateText
+    text: validateText,
+    score: validateScore,
+    salary: validateSalary
 }
 
 export default validate

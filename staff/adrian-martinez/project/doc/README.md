@@ -97,6 +97,7 @@ Career
 Subject
 - id (auto)
 - career (Career.id, required)
+- title (string)
 - score (number, optional)
 - comment (string, optional)
 
@@ -108,5 +109,6 @@ Offer
 - minSalary (number, required)
 - maxSalary (number, optional)
 - publishDate (date, required)
-- expirationDate (date, requried)
+- expirationDate (date, requeried)
+- candidates (array, optional)
 
