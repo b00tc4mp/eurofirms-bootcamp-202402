@@ -121,6 +121,7 @@ export const createSearch = async (req, res) => {
         break;
       case 'x':
         url.searchParams.append('q', queryTrimed);
+        break;
       default:
         console.error(`Sorry no searcher combination exists.`);
         throw new MatchError(`Sorry no searcher combination exists.`);
