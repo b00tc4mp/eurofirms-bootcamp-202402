@@ -11,7 +11,7 @@ function modifyExercise(exerciseId, title, image, video, description) {
     validate.description(description, 'description')
 
     return fetch(`${import.meta.env.VITE_API_URL}/exercises/${exerciseId}`, {
-        method: 'POST',
+        method: 'PATCH',
         headers: {
             Authorization: `Bearer ${sessionStorage.token}`,
             'Content-type': 'application/json'

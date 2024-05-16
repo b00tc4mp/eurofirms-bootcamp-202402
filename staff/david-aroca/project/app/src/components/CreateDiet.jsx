@@ -1,6 +1,6 @@
 import logic from "../logic";
 
-function createDiet({ onCancelClick, onDietCreated }) {
+function CreateDiet({ onCancelClick, onDietCreated }) {
 
     const handleCancelClick = () => onCancelClick();
 
@@ -50,4 +50,4 @@ function createDiet({ onCancelClick, onDietCreated }) {
     );
 }
 
-export default createDiet;
+export default CreateDiet;

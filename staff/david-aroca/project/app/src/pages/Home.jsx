@@ -6,7 +6,7 @@ import logic from "../logic"
 
 // importacion de el componente 
 import Measures from "../components/Measures"
-import Routine from "../components/Routine"
+import Exercises from "../components/Exercises"
 import Diets from "../components/Diets"
 // import search from "../components/Search"
 
@@ -68,7 +68,7 @@ function Home({ onUserLoggedOut }) {
     }
 
     const handleRoutineNavigate = () => {
-        navigate('/routine')
+        navigate('/routines')
 
     }
 
@@ -88,7 +88,7 @@ function Home({ onUserLoggedOut }) {
         <Routes>
             <Route path="/measurements" element={<Measures />} />
             <Route path="/diets" element={<Diets />} />
-            <Route path="/routine" element={<Routine />} />
+            <Route path="/routines" element={<Exercises />} />
             {/* <Route path="/" element={<HomeContent />} /> */}
             {/* no puedo tener contenido en home sin rutas a excepcion del footer y el header */}
             {/* <TODO></TODO> */}

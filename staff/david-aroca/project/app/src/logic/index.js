@@ -18,7 +18,7 @@ import removeExercise from "./removeExercise"
 import removeMeasurement from "./removeMeasurement"
 
 import retrieveDiet from "./retrieveDiet"
-import retrieveExercises from "./retrieveExercise"
+import retrieveExercises from "./retrieveExercises"
 import retrieveMeasurement from "./retrieveMeasurement"
 
 const logic = {

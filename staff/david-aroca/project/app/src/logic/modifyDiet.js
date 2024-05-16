@@ -10,8 +10,8 @@ function modifyDiet(dietId, title, image, video, description) {
     validate.video(video, 'video')
     validate.description(description, 'description')
 
-    return fetch(`${import.meta.env.VITE_API_URL}/diets${dietId}`, {
-        method: 'POST',
+    return fetch(`${import.meta.env.VITE_API_URL}/diets/${dietId}`, {
+        method: 'PATCH',
         headers: {
             Authorization: `Bearer ${sessionStorage.token}`,
             'Content-type': 'application/json'
