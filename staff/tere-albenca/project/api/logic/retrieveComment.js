@@ -30,6 +30,7 @@ function retrieveComment(userId, workId, commentId) {
 
                             delete comment.teacher._id
 
+                            comment.work = comment.work.toString()
 
                             return comment
                         })

@@ -2,8 +2,6 @@ import logic from "../logic";
 import Form from "../components/Form";
 import Button from "../components/Button";
 import Input from "../components/Input";
-import Span from "../components/Span"
-import Label from "../components/Label"
 import Hone from "../components/Hone"
 import { errors } from "com"
 import { useState } from "react";

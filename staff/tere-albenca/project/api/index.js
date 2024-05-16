@@ -432,6 +432,46 @@ mongoose.connect(MONGO_URL)
                 const { workId, commentId } = req.params
 
                 logic.retrieveComment(userId, workId, commentId)
+                    .then(comment => res.status(200).json(comment))
+                    .catch(error => {
+                        let status = 500
+
+                        if (error instanceof MatchError)
+                            status = 401
+
+                        res.status(status).json({ error: error.constructor.name, message: error.message })
+                    })
+
+            } catch (error) {
+                let status = 500
+
+                if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
+                    status = 400
+
+                else if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError) {
+                    status = 401
+
+                    error = new MatchError(error.message)
+                }
+
+                res.status(status).json({ error: error.constructor.name, message: error.message })
+            }
+        })
+
+        //retrieveComments
+
+        server.get('/works/:workId/comments/', (req, res) => {
+            try {
+                const { authorization } = req.headers
+
+                const token = authorization.slice(7)
+
+                const { sub: userId } = jwt.verify(token, JWT_SECRET)
+
+                const { workId } = req.params
+
+
+                logic.retrieveComments(userId, workId)
                     .then(comments => res.status(200).json(comments))
                     .catch(error => {
                         let status = 500
@@ -457,7 +497,6 @@ mongoose.connect(MONGO_URL)
                 res.status(status).json({ error: error.constructor.name, message: error.message })
             }
         })
-
         //update comment
         server.patch('/works/:workId/comments/:commentId', jsonBodyParser, (req, res) => {
             try {
@@ -472,7 +511,7 @@ mongoose.connect(MONGO_URL)
                 const { text } = req.body
 
                 logic.updateComment(userId, workId, commentId, text)
-                    .then(() => res.status(200).send())
+                    .then(() => res.status(204).send())
                     .catch(error => {
                         let status = 500
 
@@ -499,7 +538,6 @@ mongoose.connect(MONGO_URL)
             }
         })
 
-        //TODO
         //searchWork
         server.get('/works/search', (req, res) => {
             try {
@@ -511,8 +549,8 @@ mongoose.connect(MONGO_URL)
 
                 const { sub: userId } = jwt.verify(token, JWT_SECRET)
 
-                logic.searchWork(userId, workId,)
-                    .then(() => res.status(200).send())
+                logic.searchWork(userId, searchQuery)
+                    .then(works => res.status(200).json(works))
                     .catch(error => {
                         let status = 500
 

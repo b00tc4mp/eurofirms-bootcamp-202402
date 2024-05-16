@@ -6,6 +6,7 @@ import registerTeacher from './registerTeacher.js'
 import removeComment from './removeComment.js'
 import removeWork from './removeWork.js'
 import retrieveComment from './retrieveComment.js'
+import retrieveComments from './retrieveComments.js'
 import retrieveWorks from './retrieveWorks.js'
 import retrieveUser from './retrieveUser.js'
 import retrieveUserWorks from './retrieveUserWorks.js'
@@ -22,6 +23,7 @@ const logic = {
     removeComment,
     removeWork,
     retrieveComment,
+    retrieveComments,
     retrieveUser,
     retrieveWorks,
     retrieveUserWorks,

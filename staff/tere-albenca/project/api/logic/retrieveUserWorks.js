@@ -12,7 +12,7 @@ function retrieveUserWorks(userId, targetUserId) {
         .then(user => {
             if (!user) throw new MatchError('userId not found')
 
-            return Work.find({ author: targetUserId }).select('-__v').sort({ date: -1 }).populate('author', 'name').lean()
+            return Work.find({ author: targetUserId }).select('-__v').populate('author', 'name').lean()
                 .catch(error => { throw new SystemError(error.message) })
                 .then(works => {
                     if (works.length === 0) throw new MatchError('Firstly upload work please')
@@ -29,7 +29,7 @@ function retrieveUserWorks(userId, targetUserId) {
                         }
                     })
 
-                    return works
+                    return works.reverse()
                 })
         })
 }

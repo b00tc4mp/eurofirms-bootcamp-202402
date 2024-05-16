@@ -1,0 +1,1 @@
+curl -X GET -H 'authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NjNiM2ZkYTIyMzJmNjI3NjMxZTExMGYiLCJyb2xlIjoidGVhY2hlciIsImlhdCI6MTcxNTMyMjc0NiwiZXhwIjoxNzE1MzI2MzQ2fQ.wMZENTdfrd_6G8ApACXuN3z0K3CZo-RtApb1lo4pO1c' -d '{"title":"exercise three"}'http://localhost:9050/works/exercise -v

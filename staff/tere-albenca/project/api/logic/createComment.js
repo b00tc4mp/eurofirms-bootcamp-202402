@@ -12,7 +12,10 @@ function createComment(userId, workId, text) {
         .catch(error => { throw new SystemError(error.message) })
         .then(user => {
             if (!user)
-                throw new MatchError('teacher not found')
+                throw new MatchError('user not found')
+
+            if (user.role !== 'teacher')
+                throw new MatchError('user is not a teacher')
 
             return Work.findById(workId)
                 .catch(error => { throw new SystemError(error.message) })
