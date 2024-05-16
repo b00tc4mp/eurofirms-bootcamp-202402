@@ -56,12 +56,12 @@ function Home(props) {
             </div>
             <div id="area-buscador">
                 <form className="form">
-                    <label htmlFor="ciudad">Ciudad: </label>
+                    {/* <label htmlFor="ciudad">Ciudad: </label>
                     <input className="input" type="text" id="ciudad" placeholder="Ejemplo: Coruña"/>
 
                     &nbsp;<label htmlFor="ciudad">Área profesional: </label>
-                    <input className="input" type="text" id="ciudad" placeholder="Ejemplo: Desarrollo Web"/>
-                    <button className="buscar" onClick={props.onClickListarUsers}>Buscar</button>
+                    <input className="input" type="text" id="ciudad" placeholder="Ejemplo: Desarrollo Web"/> */}
+                    <button className="buscar" onClick={props.onClickListarUsers}>Buscar ofertas</button>
                 </form>
             </div>
         </header>
@@ -78,10 +78,18 @@ function Home(props) {
                     }
                     
                 </section>
+                <section>
+                    <div className="mr-40">
+                        <button className="button" onClick="">Añadir estudios ➕</button>
+                    </div>
+                </section>
+               {/*  <CareersStudent refreshStamp={ refreshStamp }/>
+
+            {view === 'create-post' && <CreateCareer onCancelClick={handleCreatePostCancelClick} onPostCreated={handlePostCreated} />} */}
             </container>
         </main>
-        <footer>
-            
+        <footer className="footer">
+            <button className="button mr-60" onClick={props.onClickInicio}>Página principal 🏚️</button>
         </footer>
     </>
     )

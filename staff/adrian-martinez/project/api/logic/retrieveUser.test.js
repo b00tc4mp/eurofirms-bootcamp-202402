@@ -1,5 +1,5 @@
 import mongoose from "mongoose"
-
+import retrieveUser from "./retrieveUser.js";
 mongoose.connect("mongodb://127.0.0.1:27017/FormativeLife")
     .then(() => {
         try{

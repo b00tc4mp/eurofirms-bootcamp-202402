@@ -7,6 +7,7 @@ import getLoggedInUserRole from "./getLoggedInUserRole"
 import isUserLoggedIn from "./isUserLoggedIn"
 import retrieveUser from "./retrieveUser"
 import retrieveUsers from "./retrieveUsers"
+import retrieveCareersFromStudent from "./retrieveCareersFromStudent"
 
 const logic = {
     registerStudent,
@@ -17,6 +18,7 @@ const logic = {
     isUserLoggedIn,
     retrieveUser,
     retrieveUsers,
+    retrieveCareersFromStudent,
     logoutUser
 }
 

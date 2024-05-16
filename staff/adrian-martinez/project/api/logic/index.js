@@ -5,6 +5,8 @@ import retrieveUser from "./retrieveUser.js";
 import updateUser from "./updateUser.js";
 import deleteUser from "./deleteUser.js";
 import retrieveUsers from "./retrieveUsers.js";
+import retrieveOffers from "./retrieveOffers.js";
+import retrieveCareersFromStudent from "../../app/src/logic/retrieveCareersFromStudent.js";
 
 const logic = {
     registerStudent,
@@ -13,7 +15,9 @@ const logic = {
     retrieveUser,
     updateUser,
     deleteUser,
-    retrieveUsers
+    retrieveUsers,
+    retrieveOffers,
+    retrieveCareersFromStudent
 }
 
 export default logic;

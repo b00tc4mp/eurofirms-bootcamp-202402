@@ -19,6 +19,7 @@ function retrieveUsers() {
 
                         return user;
                     })
+                    return users;
                 })
         })
 }

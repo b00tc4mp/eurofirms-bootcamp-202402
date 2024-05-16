@@ -32,7 +32,7 @@ mongoose.connect(MONGO_URL)
 
         //Le pasamos los datos del registro a la ruta de la API si se validó todo correctamente
         //TEST PASADO
-        server.post("/users/students", jsonBodyParser, (req, res) => {
+        server.post("/users", jsonBodyParser, (req, res) => {
             try {
                 const { name, surnames, age, email, password } = req.body;
 
@@ -58,7 +58,7 @@ mongoose.connect(MONGO_URL)
             }
         })
         //TEST PASADO
-        server.post("/users/companies", jsonBodyParser, (req, res) => {
+        server.post("/users", jsonBodyParser, (req, res) => {
             try {
                 const { name, address, activity, email, password } = req.body;
 
@@ -175,8 +175,42 @@ mongoose.connect(MONGO_URL)
     }
   })
 
-        //TODO
-        server.get('/users/:targetUserId', jsonBodyParser, (req, res) => {
+  server.get('/users', (req, res) => {
+    try {
+
+        const { authorization } = req.headers
+
+        const token = authorization.slice(7)
+
+        const { sub: userId } = jwt.verify(token, JWT_SECRET)
+
+        logic.retrieveUser(userId)
+            .then(user => res.json(user))
+            .catch(error => {
+
+                let status = 500;
+
+                if (error instanceof MatchError) {
+
+                    status = 404;
+                }
+
+                res.status(status).json({ error: error.constructor.name, message: error.message });
+            })
+            } catch (error) {
+
+                let status = 500;
+
+                if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError) {
+
+                    status = 400
+                }
+
+                res.status(status).json({ error: error.constructor.name, message: error.message })
+            }
+        })
+        //TEST PASADO
+        server.get('/users/:targetUserId', (req, res) => {
             try {
 
                 const { authorization } = req.headers
@@ -189,6 +223,80 @@ mongoose.connect(MONGO_URL)
 
                 logic.retrieveUser(userId, targetUserId)
                     .then(user => res.json(user))
+                    .catch(error => {
+
+                        let status = 500;
+
+                        if (error instanceof MatchError) {
+
+                            status = 404;
+                        }
+
+                        res.status(status).json({ error: error.constructor.name, message: error.message });
+                    })
+            } catch (error) {
+
+                let status = 500;
+
+                if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError) {
+
+                    status = 400
+                }
+
+                res.status(status).json({ error: error.constructor.name, message: error.message })
+            }
+        })
+
+        server.get('/carrers/:targetUserId', (req, res) => {
+            try {
+
+                const { authorization } = req.headers
+
+                const token = authorization.slice(7)
+
+                const { sub: userId } = jwt.verify(token, JWT_SECRET)
+
+                const { targetUserId } = req.params
+
+                logic.retrieveCareersFromStudent(userId)
+                    .then(user => res.json(user))
+                    .catch(error => {
+
+                        let status = 500;
+
+                        if (error instanceof MatchError) {
+
+                            status = 404;
+                        }
+
+                        res.status(status).json({ error: error.constructor.name, message: error.message });
+                    })
+            } catch (error) {
+
+                let status = 500;
+
+                if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError) {
+
+                    status = 400
+                }
+
+                res.status(status).json({ error: error.constructor.name, message: error.message })
+            }
+        })
+
+        //TODO Mostrar offers de la cada company
+
+        server.get('/offers/:targetUserId', (req, res) => {
+            try {
+
+                const { authorization } = req.headers
+
+                const token = authorization.slice(7)
+
+                const { sub: userId } = jwt.verify(token, JWT_SECRET)
+
+                logic.retrieveOffers(userId)
+                    .then(offers => res.json(offers))
                     .catch(error => {
 
                         let status = 500;

@@ -114,10 +114,10 @@ const offer = new Schema ({
     ]
 })
 
-const User = model("user", user);
-const Career = model("career", career);
-const Subject = model("subject", subject);
-const Offer = model("offer", offer);
+const User = model("User", user);
+const Career = model("Career", career);
+const Subject = model("Subject", subject);
+const Offer = model("Offer", offer);
 
 //Bucket
 export {

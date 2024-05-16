@@ -56,12 +56,7 @@ function HomeEmpresa(props) {
             </div>
             <div id="area-buscador">
                 <form className="form">
-                    <label htmlFor="ciudad">Ciudad: </label>
-                    <input className="input" type="text" id="ciudad" placeholder="Ejemplo: Coruña"/>
-
-                    &nbsp;<label htmlFor="ciudad">Área profesional: </label>
-                    <input className="input" type="text" id="ciudad" placeholder="Ejemplo: Desarrollo Web"/>
-                    <button className="buscar" type="submit">Buscar</button>
+                    <button className="buscar"  onClick={props.onClickListarUsers}>Buscar estudiantes</button>
                 </form>
             </div>
         </header>
