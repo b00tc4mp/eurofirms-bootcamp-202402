@@ -127,7 +127,7 @@ mongoose.connect(MONGO_URL)
 
                 const { title, image, video, text } = req.body
 
-                logic.createPost({ userId, title, image, video,text })
+                logic.createPost({ userId, title, image, video, text })
                     .then(() => res.status(201).send())
                     .catch(error => {
                         let status = 500
@@ -291,4 +291,115 @@ mongoose.connect(MONGO_URL)
                 res.status(status).json({ error: error.constructor.name, message: error.message })
             }
         })
+
+        //retrieveComments
+        server.get('/posts/:postId/comments', (req, res) => {
+
+            const { postId } = req.params
+            try {
+
+                logic.retrieveComments(postId)
+                    .then(commentsretrieveComments => res.json(commentsretrieveComments))
+                    .catch(error => {
+                        let status = 500
+
+                        if (error instanceof MatchError)
+                            status = 404
+
+                        res.status(status).json({ error: error.constructor.name, message: error.message })
+                    })
+            } catch (error) {
+                let status = 500
+
+                if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
+                    status = 400
+                else if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError) {
+                    status = 401
+
+                    error = new MatchError(error.message)
+                }
+
+                res.status(status).json({ error: error.constructor.name, message: error.message })
+            }
+        })
+
+        //removeComment
+        server.delete('/posts/:postId/comments/:commentId', (req, res) => {
+            try {
+                const { authorization } = req.headers
+
+                const token = authorization.slice(7)
+
+                const { sub: userId } = jwt.verify(token, JWT_SECRET)
+
+                const { postId, commentId } = req.params
+
+                logic.removeComment(userId, postId, commentId)
+                    .then(() => res.status(204).send())
+                    .catch(error => {
+                        let status = 500
+
+                        if (error instanceof MatchError)
+                            status = 401
+
+                        res.status(status).json({ error: error.constructor.name, message: error.message })
+                    })
+
+            } catch (error) {
+                let status = 500
+
+                if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
+                    status = 400
+
+                else if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError) {
+                    status = 401
+
+                    error = new MatchError(error.message)
+                }
+
+                res.status(status).json({ error: error.constructor.name, message: error.message })
+            }
+        })
+        
+        //modifyComment
+        server.patch('/posts/:postId/comments/:commentId', jsonBodyParser, (req, res) => {
+            try {
+                const { authorization } = req.headers
+
+                const token = authorization.slice(7)
+
+                const { sub: userId } = jwt.verify(token, JWT_SECRET)
+
+                const { postId, commentId } = req.params
+
+                const { text } = req.body
+
+                logic.modifyComment(userId, postId, commentId, text)
+                    .then(() => res.status(200).send())
+                    .catch(error => {
+                        let status = 500
+
+                        if (error instanceof MatchError)
+                            status = 401
+
+                        res.status(status).json({ error: error.constructor.name, message: error.message })
+                    })
+
+            } catch (error) {
+                let status = 500
+
+                if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
+                    status = 400
+
+                else if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError) {
+                    status = 401
+
+                    error = new MatchError(error.message)
+                }
+
+
+                res.status(status).json({ error: error.constructor.name, message: error.message })
+            }
+        })
+
     })
