@@ -84,7 +84,6 @@ function Home({ onUserLoggedOut }) {
             </nav>
         </header>
 
-
         <Routes>
             <Route path="/measurements" element={<Measures />} />
             <Route path="/diets" element={<Diets />} />

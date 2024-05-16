@@ -41,7 +41,7 @@ function CreateDiet({ onCancelClick, onDietCreated }) {
                 <input className="border-b-2 border-black" type="text" id="video" />
 
                 <label htmlFor="description">Description</label>
-                <input className="border-b-2 border-black" type="text" id="description" />
+                <textarea className="border-b-2 border-black mb-2 h-24 resize-none font-serif" rows="4" cols="50" />
 
                 <button className="rounded-xl" type="submit">Create</button>
             </form>
