@@ -23,8 +23,10 @@ import createComment from './createComment';
 import retrieveCommentsBySearchId from './retrieveCommentsBySearchId';
 import reportComment from './reportComment';
 import voteComment from './voteComment';
+import assignAllRolesToUser from './assignAllRolesToUser';
 
 const logic = {
+  assignAllRolesToUser,
   createSearch,
   createComment,
   isUserLoggedIn,

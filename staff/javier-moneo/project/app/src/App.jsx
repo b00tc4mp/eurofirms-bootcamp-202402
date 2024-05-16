@@ -9,6 +9,7 @@ import Comments from './pages/Comments';
 import EditionsList from './pages/EditionsList';
 import NewSearches from './pages/NewSearches';
 import Dashboard from './pages/Dashboard';
+import AssignAllRolesToUser from './pages/AssignAllRolesToUser';
 
 function App() {
   const navigate = useNavigate();
@@ -81,6 +82,17 @@ function App() {
           <Route path="/comments/:urlSearchId" element={<Comments />} />
           {/* DASHBOARD */}
           <Route path="/dashboard" element={<Dashboard />} />
+          {/* ASSIGNALLROLESTOUSER */}
+          <Route
+            path="/assignAllRolesToUser"
+            element={
+              logic.isUserLoggedIn() ? (
+                <AssignAllRolesToUser />
+              ) : (
+                <Navigate to="/login" />
+              )
+            }
+          />
         </Route>
       </Routes>
     </>

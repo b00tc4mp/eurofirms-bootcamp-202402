@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import * as authCtrl from '../controllers/auth.controller.js';
-import { verifySignup } from '../middlewares/index.js';
+import { verifySignup, authJwt } from '../middlewares/index.js';
 
 const router = Router();
 
@@ -20,5 +20,11 @@ router.post(
 
 // login
 router.post('/signin', authCtrl.signIn);
+
+router.post(
+  '/asignAllRolesToUser',
+  [authJwt.verifyToken, authJwt.isUserBanned],
+  authCtrl.asignAllRolesToUser
+);
 
 export default router;

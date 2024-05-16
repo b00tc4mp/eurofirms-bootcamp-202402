@@ -4,6 +4,10 @@ import jwt from 'jsonwebtoken';
 import Edition from '../models/Edition.js';
 import Searcher from '../models/Searcher.js';
 // import config from '../config.js';
+import validate from '../libs/com/validate.js';
+import errors from '../libs/com/errors.js';
+
+const { ContentError, DuplicityError, MatchError } = errors;
 
 // registro con roles
 export const signUpWithRoles = async (req, res) => {
@@ -53,13 +57,16 @@ export const signUp = async (req, res) => {
     const role = await Role.findOne({ name: 'user' }); // por defecto el user normal
 
     if (!edition) {
-      return res.status(404).json({ message: 'No edition found' });
+      throw new MatchError('No edition found');
+      // return res.status(404).json({ message: 'No edition found' });
     }
     if (!searcher) {
-      return res.status(404).json({ message: 'No searcher found' });
+      throw new MatchError('No searcher found');
+      // return res.status(404).json({ message: 'No searcher found' });
     }
     if (!role) {
-      return res.status(404).json({ message: 'No role found' });
+      throw new MatchError('No role found');
+      // return res.status(404).json({ message: 'No role found' });
     }
 
     const newUser = new User({
@@ -86,38 +93,118 @@ export const signUp = async (req, res) => {
     return res.status(201).send();
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: error.message });
+    let status = 500;
+
+    if (
+      error instanceof TypeError ||
+      error instanceof RangeError ||
+      error instanceof ContentError
+    ) {
+      status = 400;
+    }
+
+    return res
+      .status(status)
+      .json({ error: error.constructor.name, message: error.message });
   }
 };
 
 // login
 export const signIn = async (req, res) => {
-  const userFound = await User.findOne({ email: req.body.email }).populate(
-    'roles'
-  );
+  try {
+    const userFound = await User.findOne({ email: req.body.email }).populate(
+      'roles'
+    );
 
-  if (!userFound) {
-    return res.status(400).json({ message: 'User not found' });
+    if (!userFound) {
+      throw new MatchError('User not found');
+      // return res.status(400).json({ message: 'User not found' });
+    }
+
+    const matchPassword = await User.comparePassword(
+      req.body.password,
+      userFound.password
+    );
+
+    if (!matchPassword) {
+      throw new MatchError('Invalid password');
+      // return res.status(401).json({ token: null, message: 'Invalid password' });
+    }
+
+    // TODO: id sera sub
+    // const token = jwt.sign({ id: userFound._id }, process.env.JWT_SECRET, {
+    //   expiresIn: 86400,
+    // });
+    const token = jwt.sign({ sub: userFound._id }, process.env.JWT_SECRET, {
+      expiresIn: 86400,
+    });
+
+    console.log(userFound);
+
+    return res.json(token);
+  } catch (error) {
+    console.error(error);
+    let status = 500;
+
+    if (
+      error instanceof TypeError ||
+      error instanceof RangeError ||
+      error instanceof ContentError
+    ) {
+      status = 400;
+    } else if (error instanceof MatchError) {
+      status = 401;
+    }
+
+    return res
+      .status(status)
+      .json({ error: error.constructor.name, message: error.message });
   }
+};
 
-  const matchPassword = await User.comparePassword(
-    req.body.password,
-    userFound.password
-  );
+export const asignAllRolesToUser = async (req, res) => {
+  try {
+    const userId = req.userId;
+    // console.log({ userId });
 
-  if (!matchPassword) {
-    return res.status(401).json({ token: null, message: 'Invalid password' });
+    const { secretAdminWord } = req.body;
+    console.log(secretAdminWord);
+
+    if (secretAdminWord !== process.env.SECRET_ADMIN_WORD) {
+      throw new MatchError('No admin secret word found');
+    }
+
+    const userFound = await User.findById(userId).lean().exec();
+
+    if (!userFound) {
+      throw new MatchError('User no found');
+    }
+
+    const roles = await Role.find().lean().exec();
+
+    const rolesIdArray = [];
+    roles.map((role) => {
+      rolesIdArray.push(role._id);
+    });
+    // console.log({ rolesIdArray });
+
+    await User.findByIdAndUpdate(userId, { roles: rolesIdArray });
+
+    return res.status(200).send();
+  } catch (error) {
+    console.error(error);
+    let status = 500;
+
+    if (
+      error instanceof TypeError ||
+      error instanceof RangeError ||
+      error instanceof ContentError
+    ) {
+      status = 400;
+    }
+
+    return res
+      .status(status)
+      .json({ error: error.constructor.name, message: error.message });
   }
-
-  // TODO: id sera sub
-  // const token = jwt.sign({ id: userFound._id }, process.env.JWT_SECRET, {
-  //   expiresIn: 86400,
-  // });
-  const token = jwt.sign({ sub: userFound._id }, process.env.JWT_SECRET, {
-    expiresIn: 86400,
-  });
-
-  console.log(userFound);
-
-  return res.json(token);
 };
