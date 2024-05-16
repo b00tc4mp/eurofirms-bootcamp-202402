@@ -2,6 +2,17 @@ import jwt from 'jsonwebtoken';
 import User from '../models/User.js';
 import Role from '../models/Role.js';
 
+import errors from '../libs/com/errors.js';
+
+const {
+  ContentError,
+  DuplicityError,
+  MatchError,
+  RangeError,
+  TypeError,
+  SystemError,
+} = errors;
+
 /**
  * Para verificar en rutas si el token y el usuario existen.
  * Es el primer middleware que se debe ejecutar
@@ -73,19 +84,38 @@ export const isUserBanned = async (req, res, next) => {
 };
 
 export const isModerator = async (req, res, next) => {
-  const user = await User.findById(req.userId); // porque hemos pasado en verifyToken el userId
+  try {
+    const user = await User.findById(req.userId); // porque hemos pasado en verifyToken el userId
 
-  const roles = await Role.find({ _id: { $in: user.roles } });
-  console.log(roles);
+    const roles = await Role.find({ _id: { $in: user.roles } });
+    console.log(roles);
 
-  for (let i = 0; i < roles.length; i++) {
-    if (roles[i].name === 'moderator') {
-      next();
-      return;
+    for (let i = 0; i < roles.length; i++) {
+      if (roles[i].name === 'moderator') {
+        next();
+        return;
+      }
     }
-  }
 
-  return res.status(403).json({ message: 'Require Moderator role' });
+    // return res.status(403).json({ message: 'Require Moderator role' });
+    throw new SystemError('Require Moderator role');
+  } catch (error) {
+    console.error(error);
+    let status = 500;
+
+    if (
+      error instanceof TypeError ||
+      error instanceof RangeError ||
+      error instanceof ContentError ||
+      error instanceof DuplicityError
+    ) {
+      status = 400;
+    }
+
+    return res
+      .status(status)
+      .json({ error: error.constructor.name, message: error.message });
+  }
 };
 
 export const isAdmin = async (req, res, next) => {

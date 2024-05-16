@@ -24,6 +24,7 @@ import retrieveCommentsBySearchId from './retrieveCommentsBySearchId';
 import reportComment from './reportComment';
 import voteComment from './voteComment';
 import assignAllRolesToUser from './assignAllRolesToUser';
+import retrieveReportedSearchesPaginated from './retrieveReportedSearchesPaginated';
 
 const logic = {
   assignAllRolesToUser,
@@ -52,6 +53,7 @@ const logic = {
   retrieveCommentsBySearchId,
   voteSearch,
   voteComment,
+  retrieveReportedSearchesPaginated,
 };
 
 export default logic;

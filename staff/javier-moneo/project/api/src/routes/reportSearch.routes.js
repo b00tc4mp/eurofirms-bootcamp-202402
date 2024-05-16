@@ -10,4 +10,10 @@ router.post(
   reportSearchesCtrl.createReport
 );
 
+router.get(
+  '/',
+  [authJwt.verifyToken, authJwt.isUserBanned, authJwt.isModerator],
+  reportSearchesCtrl.getReports
+);
+
 export default router;
