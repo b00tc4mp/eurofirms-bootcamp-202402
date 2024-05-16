@@ -97,7 +97,7 @@ export default function CommentComponent({ initialComment }) {
         </div>
 
         {/* comment */}
-        <div className="bg-amber-200 p-1 my-1  rounded shadow text-sm">
+        <div className="whitespace-pre-line bg-amber-200 p-1 my-1 rounded shadow text-sm">
           <p>{comment.text}</p>
         </div>
 
