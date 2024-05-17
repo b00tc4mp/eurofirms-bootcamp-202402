@@ -10,4 +10,22 @@ router.post(
   reportCommentsCtrl.createReport
 );
 
+router.get(
+  '/',
+  [authJwt.verifyToken, authJwt.isUserBanned, authJwt.isModerator],
+  reportCommentsCtrl.getReports
+);
+
+router.patch(
+  '/removeReport',
+  [authJwt.verifyToken, authJwt.isUserBanned, authJwt.isModerator],
+  reportCommentsCtrl.removeReport
+);
+
+router.patch(
+  '/discardReport',
+  [authJwt.verifyToken, authJwt.isUserBanned, authJwt.isModerator],
+  reportCommentsCtrl.discardReport
+);
+
 export default router;

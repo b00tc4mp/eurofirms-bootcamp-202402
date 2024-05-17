@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams, useSearchParams } from 'react-router-dom';
-import ReportedSearchListComponent from '../components/ReportedSearchListComponent';
+import ReportedCommentListComponent from '../components/ReportedCommentListComponent';
 
-export default function ReportedSearches() {
+export default function ReportedComments() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [refreshTimestap, setRefreshTimestamp] = useState(null);
   const [limit, setLimit] = useState(10);
@@ -21,9 +21,9 @@ export default function ReportedSearches() {
   return (
     <div>
       <h1 className="text-4xl font-bold text-center dark:text-white">
-        Reported Searches
+        Reported Comments
       </h1>
-      <ReportedSearchListComponent
+      <ReportedCommentListComponent
         initialLimit={limit}
         initialPage={page}
         refreshTimestap={refreshTimestap}

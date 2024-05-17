@@ -29,6 +29,7 @@ moderator
 - ban search
 - ban user
 - ban comment
+- ban tag, but not category NoTagged
 
 root
 
