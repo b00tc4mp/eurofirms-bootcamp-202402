@@ -48,7 +48,7 @@ function Bet({ onBetModified, onBetRemoved }) {
 
             const amount = Number(form.amount.value)
 
-            logic.modifyBet(bet.id, amount)//modifyBet
+            logic.modifyBet(bet.id, amount)
                 .then(() => {
                     console.log('Bet modified -> navigate to home')
                     onBetModified()
@@ -77,6 +77,11 @@ function Bet({ onBetModified, onBetRemoved }) {
                         navigate('/')
                         onBetRemoved()
                     })
+                    .catch(error => {
+                        console.error(error)
+
+                        alert(error.message)
+                    })
             }
         } catch (error) {
             console.error(error)
@@ -84,8 +89,7 @@ function Bet({ onBetModified, onBetRemoved }) {
             alert(error.message)
         }
     }
-    //TODO
-    //implement and REMOVE BET
+
     return <>
         {timeStamp && <span>{timeStamp.toString()}</span>}
         {bet ? <section>

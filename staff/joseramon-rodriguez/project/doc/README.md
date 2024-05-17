@@ -78,3 +78,9 @@ Bet
 - player (Player.id, required)
 - user (User.id, requried)
 - amount (number,required,min:1)
+
+Payment
+- id(auto)
+- event(Event.id,required)
+- date(Date, required)
+- amount(Number, required)

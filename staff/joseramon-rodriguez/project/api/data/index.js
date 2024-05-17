@@ -97,14 +97,32 @@ const bet = new Schema({
     }
 })
 
+const payment = new Schema({
+    event: {
+        type: ObjectId,
+        required: true,
+        ref: 'Event'
+    },
+    date: {
+        type: Date,
+        required: true,
+    },
+    amount: {
+        type: Number,
+        required: true
+    }
+})
+
 const User = model('User', user)
 const Player = model('Player', player)
 const Event = model('Event', event)
 const Bet = model('Bet', bet)
+const Payment = model('Payment', payment)
 
 export {
     User,
     Player,
     Event,
-    Bet
+    Bet,
+    Payment
 }
