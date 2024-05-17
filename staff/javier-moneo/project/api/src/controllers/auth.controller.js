@@ -20,6 +20,7 @@ export const signUpWithRoles = async (req, res) => {
     username,
     email,
     password: await User.encryptPassword(password),
+    isBanned: false,
   });
   // console.log(newUser);
 
@@ -76,6 +77,7 @@ export const signUp = async (req, res) => {
       password: await User.encryptPassword(password),
       edition: edition._id,
       searcher: searcher._id,
+      isBanned: false,
     });
     newUser.roles = [role._id];
 

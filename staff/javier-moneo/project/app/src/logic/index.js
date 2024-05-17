@@ -25,6 +25,8 @@ import reportComment from './reportComment';
 import voteComment from './voteComment';
 import assignAllRolesToUser from './assignAllRolesToUser';
 import retrieveReportedSearchesPaginated from './retrieveReportedSearchesPaginated';
+import removeReportSeachById from './removeReportSearchById';
+import discardReportSeachById from './discardReportSearchById';
 
 const logic = {
   assignAllRolesToUser,
@@ -54,6 +56,8 @@ const logic = {
   voteSearch,
   voteComment,
   retrieveReportedSearchesPaginated,
+  removeReportSeachById,
+  discardReportSeachById,
 };
 
 export default logic;

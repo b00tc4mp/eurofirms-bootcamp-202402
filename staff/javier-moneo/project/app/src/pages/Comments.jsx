@@ -16,6 +16,7 @@ export default function Comments() {
   const [refreshTimestap, setRefreshTimestamp] = useState(null);
   const [limit, setLimit] = useState(10);
   const [page, setPage] = useState(1);
+  const [isSearchBanned, setIsSearchBanned] = useState(false);
 
   useEffect(() => {
     logic
@@ -24,7 +25,25 @@ export default function Comments() {
         setSearch(searchRetrieved);
       })
       .catch((error) => {
-        errorHandler(error);
+        console.error(error.message);
+
+        let feedback = error.message;
+
+        if (error instanceof ContentError && feedback === 'Search is banned') {
+          setIsSearchBanned(true);
+        }
+
+        if (
+          error instanceof TypeError ||
+          error instanceof RangeError ||
+          error instanceof ContentError
+        )
+          feedback = `${feedback}, please correct it`;
+        else if (error instanceof DuplicityError)
+          feedback = `${feedback}, please try with another user`;
+        else feedback = 'sorry, there was an error, please try again later';
+
+        alert(feedback);
       });
   }, [urlSearchId]);
 
@@ -54,17 +73,30 @@ export default function Comments() {
   return (
     <>
       <div>
-        {search && <SearchComponent initialSearch={search} />}
-        <AddSearchComment
-          initialSearch={search}
-          setRefreshTimestamp={setRefreshTimestamp}
-        />
-        <CommentsListComponent
-          initialSearch={search}
-          initialLimit={limit}
-          initialPage={page}
-          refreshTimestap={refreshTimestap}
-        />
+        {search && (
+          <>
+            <SearchComponent initialSearch={search} />
+            <AddSearchComment
+              initialSearch={search}
+              setRefreshTimestamp={setRefreshTimestamp}
+            />
+            <CommentsListComponent
+              initialSearch={search}
+              initialLimit={limit}
+              initialPage={page}
+              refreshTimestap={refreshTimestap}
+            />
+          </>
+        )}
+        {isSearchBanned && (
+          <>
+            <div>
+              <h1 className="text-4xl font-bold text-center dark:text-white">
+                The search no longer exist
+              </h1>
+            </div>
+          </>
+        )}
 
         <Link
           to={`/`}

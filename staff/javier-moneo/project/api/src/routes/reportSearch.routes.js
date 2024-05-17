@@ -16,4 +16,16 @@ router.get(
   reportSearchesCtrl.getReports
 );
 
+router.patch(
+  '/removeReport',
+  [authJwt.verifyToken, authJwt.isUserBanned, authJwt.isModerator],
+  reportSearchesCtrl.removeReport
+);
+
+router.patch(
+  '/discardReport',
+  [authJwt.verifyToken, authJwt.isUserBanned, authJwt.isModerator],
+  reportSearchesCtrl.discardReport
+);
+
 export default router;

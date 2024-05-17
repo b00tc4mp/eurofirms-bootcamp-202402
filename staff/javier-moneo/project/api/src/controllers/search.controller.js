@@ -136,6 +136,7 @@ export const createSearch = async (req, res) => {
       tag: tagId,
       searcher: searcherId,
       searchType: searchTypeId,
+      isBanned: false,
     });
 
     const searchSaved = await newSearch.save();
@@ -161,72 +162,72 @@ export const createSearch = async (req, res) => {
   }
 };
 
-export const getSearchesByEditionIdAndSearcherId = async (req, res) => {
-  try {
-    const { editionId, searcherId } = req.params;
-    validate.id(editionId);
-    validate.id(searcherId);
+// export const getSearchesByEditionIdAndSearcherId = async (req, res) => {
+//   try {
+//     const { editionId, searcherId } = req.params;
+//     validate.id(editionId);
+//     validate.id(searcherId);
 
-    const searches = await Search.find({
-      edition: editionId,
-      searcher: searcherId,
-    })
-      .populate('user', '_id username')
-      .populate('edition', '_id code name')
-      .populate('tag', '_id name edition')
-      .populate('searcher', '_id name displayName')
-      .populate('searchType', '_id name')
-      .lean()
-      .exec();
+//     const searches = await Search.find({
+//       edition: editionId,
+//       searcher: searcherId,
+//     })
+//       .populate('user', '_id username')
+//       .populate('edition', '_id code name')
+//       .populate('tag', '_id name edition')
+//       .populate('searcher', '_id name displayName')
+//       .populate('searchType', '_id name')
+//       .lean()
+//       .exec();
 
-    if (search._id) {
-      search.id = search._id;
-      delete search._id;
-    }
+//     if (search._id) {
+//       search.id = search._id;
+//       delete search._id;
+//     }
 
-    if (search.user?._id) {
-      search.user.id = search.user._id;
-      delete search.user._id;
-    }
+//     if (search.user?._id) {
+//       search.user.id = search.user._id;
+//       delete search.user._id;
+//     }
 
-    if (search.edition?._id) {
-      search.edition.id = search.edition._id;
-      delete search.edition._id;
-    }
+//     if (search.edition?._id) {
+//       search.edition.id = search.edition._id;
+//       delete search.edition._id;
+//     }
 
-    if (search.tag?._id) {
-      search.tag.id = search.tag._id;
-      delete search.tag._id;
-    }
+//     if (search.tag?._id) {
+//       search.tag.id = search.tag._id;
+//       delete search.tag._id;
+//     }
 
-    if (search.searcher?._id) {
-      search.searcher.id = search.searcher._id;
-      delete search.searcher._id;
-    }
+//     if (search.searcher?._id) {
+//       search.searcher.id = search.searcher._id;
+//       delete search.searcher._id;
+//     }
 
-    if (search.searchType?._id) {
-      search.searchType.id = search.searchType._id;
-      delete search.searchType._id;
-    }
+//     if (search.searchType?._id) {
+//       search.searchType.id = search.searchType._id;
+//       delete search.searchType._id;
+//     }
 
-    return res.status(200).json(searches);
-  } catch (error) {
-    console.error(error);
-    let status = 500;
+//     return res.status(200).json(searches);
+//   } catch (error) {
+//     console.error(error);
+//     let status = 500;
 
-    if (
-      error instanceof TypeError ||
-      error instanceof RangeError ||
-      error instanceof ContentError
-    ) {
-      status = 400;
-    }
+//     if (
+//       error instanceof TypeError ||
+//       error instanceof RangeError ||
+//       error instanceof ContentError
+//     ) {
+//       status = 400;
+//     }
 
-    return res
-      .status(status)
-      .json({ error: error.constructor.name, message: error.message });
-  }
-};
+//     return res
+//       .status(status)
+//       .json({ error: error.constructor.name, message: error.message });
+//   }
+// };
 
 export const getSearchById = async (req, res) => {
   try {
@@ -241,6 +242,10 @@ export const getSearchById = async (req, res) => {
       .populate('searchType', '_id name')
       .lean()
       .exec();
+
+    if (search && search.isBanned) {
+      throw new ContentError('Search is banned');
+    }
 
     if (search._id) {
       search.id = search._id;
@@ -310,6 +315,7 @@ export const getSearchesByEditionIdAndSearcherIdAndSearchTypeIdAndTagId =
           searcher: searcherId,
           searchType: searchTypeId,
           tag: tagId,
+          isBanned: { $ne: true },
         })
           .sort({ createdAt: -1 })
           .populate('user', '_id username')
@@ -366,6 +372,7 @@ export const getSearchesByEditionIdAndSearcherIdAndSearchTypeIdAndTagId =
           edition: editionId,
           searcher: searcherId,
           searchType: searchTypeId,
+          isBanned: { $ne: true },
         })
           .sort({ createdAt: -1 })
           .populate('user', '_id username')
@@ -418,6 +425,7 @@ export const getSearchesByEditionIdAndSearcherIdAndSearchTypeIdAndTagId =
         const searches = await Search.find({
           edition: editionId,
           searcher: searcherId,
+          isBanned: { $ne: true },
         })
           .sort({ createdAt: -1 })
           .populate('user', '_id username')
@@ -468,6 +476,7 @@ export const getSearchesByEditionIdAndSearcherIdAndSearchTypeIdAndTagId =
 
         const searches = await Search.find({
           edition: editionId,
+          isBanned: { $ne: true },
         })
           .sort({ createdAt: -1 })
           .populate('user', '_id username')
