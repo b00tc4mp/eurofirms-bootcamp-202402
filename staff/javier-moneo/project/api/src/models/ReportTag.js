@@ -1,4 +1,5 @@
 import { Schema, model } from 'mongoose';
+import mongoosePagination from 'mongoose-paginate-v2';
 
 const reportTagSchema = new Schema(
   {
@@ -26,5 +27,7 @@ const reportTagSchema = new Schema(
   },
   { timestamps: true, versionKey: false }
 );
+
+reportTagSchema.plugin(mongoosePagination);
 
 export default model('ReportTag', reportTagSchema);

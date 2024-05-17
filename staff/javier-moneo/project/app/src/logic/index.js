@@ -30,6 +30,9 @@ import discardReportSeachById from './discardReportSearchById';
 import retrieveReportedCommentsPaginated from './retrieveReportedCommentsPaginated';
 import removeReportCommentById from './removeReportCommentById';
 import discardReportCommentById from './discardReportCommentById';
+import retrieveReportedTagsPaginated from './retrieveReportedTagsPaginated';
+import discardReportTagById from './discardReportTagById';
+import removeReportTagById from './removeReportTagById';
 
 const logic = {
   assignAllRolesToUser,
@@ -64,6 +67,9 @@ const logic = {
   retrieveReportedCommentsPaginated,
   removeReportCommentById,
   discardReportCommentById,
+  retrieveReportedTagsPaginated,
+  discardReportTagById,
+  removeReportTagById,
 };
 
 export default logic;

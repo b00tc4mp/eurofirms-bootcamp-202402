@@ -1,7 +1,5 @@
-import { Link } from 'react-router-dom';
-
-export default function PaginationReportedCommentComponent({
-  initialReportedCommentsPaginated,
+export default function PaginationReportedTagComponent({
+  initialReportedTagsPaginated,
 }) {
   return (
     <nav
@@ -12,32 +10,32 @@ export default function PaginationReportedCommentComponent({
         <p className="text-sm text-gray-700">
           Showing{' '}
           <span className="font-medium">
-            {initialReportedCommentsPaginated.page}
+            {initialReportedTagsPaginated.page}
           </span>{' '}
           to{' '}
           <span className="font-medium">
-            {initialReportedCommentsPaginated.limit}
+            {initialReportedTagsPaginated.limit}
           </span>{' '}
           of{' '}
           <span className="font-medium">
-            {initialReportedCommentsPaginated.totalDocs}
+            {initialReportedTagsPaginated.totalDocs}
           </span>{' '}
           results
         </p>
       </div>
       <div className="flex flex-1 justify-between sm:justify-end">
-        {initialReportedCommentsPaginated.hasPrevPage && (
+        {initialReportedTagsPaginated.hasPrevPage && (
           <Link
-            to={`/reportedComments?limit=${initialReportedCommentsPaginated.limit}&page=${initialReportedCommentsPaginated.prevPage}`}
+            to={`/reportedTags?limit=${initialReportedTagsPaginated.limit}&page=${initialReportedTagsPaginated.prevPage}`}
             className="relative inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus-visible:outline-offset-0"
           >
             Previous
           </Link>
         )}
 
-        {initialReportedCommentsPaginated.hasNextPage && (
+        {initialReportedTagsPaginated.hasNextPage && (
           <Link
-            to={`/reportedComments?limit=${initialReportedCommentsPaginated.limit}&page=${initialReportedCommentsPaginated.nextPage}`}
+            to={`/reportedTags?limit=${initialReportedTagsPaginated.limit}&page=${initialReportedTagsPaginated.nextPage}`}
             className="relative ml-3 inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus-visible:outline-offset-0"
           >
             Next

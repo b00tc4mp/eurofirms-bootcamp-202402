@@ -10,4 +10,22 @@ router.post(
   reportTagsCtrl.createReport
 );
 
+router.get(
+  '/',
+  [authJwt.verifyToken, authJwt.isUserBanned, authJwt.isModerator],
+  reportTagsCtrl.getReports
+);
+
+router.patch(
+  '/removeReport',
+  [authJwt.verifyToken, authJwt.isUserBanned, authJwt.isModerator],
+  reportTagsCtrl.removeReport
+);
+
+router.patch(
+  '/discardReport',
+  [authJwt.verifyToken, authJwt.isUserBanned, authJwt.isModerator],
+  reportTagsCtrl.discardReport
+);
+
 export default router;

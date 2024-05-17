@@ -68,7 +68,7 @@ export const createSearch = async (req, res) => {
     } else {
       if (tag.isBanned) {
         throw new MatchError(
-          `Tag ${tagNameTrimed} is banned, you can not add searches to this tag`
+          `Tag is banned, you can not add searches to this tag`
         );
       }
       tagId = tag._id;

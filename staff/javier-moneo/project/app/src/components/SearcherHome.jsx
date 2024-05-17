@@ -197,6 +197,13 @@ export default function SearcherHome({
           }
         })
         .catch((error) => {
+          if (
+            error.message ===
+            'Tag is banned, you can not add searches to this tag'
+          ) {
+            setMessageStrong('This tag is banned');
+            setMessage('You can not add searches to this tag');
+          }
           errorHandler(error);
         });
     } catch (error) {
