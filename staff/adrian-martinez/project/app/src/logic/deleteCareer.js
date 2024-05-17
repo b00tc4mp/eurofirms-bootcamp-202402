@@ -1,40 +1,30 @@
-import { User, Career } from "../data/index.js";
-import { errors, validate } from "com";
+import { validate, errors } from "com";
 
-const { SystemError, MatchError } = errors;
+const { SystemError } = errors;
 
-function deleteCareer(studentUserId, careerStudentId){
+function deleteCareer(studentId) {
 
-    validate.id(studentUserId, "studentUserId");
-    validate.id(careerStudentId, "careerStudentId");
+    validate.token(sessionStorage.token);
+    validate.id(carrerId, "carrerId");
 
-    return User.findById(studentUserId)
+    return fetch(`http://localhost:8089/career/${studentId}`, {
+        method: 'DELETE',
+        headers: { "Authorization": `Bearer ${sessionStorage.token}` },
+    })
         .catch(error => { throw new SystemError(error.message) })
-        .then(user => {
-            if(!user){
-                throw new Error("The student no exist.")
-            }
+        .then((res) => {
+            if (res.status === 204) return;
 
-            return Career.findById(careerStudentId)
-                .catch(error => { throw new SystemError(error.message)})
-        })
-        .then(career => {
-            if(!career){
-                throw new MatchError("The career no exist");
-            }
+            return res.json()
+                .catch(error => { throw new SystemError(error.message) })
+                .then(body => {
 
-            if(studentUserId !== career.student.toString()){
-
-                throw new MatchError("The career is not yours");
-            }
-                
-            //TODO Borrar sujects también (postbootcamp)
-            return Career.deleteOne({ _id: career._id })
-                .catch( error => {
-                    throw new SystemError(error.message);
+                    const { error, message } = body;
+                    const constructor = errors[error];
+                    throw new constructor(message);
                 })
-            })
-        .then( careerDeleted => {})
+        })
+
 }
 
 export default deleteCareer;

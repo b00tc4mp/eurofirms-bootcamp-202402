@@ -3,7 +3,7 @@ import { errors, validate } from "com";
 const { SystemError } = errors;
 
 //TODO Hacer la mismá lógica con el saneamiento de datos que para los careers
-function retrieveOffers() {
+function retrieveOffersFromCompany() {
     
     validate.token(sessionStorage.token);
 
@@ -32,4 +32,4 @@ function retrieveOffers() {
     })
 }
 
-export default retrieveOffers;
+export default retrieveOffersFromCompany;

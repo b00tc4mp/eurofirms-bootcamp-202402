@@ -1,12 +1,16 @@
 import { useState, useEffect } from 'react'
 import { errors } from "com"
 import logic from '../logic'
+import CreateCareer from "../components/CreateCareer"
+import CareersStudent from "../components/CareersStudent"
 
 const { ContentError, MatchError } = errors
 
 function Home(props) {
 
-    const [user, setUser] = useState(null)
+    const [view, setView] = useState(null);
+    const [user, setUser] = useState(null);
+    const [refreshStamp, setRefreshStamp] = useState(null);
 
     useEffect(() => {
         try {
@@ -46,6 +50,16 @@ function Home(props) {
         props.onClickInicio()
     }
 
+    const handleCreateCareerClick = () => setView('create-career')
+
+    const handleCreateCareerCancelClick = () => setView(null)
+
+    const handleCareerCreated = () => {
+        
+        setRefreshStamp();
+        setView(null)
+    }
+
     return (
     <>
         <header className="header">
@@ -80,12 +94,12 @@ function Home(props) {
                 </section>
                 <section>
                     <div className="mr-40">
-                        <button className="button" onClick="">Añadir estudios ➕</button>
+                        <button className="button" onClick={ handleCreateCareerClick }>Añadir estudios ➕</button>
                     </div>
+                    <CareersStudent refreshStamp={ refreshStamp }/>
                 </section>
-               {/*  <CareersStudent refreshStamp={ refreshStamp }/>
 
-            {view === 'create-post' && <CreateCareer onCancelClick={handleCreatePostCancelClick} onPostCreated={handlePostCreated} />} */}
+            {view === 'create-career' && <CreateCareer onCancelClick={handleCreateCareerCancelClick} onCreateCareer={handleCareerCreated} />}
             </container>
         </main>
         <footer className="footer">

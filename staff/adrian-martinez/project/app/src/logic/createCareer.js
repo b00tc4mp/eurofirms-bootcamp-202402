@@ -1,32 +1,37 @@
-import { User, Career} from "../data/index.js"
-import { errors , validate} from "com"
+import { errors, validate } from "com"
 
-const { SystemError, MatchError } = errors;
+const { SystemError } = errors;
 
-function createCareer(studentUserId, title, description, certification) {
+function createCareer(title, description, certification) {
     
-    validate.id(studentUserId, "userId");
-    validate.text(title);
-    validate.text(description);
-    validate.url(certification);
+    /* TODO 
+    validate.token(sessionStorage.token)
+    validate.url(image, "image")
+    validate.text(text) */
 
-    return User.findById(studentUserId)
-        .catch(error => { throw new SystemError(error.message) })
-        .then(user => {
-            if (!user)
-                throw new MatchError('user not found')
+    return fetch(`${import.meta.env.VITE_API_URL}/career`, {
+        method: 'POST',
+        headers: {
+            Authorization: `Bearer ${sessionStorage.token}`,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ title, description, certification })
+    })
+        .catch(error => { throw new Error(error.message) })
+        .then(res => {
+            if (res.status === 201)
+                return
 
-            const career = {
-                student: user._id,
-                title,
-                description,
-                certification 
-            }
-
-            return Career.create(career)
+            return res.json()
                 .catch(error => { throw new SystemError(error.message) })
+                .then(body => {
+                    const { error, message } = body
+
+                    const constructor = errors[error]
+
+                    throw new constructor(message)
+                })
         })
-        .then(career => { })
 }
 
 export default createCareer;

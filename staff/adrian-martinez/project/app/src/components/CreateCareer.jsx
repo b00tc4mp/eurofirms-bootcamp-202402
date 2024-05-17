@@ -1,6 +1,8 @@
+import { useState } from "react";
 import logic from "../logic"
+import Button from "./Button";
 
-function CreateCareer({ onCancelClick, onCareerCreated }){
+function CreateCareer({ onCancelClick, onCreateCareer }){
 
     const handleCancelClick = () => onCancelClick();
 
@@ -15,7 +17,7 @@ function CreateCareer({ onCancelClick, onCareerCreated }){
 
         try{
             logic.createCareer(title, description, certification)
-                .then(() => onCareerCreated())
+                .then(() => onCreateCareer())
                 .catch(error => {
                     console.error(error);
                     alert(error.message);

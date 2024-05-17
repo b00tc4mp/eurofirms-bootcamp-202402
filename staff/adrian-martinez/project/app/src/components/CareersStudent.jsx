@@ -1,6 +1,8 @@
 import logic from "../logic";
+import Career from "./Career";
+import { useState, useEffect } from "react";
 
-function Careers({ refreshStamp }){
+function CareersStudent({ refreshStamp }){
 
     console.log("refreshStamp", refreshStamp);
 
@@ -9,7 +11,7 @@ function Careers({ refreshStamp }){
     const refreshScreen = () => {
 
         try{
-            logic.retrieveCareers()
+            logic.retrieveCareersFromStudent()
                 .then(careers => setCareers(careers))
                 .catch(error => {
 
@@ -51,4 +53,4 @@ function Careers({ refreshStamp }){
     )
 }
 
-export default Careers;
+export default CareersStudent;

@@ -247,7 +247,7 @@ mongoose.connect(MONGO_URL)
             }
         })
 
-        server.get('/carrers/:targetUserId', (req, res) => {
+        server.get('/users/:targetUserId/careers', (req, res) => {
             try {
 
                 const { authorization } = req.headers
@@ -258,7 +258,7 @@ mongoose.connect(MONGO_URL)
 
                 const { targetUserId } = req.params
 
-                logic.retrieveCareersFromStudent(userId)
+                logic.retrieveCareersFromStudent(userId, targetUserId)
                     .then(user => res.json(user))
                     .catch(error => {
 

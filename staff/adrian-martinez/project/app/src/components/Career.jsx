@@ -4,7 +4,7 @@ import Button from "./Button";
 
 function Career({ career, onCareerDeleted, onCareerUpdate }){
 
-    const handleDeletePost = () => {
+    const handleDeleteCareer = () => {
 
         const deleteConfirmed = confirm("Delete ??????")
         

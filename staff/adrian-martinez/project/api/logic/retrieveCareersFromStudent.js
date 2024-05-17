@@ -21,11 +21,13 @@ function retrieveCareersFromStudent(userId) {
                 .then(careers => {
                     //Saneamiento de datos
                     careers.forEach(career => {
+                        if(career.student._id){
+                            const id = career.student._id.toString();
+                            delete career.student._id;
 
-                        const id = career.student._id.toString();
-                        delete career.student._id;
-
-                        career.student.id = id;
+                            career.student.id = id;
+                        }
+                        
                     })
                     return careers;
                 })

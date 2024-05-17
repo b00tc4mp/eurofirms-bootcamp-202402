@@ -8,6 +8,9 @@ import isUserLoggedIn from "./isUserLoggedIn"
 import retrieveUser from "./retrieveUser"
 import retrieveUsers from "./retrieveUsers"
 import retrieveCareersFromStudent from "./retrieveCareersFromStudent"
+import retrieveOffersFromCompany from "./retrieveOffersFromCompany"
+import createCareer from "./createCareer"
+import deleteCareer from "./deleteCareer"
 
 const logic = {
     registerStudent,
@@ -18,7 +21,10 @@ const logic = {
     isUserLoggedIn,
     retrieveUser,
     retrieveUsers,
+    createCareer,
     retrieveCareersFromStudent,
+    retrieveOffersFromCompany,
+    deleteCareer,
     logoutUser
 }
 

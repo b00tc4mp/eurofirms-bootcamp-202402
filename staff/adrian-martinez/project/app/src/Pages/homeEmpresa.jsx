@@ -70,12 +70,19 @@ function HomeEmpresa(props) {
                             <h1 className="text-xl ">Tu correo es {user.email}</h1>
                         </>
                         }
-                        
                     </section>
+                    <section>
+                    <div className="mr-40">
+                        <button className="button" onClick={ handleCreateCareerClick }>Añadir estudios ➕</button>
+                    </div>
+                    <OffersCompany refreshStamp={ refreshStamp }/>
+                </section>
+
+            {view === 'create-career' && <CreateOffer onCancelClick={handleCreateCareerCancelClick} onCreateCareer={handleOfferCreated} />}
             </container>
         </main>
-        <footer>
-            
+        <footer className="footer">
+            <button className="button mr-60" onClick={props.onClickInicio}>Página principal 🏚️</button>
         </footer>
     </>
     )
