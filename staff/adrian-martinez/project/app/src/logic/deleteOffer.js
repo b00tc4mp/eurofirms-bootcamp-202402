@@ -1,4 +1,3 @@
-import { User, Offer } from "../data/index.js";
 import { errors, validate } from "com";
 
 const { SystemError, MatchError } = errors;

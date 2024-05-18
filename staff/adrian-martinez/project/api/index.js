@@ -32,10 +32,9 @@ mongoose.connect(MONGO_URL)
 
         //Le pasamos los datos del registro a la ruta de la API si se validó todo correctamente
         //TEST PASADO
-        server.post("/users", jsonBodyParser, (req, res) => {
+        server.post("/users/students", jsonBodyParser, (req, res) => {
             try {
                 const { name, surnames, age, email, password } = req.body;
-
                 logic.registerStudent(name, surnames, age, email, password)
                     .then(() => res.status(201).send())
                     .catch(error => {
@@ -58,7 +57,7 @@ mongoose.connect(MONGO_URL)
             }
         })
         //TEST PASADO
-        server.post("/users", jsonBodyParser, (req, res) => {
+        server.post("/users/companies", jsonBodyParser, (req, res) => {
             try {
                 const { name, address, activity, email, password } = req.body;
 
@@ -152,11 +151,11 @@ mongoose.connect(MONGO_URL)
   
             const token = authorization.slice(7)
   
-            const { sub: offerCompanyId } = jwt.verify(token, 'esta app va ser disrruptiva en la forma de encontrar trabajo')
+            const { sub: companyUserId } = jwt.verify(token, 'esta app va ser disrruptiva en la forma de encontrar trabajo')
   
             const { title, description, minSalary, maxSalary, publishDate, expirationDate } = req.body
   
-            logic.createOffer(offerCompanyId, title, description, minSalary, maxSalary, publishDate, expirationDate)
+            logic.createOffer(companyUserId, title, description, minSalary, maxSalary, publishDate, expirationDate)
                 .then(() => res.status(201).send())
                 .catch(error =>{
                   let status = 500;
@@ -284,9 +283,8 @@ mongoose.connect(MONGO_URL)
             }
         })
 
-        //TODO Mostrar offers de la cada company
 
-        server.get('/offers/:targetUserId', (req, res) => {
+        server.get('/users/:targetUserId/offers', (req, res) => {
             try {
 
                 const { authorization } = req.headers
@@ -295,8 +293,10 @@ mongoose.connect(MONGO_URL)
 
                 const { sub: userId } = jwt.verify(token, JWT_SECRET)
 
-                logic.retrieveOffers(userId)
-                    .then(offers => res.json(offers))
+                const { targetUserId } = req.params
+
+                logic.retrieveOffersFromCompany(userId, targetUserId)
+                    .then(user => res.json(user))
                     .catch(error => {
 
                         let status = 500;

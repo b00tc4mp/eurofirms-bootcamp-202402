@@ -3,7 +3,7 @@ import { errors , validate} from "com"
 
 const { SystemError, MatchError } = errors;
 
-function createOffer(offerCompanyId, title, description, minSalary, maxSalary, publishDate, expirationDate) {
+function createOffer(companyUserId, title, description, minSalary, maxSalary, publishDate, expirationDate) {
 
     /* validate.id(offerCompanyId, "offerCompanyId");
     validate.text(title);
@@ -13,7 +13,7 @@ function createOffer(offerCompanyId, title, description, minSalary, maxSalary, p
     //validate.text(publishDate);
     //validate.Date(expirationDate);
 
-    return User.findById(offerCompanyId)
+    return User.findById(companyUserId)
         .catch(error => { throw new SystemError(error.message) })
         .then(user => {
             if (!user)
@@ -27,6 +27,7 @@ function createOffer(offerCompanyId, title, description, minSalary, maxSalary, p
                 maxSalary,
                 publishDate,
                 expirationDate
+                //candidates
             }
 
             return Offer.create(offer)

@@ -1,12 +1,16 @@
 import { useState, useEffect } from 'react'
 import { errors } from "com"
 import logic from '../logic'
+import CreateOffer from "../components/CreateOffer"
+import OffersCompany from "../components/OffersCompany"
 
 const { ContentError, MatchError } = errors
 
 function HomeEmpresa(props) {
 
-    const [user, setUser] = useState(null)
+    const [view, setView] = useState(null);
+    const [user, setUser] = useState(null);
+    const [refreshStamp, setRefreshStamp] = useState(null);
 
     useEffect(() => {
         try {
@@ -45,6 +49,17 @@ function HomeEmpresa(props) {
 
         props.onClickInicio()
     }
+
+    const handleCreateOfferClick = () => setView('create-offer')
+
+    const handleCreateOfferCancelClick = () => setView(null)
+
+    const handleOfferCreated = () => {
+        
+        setRefreshStamp();
+        setView(null)
+    }
+
     return (
     <>
         <header className="header">
@@ -66,19 +81,20 @@ function HomeEmpresa(props) {
                         {!user && <p>Loading...</p>}
                         {user && 
                         <>
-                            <h1 className="text-3xl font-bold">Hola {user.name} {user.surname}!</h1>
+                            <h1 className="text-3xl font-bold">Hola admin de {user.name} {user.surname}!</h1>
                             <h1 className="text-xl ">Tu correo es {user.email}</h1>
                         </>
                         }
+
                     </section>
                     <section>
                     <div className="mr-40">
-                        <button className="button" onClick={ handleCreateCareerClick }>Añadir estudios ➕</button>
+                        <button className="button" onClick={ handleCreateOfferClick }>Añadir oferta ➕</button>
                     </div>
                     <OffersCompany refreshStamp={ refreshStamp }/>
                 </section>
 
-            {view === 'create-career' && <CreateOffer onCancelClick={handleCreateCareerCancelClick} onCreateCareer={handleOfferCreated} />}
+            {view === 'create-offer' && <CreateOffer onCancelClick={handleCreateOfferCancelClick} onCreateOffer={handleOfferCreated} />}
             </container>
         </main>
         <footer className="footer">

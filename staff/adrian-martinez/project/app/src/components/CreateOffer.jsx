@@ -1,7 +1,10 @@
-import logic from "../loigc"
+import { useState } from "react";
+import logic from "../logic"
+import Button from "./Button";
 
-function CreatePost({ onCancelClick, onPostCreated }){
-    
+
+function onCreateOffer({ onCancelClick, onCreateOffer }){
+
     const handleCancelClick = () => onCancelClick();
 
     const handleSubmit = event => {
@@ -9,12 +12,16 @@ function CreatePost({ onCancelClick, onPostCreated }){
 
         const form = event.target;
 
-        const image = form.image.value;
-        const text = form.text.value;
+        const title = form.name.value;
+        const description = form.description.value;
+        const minSalary = form.minSalary.value;
+        const maxSalary = form.maxSalary.value;
+        const fechaPublicacion = form.fechapublicacion.value;
+        const fechaExpiracion = form.fechaexpiracion.value;
 
         try{
-            logic.createPost(image, text)
-                .then(() => onPostCreated())
+            logic.createCareer(title, description, minSalary, maxSalary, fechaPublicacion, fechaExpiracion)
+                .then(() => onCreateOffer())
                 .catch(error => {
                     console.error(error);
                     alert(error.message);
@@ -27,18 +34,30 @@ function CreatePost({ onCancelClick, onPostCreated }){
         }
     }
 
-    console.debug("CreatePost render");
+    console.debug("CreateCareer render");
 
     return (
         <section className="container container--border-top create-post">
-            <h2>Crear publicación</h2>
+            <h2>Añadir oferta laboral a tu perfil</h2>
 
             <form className="flex flex-col" onSubmit={handleSubmit}>
-                <label htmlFor="image">Image</label>
-                <input className="input" type="text" id="image" />
+                <label htmlFor="name">Título:</label>
+                <input className="input" type="text" id="name" />
 
-                <label htmlFor="text">Text</label>
-                <input className="input" type="text" id="text" />
+                <label htmlFor="description">Descripción de la oferta:</label>
+                <input className="input" type="text" id="description" placeholder="Pequeño resumen de esta formación" />
+
+                <label htmlFor="minSalary">Salario Bruto:</label>
+                <input className="input" type="text" id="minSalary" placeholder=""/>
+
+                <label htmlFor="maxSalary">Salario Máximo:</label>
+                <input className="input" type="text" id="maxSalary" placeholder=""/>
+
+                <label htmlFor="fechapublicacion">Fecha publicación de la oferta:</label>
+                <input className="input" type="text" id="fechapublicacion" placeholder=""/>
+
+                <label htmlFor="fechaexpiracion">Fecha expiración:</label>
+                <input className="input" type="text" id="fechaexpiracion" placeholder=""/>
 
                 <button className="button button--right" type="submit">Publicar</button>
             </form>
@@ -48,4 +67,4 @@ function CreatePost({ onCancelClick, onPostCreated }){
     )
 }
 
-export default CreatePost;
+export default onCreateOffer;

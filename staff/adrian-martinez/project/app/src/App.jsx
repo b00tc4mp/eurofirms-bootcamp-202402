@@ -42,7 +42,7 @@ function App() {
       <Routes>
           <Route path="/" element={<Inicio onClickLogin={handleUserLogin} onClickRegister={handleUserRegister} onClickParaQuienEs={handleParaQuienEs} onClickTutorial={handleTutorial} onClickContacto={handleContacto} onClickListarUsers={handleListarUsers} />} /> 
           <Route path="/login" element={<Login onUserLoggedIn={handleUserLoggedIn} onClickResetPassword={handleResetPassword} onClickInicio={handleInicio}/> }/>
-          <Route path="/legister" element={<Register onClickRegister={handleUserRegister} onClickLogin={handleUserLogin} onClickInicio={handleInicio}/> }/>
+          <Route path="/register" element={<Register onClickRegister={handleUserRegister} onClickLogin={handleUserLogin} onClickInicio={handleInicio}/> }/>
           <Route path="/paraQuienEs" element={<ParaQuienEs onClickParaQuienEs={handleParaQuienEs} onClickTutorial={handleTutorial} onClickLogin={handleUserLogin} onClickRegister={handleUserRegister} onClickInicio={handleInicio}/>}/>
           <Route path="/tutorial" element={<Tutorial onClickTutorial={handleTutorial} onClickParaQuienEs={handleParaQuienEs} onClickContacto={handleContacto} onClickLogin={handleUserLogin} onClickRegister={handleUserRegister} onClickInicio={handleInicio}/>}/>
           <Route path="/contacto" element={<Contacto onClickContacto={handleContacto} onClickParaQuienEs={handleParaQuienEs} onClickTutorial={handleTutorial} onClickLogin={handleUserLogin} onClickRegister={handleUserRegister} onClickInicio={handleInicio}/>}/>

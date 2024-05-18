@@ -20,7 +20,7 @@ function retrieveCareersFromStudent(userId) {
             return Career.find({student : user._id}).select('-_id -__v').populate("student", "-__v -password -role").lean()
                 .then(careers => {
                     //Saneamiento de datos
-                    careers.forEach(career => {
+                    /* careers.forEach(career => {
                         if(career.student._id){
                             const id = career.student._id.toString();
                             delete career.student._id;
@@ -28,7 +28,7 @@ function retrieveCareersFromStudent(userId) {
                             career.student.id = id;
                         }
                         
-                    })
+                    }) */
                     return careers;
                 })
         })

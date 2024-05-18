@@ -2,7 +2,7 @@ import { useState } from "react";
 import logic from "../logic"
 import Button from "./Button";
 
-function Career({ career, onCareerDeleted, onCareerUpdate }){
+function Career({ key, career, onCareerDeleted, onCareerUpdate }){
 
     const handleDeleteCareer = () => {
 
@@ -11,7 +11,7 @@ function Career({ career, onCareerDeleted, onCareerUpdate }){
         if(!deleteConfirmed) return;
         
         try{
-            logic.deleteCareer(career.id)
+            logic.deleteCareer(key)
             .then(() => {onCareerDeleted()})
             .catch(error =>  {
 

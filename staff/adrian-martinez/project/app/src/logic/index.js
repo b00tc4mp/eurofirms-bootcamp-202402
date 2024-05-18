@@ -11,6 +11,8 @@ import retrieveCareersFromStudent from "./retrieveCareersFromStudent"
 import retrieveOffersFromCompany from "./retrieveOffersFromCompany"
 import createCareer from "./createCareer"
 import deleteCareer from "./deleteCareer"
+import createOffer from "./createOffer"
+import deleteOffer from "./deleteOffer"
 
 const logic = {
     registerStudent,
@@ -25,6 +27,8 @@ const logic = {
     retrieveCareersFromStudent,
     retrieveOffersFromCompany,
     deleteCareer,
+    createOffer,
+    deleteOffer,
     logoutUser
 }
 

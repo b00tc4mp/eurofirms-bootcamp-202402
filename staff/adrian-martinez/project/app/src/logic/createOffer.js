@@ -1,38 +1,37 @@
-import { User, Offer} from "../data/index.js"
-import { errors , validate} from "com"
+import { errors, validate } from "com"
 
-const { SystemError, MatchError } = errors;
+const { SystemError } = errors;
 
-function createOffer(offerCompanyId, title, description, minSalary, maxSalary, publishDate, expirationDate) {
+function createOffer(title, description, minSalary, maxSalary, publishDate, expirationDate) {
+    
+    /* TODO 
+    validate.token(sessionStorage.token)
+    validate.url(image, "image")
+    validate.text(text) */
 
-    /* validate.id(offerCompanyId, "offerCompanyId");
-    validate.text(title);
-    validate.text(description);
-    validate.salary(minSalary); */
-    //validate.salary(maxSalary);
-    //validate.text(publishDate);
-    //validate.Date(expirationDate);
+    return fetch(`${import.meta.env.VITE_API_URL}/offer`, {
+        method: 'POST',
+        headers: {
+            Authorization: `Bearer ${sessionStorage.token}`,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ title, description, minSalary, maxSalary, publishDate, expirationDate })
+    })
+        .catch(error => { throw new Error(error.message) })
+        .then(res => {
+            if (res.status === 201)
+                return
 
-    return User.findById(offerCompanyId)
-        .catch(error => { throw new SystemError(error.message) })
-        .then(user => {
-            if (!user)
-                throw new MatchError('Company not found')
-
-            const offer = {
-                company: user._id,
-                title,
-                description,
-                minSalary,
-                maxSalary,
-                publishDate,
-                expirationDate
-            }
-
-            return Offer.create(offer)
+            return res.json()
                 .catch(error => { throw new SystemError(error.message) })
+                .then(body => {
+                    const { error, message } = body
+
+                    const constructor = errors[error]
+
+                    throw new constructor(message)
+                })
         })
-        .then(offer => { })
 }
 
 export default createOffer;
