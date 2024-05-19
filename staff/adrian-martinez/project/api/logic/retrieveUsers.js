@@ -12,7 +12,7 @@ function retrieveUsers() {
             if (!user)
                 throw new MatchError('user not found')
 
-            return User.find().select('-_id -__v').lean()
+            return User.find().select('-__v').lean()
                 .then(users => {
                     //const users = [];
                     users.forEach(user => {

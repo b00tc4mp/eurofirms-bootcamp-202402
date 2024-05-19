@@ -1,38 +1,31 @@
-import { errors, validate } from "com";
+import { validate, errors } from "com";
 
-const { SystemError, MatchError } = errors;
+const { SystemError } = errors;
 
-function deleteOffer(companyUserId, offerCompanyId){
+function deleteOffer(companyId, offerId) {
 
-    validate.id(companyUserId, "companyUserId");
-    validate.id(offerCompanyId, "offerCompanyId");
+    validate.token(sessionStorage.token);
+    validate.id(offerId, "offerId");
+    validate.id(companyId, "companyId");
 
-    return User.findById(companyUserId)
+    return fetch(`http://localhost:8989/users/${companyId}/offers/${offerId}`, {
+        method: 'DELETE',
+        headers: { "Authorization": `Bearer ${sessionStorage.token}` },
+    })
         .catch(error => { throw new SystemError(error.message) })
-        .then(user => {
-            if(!user){
-                throw new Error("The company no exist.")
-            }
+        .then((res) => {
+            if (res.status === 204) return;
 
-            return Offer.findById(offerCompanyId)
-                .catch(error => { throw new SystemError(error.message)})
-        })
-        .then(offer => {
-            if(!offer){
-                throw new MatchError("The offer no exist");
-            }
+            return res.json()
+                .catch(error => { throw new SystemError(error.message) })
+                .then(body => {
 
-            if(companyUserId !== offer.company.toString()){
-
-                throw new MatchError("The offer is not yours");
-            }
-                
-            return Offer.deleteOne({ _id: offer._id })
-                .catch( error => {
-                    throw new SystemError(error.message);
+                    const { error, message } = body;
+                    const constructor = errors[error];
+                    throw new constructor(message);
                 })
-            })
-        .then( offerDeleted => {})
+        })
+
 }
 
 export default deleteOffer;

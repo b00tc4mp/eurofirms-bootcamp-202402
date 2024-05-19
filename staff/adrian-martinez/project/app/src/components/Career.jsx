@@ -2,7 +2,7 @@ import { useState } from "react";
 import logic from "../logic"
 import Button from "./Button";
 
-function Career({ key, career, onCareerDeleted, onCareerUpdate }){
+function Career({ career, onCareerDeleted, onCareerUpdate }){
 
     const handleDeleteCareer = () => {
 
@@ -11,7 +11,7 @@ function Career({ key, career, onCareerDeleted, onCareerUpdate }){
         if(!deleteConfirmed) return;
         
         try{
-            logic.deleteCareer(key)
+            logic.deleteCareer(logic.getLoggedInUserId(), career._id)
             .then(() => {onCareerDeleted()})
             .catch(error =>  {
 
@@ -81,9 +81,9 @@ function Career({ key, career, onCareerDeleted, onCareerUpdate }){
             <img src={career.image} className="md:sm hover:w-full"/>
             <h3 className="p-2">{ career.description}</h3>
             
-            { career.student.id === logic.getLoggedInUserId() && <Button className="border-2 border-solid border-white bg-red-500 text-white" onClick={ handleDeletePost }>Borrar</Button> }
-            { career.student.id === logic.getLoggedInUserId() && <div>
-                    <Button className="border-2 border-solid border-white bg-green-500 text-white" onClick={handleCancelChange}>Cancelar</Button>
+            { career.student._id === logic.getLoggedInUserId() && <Button className="border-2 border-solid border-white bg-red-500 text-white" onClick={ handleDeleteCareer }>Borrar</Button> }
+            { career.student._id === logic.getLoggedInUserId() && <div>
+                    <Button className="border-2 border-solid border-white bg-green-500 text-white" onClick={handleCancelChange}>Editar</Button>
                 </div>}
             {/* {post.author.id === logic.getLoggedInUserId() && <Button className="border-2 border-solid border-white bg-green-700 text-white" onClick={ handleUpdatePost }>Editar comentario</Button> }
             {!changePost && <p>{post.text}</p>}

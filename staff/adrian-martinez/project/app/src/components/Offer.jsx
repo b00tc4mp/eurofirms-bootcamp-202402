@@ -4,14 +4,13 @@ import Button from "./Button";
 
 function Offer({ offer, onOfferDeleted }){
 
-    const handleDeleteCareer = () => {
+    const handleDeleteOffer = () => {
 
         const deleteConfirmed = confirm("Delete ??????")
         
         if(!deleteConfirmed) return;
-        
         try{
-            logic.deleteOffer(offer.id)
+            logic.deleteOffer(logic.getLoggedInUserId(), offer._id)
             .then(() => {onOfferDeleted()})
             .catch(error =>  {
 
@@ -73,7 +72,7 @@ function Offer({ offer, onOfferDeleted }){
         
     } 
 
-    console.debug("Career render");
+    console.debug("Offer render");
 
     return (
         <article className="border-2 border-solid border-black m-10">
@@ -84,8 +83,8 @@ function Offer({ offer, onOfferDeleted }){
             <h3 className="p-2">{ offer.fechaPublicacion}</h3>
             <h3 className="p-2">{ offer.fechaExpiracion}</h3>
             
-            { offer.company.id === logic.getLoggedInUserId() && <Button className="border-2 border-solid border-white bg-red-500 text-white" onClick={ handleDeleteOffer }>Borrar</Button> }
-            { offer.company.id === logic.getLoggedInUserId() && <div>
+            { offer.company._id === logic.getLoggedInUserId() && <Button className="border-2 border-solid border-white bg-red-500 text-white" onClick={ handleDeleteOffer }>Borrar</Button> }
+            { offer.company._id === logic.getLoggedInUserId() && <div>
                     <Button className="border-2 border-solid border-white bg-green-500 text-white" onClick={handleCancelChange}>Cancelar</Button>
                 </div>}
             {/* {post.author.id === logic.getLoggedInUserId() && <Button className="border-2 border-solid border-white bg-green-700 text-white" onClick={ handleUpdatePost }>Editar comentario</Button> }

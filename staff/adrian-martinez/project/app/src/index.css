@@ -19,6 +19,10 @@ body{
   float: left;
 }
 
+input{
+  border: 2px solid black;
+}
+
 header{
   margin-left: 2%;
   margin-right: 2%;
@@ -86,7 +90,7 @@ button:hover{
 }
 
 main{
-  margin-left: 2%;
+  margin-left: 0%;
   margin-right: 2%;
   width: 92%;
   display: flex;

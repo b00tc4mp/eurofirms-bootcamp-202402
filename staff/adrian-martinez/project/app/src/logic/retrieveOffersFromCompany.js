@@ -1,3 +1,4 @@
+import logic from "../logic";
 import { errors, validate } from "com";
 
 const { SystemError } = errors;
@@ -6,8 +7,9 @@ const { SystemError } = errors;
 function retrieveOffersFromCompany() {
     
     validate.token(sessionStorage.token);
+    const userId = logic.getLoggedInUserId();
 
-    return fetch("http://localhost:8989/offers", {
+    return fetch(`http://localhost:8989/users/${userId}/offers`, {
         method: "GET",
         headers: {
             Authorization: `Bearer ${ sessionStorage.token }`

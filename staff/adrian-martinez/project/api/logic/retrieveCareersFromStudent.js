@@ -17,7 +17,7 @@ function retrieveCareersFromStudent(userId) {
             if (!user)
                 throw new MatchError('user not found')
 
-            return Career.find({student : user._id}).select('-_id -__v').populate("student", "-__v -password -role").lean()
+            return Career.find({student : user._id}).select('-__v').populate("student", "-__v -password -role").lean()
                 .then(careers => {
                     //Saneamiento de datos
                     /* careers.forEach(career => {

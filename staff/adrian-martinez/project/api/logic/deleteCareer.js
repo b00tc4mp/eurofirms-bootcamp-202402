@@ -3,10 +3,10 @@ import { errors, validate } from "com";
 
 const { SystemError, MatchError } = errors;
 
-function deleteCareer(studentUserId, careerStudentId){
+function deleteCareer(studentUserId, careerId){
 
     validate.id(studentUserId, "studentUserId");
-    validate.id(careerStudentId, "careerStudentId");
+    validate.id(careerId, "careerId");
 
     return User.findById(studentUserId)
         .catch(error => { throw new SystemError(error.message) })
@@ -15,7 +15,7 @@ function deleteCareer(studentUserId, careerStudentId){
                 throw new Error("The student no exist.")
             }
 
-            return Career.findById(careerStudentId)
+            return Career.findById(careerId)
                 .catch(error => { throw new SystemError(error.message)})
         })
         .then(career => {

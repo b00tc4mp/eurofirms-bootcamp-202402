@@ -40,14 +40,14 @@ function OffersCompany({ refreshStamp }){
         refreshScreen();
     }
 
-    console.log("Career render");
+    console.log("Offer render");
     
     return (
         <section id="">
             <h2 className="p-10 font-semibold text-3xl">Ofertas publicadas</h2>
 
             <div id="">
-                { offers.map(offer => <Offer key={ offer.id } offer={ offer } onOfferDeleted={handleDeleteOffer} onOfferUpdate={handleUpdateOffer}/>)}
+                { offers.map(offer => <Offer offer={ offer } onOfferDeleted={handleDeleteOffer} onOfferUpdate={handleUpdateOffer}/>)}
             </div>
         </section>
     )

@@ -174,6 +174,68 @@ mongoose.connect(MONGO_URL)
     }
   })
 
+  server.update('/career/:targetCareerId', jsonBodyParser, (req, res) => {
+    try {
+        const { authorization } = req.headers
+
+        const token = authorization.slice(7)
+
+        const { sub: companyUserId } = jwt.verify(token, 'esta app va ser disrruptiva en la forma de encontrar trabajo')
+
+        const { title, description, certification } = req.body
+
+        const { targetUserId } = req.params
+
+        logic.createCareer(companyUserId, title, description, certification)
+            .then(() => res.status(201).send())
+            .catch(error =>{
+              let status = 500;
+
+              if(error instanceof MatchError) status = 401;
+
+              res.status(status).json({ error: error.constructor.name, message: error.message })
+        })
+} 
+catch(error){
+  let status = 500;
+
+  if(error instanceof TypeError || error instanceof RangeError || error instanceof ContentError) status = 400;
+
+  res.status(status).json({ error: error.constructor.name, message: error.message })
+}
+})
+
+server.update('/offer/:targetOfferId', jsonBodyParser, (req, res) => {
+    try {
+        const { authorization } = req.headers
+
+        const token = authorization.slice(7)
+
+        const { sub: companyUserId } = jwt.verify(token, 'esta app va ser disrruptiva en la forma de encontrar trabajo')
+
+        const { title, description, minSalary, maxSalary, publishDate, expirationDate } = req.body
+
+        const { targetUserId } = req.params
+
+        logic.createOffer(companyUserId, title, description, minSalary, maxSalary, publishDate, expirationDate)
+            .then(() => res.status(201).send())
+            .catch(error =>{
+              let status = 500;
+
+              if(error instanceof MatchError) status = 401;
+
+              res.status(status).json({ error: error.constructor.name, message: error.message })
+        })
+} 
+catch(error){
+  let status = 500;
+
+  if(error instanceof TypeError || error instanceof RangeError || error instanceof ContentError) status = 400;
+
+  res.status(status).json({ error: error.constructor.name, message: error.message })
+}
+})
+
   server.get('/users', (req, res) => {
     try {
 
@@ -295,7 +357,7 @@ mongoose.connect(MONGO_URL)
 
                 const { targetUserId } = req.params
 
-                logic.retrieveOffersFromCompany(userId, targetUserId)
+                logic.retrieveOffersFromCompany(targetUserId)
                     .then(user => res.json(user))
                     .catch(error => {
 
@@ -308,6 +370,72 @@ mongoose.connect(MONGO_URL)
 
                         res.status(status).json({ error: error.constructor.name, message: error.message });
                     })
+            } catch (error) {
+
+                let status = 500;
+
+                if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError) {
+
+                    status = 400
+                }
+
+                res.status(status).json({ error: error.constructor.name, message: error.message })
+            }
+        })
+
+        server.delete('/users/:targetUserId/offers/:offerId', (req, res) => {
+            try {
+
+                const { authorization } = req.headers
+
+                const token = authorization.slice(7)
+
+                const { sub: userId } = jwt.verify(token, JWT_SECRET)
+
+                const { targetUserId, offerId } = req.params
+
+                logic.deleteOffer(targetUserId, offerId)
+                    .then(() => res.status(204).send())
+                    .catch(error =>{
+                      let status = 500;
+      
+                      if(error instanceof MatchError) status = 401;
+      
+                      res.status(status).json({ error: error.constructor.name, message: error.message })
+                })
+            } catch (error) {
+
+                let status = 500;
+
+                if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError) {
+
+                    status = 400
+                }
+
+                res.status(status).json({ error: error.constructor.name, message: error.message })
+            }
+        })
+
+        server.delete('/users/:targetUserId/careers/:careerId', (req, res) => {
+            try {
+
+                const { authorization } = req.headers
+
+                const token = authorization.slice(7)
+
+                const { sub: userId } = jwt.verify(token, JWT_SECRET)
+
+                const { targetUserId, careerId } = req.params
+
+                logic.deleteCareer(targetUserId, careerId)
+                    .then(() => res.status(204).send())
+                    .catch(error =>{
+                      let status = 500;
+      
+                      if(error instanceof MatchError) status = 401;
+      
+                      res.status(status).json({ error: error.constructor.name, message: error.message })
+                })
             } catch (error) {
 
                 let status = 500;

@@ -2,12 +2,13 @@ import { validate, errors } from "com";
 
 const { SystemError } = errors;
 
-function deleteCareer(studentId) {
+function deleteCareer(studentId, careerId) {
 
     validate.token(sessionStorage.token);
-    validate.id(carrerId, "carrerId");
+    validate.id(careerId, "careerId");
+    validate.id(studentId, "studentId");
 
-    return fetch(`http://localhost:8089/career/${studentId}`, {
+    return fetch(`http://localhost:8989/users/${studentId}/careers/${careerId}`, {
         method: 'DELETE',
         headers: { "Authorization": `Bearer ${sessionStorage.token}` },
     })

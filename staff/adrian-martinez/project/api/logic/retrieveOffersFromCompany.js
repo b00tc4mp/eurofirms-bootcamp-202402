@@ -1,4 +1,4 @@
-import { Career, User } from "../data/index.js"
+import { Offer, User } from "../data/index.js"
 import { validate, errors } from "com"
 
 const { SystemError, MatchError } = errors;
@@ -12,7 +12,7 @@ function retrieveOfferFromCompany(userId){
             if(!user)
                 throw new MatchError("user not found")
 
-            return Offer.find({company : user.id}).select("-_id -__v").populate("company", "-__v -password -role").lean()
+            return Offer.find({company : user._id}).select("-__v").populate("company", "-__v -password -role").lean()
                 .then(offers => {
                     //Saneamiento de datos
                     /* offers.forEach()(offer => {

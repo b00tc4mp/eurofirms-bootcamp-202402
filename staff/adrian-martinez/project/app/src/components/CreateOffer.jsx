@@ -20,7 +20,7 @@ function onCreateOffer({ onCancelClick, onCreateOffer }){
         const fechaExpiracion = form.fechaexpiracion.value;
 
         try{
-            logic.createCareer(title, description, minSalary, maxSalary, fechaPublicacion, fechaExpiracion)
+            logic.createOffer(title, description, minSalary, maxSalary, fechaPublicacion, fechaExpiracion)
                 .then(() => onCreateOffer())
                 .catch(error => {
                     console.error(error);

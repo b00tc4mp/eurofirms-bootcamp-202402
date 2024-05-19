@@ -47,7 +47,7 @@ function CareersStudent({ refreshStamp }){
             <h2 className="p-10 font-semibold text-3xl">Perfil laboral</h2>
 
             <div id="">
-                { careers.map(career => <Career key={ career.id } career={ career } onCareerDeleted={handleDeleteCareer} onCareerUpdate={handleUpdateCareer}/>)}
+                { careers.map(career => <Career career={ career } onCareerDeleted={handleDeleteCareer} onCareerUpdate={handleUpdateCareer}/>)}
             </div>
         </section>
     )
