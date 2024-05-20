@@ -7,7 +7,8 @@ import SearcherUrl from '../models/SearcherUrl.js';
 import validate from '../libs/com/validate.js';
 import errors from '../libs/com/errors.js';
 
-const { ContentError, DuplicityError, MatchError } = errors;
+const { ContentError, DuplicityError, MatchError, TypeError, RangeError } =
+  errors;
 
 export const createSearch = async (req, res) => {
   try {
@@ -151,6 +152,7 @@ export const createSearch = async (req, res) => {
     if (
       error instanceof TypeError ||
       error instanceof RangeError ||
+      error instanceof MatchError ||
       error instanceof ContentError
     ) {
       status = 400;
@@ -285,6 +287,7 @@ export const getSearchById = async (req, res) => {
     if (
       error instanceof TypeError ||
       error instanceof RangeError ||
+      error instanceof MatchError ||
       error instanceof ContentError
     ) {
       status = 400;
@@ -533,6 +536,7 @@ export const getSearchesByEditionIdAndSearcherIdAndSearchTypeIdAndTagId =
       if (
         error instanceof TypeError ||
         error instanceof RangeError ||
+        error instanceof MatchError ||
         error instanceof ContentError
       ) {
         status = 400;
@@ -543,3 +547,99 @@ export const getSearchesByEditionIdAndSearcherIdAndSearchTypeIdAndTagId =
         .json({ error: error.constructor.name, message: error.message });
     }
   };
+
+export const getSearchesByEditionIdAndTagId = async (req, res) => {
+  try {
+    const { editionId, tagId } = req.body;
+    console.log(editionId, tagId);
+
+    // options for the pagination
+    const limit = parseInt(req.query.limit, 10) || 10;
+    const page = parseInt(req.query.page, 10) || 1;
+
+    const edition = await Edition.findById(editionId);
+
+    if (!edition) {
+      throw new MatchError('No edition found');
+    }
+
+    const tag = await Tag.findById(tagId);
+
+    if (!tag) {
+      throw new MatchError('No tag found');
+    }
+
+    if (tag.isBanned) {
+      throw new MatchError('This tag was banned');
+    }
+
+    const searches = await Search.paginate(
+      { edition: editionId, tag: tagId, isBanned: { $ne: true } },
+      {
+        limit,
+        page,
+        sort: { createdAt: -1 },
+        populate: [
+          { path: 'user', select: '_id username' },
+          { path: 'edition', select: '_id code name' },
+          { path: 'tag', select: '_id code edition' },
+          { path: 'searcher', select: '_id name displayName' },
+          { path: 'searchType', select: '_id name' },
+        ],
+        lean: true,
+      }
+    );
+
+    if (searches.docs) {
+      searches.docs.map((search) => {
+        if (search._id) {
+          search.id = search._id;
+          delete search._id;
+        }
+
+        if (search.user?._id) {
+          search.user.id = search.user._id;
+          delete search.user._id;
+        }
+
+        if (search.edition?._id) {
+          search.edition.id = search.edition._id;
+          delete search.edition._id;
+        }
+
+        if (search.tag?._id) {
+          search.tag.id = search.tag._id;
+          delete search.tag._id;
+        }
+
+        if (search.searcher?._id) {
+          search.searcher.id = search.searcher._id;
+          delete search.searcher._id;
+        }
+
+        if (search.searchType?._id) {
+          search.searchType.id = search.searchType._id;
+          delete search.searchType._id;
+        }
+      });
+    }
+
+    return res.status(200).json(searches);
+  } catch (error) {
+    console.error(error);
+    let status = 500;
+
+    if (
+      error instanceof TypeError ||
+      error instanceof RangeError ||
+      error instanceof MatchError ||
+      error instanceof ContentError
+    ) {
+      status = 400;
+    }
+
+    return res
+      .status(status)
+      .json({ error: error.constructor.name, message: error.message });
+  }
+};

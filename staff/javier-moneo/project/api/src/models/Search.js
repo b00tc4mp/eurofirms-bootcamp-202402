@@ -1,4 +1,5 @@
 import { Schema, model } from 'mongoose';
+import mongoosePagination from 'mongoose-paginate-v2';
 
 const searchSchema = new Schema(
   {
@@ -48,5 +49,7 @@ const searchSchema = new Schema(
   },
   { timestamps: true, versionKey: false }
 );
+
+searchSchema.plugin(mongoosePagination);
 
 export default model('Search', searchSchema);
