@@ -9,16 +9,6 @@ function Contacto(props) {
                 <button className="login" onClick={props.onClickLogin}>Iniciar Sesión</button>
                 <button className="register" onClick={props.onClickRegister}>Crear cuenta</button>
             </div>
-            <div id="area-buscador">
-                <form className="form" onSubmit="">
-                    <label htmlFor="ciudad">Ciudad: </label>
-                    <input className="input" type="text" id="ciudad" placeholder="Ejemplo: Coruña"/>
-
-                    &nbsp;<label htmlFor="ciudad">Área profesional: </label>
-                    <input className="input" type="text" id="ciudad" placeholder="Ejemplo: Desarrollo Web"/>
-                    <button className="buscar">Buscar</button>
-                </form>
-            </div>
         </header>
         <main>
             <aside id="aside-left">
@@ -33,7 +23,9 @@ function Contacto(props) {
             </aside>
             <container id="container">
                 <section>
-                    <h2>Contacto</h2>
+                    <h2 className="font-bold text-xl">Contacto</h2><br/><br/><br/>
+                    <h2 className="font-bold text-lf">Correo:</h2><span className="text-lf">adrianmi.info@gmail.com</span>
+                    <h2 className="font-bold text-lf">Teléfono:</h2><span className="text-lf">608501323</span>
                     
                 </section>
             </container>

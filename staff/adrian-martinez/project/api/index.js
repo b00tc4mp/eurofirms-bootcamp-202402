@@ -174,19 +174,19 @@ mongoose.connect(MONGO_URL)
     }
   })
 
-  server.update('/career/:targetCareerId', jsonBodyParser, (req, res) => {
+  server.patch('/career/:targetCareerId', jsonBodyParser, (req, res) => {
     try {
         const { authorization } = req.headers
 
         const token = authorization.slice(7)
 
-        const { sub: companyUserId } = jwt.verify(token, 'esta app va ser disrruptiva en la forma de encontrar trabajo')
+        const { sub: studentsUserId } = jwt.verify(token, 'esta app va ser disrruptiva en la forma de encontrar trabajo')
 
         const { title, description, certification } = req.body
 
-        const { targetUserId } = req.params
+        const { targetCareerId } = req.params
 
-        logic.createCareer(companyUserId, title, description, certification)
+        logic.createCareer(studentsUserId, targetCareerId, title, description, certification)
             .then(() => res.status(201).send())
             .catch(error =>{
               let status = 500;
@@ -205,7 +205,7 @@ catch(error){
 }
 })
 
-server.update('/offer/:targetOfferId', jsonBodyParser, (req, res) => {
+server.patch('/offer/:targetOfferId', jsonBodyParser, (req, res) => {
     try {
         const { authorization } = req.headers
 
@@ -215,9 +215,9 @@ server.update('/offer/:targetOfferId', jsonBodyParser, (req, res) => {
 
         const { title, description, minSalary, maxSalary, publishDate, expirationDate } = req.body
 
-        const { targetUserId } = req.params
+        const { targetOfferId } = req.params
 
-        logic.createOffer(companyUserId, title, description, minSalary, maxSalary, publishDate, expirationDate)
+        logic.createOffer(targetOfferId, companyUserId, title, description, minSalary, maxSalary, publishDate, expirationDate)
             .then(() => res.status(201).send())
             .catch(error =>{
               let status = 500;
@@ -245,7 +245,7 @@ catch(error){
 
         const { sub: userId } = jwt.verify(token, JWT_SECRET)
 
-        logic.retrieveUser(userId)
+        logic.retrieveUsers(userId)
             .then(user => res.json(user))
             .catch(error => {
 
@@ -358,6 +358,43 @@ catch(error){
                 const { targetUserId } = req.params
 
                 logic.retrieveOffersFromCompany(targetUserId)
+                    .then(user => res.json(user))
+                    .catch(error => {
+
+                        let status = 500;
+
+                        if (error instanceof MatchError) {
+
+                            status = 404;
+                        }
+
+                        res.status(status).json({ error: error.constructor.name, message: error.message });
+                    })
+            } catch (error) {
+
+                let status = 500;
+
+                if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError) {
+
+                    status = 400
+                }
+
+                res.status(status).json({ error: error.constructor.name, message: error.message })
+            }
+        })
+        //TODO Ir al perfil de otro usuario
+        server.get('/profile/:targetUserId', (req, res) => {
+            try {
+
+                const { authorization } = req.headers
+
+                const token = authorization.slice(7)
+
+                const { sub: userId } = jwt.verify(token, JWT_SECRET)
+
+                const { targetUserId } = req.params
+
+                logic.retrieveUser(userId, targetUserId)
                     .then(user => res.json(user))
                     .catch(error => {
 

@@ -107,8 +107,8 @@ function Register(props) {
         </header>
         <main>
             <container id="container">
-                <section className="">
-                    <form className="form visible" onSubmit={ handleSubmitStudent }>
+                <section className="flex-auto">
+                    <form className="float-right" onSubmit={ handleSubmitStudent }>
                         <label forhtml="name">Nombre: </label>
                         <input type="text" id="name" placeholder="" required /><br/><br/>
 
@@ -127,7 +127,7 @@ function Register(props) {
                         <button type="submit">Registrarse como estudiante</button>
                     </form>
 
-                    <form className="form visible float-right my--8" onSubmit={ handleSubmitCompany }>
+                    <form className="float-left mt-30" onSubmit={ handleSubmitCompany }>
                         <label forhtml="name">Nombre: </label>
                         <input type="text" id="name" placeholder="" required /><br/><br/>
 
@@ -146,14 +146,18 @@ function Register(props) {
                         <button type="submit">Registrarse como empresa</button>
                     </form>
 
+                </section>
                     {/* <button onClick={ FormStudent() }>Registrarse como Estudiante</button> */}
                     {/* <button onClick={ FormCompany() }>Registrarse como Empresa</button> */}
+                <section className="absolute mt-96 m-2">
                     <button onClick={props.onClickInicio}>Volver</button>
                 </section>
+                
             </container>
+            
         </main>
         <footer>
-            
+       
         </footer>
         {/* <Routes>
           <Route path="/" element={<Inicio numUsers={nUsers} />} /> 

@@ -10,17 +10,19 @@
 }
 
 body{
-  background-color: f;
+  background-color: white;
 }
 
 #app{
   font-size: 52px;
   font-family: "Madimi One";
   float: left;
+  cursor: pointer;
 }
 
 input{
   border: 2px solid black;
+  padding: 3px;
 }
 
 header{
@@ -28,7 +30,8 @@ header{
   margin-right: 2%;
   padding: 30px;
   margin-top: 10px;
-  border: 3px solid black;
+  border: 2px solid black;
+  border-radius: 7%;
   background-color: lightskyblue;
   color: black;
   font-family: "Verdana";
@@ -40,14 +43,20 @@ header{
 }
 
 button{
+  padding: 2px;
+  width: auto;
   font-size: 18px;
   font-weight: bold;
   background-color: white;
   color: black;
-  border: 3px solid black;
-  border-radius: 5%;
+  border: 2px solid black;
+  border-radius: 8%;
   height: 30px;
   cursor: pointer;
+}
+
+.butom-volver{
+  margin-bottom: 2%;
 }
 
 button:hover{
@@ -65,10 +74,10 @@ button:hover{
 }
 
 #area-perfil{
+  margin-left:5%;
   position: relative;
   float:right;
-  width: 20%;
-  border: 1px solid;
+  width: 30%;
 }
 
 #area-buscador{
@@ -99,9 +108,11 @@ main{
 #aside-left{
   padding: 5px;
   margin-top: 10px;
+  margin-left: 2%;
   position: relative;
   float: left;
-  border: 3px solid black;
+  border: 1px solid black;
+  border-radius: 20%;
   background-color: lightskyblue;
   color: black;
   font-family: "Verdana";
@@ -119,7 +130,8 @@ main{
   margin-top: 10px;
   float: right;
   margin-left: 2%;
-  border: 3px solid black;
+  border: 1px solid black;
+  border-radius: 5%;
   background-color: white;
   color: black;
   font-family: "Verdana";

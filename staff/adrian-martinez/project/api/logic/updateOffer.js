@@ -18,7 +18,7 @@ function updateOffer(companyUserId, offerId, title, description, minSalary, maxS
             if (!user)
                 throw new MatchError('user not found')
 
-            return Offer.findById(companyUserId)
+            return Offer.findById(offerId)
                 .catch(error => { throw new SystemError(error.message) })
         })
         .then(offer => {

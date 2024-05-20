@@ -69,7 +69,7 @@ function Login({onUserLoggedIn, onClickResetPassword, onClickInicio}) {
 
                         <button type="submit">Iniciar Sesion</button><br/><br/>
                     </form>
-                    <button onClick={onClickResetPassword}>Olvidé mi Contraseña</button>
+
                     <button onClick={onClickInicio}>Volver</button>
                 </section>
             </container>
