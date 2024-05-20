@@ -92,7 +92,13 @@ function validateText(text, explain = 'text') {
     if (typeof text !== 'string') throw new TypeError(`${explain} is not a string`)
 
     if (!text.length) throw new ContentError(`${explain} is empty`)
+
 }
+
+function validateDay(day) {
+    if (!day instanceof Date) throw new TypeError('day is not a Date object')
+}
+
 
 function validateUrl(url, explain = 'url') {
     if (typeof url !== 'string') throw new TypeError(`${explain} is not a string`)
@@ -100,6 +106,10 @@ function validateUrl(url, explain = 'url') {
     if (!url.length) throw new ContentError(`${explain} is empty`)
 
     if (!url.startsWith('http')) throw new ContentError(`${explain} is not an http address`)
+}
+
+function validateDate(date, explain = 'date') {
+    if (!(date instanceof Date)) throw new TypeError(`${explain} is not a Date object`);
 }
 
 
@@ -127,7 +137,9 @@ const validate = {
     password: validatePassword,
     id: validateId,
     text: validateText,
+    day: validateDay,
     url: validateUrl,
+    date: validateDate,
     token: validateToken
 }
 

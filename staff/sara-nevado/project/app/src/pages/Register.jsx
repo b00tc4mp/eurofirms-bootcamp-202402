@@ -10,13 +10,12 @@ function Register({ onUserRegistered, onLoginClick }) {
         const form = event.target
 
         const name = form.name.value
-        const birthdate = form.birthdate.value
+        const surname = form.surname.value
         const email = form.email.value
-        const username = form.username.value
         const password = form.password.value
 
         try {
-            logic.registerUser(name, birthdate, email, username, password)
+            logic.registerUser(name, surname, email, password)
                 .then(() => onUserRegistered())
                 .catch(error => {
                     console.error(error.message)
@@ -61,14 +60,11 @@ function Register({ onUserRegistered, onLoginClick }) {
                 <label htmlFor="name" className="text-white">Name</label>
                 <input className="border-2 border-gray-600 rounded-md px-3 py-2 focus:outline-none focus:border-blue-500 bg-gray-800 text-white" type="text" id="name" />
 
-                <label htmlFor="birthdate" className="text-white">Birthdate</label>
-                <input className="border-2 border-gray-600 rounded-md px-3 py-2 focus:outline-none focus:border-blue-500 bg-gray-800 text-white" type="date" id="birthdate" />
+                <label htmlFor="surname" className="text-white">Surname</label>
+                <input className="border-2 border-gray-600 rounded-md px-3 py-2 focus:outline-none focus:border-blue-500 bg-gray-800 text-white" type="text" id="surname" />
 
                 <label htmlFor="email" className="text-white">E-mail</label>
                 <input className="border-2 border-gray-600 rounded-md px-3 py-2 focus:outline-none focus:border-blue-500 bg-gray-800 text-white" type="email" id="email" />
-
-                <label htmlFor="username" className="text-white">Username</label>
-                <input className="border-2 border-gray-600 rounded-md px-3 py-2 focus:outline-none focus:border-blue-500 bg-gray-800 text-white" type="text" id="username" />
 
                 <label htmlFor="password" className="text-white">Password</label>
                 <input className="border-2 border-gray-600 rounded-md px-3 py-2 focus:outline-none focus:border-blue-500 bg-gray-800 text-white" type="password" id="password" />
@@ -81,4 +77,4 @@ function Register({ onUserRegistered, onLoginClick }) {
     )
 }
 
-export default Register;
+export default Register

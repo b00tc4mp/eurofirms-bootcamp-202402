@@ -9,12 +9,11 @@ function Login({ onUserLoggedIn, onRegisterClick }) {
         event.preventDefault()
 
         const form = event.target
-
-        const username = form.username.value
+        const email = form.email.value
         const password = form.password.value
 
         try {
-            logic.loginUser(username, password)
+            logic.loginUser(email, password)
                 .then(() => onUserLoggedIn())
                 .catch(error => {
                     console.error(error.message)
@@ -59,8 +58,8 @@ function Login({ onUserLoggedIn, onRegisterClick }) {
       
           <form onSubmit={handleSubmit} className="mb-6">
             <div className="mb-4">
-              <label htmlFor="username" className="block text-lg font-semibold mb-2 text-white">Username</label> 
-              <input className="border border-gray-300 rounded-md py-2 px-4 w-full focus:outline-none focus:border-blue-500" type="text" id="username" />
+              <label htmlFor="email" className="block text-lg font-semibold mb-2 text-white">E-mail</label> 
+              <input className="border border-gray-300 rounded-md py-2 px-4 w-full focus:outline-none focus:border-blue-500" type="text" id="email" />
             </div>
       
             <div className="mb-6">

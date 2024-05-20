@@ -1,25 +1,21 @@
-import mongoose from 'mongoose'
+import mongoose from 'mongoose';
 
-const { Schema, model } = mongoose
-const { Types: { ObjectId } } = Schema
+const { Schema, model } = mongoose;
+const { Types: { ObjectId } } = Schema;
 
 const user = new Schema({
     name: {
         type: String,
         required: true
     },
-
     surname: {
         type: String,
         required: true
     },
-
-
     email: {
         type: String,
         required: true,
         unique: true
-    
     },
     password: {
         type: String,
@@ -28,16 +24,26 @@ const user = new Schema({
     role: {
         type: String,
         required: true,
-        enum: ['regular','admin']
-
+        enum: ['regular', 'admin']
     }
 })
 
+const event = new Schema({
+    day: {
+        type: Date,
+        required: true
+    },
+    text: {
+        type: String,
+        required: true
+    },
 
+})
 
 const User = model('User', user)
-
+const Event = model('Event', event)
 
 export {
-    User
-} 
+    User,
+    Event
+}

@@ -2,15 +2,15 @@ import { errors, validate } from 'com'
 
 const { SystemError } = errors
 
-function loginUser(username, password) {
-validate.username(username)
+function loginUser(email, password) {
+validate.email(email)
 validate.password(password)
 
 
 return fetch(`${import.meta.env.VITE_API_URL}/users/auth`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ username, password })
+    body: JSON.stringify({ email, password })
 })
     .catch(error => { throw new SystemError(error.message) })
     .then(res => {
@@ -18,6 +18,9 @@ return fetch(`${import.meta.env.VITE_API_URL}/users/auth`, {
             return res.json()
                 .catch(error => { throw new SystemError(error.message) })
                 .then(token => sessionStorage.token = token)
+
+ 
+
 
         return res.json()
             .catch(error => { throw new SystemError(error.message) })

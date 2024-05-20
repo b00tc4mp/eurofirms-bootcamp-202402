@@ -8,10 +8,6 @@ function authenticateUser(email, password) {
     validate.password(password)
 
 
-    //const predefinedKey = '8989'
-    //if (providedKey !== predefinedKey) {
-    //throw new ContentError('the entered key is not valid')
-    //}
 
     return User.findOne({ email })
         .catch(error => { throw new SystemError(error.message) })
@@ -23,6 +19,8 @@ function authenticateUser(email, password) {
             if (user.password !== password)
                 throw new MatchError('wrong credentials')
 
+            
+          
             return {
                 id: user.id,
                 role: user.role
@@ -33,3 +31,5 @@ function authenticateUser(email, password) {
 
 
 export default authenticateUser
+
+

@@ -38,6 +38,14 @@ class ReferenceError extends Error {
     }
 }
 
+class NotFoundError extends Error {
+    constructor(message) {
+        super(message);
+
+        this.name = NotFoundError
+    }
+}
+
 
 
 const errors = {
@@ -47,7 +55,8 @@ const errors = {
     TypeError,
     RangeError,
     MatchError,
-    ReferenceError
+    ReferenceError,
+    NotFoundError
 }
 
 export default errors
