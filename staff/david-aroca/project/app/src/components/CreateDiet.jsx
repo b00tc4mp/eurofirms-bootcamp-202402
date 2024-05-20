@@ -43,7 +43,7 @@ function CreateDiet({ onCancelClick, onDietCreated }) {
                 <label htmlFor="description">Description</label>
                 <textarea className="border-b-2 border-black mb-2 h-24 resize-none font-serif" rows="4" cols="50" />
 
-                <button className="rounded-xl" type="submit">Create</button>
+                <button className="rounded-xl " type="submit">Create</button>
             </form>
             <button className="" onClick={handleCancelClick}>Cancel</button>
         </section>

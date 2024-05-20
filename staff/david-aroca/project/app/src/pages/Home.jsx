@@ -5,9 +5,10 @@ import { Routes, Route, useNavigate } from 'react-router-dom'
 import logic from "../logic"
 
 // importacion de el componente 
-import Measures from "../components/Measures"
+import Measurement from "../components/Measurement"
 import Exercises from "../components/Exercises"
 import Diets from "../components/Diets"
+// import Searcher from "../components/Searcher"
 // import search from "../components/Search"
 
 const { ContentError, MatchError } = errors
@@ -76,7 +77,7 @@ function Home({ onUserLoggedOut }) {
 
     return <>
         {/* header */}
-        <header className="flex justify-between items-center border-b-2 border-black fixed top-0 w-full bg-gray-200 px-6 py-4">
+        <header className="flex justify-between items-center border-b-2 border-black fixed top-0 w-full bg-gray-200 px-6 py-4 z-10">
             {user ? <h1 className="text-gray-800 text-xl font-bold">Hello, {user.name}</h1> : <p className="text-gray-800">Loading...</p>}
 
             <nav>
@@ -85,7 +86,7 @@ function Home({ onUserLoggedOut }) {
         </header>
 
         <Routes>
-            <Route path="/measurements" element={<Measures />} />
+            <Route path="/measurements" element={<Measurement />} />
             <Route path="/diets" element={<Diets />} />
             <Route path="/routines" element={<Exercises />} />
             {/* <Route path="/" element={<HomeContent />} /> */}

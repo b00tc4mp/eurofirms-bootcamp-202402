@@ -44,7 +44,7 @@ function Exercises({ refreshStamp }) {
                 <CreateExercise onCancelClick={handleCancelCreateExercise} onExerciseCreated={handleExerciseCreated} />
             ) : (
                 <>
-                    <button className="fixed right-0 top-20 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={handleCreateExerciseClick}>
+                    <button className="fixed right-0 top-20 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded z-10" onClick={handleCreateExerciseClick}>
                         Create Exercise
                     </button>
                     {exercises.map(exercise => (

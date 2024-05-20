@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import logic from '../logic';
 
 function extractYouTubeID(url) {
-    if (!url) return null; // Verifica si la URL es undefined o null
+    if (!url) return null; // verifica si la URL es undefined o null
     const regExp = /^.*(youtu.be\/|v\/|\/u\/\w\/|embed\/|watch\?v=|\&v=|\?v=|\&v=)([^#\&\?]*).*/;
     const match = url.match(regExp);
 

@@ -18,6 +18,10 @@ import modifyExercise from './modifyExercise.js'
 import modifyDiet from './modifyDiet.js'
 import modifyMeasurement from './modifyMeasurement.js'
 
+import searchExercise from './searchExercise.js'
+import searchDiet from './searchDiet.js'
+import searchMeasurement from './searchMeasurement.js'
+
 const logic = {
     registerUser,
     authenticateUser,
@@ -33,7 +37,10 @@ const logic = {
     createMeasurement,
     removeMeasurement,
     retrieveMeasurement,
-    modifyMeasurement
+    modifyMeasurement,
+    searchExercise,
+    searchDiet,
+    searchMeasurement,
 }
 
 export default logic

@@ -519,6 +519,7 @@ mongoose.connect(MONGO_URL)
 
                 const { date, weight, torso, legs } = req.body
 
+
                 logic.modifyMeasurement(user.id, measurementId, date, weight, torso, legs)
                     .then(() => res.status(204).send())
                     .catch(error => {
@@ -578,6 +579,112 @@ mongoose.connect(MONGO_URL)
         })
 
         // --------------------------------------------------------------------//
+        server.get('/exercises/search', (req, res) => {
+            try {
+
+                const { authorization } = req.headers
+
+                const token = authorization.slice(7)
+
+                const { sub: user } = jwt.verify(token, JWT_SECRET)
+
+                const searchQuery = req.body
+
+                logic.searchExercise(user.id, searchQuery)
+                    .then(exercises => res.status(200).json(exercises))
+                    .catch(error => {
+                        let status = 500
+                        if (error instanceof MatchError)
+                            status = 404
+
+                        res.status(status).json({ error: errors.constructor.name, message: error.message })
+                    })
+
+            } catch (error) {
+                let status = 500
+
+                if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
+                    status = 400
+                else if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError) {
+                    status = 401
+
+                    error = new MatchError(error.message)
+                }
+                res.status(status).json({ error: errors.constructor.name, message: error.message })
+            }
+        })
+
+        // --------------------------------------------------------------------//
+        server.get('/diets/search', (req, res) => {
+            try {
+                const { authorization } = req.headers
+
+                const token = authorization.slice(7)
+
+                const { sub: user } = jwt.verify(token, JWT_SECRET)
+
+                const searchQuery = req.body
+
+                logic.searchDiet(user.id, searchQuery)
+                    .then(diets => res.status(200).json(diets))
+                    .catch(error => {
+                        let status = 500
+                        if (error instanceof MatchError)
+                            status = 404
+
+                        res.status(status).json({ error: errors.constructor.name, message: error.message })
+                    })
+
+            } catch (error) {
+                let status = 500
+
+                if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
+                    status = 400
+                else if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError) {
+                    status = 401
+
+                    error = new MatchError(error.message)
+                }
+                res.status(status).json({ error: errors.constructor.name, message: error.message })
+            }
+        })
+
+        // --------------------------------------------------------------------//
+        server.get('/measurements/search', (req, res) => {
+            try {
+                const searchQuery = req.body
+
+                const { authorization } = req.header
+
+                const token = authorization.slice(7)
+
+                const { sub: user } = jwt.verify(token, JWT_SECRET)
+
+                logic.searchMeasurement(user.id, searchQuery)
+                    .then(measurements => res.status(200).json(measurements))
+                    .catch(error => {
+                        let status = 500
+                        if (error instanceof MatchError)
+                            status = 404
+
+                        res.status(status).json({ error: errors.constructor.name, message: error.message })
+                    })
+            } catch (error) {
+                let status = 500
+
+                if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
+                    status = 400
+                else if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError) {
+                    status = 401
+
+                    error = new MatchError(error.message)
+                }
+                res.status(status).json({ error: errors.constructor.name, message: error.message })
+            }
+        })
+
+        // --------------------------------------------------------------------//
+
 
 
 

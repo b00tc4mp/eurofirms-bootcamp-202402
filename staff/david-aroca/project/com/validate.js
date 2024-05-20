@@ -136,6 +136,7 @@ function validateDate(date, explain = 'date') {
     if (date.length !== 10)
         throw new RangeError('date does not have 10 characters')
 
+
     if (date.includes(' '))
         throw new ContentError('date has a space character')
 
@@ -143,6 +144,7 @@ function validateDate(date, explain = 'date') {
         throw new ContentError('date dashes are not in correct position')
 
 }
+
 function validateWeight(weight, explain = 'weight') {
 
     if (typeof weight !== 'number' || isNaN(weight))

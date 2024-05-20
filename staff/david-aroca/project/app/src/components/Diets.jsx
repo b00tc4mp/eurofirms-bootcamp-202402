@@ -44,7 +44,7 @@ function Diets({ refreshStamp }) {
                 <CreateDiet onCancelClick={handleCancelCreateDiet} onDietCreated={handleDietCreated} />
             ) : (
                 <>
-                    <button className="fixed right-0 top-20 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={handleCreateDietClick}>
+                    <button className="fixed right-0 top-20 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded z-10" onClick={handleCreateDietClick}>
                         Create Diet
                     </button>
                     {diets.map(diet => (

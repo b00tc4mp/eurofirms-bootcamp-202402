@@ -11,7 +11,7 @@ function modifyMeasurement(measurementId, date, weight, torso, legs) {
 
 
     return fetch(`${import.meta.env.VITE_API_URL}/measurements/${measurementId}`, {
-        method: 'POST',
+        method: 'PATCH',
         headers: {
             Authorization: `Bearer ${sessionStorage.token}`,
             'Content-type': 'application/json'
