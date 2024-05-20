@@ -52,7 +52,7 @@ mongoose.connect(MONGO_URL)
 
         // --------------------------------------------------------------------//
 
-        server.post('/users', jsonBodyParser, (req, res) => {
+        server.post('/users/trainer', jsonBodyParser, (req, res) => {
             try {
                 const { name, birthdate, email, username, password } = req.body
 

@@ -1,4 +1,5 @@
 import registerUser from './registerUser.js'
+import registerTrainer from './registerTrainer.js'
 import authenticateUser from './authenticateUser.js'
 import retrieveUser from './retrieveUser.js'
 
@@ -24,6 +25,7 @@ import searchMeasurement from './searchMeasurement.js'
 
 const logic = {
     registerUser,
+    registerTrainer,
     authenticateUser,
     retrieveUser,
     createExercise,

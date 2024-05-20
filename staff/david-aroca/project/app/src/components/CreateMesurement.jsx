@@ -1,4 +1,3 @@
-import { errors } from "com";
 import logic from "../logic";
 
 function createMeasurement({ onCancelClick, onMeasurementCreated }) {
@@ -55,6 +54,7 @@ function createMeasurement({ onCancelClick, onMeasurementCreated }) {
     );
 }
 
+export default createMeasurement
 
 
 

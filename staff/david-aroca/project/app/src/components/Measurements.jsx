@@ -1,7 +1,9 @@
 import { useState } from "react";
 import logic from "../logic";
 
-function Measurement({ measurement, onMeasurementRemoved, onMeasurementModified }) {
+// TODO
+
+function Measurements({ measurement, onMeasurementRemoved, onMeasurementModified }) {
     const [modify, setModify] = useState(false);
 
     const handleRemoveMeasurement = () => {
@@ -149,5 +151,5 @@ function Measurement({ measurement, onMeasurementRemoved, onMeasurementModified 
     );
 }
 
-export default Measurement;
+export default Measurements;
 

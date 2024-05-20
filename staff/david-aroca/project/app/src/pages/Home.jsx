@@ -1,120 +1,110 @@
-import { useState, useEffect } from "react"
-import { errors } from "com"
-import { Routes, Route, useNavigate } from 'react-router-dom'
-
-import logic from "../logic"
-
-// importacion de el componente 
-import Measurement from "../components/Measurement"
-import Exercises from "../components/Exercises"
-import Diets from "../components/Diets"
-// import Searcher from "../components/Searcher"
-// import search from "../components/Search"
-
-const { ContentError, MatchError } = errors
+import React, { useState, useEffect } from "react";
+import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
+import logic from "../logic";
+import Measurements from "../components/Measurements";
+import Exercises from "../components/Exercises";
+import Diets from "../components/Diets";
+import SearchExercise from "../components/SearchExercise";
+import SearchDiet from "../components/SearchDiet";
 
 function Home({ onUserLoggedOut }) {
-    const [user, setUser] = useState(null)
-
-    const navigate = useNavigate()
+    const [user, setUser] = useState(null);
+    const navigate = useNavigate();
+    const location = useLocation();
 
     useEffect(() => {
         try {
             logic.retrieveUser()
                 .then(user => setUser(user))
                 .catch(error => {
-                    console.error(error.message)
+                    console.error(error.message);
+                    let feedback = error.message;
 
-                    let feedback = error.message
-
-                    if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
-                        feedback = `${feedback}, please correct it `
-
-                    else if (error instanceof MatchError)
-                        feedback = `${feedback}, please verify user`
-                    else
-                        feedback = 'sorry,there was an error please try again later'
-                    alert(feedback)
-                })
+                    if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError) {
+                        feedback = `${feedback}, please correct it `;
+                    } else if (error instanceof MatchError) {
+                        feedback = `${feedback}, please verify user`;
+                    } else {
+                        feedback = 'sorry, there was an error please try again later';
+                    }
+                    alert(feedback);
+                });
         } catch (error) {
-            console.error(error.message)
+            console.error(error.message);
+            let feedback = error.message;
 
-            if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
-                feedback = `${feedback},please correct it`
-            else
-                feedback = 'sorry,there was an error,please try again later'
-            alert(feedback)
+            if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError) {
+                feedback = `${feedback},please correct it`;
+            } else {
+                feedback = 'sorry, there was an error,please try again later';
+            }
+            alert(feedback);
         }
-
-    }, [])
+    }, []);
 
     const handleLogout = () => {
-        logic.logoutUser()
-
-        onUserLoggedOut()
+        logic.logoutUser();
+        onUserLoggedOut();
     }
 
     const handleMeasureNavigate = () => {
-        navigate('/measurements')
+        navigate('/measurements');
     }
 
     const handleHomeNavigate = () => {
-        navigate('/')
-
+        navigate('/');
     }
 
     const handleDietNavigate = () => {
-        navigate('/diets')
-
+        navigate('/diets');
     }
 
     const handleRoutineNavigate = () => {
-        navigate('/routines')
-
+        navigate('/routines');
     }
 
     console.log('HOME RENDER 💀')
 
-    return <>
-        {/* header */}
-        <header className="flex justify-between items-center border-b-2 border-black fixed top-0 w-full bg-gray-200 px-6 py-4 z-10">
-            {user ? <h1 className="text-gray-800 text-xl font-bold">Hello, {user.name}</h1> : <p className="text-gray-800">Loading...</p>}
+    return (
+        <>
+            <header className="flex justify-between items-center border-b-2 border-black fixed top-0 w-full bg-gray-200 px-6 py-4 z-10">
+                {user ? <h1 className="text-gray-800 text-xl font-bold">Hello, {user.name}</h1> : <p className="text-gray-800">Loading...</p>}
 
-            <nav>
-                <button className="bg-gray-800 text-white hover:bg-gray-700 font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onClick={handleLogout}>Exit</button>
-            </nav>
-        </header>
+                <nav>
+                    <button className="bg-gray-800 text-white hover:bg-gray-700 font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onClick={handleLogout}>Exit</button>
+                </nav>
+            </header>
 
-        <Routes>
-            <Route path="/measurements" element={<Measurement />} />
-            <Route path="/diets" element={<Diets />} />
-            <Route path="/routines" element={<Exercises />} />
-            {/* <Route path="/" element={<HomeContent />} /> */}
-            {/* no puedo tener contenido en home sin rutas a excepcion del footer y el header */}
-            {/* <TODO></TODO> */}
-        </Routes>
+            {/* Mostrar buscadores solo si estamos en la ruta de inicio ("/") */}
+            {location.pathname === '/' && (
+                <>
+                    <SearchDiet />
+                    <SearchExercise />
+                </>
+            )}
 
-        {/* TODO */}
-        {/* Hay que solucionar el hecho de que se ve en todas las
-         vistas cuando solo se tiene que ver en el home */}
+            <Routes>
+                <Route path="/measurements" element={<Measurements />} />
+                <Route path="/diets" element={<Diets />} />
+                <Route path="/routines" element={<Exercises />} />
+            </Routes>
 
-        {/* footer con sus respectivos botones comentados porque si no da error */}
-        <footer className="flex justify-between items-center border-t-2 border-black fixed bottom-0 w-full bg-gray-200 px-6 py-4">
-            <button className="text-gray-800 font-semibold hover:underline focus:outline-none focus:shadow-outline"
-                onClick={handleMeasureNavigate}
-            >Measures</button>
-            <button className="text-gray-800 font-semibold hover:underline focus:outline-none focus:shadow-outline"
-                onClick={handleHomeNavigate}
-            >Home</button>
-            <button className="text-gray-800 font-semibold hover:underline focus:outline-none focus:shadow-outline"
-                onClick={handleDietNavigate}
-            >Diets</button>
-            <button className="text-gray-800 font-semibold hover:underline focus:outline-none focus:shadow-outline"
-                onClick={handleRoutineNavigate}
-            >Routines</button>
-        </footer>
-    </>
-
+            <footer className="flex justify-between items-center border-t-2 border-black fixed bottom-0 w-full bg-gray-200 px-6 py-4">
+                <button className="text-gray-800 font-semibold hover:underline focus:outline-none focus:shadow-outline"
+                    onClick={handleMeasureNavigate}
+                >Measures</button>
+                <button className="text-gray-800 font-semibold hover:underline focus:outline-none focus:shadow-outline"
+                    onClick={handleHomeNavigate}
+                >Home</button>
+                <button className="text-gray-800 font-semibold hover:underline focus:outline-none focus:shadow-outline"
+                    onClick={handleDietNavigate}
+                >Diets</button>
+                <button className="text-gray-800 font-semibold hover:underline focus:outline-none focus:shadow-outline"
+                    onClick={handleRoutineNavigate}
+                >Routines</button>
+            </footer>
+        </>
+    )
 }
 
-export default Home
+export default Home;

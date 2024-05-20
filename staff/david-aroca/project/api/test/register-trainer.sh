@@ -1,1 +1,1 @@
- curl -X POST -H 'Content-type: application/json' -d '{"name":"JOSEMAMADO","birthdate":"2000-01-01","email":"JOSE@MAMADO.COM","username":"JOSEMAMADO","password":"123123123"}' http://localhost:4025/users -v
+ curl -X POST -H 'Content-type: application/json' -d '{"name":"JOSEMAMADO26","birthdate":"2000-01-01","email":"JOSE@MAMADO26.COM","username":"JOSEMAMADO26","password":"123123123"}' http://localhost:4025/users/trainer -v

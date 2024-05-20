@@ -1,5 +1,7 @@
 import loginUser from "./loginUser"
 import registerUser from "./registerUser"
+import registerTrainer from "./registerTrainer"
+
 import retrieveUser from "./retrieveUser"
 import isUserLoggedIn from "./isUserLoggedIn"
 import logoutUser from "./logoutUser"
@@ -39,7 +41,8 @@ const logic = {
     removeMeasurement,
     retrieveDiet,
     retrieveExercises,
-    retrieveMeasurement
+    retrieveMeasurement,
+    registerTrainer
 }
 
 export default logic
