@@ -13,6 +13,7 @@ import AssignAllRolesToUser from './pages/AssignAllRolesToUser';
 import ReportedSearches from './pages/ReportedSearches';
 import ReportedComments from './pages/ReportedComments';
 import ReportedTags from './pages/ReportedTags';
+import ReportedUsers from './pages/ReportedUsers';
 
 function App() {
   const navigate = useNavigate();
@@ -124,6 +125,17 @@ function App() {
             element={
               logic.isUserLoggedIn() ? (
                 <ReportedTags />
+              ) : (
+                <Navigate to="/login" />
+              )
+            }
+          />
+          {/* REPORTED USERS */}
+          <Route
+            path="/reportedUsers"
+            element={
+              logic.isUserLoggedIn() ? (
+                <ReportedUsers />
               ) : (
                 <Navigate to="/login" />
               )

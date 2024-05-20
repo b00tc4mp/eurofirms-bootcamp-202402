@@ -70,15 +70,27 @@ export const isUserBanned = async (req, res, next) => {
     // porque hemos pasado en verifyToken el userId
     const user = await User.findById(req.userId);
 
-    if (user.isUserBanned) {
-      return res.status(403).json({ message: 'User is banned' });
+    if (user.isBanned) {
+      throw new MatchError('User is banned');
     }
 
     next();
   } catch (error) {
     console.error(error);
+    let status = 500;
+
+    if (
+      error instanceof TypeError ||
+      error instanceof RangeError ||
+      error instanceof ContentError ||
+      error instanceof MatchError ||
+      error instanceof DuplicityError
+    ) {
+      status = 400;
+    }
+
     return res
-      .status(500)
+      .status(status)
       .json({ error: error.constructor.name, message: error.message });
   }
 };

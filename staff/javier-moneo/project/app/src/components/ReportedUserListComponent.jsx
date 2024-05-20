@@ -1,25 +1,25 @@
 import { useEffect, useState } from 'react';
 import logic from '../logic';
 import { errors } from '../com';
-import PaginationReportedTagComponent from './PaginationReportedTagComponent';
-import ReportedTagComponent from './ReportedTagComponent';
+import ReportedUserComponent from './ReportedUserComponent';
+import PaginationReportedUserComponent from './PaginationReportedUserComponent';
 
 const { ContentError, MatchError, DuplicityError, RangeError, TypeError } =
   errors;
 
-export default function ReportedTagListComponent({
+export default function ReportedUserListComponent({
   initialLimit,
   initialPage,
   refreshTimestap,
 }) {
-  const [reportedTagsPaginated, setReportedTagsPaginated] = useState(null);
+  const [reportedUsersPaginated, setReportedUsersPaginated] = useState(null);
 
   useEffect(() => {
     try {
       logic
-        .retrieveReportedTagsPaginated(initialLimit, initialPage)
-        .then((retrievedTagsPaginated) => {
-          setReportedTagsPaginated(retrievedTagsPaginated);
+        .retrieveReportedUsersPaginated(initialLimit, initialPage)
+        .then((retrievedUsersPaginated) => {
+          setReportedUsersPaginated(retrievedUsersPaginated);
         })
         .catch((error) => {
           errorHandler(error);
@@ -50,16 +50,16 @@ export default function ReportedTagListComponent({
   return (
     <div className="bg-red-100 p-1 my-1  rounded shadow">
       {/* <pre>{JSON.stringify(reportedTagsPaginated, null, 2)}</pre> */}
-      {reportedTagsPaginated &&
-        reportedTagsPaginated.docs.map((reportedTag) => (
-          <ReportedTagComponent
-            initialReportedTag={reportedTag}
-            key={reportedTag.id}
+      {reportedUsersPaginated &&
+        reportedUsersPaginated.docs.map((reportedUser) => (
+          <ReportedUserComponent
+            initialReportedUser={reportedUser}
+            key={reportedUser.id}
           />
         ))}
-      {reportedTagsPaginated && (
-        <PaginationReportedTagComponent
-          initialReportedTagsPaginated={reportedTagsPaginated}
+      {reportedUsersPaginated && (
+        <PaginationReportedUserComponent
+          initialReportedUsersPaginated={reportedUsersPaginated}
         />
       )}
     </div>
