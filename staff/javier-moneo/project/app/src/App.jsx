@@ -14,6 +14,7 @@ import ReportedSearches from './pages/ReportedSearches';
 import ReportedComments from './pages/ReportedComments';
 import ReportedTags from './pages/ReportedTags';
 import ReportedUsers from './pages/ReportedUsers';
+import NewSearchesByEditionIdAndTagId from './pages/NewSearchesByEditionIdAndTagId';
 
 function App() {
   const navigate = useNavigate();
@@ -75,6 +76,12 @@ function App() {
           <Route
             path="/newSearches/:urlEditionCode?/:urlSearcherName?/:urlSearchTypeName?/:urlTagName?"
             element={<NewSearches />}
+          />
+
+          {/* NEW SEARCHES by */}
+          <Route
+            path="/newSearchesByEditionIdAndTagId/:urlEditionId/:urlTagId"
+            element={<NewSearchesByEditionIdAndTagId />}
           />
 
           {/* EDITION LIST */}

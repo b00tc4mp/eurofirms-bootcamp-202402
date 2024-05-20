@@ -9,4 +9,9 @@ router.get(
   menuSearchTagCtrl.getMenuSearchTagsByEditionIdAndSearchTypeId
 );
 
+router.post(
+  '/getByEditionIdAndSearchTypeId',
+  menuSearchTagCtrl.getByEditionIdAndSearchTypeId
+);
+
 export default router;

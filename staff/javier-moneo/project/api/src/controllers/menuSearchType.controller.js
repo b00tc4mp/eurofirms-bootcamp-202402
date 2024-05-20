@@ -1,4 +1,9 @@
 import MenuSearchType from '../models/MenuSearchType.js';
+import validate from '../libs/com/validate.js';
+import errors from '../libs/com/errors.js';
+
+const { ContentError, DuplicityError, MatchError, TypeError, RangeError } =
+  errors;
 
 export const getMenuSearchTypesByEditionAndSearcher = async (req, res) => {
   try {
@@ -35,8 +40,19 @@ export const getMenuSearchTypesByEditionAndSearcher = async (req, res) => {
     return res.json(menuSearchTypes);
   } catch (error) {
     console.error(error);
+    let status = 500;
+
+    if (
+      error instanceof TypeError ||
+      error instanceof RangeError ||
+      error instanceof MatchError ||
+      error instanceof ContentError
+    ) {
+      status = 400;
+    }
+
     return res
-      .status(500)
+      .status(status)
       .json({ error: error.constructor.name, message: error.message });
   }
 };
