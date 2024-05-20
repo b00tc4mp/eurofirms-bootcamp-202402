@@ -385,6 +385,7 @@ export const createMenuSearchTags = async () => {
         });
         const tag = await Tag.findOne({
           name: menuSearchTag.tagName,
+          edition: edition._id,
         });
         const searchType = await SearchType.findOne({
           name: menuSearchTag.searchType,
