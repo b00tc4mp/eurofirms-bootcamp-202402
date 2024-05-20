@@ -6,4 +6,6 @@ const router = Router();
 
 router.post('/', tagCtrl.getTagByNameAndEditionId);
 
+router.get('/:tagId', tagCtrl.getTagByTagId);
+
 export default router;

@@ -8,4 +8,6 @@ router.get('/', editionsCtrl.getEditions);
 
 router.get('/:code', editionsCtrl.getEditionByCode);
 
+router.get('/getEditionById/:editionId', editionsCtrl.getEditionById);
+
 export default router;

@@ -37,6 +37,8 @@ import retrieveReportedUsersPaginated from './retrieveReportedUsersPaginated';
 import removeReportUserById from './removeReportUserById';
 import discardReportUserById from './discardReportUserById';
 import retrieveMenuSearchTagsByEditionIdAndSearchTypeId from './retrieveMenuSearchTagsByEditionIdAndSearchTypeId';
+import retrieveEditionByEditionId from './retrieveEditionByEditionId';
+import retrieveTagByTagId from './retrieveTagByTagId';
 
 const logic = {
   assignAllRolesToUser,
@@ -78,6 +80,8 @@ const logic = {
   removeReportUserById,
   discardReportUserById,
   retrieveMenuSearchTagsByEditionIdAndSearchTypeId,
+  retrieveEditionByEditionId,
+  retrieveTagByTagId,
 };
 
 export default logic;

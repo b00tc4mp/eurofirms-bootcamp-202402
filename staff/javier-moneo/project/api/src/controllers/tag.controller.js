@@ -41,3 +41,46 @@ export const getTagByNameAndEditionId = async (req, res) => {
       .json({ error: error.constructor.name, message: error.message });
   }
 };
+
+export const getTagByTagId = async (req, res) => {
+  try {
+    const { tagId } = req.params;
+    validate.id(tagId);
+
+    const tag = await Tag.findById(tagId)
+      .populate('edition', '_id code name')
+      .lean()
+      .exec();
+
+    if (!tag) {
+      throw new MatchError('Tag no found');
+    }
+
+    if (tag._id) {
+      tag.id = tag._id;
+      delete tag._id;
+    }
+
+    if (tag.edition?._id) {
+      tag.edition.id = tag.edition._id;
+      delete tag.edition._id;
+    }
+
+    return res.status(200).json(tag);
+  } catch (error) {
+    console.error(error);
+    let status = 500;
+
+    if (
+      error instanceof TypeError ||
+      error instanceof RangeError ||
+      error instanceof ContentError
+    ) {
+      status = 400;
+    }
+
+    return res
+      .status(status)
+      .json({ error: error.constructor.name, message: error.message });
+  }
+};
