@@ -1,1 +1,1 @@
-curl -X DELETE -H 'Authorization: Bearer ' http://localhost:9010/products/ -v 
+curl -X DELETE -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NjNjY2FlYWM3OTJkNzdhMTQ5MmQ0OTQiLCJyb2xlIjoiYnV5ZXIiLCJpYXQiOjE3MTU3NTgwMzQsImV4cCI6MTcxNTc2MTYzNH0.w3wXamQpCcoKbVrG-MzLX1gzT0Ez5TRQ3oD7FpSfPQU' http://localhost:9010/products/663cd2e0ea5b0744cb0f1893 -v 

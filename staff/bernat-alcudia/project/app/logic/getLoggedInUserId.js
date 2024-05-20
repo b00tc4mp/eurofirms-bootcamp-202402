@@ -1,9 +1,10 @@
-import { validate, utils } from '/..com';
+import { validate, utils } from '../com';
+import SessionStorage from 'react-native-session-storage';
 
 function getLoggedInUserId() {
-    validate.token(sessionStorage.token)
+    validate.token(SessionStorage.getItem('token'))
 
-    const { sub: userId } = utils.extractPayload(sessionStorage.token)
+    const { sub: userId } = utils.extractPayload(SessionStorage.getItem('token'))
 
     return userId
 }

@@ -1,11 +1,11 @@
 import mongoose from "mongoose";
-import retrieveProducts from "./retrieveProducts.js";
+import retrieveProductDetails from "./retrieveProductDetails.js";
 
 mongoose.connect('mongodb://localhost:27017/project')
     .then(() => {
         try {
-            retrieveProducts('663ccaeac792d77a1492d494')
-                .then(products => console.log('retrieved products', products))
+            retrieveProductDetails('664477b3ca0a4a2c40e1ebac', '663cd2e0ea5b0744cb0f1893')
+                .then(product => console.log('retrieved products', product))
                 .catch(error => console.error(error))
         } catch (error) {
             console.error(error)

@@ -1,4 +1,5 @@
 import errors from "./errors.js";
+import utils from "./utils.js";
 
 const { ContentError, MatchError } = errors
 
@@ -33,8 +34,8 @@ function validateName(name) {
 function validateBirthdate(birthdate) {
     if (typeof birthdate !== 'string') throw new TypeError('birthdate is not string')
 
-    if (birthdate.length !== 10)
-        throw new RangeError('birthdate does not have 10 characters')
+    if (birthdate.length !== 24)
+        throw new RangeError('birthdate does not have 24 characters')
 
     if (birthdate.includes(' ')) throw new ContentError('birthdate has a space character')
 
@@ -108,6 +109,23 @@ function validateUrls(urls) {
     }
 }
 
+function validateImages(strings) {
+
+    for (var i = 0; i < strings.length; i++) {
+        const string = strings[i]
+
+        if (string.length % 4 !== 0) {
+            throw new MatchError('It is not a multiple of 4')
+        }
+
+        const regex = /^[A-Za-z0-9+/]*={0,2}$/;
+        if (!regex.test(string)) {
+            throw new ContentError('wrong format')
+        }
+
+    }
+}
+
 
 function validateDescription(description) {
     if (typeof description !== 'string') throw new TypeError('description is not a string')
@@ -122,9 +140,9 @@ function validateToken(token) {
 
     if (!token.length) throw new ContentError('token is empty')
 
-    const [, payload64,] = token.split('.')
-    const payloadJSON = atob(payload64)
-    const payload = JSON.parse(payloadJSON)
+
+
+    const payload = utils.extractPayload(token)
 
     const { exp } = payload
 
@@ -144,6 +162,7 @@ const validate = {
     id: validateId,
     url: validateUrl,
     urls: validateUrls,
+    images: validateImages,
     description: validateDescription,
     state: validateState,
     token: validateToken

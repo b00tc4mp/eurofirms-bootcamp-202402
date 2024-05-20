@@ -1,22 +1,23 @@
-import { validate, error, errors } from '/..com';
+import { validate, error, errors } from '../com';
+import SessionStorage from 'react-native-session-storage';
 
 const { SystemError } = errors
 
 function modifyProduct(productId, images, title, description, brand, price, state, stock) {
-    validate.token(sessionStorage.token)
+    validate.token(SessionStorage.getItem('token'))
     validate.id(productId, 'productId')
-    validate.urls(images)
+    validate.images(images)
     validate.string(title)
     validate.description(description)
-    validate.urls(brand)
+    validate.string(brand)
     validate.number(price, 'price')
     validate.state(state)
     validate.number(stock, 'stock')
 
-    return fetch(`http://localhost:9010/products/${productId}`, {
+    return fetch(`${process.env.EXPO_PUBLIC_API_URL}/products/${productId}`, {
         method: 'PATCH',
         headers: {
-            Authorization: `Bearer ${sessionStorage.token}`,
+            Authorization: `Bearer ${SessionStorage.getItem('token')}`,
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({ images, title, description, brand, price, state, stock })

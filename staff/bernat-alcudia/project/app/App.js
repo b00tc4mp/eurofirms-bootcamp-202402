@@ -6,16 +6,24 @@ import { NavigationContainer } from '@react-navigation/native';
 import LoginUser from './pages/LoginUser.js'
 import RegisterBuyer from './pages/RegisterBuyer.js';
 import RegisterSeller from './pages/RegisterSeller.js';
+import Home from './pages/Home.js';
+import ProductDetail from './components/ProductDetail.js';
+import ModifyProduct from './components/ModifyProduct.js';
+import CreateProduct from './components/CreateProduct.js';
 
 const Stack = createStackNavigator()
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Login">
-        <Stack.Screen name="Login" component={LoginUser} />
-        <Stack.Screen name="Register Seller" component={RegisterSeller} />
-        <Stack.Screen name="Register Buyer" component={RegisterBuyer} />
+      <Stack.Navigator initialRouteName="LoginUser">
+        <Stack.Screen name="LoginUser" component={LoginUser} />
+        <Stack.Screen name="RegisterSeller" component={RegisterSeller} />
+        <Stack.Screen name="RegisterBuyer" component={RegisterBuyer} />
+        <Stack.Screen name='Home' component={Home} />
+        <Stack.Screen name='ProductDetail' component={ProductDetail} />
+        <Stack.Screen name='ModifyProduct' component={ModifyProduct} />
+        <Stack.Screen name='CreateProduct' component={CreateProduct} />
       </Stack.Navigator>
       <StatusBar style="auto" />
     </NavigationContainer>

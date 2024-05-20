@@ -1,4 +1,4 @@
-import { errors, validate } from '/..com';
+import { errors, validate } from '../com';
 
 const { SystemError } = errors
 
@@ -9,7 +9,7 @@ function registerBuyer(name, birthdate, email, username, password) {
     validate.username(username)
     validate.password(password)
 
-    return fetch(`http://localhost:9010/users/buyer`, {
+    return fetch(`${process.env.EXPO_PUBLIC_API_URL}/users/buyers`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, birthdate, email, username, password })

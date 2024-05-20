@@ -1,5 +1,7 @@
+import SessionStorage from 'react-native-session-storage';
+
 function isUserLoggedIn() {
-    return !!sessionStorage.token
+    return !!SessionStorage.getItem('token')
 }
 
 export default isUserLoggedIn

@@ -6,7 +6,7 @@ const { SystemError, MatchError } = errors
 
 function createProduct(userId, images, title, description, brand, price, state, stock) {
     validate.id(userId, 'userId')
-    validate.urls(images)
+    validate.base64(images)
     validate.string(title, 'title')
     validate.description(description)
     validate.string(brand)

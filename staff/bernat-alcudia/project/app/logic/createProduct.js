@@ -1,10 +1,11 @@
 import { errors, validate } from '../com';
+import SessionStorage from 'react-native-session-storage';
 
 const { SystemError } = errors
 
 function createProduct(images, title, description, brand, price, state, stock) {
-    validate.token(sessionStorage.token)
-    validate.urls(images)
+    validate.token(SessionStorage.getItem('token'))
+    validate.base64(images)
     validate.string(title, 'title')
     validate.description(description)
     validate.string(brand, 'brand')
@@ -12,10 +13,10 @@ function createProduct(images, title, description, brand, price, state, stock) {
     validate.state(state)
     validate.number(stock)
 
-    return fetch(`http://localhost:9010/posts`, {
+    return fetch(`${process.env.EXPO_PUBLIC_API_URL}/products`, {
         method: 'POST',
         headers: {
-            Authorization: `Bearer ${sessionStorage.token}`,
+            Authorization: `Bearer ${SessionStorage.getItem('token')}`,
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({ images, title, description, brand, price, state, stock })

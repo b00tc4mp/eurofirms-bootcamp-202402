@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { View, TextInput, Button, StyleSheet } from "react-native";
+import { createStackNavigator } from '@react-navigation/stack';
+import { useNavigation } from '@react-navigation/native';
 
 import { errors } from '../com';
 
@@ -7,52 +9,64 @@ import logic from "../logic";
 
 const { ContentError, MatchError } = errors
 
-const LoginUser = ({ navigation, onUserLoggedIn, onRegisterClick }) => {
+
+
+function LoginUser() {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
 
-    try {
-        logic.loginUser(username, password)
-            .then(() => onUserLoggedIn())
-            .catch(error => {
-                console.error(error.message)
+    const navigation = useNavigation()
 
-                let feedback = error.message
 
-                if (error instanceof TypeError || error instanceof RangeError)
-                    feedback = `${feedback},please correct it`
-                else if (error instanceof MatchError)
-                    feedback = `${feedback},please verify credentials`
-                else
-                    feedback = 'sorry, there was an error,please try again'
+    const handleSubmit = () => {
 
-                alert(feedback)
-            })
-    } catch (error) {
-        console.error(error.message)
+        try {
+            logic.loginUser(username, password)
+                .then(() => navigation.navigate('Home'))
+                .catch(error => {
+                    console.error(error.message)
 
-        let feedback = error.message
+                    let feedback = error.message
 
-        if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
-            feedback = `${feedback},please correct it`
-        else if (error instanceof MatchError)
-            feedback = `${feedback},please verify credentials`
-        else
-            feedback = 'sorry,there was an error,please try again'
+                    if (error instanceof TypeError || error instanceof RangeError)
+                        feedback = `${feedback},please correct it`
+                    else if (error instanceof MatchError)
+                        feedback = `${feedback},please verify credentials`
+                    else
+                        feedback = 'sorry, there was an error,please try again'
 
-        alert(feedback)
+                    alert(feedback)
+                })
+        } catch (error) {
+            console.error(error.message)
+
+            let feedback = error.message
+
+            if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
+                feedback = `${feedback},please correct it`
+            else if (error instanceof MatchError)
+                feedback = `${feedback},please verify credentials`
+            else
+                feedback = 'sorry,there was an error,please try again'
+
+            alert(feedback)
+        }
     }
 
-    const handleRegisterClick = () => {
-        onRegisterClick()
+    const handleRegisterSeller = () => {
+        navigation.navigate('RegisterSeller')
     }
+    const handleRegisterBuyer = () => {
+        navigation.navigate('RegisterBuyer')
+    }
+
 
     return <View>
         <TextInput placeholder="username" value={username} onChangeText={setUsername} />
-        <TextInput placeholder="password" value={password} onChangeText={setPassword} />
-        <Button title="Login" onPress={handleSubmit} />
-        <Button title="Register Seller" onPress={() => navigation.navigate('RegisterSeller')} />
-        <Button title="Register Buyer" onPress={() => navigation.navigate('RegisterBuyer')} />
+        <TextInput secureTextEntry={true} placeholder="password" value={password} onChangeText={setPassword} />
+        <Button title="Login" onPress={handleSubmit}>Login</Button>
+        <Button title="Register Seller" onPress={handleRegisterSeller} ></Button>
+        <Button title="Register Buyer" onPress={handleRegisterBuyer} ></Button>
     </View>
 }
 

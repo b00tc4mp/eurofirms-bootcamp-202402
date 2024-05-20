@@ -1,15 +1,16 @@
-import registerSeller from "./registerSeller";
-import registerBuyer from "./registerBuyer";
-import loginUser from "./loginUser";
-import retrieveUser from "./retrieveUser";
-import logoutUser from "./logoutUser";
-import getLoggedInUserId from "./getLoggedInUserId";
-import isUserLoggedIn from "./isUserLoggedIn";
+import registerSeller from './registerSeller.js';
+import registerBuyer from './registerBuyer.js';
+import loginUser from './loginUser.js';
+import retrieveUser from './retrieveUser.js';
+import logoutUser from './logoutUser.js';
+import getLoggedInUserId from './getLoggedInUserId.js';
+import isUserLoggedIn from './isUserLoggedIn.js';
 
-import createProduct from "./createProduct";
-import retrieveProducts from "./retrieveProducts";
-import removeProduct from "./removeProduct";
-import modifyProduct from "./modifyProduct";
+import createProduct from './createProduct.js';
+import retrieveProducts from './retrieveProducts.js';
+import retrieveProductDetails from './retrieveProductDetails.js';
+import removeProduct from './removeProduct.js';
+import modifyProduct from './modifyProduct.js';
 
 
 const logic = {
@@ -23,6 +24,7 @@ const logic = {
 
     createProduct,
     retrieveProducts,
+    retrieveProductDetails,
     removeProduct,
     modifyProduct
 }

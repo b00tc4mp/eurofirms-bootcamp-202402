@@ -7,7 +7,7 @@ const { SystemError, MatchError } = errors
 function modifyProduct(userId, productId, images, title, description, brand, price, state, stock) {
     validate.id(userId, 'userId')
     validate.id(productId, 'product id')
-    validate.urls(images)
+    validate.images(images)
     validate.string(title)
     validate.description(description)
     validate.string(brand)

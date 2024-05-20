@@ -3,10 +3,12 @@ import SessionStorage from 'react-native-session-storage';
 
 const { SystemError } = errors
 
-function retrieveProducts() {
+function retrieveProductDetails(productId) {
     validate.token(SessionStorage.getItem('token'))
+    validate.id(productId, 'productId')
 
-    return fetch(`${process.env.EXPO_PUBLIC_API_URL}/products`, {
+
+    return fetch(`${process.env.EXPO_PUBLIC_API_URL}/product/${productId}`, {
         method: 'GET',
         headers: {
             Authorization: `Bearer ${SessionStorage.getItem('token')}`
@@ -16,7 +18,7 @@ function retrieveProducts() {
         .then(res => {
             if (res.status === 200) return res.json()
                 .catch(error => { throw new SystemError(error.message) })
-                .then(products => products)
+                .then(product => product)
 
             return res.json()
                 .catch(error => { throw new SystemError(error.message) })
@@ -30,4 +32,4 @@ function retrieveProducts() {
         })
 }
 
-export default retrieveProducts
+export default retrieveProductDetails

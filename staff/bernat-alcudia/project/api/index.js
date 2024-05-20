@@ -21,12 +21,12 @@ mongoose.connect(MONGO_URL)
 
         const server = express()
 
-        const jsonBodyParser = express.json()
+        const jsonBodyParser = express.json({ limit: '50mb' })
 
         server.use(cors())
 
         // ---------------------------------Register Buyer---------------------------------
-        server.post('/users/buyer', jsonBodyParser, (req, res) => {
+        server.post('/users/buyers', jsonBodyParser, (req, res) => {
             try {
                 const { email, name, password, username, birthdate } = req.body
 
@@ -51,7 +51,7 @@ mongoose.connect(MONGO_URL)
         })
 
         // ---------------------------------Register Seller---------------------------------
-        server.post('/users/seller', jsonBodyParser, (req, res) => {
+        server.post('/users/sellers', jsonBodyParser, (req, res) => {
             try {
                 const { email, name, password, username, birthdate } = req.body //Get params from body
 
@@ -83,7 +83,6 @@ mongoose.connect(MONGO_URL)
                 logic.authenticateUser(username, password)
                     .then(user => {
                         const token = jwt.sign({ sub: user.userId, role: user.role }, JWT_SECRET, { expiresIn: '60m' })
-
                         res.status(200).json(token)
                     })
             } catch (error) {
@@ -125,8 +124,9 @@ mongoose.connect(MONGO_URL)
                     status = 401
 
                 error = new MatchError(error.message)
+
+                res.status(status).json({ error: error.constructor.name, message: error.message })
             }
-            res.status(status).json({ error: error.constructor.name, message: error.message })
         })
 
         // ---------------------------------Create Product---------------------------------
@@ -156,12 +156,13 @@ mongoose.connect(MONGO_URL)
                     status = 401
 
                     error = new MatchError(error.message)
+
+                    res.status(status).json({ error: error.constructor.name, message: error.message })
                 }
-                res.status(status).json({ error: error.constructor.name, message: error.message })
             }
         })
 
-        // ---------------------------------Retrieve Products---------------------------------
+        // ---------------------------------Retrieve Products ---------------------------------
         server.get('/products', (req, res) => {
             try {
                 const { authorization } = req.headers
@@ -171,7 +172,7 @@ mongoose.connect(MONGO_URL)
                 const { sub: userId } = jwt.verify(token, JWT_SECRET)
 
                 logic.retrieveProducts(userId)
-                    .then(product => res.json(products))
+                    .then(products => res.json(products))
                     .catch(error => {
                         let status = 500
 
@@ -187,14 +188,47 @@ mongoose.connect(MONGO_URL)
                     status = 401
 
                 error = new MatchError(error.message)
+                res.status(status).json({ error: error.constructor.name, message: error.message })
             }
-            res.status(status).json({ error: error.constructor.name, message: error.message })
+        })
+
+
+        // ---------------------------------Retrieve Products Detail---------------------------------
+        server.get('/product/:productId', (req, res) => {
+            try {
+                const { authorization } = req.headers
+
+                const token = authorization.slice(7)
+
+                const { sub: userId } = jwt.verify(token, JWT_SECRET)
+
+                const { productId } = req.params
+
+                logic.retrieveProductDetails(userId, productId)
+                    .then(product => res.json(product))
+                    .catch(error => {
+                        let status = 500
+
+                        if (error instanceof MatchError) status = 404
+
+                        res.status(status).json({ error: error.constructor, message: error.message })
+                    })
+            } catch (error) {
+                let status = 500
+
+                if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError) status = 400
+                else if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError)
+                    status = 401
+
+                error = new MatchError(error.message)
+                res.status(status).json({ error: error.constructor.name, message: error.message })
+            }
         })
 
 
         // ---------------------------------Remove Products---------------------------------
 
-        server.delete('/products/productsId'), (req, res) => {
+        server.delete('/products/:productId', (req, res) => {
             try {
                 const { authorization } = req.headers
 
@@ -221,10 +255,10 @@ mongoose.connect(MONGO_URL)
                     status = 401
 
                     error = new MatchError(error.message)
+                    res.status(status).json({ error: error.constructor.name, message: error.message })
                 }
-                res.status(status).json({ error: error.constructor.name, message: error.message })
             }
-        }
+        })
 
         // ---------------------------------Modify Products---------------------------------
 
@@ -258,8 +292,8 @@ mongoose.connect(MONGO_URL)
                     status = 401
 
                     error = new MatchError(error.message)
+                    res.status(status).json({ error: error.constructor.name, message: error.message })
                 }
-                res.status(status).json({ error: error.constructor.name, message: error.message })
             }
         })
 

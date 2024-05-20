@@ -12,12 +12,12 @@ function retrieveProducts(userId) {
         .then(user => {
             if (!user) throw new MatchError('user not found')
 
-            return Product.find().select('-__v').populate('author', 'username').lean()
+            return Product.find().select('images title brand state likes price').populate('author', 'username').lean()
                 .catch(error => { throw new SystemError(error.message) })
                 .then(products => {
                     products.forEach(product => {
                         if (product._id) {
-                            product._id = product._id.toString()
+                            product.id = product._id.toString()
 
                             delete product._id
                         }
@@ -29,7 +29,7 @@ function retrieveProducts(userId) {
                         }
                     })
 
-                    return products.reverse()
+                    return products
                 })
         })
 }

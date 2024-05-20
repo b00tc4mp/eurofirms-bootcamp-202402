@@ -1,16 +1,17 @@
 import { errors, validate, utils } from '../com';
+import SessionStorage from 'react-native-session-storage';
 
 const { SystemError } = errors
 
 function retrieveUser() {
-    validate.token(sessionStorage.token)
+    validate.token(SessionStorage.getItem('token'))
 
-    const { sub: userId } = utils.extractPayload(sessionStorage.token)
+    const { sub: userId } = utils.extractPayload(SessionStorage.getItem('token'))
 
-    return fetch(`http://localhost:9010/users/${userId}`, {
+    return fetch(`${process.env.EXPO_PUBLIC_API_URL}/users/${userId}`, {
         method: 'GET',
         headers: {
-            Authorization: `Bearer ${sessionStorage.token}`
+            Authorization: `Bearer ${SessionStorage.getItem('token')}`
         }
     })
         .catch(error => { throw new SystemError(error.message) })
