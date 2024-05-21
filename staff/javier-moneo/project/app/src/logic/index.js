@@ -40,6 +40,7 @@ import retrieveMenuSearchTagsByEditionIdAndSearchTypeId from './retrieveMenuSear
 import retrieveEditionByEditionId from './retrieveEditionByEditionId';
 import retrieveTagByTagId from './retrieveTagByTagId';
 import retrieveSearchesByEditionIdAndTagIdPaginated from './retrieveSearchesByEditionIdAndTagIdPaginated';
+import isModerator from './isModerator';
 
 const logic = {
   assignAllRolesToUser,
@@ -84,6 +85,7 @@ const logic = {
   retrieveEditionByEditionId,
   retrieveTagByTagId,
   retrieveSearchesByEditionIdAndTagIdPaginated,
+  isModerator,
 };
 
 export default logic;

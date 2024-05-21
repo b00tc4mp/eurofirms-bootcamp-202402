@@ -114,9 +114,10 @@ export const signUp = async (req, res) => {
 // login
 export const signIn = async (req, res) => {
   try {
-    const userFound = await User.findOne({ email: req.body.email }).populate(
-      'roles'
-    );
+    const userFound = await User.findOne({ email: req.body.email })
+      .populate('roles')
+      .lean()
+      .exec();
 
     if (!userFound) {
       throw new MatchError('User not found');
@@ -137,11 +138,18 @@ export const signIn = async (req, res) => {
     // const token = jwt.sign({ id: userFound._id }, process.env.JWT_SECRET, {
     //   expiresIn: 86400,
     // });
-    const token = jwt.sign({ sub: userFound._id }, process.env.JWT_SECRET, {
-      expiresIn: 86400,
-    });
+    const roles = userFound.roles.map((role) => role.name);
+    // console.log({ roles });
 
-    console.log(userFound);
+    const token = jwt.sign(
+      { sub: userFound._id, roles: roles },
+      process.env.JWT_SECRET,
+      {
+        expiresIn: 86400,
+      }
+    );
+
+    // console.log(userFound);
 
     return res.json(token);
   } catch (error) {

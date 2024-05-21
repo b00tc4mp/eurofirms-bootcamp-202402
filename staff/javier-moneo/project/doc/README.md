@@ -13,7 +13,7 @@ There is a part where moderators can block harmful or spam content. They can als
 
 ### Use Cases
 
-regular
+user
 
 - share search
 - comment search
@@ -23,6 +23,7 @@ regular
 - report harmful search
 - report user
 - report comment
+- report tag
 
 moderator
 
@@ -31,7 +32,7 @@ moderator
 - ban comment
 - ban tag, but not category NoTagged
 
-root
+admin
 
 - list users
 - change role to user

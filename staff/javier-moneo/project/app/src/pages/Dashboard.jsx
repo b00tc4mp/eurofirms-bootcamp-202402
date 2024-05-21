@@ -14,6 +14,7 @@ export default function Dashboard() {
   const [searchTypeName, setSearchTypeName] = useState('web');
   const [searchType, setSearchType] = useState(null);
   const [menuSearchTags, setMenuSearchTags] = useState(null);
+  const [isModerator, setIsModerator] = useState(false);
 
   useEffect(() => {
     try {
@@ -94,6 +95,15 @@ export default function Dashboard() {
     } catch (error) {
       errorHandler(error);
     }
+
+    try {
+      setIsModerator(logic.isModerator());
+    } catch (error) {
+      console.log(error);
+      // no ponemos el errorHandler porque se valida
+      // el token y lanza excepciones y no queremos
+      // que cuando el user no esta logeado lance exceptions
+    }
   }, []);
 
   const errorHandler = (error) => {
@@ -128,7 +138,8 @@ export default function Dashboard() {
               to={`/newSearchesByEditionIdAndTagId/${menuSearchTag.edition.id}/${menuSearchTag.tag.id}`}
               className="w-full block text-center mt-2 rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
-              {menuSearchTag.name} <span className='text-xs'>- {menuSearchTag.edition.name}</span>
+              {menuSearchTag.name}{' '}
+              <span className="text-xs">- {menuSearchTag.edition.name}</span>
             </Link>
           ))}
 
@@ -138,30 +149,34 @@ export default function Dashboard() {
         >
           Assign all roles to user
         </Link>
-        <Link
-          to={`/reportedSearches`}
-          className="w-full block text-center mt-2 rounded-md bg-red-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600"
-        >
-          Reported Searches
-        </Link>
-        <Link
-          to={`/reportedComments`}
-          className="w-full block text-center mt-2 rounded-md bg-red-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600"
-        >
-          Reported Comments
-        </Link>
-        <Link
-          to={`/reportedTags`}
-          className="w-full block text-center mt-2 rounded-md bg-red-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600"
-        >
-          Reported Tags
-        </Link>
-        <Link
-          to={`/reportedUsers`}
-          className="w-full block text-center mt-2 rounded-md bg-red-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600"
-        >
-          Reported Users
-        </Link>
+        {isModerator && (
+          <div>
+            <Link
+              to={`/reportedSearches`}
+              className="w-full block text-center mt-2 rounded-md bg-red-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600"
+            >
+              Reported Searches
+            </Link>
+            <Link
+              to={`/reportedComments`}
+              className="w-full block text-center mt-2 rounded-md bg-red-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600"
+            >
+              Reported Comments
+            </Link>
+            <Link
+              to={`/reportedTags`}
+              className="w-full block text-center mt-2 rounded-md bg-red-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600"
+            >
+              Reported Tags
+            </Link>
+            <Link
+              to={`/reportedUsers`}
+              className="w-full block text-center mt-2 rounded-md bg-red-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600"
+            >
+              Reported Users
+            </Link>
+          </div>
+        )}
       </div>
     </>
   );
