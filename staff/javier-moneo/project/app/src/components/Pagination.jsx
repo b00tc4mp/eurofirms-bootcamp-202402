@@ -1,7 +1,14 @@
 import { Link } from 'react-router-dom';
 
-export default function PaginationReportedTagComponent({
-  initialReportedTagsPaginated,
+export default function Pagination({
+  linkTo, // "/ruta"
+  page,
+  limit,
+  totalDocs,
+  hasPrevPage,
+  hasNextPage,
+  nextPage,
+  prevPage,
 }) {
   return (
     <nav
@@ -10,34 +17,24 @@ export default function PaginationReportedTagComponent({
     >
       <div className="hidden sm:block">
         <p className="text-sm text-gray-700">
-          Showing{' '}
-          <span className="font-medium">
-            {initialReportedTagsPaginated.page}
-          </span>{' '}
-          to{' '}
-          <span className="font-medium">
-            {initialReportedTagsPaginated.limit}
-          </span>{' '}
-          of{' '}
-          <span className="font-medium">
-            {initialReportedTagsPaginated.totalDocs}
-          </span>{' '}
-          results
+          Showing <span className="font-medium">{page}</span> to{' '}
+          <span className="font-medium">{limit}</span> of{' '}
+          <span className="font-medium">{totalDocs}</span> results
         </p>
       </div>
       <div className="flex flex-1 justify-between sm:justify-end">
-        {initialReportedTagsPaginated.hasPrevPage && (
+        {hasPrevPage && (
           <Link
-            to={`/reportedTags?limit=${initialReportedTagsPaginated.limit}&page=${initialReportedTagsPaginated.prevPage}`}
+            to={`${linkTo}?limit=${limit}&page=${prevPage}`}
             className="relative inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus-visible:outline-offset-0"
           >
             Previous
           </Link>
         )}
 
-        {initialReportedTagsPaginated.hasNextPage && (
+        {hasNextPage && (
           <Link
-            to={`/reportedTags?limit=${initialReportedTagsPaginated.limit}&page=${initialReportedTagsPaginated.nextPage}`}
+            to={`${linkTo}?limit=${limit}&page=${nextPage}`}
             className="relative ml-3 inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus-visible:outline-offset-0"
           >
             Next

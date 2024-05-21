@@ -551,6 +551,8 @@ export const getSearchesByEditionIdAndSearcherIdAndSearchTypeIdAndTagId =
 export const getSearchesByEditionIdAndTagId = async (req, res) => {
   try {
     const { editionId, tagId } = req.body;
+    validate.id(editionId);
+    validate.id(tagId);
     console.log(editionId, tagId);
 
     // options for the pagination
@@ -582,7 +584,7 @@ export const getSearchesByEditionIdAndTagId = async (req, res) => {
         populate: [
           { path: 'user', select: '_id username' },
           { path: 'edition', select: '_id code name' },
-          { path: 'tag', select: '_id code edition' },
+          { path: 'tag', select: '_id name edition' },
           { path: 'searcher', select: '_id name displayName' },
           { path: 'searchType', select: '_id name' },
         ],
