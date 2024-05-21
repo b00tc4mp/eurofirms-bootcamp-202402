@@ -2,14 +2,19 @@ import { errors, validate, } from "com";
 
 const { SystemError } = errors
 
-function retrieveUsers() {
+// TODO SALTA VALIDACION PORQUE LA BUSQUEDA LLEGA COMO UNDEFINED
+function searchDiet() {
     validate.token(sessionStorage.token)
 
-    return fetch(`${import.meta.env.VITE_API_URL}/users`, {
+    validate.text(searchQuery, 'searchQuery')
+
+    return fetch(`${import.meta.env.VITE_API_URL}/diets/search`, {
         method: 'GET',
         headers: {
             Authorization: `Bearer ${sessionStorage.token}`
-        }
+        },
+        body: JSON.stringify({ searchQuery })
+
     })
         .catch(error => { throw new SystemError(error.message) })
         .then(res => {
@@ -30,4 +35,5 @@ function retrieveUsers() {
         })
 }
 
-export default retrieveUsers
+
+export default searchDiet

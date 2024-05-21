@@ -2,7 +2,6 @@ import { errors, validate } from "com";
 
 const { SystemError } = errors
 
-// TODO
 function registerTrainer(name, birthdate, email, username, password) {
     validate.name(name)
     validate.birthdate(birthdate)

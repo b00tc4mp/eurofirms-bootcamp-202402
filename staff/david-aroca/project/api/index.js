@@ -541,6 +541,40 @@ mongoose.connect(MONGO_URL)
             }
         })
         // --------------------------------------------------------------------//
+        server.get('/measurements', (req, res) => {
+            try {
+                const { authorization } = req.headers
+
+                const token = authorization.slice(7)
+
+                const { sub: user } = jwt.verify(token, JWT_SECRET)
+
+                logic.retrieveAllMeasurements(user.id)
+                    .then(measurements => res.json(measurements))
+                    .catch(error => {
+                        let status = 500
+
+                        if (error instanceof MatchError)
+                            status = 404
+
+                        res.status(status).json({ error: error.constructor.name, message: error.message })
+                    })
+
+            } catch (error) {
+                let status = 500
+
+                if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
+                    status = 400
+                else if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError) {
+                    status = 401
+
+                    error = new MatchError(error.message)
+                }
+                res.status(status).json({ error: error.constructor.name, message: error.message })
+            }
+        })
+
+        // --------------------------------------------------------------------//
         server.patch('/measurements/:measurementId', jsonBodyParser, (req, res) => {
             try {
                 const { authorization } = req.headers

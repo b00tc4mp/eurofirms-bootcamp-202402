@@ -28,9 +28,6 @@ curl -X GET -H 'authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdW
 
 # curl -X GET -H 'authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOnsiaWQiOiI2NjNhM2IxYmQyNmE4MWQ3MTc4ZjkwNDMiLCJyb2xlIjoidHJhaW5lciJ9LCJpYXQiOjE3MTU5NjA0NTgsImV4cCI6MTcxNTk3MTI1OH0.2w02vwN0TsNJh3Zw0-lrKVHEnypAj3klZCrojiCuG8s' -d '{"title":"prueba"}'http://localhost:4025/diets/search -v
 
-# TODO
-
-
 # $ ./search-diet.sh
 # Note: Unnecessary use of -X or --request, GET is already inferred.
 # *   Trying [::1]:4025...

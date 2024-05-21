@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import logic from '../logic'
 
-function SearchDiet() {
+function SearchMeasure() {
     const [searchResults, setSearchResults] = useState([])
     const [query, setQuery] = useSearchParams()
 
-    const handleSearchDiet = (event) => {
+    const handleSearchMeasure = (event) => {
         event.preventDefault()
         const querySearched = event.target.query.value
         setQuery({ q: querySearched })
@@ -15,9 +15,9 @@ function SearchDiet() {
     useEffect(() => {
         const querySearched = query.get('q')
         if (querySearched) {
-            logic.searchDiet(querySearched)
-                .then(results => {
-                    setSearchResults(results)
+            logic.searchMeasure(querySearched)
+                .then(measures => {
+                    setSearchResults(measures)
                 })
                 .catch(error => {
                     console.error(error)
@@ -27,13 +27,13 @@ function SearchDiet() {
     }, [query])
 
     return (
-        <div className='mt-60'>
-            <form onSubmit={handleSearchDiet} className="mb-8">
+        <div className='mt-20'>
+            <form onSubmit={handleSearchMeasure} className="mb-8">
                 <input
                     name="query"
-                    type="text"
+                    type="date"
                     className="border border-gray-500 rounded-md px-4 py-2 mb-4"
-                    placeholder="Search diets..."
+                    placeholder="Search measures by date..."
                 />
                 <button
                     type="submit"
@@ -43,13 +43,13 @@ function SearchDiet() {
                 </button>
             </form>
 
-            <ul className="list-disc pl-6">
-                {searchResults.map((diet, index) => (
-                    <li key={index} className="mb-2">{diet.title}</li>
+            <ul className="list-disc pl-6 mb-8">
+                {searchResults.map((measure, index) => (
+                    <li key={index}>{measure.date}</li>
                 ))}
             </ul>
         </div>
     )
 }
 
-export default SearchDiet
+export default SearchMeasure

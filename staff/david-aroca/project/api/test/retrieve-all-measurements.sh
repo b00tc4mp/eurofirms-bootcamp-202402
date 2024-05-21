@@ -1,0 +1,6 @@
+curl -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOnsiaWQiOiI2NjNhM2IxYmQyNmE4MWQ3MTc4ZjkwNDMiLCJyb2xlIjoidHJhaW5lciJ9LCJpYXQiOjE3MTYzMDYyMzAsImV4cCI6MTcxNjMxNzAzMH0.0kYEk1LSjH5-7_FvHsMbwzM05OCKKHydppqcy-5pKIE' http://localhost:4025/measurements -v
+
+
+# logica ok
+# [{"author":{"username":"josemamadotrainer1","id":"663a3b1bd26a81d7178f9043"},"date":"2024-05-01T00:00:00.000Z","weight":22,"torso":29,"legs":21,"id":"664c93fe1ed6c209da209c97"},{"author":{"username":"josemamadotrainer1","id":"663a3b1bd26a81d7178f9043"},"date":"2024-05-03T00:00:00.000Z","weight":120,"torso":12,"legs":60,"id":"664234e6fa2e7fa6eebcb776"},{"author":{"username":"josemamadotrainer1","id":"663a3b1bd26a81d7178f9043"},"date":"2024-05-03T00:00:00.000Z","weight":155,"torso":156,"legs":60,"id":"6642134c750161c72f694f8f"},{"author":{"username":"josemamadotrainer1","id":"663a3b1bd26a81d7178f9043"},"date":"2024-05-24T00:00:00.000Z","weight":150,"torso":150,"legs":150,"id":"66421347cb9bb726f28ae751"}]* Connection #0 to host 
+# localhost left intact

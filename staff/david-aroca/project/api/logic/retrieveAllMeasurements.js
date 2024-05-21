@@ -4,7 +4,7 @@ import { validate, errors } from "com"
 
 const { SystemError, MatchError } = errors
 
-function retrieveMeasurements(userId) {
+function retrieveAllMeasurements(userId) {
     validate.id(userId, 'userId')
 
     return User.findById(userId)
@@ -13,7 +13,7 @@ function retrieveMeasurements(userId) {
             if (!user)
                 throw new MatchError('user not found')
 
-            return Measurement.find({ author: userId }).select('-__v').populate('author', 'username').lean()
+            return Measurement.find().select('-__v').populate('author', 'username').lean()
                 .catch(error => { throw new SystemError(error.message) })
                 .then(measurements => {
                     measurements.forEach(measurement => {
@@ -35,4 +35,4 @@ function retrieveMeasurements(userId) {
         })
 }
 
-export default retrieveMeasurements
+export default retrieveAllMeasurements

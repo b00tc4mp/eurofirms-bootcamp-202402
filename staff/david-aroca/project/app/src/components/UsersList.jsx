@@ -1,29 +1,29 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import retrieveUsers from "../logic/retrieveUsers";
+import React, { useState, useEffect } from "react"
+import { Link } from "react-router-dom"
+import retrieveUsers from "../logic/retrieveUsers"
 
-// TODO
+
 
 function UsersList(props) {
-    const [users, setUsers] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [users, setUsers] = useState([])
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         retrieveUsers()
             .then(users => {
                 // Filtrar los usuarios por rol diferente al del usuario actual
-                const filteredUsers = users.filter(user => user.role !== props.userRole);
-                setUsers(filteredUsers);
-                setLoading(false);
+                const filteredUsers = users.filter(user => user.role !== props.userRole)
+                setUsers(filteredUsers)
+                setLoading(false)
             })
             .catch(error => {
-                console.error(error);
+                console.error(error)
                 // Manejar el error
-            });
-    }, []);
+            })
+    }, [])
 
     if (loading) {
-        return <p>Cargando...</p>;
+        return <p>Cargando...</p>
     }
 
     return (
@@ -51,4 +51,4 @@ function UsersList(props) {
     )
 }
 
-export default UsersList;
+export default UsersList

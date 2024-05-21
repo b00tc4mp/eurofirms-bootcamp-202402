@@ -1,35 +1,55 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react'
+import { useSearchParams } from 'react-router-dom'
+import logic from '../logic'
 
 function SearchExercise() {
-    const [searchTerm, setSearchTerm] = useState('');
-    const [searchResults, setSearchResults] = useState([]);
+    const [searchResults, setSearchResults] = useState([])
+    const [query, setQuery] = useSearchParams()
 
-    const handleSearchChange = (event) => {
-        setSearchTerm(event.target.value);
-        // Aquí podrías implementar la lógica para filtrar los resultados en base al término de búsqueda
-        // Por ejemplo, podrías hacer una llamada a la API para obtener los resultados filtrados
-        // setSearchResults(filteredResults);
-    };
+    const handleSearchExercise = (event) => {
+        event.preventDefault()
+        const querySearched = event.target.query.value
+        setQuery({ q: querySearched })
+    }
+
+    useEffect(() => {
+        const querySearched = query.get('q')
+        if (querySearched) {
+            logic.searchExercise(querySearched)
+                .then(exercises => {
+                    setSearchResults(exercises)
+                })
+                .catch(error => {
+                    console.error(error)
+                    alert(error.message)
+                })
+        }
+    }, [query])
 
     return (
         <div className='mt-20'>
-            <input
-                type="text"
-                className="border border-gray-500 rounded-md px-4 py-2 mb-4"
-                placeholder="Search exercises..."
-                value={searchTerm}
-                onChange={handleSearchChange}
-            />
+            <form onSubmit={handleSearchExercise} className="mb-8">
+                <input
+                    name="query"
+                    type="text"
+                    className="border border-gray-500 rounded-md px-4 py-2 mb-4"
+                    placeholder="Search exercises..."
+                />
+                <button
+                    type="submit"
+                    className="bg-blue-500 text-white rounded-md px-4 py-2"
+                >
+                    Search
+                </button>
+            </form>
 
             <ul className="list-disc pl-6 mb-8">
-                {/* Renderiza los resultados de la búsqueda */}
                 {searchResults.map((exercise, index) => (
                     <li key={index}>{exercise.title}</li>
-                    // Suponiendo que cada ejercicio tiene una propiedad 'title', puedes cambiarla según tu estructura de datos
                 ))}
             </ul>
         </div>
-    );
+    )
 }
 
-export default SearchExercise;
+export default SearchExercise

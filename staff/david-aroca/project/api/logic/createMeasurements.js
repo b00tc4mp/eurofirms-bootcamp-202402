@@ -4,7 +4,7 @@ import { validate, errors } from "com"
 
 const { SystemError, MatchError } = errors
 
-function createMeasurement(userId, date, weight, torso, legs) {
+function createMeasurements(userId, date, weight, torso, legs) {
     validate.id(userId, 'userId')
     validate.date(date, 'date')
     validate.weight(weight, 'weight')
@@ -31,4 +31,4 @@ function createMeasurement(userId, date, weight, torso, legs) {
         .then(measurement => { })
 }
 
-export default createMeasurement
+export default createMeasurements

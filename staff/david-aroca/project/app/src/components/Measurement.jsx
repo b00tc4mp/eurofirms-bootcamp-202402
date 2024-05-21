@@ -1,8 +1,8 @@
-import { useState } from "react";
-import logic from "../logic";
+import { useState } from "react"
+import logic from "../logic"
 
 function Measurement({ measurement, onMeasurementRemoved, onMeasurementUpdated }) {
-    const [modify, setModify] = useState(false);
+    const [modify, setModify] = useState(false)
 
     const handleRemoveMeasurement = () => {
         try {
@@ -10,42 +10,42 @@ function Measurement({ measurement, onMeasurementRemoved, onMeasurementUpdated }
                 logic.removeMeasurement(measurement.id)
                     .then(() => onMeasurementRemoved())
                     .catch(error => {
-                        console.error(error);
-                        alert(error.message);
-                    });
+                        console.error(error)
+                        alert(error.message)
+                    })
         } catch (error) {
-            console.error(error);
-            alert(error.message);
+            console.error(error)
+            alert(error.message)
         }
-    };
+    }
 
-    const handleModifyMeasurement = () => setModify(true);
+    const handleModifyMeasurement = () => setModify(true)
 
     const handleModifySubmit = event => {
-        event.preventDefault();
+        event.preventDefault()
 
-        const form = event.target;
+        const form = event.target
 
-        const date = form.date.value;
-        const weight = form.weight.value;
-        const torso = form.torso.value;
-        const legs = form.legs.value;
+        const date = form.date.value
+        const weight = form.weight.value
+        const torso = form.torso.value
+        const legs = form.legs.value
 
         try {
             logic.modifyMeasurement(measurement.id, date, +weight, +torso, +legs)
                 .then(() => {
-                    onMeasurementUpdated();
-                    setModify(false);
+                    onMeasurementUpdated()
+                    setModify(false)
                 })
                 .catch(error => {
-                    console.error(error);
-                    alert(error.message);
-                });
+                    console.error(error)
+                    alert(error.message)
+                })
         } catch (error) {
-            console.error(error);
-            alert(error.message);
+            console.error(error)
+            alert(error.message)
         }
-    };
+    }
 
     return (
         <div className="border border-gray-300 rounded-md p-4 mb-4">
@@ -142,7 +142,7 @@ function Measurement({ measurement, onMeasurementRemoved, onMeasurementUpdated }
                 </div>
             )}
         </div>
-    );
+    )
 }
 
-export default Measurement;
+export default Measurement

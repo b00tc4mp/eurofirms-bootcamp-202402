@@ -1,11 +1,11 @@
-import { errors, validate, } from "com";
+import { errors, validate } from 'com'
 
 const { SystemError } = errors
 
-function retrieveUsers() {
+function retrieveAllMeasurements() {
     validate.token(sessionStorage.token)
 
-    return fetch(`${import.meta.env.VITE_API_URL}/users`, {
+    return fetch(`${import.meta.env.VITE_API_URL}/measurements`, {
         method: 'GET',
         headers: {
             Authorization: `Bearer ${sessionStorage.token}`
@@ -16,18 +16,19 @@ function retrieveUsers() {
             if (res.status === 200)
                 return res.json()
                     .catch(error => { throw new SystemError(error.message) })
-                    .then(users => users)
+                    .then(measurements => measurements)
 
             return res.json()
                 .catch(error => { throw new SystemError(error.message) })
                 .then(body => {
                     const { error, message } = body
 
-                    const constructor = errors[error]
+                    const constructor = error[error]
 
                     throw new constructor(message)
                 })
+
         })
 }
 
-export default retrieveUsers
+export default retrieveAllMeasurements

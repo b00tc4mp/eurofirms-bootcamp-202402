@@ -63,9 +63,6 @@ curl -X GET -H 'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzd
 # curl -X GET -H 'authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOnsiaWQiOiI2NjNhM2IxYmQyNmE4MWQ3MTc4ZjkwNDMiLCJyb2xlIjoidHJhaW5lciJ9LCJpYXQiOjE3MTYxOTIxNjMsImV4cCI6MTcxNjIwMjk2M30.gFNdwZLnn1XjPsoakys4sJPPS4bLp5ZsmjXJBg1MePY' -d '{"title":"muerto"}' http://localhost:4025/exercises/search -v
 
 
-# TODO
-
-
 
 # curl -X GET -H 'authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOnsiaWQiOiI2NjNhM2IxYmQyNmE4MWQ3MTc4ZjkwNDMiLCJyb2xlIjoidHJhaW5lciJ9LCJpYXQiOjE3MTYxOTIxNjMsImV4cCI6MTcxNjIwMjk2M30.gFNdwZLnn1XjPsoakys4sJPPS4bLp5ZsmjXJBg1MePY' -H 'Content-Type: application/json' "http://localhost:4025/exercises/search?q=una%20prueba" -v
 

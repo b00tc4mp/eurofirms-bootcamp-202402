@@ -1,45 +1,62 @@
-import { useEffect, useState } from "react";
-import logic from "../logic";
-import Exercise from "./Exercise";
-import CreateExercise from "./CreateExercise";
+import { useEffect, useState } from "react"
+import logic from "../logic"
+import Exercise from "./Exercise"
+import CreateExercise from "./CreateExercise"
+import SearchExercise from "./SearchExercise"
 
 function Exercises({ refreshStamp }) {
-    const [exercises, setExercises] = useState([]);
-    const [showCreateExercise, setShowCreateExercise] = useState(false);
+    const [exercises, setExercises] = useState([])
+    const [showCreateExercise, setShowCreateExercise] = useState(false)
 
     const refreshExercises = () => {
         try {
             logic.retrieveExercises()
                 .then(exercises => setExercises(exercises))
                 .catch(error => {
-                    console.log(error);
-                    alert(error.message);
-                });
+                    console.log(error)
+                    alert(error.message)
+                })
         } catch (error) {
-            console.log(error);
-            alert(error.message);
+            console.log(error)
+            alert(error.message)
         }
-    };
+    }
+
+    const searchExercise = () => {
+        try {
+            logic.searchExercise()
+                .then(exercises => setExercises(exercises))
+                .catch(error => {
+                    console.log(error)
+                    alert(error.message)
+                })
+        } catch (error) {
+            console.log(error)
+
+            alert(error.message)
+        }
+    }
 
     useEffect(() => {
-        refreshExercises();
-    }, [refreshStamp]);
+        refreshExercises()
+    }, [refreshStamp])
 
-    const handleExerciseRemoved = () => refreshExercises();
+    const handleExerciseRemoved = () => refreshExercises()
 
-    const handleExerciseUpdated = () => refreshExercises();
+    const handleExerciseUpdated = () => refreshExercises()
 
-    const handleCreateExerciseClick = () => setShowCreateExercise(true);
+    const handleCreateExerciseClick = () => setShowCreateExercise(true)
 
-    const handleCancelCreateExercise = () => setShowCreateExercise(false);
+    const handleCancelCreateExercise = () => setShowCreateExercise(false)
 
     const handleExerciseCreated = () => {
-        refreshExercises();
-        setShowCreateExercise(false);
-    };
+        refreshExercises()
+        setShowCreateExercise(false)
+    }
 
     return (
         <section className="flex flex-col gap-6 px-2 py-14">
+            <SearchExercise />
             {showCreateExercise ? (
                 <CreateExercise onCancelClick={handleCancelCreateExercise} onExerciseCreated={handleExerciseCreated} />
             ) : (
@@ -53,7 +70,7 @@ function Exercises({ refreshStamp }) {
                 </>
             )}
         </section>
-    );
+    )
 }
 
-export default Exercises;
+export default Exercises

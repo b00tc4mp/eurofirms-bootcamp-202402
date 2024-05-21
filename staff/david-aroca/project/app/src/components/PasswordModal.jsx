@@ -1,17 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
 
 function PasswordModal({ onClose, onPasswordCorrect }) {
-    const [password, setPassword] = useState('');
+    const [password, setPassword] = useState('')
 
     const handleSubmit = (event) => {
-        event.preventDefault();
+        event.preventDefault()
 
         if (password === '4025') {
-            onPasswordCorrect();
+            onPasswordCorrect()
         } else {
-            alert('Incorrect password');
+            alert('Incorrect password')
         }
-    };
+    }
 
     return (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
@@ -46,7 +46,7 @@ function PasswordModal({ onClose, onPasswordCorrect }) {
                 </form>
             </div>
         </div>
-    );
+    )
 }
 
-export default PasswordModal;
+export default PasswordModal

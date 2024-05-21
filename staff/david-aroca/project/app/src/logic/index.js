@@ -23,7 +23,13 @@ import removeMeasurement from "./removeMeasurements"
 import retrieveDiet from "./retrieveDiet"
 import retrieveExercises from "./retrieveExercises"
 import retrieveMeasurements from "./retrieveMeasurements"
+import retrieveAllMeasurements from "./retrieveAllMeasurements"
 import retrieveUsers from "./retrieveUsers"
+
+import searchDiet from "./searchDiet"
+import searchExercise from "./SearchExercise"
+import searchMeasure from "./searchMeasure"
+
 
 const logic = {
     loginUser,
@@ -45,7 +51,11 @@ const logic = {
     retrieveExercises,
     retrieveMeasurements,
     registerTrainer,
-    retrieveUsers
+    retrieveUsers,
+    searchDiet,
+    searchExercise,
+    searchMeasure,
+    retrieveAllMeasurements
 }
 
 export default logic

@@ -1,20 +1,20 @@
-import React, { useState } from 'react';
-import logic from '../logic';
+import React, { useState } from 'react'
+import logic from '../logic'
 
 function extractYouTubeID(url) {
-    if (!url) return null; // verifica si la URL es undefined o null
-    const regExp = /^.*(youtu.be\/|v\/|\/u\/\w\/|embed\/|watch\?v=|\&v=|\?v=|\&v=)([^#\&\?]*).*/;
-    const match = url.match(regExp);
+    if (!url) return null // verifica si la URL es undefined o null
+    const regExp = /^.*(youtu.be\/|v\/|\/u\/\w\/|embed\/|watch\?v=|\&v=|\?v=|\&v=)([^#\&\?]*).*/
+    const match = url.match(regExp)
 
     if (match && match[2].length === 11) {
-        return match[2];
+        return match[2]
     } else {
-        return null;
+        return null
     }
 }
 
 function Exercise({ exercise, onExerciseRemoved, onExerciseModified }) {
-    const [modify, setModify] = useState(false);
+    const [modify, setModify] = useState(false)
 
     const handleRemoveExercise = () => {
         try {
@@ -22,49 +22,49 @@ function Exercise({ exercise, onExerciseRemoved, onExerciseModified }) {
                 logic.removeExercise(exercise.id)
                     .then(() => onExerciseRemoved(exercise.id))
                     .catch(error => {
-                        console.log(error);
-                        alert(error.message);
-                    });
+                        console.log(error)
+                        alert(error.message)
+                    })
             }
         } catch (error) {
-            console.log(error);
-            alert(error.message);
+            console.log(error)
+            alert(error.message)
         }
-    };
+    }
 
-    const handleModifyExercise = () => setModify(true);
+    const handleModifyExercise = () => setModify(true)
 
     const handleModifySubmit = event => {
-        event.preventDefault();
+        event.preventDefault()
 
-        const form = event.target;
+        const form = event.target
 
-        const title = form.title.value;
-        const image = form.image.value;
-        const video = form.video.value;
-        const description = form.description.value;
+        const title = form.title.value
+        const image = form.image.value
+        const video = form.video.value
+        const description = form.description.value
 
         try {
             logic.modifyExercise(exercise.id, title, image, video, description)
                 .then(() => {
-                    onExerciseModified(exercise.id, title, image, video, description);
-                    setModify(false);
+                    onExerciseModified(exercise.id, title, image, video, description)
+                    setModify(false)
                 })
                 .catch(error => {
-                    console.log(error);
-                    alert(error.message);
-                });
+                    console.log(error)
+                    alert(error.message)
+                })
         } catch (error) {
-            console.log(error);
-            alert(error.message);
+            console.log(error)
+            alert(error.message)
         }
-    };
-
-    if (!exercise) {
-        return <div>No exercise data available</div>;
     }
 
-    const videoID = extractYouTubeID(exercise.video);
+    if (!exercise) {
+        return <div>No exercise data available</div>
+    }
+
+    const videoID = extractYouTubeID(exercise.video)
 
     return (
         <article className="bg-gray-100 p-4 rounded-lg shadow-md mt-4">
@@ -107,10 +107,10 @@ function Exercise({ exercise, onExerciseRemoved, onExerciseModified }) {
                 )}
             </div>
         </article>
-    );
+    )
 }
 
-export default Exercise;
+export default Exercise
 
 
 

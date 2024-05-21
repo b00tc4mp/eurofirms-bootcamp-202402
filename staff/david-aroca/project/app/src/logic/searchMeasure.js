@@ -2,10 +2,10 @@ import { errors, validate, } from "com";
 
 const { SystemError } = errors
 
-function retrieveUsers() {
+function searchMeasure() {
     validate.token(sessionStorage.token)
 
-    return fetch(`${import.meta.env.VITE_API_URL}/users`, {
+    return fetch(`${import.meta.env.VITE_API_URL}/measurements/search`, {
         method: 'GET',
         headers: {
             Authorization: `Bearer ${sessionStorage.token}`
@@ -29,5 +29,4 @@ function retrieveUsers() {
                 })
         })
 }
-
-export default retrieveUsers
+export default searchMeasure

@@ -2,10 +2,12 @@ import { errors, validate, } from "com";
 
 const { SystemError } = errors
 
-function retrieveUsers() {
+function searchExercise(searchQuery) {
     validate.token(sessionStorage.token)
+    validate.text(searchQuery, 'searchQuery')
 
-    return fetch(`${import.meta.env.VITE_API_URL}/users`, {
+
+    return fetch(`${import.meta.env.VITE_API_URL}/exercises/search`, {
         method: 'GET',
         headers: {
             Authorization: `Bearer ${sessionStorage.token}`
@@ -30,4 +32,4 @@ function retrieveUsers() {
         })
 }
 
-export default retrieveUsers
+export default searchExercise
