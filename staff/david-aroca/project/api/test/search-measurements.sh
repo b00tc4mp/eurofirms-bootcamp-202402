@@ -1,4 +1,4 @@
-curl -X GET -H 'authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOnsiaWQiOiI2NjNhM2IxYmQyNmE4MWQ3MTc4ZjkwNDMiLCJyb2xlIjoidHJhaW5lciJ9LCJpYXQiOjE3MTYxOTIxNjMsImV4cCI6MTcxNjIwMjk2M30.gFNdwZLnn1XjPsoakys4sJPPS4bLp5ZsmjXJBg1MePY' -H 'Content-Type: application/json' -d '{"date:"2024-05-12"}' "http://localhost:4025/measurements/" -v
+curl -X GET -H 'authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOnsiaWQiOiI2NjNhM2IxYmQyNmE4MWQ3MTc4ZjkwNDMiLCJyb2xlIjoidHJhaW5lciJ9LCJpYXQiOjE3MTYyODM1NTQsImV4cCI6MTcxNjI5NDM1NH0.7xJiL_VvjEU2pOVL8_J-1hP5DcQqcBEwdYBDJFBRfcQ' -H 'Content-Type: application/json' -d '{"date:"2024-05-12"}' "http://localhost:4025/measurements/" -v
 
 
 # funciona correctamente

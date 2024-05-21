@@ -1,10 +1,10 @@
 import mongoose from "mongoose";
-import createMeasurement from "./createMeasurement.js";
+import createMeasurements from "./createMeasurements.js";
 
 mongoose.connect('mongodb://localhost:27017/project')
     .then(() => {
         try {
-            createMeasurement('663a3b1bd26a81d7178f9043', '2024/05/13', '150', '150', '150')
+            createMeasurements('663a3aefae18ed96d6179179', '2024-05-13', 155, 155, 155)
                 .then(() => console.log('measure created'))
                 .catch(error => console.error(error))
         } catch (error) {

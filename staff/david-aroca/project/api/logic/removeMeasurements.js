@@ -4,7 +4,7 @@ import { validate, errors } from "com"
 
 const { SystemError, MatchError } = errors
 
-function removeMeasurement(userId, measurementId) {
+function removeMeasurements(userId, measurementId) {
     validate.id(userId, 'userId')
     validate.id(measurementId, 'measurementId')
 
@@ -32,4 +32,4 @@ function removeMeasurement(userId, measurementId) {
         .then(result => { })
 }
 
-export default removeMeasurement
+export default removeMeasurements

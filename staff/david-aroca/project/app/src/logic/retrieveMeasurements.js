@@ -2,10 +2,10 @@ import { errors, validate } from 'com'
 
 const { SystemError } = errors
 
-function retrieveMeasurement() {
+function retrieveMeasurements() {
     validate.token(sessionStorage.token)
 
-    return fetch(`${import.meta.env.VITE_API_URL}/exercises`, {
+    return fetch(`${import.meta.env.VITE_API_URL}/measurements`, {
         method: 'GET',
         headers: {
             Authorization: `Bearer ${sessionStorage.token}`
@@ -31,4 +31,4 @@ function retrieveMeasurement() {
         })
 }
 
-export default retrieveMeasurement
+export default retrieveMeasurements

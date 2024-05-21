@@ -1,27 +1,30 @@
 import registerUser from './registerUser.js'
 import registerTrainer from './registerTrainer.js'
+
 import authenticateUser from './authenticateUser.js'
+
 import retrieveUser from './retrieveUser.js'
+import retrieveUsers from './retrieveUsers.js'
 
 import createExercise from './createExercise.js'
 import createDiet from './createDiet.js'
-import createMeasurement from './createMeasurement.js'
+import createMeasurements from './createMeasurements.js'
 
 import removeDiet from './removeDiet.js'
 import removeExercise from './removeExercise.js'
-import removeMeasurement from './removeMeasurement.js'
+import removeMeasurements from './removeMeasurements.js'
 
 import retrieveExercises from './retrieveExercise.js'
 import retrieveDiet from './retrieveDiet.js'
-import retrieveMeasurement from './retrieveMeasurement.js'
+import retrieveMeasurements from './retrieveMeasurements.js'
 
 import modifyExercise from './modifyExercise.js'
 import modifyDiet from './modifyDiet.js'
-import modifyMeasurement from './modifyMeasurement.js'
+import modifyMeasurements from './modifyMeasurements.js'
 
 import searchExercise from './searchExercise.js'
 import searchDiet from './searchDiet.js'
-import searchMeasurement from './searchMeasurement.js'
+import searchMeasurements from './searchMeasurements.js'
 
 const logic = {
     registerUser,
@@ -36,13 +39,14 @@ const logic = {
     retrieveDiet,
     modifyExercise,
     modifyDiet,
-    createMeasurement,
-    removeMeasurement,
-    retrieveMeasurement,
-    modifyMeasurement,
+    createMeasurements,
+    removeMeasurements,
+    retrieveMeasurements,
+    modifyMeasurements,
     searchExercise,
     searchDiet,
-    searchMeasurement,
+    searchMeasurements,
+    retrieveUsers
 }
 
 export default logic

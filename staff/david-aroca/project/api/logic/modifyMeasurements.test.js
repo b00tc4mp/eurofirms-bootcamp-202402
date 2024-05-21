@@ -1,10 +1,10 @@
 import mongoose from "mongoose";
-import modifyMeasurement from "./modifyMeasurement.js";
+import modifyMeasurements from "./modifyMeasurements.js";
 
 mongoose.connect('mongodb://localhost:27017/project')
     .then(() => {
         try {
-            modifyMeasurement('663a3b1bd26a81d7178f9043', '6642050a130d4891cde776d6', '2022/02/12', '120', '120', '120')
+            modifyMeasurements('663a3b1bd26a81d7178f9043', '664c6789eab468858ee4defa', '2022-02-12', 120, 120, 120)
                 .then(() => console.log('measure modified'))
                 .catch(error => console.error(error))
         } catch (error) {

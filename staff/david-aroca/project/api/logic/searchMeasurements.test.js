@@ -1,10 +1,10 @@
 import mongoose from "mongoose";
-import searchMeasurement from "./searchMeasurement.js";
+import searchMeasurements from "./searchMeasurements.js";
 
 mongoose.connect('mongodb://localhost:27017/project')
     .then(() => {
         try {
-            searchMeasurement('663a3b1bd26a81d7178f9043', '2024-05-12')
+            searchMeasurements('663a3b1bd26a81d7178f9043', '2024-05-12')
                 .then(measurement => console.log('measurement finded', measurement))
                 .catch(error => console.log(error))
         } catch (error) {

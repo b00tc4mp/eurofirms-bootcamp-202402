@@ -2,15 +2,16 @@ import { errors, validate } from 'com'
 
 const { SystemError } = errors
 
-function createMeasurement(date, weight, torso, legs) {
+function modifyMeasurements(measurementId, date, weight, torso, legs) {
     validate.token(sessionStorage.token);
     validate.date(date, 'date');
     validate.weight(weight, 'weight');
     validate.torso(torso, 'torso');
     validate.legs(legs, 'legs');
 
-    return fetch(`${import.meta.env.VITE_API_URL}/measurements`, {
-        method: 'POST',
+
+    return fetch(`${import.meta.env.VITE_API_URL}/measurements/${measurementId}`, {
+        method: 'PATCH',
         headers: {
             Authorization: `Bearer ${sessionStorage.token}`,
             'Content-type': 'application/json'
@@ -19,8 +20,8 @@ function createMeasurement(date, weight, torso, legs) {
     })
         .catch(error => { throw new SystemError(error.message) })
         .then(res => {
-            if (res.status === 201)
-                return;
+            if (res.status === 204)
+                return
 
             return res.json()
                 .catch(error => { throw new SystemError(error.message) })
@@ -31,7 +32,8 @@ function createMeasurement(date, weight, torso, legs) {
 
                     throw new constructor(message);
                 });
-        });
+        })
+
 }
 
-export default createMeasurement;
+export default modifyMeasurements

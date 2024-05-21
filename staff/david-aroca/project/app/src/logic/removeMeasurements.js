@@ -2,7 +2,7 @@ import { errors, validate } from 'com'
 
 const { SystemError } = errors
 
-function removeMeasurement(measurementId) {
+function removeMeasurements(measurementId) {
     validate.token(sessionStorage.token)
     validate.id(measurementId, 'measurementId')
 
@@ -30,4 +30,4 @@ function removeMeasurement(measurementId) {
 
 }
 
-export default removeMeasurement
+export default removeMeasurements

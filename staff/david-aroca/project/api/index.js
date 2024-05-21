@@ -145,6 +145,40 @@ mongoose.connect(MONGO_URL)
         })
 
         // --------------------------------------------------------------------//
+        server.get('/users/', (req, res) => {
+            try {
+                const { authorization } = req.headers
+
+                const token = authorization.slice(7)
+
+                const { sub: user } = jwt.verify(token, JWT_SECRET)
+
+                logic.retrieveUsers(user.id)
+                    .then(user => res.json(user))
+                    .catch(error => {
+                        let status = 500
+
+                        if (error instanceof MatchError)
+                            status = 404
+
+                        res.status(status).json({ error: constructor.name, message: error.message })
+                    })
+            } catch (error) {
+                let status = 500
+
+                if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
+                    status = 400
+                else if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError) {
+                    status = 401
+
+                    error = new MatchError(error.message)
+                }
+                res.status(status).json({ error: error.constructor.name, message: error.message })
+            }
+
+        })
+
+        // --------------------------------------------------------------------//
 
         server.post('/exercises', jsonBodyParser, (req, res) => {
             try {
@@ -314,7 +348,7 @@ mongoose.connect(MONGO_URL)
                         if (error instanceof MatchError)
                             status = 404
 
-                        res.status(status).json({ error: errors.constructor.name, message: error.message })
+                        res.status(status).json({ error: error.constructor.name, message: error.message })
                     })
             } catch (error) {
                 let status = 500
@@ -326,7 +360,7 @@ mongoose.connect(MONGO_URL)
 
                     error = new MatchError(error.message)
                 }
-                res.status(status).json({ error: errors.constructor.name, message: error.message })
+                res.status(status).json({ error: error.constructor.name, message: error.message })
             }
         })
 
@@ -351,7 +385,7 @@ mongoose.connect(MONGO_URL)
                         if (error instanceof MatchError)
                             status = 404
 
-                        res.status(status).json({ error: errors.constructor.name, message: error.message })
+                        res.status(status).json({ error: error.constructor.name, message: error.message })
                     })
             } catch (error) {
                 let status = 500
@@ -363,7 +397,7 @@ mongoose.connect(MONGO_URL)
 
                     error = new MatchError(error.message)
                 }
-                res.status(status).json({ error: errors.constructor.name, message: error.message })
+                res.status(status).json({ error: error.constructor.name, message: error.message })
             }
         })
         // --------------------------------------------------------------------//
@@ -386,7 +420,7 @@ mongoose.connect(MONGO_URL)
                         if (error instanceof MatchError)
                             status = 404
 
-                        res.status(status).json({ error: errors.constructor.name, message: error.message })
+                        res.status(status).json({ error: error.constructor.name, message: error.message })
                     })
             } catch (error) {
                 let status = 500
@@ -398,7 +432,7 @@ mongoose.connect(MONGO_URL)
 
                     error = new MatchError(error.message)
                 }
-                res.status(status).json({ error: errors.constructor.name, message: error.message })
+                res.status(status).json({ error: error.constructor.name, message: error.message })
             }
         })
 
@@ -423,7 +457,7 @@ mongoose.connect(MONGO_URL)
                         if (error instanceof MatchError)
                             status = 404
 
-                        res.status(status).json({ error: errors.constructor.name, message: error.message })
+                        res.status(status).json({ error: error.constructor.name, message: error.message })
                     })
             } catch (error) {
                 let status = 500
@@ -435,7 +469,7 @@ mongoose.connect(MONGO_URL)
 
                     error = new MatchError(error.message)
                 }
-                res.status(status).json({ error: errors.constructor.name, message: error.message })
+                res.status(status).json({ error: error.constructor.name, message: error.message })
             }
         })
 
@@ -450,14 +484,14 @@ mongoose.connect(MONGO_URL)
 
                 const { date, weight, torso, legs } = req.body
 
-                logic.createMeasurement(user.id, date, weight, torso, legs)
+                logic.createMeasurements(user.id, date, weight, torso, legs)
                     .then(() => res.status(201).send())
                     .catch(error => {
                         let status = 500
                         if (error instanceof MatchError)
                             status = 404
 
-                        res.status(status).json({ error: errors.constructor.name, message: error.message })
+                        res.status(status).json({ error: error.constructor.name, message: error.message })
                     })
             } catch (error) {
                 let status = 500
@@ -469,7 +503,7 @@ mongoose.connect(MONGO_URL)
 
                     error = new MatchError(error.message)
                 }
-                res.status(status).json({ error: errors.constructor.name, message: error.message })
+                res.status(status).json({ error: error.constructor.name, message: error.message })
             }
 
         })
@@ -482,7 +516,7 @@ mongoose.connect(MONGO_URL)
 
                 const { sub: user } = jwt.verify(token, JWT_SECRET)
 
-                logic.retrieveMeasurement(user.id)
+                logic.retrieveMeasurements(user.id)
                     .then(measurements => res.json(measurements))
                     .catch(error => {
                         let status = 500
@@ -490,7 +524,7 @@ mongoose.connect(MONGO_URL)
                         if (error instanceof MatchError)
                             status = 404
 
-                        res.status(status).json({ error: errors.constructor.name, message: error.message })
+                        res.status(status).json({ error: error.constructor.name, message: error.message })
                     })
 
             } catch (error) {
@@ -503,7 +537,7 @@ mongoose.connect(MONGO_URL)
 
                     error = new MatchError(error.message)
                 }
-                res.status(status).json({ error: errors.constructor.name, message: error.message })
+                res.status(status).json({ error: error.constructor.name, message: error.message })
             }
         })
         // --------------------------------------------------------------------//
@@ -520,7 +554,7 @@ mongoose.connect(MONGO_URL)
                 const { date, weight, torso, legs } = req.body
 
 
-                logic.modifyMeasurement(user.id, measurementId, date, weight, torso, legs)
+                logic.modifyMeasurements(user.id, measurementId, date, weight, torso, legs)
                     .then(() => res.status(204).send())
                     .catch(error => {
                         let status = 500
@@ -528,7 +562,7 @@ mongoose.connect(MONGO_URL)
                         if (error instanceof MatchError)
                             status = 404
 
-                        res.status(status).json({ error: errors.constructor.name, message: error.message })
+                        res.status(status).json({ error: error.constructor.name, message: error.message })
                     })
             } catch (error) {
                 let status = 500
@@ -540,7 +574,7 @@ mongoose.connect(MONGO_URL)
 
                     error = new MatchError(error.message)
                 }
-                res.status(status).json({ error: errors.constructor.name, message: error.message })
+                res.status(status).json({ error: error.constructor.name, message: error.message })
             }
         })
         // --------------------------------------------------------------------//
@@ -555,14 +589,14 @@ mongoose.connect(MONGO_URL)
 
                 const { measurementId } = req.params
 
-                logic.removeMeasurement(user.id, measurementId)
+                logic.removeMeasurements(user.id, measurementId)
                     .then(() => res.status(204).send())
                     .catch(error => {
                         let status = 500
                         if (error instanceof MatchError)
                             status = 404
 
-                        res.status(status).json({ error: errors.constructor.name, message: error.message })
+                        res.status(status).json({ error: error.constructor.name, message: error.message })
                     })
             } catch (error) {
                 let status = 500
@@ -574,7 +608,7 @@ mongoose.connect(MONGO_URL)
 
                     error = new MatchError(error.message)
                 }
-                res.status(status).json({ error: errors.constructor.name, message: error.message })
+                res.status(status).json({ error: error.constructor.name, message: error.message })
             }
         })
 
@@ -597,7 +631,7 @@ mongoose.connect(MONGO_URL)
                         if (error instanceof MatchError)
                             status = 404
 
-                        res.status(status).json({ error: errors.constructor.name, message: error.message })
+                        res.status(status).json({ error: error.constructor.name, message: error.message })
                     })
 
             } catch (error) {
@@ -610,7 +644,7 @@ mongoose.connect(MONGO_URL)
 
                     error = new MatchError(error.message)
                 }
-                res.status(status).json({ error: errors.constructor.name, message: error.message })
+                res.status(status).json({ error: error.constructor.name, message: error.message })
             }
         })
 
@@ -632,7 +666,7 @@ mongoose.connect(MONGO_URL)
                         if (error instanceof MatchError)
                             status = 404
 
-                        res.status(status).json({ error: errors.constructor.name, message: error.message })
+                        res.status(status).json({ error: error.constructor.name, message: error.message })
                     })
 
             } catch (error) {
@@ -645,7 +679,7 @@ mongoose.connect(MONGO_URL)
 
                     error = new MatchError(error.message)
                 }
-                res.status(status).json({ error: errors.constructor.name, message: error.message })
+                res.status(status).json({ error: error.constructor.name, message: error.message })
             }
         })
 
@@ -660,14 +694,14 @@ mongoose.connect(MONGO_URL)
 
                 const { sub: user } = jwt.verify(token, JWT_SECRET)
 
-                logic.searchMeasurement(user.id, searchQuery)
+                logic.searchMeasurements(user.id, searchQuery)
                     .then(measurements => res.status(200).json(measurements))
                     .catch(error => {
                         let status = 500
                         if (error instanceof MatchError)
                             status = 404
 
-                        res.status(status).json({ error: errors.constructor.name, message: error.message })
+                        res.status(status).json({ error: error.constructor.name, message: error.message })
                     })
             } catch (error) {
                 let status = 500
@@ -679,7 +713,7 @@ mongoose.connect(MONGO_URL)
 
                     error = new MatchError(error.message)
                 }
-                res.status(status).json({ error: errors.constructor.name, message: error.message })
+                res.status(status).json({ error: error.constructor.name, message: error.message })
             }
         })
 
