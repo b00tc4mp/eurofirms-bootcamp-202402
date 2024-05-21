@@ -5,7 +5,7 @@ import { validate, errors } from 'com'
 const { SystemError, MatchError } = errors
 
 function updateOffer(companyUserId, offerId, title, description, minSalary, maxSalary, publishDate, expirationDate) {
-    validate.id(companyUserId)
+    validate.id(companyUserId, "companyId")
     validate.id(offerId, 'offerId')
     validate.text(title)
     validate.text(description)
@@ -25,8 +25,8 @@ function updateOffer(companyUserId, offerId, title, description, minSalary, maxS
             if (!offer)
                 throw new MatchError('offer not found')
 
-            if (companyUserId !== offer.company.id.toString())
-                throw new MatchError('post does not belong user')
+            if (companyUserId !== offer.company.toString())
+                throw new MatchError('offer does not belong user')
 
             offer.title = title;
             offer.description = description;
@@ -35,7 +35,7 @@ function updateOffer(companyUserId, offerId, title, description, minSalary, maxS
             offer.publishDate = publishDate;
             offer.expirationDate = expirationDate;
 
-            return career.save()
+            return offer.save()
                 .catch(error => { throw new SystemError(error.message) })
         })
         .then(result => { })

@@ -54,10 +54,10 @@ function onCreateOffer({ onCancelClick, onCreateOffer }){
                 <input className="input" type="text" id="maxSalary" placeholder=""/>
 
                 <label htmlFor="fechapublicacion">Fecha publicación de la oferta:</label>
-                <input className="input" type="text" id="fechapublicacion" placeholder=""/>
+                <input className="input" type="date" id="fechapublicacion" placeholder=""/>
 
                 <label htmlFor="fechaexpiracion">Fecha expiración:</label>
-                <input className="input" type="text" id="fechaexpiracion" placeholder=""/>
+                <input className="input" type="date" id="fechaexpiracion" placeholder=""/>
 
                 <button className="button button--right" type="submit">Publicar</button>
             </form>

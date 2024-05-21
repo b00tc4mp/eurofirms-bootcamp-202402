@@ -2,7 +2,7 @@ import { validate, errors } from 'com'
 
 const { SystemError } = errors
 
-function updateOffer(careerId, title, description, minSalary, maxSalary, publishDate, expirationDate) {
+function updateOffer(offerId, title, description, minSalary, maxSalary, publishDate, expirationDate) {
     validate.token(sessionStorage.token)
     validate.id(offerId, 'careerId')
     validate.text(title)
@@ -10,7 +10,7 @@ function updateOffer(careerId, title, description, minSalary, maxSalary, publish
     validate.salary(minSalary)
     validate.text(publishDate)
 
-    return fetch(`${import.meta.env.VITE_API_URL}/offer/${offerId}`, {
+    return fetch(`${import.meta.env.VITE_API_URL}/offers/${offerId}`, {
         method: 'PATCH',
         headers: {
             Authorization: `Bearer ${sessionStorage.token}`,

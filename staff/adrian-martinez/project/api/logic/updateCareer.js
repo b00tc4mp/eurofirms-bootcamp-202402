@@ -17,15 +17,15 @@ function updateCareer(studentUserId, careerId, title, description, certification
             if (!user)
                 throw new MatchError('user not found')
 
-            return Career.findById(studentUserId)
+            return Career.findById(careerId)
                 .catch(error => { throw new SystemError(error.message) })
         })
         .then(career => {
             if (!career)
                 throw new MatchError('career not found')
 
-            if (studentUserId !== career.student.id.toString())
-                throw new MatchError('post does not belong user')
+            if (studentUserId !== career.student.toString())
+                throw new MatchError('career does not belong user')
 
             career.title = title;
             career.description = description;

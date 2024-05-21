@@ -40,6 +40,7 @@ function OffersCompany({ refreshStamp }){
         refreshScreen();
     }
 
+
     console.log("Offer render");
     
     return (

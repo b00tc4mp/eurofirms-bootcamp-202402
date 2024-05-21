@@ -99,7 +99,7 @@ const offer = new Schema ({
         required: false
     },
     publishDate: {
-        type: String,
+        type: Date,
         required: true
     },
     expirationDate: {

@@ -64,7 +64,6 @@ function HomeEmpresa(props) {
     <>
         <header className="header">
             <div id="app" onClick={props.onClickInicio}>FormativeLife</div>
-            <span className="mx-100">Prueba</span>
             <div className="titular"><i>Busca o atrae talento</i></div>
             <div id="area-perfil">
                 <button className="login" onClick={handleLogout}>Cerrar Sesión</button>
@@ -81,8 +80,8 @@ function HomeEmpresa(props) {
                         {!user && <p>Loading...</p>}
                         {user && 
                         <>
-                            <h1 className="text-3xl font-bold">Hola admin de {user.name} {user.surname}!</h1>
-                            <h1 className="text-xl ">Tu correo es {user.email}</h1>
+                            <h1 className="text-3xl font-bold">Admin de {user.name}</h1><br/>
+                            <h1 className="text-xl ">Correo: {user.email}</h1>
                         </>
                         }
 

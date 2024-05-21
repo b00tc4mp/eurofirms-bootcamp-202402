@@ -12,6 +12,7 @@ function ParaQuienEs(props) {
             <div id="area-perfil">
                 <button className="login" onClick={props.onClickLogin}>Iniciar Sesión</button>
                 <button className="register" onClick={props.onClickRegister}>Crear cuenta</button>
+                <button className="buscar" onClick={props.onUserLoggedIn}>Volver a tu perfil</button>
             </div>
         </header>
         <main>

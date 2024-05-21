@@ -8,7 +8,7 @@ function CareersStudent({ refreshStamp }){
 
     const [careers, setCareers] = useState([]);
 
-    const refreshScreen = () => {
+    const refreshCareers = () => {
 
         try{
             logic.retrieveCareersFromStudent()
@@ -27,27 +27,27 @@ function CareersStudent({ refreshStamp }){
     }
     useEffect(() => {
 
-        refreshScreen();
+        refreshCareers();
     }, [refreshStamp])
 
     const handleDeleteCareer = () => {
 
-        refreshScreen();
+        refreshCareers();
     }
 
     const handleUpdateCareer = () => {
 
-        refreshScreen();
+        refreshCareers();
     }
 
-    console.log("Career render");
+    console.log("Careers render");
     
     return (
         <section id="">
             <h2 className="p-10 font-semibold text-3xl">Perfil laboral</h2>
 
             <div id="">
-                { careers.map(career => <Career career={ career } onCareerDeleted={handleDeleteCareer} onCareerUpdate={handleUpdateCareer}/>)}
+                { careers.map(career => <Career career={ career } onCareerDeleted={handleDeleteCareer} onCareerUpdate={handleUpdateCareer} />)}
             </div>
         </section>
     )

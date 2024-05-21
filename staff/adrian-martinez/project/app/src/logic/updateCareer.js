@@ -4,12 +4,12 @@ const { SystemError } = errors
 
 function updateCareer(careerId, title, description, certification) {
     validate.token(sessionStorage.token)
-    validate.id(careerId, 'postId')
+    validate.id(careerId, 'careerId')
     validate.text(title)
     validate.text(description)
     validate.text(certification)
 
-    return fetch(`${import.meta.env.VITE_API_URL}/carrer/${careerId}`, {
+    return fetch(`${import.meta.env.VITE_API_URL}/careers/${careerId}`, {
         method: 'PATCH',
         headers: {
             Authorization: `Bearer ${sessionStorage.token}`,

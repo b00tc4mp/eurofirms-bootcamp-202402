@@ -173,21 +173,21 @@ mongoose.connect(MONGO_URL)
       res.status(status).json({ error: error.constructor.name, message: error.message })
     }
   })
-
-  server.patch('/career/:targetCareerId', jsonBodyParser, (req, res) => {
+  //TEST PASADO
+  server.patch('/careers/:targetCareerId', jsonBodyParser, (req, res) => {
     try {
         const { authorization } = req.headers
 
         const token = authorization.slice(7)
 
-        const { sub: studentsUserId } = jwt.verify(token, 'esta app va ser disrruptiva en la forma de encontrar trabajo')
+        const { sub: studentUserId } = jwt.verify(token, 'esta app va ser disrruptiva en la forma de encontrar trabajo')
 
         const { title, description, certification } = req.body
 
         const { targetCareerId } = req.params
 
-        logic.createCareer(studentsUserId, targetCareerId, title, description, certification)
-            .then(() => res.status(201).send())
+        logic.updateCareer(studentUserId, targetCareerId, title, description, certification)
+            .then(() => res.status(204).send())
             .catch(error =>{
               let status = 500;
 
@@ -195,46 +195,46 @@ mongoose.connect(MONGO_URL)
 
               res.status(status).json({ error: error.constructor.name, message: error.message })
         })
-} 
-catch(error){
-  let status = 500;
+    } 
+    catch(error){
+    let status = 500;
 
-  if(error instanceof TypeError || error instanceof RangeError || error instanceof ContentError) status = 400;
+    if(error instanceof TypeError || error instanceof RangeError || error instanceof ContentError) status = 400;
 
-  res.status(status).json({ error: error.constructor.name, message: error.message })
-}
-})
+    res.status(status).json({ error: error.constructor.name, message: error.message })
+    }
+    })
 
-server.patch('/offer/:targetOfferId', jsonBodyParser, (req, res) => {
-    try {
-        const { authorization } = req.headers
+    server.patch('/offers/:targetOfferId', jsonBodyParser, (req, res) => {
+        try {
+            const { authorization } = req.headers
 
-        const token = authorization.slice(7)
+            const token = authorization.slice(7)
 
-        const { sub: companyUserId } = jwt.verify(token, 'esta app va ser disrruptiva en la forma de encontrar trabajo')
+            const { sub: companyUserId } = jwt.verify(token, 'esta app va ser disrruptiva en la forma de encontrar trabajo')
 
-        const { title, description, minSalary, maxSalary, publishDate, expirationDate } = req.body
+            const { title, description, minSalary, maxSalary, publishDate, expirationDate } = req.body
 
-        const { targetOfferId } = req.params
+            const { targetOfferId } = req.params
 
-        logic.createOffer(targetOfferId, companyUserId, title, description, minSalary, maxSalary, publishDate, expirationDate)
-            .then(() => res.status(201).send())
-            .catch(error =>{
-              let status = 500;
+            logic.updateOffer(companyUserId, targetOfferId, title, description, minSalary, maxSalary, publishDate, expirationDate)
+                .then(() => res.status(204).send())
+                .catch(error =>{
+                let status = 500;
 
-              if(error instanceof MatchError) status = 401;
+                if(error instanceof MatchError) status = 401;
 
-              res.status(status).json({ error: error.constructor.name, message: error.message })
-        })
-} 
-catch(error){
-  let status = 500;
+                res.status(status).json({ error: error.constructor.name, message: error.message })
+            })
+    } 
+    catch(error){
+    let status = 500;
 
-  if(error instanceof TypeError || error instanceof RangeError || error instanceof ContentError) status = 400;
+    if(error instanceof TypeError || error instanceof RangeError || error instanceof ContentError) status = 400;
 
-  res.status(status).json({ error: error.constructor.name, message: error.message })
-}
-})
+    res.status(status).json({ error: error.constructor.name, message: error.message })
+    }
+    })
 
   server.get('/users', (req, res) => {
     try {

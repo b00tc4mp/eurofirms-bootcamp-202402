@@ -85,9 +85,9 @@ function Home(props) {
                     {!user && <p>Loading...</p>}
                     {user && 
                     <>
-                        <h1 className="text-3xl font-bold">Hola {user.name} {user.surname}!</h1>
-                        <h1 className="text-xl">Tienes {user.age} años.</h1>
-                        <h1 className="text-xl ">Tu correo es {user.email}</h1>
+                        <h1 className="text-3xl font-bold">{user.name} {user.surnames}</h1><br/>
+                        <h1 className="text-xl">Edad: {user.age}</h1>
+                        <h1 className="text-xl ">Correo: {user.email}</h1>
                     </>
                     }
                     
@@ -99,7 +99,7 @@ function Home(props) {
                     <CareersStudent refreshStamp={ refreshStamp }/>
                 </section>
 
-            {view === 'create-career' && <CreateCareer onCancelClick={handleCreateCareerCancelClick} onCreateCareer={handleCareerCreated} />}
+            {view === 'create-career' && <CreateCareer onCancelClick={handleCreateCareerCancelClick} onCreateCareer={handleCareerCreated}/>}
             </container>
         </main>
         <footer className="footer">
