@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react'
 import { errors } from 'com'
+import { useEffect, useState } from 'react'
 import { Routes, Route, Navigate, useNavigate } from 'react-router-dom'
 
 import Button from '../components/Button'
@@ -8,6 +8,7 @@ import Events from '../components/Events'
 import Event from '../components/Event'
 import Bets from '../components/Bets'
 import Bet from '../components/Bet'
+import Wallet from '../components/Wallet'
 
 const { ContentError, MatchError } = errors
 
@@ -33,6 +34,15 @@ function Home({ onLogoutClick }) {
     }
 
     const handleSearchClick = () => {
+        navigate('/')
+        setTimeStamp(Date.now())
+    }
+
+    const handleWalletClick = () => {
+        navigate('/wallet')
+    }
+
+    const handleAfterWalletOperation = () => {
         navigate('/')
         setTimeStamp(Date.now())
     }
@@ -71,7 +81,7 @@ function Home({ onLogoutClick }) {
     return <>
         <header className='flex flex-row justify-end'>
             <Button onClick={handleYourBetsClick}>Your Bets</Button>
-            <Button>Wallet ={user?.wallet}</Button>
+            <Button onClick={handleWalletClick}>Wallet ={user?.wallet}</Button>
             <Button onClick={handleLogoutClick}>LOG OUT</Button>
         </header>
         {user ? <h1>HELLO HOME {user.username}</h1> : <span>Loading...</span>}
@@ -84,7 +94,8 @@ function Home({ onLogoutClick }) {
                 <Route path='/events/:eventId' element={<Event onBetCreated={handleAfterBetOperation} />} />
                 <Route path='/bets/:userId' element={<Bets />} />
                 <Route path='/bet/:betId' element={<Bet onBetModified={handleAfterBetOperation} onBetRemoved={handleAfterBetOperation} />} />
-                <Route path='/*' element={<Navigate to="/events" />} />
+                <Route path='/wallet' element={<Wallet onWalletModified={handleAfterWalletOperation} user={user} />} />
+                <Route path='/*' element={logic.isUserLoggedIn() ? <Navigate to="/events" /> : <Navigate to={'/login'} />} />
             </Routes>
         </main>
 

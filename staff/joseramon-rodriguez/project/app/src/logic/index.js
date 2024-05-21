@@ -11,6 +11,8 @@ import retrieveBetsFromUser from './retrieveBetsFromUser'
 import retrieveBet from './retrieveBet'
 import modifyBet from './modifyBet'
 import removeBet from './removeBet'
+import addCreditToWallet from './addCreditToWallet'
+import substractCreditFromWallet from './substractCreditFromWallet'
 
 const logic = {
     getLoggedInUserId,
@@ -25,7 +27,9 @@ const logic = {
     retrieveBetsFromUser,
     retrieveBet,
     modifyBet,
-    removeBet
+    removeBet,
+    addCreditToWallet,
+    substractCreditFromWallet
 }
 
 export default logic

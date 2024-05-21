@@ -4,13 +4,35 @@ import logic from "../logic"
 import Input from "./Input"
 import Button from "./Button"
 import Form from "./Form"
-import { utils } from "com"
+import { utils, errors } from "com"
+
+const { MatchError, ContentError } = errors
 
 function Event({ onBetCreated }) {
     let params = useParams()
     const [event, setEvent] = useState(null)
     const [timeStamp, setTimeStamp] = useState(null)
     const [eventStarted, setEventStarted] = useState(false)
+    const [error, setError] = useState(false)
+
+    const errorHandler = error => {
+        console.error(error)
+
+        let feedback = error.message
+
+        if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
+            feedback = `${feedback}, please correct it`
+        else if (error instanceof MatchError)
+            feedback = `${feedback}, please input correct data`
+        else feedback = 'sorry there was an error, please try again later'
+
+        const isPlayerError = error.message.includes('player')
+        const isAmountError = error.message.includes('amount')
+
+        const isAnotherError = !isPlayerError && !isAmountError
+
+        setError({ message: feedback, isPlayerError, isAmountError, isAnotherError })
+    }
 
     const navigate = useNavigate()
 
@@ -21,10 +43,9 @@ function Event({ onBetCreated }) {
                     setEvent(event)
                     setTimeStamp(new Date())
                 })
+                .catch(error => errorHandler(error))
         } catch (error) {
-            alert(error.message)
-            console.error(error
-            )
+            errorHandler(error)
         }
     }, [])
 
@@ -57,14 +78,10 @@ function Event({ onBetCreated }) {
                     navigate('/')
                 })
                 .catch(error => {
-                    console.error(error)
-
-                    alert(error.message)
+                    errorHandler(error)
                 })
         } catch (error) {
-            console.error(error)
-
-            alert(error.message)
+            errorHandler(error)
         }
     }
     return <>
@@ -74,20 +91,27 @@ function Event({ onBetCreated }) {
                 <h3>{event.name}</h3>
                 <p>{event.description}</p>
                 <p>Start : {utils.formatDate(event.startDate)}</p>
+                {event.winner ? <p>Winner: {event.winner.name}</p> : <></>}
                 <p>List of players:</p>
                 <ul>
                     {event.players.map(player => { return <li key={player.name}>{player.name}</li> })}
                 </ul>
             </div>
             <div>
-                {!eventStarted && <Form onSubmit={handleSubmit}>
+                {!eventStarted && event?.status === 'open' && <Form onSubmit={handleSubmit}>
                     <label htmlFor="player">Player to bet</label>
                     <select name="player" id="player" key='123'>
                         {event.players.map(player => { return <option key={player.id} value={player.id}>{player.name}</option> })}
                     </select>
+                    {error?.isPlayerError && <span className='text-red-500'>{error.message}</span>}
+
                     <label htmlFor="amount">Amount to bet</label>
                     <Input type="text" id="amount"></Input>
+                    {error?.isAmountError && <span className='text-red-500'>{error.message}</span>}
+
                     <Button type="submit">Bet</Button>
+                    {error?.isAnotherError && <span className='text-red-500'>{error.message}</span>}
+
                 </Form>}
 
             </div>

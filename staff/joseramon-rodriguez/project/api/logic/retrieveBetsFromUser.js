@@ -13,7 +13,7 @@ function retrieveBetsFromUser(userId, targetUserId) {
             if (!user)
                 throw new MatchError('user not found -> cant retrieve events')
 
-            return Bet.find().select('-__v -user').populate('event', '-_id name description status').populate('player', '-_id name').lean()
+            return Bet.find().select('-__v -user').populate('event', '-_id name description status startDate').populate('player', '-_id name').sort({ 'event.status': -1, 'event.startDate': 1 }).lean()
                 .catch(error => { throw new SystemError(error.message) })
                 .then(bets => {
 

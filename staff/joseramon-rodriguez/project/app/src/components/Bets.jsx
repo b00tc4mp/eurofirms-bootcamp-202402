@@ -1,24 +1,40 @@
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { errors } from 'com'
-import Button from '../components/Button'
 import logic from '../logic'
+
+const { MatchError, ContentError } = errors
 
 function Bets() {
     const [bets, setBets] = useState(null)
+
+    const [error, setError] = useState(null)
 
     const navigate = useNavigate()
 
     const params = useParams()
 
+    const errorHandler = error => {
+        console.error(error)
+
+        let feedback = error.message
+
+        if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
+            feedback = `${feedback}, please correct it`
+        else if (error instanceof MatchError)
+            feedback = `${feedback}, please input correct data`
+        else feedback = 'sorry there was an error, please try again later'
+
+        setError({ message: feedback })
+    }
+
     useEffect(() => {
         try {
             logic.retrieveBetsFromUser(params.userId)
                 .then(bets => setBets(bets))
-                .catch(error => console.error(error))
+                .catch(error => errorHandler(error))
         } catch (error) {
-            console.error(error)
-            alert(error.message)
+            errorHandler(error)
         }
     }, [])
 
@@ -37,7 +53,7 @@ function Bets() {
             </section>
 
         }
-        ) : <span>Loading</span>}
+        ) : error && <span className='text-red-500'>{error.message}</span>}
     </>
 
 }

@@ -10,9 +10,28 @@ function Bet({ onBetModified, onBetRemoved }) {
     const [bet, setBet] = useState(null)
     const [timeStamp, setTimeStamp] = useState(null)
     const [eventStarted, setEventStarted] = useState(false)
+    const [error, setError] = useState(false)
 
     let params = useParams()
     const navigate = useNavigate()
+
+    const errorHandler = error => {
+        console.error(error)
+
+        let feedback = error.message
+
+        if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
+            feedback = `${feedback}, please correct it`
+        else if (error instanceof MatchError)
+            feedback = `${feedback}, please input correct data`
+        else feedback = 'sorry there was an error, please try again later'
+
+        const isAmountError = error.message.includes('amount')
+
+        const isAnotherError = !isAmountError
+
+        setError({ message: feedback, isAmountError, isAnotherError })
+    }
 
     useEffect(() => {
         try {
@@ -21,10 +40,9 @@ function Bet({ onBetModified, onBetRemoved }) {
                     setBet(bet)
                     setTimeStamp(new Date())
                 })
+                .catch(error => errorHandler(error))
         } catch (error) {
-            alert(error.message)
-            console.error(error
-            )
+            errorHandler(error)
         }
     }, [])
 
@@ -33,7 +51,7 @@ function Bet({ onBetModified, onBetRemoved }) {
             const timeStamp = new Date().getTime()
             const eventStartDate = new Date(bet?.event.startDate).getTime()
 
-            if (timeStamp >= eventStartDate)
+            if (timeStamp <= eventStartDate)
                 setEventStarted(true)
 
             setTimeStamp(timeStamp)
@@ -54,15 +72,9 @@ function Bet({ onBetModified, onBetRemoved }) {
                     onBetModified()
                     navigate('/')
                 })
-                .catch(error => {
-                    console.error(error)
-
-                    alert(error.message)
-                })
+                .catch(error => errorHandler(error))
         } catch (error) {
-            console.error(error)
-
-            alert(error.message)
+            errorHandler(error)
         }
     }
 
@@ -77,21 +89,14 @@ function Bet({ onBetModified, onBetRemoved }) {
                         navigate('/')
                         onBetRemoved()
                     })
-                    .catch(error => {
-                        console.error(error)
-
-                        alert(error.message)
-                    })
+                    .catch(error => errorHandler(error))
             }
         } catch (error) {
-            console.error(error)
-
-            alert(error.message)
+            errorHandler(error)
         }
     }
 
     return <>
-        {timeStamp && <span>{timeStamp.toString()}</span>}
         {bet ? <section>
             <div>
                 <h2>STATUS : {bet.event.status}</h2>
@@ -107,10 +112,12 @@ function Bet({ onBetModified, onBetRemoved }) {
                         <label htmlFor="amount">Amount to bet</label>
                         <Input type="text" id="amount"></Input>
                         <Button type="submit">Modify</Button>
+                        {error?.isAmountError && <span className='text-red-500'>{error.message}</span>}
                     </Form>
                     <Button onClick={handleDeleteClick}>Delete Bet</Button> </>}
             </div>
-        </section> : <span>loading...</span>}
+        </section> : error?.isAnotherError && <span className='text-red-500'>{error.message}</span>}
+
     </>
 }
 

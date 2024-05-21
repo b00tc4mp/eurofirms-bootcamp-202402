@@ -4,7 +4,7 @@ import retrieveEvents from './retrieveEvents.js'
 mongoose.connect('mongodb://localhost:27017/project')
     .then(() => {
         try {
-            retrieveEvents('6637fb61f98ea3c57b76ed51')
+            retrieveEvents('663def289961e38f028c2289')
                 .then((events) => console.log('events retrieved', events))
                 .catch(error => console.error(error))
         } catch (error) {

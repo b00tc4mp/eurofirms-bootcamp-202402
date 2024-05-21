@@ -12,7 +12,7 @@ function retrieveEvents(userId) {
             if (!user)
                 throw new MatchError('user not found -> cant retrieve events')
 
-            return Event.find().select('-code -__v').sort('startDate').populate().lean()
+            return Event.find().select('-code -__v').sort({ 'status': -1, 'startDate': 1 }).populate().lean()
                 .catch(error => { throw new SystemError(error.message) })
                 .then(events => {
 

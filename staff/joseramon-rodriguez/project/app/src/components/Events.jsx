@@ -1,22 +1,40 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { errors } from 'com'
-import Button from '../components/Button'
+
 import logic from '../logic'
+
+const { ContentError, MatchError } = errors
 
 function Events() {
     const [events, setEvents] = useState(null)
+    const [error, setError] = useState(null)
 
     const navigate = useNavigate()
+
+    const errorHandler = error => {
+        console.error(error)
+
+        let feedback = error.message
+
+        if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
+            feedback = `${feedback}, please correct it`
+        else if (error instanceof MatchError)
+            feedback = `${feedback}, please input correct data`
+        else feedback = 'sorry there was an error, please try again later'
+
+
+
+        setError({ message: feedback })
+    }
 
     useEffect(() => {
         try {
             logic.retrieveEvents()
                 .then(events => setEvents(events))
-                .catch(error => console.error(error))
+                .catch(error => errorHandler(error))
         } catch (error) {
-            console.error(error)
-            alert(error.message)
+            errorHandler(error)
         }
     }, [])
 
@@ -26,6 +44,8 @@ function Events() {
     return <>
 
         <h2>Upcoming Events</h2>
+        {error && <span className='text-red-500'>{error.message}</span>}
+
         {events ? events.map(event => {
             return <section key={event.id} className=' border-black border-2'>
                 <h3><a onClick={() => handleEventClick(event.id)}>{event.name}</a></h3>

@@ -12,7 +12,7 @@ function retrieveEvent(userId, enventId) {
             if (!user)
                 throw new MatchError('user not found -> cant retrieveEvent')
 
-            return Event.findById(enventId).select('-__v -code').populate('players', ' name').lean()
+            return Event.findById(enventId).select('-__v -code').populate('players', ' name').populate('winner', '-_id name').lean()
                 .catch(error => { throw new SystemError(error.message) })
                 .then(event => {
                     if (!event)
