@@ -60,6 +60,19 @@ app.set('pkg', pkg);
 
 app.use(express.json());
 app.use(morgan('dev')); // sirve para depurar, para que muestre en consola las peticiones
+
+// var whitelist = ['http://localhost:5173', 'http://example2.com']; // front page
+
+// var corsOptions = {
+//   origin: function (origin, callback) {
+//     if (whitelist.indexOf(origin) !== -1) {
+//       callback(null, true);
+//     } else {
+//       callback(new Error('Not allowed by CORS'));
+//     }
+//   },
+// };
+
 app.use(cors());
 
 app.get('/', (req, res) => {
