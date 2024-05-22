@@ -85,10 +85,10 @@ function Event({ onBetCreated }) {
         }
     }
     return <>
-        {event ? <section>
-            <div>
-                <h2>Status: {event.status}</h2>
-                <h3>{event.name}</h3>
+        {event ? <section className=" flex  flex-none justify-between ">
+            <div className="  max-w-30">
+                <h2 className=" text-xl">{event.name}</h2>
+                <h3>Status: {event.status}</h3>
                 <p>{event.description}</p>
                 <p>Start : {utils.formatDate(event.startDate)}</p>
                 {event.winner ? <p>Winner: {event.winner.name}</p> : <></>}
@@ -97,10 +97,10 @@ function Event({ onBetCreated }) {
                     {event.players.map(player => { return <li key={player.name}>{player.name}</li> })}
                 </ul>
             </div>
-            <div>
+            <div className=" max-w-20 ">
                 {!eventStarted && event?.status === 'open' && <Form onSubmit={handleSubmit}>
                     <label htmlFor="player">Player to bet</label>
-                    <select name="player" id="player" key='123'>
+                    <select name="player" id="player" key='123' className=" bg-slate-500 rounded-sm">
                         {event.players.map(player => { return <option key={player.id} value={player.id}>{player.name}</option> })}
                     </select>
                     {error?.isPlayerError && <span className='text-red-500'>{error.message}</span>}

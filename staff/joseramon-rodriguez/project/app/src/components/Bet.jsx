@@ -53,6 +53,8 @@ function Bet({ onBetModified, onBetRemoved }) {
 
             if (timeStamp <= eventStartDate)
                 setEventStarted(true)
+            else
+                setEventStarted(false)
 
             setTimeStamp(timeStamp)
         }, 1000)
@@ -97,24 +99,26 @@ function Bet({ onBetModified, onBetRemoved }) {
     }
 
     return <>
-        {bet ? <section>
-            <div>
-                <h2>STATUS : {bet.event.status}</h2>
-                <h3>Event name: {bet.event.name}</h3>
+        {bet ? <section className=" flex  flex-none justify-between">
+            <div className=" max-w-30">
+                <h2 className=" text-xl">Event name: {bet.event.name}</h2>
                 <p>Event description: {bet.event.description}</p>
                 <p>Start: {utils.formatDate(bet.event.startDate)}</p>
-                <span>Player you bet for: {bet.player.name}</span>
-                <span>Amount you betted : {bet.amount}</span>
+                <h3>Status : {bet.event.status}</h3>
+                <p className=" text-lg">Player you bet for: {bet.player.name}</p>
+                <p className=" text-lg">Amount you betted : {bet.amount}</p>
             </div>
-            <div>
-                {!eventStarted && <>
+            <div className=" max-w-20 flex flex-col">
+                {eventStarted && <>
                     <Form onSubmit={handleSubmit}>
-                        <label htmlFor="amount">Amount to bet</label>
+                        <label htmlFor="amount">New amount to bet</label>
                         <Input type="text" id="amount"></Input>
                         <Button type="submit">Modify</Button>
                         {error?.isAmountError && <span className='text-red-500'>{error.message}</span>}
                     </Form>
-                    <Button onClick={handleDeleteClick}>Delete Bet</Button> </>}
+                    <Button className=" self-end w-full" onClick={handleDeleteClick}>Delete</Button>
+                </>
+                }
             </div>
         </section> : error?.isAnotherError && <span className='text-red-500'>{error.message}</span>}
 

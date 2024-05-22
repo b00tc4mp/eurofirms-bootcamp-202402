@@ -20,8 +20,7 @@ function Events() {
         if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
             feedback = `${feedback}, please correct it`
         else if (error instanceof MatchError)
-            feedback = `${feedback}, please input correct data`
-        else feedback = 'sorry there was an error, please try again later'
+            feedback = 'sorry there was an error, please try again later'
 
 
 
@@ -43,12 +42,12 @@ function Events() {
     }
     return <>
 
-        <h2>Upcoming Events</h2>
+        <h2 className=' text-xl'>Upcoming Events</h2>
         {error && <span className='text-red-500'>{error.message}</span>}
 
         {events ? events.map(event => {
-            return <section key={event.id} className=' border-black border-2'>
-                <h3><a onClick={() => handleEventClick(event.id)}>{event.name}</a></h3>
+            return <section key={event.id} className={`border-black border-2 ${event.status === 'open' ? 'bg-cyan-100' : 'bg-rose-200'}`}>
+                <h3><a onClick={() => handleEventClick(event.id)} className=' underline cursor-pointer text-lg'>{event.name}</a></h3>
                 <p>{event.description}</p>
                 <p>Status:  {event.status}</p>
 

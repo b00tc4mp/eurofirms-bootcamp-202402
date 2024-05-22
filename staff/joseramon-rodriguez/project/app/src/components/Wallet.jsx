@@ -10,7 +10,7 @@ import Input from './Input'
 const { MatchError, ContentError } = errors
 
 function Wallet({ onWalletModified, user }) {
-    const [operation, setOperation] = useState('add')
+    const [operation, setOperation] = useState(null)
     const [error, setError] = useState(null)
 
     const errorHandler = error => {
@@ -78,31 +78,36 @@ function Wallet({ onWalletModified, user }) {
         setOperation(operation)
     }
     return <>
-        <h3>Your wallet = {user?.wallet}</h3>
-        <Button onClick={() => handleClick('remove')}>Remove from wallet</Button>
-        <Button onClick={() => handleClick('add')}>Add to wallet</Button>
-        {operation === 'add' ? <Form onSubmit={handleSubmit}>
-            <label htmlFor='amount'>Amount</label>
-            <Input type='text' id='amount'></Input>
-            {error?.isAmountError && <span className='text-red-500'>{error.message}</span>}
+        <h3 className=' text-xl'>Wallet Operations:</h3>
+        <section className='flex  flex-none justify-between'>
+            <div className='flex flex-col gap-1 max-w-30'>
+                <Button onClick={() => handleClick('remove')}>Remove from wallet</Button>
+                <Button onClick={() => handleClick('add')}>Add to wallet</Button>
+            </div>
+            <div className=' max-w-20'>
+                {operation === 'add' && <Form onSubmit={handleSubmit}>
+
+                    <label htmlFor='amount'>Amount</label>
+                    <Input type='text' id='amount'></Input>
+                    {error?.isAmountError && <span className='text-red-500'>{error.message}</span>}
 
 
-            <Button type='submit'>Add to wallet</Button>
-            {error?.isAnotherError && <span className='text-red-500'>{error.message}</span>}
+                    <Button type='submit'>Add to wallet</Button>
+                    {error?.isAnotherError && <span className='text-red-500'>{error.message}</span>}
 
-        </Form> :
-            <Form onSubmit={handleSubmit}>
-                <label htmlFor='amount'>Amount</label>
-                <Input type='text' id='amount'></Input>
-                {error?.isAmountError && <span className='text-red-500'>{error.message}</span>}
+                </Form>}
+                {operation === 'remove' && <Form onSubmit={handleSubmit}>
+                    <label htmlFor='amount'>Amount</label>
+                    <Input type='text' id='amount'></Input>
+                    {error?.isAmountError && <span className='text-red-500'>{error.message}</span>}
 
 
-                <Button type='submit'>Remove from wallet</Button>
-                {error?.isAnotherError && <span className='text-red-500'>{error.message}</span>}
+                    <Button type='submit'>Remove from wallet</Button>
+                    {error?.isAnotherError && <span className='text-red-500'>{error.message}</span>}
 
-            </Form>
-        }
-
+                </Form>}
+            </div>
+        </section>
     </>
 }
 
