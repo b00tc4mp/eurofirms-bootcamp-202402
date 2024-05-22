@@ -3,7 +3,7 @@ import { errors, validate } from "com"
 
 const { SystemError, MatchError } = errors
 
-function searchDiet(userId, searchQuery) {
+function searchDiets(userId, searchQuery) {
     validate.id(userId, 'userId')
     validate.text(searchQuery, 'searchQuery')
 
@@ -33,4 +33,4 @@ function searchDiet(userId, searchQuery) {
         })
 }
 
-export default searchDiet
+export default searchDiets

@@ -1,12 +1,23 @@
 import { useEffect, useState } from "react"
+import { useSearchParams } from 'react-router-dom'
 import logic from "../logic"
 import Exercise from "./Exercise"
 import CreateExercise from "./CreateExercise"
-import SearchExercise from "./SearchExercise"
 
 function Exercises({ refreshStamp }) {
     const [exercises, setExercises] = useState([])
     const [showCreateExercise, setShowCreateExercise] = useState(false)
+    const [searchParams, setSearchParams] = useSearchParams()
+
+    const query = searchParams.get('q')
+
+    const handleSearchExerises = (event) => {
+        event.preventDefault()
+        const querySearched = event.target.query.value
+
+        setSearchParams({ q: querySearched })
+
+    }
 
     const refreshExercises = () => {
         try {
@@ -24,7 +35,7 @@ function Exercises({ refreshStamp }) {
 
     const searchExercise = () => {
         try {
-            logic.searchExercise()
+            logic.searchExercises(query)
                 .then(exercises => setExercises(exercises))
                 .catch(error => {
                     console.log(error)
@@ -38,8 +49,10 @@ function Exercises({ refreshStamp }) {
     }
 
     useEffect(() => {
-        refreshExercises()
-    }, [refreshStamp])
+        if (query) searchExercise()
+
+        else refreshExercises()
+    }, [refreshStamp, query])
 
     const handleExerciseRemoved = () => refreshExercises()
 
@@ -56,7 +69,21 @@ function Exercises({ refreshStamp }) {
 
     return (
         <section className="flex flex-col gap-6 px-2 py-14">
-            <SearchExercise />
+            <form className='mt-20' onSubmit={handleSearchExerises}>
+                <input
+                    name="query"
+                    type="text"
+                    className="border border-gray-500 rounded-md px-4 py-2 mb-4"
+                    placeholder="Search Exercises..."
+                />
+                <button
+                    type="submit"
+                    className="bg-blue-500 text-white rounded-md px-4 py-2"
+                >
+                    Search
+                </button>
+            </form>
+
             {showCreateExercise ? (
                 <CreateExercise onCancelClick={handleCancelCreateExercise} onExerciseCreated={handleExerciseCreated} />
             ) : (

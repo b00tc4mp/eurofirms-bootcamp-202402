@@ -656,9 +656,9 @@ mongoose.connect(MONGO_URL)
 
                 const { sub: user } = jwt.verify(token, JWT_SECRET)
 
-                const searchQuery = req.body
+                const { q } = req.query
 
-                logic.searchExercise(user.id, searchQuery)
+                logic.searchExercises(user.id, q)
                     .then(exercises => res.status(200).json(exercises))
                     .catch(error => {
                         let status = 500
@@ -691,9 +691,9 @@ mongoose.connect(MONGO_URL)
 
                 const { sub: user } = jwt.verify(token, JWT_SECRET)
 
-                const searchQuery = req.body
+                const { q } = req.query
 
-                logic.searchDiet(user.id, searchQuery)
+                logic.searchDiets(user.id, q)
                     .then(diets => res.status(200).json(diets))
                     .catch(error => {
                         let status = 500
@@ -720,16 +720,16 @@ mongoose.connect(MONGO_URL)
         // --------------------------------------------------------------------//
         server.get('/measurements/search', (req, res) => {
             try {
-                const searchQuery = req.body
+                const { startDate, endDate } = req.query
 
-                const { authorization } = req.header
+                const { authorization } = req.headers
 
                 const token = authorization.slice(7)
 
                 const { sub: user } = jwt.verify(token, JWT_SECRET)
 
-                logic.searchMeasurements(user.id, searchQuery)
-                    .then(measurements => res.status(200).json(measurements))
+                logic.searchMeasurements(user.id, startDate, endDate)
+                    .then(measurements => res.json(measurements))
                     .catch(error => {
                         let status = 500
                         if (error instanceof MatchError)
@@ -752,11 +752,6 @@ mongoose.connect(MONGO_URL)
         })
 
         // --------------------------------------------------------------------//
-
-
-
-
-
 
         // cuando tenga que llamar a la api con cualquier cosa que utilize un user id hay que pasar el user y luego acceder a la propiedad id
         // const { sub: user } = jwt.verify(token, JWT_SECRET)

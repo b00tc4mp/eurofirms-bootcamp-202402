@@ -20,15 +20,15 @@ import removeDiet from "./removeDiet"
 import removeExercise from "./removeExercise"
 import removeMeasurement from "./removeMeasurements"
 
-import retrieveDiet from "./retrieveDiet"
+import retrieveDiets from "./retrieveDiets"
 import retrieveExercises from "./retrieveExercises"
 import retrieveMeasurements from "./retrieveMeasurements"
 import retrieveAllMeasurements from "./retrieveAllMeasurements"
 import retrieveUsers from "./retrieveUsers"
 
-import searchDiet from "./searchDiet"
-import searchExercise from "./SearchExercise"
-import searchMeasure from "./searchMeasure"
+import searchDiets from "./searchDiets"
+import searchExercises from "./SearchExercises"
+import searchMeasures from "./searchMeasures"
 
 
 const logic = {
@@ -47,14 +47,14 @@ const logic = {
     removeDiet,
     removeExercise,
     removeMeasurement,
-    retrieveDiet,
+    retrieveDiets,
     retrieveExercises,
     retrieveMeasurements,
     registerTrainer,
     retrieveUsers,
-    searchDiet,
-    searchExercise,
-    searchMeasure,
+    searchDiets,
+    searchExercises,
+    searchMeasures,
     retrieveAllMeasurements
 }
 

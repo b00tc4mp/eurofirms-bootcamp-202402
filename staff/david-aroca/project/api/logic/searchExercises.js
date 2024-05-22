@@ -5,7 +5,7 @@ const { SystemError, MatchError } = errors
 
 function searchExercise(userId, searchQuery) {
     validate.id(userId, 'userId')
-    // validate.text(searchQuery, 'searchQuery')
+    validate.text(searchQuery, 'searchQuery')
 
     return User.findById(userId)
         .catch(error => { throw new SystemError(error.message) })
@@ -15,7 +15,7 @@ function searchExercise(userId, searchQuery) {
             return Exercise.find({ "title": { "$regex": searchQuery, "$options": "i" } }).select('-__v').populate('author', 'username').lean()
                 .catch(error => { throw new SystemError(error.message) })
                 .then(exercise => {
-                    if (!exercise || exercise.length === 0) { throw new MatchError('exercise not found') }
+                    if (exercise.length === 0) { throw new MatchError('exercise not found') }
 
                     exercise.forEach(exercise => {
                         exercise.id = exercise._id.toString()

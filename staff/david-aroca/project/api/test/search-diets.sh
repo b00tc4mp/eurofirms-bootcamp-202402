@@ -1,4 +1,4 @@
-curl -X GET -H 'authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOnsiaWQiOiI2NjNhM2IxYmQyNmE4MWQ3MTc4ZjkwNDMiLCJyb2xlIjoidHJhaW5lciJ9LCJpYXQiOjE3MTYxOTIxNjMsImV4cCI6MTcxNjIwMjk2M30.gFNdwZLnn1XjPsoakys4sJPPS4bLp5ZsmjXJBg1MePY' -H 'Content-Type: application/json' -d '{"title:" es "}' "http://localhost:4025/diets/" -v
+curl -H 'authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOnsiaWQiOiI2NjNhM2IxYmQyNmE4MWQ3MTc4ZjkwNDMiLCJyb2xlIjoidHJhaW5lciJ9LCJpYXQiOjE3MTYzNjI5MDcsImV4cCI6MTcxNjM3MzcwN30.RPzxLe51muge1cGBvNj94vqlDc_odIiDyWJVBGvOVek' "http://localhost:4025/diets/search?q=prueba" -v
 
 # FUNCIONA CORRECTAMENTE PROBLEMA CON EL BODY
 # $ ./search-diet.sh

@@ -1,27 +1,25 @@
-import { errors, validate, } from "com";
+import { errors, validate, } from "com"
 
 const { SystemError } = errors
 
-// TODO SALTA VALIDACION PORQUE LA BUSQUEDA LLEGA COMO UNDEFINED
-function searchDiet() {
+// TODO 
+
+function searchMeasures(startDate, endDate) {
     validate.token(sessionStorage.token)
+    // validate.date(startDateQuery, 'startDateQuery')
+    // validate.date(endDateQuery, 'endDateQuery')
 
-    validate.text(searchQuery, 'searchQuery')
-
-    return fetch(`${import.meta.env.VITE_API_URL}/diets/search`, {
+    return fetch(`${import.meta.env.VITE_API_URL}/measurements/search?startDate=${startDate}&endDate=${endDate}`, {
         method: 'GET',
         headers: {
             Authorization: `Bearer ${sessionStorage.token}`
-        },
-        body: JSON.stringify({ searchQuery })
-
+        }
     })
         .catch(error => { throw new SystemError(error.message) })
         .then(res => {
             if (res.status === 200)
                 return res.json()
                     .catch(error => { throw new SystemError(error.message) })
-                    .then(users => users)
 
             return res.json()
                 .catch(error => { throw new SystemError(error.message) })
@@ -34,6 +32,4 @@ function searchDiet() {
                 })
         })
 }
-
-
-export default searchDiet
+export default searchMeasures

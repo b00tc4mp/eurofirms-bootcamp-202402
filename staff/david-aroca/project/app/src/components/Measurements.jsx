@@ -1,15 +1,27 @@
 import { useEffect, useState } from "react"
+import { useSearchParams } from 'react-router-dom'
 import logic from "../logic"
 import Measurement from "./Measurement"
-import CreateMeasurement from "./CreateMesurement"
-import SearchMeasure from "./SearchMeasure"
-import MeasurementsChart from "./MesurementsChart"
+import CreateMeasurement from "./CreateMeasurement"
+import MeasurementsChart from "./MeasurementsChart"
 
 function Measurements({ refreshStamp }) {
     console.log('refreshStamp 💀', refreshStamp)
 
     const [measurements, setMeasurements] = useState([])
     const [creatingMeasurement, setCreatingMeasurement] = useState(false)
+    const [searchParams, setSearchParams] = useSearchParams()
+
+    const startDate = searchParams.get('startDate')
+    const endDate = searchParams.get('endDate')
+
+    const handleSearchMeasures = (event) => {
+        event.preventDefault()
+        const startDateValue = event.target.startDate.value
+        const endDateValue = event.target.endDate.value
+
+        setSearchParams({ startDate: startDateValue, endDate: endDateValue })
+    }
 
     const refreshMeasurements = () => {
         try {
@@ -25,9 +37,27 @@ function Measurements({ refreshStamp }) {
         }
     }
 
+    const searchMeasures = () => {
+        try {
+            logic.searchMeasures(startDate, endDate)
+                .then(measures => setMeasurements(measures))
+                .catch(error => {
+                    console.log(error)
+                    alert(error.message)
+                })
+        } catch (error) {
+            console.log(error)
+            alert(error.message)
+        }
+    }
+
     useEffect(() => {
-        refreshMeasurements()
-    }, [refreshStamp])
+        if (startDate && endDate) {
+            searchMeasures()
+        } else {
+            refreshMeasurements()
+        }
+    }, [refreshStamp, startDate, endDate])
 
     const handleMeasurementRemoved = () => refreshMeasurements()
 
@@ -55,9 +85,36 @@ function Measurements({ refreshStamp }) {
                     Create New Measurement
                 </button>
             )}
-            <SearchMeasure />
+            <form className='mt-20' onSubmit={handleSearchMeasures}>
+                <div className="flex flex-col gap-2">
+                    <label htmlFor="startDate" className="text-sm">Start Date:</label>
+                    <input
+                        id="startDate"
+                        name="startDate"
+                        type="date"
+                        className="border border-gray-500 rounded-md px-4 py-2"
+                        placeholder="Start Date"
+                    />
+                </div>
+                <div className="flex flex-col gap-2 mt-4">
+                    <label htmlFor="endDate" className="text-sm">End Date:</label>
+                    <input
+                        id="endDate"
+                        name="endDate"
+                        type="date"
+                        className="border border-gray-500 rounded-md px-4 py-2"
+                        placeholder="End Date"
+                    />
+                </div>
+                <button
+                    type="submit"
+                    className="bg-blue-500 text-white rounded-md px-4 py-2 mt-4"
+                >
+                    Search
+                </button>
+            </form>
             <div className="w-full">
-                <MeasurementsChart measurements={measurements} />
+                <MeasurementsChart measurements={measurements.toReversed()} />
             </div>
             <div className="w-full mt-8 grid grid-cols-2 gap-4">
                 {measurements.map(measurement => (

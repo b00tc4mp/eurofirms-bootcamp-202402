@@ -12,19 +12,19 @@ function SearchDiet() {
         setQuery({ q: querySearched })
     }
 
-    useEffect(() => {
-        const querySearched = query.get('q')
-        if (querySearched) {
-            logic.searchDiet(querySearched)
-                .then(results => {
-                    setSearchResults(results)
-                })
+    const searchMeasures = () => {
+        try {
+            logic.searchMeasures(startDate, endDate)
+                .then(measures => setMeasurements(measures))
                 .catch(error => {
-                    console.error(error)
+                    console.log(error)
                     alert(error.message)
                 })
+        } catch (error) {
+            console.log(error)
+            alert(error.message)
         }
-    }, [query])
+    }
 
     return (
         <div className='mt-60'>

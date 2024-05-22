@@ -46,6 +46,7 @@ function CalorieCalculator() {
     return (
         <div className="mt-8 mb-20 bg-gray-100 p-8 rounded-lg">
             <h2 className="text-2xl font-bold mb-4">Calorie Calculator</h2>
+            <h3 className=" text-smfont-bold mb-4">Esta calculadora hace una medicion aproximada sobre las calorias que deberia de ingerir una persona sana en un dia para mantener su peso, si esta enfermo,embazarada o sufre de enfermedades consulte a su medico.</h3>
             <div className="flex justify-center items-center">
                 <div className="w-full max-w-lg">
                     <div className="mb-4">

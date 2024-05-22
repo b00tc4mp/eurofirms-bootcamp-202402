@@ -1,6 +1,6 @@
 import logic from "../logic"
 
-function CreateMeasurement({ onCancelClick, onMeasurementCreated }) {
+function CreateMeasurements({ onCancelClick, onMeasurementCreated }) {
     const handleCancelClick = () => onCancelClick()
 
     const handleSubmit = event => {
@@ -8,6 +8,7 @@ function CreateMeasurement({ onCancelClick, onMeasurementCreated }) {
 
         const form = event.target
 
+        // TODO TENGO QUE HACER 2024-02-26T00:00:00.000Z UN SLICE DE ESTO
         const date = form.date.value
         const weight = form.weight.value
         const torso = form.torso.value
@@ -55,4 +56,4 @@ function CreateMeasurement({ onCancelClick, onMeasurementCreated }) {
     )
 }
 
-export default CreateMeasurement
+export default CreateMeasurements

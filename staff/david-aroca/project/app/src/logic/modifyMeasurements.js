@@ -3,11 +3,11 @@ import { errors, validate } from 'com'
 const { SystemError } = errors
 
 function modifyMeasurements(measurementId, date, weight, torso, legs) {
-    validate.token(sessionStorage.token);
-    validate.date(date, 'date');
-    validate.weight(weight, 'weight');
-    validate.torso(torso, 'torso');
-    validate.legs(legs, 'legs');
+    validate.token(sessionStorage.token)
+    validate.date(date, 'date')
+    validate.weight(weight, 'weight')
+    validate.torso(torso, 'torso')
+    validate.legs(legs, 'legs')
 
 
     return fetch(`${import.meta.env.VITE_API_URL}/measurements/${measurementId}`, {
@@ -26,12 +26,12 @@ function modifyMeasurements(measurementId, date, weight, torso, legs) {
             return res.json()
                 .catch(error => { throw new SystemError(error.message) })
                 .then(body => {
-                    const { error, message } = body;
+                    const { error, message } = body
 
-                    const constructor = errors[error];
+                    const constructor = errors[error]
 
-                    throw new constructor(message);
-                });
+                    throw new constructor(message)
+                })
         })
 
 }

@@ -23,8 +23,8 @@ import modifyExercise from './modifyExercise.js'
 import modifyDiet from './modifyDiet.js'
 import modifyMeasurements from './modifyMeasurements.js'
 
-import searchExercise from './searchExercise.js'
-import searchDiet from './searchDiet.js'
+import searchExercises from './searchExercises.js'
+import searchDiets from './searchDiets.js'
 import searchMeasurements from './searchMeasurements.js'
 
 const logic = {
@@ -44,8 +44,8 @@ const logic = {
     removeMeasurements,
     retrieveMeasurements,
     modifyMeasurements,
-    searchExercise,
-    searchDiet,
+    searchExercises,
+    searchDiets,
     searchMeasurements,
     retrieveUsers,
     retrieveAllMeasurements

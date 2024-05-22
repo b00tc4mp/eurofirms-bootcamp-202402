@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Line } from 'react-chartjs-2'
 import { Chart, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js'
-import logic from '../logic'
 
 Chart.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend)
 
@@ -11,12 +10,10 @@ function MeasurementsChart({ measurements }) {
     useEffect(() => {
         if (measurements.length) {
             // Invertir el orden de las medidas
-            const reversedMeasurements = measurements.slice().reverse()
-
-            const labels = reversedMeasurements.map(measure => new Date(measure.date).toLocaleDateString())
-            const weightData = reversedMeasurements.map(measure => measure.weight)
-            const torsoData = reversedMeasurements.map(measure => measure.torso)
-            const legsData = reversedMeasurements.map(measure => measure.legs)
+            const labels = measurements.map(measure => new Date(measure.date).toLocaleDateString())
+            const weightData = measurements.map(measure => measure.weight)
+            const torsoData = measurements.map(measure => measure.torso)
+            const legsData = measurements.map(measure => measure.legs)
 
             setData({
                 labels,

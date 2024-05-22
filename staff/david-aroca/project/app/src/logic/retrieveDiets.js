@@ -2,7 +2,7 @@ import { errors, validate } from 'com'
 
 const { SystemError } = errors
 
-function retrieveDiet() {
+function retrieveDiets() {
     validate.token(sessionStorage.token)
 
     return fetch(`${import.meta.env.VITE_API_URL}/diets`, {
@@ -31,4 +31,4 @@ function retrieveDiet() {
 
 }
 
-export default retrieveDiet
+export default retrieveDiets

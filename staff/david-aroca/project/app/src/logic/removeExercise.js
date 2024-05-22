@@ -3,8 +3,8 @@ import { errors, validate } from 'com'
 const { SystemError } = errors
 
 function removeExercise(exerciseId) {
-    validate.token(sessionStorage.token);
-    validate.id(exerciseId, 'exerciseId');
+    validate.token(sessionStorage.token)
+    validate.id(exerciseId, 'exerciseId')
 
     return fetch(`${import.meta.env.VITE_API_URL}/exercises/${exerciseId}`, {
         method: 'DELETE',
@@ -15,18 +15,18 @@ function removeExercise(exerciseId) {
         .catch(error => { throw new SystemError(error.message) })
         .then(res => {
             if (res.status === 204)
-                return;
+                return
 
             return res.json()
                 .catch(error => { throw new SystemError(error.message) })
                 .then(body => {
-                    const { error, message } = body;
+                    const { error, message } = body
 
-                    const constructor = errors[error];
+                    const constructor = errors[error]
 
-                    throw new constructor(message);
-                });
-        });
+                    throw new constructor(message)
+                })
+        })
 }
 
-export default removeExercise;
+export default removeExercise

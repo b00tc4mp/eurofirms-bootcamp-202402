@@ -2,10 +2,11 @@ import { errors, validate, } from "com";
 
 const { SystemError } = errors
 
-function searchMeasure() {
+function searchExercises(searchQuery) {
     validate.token(sessionStorage.token)
+    validate.text(searchQuery, 'searchQuery')
 
-    return fetch(`${import.meta.env.VITE_API_URL}/measurements/search`, {
+    return fetch(`${import.meta.env.VITE_API_URL}/exercises/search?q=${searchQuery}`, {
         method: 'GET',
         headers: {
             Authorization: `Bearer ${sessionStorage.token}`
@@ -16,7 +17,7 @@ function searchMeasure() {
             if (res.status === 200)
                 return res.json()
                     .catch(error => { throw new SystemError(error.message) })
-                    .then(users => users)
+                    .then(exercise => exercise)
 
             return res.json()
                 .catch(error => { throw new SystemError(error.message) })
@@ -29,4 +30,5 @@ function searchMeasure() {
                 })
         })
 }
-export default searchMeasure
+
+export default searchExercises

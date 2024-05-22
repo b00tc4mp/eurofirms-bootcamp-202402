@@ -15,7 +15,7 @@ function SearchExercise() {
     useEffect(() => {
         const querySearched = query.get('q')
         if (querySearched) {
-            logic.searchExercise(querySearched)
+            logic.searchExercises(querySearched)
                 .then(exercises => {
                     setSearchResults(exercises)
                 })

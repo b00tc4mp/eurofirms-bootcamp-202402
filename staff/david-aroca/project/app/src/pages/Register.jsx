@@ -75,10 +75,10 @@ function Register({ onUserRegistered, onLoginClick }) {
     return (
         <main>
             <div className="bg-gray-200 min-h-screen flex justify-center items-center">
-                <main className="px-10 py-16 flex flex-col items-center shadow-lg rounded-lg w-full md:max-w-3xl">
+                <main className="px-10 py-16 flex flex-col items-center">
                     <h1 className="font-bold text-3xl text-center mb-8">Register</h1>
 
-                    <form className="w-full bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit={handleSubmit}>
+                    <form className="w-full max-w-md bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit={handleSubmit}>
                         <div className="mb-4">
                             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">Name</label>
                             <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" id="name" />

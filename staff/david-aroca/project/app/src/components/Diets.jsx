@@ -7,20 +7,22 @@ import CreateDiet from "./CreateDiet"
 function Diets({ refreshStamp }) {
     const [diets, setDiets] = useState([])
     const [showCreateDiet, setShowCreateDiet] = useState(false)
-    const [query, setQuery] = useSearchParams()
+    const [searchParams, setSearchParams] = useSearchParams()
+
+    const query = searchParams.get('q')
 
     const handleSearchDiet = (event) => {
         event.preventDefault()
         const querySearched = event.target.query.value
 
-        setQuery({ q: querySearched })
+        setSearchParams({ q: querySearched })
 
         // logic.searchDiet(query)
     }
 
     const refreshDiets = () => {
         try {
-            logic.retrieveDiet(query)
+            logic.retrieveDiets()
                 .then(diets => setDiets(diets))
                 .catch(error => {
                     console.log(error)
@@ -34,7 +36,7 @@ function Diets({ refreshStamp }) {
 
     const searchDiets = () => {
         try {
-            logic.searchDiet()
+            logic.searchDiets(query)
                 .then(diets => setDiets(diets))
                 .catch(error => {
                     console.log(error)
@@ -48,10 +50,10 @@ function Diets({ refreshStamp }) {
     }
 
     useEffect(() => {
-        if (query.get('q')) searchDiets()
+        if (query) searchDiets()
 
         else refreshDiets()
-    }, [refreshStamp, query.get('q')])
+    }, [refreshStamp, query])
 
     const handleDietRemoved = () => refreshDiets()
 
