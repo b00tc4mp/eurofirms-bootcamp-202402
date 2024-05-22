@@ -37,39 +37,10 @@ admin
 - list users
 - change role to user
 
-### UI Design with Figma
+### UI Design
 
-Search:
+[Figma](https://www.figma.com/design/4zRvqCcST4FT44aOK5cU9V/SertuxWeb?node-id=0%3A1&t=0EgxrWKmhd1HSG7N-1)
 
-![](https://res.cloudinary.com/dgwllavpn/image/upload/v1714724906/sertuxBootcamp/searchAdvanced-2024-05-03_094257_w0fizy.png)
-
-SearchesBy:
-
-![](https://res.cloudinary.com/dgwllavpn/image/upload/v1714724908/sertuxBootcamp/searchesBy-2024-05-03_094532_tmjxo2.png)
-
-Comentarios:
-
-![](https://res.cloudinary.com/dgwllavpn/image/upload/v1714724903/sertuxBootcamp/comments-2024-05-03_094903_hipfdb.png)
-
-Create Admin:
-
-![](https://res.cloudinary.com/dgwllavpn/image/upload/v1714724903/sertuxBootcamp/createAdmin-2024-05-03_095402_uaomjj.png)
-
-Create Moderator:
-
-![](https://res.cloudinary.com/dgwllavpn/image/upload/v1714724905/sertuxBootcamp/createModerator-2024-05-03_095431_pho0s8.png)
-
-BanBoardSearches:
-
-![](https://res.cloudinary.com/dgwllavpn/image/upload/v1714724901/sertuxBootcamp/banBoardSearches-2024-05-03_094642_rhlmy2.png)
-
-BanBoardComments:
-
-![](https://res.cloudinary.com/dgwllavpn/image/upload/v1714724901/sertuxBootcamp/banBoardComments-2024-05-03_094820_avzb8v.png)
-
-BanBoardUsers:
-
-![](https://res.cloudinary.com/dgwllavpn/image/upload/v1714724901/sertuxBootcamp/banBoardUsers-2024-05-03_094736_zsl5b2.png)
 
 ## Technical Description
 
@@ -80,6 +51,9 @@ BanBoardUsers:
 - Node
 - Express
 - Mongo
+- Tailwindcss
+- Mongoose
+- JSON Web Token
 
 ## Modules
 
@@ -367,6 +341,7 @@ ReportUser
 
 - id(auto)
 - edition (Edition.id, required)
+- tag (Tag.id, required)
 - userOwnerReport (User.id, required)
 - status (string, required, enum: "pending", "discarded", "accepted")
 - createdAt (Date, by default is added in all models)
