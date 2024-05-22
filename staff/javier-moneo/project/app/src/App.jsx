@@ -17,8 +17,12 @@ import ReportedUsers from './pages/ReportedUsers';
 import NewSearchesByEditionIdAndTagId from './pages/NewSearchesByEditionIdAndTagId';
 import AssignRoleModerator from './pages/AssignRoleModerator';
 import RemoveRoleModerator from './pages/RemoveRoleModerator';
+import { useEffect, useState } from 'react';
 
 function App() {
+  const [isModerator, setIsModerator] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
+
   const navigate = useNavigate();
 
   const handleUserRegistered = () => navigate('/login');
@@ -32,6 +36,18 @@ function App() {
   const handleUserLoggedOut = () => navigate('/login');
 
   console.debug('App render');
+
+  useEffect(() => {
+    try {
+      setIsModerator(logic.isModerator());
+      setIsAdmin(logic.isAdmin());
+    } catch (error) {
+      console.log(error);
+      // no ponemos el errorHandler porque se valida
+      // el token y lanza excepciones y no queremos
+      // que cuando el user no esta logeado lance exceptions
+    }
+  }, []);
 
   return (
     <>
@@ -110,7 +126,7 @@ function App() {
           <Route
             path="/reportedSearches"
             element={
-              logic.isUserLoggedIn() ? (
+              logic.isUserLoggedIn() && (isModerator || isAdmin) ? (
                 <ReportedSearches />
               ) : (
                 <Navigate to="/login" />
@@ -121,7 +137,7 @@ function App() {
           <Route
             path="/reportedComments"
             element={
-              logic.isUserLoggedIn() ? (
+              logic.isUserLoggedIn() && (isModerator || isAdmin) ? (
                 <ReportedComments />
               ) : (
                 <Navigate to="/login" />
@@ -132,7 +148,7 @@ function App() {
           <Route
             path="/reportedTags"
             element={
-              logic.isUserLoggedIn() ? (
+              logic.isUserLoggedIn() && (isModerator || isAdmin) ? (
                 <ReportedTags />
               ) : (
                 <Navigate to="/login" />
@@ -143,7 +159,7 @@ function App() {
           <Route
             path="/reportedUsers"
             element={
-              logic.isUserLoggedIn() ? (
+              logic.isUserLoggedIn() && (isModerator || isAdmin) ? (
                 <ReportedUsers />
               ) : (
                 <Navigate to="/login" />
@@ -154,7 +170,7 @@ function App() {
           <Route
             path="/assignRoleModerator"
             element={
-              logic.isUserLoggedIn() ? (
+              logic.isUserLoggedIn() && isAdmin ? (
                 <AssignRoleModerator />
               ) : (
                 <Navigate to="/login" />
@@ -165,7 +181,7 @@ function App() {
           <Route
             path="/removeRoleModerator"
             element={
-              logic.isUserLoggedIn() ? (
+              logic.isUserLoggedIn() && isAdmin ? (
                 <RemoveRoleModerator />
               ) : (
                 <Navigate to="/login" />
