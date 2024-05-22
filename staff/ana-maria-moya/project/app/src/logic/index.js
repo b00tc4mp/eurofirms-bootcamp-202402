@@ -8,6 +8,10 @@ import createPost from './createPost'
 import retrievePosts from './retrievePosts'
 import removePost from './removePost'
 import modifyPost from './modifyPost'
+import createComment from './createComment'
+import retrieveComments from './retrieveComments'
+import removeComment from './removeComment'
+import modifyComment from './modifyComment'
 
 const logic = {
     registerUser,
@@ -19,7 +23,11 @@ const logic = {
     createPost,
     retrievePosts,
     removePost,
-    modifyPost
+    modifyPost,
+    createComment, 
+    retrieveComments,
+    removeComment,
+    modifyComment
 }
 
 export default logic

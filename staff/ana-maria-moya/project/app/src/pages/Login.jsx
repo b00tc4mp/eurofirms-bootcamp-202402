@@ -52,20 +52,20 @@ function Login({ onUserLoggedIn, onRegisterClick }) {
 
     console.debug('Login render')
 
-    return <main className="px-20">
-        <h1 className="font-bold text-2xl text-center mb-10">Login</h1>
+    return <main className=" mt-24 px-20">
+        <h1 className="font-bold text-2xl text-center mb-10 text-green-900">Login</h1>
 
         <form className="flex flex-col gap-2 mb-5" onSubmit={handleSubmit}>
             <label htmlFor="email">Email</label>
-            <input className="border-b-2 border-black" type="text" id="email" />
+            <input className="border-b-2 border-green-900 rounded-md" type="text" id="email" />
 
             <label htmlFor="password">Password</label>
-            <input className="border-b-2 border-black" type="password" id="password" />
+            <input className="border-b-2 border-green-900 rounded-md" type="password" id="password" />
 
-            <button className="rounded-xl border-2 border-black px-3 self-end" type="submit">Login</button>
+            <button className="rounded-xl border-2 border-green-900 px-3 self-end" type="submit">Login</button>
         </form>
 
-        <a className="underline block text-center" href="" onClick={handleRegisterClick}>Register</a>
+        <a className="underline block text-center text-green-900" href="" onClick={handleRegisterClick}>Register</a>
     </main>
 }
 

@@ -1,42 +1,25 @@
-import React, { useState } from 'react';
+import { Carousel } from "@material-tailwind/react";
 
-const Carousel = ({ images }) => {
-  const [currentSlide, setCurrentSlide] = useState(0);
-
-  const nextSlide = () => {
-    setCurrentSlide(currentSlide === images.length - 1 ? 0 : currentSlide + 1);
-  };
-
-  const prevSlide = () => {
-    setCurrentSlide(currentSlide === 0 ? images.length - 1 : currentSlide - 1);
-  };
-
+export function HomeCarousel() {
   return (
-    <div className="relative">
-      <div className="flex">
-        {images.map((image, index) => (
-          <div
-            key={index}
-            className={`slide ${index === currentSlide ? 'block' : 'hidden'}`}
-          >
-            <img src={image} alt={`Slide ${index}`} />
-          </div>
-        ))}
-      </div>
-      <button
-        className="absolute top-1/2 left-0 transform -translate-y-1/2 bg-black bg-opacity-50 text-white px-3 py-1"
-        onClick={prevSlide}
-      >
-        ❮
-      </button>
-      <button
-        className="absolute top-1/2 right-0 transform -translate-y-1/2 bg-black bg-opacity-50 text-white px-3 py-1"
-        onClick={nextSlide}
-      >
-        ❯
-      </button>
-    </div>
+    <Carousel autoplay autoplayDelay={5000} loop transition={{ duration: 3 }} className="rounded-xl h-96 mt-4">
+      <img
+        src="/src/assets/Manuel1Carousel.png"
+        alt="image 1"
+        className="h-full w-full object-cover"
+      />
+      <img
+        src="/src/assets/Manuel2Carousel.png"
+        alt="image 2"
+        className="h-full w-full object-cover"
+      />
+      <img
+        src="/src/assets/Manuel3Carousel.png"
+        alt="image 3"
+        className="h-full w-full object-cover"
+      />
+    </Carousel>
   );
-};
+}
 
-export default Carousel;
+export default HomeCarousel

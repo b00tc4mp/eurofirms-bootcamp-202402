@@ -1,24 +1,25 @@
-import { useState, useEffect } from 'react'
-import { errors } from 'com'
-import { useNavigate } from 'react-router-dom'
-import logic from '../logic'
+import { useState } from 'react'
+
 
 import Posts from '../components/Posts'
 import CreatePost from '../components/CreatePost'
+import CreateComment from '../components/CreateComment'
 
-const { ContentError, MatchError } = errors
 
 function Gallery({ userRole }) {
     const [view, setView] = useState(null)
     const [refreshStamp, setRefreshStamp] = useState(null)
-    
-    const navigate = useNavigate()
-    
-    const handleHomeClick = () => navigate('/')
+
+
 
     const handleCreatePostClick = () => setView('create-post')
 
     const handleCreatePostCancelClick = () => setView(null)
+
+    const handleCreateCommentClick = () => setView('create-comment')
+
+    const handleCreateCommentCancelClick = () => setView(null)
+
 
     const handlePostCreated = () => {
         setView(null)
@@ -30,11 +31,17 @@ function Gallery({ userRole }) {
     return <>
 
         <main className="main">
+            <h1 className=" mt-10 font-bold text-2xl text-center  text-green-900 ">GALERÍA</h1>
+
+            {userRole === "admin" && (
+                <button className="px-3" onClick={handleCreatePostClick}>➕</button>
+            )}
             <Posts userRole={userRole} refreshStamp={refreshStamp} />
+            {view === 'create-comment' && <CreateComment onCancelClick={handleCreateCommentCancelClick} onCommentCreated={handleCreateCommentClick} />}
 
             {view === 'create-post' && <CreatePost onCancelClick={handleCreatePostCancelClick} onPostCreated={handlePostCreated} />}
-            <button className="px-3" onClick={handleHomeClick}>🏚️</button>
-            <button className="px-3" onClick={handleCreatePostClick}>➕</button>
+
+
         </main>
 
 

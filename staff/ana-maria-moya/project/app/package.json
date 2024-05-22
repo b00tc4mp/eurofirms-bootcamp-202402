@@ -11,6 +11,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.3.3",
+    "@material-tailwind/react": "^2.1.9",
     "com": "file:../com",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

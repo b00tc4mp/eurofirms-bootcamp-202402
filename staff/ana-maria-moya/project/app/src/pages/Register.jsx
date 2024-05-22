@@ -57,28 +57,28 @@ function Register({ onUserRegistered, onLoginClick}) {
     console.debug('Register render')
 
     return <main className="px-20">
-    <h1 className="font-bold text-2xl text-center mb-10">Register</h1>
+    <h1 className=" mt-12 font-bold text-2xl text-center mb-10 text-green-900">Register</h1>
 
     <form className="flex flex-col gap-2 mb-5" onSubmit={handleSubmit}>
         <label htmlFor="name">Name</label>
-        <input className="border-b-2 border-black" type="text" id="name" />
+        <input className=" rounded-md border-b-2 border-green-900" type="text" id="name" />
 
         <label htmlFor="surname">Surname</label>
-        <input className="border-b-2 border-black" type="text" id="username" />
+        <input className=" rounded-md border-b-2 border-green-900" type="text" id="username" />
 
         <label htmlFor="birthdate">Birthdate</label>
-        <input className="border-b-2 border-black" type="date" id="birthdate" />
+        <input className=" rounded-md border-b-2 border-green-900" type="date" id="birthdate" />
 
         <label htmlFor="email">E-mail</label>
-        <input className="border-b-2 border-black" type="text" id="email" />
+        <input className=" rounded-md border-b-2 border-green-900" type="text" id="email" />
 
         <label htmlFor="password">Password</label>
-        <input className="border-b-2 border-black" type="password" id="password" />
+        <input className=" rounded-md border-b-2 border-green-900" type="password" id="password" />
 
-        <button className="rounded-xl border-2 border-black px-3 self-end" type="submit">Register</button>
+        <button className="rounded-xl border-2 border-green-900 px-3 self-end" type="submit">Register</button>
     </form>
 
-    <a className="underline block text-center" href="" onClick={handleLoginClick}>Login</a>
+    <a className="underline block text-center text-green-900" href="" onClick={handleLoginClick}>Login</a>
 </main>
     
 }

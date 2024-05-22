@@ -11,7 +11,7 @@ function retrieveComments(postId) {
             if (!post)
                 throw new MatchError('post not found')
 
-            return Comment.find().select('-__v').populate('author', 'name surname').lean()
+            return Comment.find({post:postId}).select('-__v').populate('author', 'name surname').lean()
                 .catch(error => { throw new SystemError(error.message) })
                 .then(comments => {
                     comments.forEach(comment => {
