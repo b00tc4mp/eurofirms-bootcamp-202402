@@ -15,6 +15,7 @@ import ReportedComments from './pages/ReportedComments';
 import ReportedTags from './pages/ReportedTags';
 import ReportedUsers from './pages/ReportedUsers';
 import NewSearchesByEditionIdAndTagId from './pages/NewSearchesByEditionIdAndTagId';
+import AssignRoleModerator from './pages/AssignRoleModerator';
 
 function App() {
   const navigate = useNavigate();
@@ -143,6 +144,17 @@ function App() {
             element={
               logic.isUserLoggedIn() ? (
                 <ReportedUsers />
+              ) : (
+                <Navigate to="/login" />
+              )
+            }
+          />
+          {/* ASSIGN ROLE MODERATOR */}
+          <Route
+            path="/assignRoleModerator"
+            element={
+              logic.isUserLoggedIn() ? (
+                <AssignRoleModerator />
               ) : (
                 <Navigate to="/login" />
               )

@@ -1,5 +1,10 @@
 import User from '../models/User.js';
 import Role from '../models/Role.js';
+import validate from '../libs/com/validate.js';
+import errors from '../libs/com/errors.js';
+
+const { ContentError, DuplicityError, MatchError, RangeError, TypeError } =
+  errors;
 
 export const createUser = async (req, res) => {
   try {
@@ -29,8 +34,19 @@ export const createUser = async (req, res) => {
     });
   } catch (error) {
     console.error(error);
+    let status = 500;
+
+    if (
+      error instanceof TypeError ||
+      error instanceof RangeError ||
+      error instanceof ContentError ||
+      error instanceof DuplicityError
+    ) {
+      status = 400;
+    }
+
     return res
-      .status(500)
+      .status(status)
       .json({ error: error.constructor.name, message: error.message });
   }
 };
@@ -49,7 +65,7 @@ export const getUser = async (req, res) => {
       .exec();
 
     if (!user) {
-      return res.status(404).json({ message: 'User no found' });
+      throw new MatchError('User no found');
     }
 
     if (user._id) {
@@ -70,8 +86,73 @@ export const getUser = async (req, res) => {
     return res.json(user);
   } catch (error) {
     console.error(error);
+    let status = 500;
+
+    if (
+      error instanceof TypeError ||
+      error instanceof RangeError ||
+      error instanceof ContentError ||
+      error instanceof DuplicityError
+    ) {
+      status = 400;
+    }
+
     return res
-      .status(500)
+      .status(status)
+      .json({ error: error.constructor.name, message: error.message });
+  }
+};
+
+export const assignRoleModerator = async (req, res) => {
+  try {
+    const { email } = req.body;
+
+    const user = await User.findOne({ email: email })
+      .populate('roles', '_id name')
+      .lean()
+      .exec();
+
+    if (!user) {
+      throw new MatchError('No user found');
+    }
+
+    const roleFound = await Role.findOne({ name: 'moderator' });
+
+    if (!roleFound) {
+      throw new MatchError('No role found');
+    }
+
+    const rolesToAssign = [];
+
+    user.roles.forEach((roleUser) => {
+      rolesToAssign.push(roleUser._id);
+      if (roleUser.name === 'moderator') {
+        //ya tiene el rol
+        // console.log('ya tiene el rol');
+        return res.status(200).send();
+      }
+    });
+
+    rolesToAssign.push(roleFound._id);
+
+    await User.findByIdAndUpdate(user._id, { roles: rolesToAssign });
+
+    return res.status(200).send();
+  } catch (error) {
+    console.error(error);
+    let status = 500;
+
+    if (
+      error instanceof TypeError ||
+      error instanceof RangeError ||
+      error instanceof ContentError ||
+      error instanceof DuplicityError
+    ) {
+      status = 400;
+    }
+
+    return res
+      .status(status)
       .json({ error: error.constructor.name, message: error.message });
   }
 };

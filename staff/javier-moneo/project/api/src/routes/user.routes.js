@@ -13,4 +13,10 @@ router.post(
 
 router.get('/:userId', userCtrl.getUser);
 
+router.post(
+  '/assignRoleModerator',
+  [authJwt.verifyToken, authJwt.isAdmin],
+  userCtrl.assignRoleModerator
+);
+
 export default router;

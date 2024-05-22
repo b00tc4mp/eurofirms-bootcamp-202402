@@ -41,6 +41,8 @@ import retrieveEditionByEditionId from './retrieveEditionByEditionId';
 import retrieveTagByTagId from './retrieveTagByTagId';
 import retrieveSearchesByEditionIdAndTagIdPaginated from './retrieveSearchesByEditionIdAndTagIdPaginated';
 import isModerator from './isModerator';
+import assignRoleModeratorByEmail from './assignRoleModeratorByEmail';
+import isAdmin from './isAdmin';
 
 const logic = {
   assignAllRolesToUser,
@@ -86,6 +88,8 @@ const logic = {
   retrieveTagByTagId,
   retrieveSearchesByEditionIdAndTagIdPaginated,
   isModerator,
+  isAdmin,
+  assignRoleModeratorByEmail,
 };
 
 export default logic;

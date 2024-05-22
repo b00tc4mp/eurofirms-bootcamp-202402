@@ -15,6 +15,7 @@ export default function Dashboard() {
   const [searchType, setSearchType] = useState(null);
   const [menuSearchTags, setMenuSearchTags] = useState(null);
   const [isModerator, setIsModerator] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
     try {
@@ -98,6 +99,7 @@ export default function Dashboard() {
 
     try {
       setIsModerator(logic.isModerator());
+      setIsAdmin(logic.isAdmin());
     } catch (error) {
       console.log(error);
       // no ponemos el errorHandler porque se valida
@@ -149,6 +151,16 @@ export default function Dashboard() {
         >
           Assign all roles to user
         </Link>
+        {isAdmin && (
+          <div>
+            <Link
+              to={`/assignRoleModerator`}
+              className="w-full block text-center mt-2 rounded-md bg-red-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600"
+            >
+              Assign Role Moderator
+            </Link>
+          </div>
+        )}
         {isModerator && (
           <div>
             <Link
