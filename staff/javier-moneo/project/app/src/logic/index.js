@@ -43,6 +43,7 @@ import retrieveSearchesByEditionIdAndTagIdPaginated from './retrieveSearchesByEd
 import isModerator from './isModerator';
 import assignRoleModeratorByEmail from './assignRoleModeratorByEmail';
 import isAdmin from './isAdmin';
+import removeRoleModeratorByEmail from './removeRoleModeratorByEmail';
 
 const logic = {
   assignAllRolesToUser,
@@ -90,6 +91,7 @@ const logic = {
   isModerator,
   isAdmin,
   assignRoleModeratorByEmail,
+  removeRoleModeratorByEmail,
 };
 
 export default logic;

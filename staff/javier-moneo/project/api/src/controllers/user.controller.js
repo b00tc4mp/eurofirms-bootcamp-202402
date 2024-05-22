@@ -156,3 +156,54 @@ export const assignRoleModerator = async (req, res) => {
       .json({ error: error.constructor.name, message: error.message });
   }
 };
+
+export const removeRoleModerator = async (req, res) => {
+  try {
+    const { email } = req.body;
+
+    const user = await User.findOne({ email: email })
+      .populate('roles', '_id name')
+      .lean()
+      .exec();
+
+    if (!user) {
+      throw new MatchError('No user found');
+    }
+
+    const roleFound = await Role.findOne({ name: 'moderator' });
+
+    if (!roleFound) {
+      throw new MatchError('No role found');
+    }
+
+    const rolesToAssign = [];
+
+    user.roles.forEach((roleUser) => {
+      if (roleUser.name !== 'moderator') {
+        rolesToAssign.push(roleUser._id);
+        //ya tiene el rol
+        console.log('tenia el role moderator');
+      }
+    });
+
+    await User.findByIdAndUpdate(user._id, { roles: rolesToAssign });
+
+    return res.status(200).send();
+  } catch (error) {
+    console.error(error);
+    let status = 500;
+
+    if (
+      error instanceof TypeError ||
+      error instanceof RangeError ||
+      error instanceof ContentError ||
+      error instanceof DuplicityError
+    ) {
+      status = 400;
+    }
+
+    return res
+      .status(status)
+      .json({ error: error.constructor.name, message: error.message });
+  }
+};

@@ -9,6 +9,7 @@ import {
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import logic from '../logic';
 
+// only 4 links
 const navigation = [
   { name: 'Dashboard', href: '/dashboard', current: true },
   { name: 'Home', href: '/', current: false },

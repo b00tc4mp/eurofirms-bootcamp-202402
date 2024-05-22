@@ -16,6 +16,7 @@ import ReportedTags from './pages/ReportedTags';
 import ReportedUsers from './pages/ReportedUsers';
 import NewSearchesByEditionIdAndTagId from './pages/NewSearchesByEditionIdAndTagId';
 import AssignRoleModerator from './pages/AssignRoleModerator';
+import RemoveRoleModerator from './pages/RemoveRoleModerator';
 
 function App() {
   const navigate = useNavigate();
@@ -155,6 +156,17 @@ function App() {
             element={
               logic.isUserLoggedIn() ? (
                 <AssignRoleModerator />
+              ) : (
+                <Navigate to="/login" />
+              )
+            }
+          />
+          {/* REMOVE ROLE MODERATOR */}
+          <Route
+            path="/removeRoleModerator"
+            element={
+              logic.isUserLoggedIn() ? (
+                <RemoveRoleModerator />
               ) : (
                 <Navigate to="/login" />
               )

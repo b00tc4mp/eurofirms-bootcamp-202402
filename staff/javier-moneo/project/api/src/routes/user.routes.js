@@ -19,4 +19,10 @@ router.post(
   userCtrl.assignRoleModerator
 );
 
+router.post(
+  '/removeRoleModerator',
+  [authJwt.verifyToken, authJwt.isAdmin],
+  userCtrl.removeRoleModerator
+);
+
 export default router;
