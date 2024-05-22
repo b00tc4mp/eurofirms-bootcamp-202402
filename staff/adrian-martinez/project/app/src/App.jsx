@@ -12,6 +12,7 @@ import Register from "./Pages/register"
 import Home from "./Pages/home"
 import ListaUsuarios from "./Pages/listaUsuarios"
 import HomeEmpresa from "./Pages/homeEmpresa"
+import Profile from "./components/Profile"
 //import HomeEmpresa from "./Pages/homeEmpresa"
 
 function App() {
@@ -29,7 +30,7 @@ function App() {
     
       else if(role === "company") navigate('/homeEmpresa')
   };
-  
+
   //Menú navegación
   const handleInicio = () => navigate("/");
   const handleParaQuienEs = () => navigate('/paraQuienEs');
@@ -49,7 +50,8 @@ function App() {
           <Route path="/home" element={<Home onClickListarUsers={handleListarUsers} onClickResetPassword={handleResetPassword} onClickInicio={handleInicio} />} /> 
           <Route path="/homeEmpresa" element={<HomeEmpresa onClickListarUsers={handleListarUsers} onClickResetPassword={handleResetPassword} onClickInicio={handleInicio} />} /> 
           <Route path="/listaUsuarios" element={logic.isUserLoggedIn() ? <ListaUsuarios onClickListarUsers={handleListarUsers} onUserLoggedIn={handleUserLoggedIn}/> : <Navigate to="/" />}/>
-          
+          <Route path="/profile/:targetUserId" element={ <Profile />}/>
+
           {/* {view === 'resetPassword' && <ResetPassword />} */}
       </Routes>
   )

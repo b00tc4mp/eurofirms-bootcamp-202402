@@ -2,7 +2,7 @@ import logic from "../logic";
 import Career from "./Career";
 import { useState, useEffect } from "react";
 
-function CareersStudent({ refreshStamp }){
+function CareersStudent({ refreshStamp}){
 
     console.log("refreshStamp", refreshStamp);
 

@@ -14,7 +14,7 @@ function retrieveUser(userId, targetUserId){
             if(!user) 
                 throw new MatchError("user not found");
 
-            return User.findById(targetUserId).select("-_id -__v -password").lean()
+            return User.findById(targetUserId).select("-__v -password").lean()
                 .catch(error => { throw new SystemError(error.message) })
                 .then(targetUserId => {
                     if(!targetUserId)

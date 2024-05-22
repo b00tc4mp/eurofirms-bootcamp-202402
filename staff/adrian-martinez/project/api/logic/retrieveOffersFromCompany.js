@@ -15,14 +15,14 @@ function retrieveOfferFromCompany(userId){
             return Offer.find({company : user._id}).select("-__v").populate("company", "-__v -password -role").lean()
                 .then(offers => {
                     //Saneamiento de datos
-                    /* offers.forEach()(offer => {
+                    offers.forEach()(offer => {
                         if(offer.company._id){
                             const id = offer.company._id.toString();
                             delete offer.company._id;
 
                             offer.company.id = id;
                         }
-                    }) */
+                    })
                     return offers;
                 })
         })

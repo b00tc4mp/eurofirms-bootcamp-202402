@@ -65,17 +65,7 @@ function ListaUsuarios(props) {
                     <section>
                         {
                             role == "student" ?
-                            /* {
-                                users.map(user => {
-                                    if(user.role === "student"){
-                                       
-                                        <li key={user.id} className="text-lg font-bold p-4">
-                                        <Link to={`/home/${user.id}`}>{user.name}</Link>
-                                    </li>
-                                    }
-                                })
-                                    
-                            } */
+                           
                                 <>
                                     <h2 className="text-xl font-bold text-center">Lista de empresas tech</h2>
                                     <ul>
@@ -84,7 +74,7 @@ function ListaUsuarios(props) {
                                             users.map(user => (
 
                                                     <li key={user.id} className="text-lg font-bold p-4">
-                                                    <Link to={`/home/${user.id}`}>{user.name}</Link>
+                                                    <Link to={`/profile/${targetUserId}`}>{user.name}</Link>
                                                 </li>
                                                 
                                             ))   
@@ -101,7 +91,7 @@ function ListaUsuarios(props) {
                                             users.map(user => (
 
                                                 <li key={user.id} className="text-lg font-bold p-4">
-                                                    <Link to={`/homeEmpresa/${user.id}`}>{user.name} {user.surnames}</Link>
+                                                    <Link to={`/profile/${user.id}`}>{user.name} {user.surnames}</Link>
                                                 </li>
                                             ))
                                         }
@@ -109,7 +99,6 @@ function ListaUsuarios(props) {
                                     </ul>
                                 </>
                         }
-                        {/* {logic.retrieveUsers()}              */}
                     </section>
                 </container>
             </main>
