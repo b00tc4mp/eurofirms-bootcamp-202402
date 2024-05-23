@@ -4,6 +4,7 @@ import errors from '../libs/com/errors.js';
 import User from '../models/User.js';
 import Tag from '../models/Tag.js';
 import Edition from '../models/Edition.js';
+import Search from '../models/Search.js';
 
 const { ContentError, DuplicityError, MatchError, RangeError, TypeError } =
   errors;
@@ -176,6 +177,10 @@ export const removeReport = async (req, res) => {
     }
 
     await Tag.findByIdAndUpdate(reportTag.tag, { isBanned: true });
+
+    // Actualizamos las búsquedas asociadas al tag y las baneamos
+
+    await Search.updateMany({tag: tag._id}, {isBanned: true});
 
     return res.status(200).send();
   } catch (error) {
