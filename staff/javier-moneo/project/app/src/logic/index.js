@@ -40,9 +40,9 @@ import retrieveMenuSearchTagsByEditionIdAndSearchTypeId from './retrieveMenuSear
 import retrieveEditionByEditionId from './retrieveEditionByEditionId';
 import retrieveTagByTagId from './retrieveTagByTagId';
 import retrieveSearchesByEditionIdAndTagIdPaginated from './retrieveSearchesByEditionIdAndTagIdPaginated';
-import isModerator from './isModerator';
+import isUserModerator from './isUserModerator';
 import assignRoleModeratorByEmail from './assignRoleModeratorByEmail';
-import isAdmin from './isAdmin';
+import isUserAdmin from './isUserAdmin';
 import removeRoleModeratorByEmail from './removeRoleModeratorByEmail';
 
 const logic = {
@@ -88,8 +88,8 @@ const logic = {
   retrieveEditionByEditionId,
   retrieveTagByTagId,
   retrieveSearchesByEditionIdAndTagIdPaginated,
-  isModerator,
-  isAdmin,
+  isUserModerator,
+  isUserAdmin,
   assignRoleModeratorByEmail,
   removeRoleModeratorByEmail,
 };

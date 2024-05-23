@@ -39,8 +39,8 @@ function App() {
 
   useEffect(() => {
     try {
-      setIsModerator(logic.isModerator());
-      setIsAdmin(logic.isAdmin());
+      setIsModerator(logic.isUserModerator());
+      setIsAdmin(logic.isUserAdmin());
     } catch (error) {
       console.log(error);
       // no ponemos el errorHandler porque se valida

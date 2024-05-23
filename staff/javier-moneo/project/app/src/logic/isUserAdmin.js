@@ -1,6 +1,6 @@
 import { validate, utils } from '../com';
 
-function isAdmin() {
+function isUserAdmin() {
   validate.token(sessionStorage.token);
 
   const { roles } = utils.extractPayload(sessionStorage.token);
@@ -17,4 +17,4 @@ function isAdmin() {
   return role.length > 0 ? true : false;
 }
 
-export default isAdmin;
+export default isUserAdmin;

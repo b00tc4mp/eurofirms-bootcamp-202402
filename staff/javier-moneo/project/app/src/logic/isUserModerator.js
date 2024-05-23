@@ -1,6 +1,6 @@
 import { validate, utils } from '../com';
 
-function isModerator() {
+function isUserModerator() {
   validate.token(sessionStorage.token);
 
   const { roles } = utils.extractPayload(sessionStorage.token);
@@ -17,4 +17,4 @@ function isModerator() {
   return role.length > 0 ? true : false;
 }
 
-export default isModerator;
+export default isUserModerator;
