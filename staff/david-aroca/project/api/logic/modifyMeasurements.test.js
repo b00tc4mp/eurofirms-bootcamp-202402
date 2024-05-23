@@ -4,7 +4,7 @@ import modifyMeasurements from "./modifyMeasurements.js";
 mongoose.connect('mongodb://localhost:27017/project')
     .then(() => {
         try {
-            modifyMeasurements('663a3b1bd26a81d7178f9043', '664c6789eab468858ee4defa', '2022-02-12', 120, 120, 120)
+            modifyMeasurements('663a3b1bd26a81d7178f9043', '664cfa9f1ed6c209da20a047', '2022-02-12', 120, 120, 120)
                 .then(() => console.log('measure modified'))
                 .catch(error => console.error(error))
         } catch (error) {

@@ -4,6 +4,7 @@ import logic from "../logic"
 import Measurement from "./Measurement"
 import CreateMeasurement from "./CreateMeasurement"
 import MeasurementsChart from "./MeasurementsChart"
+import TraineesMeasurements from "./TraineesMeasurements"
 
 function Measurements({ refreshStamp }) {
     console.log('refreshStamp 💀', refreshStamp)
@@ -11,6 +12,8 @@ function Measurements({ refreshStamp }) {
     const [measurements, setMeasurements] = useState([])
     const [creatingMeasurement, setCreatingMeasurement] = useState(false)
     const [searchParams, setSearchParams] = useSearchParams()
+
+    const userRole = logic.getLoggedInUserRole()
 
     const startDate = searchParams.get('startDate')
     const endDate = searchParams.get('endDate')
@@ -72,6 +75,7 @@ function Measurements({ refreshStamp }) {
 
     return (
         <section className="flex flex-col gap-6 px-2 py-20">
+
             {creatingMeasurement ? (
                 <CreateMeasurement
                     onCancelClick={handleCancelCreateMeasurement}
@@ -85,47 +89,56 @@ function Measurements({ refreshStamp }) {
                     Create New Measurement
                 </button>
             )}
-            <form className='mt-20' onSubmit={handleSearchMeasures}>
-                <div className="flex flex-col gap-2">
-                    <label htmlFor="startDate" className="text-sm">Start Date:</label>
-                    <input
-                        id="startDate"
-                        name="startDate"
-                        type="date"
-                        className="border border-gray-500 rounded-md px-4 py-2"
-                        placeholder="Start Date"
-                    />
+
+            {userRole === 'trainee' && (
+                <div>
+                    <form className='mt-20' onSubmit={handleSearchMeasures}>
+                        <div className="flex flex-col gap-2">
+                            <label htmlFor="startDate" className="text-sm">Start Date:</label>
+                            <input
+                                id="startDate"
+                                name="startDate"
+                                type="date"
+                                className="border border-gray-500 rounded-md px-4 py-2"
+                                placeholder="Start Date"
+                            />
+                        </div>
+                        <div className="flex flex-col gap-2 mt-4">
+                            <label htmlFor="endDate" className="text-sm">End Date:</label>
+                            <input
+                                id="endDate"
+                                name="endDate"
+                                type="date"
+                                className="border border-gray-500 rounded-md px-4 py-2"
+                                placeholder="End Date"
+                            />
+                        </div>
+                        <button
+                            type="submit"
+                            className="bg-blue-500 text-white rounded-md px-4 py-2 mt-4"
+                        >
+                            Search
+                        </button>
+                    </form>
+
+                    <div className="w-full mt-8">
+                        <MeasurementsChart measurements={measurements.toReversed()} />
+                    </div>
+                    <div className="w-full mt-8 grid grid-cols-2 gap-4">
+                        {measurements.map(measurement => (
+                            <Measurement
+                                key={measurement.id}
+                                measurement={measurement}
+                                onMeasurementRemoved={handleMeasurementRemoved}
+                                onMeasurementUpdated={handleMeasurementUpdated}
+                            />
+                        ))}
+                    </div>
                 </div>
-                <div className="flex flex-col gap-2 mt-4">
-                    <label htmlFor="endDate" className="text-sm">End Date:</label>
-                    <input
-                        id="endDate"
-                        name="endDate"
-                        type="date"
-                        className="border border-gray-500 rounded-md px-4 py-2"
-                        placeholder="End Date"
-                    />
-                </div>
-                <button
-                    type="submit"
-                    className="bg-blue-500 text-white rounded-md px-4 py-2 mt-4"
-                >
-                    Search
-                </button>
-            </form>
-            <div className="w-full">
-                <MeasurementsChart measurements={measurements.toReversed()} />
-            </div>
-            <div className="w-full mt-8 grid grid-cols-2 gap-4">
-                {measurements.map(measurement => (
-                    <Measurement
-                        key={measurement.id}
-                        measurement={measurement}
-                        onMeasurementRemoved={handleMeasurementRemoved}
-                        onMeasurementUpdated={handleMeasurementUpdated}
-                    />
-                ))}
-            </div>
+            )}
+
+            {userRole === 'trainer' && <TraineesMeasurements />}
+
         </section>
     )
 }

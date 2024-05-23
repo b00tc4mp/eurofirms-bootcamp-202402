@@ -13,11 +13,14 @@ import createMeasurements from './createMeasurements.js'
 import removeDiet from './removeDiet.js'
 import removeExercise from './removeExercise.js'
 import removeMeasurements from './removeMeasurements.js'
+import removeUser from './removeUser.js'
 
-import retrieveExercises from './retrieveExercise.js'
-import retrieveDiet from './retrieveDiet.js'
+import retrieveExercises from './retrieveExercises.js'
+import retrieveDiets from './retrieveDiets.js'
 import retrieveMeasurements from './retrieveMeasurements.js'
 import retrieveAllMeasurements from './retrieveAllMeasurements.js'
+import retrieveTrainees from './retrieveTrainees.js'
+import retrieveTrainer from './retrieveTrainer.js'
 
 import modifyExercise from './modifyExercise.js'
 import modifyDiet from './modifyDiet.js'
@@ -37,7 +40,7 @@ const logic = {
     removeDiet,
     removeExercise,
     retrieveExercises,
-    retrieveDiet,
+    retrieveDiets,
     modifyExercise,
     modifyDiet,
     createMeasurements,
@@ -48,7 +51,10 @@ const logic = {
     searchDiets,
     searchMeasurements,
     retrieveUsers,
-    retrieveAllMeasurements
+    retrieveAllMeasurements,
+    retrieveTrainees,
+    retrieveTrainer,
+    removeUser
 }
 
 export default logic

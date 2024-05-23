@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
-import retrieveUsers from "../logic/retrieveUsers"
+import logic from '../logic'
 
-function UsersList() {
-    const [users, setUsers] = useState([])
+
+function TrainerList() {
+    const [trainer, setTrainer] = useState([])
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
 
-    // TODO NO VEO A NADIE 
     useEffect(() => {
-        retrieveUsers()
-            .then(users => {
-                setUsers(users)
+        logic.retrieveTrainer()
+            .then(trainer => {
+                setTrainer(trainer)
                 setLoading(false)
             })
             .catch(error => {
@@ -33,9 +33,9 @@ function UsersList() {
         <main className="mt-20">
             <div id="container">
                 <section>
-                    <h2 className="text-xl font-bold text-center">Lista de Usuarios</h2>
+                    <h2 className="text-xl font-bold text-center">Tu Entrenador</h2>
                     <ul>
-                        {users.map(user => (
+                        {trainer.map(user => (
                             <React.Fragment key={user._id}>
                                 <hr className="h-1" />
                                 <li className="text-lg font-bold bg-gray-200 p-4">
@@ -51,4 +51,4 @@ function UsersList() {
     )
 }
 
-export default UsersList
+export default TrainerList

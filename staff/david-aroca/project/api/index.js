@@ -85,18 +85,10 @@ mongoose.connect(MONGO_URL)
                 const { username, password } = req.body
 
                 logic.authenticateUser(username, password)
-                    .then(userId => {
-                        const token = jwt.sign({ sub: userId }, JWT_SECRET, { expiresIn: '180m' })
+                    .then(user => {
+                        const token = jwt.sign({ sub: user.id, role: user.role }, JWT_SECRET, { expiresIn: '180m' })
 
                         res.status(200).json(token)
-                    })
-                    .catch(error => {
-                        let status = 500
-
-                        if (error instanceof MatchError)
-                            status = 401
-
-                        res.status(status).json({ error: error.constructor.name, message: error.message })
                     })
             } catch (error) {
                 let status = 500
@@ -115,11 +107,11 @@ mongoose.connect(MONGO_URL)
 
                 const token = authorization.slice(7)
 
-                const { sub: user } = jwt.verify(token, JWT_SECRET)
+                const { sub: userId } = jwt.verify(token, JWT_SECRET)
 
                 const { targetUserId } = req.params
 
-                logic.retrieveUser(user.id, targetUserId)
+                logic.retrieveUser(userId, targetUserId)
                     .then(user => res.json(user))
                     .catch(error => {
                         let status = 500
@@ -151,9 +143,9 @@ mongoose.connect(MONGO_URL)
 
                 const token = authorization.slice(7)
 
-                const { sub: user } = jwt.verify(token, JWT_SECRET)
+                const { sub: userId } = jwt.verify(token, JWT_SECRET)
 
-                logic.retrieveUsers(user.id)
+                logic.retrieveUsers(userId)
                     .then(user => res.json(user))
                     .catch(error => {
                         let status = 500
@@ -186,11 +178,11 @@ mongoose.connect(MONGO_URL)
 
                 const token = authorization.slice(7)
 
-                const { sub: user } = jwt.verify(token, JWT_SECRET)
+                const { sub: userId } = jwt.verify(token, JWT_SECRET)
 
                 const { title, image, video, description } = req.body
 
-                logic.createExercise(user.id, title, image, video, description)
+                logic.createExercise(userId, title, image, video, description)
                     .then(() => res.status(201).send())
                     .catch(error => {
                         let status = 500
@@ -223,11 +215,11 @@ mongoose.connect(MONGO_URL)
 
                 const token = authorization.slice(7)
 
-                const { sub: user } = jwt.verify(token, JWT_SECRET)
+                const { sub: userId } = jwt.verify(token, JWT_SECRET)
 
                 const { title, image, video, description } = req.body
 
-                logic.createDiet(user.id, title, image, video, description)
+                logic.createDiet(userId, title, image, video, description)
                     .then(() => res.status(201).send())
                     .catch(error => {
                         let status = 500
@@ -261,9 +253,9 @@ mongoose.connect(MONGO_URL)
 
                 const token = authorization.slice(7)
 
-                const { sub: user } = jwt.verify(token, JWT_SECRET)
+                const { sub: userId } = jwt.verify(token, JWT_SECRET)
 
-                logic.retrieveExercises(user.id)
+                logic.retrieveExercises(userId)
                     .then(exercises => res.json(exercises))
                     .catch(error => {
                         let status = 500
@@ -271,7 +263,7 @@ mongoose.connect(MONGO_URL)
                         if (error instanceof MatchError)
                             status = 404
 
-                        res.status(status).json({ error: message.constructor.names, message: error.message })
+                        res.status(status).json({ error: message.constructor.name, message: error.message })
                     })
 
             } catch (error) {
@@ -285,7 +277,7 @@ mongoose.connect(MONGO_URL)
 
                     error = new MatchError(error.message)
                 }
-                res.status(status).json({ error: message.constructor.names, message: error.message })
+                res.status(status).json({ error: message.constructor.name, message: error.message })
             }
         })
 
@@ -297,9 +289,9 @@ mongoose.connect(MONGO_URL)
 
                 const token = authorization.slice(7)
 
-                const { sub: user } = jwt.verify(token, JWT_SECRET)
+                const { sub: userId } = jwt.verify(token, JWT_SECRET)
 
-                logic.retrieveDiet(user.id)
+                logic.retrieveDiets(userId)
                     .then(diets => res.json(diets))
                     .catch(error => {
                         let status = 500
@@ -307,7 +299,7 @@ mongoose.connect(MONGO_URL)
                         if (error instanceof MatchError)
                             status = 404
 
-                        res.status(status).json({ error: message.constructor.names, message: error.message })
+                        res.status(status).json({ error: message.constructor.name, message: error.message })
                     })
 
             } catch (error) {
@@ -321,7 +313,7 @@ mongoose.connect(MONGO_URL)
 
                     error = new MatchError(error.message)
                 }
-                res.status(status).json({ error: message.constructor.names, message: error.message })
+                res.status(status).json({ error: message.constructor.name, message: error.message })
             }
         })
 
@@ -336,11 +328,11 @@ mongoose.connect(MONGO_URL)
 
                 const token = authorization.slice(7)
 
-                const { sub: user } = jwt.verify(token, JWT_SECRET)
+                const { sub: userId } = jwt.verify(token, JWT_SECRET)
 
                 const { exerciseId } = req.params
 
-                logic.removeExercise(user.id, exerciseId)
+                logic.removeExercise(userId, exerciseId)
                     .then(() => res.status(204).send())
                     .catch(error => {
                         let status = 500
@@ -373,11 +365,11 @@ mongoose.connect(MONGO_URL)
 
                 const token = authorization.slice(7)
 
-                const { sub: user } = jwt.verify(token, JWT_SECRET)
+                const { sub: userId } = jwt.verify(token, JWT_SECRET)
 
                 const { dietId } = req.params
 
-                logic.removeDiet(user.id, dietId)
+                logic.removeDiet(userId, dietId)
                     .then(() => res.status(204).send())
                     .catch(error => {
                         let status = 500
@@ -407,13 +399,13 @@ mongoose.connect(MONGO_URL)
 
                 const token = authorization.slice(7)
 
-                const { sub: user } = jwt.verify(token, JWT_SECRET)
+                const { sub: userId } = jwt.verify(token, JWT_SECRET)
 
                 const { exerciseId } = req.params
 
                 const { title, image, video, description } = req.body
 
-                logic.modifyExercise(user.id, exerciseId, title, image, video, description)
+                logic.modifyExercise(userId, exerciseId, title, image, video, description)
                     .then(() => res.status(204).send())
                     .catch(error => {
                         let status = 500
@@ -444,13 +436,13 @@ mongoose.connect(MONGO_URL)
 
                 const token = authorization.slice(7)
 
-                const { sub: user } = jwt.verify(token, JWT_SECRET)
+                const { sub: userId } = jwt.verify(token, JWT_SECRET)
 
                 const { dietId } = req.params
 
                 const { title, image, video, description } = req.body
 
-                logic.modifyDiet(user.id, dietId, title, image, video, description)
+                logic.modifyDiet(userId, dietId, title, image, video, description)
                     .then(() => res.status(204).send())
                     .catch(error => {
                         let status = 500
@@ -480,11 +472,11 @@ mongoose.connect(MONGO_URL)
 
                 const token = authorization.slice(7)
 
-                const { sub: user } = jwt.verify(token, JWT_SECRET)
+                const { sub: userId } = jwt.verify(token, JWT_SECRET)
 
                 const { date, weight, torso, legs } = req.body
 
-                logic.createMeasurements(user.id, date, weight, torso, legs)
+                logic.createMeasurements(userId, date, weight, torso, legs)
                     .then(() => res.status(201).send())
                     .catch(error => {
                         let status = 500
@@ -514,9 +506,9 @@ mongoose.connect(MONGO_URL)
 
                 const token = authorization.slice(7)
 
-                const { sub: user } = jwt.verify(token, JWT_SECRET)
+                const { sub: userId } = jwt.verify(token, JWT_SECRET)
 
-                logic.retrieveMeasurements(user.id)
+                logic.retrieveMeasurements(userId)
                     .then(measurements => res.json(measurements))
                     .catch(error => {
                         let status = 500
@@ -547,9 +539,9 @@ mongoose.connect(MONGO_URL)
 
                 const token = authorization.slice(7)
 
-                const { sub: user } = jwt.verify(token, JWT_SECRET)
+                const { sub: userId } = jwt.verify(token, JWT_SECRET)
 
-                logic.retrieveAllMeasurements(user.id)
+                logic.retrieveAllMeasurements(userId)
                     .then(measurements => res.json(measurements))
                     .catch(error => {
                         let status = 500
@@ -581,14 +573,14 @@ mongoose.connect(MONGO_URL)
 
                 const token = authorization.slice(7)
 
-                const { sub: user } = jwt.verify(token, JWT_SECRET)
+                const { sub: userId } = jwt.verify(token, JWT_SECRET)
 
                 const { measurementId } = req.params
 
                 const { date, weight, torso, legs } = req.body
 
 
-                logic.modifyMeasurements(user.id, measurementId, date, weight, torso, legs)
+                logic.modifyMeasurements(userId, measurementId, date, weight, torso, legs)
                     .then(() => res.status(204).send())
                     .catch(error => {
                         let status = 500
@@ -619,11 +611,11 @@ mongoose.connect(MONGO_URL)
 
                 const token = authorization.slice(7)
 
-                const { sub: user } = jwt.verify(token, JWT_SECRET)
+                const { sub: userId } = jwt.verify(token, JWT_SECRET)
 
                 const { measurementId } = req.params
 
-                logic.removeMeasurements(user.id, measurementId)
+                logic.removeMeasurements(userId, measurementId)
                     .then(() => res.status(204).send())
                     .catch(error => {
                         let status = 500
@@ -654,11 +646,11 @@ mongoose.connect(MONGO_URL)
 
                 const token = authorization.slice(7)
 
-                const { sub: user } = jwt.verify(token, JWT_SECRET)
+                const { sub: userId } = jwt.verify(token, JWT_SECRET)
 
                 const { q } = req.query
 
-                logic.searchExercises(user.id, q)
+                logic.searchExercises(userId, q)
                     .then(exercises => res.status(200).json(exercises))
                     .catch(error => {
                         let status = 500
@@ -689,11 +681,11 @@ mongoose.connect(MONGO_URL)
 
                 const token = authorization.slice(7)
 
-                const { sub: user } = jwt.verify(token, JWT_SECRET)
+                const { sub: userId } = jwt.verify(token, JWT_SECRET)
 
                 const { q } = req.query
 
-                logic.searchDiets(user.id, q)
+                logic.searchDiets(userId, q)
                     .then(diets => res.status(200).json(diets))
                     .catch(error => {
                         let status = 500
@@ -726,9 +718,9 @@ mongoose.connect(MONGO_URL)
 
                 const token = authorization.slice(7)
 
-                const { sub: user } = jwt.verify(token, JWT_SECRET)
+                const { sub: userId } = jwt.verify(token, JWT_SECRET)
 
-                logic.searchMeasurements(user.id, startDate, endDate)
+                logic.searchMeasurements(userId, startDate, endDate)
                     .then(measurements => res.json(measurements))
                     .catch(error => {
                         let status = 500
@@ -752,6 +744,117 @@ mongoose.connect(MONGO_URL)
         })
 
         // --------------------------------------------------------------------//
+        server.get('/trainers/', (req, res) => {
+            try {
+                const { authorization } = req.headers
+
+                const token = authorization.slice(7)
+
+                const { sub: userId } = jwt.verify(token, JWT_SECRET)
+
+                logic.retrieveTrainer(userId)
+                    .then(user => res.json(user))
+                    .catch(error => {
+                        let status = 500
+
+                        if (error instanceof MatchError)
+                            status = 404
+
+                        res.status(status).json({ error: constructor.name, message: error.message })
+                    })
+            } catch (error) {
+                let status = 500
+
+                if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
+                    status = 400
+                else if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError) {
+                    status = 401
+
+                    error = new MatchError(error.message)
+                }
+                res.status(status).json({ error: error.constructor.name, message: error.message })
+            }
+
+        })
+        // --------------------------------------------------------------------//
+        server.get('/trainees/', (req, res) => {
+            try {
+                const { authorization } = req.headers
+
+                const token = authorization.slice(7)
+
+                const { sub: userId } = jwt.verify(token, JWT_SECRET)
+
+                logic.retrieveTrainees(userId)
+                    .then(user => res.json(user))
+                    .catch(error => {
+                        let status = 500
+
+                        if (error instanceof MatchError)
+                            status = 404
+
+                        res.status(status).json({ error: constructor.name, message: error.message })
+                    })
+            } catch (error) {
+                let status = 500
+
+                if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
+                    status = 400
+                else if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError) {
+                    status = 401
+
+                    error = new MatchError(error.message)
+                }
+                res.status(status).json({ error: error.constructor.name, message: error.message })
+
+            }
+
+        })
+
+        // --------------------------------------------------------------------//
+        server.delete('/users/:targetUserId', (req, res) => {
+            try {
+                const { authorization } = req.headers
+
+                const token = authorization.slice(7)
+
+                const { sub: userId } = jwt.verify(token, JWT_SECRET)
+
+                const { targetUserId } = req.params
+
+                logic.removeUser(userId, targetUserId)
+                    .then(userdeleted => res.json(userdeleted))
+                    .catch(error => {
+                        let status = 500
+
+                        if (error instanceof MatchError)
+                            status = 404
+
+                        res.status(status).json({ error: error.constructor.name, message: error.message })
+                    })
+            } catch (error) {
+                let status = 500
+
+                if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
+                    status = 400
+                else if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError) {
+                    status = 401
+                    error = new MatchError(error.message)
+                }
+
+                res.status(status).json({ error: error.constructor.name, message: error.message })
+            }
+        })
+
+
+        // --------------------------------------------------------------------//
+
+
+        // --------------------------------------------------------------------//
+
+
+        // --------------------------------------------------------------------//
+
 
         // cuando tenga que llamar a la api con cualquier cosa que utilize un user id hay que pasar el user y luego acceder a la propiedad id
         // const { sub: user } = jwt.verify(token, JWT_SECRET)

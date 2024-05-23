@@ -12,8 +12,12 @@ function extractYouTubeID(url) {
     }
 }
 
-function Diet({ diet, onDietRemoved, onDietModified, userId }) {
+function Diet({ diet, onDietRemoved, onDietModified }) {
     const [modify, setModify] = useState(false)
+    // TODO  SI NO SOY DUEÑO DE LA DIETA QUE NO ME SALGAN LOS BOTONES PARA PODER MODIFICARLA 
+    // TODO PROBLEMAS CON USERID
+    const userId = logic.getLoggedInUserId()
+    const isOwner = diet.author.id === userId
 
     const handleRemoveDiet = () => {
         try {
@@ -61,8 +65,6 @@ function Diet({ diet, onDietRemoved, onDietModified, userId }) {
 
     const videoID = extractYouTubeID(diet.video)
 
-    // TODO SOLUCIONAR PORQUE AUN SIENDO EL AUTOR NO ME DEJA VER LOS BOTONES
-    // const isOwner = diet.author.toString() === userId
 
 
     return (
@@ -95,19 +97,22 @@ function Diet({ diet, onDietRemoved, onDietModified, userId }) {
                     <button type="submit" className="bg-gray-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-4">Save</button>
                 </form>
             )}
-            {/* {isOwner && ( */}
+
             <div className="flex justify-end space-x-2">
                 {modify ? (
                     <button className="bg-gray-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onClick={() => setModify(false)}>Cancel</button>
                 ) : (
                     <>
-                        <button className="bg-gray-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onClick={handleModifyDiet}>📝 Modify</button>
-                        <button className="bg-gray-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onClick={handleRemoveDiet}>🗑️ Remove</button>
+                        {/* TODO */}
+                        {isOwner && <div>
+                            <button className="bg-gray-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onClick={handleModifyDiet}>📝 Modify</button>
+                            <button className="bg-gray-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onClick={handleRemoveDiet}>🗑️ Remove</button>
+                        </div>}
                     </>
                 )}
             </div>
-            {/* )} */}
-        </article>
+
+        </article >
     );
 }
 

@@ -15,7 +15,7 @@ function searchDiets(userId, searchQuery) {
             return Diet.find({ "title": { "$regex": searchQuery, "$options": "i" } }).select('-__v').populate('author', 'username').lean()
                 .catch(error => { throw new SystemError(error.message) })
                 .then(diet => {
-                    if (diet.length === 0) { throw new MatchError('work not found') }
+                    if (diet.length === 0) { throw new MatchError('diet not found') }
 
                     diet.forEach(diet => {
                         diet.id = diet._id.toString()

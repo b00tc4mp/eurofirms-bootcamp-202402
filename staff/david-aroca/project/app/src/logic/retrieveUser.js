@@ -5,9 +5,9 @@ const { SystemError } = errors
 function retrieveUser() {
     validate.token(sessionStorage.token)
 
-    const { sub: user } = utils.extractPayload(sessionStorage.token)
+    const { sub: userId } = utils.extractPayload(sessionStorage.token)
 
-    return fetch(`${import.meta.env.VITE_API_URL}/users/${user.id}`, {
+    return fetch(`${import.meta.env.VITE_API_URL}/users/${userId}`, {
         method: 'GET',
         headers: { Authorization: `Bearer ${sessionStorage.token}` },
     })

@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
-import retrieveUsers from "../logic/retrieveUsers"
+import logic from '../logic'
+import RemoveUserButton from "./RemoveUserButton"
 
-function UsersList() {
-    const [users, setUsers] = useState([])
+function TraineesList() {
+    const [trainees, setTrainees] = useState([])
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
 
-    // TODO NO VEO A NADIE 
-    useEffect(() => {
-        retrieveUsers()
-            .then(users => {
-                setUsers(users)
+    const refreshTrainees = () => {
+        setLoading(true)
+        logic.retrieveTrainees()
+            .then(trainees => {
+                setTrainees(trainees)
                 setLoading(false)
             })
             .catch(error => {
@@ -19,7 +20,15 @@ function UsersList() {
                 setError(error.message)
                 setLoading(false)
             })
+    }
+
+    useEffect(() => {
+        refreshTrainees()
     }, [])
+
+    const handleDeleteUser = (removedUserId) => {
+        setTrainees(previousTrainees => previousTrainees.filter(user => user._id !== removedUserId))
+    }
 
     if (loading) {
         return <p>Cargando...</p>
@@ -35,11 +44,12 @@ function UsersList() {
                 <section>
                     <h2 className="text-xl font-bold text-center">Lista de Usuarios</h2>
                     <ul>
-                        {users.map(user => (
+                        {trainees.map(user => (
                             <React.Fragment key={user._id}>
                                 <hr className="h-1" />
-                                <li className="text-lg font-bold bg-gray-200 p-4">
+                                <li className="user-item text-lg font-bold bg-gray-200 p-4" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                                     <Link to={`/home/${user._id}`}>{user.name}</Link>
+                                    <RemoveUserButton userId={user._id} onUserRemoved={handleDeleteUser} />
                                 </li>
                                 <hr />
                             </React.Fragment>
@@ -51,4 +61,4 @@ function UsersList() {
     )
 }
 
-export default UsersList
+export default TraineesList;

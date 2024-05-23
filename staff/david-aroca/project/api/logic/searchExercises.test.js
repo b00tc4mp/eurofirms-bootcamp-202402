@@ -1,10 +1,10 @@
 import mongoose from "mongoose";
-import searchExercise from "./searchExercise.js";
+import searchExercises from "./searchExercises.js";
 
 mongoose.connect('mongodb://localhost:27017/project')
     .then(() => {
         try {
-            searchExercise('663a3b1bd26a81d7178f9043', 'muerto')
+            searchExercises('663a3b1bd26a81d7178f9043', 'muerto')
                 .then(exercise => console.log('exercise finded', exercise))
                 .catch(error => console.log(error))
         } catch (error) {

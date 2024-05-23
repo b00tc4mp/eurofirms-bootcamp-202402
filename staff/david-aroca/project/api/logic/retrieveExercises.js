@@ -26,7 +26,7 @@ function retrieveExercises(userId) {
                         if (exercise.author._id) {
                             exercise.author.id = exercise.author._id.toString()
 
-                            delete exercise._id
+                            delete exercise.author._id
                         }
                     })
                     return exercises.reverse()

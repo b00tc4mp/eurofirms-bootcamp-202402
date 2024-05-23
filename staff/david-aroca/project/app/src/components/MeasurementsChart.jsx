@@ -9,7 +9,7 @@ function MeasurementsChart({ measurements }) {
 
     useEffect(() => {
         if (measurements.length) {
-            // Invertir el orden de las medidas
+            // esta constante es para cambiar  el orden de las medidas
             const labels = measurements.map(measure => new Date(measure.date).toLocaleDateString())
             const weightData = measurements.map(measure => measure.weight)
             const torsoData = measurements.map(measure => measure.torso)

@@ -1,16 +1,27 @@
-curl -X PATCH -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOnsiaWQiOiI2NjNhM2IxYmQyNmE4MWQ3MTc4ZjkwNDMiLCJyb2xlIjoidHJhaW5lciJ9LCJpYXQiOjE3MTUzNTAwMzcsImV4cCI6MTcxNTQ1ODAzN30.h8EpARVK_aP80b3ewl37j8r8PPvhGVwIgLdDFXmtcpY' \
+curl -X PATCH -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NjNhM2IxYmQyNmE4MWQ3MTc4ZjkwNDMiLCJyb2xlIjoidHJhaW5lciIsImlhdCI6MTcxNjQ3NTEzMiwiZXhwIjoxNzE2NDg1OTMyfQ.X7iZ2Ds48H_GY1Al-wJ580R-VnxCU3QJrr4eB9zFglg' \
 -H 'Content-Type: application/json' \
 -d '{"title":"new title again1111","image":"http://image.com/testsomething1111","video":"this is a video1111","description":"this is a description1111"}' \
-http://localhost:4025/exercises/663b9ef8fa5811b4c292135f -v
+http://localhost:4025/exercises/664f56d7efc302d2efbee51e -v
 
 
-# logica funciona correctamente 
-#   {
-#     _id: ObjectId('663b9ef8fa5811b4c292135f'),
-#     author: ObjectId('663a3b1bd26a81d7178f9043'),
-#     title: 'new title again1111',
-#     image: 'http://image.com/testsomething1111',
-#     __v: 0,
-#     description: 'this is a description1111',
-#     video: 'this is a video1111'
-#   },
+
+# comprobado 23/05/2024
+# $ ./modify-exercise.sh
+# *   Trying [::1]:4025...
+# * Connected to localhost (::1) port 4025
+# > PATCH /exercises/664f56d7efc302d2efbee51e HTTP/1.1
+# > Host: localhost:4025
+# > User-Agent: curl/8.4.0
+# > Accept: */*
+# > Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NjNhM2IxYmQyNmE4MWQ3MTc4ZjkwNDMiLCJyb2xlIjoidHJhaW5lciIsImlhdCI6MTcxNjQ3NTEzMiwiZXhwIjoxNzE2NDg1OTMyfQ.X7iZ2Ds48H_GY1Al-wJ580R-VnxCU3QJrr4eB9zFglg   
+# > Content-Type: application/json
+# > Content-Length: 148
+# >
+# < HTTP/1.1 204 No Content
+# < X-Powered-By: Express
+# < Access-Control-Allow-Origin: *
+# < Date: Thu, 23 May 2024 14:50:10 GMT
+# < Connection: keep-alive
+# < Keep-Alive: timeout=5
+# <
+# * Connection #0 to host localhost left intact

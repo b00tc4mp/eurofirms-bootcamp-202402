@@ -16,6 +16,9 @@ function extractYouTubeID(url) {
 function Exercise({ exercise, onExerciseRemoved, onExerciseModified }) {
     const [modify, setModify] = useState(false)
 
+    const userId = logic.getLoggedInUserId()
+    const isOwner = exercise.author.id === userId
+
     const handleRemoveExercise = () => {
         try {
             if (confirm('Delete exercise?')) {
@@ -101,9 +104,12 @@ function Exercise({ exercise, onExerciseRemoved, onExerciseModified }) {
                     <button className="bg-gray-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onClick={() => setModify(false)}>Cancel</button>
                 ) : (
                     <>
-                        <button className="bg-gray-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onClick={handleModifyExercise}>📝 Modify</button>
-                        <button className="bg-gray-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onClick={handleRemoveExercise}>🗑️ Remove</button>
+                        {isOwner && <div>
+                            <button className="bg-gray-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onClick={handleModifyExercise}>📝 Modify</button>
+                            <button className="bg-gray-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onClick={handleRemoveExercise}>🗑️ Remove</button>
+                        </div>}
                     </>
+
                 )}
             </div>
         </article>

@@ -4,7 +4,7 @@ import { validate, errors } from "com";
 
 const { SystemError, MatchError } = errors
 
-function retrieveDiet(userId) {
+function retrieveDiets(userId) {
     validate.id(userId, 'userId')
 
     return User.findById(userId)
@@ -26,7 +26,7 @@ function retrieveDiet(userId) {
                         if (diet.author._id) {
                             diet.author.id = diet.author._id.toString()
 
-                            delete diet._id
+                            delete diet.author._id
                         }
                     })
                     return diets.reverse()
@@ -35,4 +35,4 @@ function retrieveDiet(userId) {
 
 }
 
-export default retrieveDiet
+export default retrieveDiets

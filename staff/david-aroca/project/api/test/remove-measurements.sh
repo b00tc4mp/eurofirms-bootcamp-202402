@@ -1,12 +1,20 @@
- curl -X DELETE -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOnsiaWQiOiI2NjNhM2IxYmQyNmE4MWQ3MTc4ZjkwNDMiLCJyb2xlIjoidHJhaW5lciJ9LCJpYXQiOjE3MTYyODM1NTQsImV4cCI6MTcxNjI5NDM1NH0.7xJiL_VvjEU2pOVL8_J-1hP5DcQqcBEwdYBDJFBRfcQ' http://localhost:4025/measurements/664c68ee49edf8e4b333412f -v
+ curl -X DELETE -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NjNhM2IxYmQyNmE4MWQ3MTc4ZjkwNDMiLCJyb2xlIjoidHJhaW5lciIsImlhdCI6MTcxNjQ3NTEzMiwiZXhwIjoxNzE2NDg1OTMyfQ.X7iZ2Ds48H_GY1Al-wJ580R-VnxCU3QJrr4eB9zFglg' http://localhost:4025/measurements/664cface1ed6c209da20a053 -v
 
 
-
-#  logica funciona ok 
-#  HTTP/1.1 204 No Content
+# comprobado 23/05/2024
+# $ ./remove-measurements.sh
+# *   Trying [::1]:4025...
+# * Connected to localhost (::1) port 4025
+# > DELETE /measurements/664cface1ed6c209da20a053 HTTP/1.1
+# > Host: localhost:4025
+# > User-Agent: curl/8.4.0
+# > Accept: */*
+# > Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NjNhM2IxYmQyNmE4MWQ3MTc4ZjkwNDMiLCJyb2xlIjoidHJhaW5lciIsImlhdCI6MTcxNjQ3NTEzMiwiZXhwIjoxNzE2NDg1OTMyfQ.X7iZ2Ds48H_GY1Al-wJ580R-VnxCU3QJrr4eB9zFglg
+# >
+# < HTTP/1.1 204 No Content
 # < X-Powered-By: Express
 # < Access-Control-Allow-Origin: *
-# < Date: Mon, 13 May 2024 15:24:21 GMT
+# < Date: Thu, 23 May 2024 14:55:53 GMT
 # < Connection: keep-alive
 # < Keep-Alive: timeout=5
 # <

@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import retrieveExercises from "./retrieveExercise.js";
+import retrieveExercises from "./retrieveExercises.js";
 
 mongoose.connect('mongodb://localhost:27017/project')
     .then(() => {

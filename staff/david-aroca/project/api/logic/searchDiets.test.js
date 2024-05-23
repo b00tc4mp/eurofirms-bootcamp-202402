@@ -1,10 +1,10 @@
 import mongoose from "mongoose";
-import searchDiet from "./searchDiet.js";
+import searchDiets from "./searchDiets.js";
 
 mongoose.connect('mongodb://localhost:27017/project')
     .then(() => {
         try {
-            searchDiet('663a3b1bd26a81d7178f9043', 'prueba')
+            searchDiets('663a3b1bd26a81d7178f9043', 'prubea')
                 .then(diet => console.log('diet finded', diet))
                 .catch(error => console.log(error))
         } catch (error) {

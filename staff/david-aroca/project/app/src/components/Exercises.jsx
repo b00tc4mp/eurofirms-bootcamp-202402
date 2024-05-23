@@ -3,11 +3,12 @@ import { useSearchParams } from 'react-router-dom'
 import logic from "../logic"
 import Exercise from "./Exercise"
 import CreateExercise from "./CreateExercise"
-
 function Exercises({ refreshStamp }) {
     const [exercises, setExercises] = useState([])
     const [showCreateExercise, setShowCreateExercise] = useState(false)
     const [searchParams, setSearchParams] = useSearchParams()
+
+    const userRole = logic.getLoggedInUserRole() // Obtengo el rol del usuario en este momento
 
     const query = searchParams.get('q')
 
@@ -84,18 +85,17 @@ function Exercises({ refreshStamp }) {
                 </button>
             </form>
 
-            {showCreateExercise ? (
+            {showCreateExercise && userRole === 'trainer' && (
                 <CreateExercise onCancelClick={handleCancelCreateExercise} onExerciseCreated={handleExerciseCreated} />
-            ) : (
-                <>
-                    <button className="fixed right-0 top-20 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded z-10" onClick={handleCreateExerciseClick}>
-                        Create Exercise
-                    </button>
-                    {exercises.map(exercise => (
-                        <Exercise key={exercise.id} exercise={exercise} onExerciseRemoved={handleExerciseRemoved} onExerciseModified={handleExerciseUpdated} />
-                    ))}
-                </>
             )}
+
+            <button className="fixed right-0 top-20 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded z-10" onClick={handleCreateExerciseClick}>
+                Create Exercise
+            </button>
+
+            {exercises.map(exercise => (
+                <Exercise key={exercise.id} exercise={exercise} onExerciseRemoved={handleExerciseRemoved} onExerciseModified={handleExerciseUpdated} />
+            ))}
         </section>
     )
 }

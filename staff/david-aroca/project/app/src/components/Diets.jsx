@@ -9,6 +9,8 @@ function Diets({ refreshStamp }) {
     const [showCreateDiet, setShowCreateDiet] = useState(false)
     const [searchParams, setSearchParams] = useSearchParams()
 
+    const userRole = logic.getLoggedInUserRole() // Obtengo el rol del usuario en este momento
+
     const query = searchParams.get('q')
 
     const handleSearchDiet = (event) => {
@@ -68,6 +70,8 @@ function Diets({ refreshStamp }) {
         setShowCreateDiet(false)
     }
 
+    // TODO SI NO SOY ENTRENADOR QUE NO PUEDA VER EL BOTON DE CREAR
+
     return (
         <section className="flex flex-col gap-6 px-2 py-14">
             <form className='mt-20' onSubmit={handleSearchDiet}>
@@ -85,18 +89,16 @@ function Diets({ refreshStamp }) {
                 </button>
             </form>
 
-            {showCreateDiet ? (
+            {showCreateDiet && userRole === 'trainer' && (
                 <CreateDiet onCancelClick={handleCancelCreateDiet} onDietCreated={handleDietCreated} />
-            ) : (
-                <>
-                    <button className="fixed right-0 top-20 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded z-10" onClick={handleCreateDietClick}>
-                        Create Diet
-                    </button>
-                    {diets.map(diet => (
-                        <Diet key={diet.id} diet={diet} onDietRemoved={handleDietRemoved} onDietModified={handleDietUpdated} />
-                    ))}
-                </>
             )}
+            <button className="fixed right-0 top-20 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded z-10" onClick={handleCreateDietClick}>
+                Create Diet
+            </button>
+            {diets.map(diet => (
+                <Diet key={diet.id} diet={diet} onDietRemoved={handleDietRemoved} onDietModified={handleDietUpdated} />
+            ))}
+
         </section>
     )
 }

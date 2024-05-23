@@ -1,10 +1,10 @@
 import mongoose from "mongoose";
-import retrieveDiet from "./retrieveDiet.js";
+import retrieveDiets from "./retrieveDiets.js";
 
 mongoose.connect('mongodb://localhost:27017/project')
     .then(() => {
         try {
-            retrieveDiet('663a3b1bd26a81d7178f9043')
+            retrieveDiets('664f6777dfce6b1642b14728')
                 .then(Exercise => console.log('retrieved Diets', Exercise))
         } catch (error) {
             console.error(error)
