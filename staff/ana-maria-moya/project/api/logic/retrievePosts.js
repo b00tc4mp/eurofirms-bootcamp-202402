@@ -20,6 +20,8 @@ function retrievePosts() {
 
                     delete post.author._id
                 }
+
+                post.likes = post.likes.map(userId => userId.toString())
             })
 
             return posts.reverse()

@@ -12,7 +12,7 @@ const FloatingWhatsAppButton = () => {
       rel="noopener noreferrer"
       aria-label="Contactar por WhatsApp"
     >
-      <img src= "src/assets/WhatsApp-logo.png" alt="WhatsApp" className="w-6 h-6" />
+      <img src= "public/WhatsApp-logo.png" alt="WhatsApp" className="w-6 h-6" />
     </a>
   );
 };

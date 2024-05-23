@@ -1,4 +1,4 @@
-import { User, Post } from "../data"
+import { User, Post } from "../data/index.js"
 import { validate, errors } from "com"
 
 const { SystemError, MatchError } = errors
@@ -17,8 +17,6 @@ function toggleLikePost(userId, postId) {
         })
         .then(post => {
             if (!post) throw new MatchError('post not found')
-
-            //if (post.likes.includes(userId)) throw new MatchError('user already liked this post')
 
             const index = post.likes.findIndex(userId2 => userId2.toString() === userId)
 

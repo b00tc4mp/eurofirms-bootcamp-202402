@@ -7,12 +7,13 @@ import {
     Button,
   } from "@material-tailwind/react";
    
-  export function CardDefault({title, description,}) {
+  export function CardDefault({title, description, image}) {
     return (
       <Card className=" bg-green-300 flex-grow flex-col mt-6 w-96">
+       
         <CardHeader className="relative h-56">
           <img
-            src="https://images.unsplash.com/photo-1540553016722-983e48a2cd10?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80"
+            src={image}
             alt="card-image"
           />
         </CardHeader>
@@ -24,9 +25,7 @@ import {
             {description}
           </Typography>
         </CardBody>
-        <CardFooter className="pt-0">
-          <Button>Leer más</Button>
-        </CardFooter>
+        
       </Card>
     );
   }

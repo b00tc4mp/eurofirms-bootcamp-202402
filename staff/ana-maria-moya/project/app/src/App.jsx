@@ -10,7 +10,7 @@ import { Routes, Route, Navigate, useNavigate } from 'react-router-dom'
 import logic from './logic'
 import { useState, useEffect } from 'react'
 import { errors } from 'com'
-import FloatingWhatsAppButton from './components/FloatingWhatsAppButton';
+import FloatingWhatsAppButton from './components/FloatingWhatsAppButton'
 
 const { TypeError, RangeError, ContentError } = errors
 
@@ -98,7 +98,7 @@ function App() {
       )}
 
  <div className=' object-center h-20 w-30 '>
-        <img className= "h-20 w-30" src="/src/assets/Logotipo-MSM-04.png" />
+        <img className= "h-20 w-30" src="/public/Logotipo-MSM-04.png" />
       </div>
       {user && (
         <button className="px-3 absolute inset-y-0 right-0" id="logout-button" onClick={handleLogout}>🚪</button>

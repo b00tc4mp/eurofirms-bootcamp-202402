@@ -10,7 +10,7 @@ function Donate() {
         Un pequeño donativo puede mejorar el futuro de Manuel.
       </h2>
       <div className="mt-10 lg:mt-12">
-        <img src="/src/assets/bizum_home.png" className="mx-auto h-auto md:max-w-xs lg:max-w-lg xl:max-w-xl" alt="Bizum" />
+        <img src="/public/bizum_home.png" className="mx-auto h-auto md:max-w-xs lg:max-w-lg xl:max-w-xl" alt="Bizum" />
       </div>
     </div>
   );

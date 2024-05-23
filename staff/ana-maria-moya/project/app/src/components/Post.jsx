@@ -1,13 +1,14 @@
 import { useState, useEffect } from 'react'
 import logic from '../logic'
 import CreateComment from './CreateComment'
+import ToggleLikeButton from './ToggleLikeButton'
 
 function Post({ post, onPostRemoved, onPostModified, userRole, user }) {
 
     const [modifyPost, setModifyPost] = useState(false)
     const [comments, setComments] = useState([])
     const [modifyComment, setModifyComment] = useState({ id: '', text: '' })
-
+    
     useEffect(() => {
         refreshComments();
     }, []);
@@ -124,6 +125,25 @@ function Post({ post, onPostRemoved, onPostModified, userRole, user }) {
         setModifyComment({ id: '', text: '' });
     };
 
+    const handleToggleLikePost = () => {
+        try {
+            logic.toggleLikePost(post.id)
+                .then(() => {
+                    onPostModified()
+
+                
+                })
+                .catch(error => {
+                    console.error(error)
+
+                    alert(error.message)
+                })
+        } catch (error) {
+            console.error(error)
+
+            alert(error.message)
+        }
+    }
 
     console.debug('Post render')
 
@@ -191,10 +211,12 @@ function Post({ post, onPostRemoved, onPostModified, userRole, user }) {
                             <button onClick={() => handleRemoveComment(comment.id)}>🗑️</button>
                         </div>
                         }
-
                     </div>
 
+
                 ))}
+                <ToggleLikeButton onClick={handleToggleLikePost} isLiked={post.likes.includes(logic.getLoggedInUserId())} />
+
             </div>
         </article>
     )
