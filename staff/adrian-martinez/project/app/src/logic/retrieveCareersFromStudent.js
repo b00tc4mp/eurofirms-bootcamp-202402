@@ -3,12 +3,11 @@ import logic from ".";
 
 const { SystemError } = errors;
 
-function retrieveCareersFromStudent() {
-    
+function retrieveCareersFromStudent(targetUserId) {
+    validate.id(targetUserId, 'targetUserId')
     validate.token(sessionStorage.token);
-    const userId = logic.getLoggedInUserId();
 
-    return fetch(`http://localhost:8989/users/${userId}/careers`, {
+    return fetch(`http://localhost:8989/users/${targetUserId}/careers`, {
         method: "GET",
         headers: {
             Authorization: `Bearer ${ sessionStorage.token }`

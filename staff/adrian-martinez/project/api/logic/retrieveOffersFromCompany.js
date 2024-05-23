@@ -3,19 +3,20 @@ import { validate, errors } from "com"
 
 const { SystemError, MatchError } = errors;
 
-function retrieveOfferFromCompany(userId){
+function retrieveOffersFromCompany(userId, targetUserId){
+    validate.id(userId, "userId")
+    validate.id(targetUserId, "targetUserId")
 
-    //TODO Validation
     return User.findById(userId)
         .catch(error => { throw new SystemError(error.message) })
         .then(user => {
             if(!user)
                 throw new MatchError("user not found")
 
-            return Offer.find({company : user._id}).select("-__v").populate("company", "-__v -password -role").lean()
+            return Offer.find({company : targetUserId}).select("-__v").populate("company", "-__v -password -role").lean()
                 .then(offers => {
                     //Saneamiento de datos
-                    offers.forEach()(offer => {
+                    offers.forEach(offer => {
                         if(offer.company._id){
                             const id = offer.company._id.toString();
                             delete offer.company._id;
@@ -28,4 +29,4 @@ function retrieveOfferFromCompany(userId){
         })
 }
 
-export default retrieveOfferFromCompany;
+export default retrieveOffersFromCompany;

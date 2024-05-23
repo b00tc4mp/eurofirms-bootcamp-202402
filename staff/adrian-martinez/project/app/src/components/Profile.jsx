@@ -13,7 +13,6 @@ function Profile() {
     const [refreshStamp, setRefreshStamp] = useState(null);
 
     const { targetUserId } = useParams()
-    console.log(targetUserId)
 
     useEffect(() => {
         try {
@@ -71,7 +70,7 @@ function Profile() {
                     </section>
                     <section>
                         
-                        <CareersStudent refreshStamp={ refreshStamp }/>
+                        <CareersStudent targetUserId={targetUserId} refreshStamp={ refreshStamp }/>
                     </section>
                 </container>
             </main>
@@ -97,7 +96,7 @@ function Profile() {
                         </section>
                         <section>
                        
-                        <OffersCompany refreshStamp={ refreshStamp }/>
+                        <OffersCompany targetUserId={targetUserId} refreshStamp={ refreshStamp }/>
                     </section>
                 </container>
             </main>

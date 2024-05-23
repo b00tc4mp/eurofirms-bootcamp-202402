@@ -81,7 +81,7 @@ function Offer({ offer, onOfferDeleted, onOfferUpdate }){
             <h2 className="p-2"><span className="font-extrabold">Fecha de publicación:</span> { offer.publishDate}</h2>
             <h2 className="p-2"><span className="font-extrabold">Fecha de expiración (aprox):</span> { offer.expirationDate}</h2>
             
-            { offer.company._id === logic.getLoggedInUserId() && 
+            { offer.company.id === logic.getLoggedInUserId() && 
                 <div>
                     <Button className="border-2 border-solid border-white bg-red-500 text-white" onClick={ handleDeleteOffer}>Borrar</Button>
                 </div>

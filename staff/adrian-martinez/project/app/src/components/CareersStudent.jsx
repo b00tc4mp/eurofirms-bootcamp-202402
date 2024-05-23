@@ -2,7 +2,7 @@ import logic from "../logic";
 import Career from "./Career";
 import { useState, useEffect } from "react";
 
-function CareersStudent({ refreshStamp}){
+function CareersStudent({ refreshStamp, targetUserId}){
 
     console.log("refreshStamp", refreshStamp);
 
@@ -11,7 +11,7 @@ function CareersStudent({ refreshStamp}){
     const refreshCareers = () => {
 
         try{
-            logic.retrieveCareersFromStudent()
+            logic.retrieveCareersFromStudent(targetUserId)
                 .then(careers => setCareers(careers))
                 .catch(error => {
 

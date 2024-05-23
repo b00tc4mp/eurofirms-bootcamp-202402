@@ -14,10 +14,15 @@ function retrieveUsers() {
 
             return User.find().select('-__v').lean()
                 .then(users => {
-                    //const users = [];
+                    
                     users.forEach(user => {
 
-                        return user;
+                            if(user._id){
+                                const id = user._id.toString();
+                                delete user._id;
+    
+                                user.id = id;
+                            }
                     })
                     return users;
                 })

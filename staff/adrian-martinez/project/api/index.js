@@ -320,7 +320,7 @@ mongoose.connect(MONGO_URL)
                 const { targetUserId } = req.params
 
                 logic.retrieveCareersFromStudent(userId, targetUserId)
-                    .then(user => res.json(user))
+                    .then(careers => res.json(careers))
                     .catch(error => {
 
                         let status = 500;

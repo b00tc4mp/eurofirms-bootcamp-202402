@@ -75,7 +75,7 @@ function Career({ career, onCareerDeleted, onCareerUpdate }){
             <img src={career.certification} className="md:sm w-80 h-60 hover:w-full hover:h-full"/>
             <p className="p-2">{ career.description}</p>
             
-            { career.student._id === logic.getLoggedInUserId() && 
+            { career.student.id === logic.getLoggedInUserId() && 
                 <div>
                     <Button className="border-2 border-solid border-white bg-red-500 text-white" onClick={ handleDeleteCareer }>Borrar</Button>
                 </div>

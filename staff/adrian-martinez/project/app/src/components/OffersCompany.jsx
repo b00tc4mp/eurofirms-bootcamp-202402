@@ -2,7 +2,7 @@ import logic from "../logic";
 import Offer from "./Offer";
 import { useState, useEffect } from "react";
 
-function OffersCompany({ refreshStamp }){
+function OffersCompany({ refreshStamp, targetUserId }){
 
     console.log("refreshStamp", refreshStamp);
 
@@ -11,7 +11,7 @@ function OffersCompany({ refreshStamp }){
     const refreshScreen = () => {
 
         try{
-            logic.retrieveOffersFromCompany()
+            logic.retrieveOffersFromCompany(targetUserId)
                 .then(offers => setOffers(offers))
                 .catch(error => {
 

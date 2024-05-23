@@ -20,7 +20,12 @@ function retrieveOffers(userId) {
                 .then(offers => {
                     //const users = [];
                     offers.forEach(offer => {
-                        // TODO sanitize
+                        if(offer.company._id){
+                            const id = offer.company._id.toString();
+                            delete offer.company._id;
+
+                            offer.company.id = id;
+                        }
                     })
                     return offers;
                 })

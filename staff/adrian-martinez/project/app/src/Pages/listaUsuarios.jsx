@@ -74,7 +74,7 @@ function ListaUsuarios(props) {
                                             users.map(user => (
 
                                                     <li key={user.id} className="text-lg font-bold p-4">
-                                                    <Link to={`/profile/${targetUserId}`}>{user.name}</Link>
+                                                    <Link to={`/profile/${user.id}`}>{user.name}</Link>
                                                 </li>
                                                 
                                             ))   
