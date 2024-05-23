@@ -90,7 +90,7 @@ function HomeEmpresa(props) {
                     <div className="mr-40">
                         <button className="button" onClick={ handleCreateOfferClick }>Añadir oferta ➕</button>
                     </div>
-                    <OffersCompany refreshStamp={ refreshStamp }/>
+                    <OffersCompany targetUserId={logic.getLoggedInUserId()} refreshStamp={ refreshStamp }/>
                 </section>
 
             {view === 'create-offer' && <CreateOffer onCancelClick={handleCreateOfferCancelClick} onCreateOffer={handleOfferCreated} />}

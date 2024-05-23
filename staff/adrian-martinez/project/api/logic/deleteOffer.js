@@ -6,7 +6,7 @@ const { SystemError, MatchError } = errors;
 function deleteOffer(companyUserId, offerCompanyId){
 
     validate.id(companyUserId, "companyUserId");
-    validate.id(offerCompanyId, "offerCompanyId");
+    //validate.id(offerCompanyId, "offerCompanyId");
 
     return User.findById(companyUserId)
         .catch(error => { throw new SystemError(error.message) })

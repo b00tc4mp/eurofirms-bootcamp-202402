@@ -4,12 +4,17 @@ import { errors, validate } from "com";
 const { SystemError } = errors;
 
 //TODO Hacer la mismá lógica con el saneamiento de datos que para los careers
-function retrieveOffersFromCompany() {
-    
-    validate.token(sessionStorage.token);
-    const userId = logic.getLoggedInUserId();
+function retrieveOffersFromCompany(targetUserId) {
+    //validate.id(targetUserId);
 
-    return fetch(`http://localhost:8989/users/${userId}/offers`, {
+    if (targetUserId)
+        validate.id(targetUserId, 'targetUserId')
+    else {
+
+        targetUserId = logic.getLoggedInUserId();
+    }
+
+    return fetch(`http://localhost:8989/users/${targetUserId}/offers`, {
         method: "GET",
         headers: {
             Authorization: `Bearer ${ sessionStorage.token }`

@@ -6,7 +6,7 @@ function deleteCareer(studentId, careerId) {
 
     validate.token(sessionStorage.token);
     validate.id(careerId, "careerId");
-    validate.id(studentId, "studentId");
+    //validate.id(studentId, "studentId");
 
     return fetch(`http://localhost:8989/users/${studentId}/careers/${careerId}`, {
         method: 'DELETE',

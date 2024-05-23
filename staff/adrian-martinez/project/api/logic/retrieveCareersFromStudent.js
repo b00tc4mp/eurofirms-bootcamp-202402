@@ -8,27 +8,27 @@ const { SystemError, MatchError } = errors
 //Buscar usuario para ver si existe
 //Buscar estudios
 //Retornar estudios
-function retrieveCareersFromStudent(userId, targetUserId) {
-    validate.id(userId, 'userId')
+
+function retrieveCareersFromStudent(targetUserId) {
     validate.id(targetUserId, 'targetUserId')
 
-    return User.findById(userId)
+    return User.findById(targetUserId)
         .catch(error => { throw new SystemError(error.message) })
         .then(user => {
             if (!user)
                 throw new MatchError('user not found')
 
-            return Career.find({student : targetUserId}).select('-__v').populate("student", "-__v -password -role").lean()
+            return Career.find({student : user._id}).select('-__v').populate("student", "-__v -password -role").lean()
                 .then(careers => {
                     //Saneamiento de datos
                     careers.forEach(career => {
-                        if(career.student._id){
-                            const id = career.student._id.toString();
-                            delete career.student._id;
+                        if(career._id){
+                            const id = career._id.toString();
+                            delete career._id;
 
-                            career.student.id = id;
+                            career.id = id;
                         }
-                        
+                       
                     })
                     return careers;
                 })

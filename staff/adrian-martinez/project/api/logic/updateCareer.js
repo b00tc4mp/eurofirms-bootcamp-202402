@@ -6,7 +6,7 @@ const { SystemError, MatchError } = errors
 
 function updateCareer(studentUserId, careerId, title, description, certification) {
     validate.id(studentUserId, 'userId')
-    validate.id(careerId, 'careerId')
+    //validate.id(careerId, 'careerId')
     validate.text(title)
     validate.text(description)
     validate.url(certification)

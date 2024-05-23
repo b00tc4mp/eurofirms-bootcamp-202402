@@ -319,7 +319,7 @@ mongoose.connect(MONGO_URL)
 
                 const { targetUserId } = req.params
 
-                logic.retrieveCareersFromStudent(userId, targetUserId)
+                logic.retrieveCareersFromStudent(targetUserId)
                     .then(careers => res.json(careers))
                     .catch(error => {
 
@@ -357,7 +357,7 @@ mongoose.connect(MONGO_URL)
 
                 const { targetUserId } = req.params
 
-                logic.retrieveOffersFromCompany(targetUserId)
+                logic.retrieveOffersFromCompany(userId, targetUserId)
                     .then(user => res.json(user))
                     .catch(error => {
 

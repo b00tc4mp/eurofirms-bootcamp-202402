@@ -96,7 +96,7 @@ function Home(props) {
                     <div className="mr-40">
                         <button className="button" onClick={ handleCreateCareerClick }>Añadir estudios ➕</button>
                     </div>
-                    <CareersStudent refreshStamp={ refreshStamp }/>
+                    <CareersStudent targetUserId={logic.getLoggedInUserId()} refreshStamp={ refreshStamp }/>
                 </section>
 
             {view === 'create-career' && <CreateCareer onCancelClick={handleCreateCareerCancelClick} onCreateCareer={handleCareerCreated}/>}

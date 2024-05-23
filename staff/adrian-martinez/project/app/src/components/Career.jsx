@@ -81,10 +81,9 @@ function Career({ career, onCareerDeleted, onCareerUpdate }){
                 </div>
             }
         
-            {!changeCareer && <>
+            {!changeCareer && career.student.id === logic.getLoggedInUserId() && 
            
             <Button className="border-2 border-solid border-white bg-green-500 text-white" onClick={()=> setChangeCareer(true)}>Editar estudio</Button>
-            </>
             }
             {changeCareer && 
             <>

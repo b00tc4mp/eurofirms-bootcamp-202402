@@ -4,7 +4,7 @@ const { SystemError } = errors
 
 function updateOffer(offerId, title, description, minSalary, maxSalary, publishDate, expirationDate) {
     validate.token(sessionStorage.token)
-    validate.id(offerId, 'careerId')
+    //validate.id(offerId, 'offerId')
     validate.text(title)
     validate.text(description)
     validate.salary(minSalary)

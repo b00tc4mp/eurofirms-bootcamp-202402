@@ -1,11 +1,16 @@
 import { errors, validate } from "com";
-import logic from ".";
+import logic from "../logic";
 
 const { SystemError } = errors;
 
 function retrieveCareersFromStudent(targetUserId) {
-    validate.id(targetUserId, 'targetUserId')
-    validate.token(sessionStorage.token);
+    
+    if (targetUserId)
+        validate.id(targetUserId, 'targetUserId')
+    else {
+
+        targetUserId = logic.getLoggedInUserId();
+    }
 
     return fetch(`http://localhost:8989/users/${targetUserId}/careers`, {
         method: "GET",

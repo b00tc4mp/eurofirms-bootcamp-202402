@@ -63,6 +63,7 @@ function Login({onUserLoggedIn, onClickResetPassword, onClickInicio}) {
                     <form className="form" onSubmit={handleSubmit}>
                         <label forhtml="user">Usuario</label>
                         <input type="text" id="user" placeholder="Tu email"/><br/><br/>
+                        
 
                         <label forhtml="password">Contraseña</label>
                         <input type="password" id="password" placeholder="Contraseña"/><br/><br/>

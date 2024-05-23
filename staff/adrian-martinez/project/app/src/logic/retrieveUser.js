@@ -4,12 +4,16 @@ const { SystemError } = errors
 
 function retrieveUser(targetUserId) {
     validate.token(sessionStorage.token)
+    
+    if (targetUserId)
+        validate.id(targetUserId, 'targetUserId')
+    else {
+        const { sub } = utils.extractPayload(sessionStorage.token)
 
-    const { sub } = utils.extractPayload(sessionStorage.token)
+        targetUserId = sub
+    }
 
-    const userId = targetUserId ? targetUserId : sub
-
-    return fetch(`${import.meta.env.VITE_API_URL}/users/${userId}`, {
+    return fetch(`${import.meta.env.VITE_API_URL}/users/${targetUserId}`, {
         method: 'GET',
         headers: {
             Authorization: `Bearer ${sessionStorage.token}`

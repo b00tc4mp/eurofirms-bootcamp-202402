@@ -6,7 +6,7 @@ const { SystemError, MatchError } = errors;
 function deleteCareer(studentUserId, careerId){
 
     validate.id(studentUserId, "studentUserId");
-    validate.id(careerId, "careerId");
+    //validate.id(careerId, "careerId");
 
     return User.findById(studentUserId)
         .catch(error => { throw new SystemError(error.message) })
@@ -29,7 +29,7 @@ function deleteCareer(studentUserId, careerId){
             }
                 
             //TODO Borrar sujects también (postbootcamp)
-            return Career.deleteOne({ _id: career._id })
+            return Career.deleteOne({ id: career.id })
                 .catch( error => {
                     throw new SystemError(error.message);
                 })

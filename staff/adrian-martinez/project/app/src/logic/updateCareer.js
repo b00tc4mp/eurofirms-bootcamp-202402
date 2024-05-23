@@ -4,7 +4,7 @@ const { SystemError } = errors
 
 function updateCareer(careerId, title, description, certification) {
     validate.token(sessionStorage.token)
-    validate.id(careerId, 'careerId')
+    //validate.id(careerId, 'careerId')
     validate.text(title)
     validate.text(description)
     validate.text(certification)

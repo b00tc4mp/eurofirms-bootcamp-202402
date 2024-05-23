@@ -11,7 +11,7 @@ function Offer({ offer, onOfferDeleted, onOfferUpdate }){
         if(!deleteConfirmed) return;
 
         try{
-            logic.deleteOffer(logic.getLoggedInUserId(), offer._id)
+            logic.deleteOffer(logic.getLoggedInUserId(), offer.id)
             .then(() => {onOfferDeleted()})
             .catch(error =>  {
 
@@ -45,7 +45,7 @@ function Offer({ offer, onOfferDeleted, onOfferUpdate }){
         if(!updateConfirmed) return;
         
         try{
-            logic.updateOffer(offer._id, title, description, minSalary, maxSalary, publishDate, expirationDate)
+            logic.updateOffer(offer.id, title, description, minSalary, maxSalary, publishDate, expirationDate)
                 .then(() => {
                     onOfferUpdate();
                     setChangeOffer(false);
@@ -86,8 +86,8 @@ function Offer({ offer, onOfferDeleted, onOfferUpdate }){
                     <Button className="border-2 border-solid border-white bg-red-500 text-white" onClick={ handleDeleteOffer}>Borrar</Button>
                 </div>
             }
-            
-            {!changeOffer && <>
+             
+            {!changeOffer && offer.company.id === logic.getLoggedInUserId() && <>
            
            <Button className="border-2 border-solid border-white bg-green-500 text-white" onClick={()=> setChangeOffer(true)}>Editar Oferta</Button>
            </>
@@ -108,7 +108,7 @@ function Offer({ offer, onOfferDeleted, onOfferUpdate }){
                    <input defaultValue={offer.maxSalary} name="maxSalary" />
 
                    <label htmlFor="publishDate">Fecha publicación de la oferta:</label>
-                   <input type="date" defaultValue={offer.publishDate} name="publishDate" />
+                   <input type="date" defaultValue={offer.publishDate} name="publishDate" required/>
 
                    <label htmlFor="expirationDate">Fecha de expiración:</label>
                    <input type="date" defaultValue={offer.expirationDate} name="expirationDate" />
