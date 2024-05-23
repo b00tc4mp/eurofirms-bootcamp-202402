@@ -17,16 +17,19 @@ Alalluna  app is a responsive application for studying arts, where teachers can 
 
 #### For teacher
 
-- view students works (list)
+- view users works (list of teacher and student)
+- publish work
+- edit work (only title and description)
+- delete work
 - add comment to work
 - delete comment from work
 - edit comment from work
 
 #### For students
 
-- view students works (list)
+- view users works (list of teacher and student)
 - publish work
-- edit work (only description)
+- edit work (only title and description)
 - delete work
 - view work
 - view comments (from work)
@@ -46,12 +49,15 @@ https://www.figma.com/file/YyrvzJn83JTceVI1BzmkaF/Alalluna-projects?type=whitebo
 - Node
 - Express
 - Mongo
+- Tailwind
+- JWT
 
 ## Modules
 
 - API (server)
 - App (client)
 - Com (utils common)
+- Doc (Readme)
 
 ### Data Model
 
@@ -63,7 +69,7 @@ User
 - password (string, required)
 - rol (string, required, enum: student|teacher)
 
-Work(student)
+Work (student)
 - id (string, required)
 - userId(string,required)
 - title (string, required)
@@ -71,7 +77,7 @@ Work(student)
 - description (string)
 - date (date, required)
 
-Porpuse(teacher)
+Version two: Lesson (teacher)
 - id (string, required)
 - userId(string,required)
 - title (string, required)
@@ -79,7 +85,6 @@ Porpuse(teacher)
 - description (string, required)
 - url(string, required)
 - date (date, required)
-
 
 Comment
 - id (auto)

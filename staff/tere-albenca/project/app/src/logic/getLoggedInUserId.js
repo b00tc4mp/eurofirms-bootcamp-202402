@@ -1,11 +1,11 @@
-import { utils, validate } from "com";
+import { utils, validate } from "com"
 
 function getLoggedInUserId() {
 
-    validate.token(sessionStorage.token);
+    validate.token(sessionStorage.token)
     const { sub: userId } = utils.extractPayload(sessionStorage.token)
 
     return userId
 }
 
-export default getLoggedInUserId;
+export default getLoggedInUserId

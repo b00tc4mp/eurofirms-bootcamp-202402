@@ -1,48 +1,80 @@
-import { useParams } from 'react-router-dom';
-import logic from '../logic';
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
+import logic from '../logic'
+import { errors } from 'com'
+import CreateWork from '../components/CreateWork'
+import UserWorks from '../components/UserWorks'
+import Header from '../components/Header'
+import Footer from '../components/Footer'
 
-function Profile({ onUserLoggedOut, onHomeClick }) {
-  const { targetUserId } = useParams();
-  const [user, setUser] = useState(null);
+const { ContentError, TypeError, RangeError } = errors
 
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const user = await logic.retrieveUser(targetUserId);
-        setUser(user);
-      } catch (error) {
-        console.error(error);
-        alert('Sorry, there was an error retrieving the user profile.');
-      }
-    };
+function Profile({ onUserLoggedOut, onHomeClick, onProfileClick }) {
+    const { targetUserId } = useParams()
 
-    fetchUser();
-  }, [targetUserId]);
+    const [view, setView] = useState(null)
+    const [refreshStamp, setRefreshStamp] = useState(null)
+    const [user, setUser] = useState(null)
 
-  const handleLogout = () => {
-    logic.logoutUser();
-    onUserLoggedOut();
-  };
+    useEffect(() => {
+        const fetchUserAndWorks = async () => {
+            try {
+                const user = await logic.retrieveUser()
+                setUser(user)
+            } catch (error) {
+                console.error(error)
+                let feedback = error.message
+                if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError) {
+                    feedback = `${feedback}, please correct it`
+                } else {
+                    feedback = 'Sorry, there was an error, please try again later'
+                }
+                alert(feedback)
+            }
+        }
 
-  return (
-    <div>
-      <header>
-        <button onClick={onHomeClick}>Home</button>
-        <button onClick={handleLogout}>Logout</button>
-      </header>
-      <main>
-        {user ? (
-          <div>
-            <h1>{user.name}</h1>
-            <p>{user.email}</p>
-          </div>
-        ) : (
-          <p>Loading profile...</p>
-        )}
-      </main>
-    </div>
-  );
+        fetchUserAndWorks()
+    }, [])
+
+    const handleLogout = () => {
+        logic.logoutUser()
+        onUserLoggedOut()
+    }
+
+    const handleCreateClick = () => setView('createWork')
+
+    const handleCancelClick = () => setView(null)
+
+    const handleCreatedWork = () => {
+        setView(null)
+        setRefreshStamp(Date.now())
+    }
+
+    const handleHomeClick = (event) => {
+        event.preventDefault()
+        onHomeClick()
+    }
+
+    const handleProfileClick = event => {
+        event.preventDefault()
+
+        onProfileClick(user.id)
+    }
+
+    return (
+        <div className='m-0 p-0 max-w-[100%]'>
+            <Header
+                onHomeClick={handleHomeClick} onCreateClick={handleCreateClick} onProfileClick={handleProfileClick}
+            />
+            <main className='w-[100%] bg-[lightgray]'>
+                <UserWorks targetUserId={targetUserId} refreshStamp={refreshStamp} user={user} isProfilePage={true} onProfileClick={() => { }} /> { }
+                {view === 'createWork' && <CreateWork onWorkCreated={handleCreatedWork} onCancelClick={handleCancelClick} />}
+            </main>
+
+            <Footer onLogout={handleLogout} />
+
+        </div>
+    )
 }
 
-export default Profile;
+export default Profile

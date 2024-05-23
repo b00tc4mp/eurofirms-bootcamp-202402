@@ -2,8 +2,8 @@ import registerStudent from './registerStudent.js'
 import registerTeacher from './registerTeacher.js'
 import loginUser from './loginUser.js'
 import logoutUser from './logoutUser.js'
-import getLoggedInUserId from "./getLoggedInUserId.js"
-import getLoggedInUserRole from "./getLoggedInUserRole.js"
+import getLoggedInUserId from './getLoggedInUserId.js'
+import getLoggedInUserRole from './getLoggedInUserRole.js'
 import retrieveUser from './retrieveUser.js'
 import isUserLoggedIn from './isUserLoggedIn.js'
 import createWork from './createWork.js'

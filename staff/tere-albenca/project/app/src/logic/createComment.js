@@ -1,6 +1,6 @@
-import { errors, validate } from 'com';
+import { errors, validate } from 'com'
 
-const { SystemError } = errors;
+const { SystemError } = errors
 
 function createComment(workId, text) {
   validate.token(sessionStorage.token)

@@ -23,7 +23,7 @@ function createWork(userId, title, image, text) {
                 date: new Date
             }
             return Work.create(work)
-                .catch(error => { throw new SystemError(error.message) });
+                .catch(error => { throw new SystemError(error.message) })
         })
         .then(work => { })
 }

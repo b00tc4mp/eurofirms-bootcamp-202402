@@ -1,12 +1,12 @@
-import { errors, validate } from 'com'
+import { validate, errors } from "com"
 
 const { SystemError } = errors
 
-function retrieveComments(workId) {
+function searchWork(searchQuery) {
     validate.token(sessionStorage.token)
-    validate.id(workId, 'workId')
+    validate.text(text)
 
-    return fetch(`${import.meta.env.VITE_API_URL}/works/${workId}/comments`, {
+    return fetch(`${import.meta.env.VITE_API_URL}/works/search?q=${searchQuery}`, {
         method: 'GET',
         headers: {
             Authorization: `Bearer ${sessionStorage.token}`
@@ -14,11 +14,10 @@ function retrieveComments(workId) {
     })
         .catch(error => { throw new SystemError(error.message) })
         .then(res => {
-            if (res.status === 200) {
+            if (res.status === 200)
                 return res.json()
                     .catch(error => { throw new SystemError(error.message) })
-                    .then(comments => comments)
-            }
+                    .then(works => works)
 
             return res.json()
                 .catch(error => { throw new SystemError(error.message) })
@@ -32,4 +31,4 @@ function retrieveComments(workId) {
         })
 }
 
-export default retrieveComments
+export default searchWork

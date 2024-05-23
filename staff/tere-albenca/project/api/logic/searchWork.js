@@ -12,19 +12,22 @@ function searchWork(userId, searchQuery) {
         .then(user => {
             if (!user) { throw new MatchError('user not found') }
 
-            return Work.find({ "title": { "$regex": searchQuery, "$options": "i" } }).select('-__v').populate('author', 'name surname').lean()
+            return Work.find({ "title": { '$regex': searchQuery, '$options': 'i' } }).select('-__v').populate('author', 'name surname').lean()
                 .catch(error => { throw new SystemError(error.message) })
                 .then(works => {
                     // sanitize
-                    if (!works || works.length === 0) { throw new MatchError('works not found') }
+                    if (works.length === 0) { throw new MatchError('works not found') }
 
                     works.forEach(work => {
                         work.id = work._id.toString()
                         delete work._id
 
-                        work.author.id = work.author._id.toString()
+                        if (work.author.id) {
 
-                        delete work.author._id
+                            work.author.id = work.author._id.toString()
+
+                            delete work.author._id
+                        }
                     })
 
                     return works

@@ -1,21 +1,21 @@
-import logic from "../logic";
-//import components from "../components";
+import logic from '../logic'
+//import components from '../components'
 import Form from '../components/Form.jsx'
 import Button from '../components/Button.jsx'
 import Hone from '../components/Hone.jsx'
 import Span from '../components/Span.jsx'
 import Input from '../components/Input.jsx'
 import { errors } from 'com'
-import { useState } from "react";
+import { useState } from 'react'
 
-const { ContentError, DuplicityError} = errors
+const { ContentError, DuplicityError } = errors
 
 function RegisterTeacher({ onTeacherRegistered, onLoginClick, onResetPasswordClick }) {
-  const [error,setError] = useState(null)
+  const [error, setError] = useState(null)
 
-  const errorHandle = (error)=>{
+  const errorHandle = (error) => {
     console.error(error)
-            
+
     let feedback = error.message
 
     if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
@@ -28,29 +28,29 @@ function RegisterTeacher({ onTeacherRegistered, onLoginClick, onResetPasswordCli
       feedback = 'sorry, there was an error, please try again later'
 
     let isNameError = false
-    
+
     const isSurnameError = error.message.includes('surname')
     const isEmailError = error.message.includes('email')
     const isPasswordError = error.message.includes('password')
-    
-    if(!isSurnameError) isNameError = error.message.includes('name')
 
-    const anotherError = 
-    !isNameError && 
-    !isSurnameError && 
-    !isEmailError && 
-    !isPasswordError 
+    if (!isSurnameError) isNameError = error.message.includes('name')
 
-    
+    const anotherError =
+      !isNameError &&
+      !isSurnameError &&
+      !isEmailError &&
+      !isPasswordError
+
+
 
     setError({
-      message: feedback, 
-      isNameError, 
-      isSurnameError, 
-      isEmailError, 
-      isPasswordError, 
+      message: feedback,
+      isNameError,
+      isSurnameError,
+      isEmailError,
+      isPasswordError,
       anotherError
-      })
+    })
   }
   const handleSubmit = (event) => {
     event.preventDefault()
@@ -62,56 +62,56 @@ function RegisterTeacher({ onTeacherRegistered, onLoginClick, onResetPasswordCli
     const email = form.email.value
     const password = form.password.value
 
-    
+
     try {
       logic.registerTeacher(name, surname, email, password)
-          .then (()=> onTeacherRegistered())
-          .catch(error=> {
-            errorHandle(error)
-          })
+        .then(() => onTeacherRegistered())
+        .catch(error => {
+          errorHandle(error)
+        })
     } catch (error) {
       errorHandle(error)
     }
-  };
+  }
 
   const handleLoginClick = (event) => {
-    event.preventDefault();
+    event.preventDefault()
 
-    onLoginClick();
-  };
+    onLoginClick()
+  }
   console.debug("Register teacher render");
 
   const handleResetPasswordClick = (event) => {
-    event.preventDefault();
-    onResetPasswordClick();
-  };
+    event.preventDefault()
+    onResetPasswordClick()
+  }
   return (
-    <div className="flex flex-col justify-center item-center mt-3 mb-1">
-      <main className="w-3/5 flex flex-col justify-center item-center mb-8" >
-        <Hone className="text-center">REGISTER TEACHER</Hone>
-        <Form onSubmit={handleSubmit} className="max-w-sm">
+    <div className='flex flex-col justify-center item-center mt-3 mb-1'>
+      <main className='w-3/5 flex flex-col justify-center item-center mb-8' >
+        <Hone className='text-center'>REGISTER TEACHER</Hone>
+        <Form onSubmit={handleSubmit} className='max-w-sm'>
 
-          <Input type="text" id="Name" placeholder="name"/><br/>
+          <Input type='text' id='Name' placeholder='name' /><br />
           {error?.isNameError && <Span></Span>}
 
-          <Input type="text" id="Surname" placeholder="Surname"/><br/>
+          <Input type='text' id='Surname' placeholder='Surname' /><br />
           {error?.isSurnameError && <Span></Span>}
 
-          <Input type="text" id="email" placeholder="Email" /><br/>
+          <Input type="text" id="email" placeholder='Email' /><br />
           {error?.isEmailError && <Span></Span>}
 
-          <Input type="password" id="password" placeholder="Password"/><br/>
+          <Input type='password' id='password' placeholder='Password' /><br />
           {error?.isPasswordError && <Span></Span>}
 
-          <Button type="submit" >Register</Button>
+          <Button type='submit' >Register</Button>
           {error?.anotherError && <Span></Span>}
 
-          <div className="flex justify-center bg-[lightgray] hover:bg-[#c3c3c2] rounded-xl p-1 my-1">
-            <a id="login" onClick={handleLoginClick}  className="no-underline text-[#25676d] hover:bg-[#25676D]">LOGIN</a>
+          <div className='flex justify-center bg-[lightgray] hover:bg-[#c3c3c2] rounded-xl p-1 my-1'>
+            <a id='login' onClick={handleLoginClick} className='no-underline text-[#25676d] hover:bg-[#25676D]'>LOGIN</a>
           </div>
         </Form>
       </main>
     </div>
-  );
+  )
 }
-export default RegisterTeacher;
+export default RegisterTeacher

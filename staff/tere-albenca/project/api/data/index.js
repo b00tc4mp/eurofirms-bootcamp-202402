@@ -60,7 +60,7 @@ const work = new Schema({
     }
 })
 
-const proposal = new Schema({
+const lesson = new Schema({
     teacher: {
         type: ObjectId,
         required: true,
@@ -119,12 +119,12 @@ const comment = new Schema({
 
 const User = model('User', user)
 const Work = model('Work', work)
-const Proposal = model('Proposal', proposal)
+const Lesson = model('Lesson', lesson)
 const Comment = model('Comment', comment)
 
 export {
     User,
     Work,
-    Proposal,
+    Lesson,
     Comment
 }

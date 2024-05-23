@@ -18,8 +18,11 @@ function retrieveUser(userId, targetUserId) {
                 .then(targetUser => {
                     if (!targetUserId) { throw new MatchError(' target user not found') }
 
-                    return targetUser
+                    targetUser.id = targetUser._id.toString()
 
+                    delete targetUser._id
+
+                    return targetUser
                 })
         })
 }

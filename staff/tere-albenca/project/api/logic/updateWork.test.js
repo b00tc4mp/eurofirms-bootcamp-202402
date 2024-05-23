@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose'
 import updateWork from './updateWork.js'
 
 mongoose.connect('mongodb://localhost:27017/project')

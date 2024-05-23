@@ -1,4 +1,4 @@
-import { User, Work } from "../data/index.js"
+import { User, Work } from '../data/index.js'
 import { errors, validate } from 'com'
 
 const { SystemError, MatchError } = errors

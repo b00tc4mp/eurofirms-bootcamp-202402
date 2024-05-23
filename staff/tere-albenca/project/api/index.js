@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose'
 import express from 'express'
 import logic from './logic/index.js'
 import cors from 'cors'
@@ -25,6 +25,7 @@ mongoose.connect(MONGO_URL)
         server.use(cors())
 
         //registerStudent
+
         server.post('/users/students', jsonBodyParser, (req, res) => {
 
             try {
@@ -51,6 +52,7 @@ mongoose.connect(MONGO_URL)
         })
 
         //registerTeacher
+
         server.post('/users/teachers', jsonBodyParser, (req, res) => {
 
             try {
@@ -75,7 +77,6 @@ mongoose.connect(MONGO_URL)
                 res.status(status).json({ error: error.constructor.name, message: error.message })
             }
         })
-
 
         //authenticateUser
 
@@ -225,6 +226,7 @@ mongoose.connect(MONGO_URL)
         })
 
         //update work
+
         server.patch('/works/:workId', jsonBodyParser, (req, res) => {
             try {
                 const { authorization } = req.headers
@@ -302,20 +304,17 @@ mongoose.connect(MONGO_URL)
             }
         })
 
-
         //retrieveUserWorks
-        server.get('/users/:targetUserId/works', (req, res) => {
+
+        server.get('/profile/:targetUserId/works', (req, res) => {
             try {
+                const { authorization } = req.headers
+                const token = authorization.slice(7)
+                const { sub: userId } = jwt.verify(token, JWT_SECRET)
                 const { targetUserId } = req.params
 
-                const { authorization } = req.headers
-
-                const token = authorization.slice(7)
-
-                const { sub: userId } = jwt.verify(token, JWT_SECRET)
-
                 logic.retrieveUserWorks(userId, targetUserId)
-                    .then(works => res.json(works))
+                    .then(works => res.status(200).json(works))
                     .catch(error => {
                         let status = 500
 
@@ -331,7 +330,6 @@ mongoose.connect(MONGO_URL)
                     status = 400
                 else if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError) {
                     status = 401
-
                     error = new MatchError(error.message)
                 }
                 res.status(status).json({ error: error.constructor.name, message: error.message })
@@ -497,7 +495,9 @@ mongoose.connect(MONGO_URL)
                 res.status(status).json({ error: error.constructor.name, message: error.message })
             }
         })
+
         //update comment
+
         server.patch('/works/:workId/comments/:commentId', jsonBodyParser, (req, res) => {
             try {
                 const { authorization } = req.headers
@@ -539,9 +539,11 @@ mongoose.connect(MONGO_URL)
         })
 
         //searchWork
+
         server.get('/works/search', (req, res) => {
             try {
-                const searchQuery = req.query.q
+
+                const { q } = req.query
 
                 const { authorization } = req.headers
 
@@ -549,7 +551,7 @@ mongoose.connect(MONGO_URL)
 
                 const { sub: userId } = jwt.verify(token, JWT_SECRET)
 
-                logic.searchWork(userId, searchQuery)
+                logic.searchWork(userId, q)
                     .then(works => res.status(200).json(works))
                     .catch(error => {
                         let status = 500

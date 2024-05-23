@@ -1,19 +1,19 @@
-import { useState, useEffect } from "react";
-import logic from "../logic";
-import Work from "./Work";
+import { useState, useEffect } from 'react'
+import logic from '../logic'
+import Work from './Work'
 import { errors } from 'com'
 
 
 const { MatchError, ContentError } = errors
 
-function Works({ refreshStamp, user, onProfileClick }) {
+function Works({ refreshStamp, user, onUserProfileClick }) {
     console.log('refreshStamp', refreshStamp)
 
-    const [works, setWorks] = useState([])
+    const handleProfileUserClick = (userTargetId) => {
+        onUserProfileClick(userTargetId)
+    };
 
-    const handleProfileClick = (userTargetId) => {
-        onProfileClick(userTargetId);
-      };
+    const [works, setWorks] = useState([])
 
     const refreshWorks = (() => {
         try {
@@ -59,19 +59,17 @@ function Works({ refreshStamp, user, onProfileClick }) {
 
     return <section className="flex flex-col gap-6 px-2 py-14">
 
-
-        {works.map(work => 
-            <Work 
-                key={work.id} 
-                work={work} 
-                user={user} 
-                onWorkRemoved={handleWorkRemoved} 
-                onWorkEdit={handleWorkEdit} 
-                onProfileClick={() => handleProfileClick(work.author.id)}
-        />
+        {works.map(work =>
+            <Work
+                key={work.id}
+                work={work}
+                user={user}
+                onWorkRemoved={handleWorkRemoved}
+                onWorkEdit={handleWorkEdit}
+                onUserProfileClick={() => handleProfileUserClick(work.author.id)}
+            />
         )}
     </section>
 }
 
 export default Works
-

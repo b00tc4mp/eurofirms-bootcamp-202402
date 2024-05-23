@@ -1,15 +1,15 @@
-import { useState } from "react"
-import logic from "../logic"
+import { useState } from 'react'
+import logic from '../logic'
 import { errors } from 'com'
 
 const { MatchError } = errors;
 
 function CreateComment({ workId, onCommentCreated }) {
-    const [comment, setComment] = useState("")
+    const [comment, setComment] = useState('')
     const [showForm, setShowForm] = useState(true)
 
     const handleSubmit = event => {
-        event.preventDefault();
+        event.preventDefault()
 
         try {
             logic.createComment(workId, comment)
@@ -21,13 +21,13 @@ function CreateComment({ workId, onCommentCreated }) {
                 .catch(error => {
                     console.error(error)
 
-                    let feedback = error.message || 'Ha ocurrido un error. Por favor, intenta de nuevo.';
+                    let feedback = error.message || 'Ha ocurrido un error. Por favor, intenta de nuevo.'
                     alert(feedback)
-                });
+                })
         } catch (error) {
             console.error(error)
 
-            let feedback = error.message || 'Ha ocurrido un error. Por favor, intenta de nuevo.';
+            let feedback = error.message || 'Ha ocurrido un error. Por favor, intenta de nuevo.'
             alert(feedback)
         }
     }
@@ -40,12 +40,12 @@ function CreateComment({ workId, onCommentCreated }) {
         showForm && (
             <form onSubmit={handleSubmit}>
                 <input
-                type="text"
-                placeholder="Escribe tu comentario..."
-                value={comment}
-                onChange={handleCommentChange}
+                    type='text'
+                    placeholder='Write comment...'
+                    value={comment}
+                    onChange={handleCommentChange}
                 />
-                <button type="submit">Comentar</button>
+                <button type='submit'>Add comment</button>
             </form>
         )
     );
