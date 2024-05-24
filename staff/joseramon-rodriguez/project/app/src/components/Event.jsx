@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react"
-import { useParams, useNavigate } from "react-router-dom"
-import logic from "../logic"
-import Input from "./Input"
-import Button from "./Button"
-import Form from "./Form"
-import { utils, errors } from "com"
+import { useEffect, useState } from 'react'
+import { useParams, useNavigate } from 'react-router-dom'
+import logic from '../logic'
+import Input from './Input'
+import Button from './Button'
+import Form from './Form'
+import { utils, errors } from 'com'
 
 const { MatchError, ContentError } = errors
 
@@ -13,7 +13,6 @@ function Event({ onBetCreated }) {
     const [event, setEvent] = useState(null)
     const [timeStamp, setTimeStamp] = useState(null)
     const [eventStarted, setEventStarted] = useState(false)
-    const [error, setError] = useState(false)
 
     const errorHandler = error => {
         console.error(error)
@@ -26,12 +25,7 @@ function Event({ onBetCreated }) {
             feedback = `${feedback}, please input correct data`
         else feedback = 'sorry there was an error, please try again later'
 
-        const isPlayerError = error.message.includes('player')
-        const isAmountError = error.message.includes('amount')
-
-        const isAnotherError = !isPlayerError && !isAmountError
-
-        setError({ message: feedback, isPlayerError, isAmountError, isAnotherError })
+        alert(feedback)
     }
 
     const navigate = useNavigate()
@@ -85,9 +79,21 @@ function Event({ onBetCreated }) {
         }
     }
     return <>
-        {event ? <section className=" flex  flex-none justify-between ">
-            <div className="  max-w-30">
-                <h2 className=" text-xl">{event.name}</h2>
+        {event ? <section className=' flex  flex-col justify-between '>
+            <div >
+                {!eventStarted && event?.status === 'open' && <Form onSubmit={handleSubmit}>
+                    <label htmlFor='player'>Player to bet :</label>
+                    <select name='player' id='player' key='123' className='decorated rounded-sm '>
+                        {event.players.map(player => { return <option key={player.id} value={player.id}>{player.name}</option> })}
+                    </select>
+                    <label htmlFor='amount'>Amount to bet</label>
+                    <Input type='text' id='amount'></Input>
+                    <Button type='submit'>Bet</Button>
+                </Form>}
+
+            </div>
+            <div >
+                <h2 className=' text-xl'>{event.name}</h2>
                 <h3>Status: {event.status}</h3>
                 <p>{event.description}</p>
                 <p>Start : {utils.formatDate(event.startDate)}</p>
@@ -97,24 +103,7 @@ function Event({ onBetCreated }) {
                     {event.players.map(player => { return <li key={player.name}>{player.name}</li> })}
                 </ul>
             </div>
-            <div className=" max-w-20 ">
-                {!eventStarted && event?.status === 'open' && <Form onSubmit={handleSubmit}>
-                    <label htmlFor="player">Player to bet</label>
-                    <select name="player" id="player" key='123' className=" bg-slate-500 rounded-sm">
-                        {event.players.map(player => { return <option key={player.id} value={player.id}>{player.name}</option> })}
-                    </select>
-                    {error?.isPlayerError && <span className='text-red-500'>{error.message}</span>}
 
-                    <label htmlFor="amount">Amount to bet</label>
-                    <Input type="text" id="amount"></Input>
-                    {error?.isAmountError && <span className='text-red-500'>{error.message}</span>}
-
-                    <Button type="submit">Bet</Button>
-                    {error?.isAnotherError && <span className='text-red-500'>{error.message}</span>}
-
-                </Form>}
-
-            </div>
         </section> : <span>loading...</span>}
     </>
 }

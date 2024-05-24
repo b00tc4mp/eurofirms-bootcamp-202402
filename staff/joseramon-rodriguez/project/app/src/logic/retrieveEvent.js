@@ -6,8 +6,6 @@ function retrieveEvent(eventId) {
     validate.token(sessionStorage.token)
     validate.id(eventId, 'event id')
 
-    const { sub: userId } = utils.extractPayload(sessionStorage.token)
-
     return fetch(`${import.meta.env.VITE_API_URL}/events/${eventId}`, {
         method: 'GET',
         headers: { authorization: `Bearer ${sessionStorage.token}` }

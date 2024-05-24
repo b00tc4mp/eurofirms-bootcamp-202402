@@ -81,7 +81,7 @@ function Register({ onUserRegistered, onLoginClick }) {
                 <Button href='login.html' type='submit'>Register</Button>
             </Form>
 
-            <a className='underline block text-center' onClick={handleLoginClick}>Login</a>
+            <Button className='block text-center w-full' onClick={handleLoginClick}>Login</Button>
             {error?.isAnotherError && <span className='text-red-500'>{error.message}</span>}
         </main>
     </>

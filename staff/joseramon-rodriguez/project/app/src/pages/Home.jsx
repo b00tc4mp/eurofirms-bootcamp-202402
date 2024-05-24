@@ -79,16 +79,14 @@ function Home({ onLogoutClick }) {
         }
     }, [timeStamp])
     return <>
-        <header className='flex flex-row justify-end'>
+        {user ? <h1>HELLO {user.username}</h1> : <span>Loading...</span>}
+        <header className='flex flex-row justify-evenly p-3'>
+            <Button onClick={handleSearchClick}>Events</Button>
             <Button onClick={handleYourBetsClick}>Your Bets</Button>
             <Button onClick={handleWalletClick}>Wallet ={user?.wallet}</Button>
-            <Button onClick={handleLogoutClick}>LOG OUT</Button>
+            <Button onClick={handleLogoutClick}>🚪</Button>
         </header>
-        {user ? <h1>HELLO HOME {user.username}</h1> : <span>Loading...</span>}
         <main className='flex flex-col'>
-            <Button onClick={handleSearchClick}>Search Events</Button>
-
-
             <Routes>
                 <Route path='/events' element={<Events />} />
                 <Route path='/events/:eventId' element={<Event onBetCreated={handleAfterBetOperation} />} />

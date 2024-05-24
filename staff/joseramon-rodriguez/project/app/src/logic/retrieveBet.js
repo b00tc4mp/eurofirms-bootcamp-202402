@@ -1,12 +1,10 @@
-import { errors, validate, utils } from 'com'
+import { errors, validate } from 'com'
 
 const { SystemError } = errors
 
 function retrieveBet(betId) {
     validate.token(sessionStorage.token)
     validate.id(betId, 'bet id')
-
-    const { sub: userId } = utils.extractPayload(sessionStorage.token)
 
     return fetch(`${import.meta.env.VITE_API_URL}/bet/${betId}`, {
         method: 'GET',

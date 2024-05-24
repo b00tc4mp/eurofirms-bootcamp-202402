@@ -39,13 +39,13 @@ function validateDate(date, explain = 'date') {
 function validateBirthDate(date) {
     //format yyyy-mm-dd
     if (typeof date !== 'string')
-        throw new TypeError(`birth date must be a string`)
+        throw new TypeError('birth date must be a string')
 
     if (date.length !== 10)
-        throw new RangeError(`birth date must be 10 characters only`)
+        throw new RangeError('birth date must be 10 characters only')
 
     if (date.indexOf('-') !== 4 || date.lastIndexOf('-') !== 7)
-        throw new ContentError(`birth date dashes must be in correct place`)
+        throw new ContentError('birth date dashes must be in correct place')
 
 }
 
@@ -67,7 +67,7 @@ function validateEventDates(start, end) {
     const now = new Date()
 
     if (dateStart < now)
-        throw new MatchError(`start date must be a future date`)
+        throw new MatchError('start date must be a future date')
 
     if (dateEnd < now)
         throw new MatchError('end date must be a future date')

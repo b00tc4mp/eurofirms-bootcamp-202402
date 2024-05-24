@@ -1,5 +1,5 @@
 import { User, Event } from '../data/index.js'
-import { validate, errors } from "com"
+import { validate, errors } from 'com'
 
 const { SystemError, MatchError } = errors
 

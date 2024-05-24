@@ -1,4 +1,4 @@
-import { validate, utils } from "com"
+import { validate, utils } from 'com'
 
 function getLoggedInUserId() {
     validate.token(sessionStorage.token)

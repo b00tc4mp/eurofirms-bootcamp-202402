@@ -1,6 +1,5 @@
 import { errors } from 'com'
-import { useEffect, useState } from 'react'
-import { Routes, Route, Navigate, useNavigate } from 'react-router-dom'
+import { useState } from 'react'
 
 import Button from '../components/Button'
 import logic from '../logic'
@@ -9,9 +8,8 @@ import Input from './Input'
 
 const { MatchError, ContentError } = errors
 
-function Wallet({ onWalletModified, user }) {
+function Wallet({ onWalletModified }) {
     const [operation, setOperation] = useState(null)
-    const [error, setError] = useState(null)
 
     const errorHandler = error => {
         console.error(error)
@@ -24,12 +22,7 @@ function Wallet({ onWalletModified, user }) {
             feedback = `${feedback}, please input correct data`
         else feedback = 'sorry there was an error, please try again later'
 
-        const isAmountError = error.message.includes('wallet')
-
-
-        const isAnotherError = !isAmountError
-
-        setError({ message: feedback, isAmountError, isAnotherError })
+        alert(feedback)
     }
 
     const handleSubmit = event => {
@@ -86,25 +79,14 @@ function Wallet({ onWalletModified, user }) {
             </div>
             <div className=' max-w-20'>
                 {operation === 'add' && <Form onSubmit={handleSubmit}>
-
                     <label htmlFor='amount'>Amount</label>
                     <Input type='text' id='amount'></Input>
-                    {error?.isAmountError && <span className='text-red-500'>{error.message}</span>}
-
-
                     <Button type='submit'>Add to wallet</Button>
-                    {error?.isAnotherError && <span className='text-red-500'>{error.message}</span>}
-
                 </Form>}
                 {operation === 'remove' && <Form onSubmit={handleSubmit}>
                     <label htmlFor='amount'>Amount</label>
                     <Input type='text' id='amount'></Input>
-                    {error?.isAmountError && <span className='text-red-500'>{error.message}</span>}
-
-
                     <Button type='submit'>Remove from wallet</Button>
-                    {error?.isAnotherError && <span className='text-red-500'>{error.message}</span>}
-
                 </Form>}
             </div>
         </section>

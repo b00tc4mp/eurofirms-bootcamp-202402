@@ -1,35 +1,38 @@
-// import mongoose from 'mongoose'
-// import calculateBetWinnersAndPayBack from './calculateBetWinnersAndPayBack.js'
+import mongoose from 'mongoose'
+import calculateBetWinnersAndPayBack from '../logic/calculateBetWinnersAndPayBack.js'
+import 'dotenv/config'
 
+const { MONGO_URL } = process.env
 
-import { CronJob } from 'cron'
-import * as cron from 'cron';
+import cron from 'node-cron'
 
-const dt = cron.sendAt('0 0 * * *')
+const now = new Date()
 
-console.log(`The job would run at: ${dt.toISO()}`)
+now.setMinutes(now.getMinutes() + 1)
 
-const job = new CronJob(
-    dt, // cronTime
-    function () {
-        PayWinnersAndPayBack()
-    }, // onTick
-    null, // onComplete
-    true, // start
-    'America/Los_Angeles' // timeZone
-)
+const cronTime = `${now.getMinutes()} ${now.getHours()} * * *` // @daily to set cronTime to launch task every day at midnight
 
-const PayWinnersAndPayBack = () => {
-    mongoose.connect('mongodb://localhost:27017/project')
+const task = () => {
+    console.log('task executed at: ', new Date())
+    // payWinnersAndPayBack()
+}
+
+const scheduledTask = cron.schedule(cronTime, task, {
+    scheduled: true
+})
+
+console.log('task scheduled at ' + now.getHours() + ':' + now.getMinutes())
+
+scheduledTask.start()
+
+const payWinnersAndPayBack = () => {
+    mongoose.connect(MONGO_URL)
         .then(() => {
-            try {
-                calculateBetWinnersAndPayBack()
-                    .then(() => console.log('calculate bet winners and pay back completed'))
-                    .catch(error => console.error(error))
-            } catch (error) {
-                console.error(error)
-            }
+            return calculateBetWinnersAndPayBack()
+                .then(() => console.log('calculate bet winners and pay back completed'))
+                .catch(error => console.error(error))
         })
+        .then(() => console.log('bets updated and winners paid back'))
         .catch(error => console.error(error))
-
+        .finally(() => mongoose.disconnect())
 }

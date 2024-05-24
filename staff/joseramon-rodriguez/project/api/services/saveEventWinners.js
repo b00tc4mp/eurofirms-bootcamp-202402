@@ -7,9 +7,12 @@ const { MONGO_URL } = process.env
 mongoose.connect(MONGO_URL)
     .then(() => {
         const saves = events.map(event => {
-            const { name, description, players, startDate, endDate } = event
+            const { name, description, players, startDate, endDate, winner } = event
 
-            return logic.createEvent(name, description, players, startDate, endDate)
+            if (winner)
+                return logic.saveEventWinner(name, description, players, startDate, endDate, winner)
+            else
+                return
 
         })
         return Promise.all(saves)

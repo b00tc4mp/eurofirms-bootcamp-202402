@@ -60,13 +60,13 @@ function Login({ onUserLoggedIn, onRegisterClick }) {
                 {error?.isUserNameError && <span className='text-red-500'>{error.message}</span>}
 
                 <label htmlFor='password'>password</label>
-                <Input id='password' />
+                <Input id='password' type='password' />
                 {error?.isPasswordError && <span className='text-red-500'>{error.message}</span>}
 
                 <Button type='submit'>Login</Button>
                 {error?.isAnotherError && <span className='text-red-500'>{error.message}</span>}
 
-                <a className='underline block text-center' href='register.html' onClick={handleRegisterClick}>Register</a>
+                <Button className='block text-center' href='register.html' onClick={handleRegisterClick}>Register</Button>
             </Form>
         </main>
     </>

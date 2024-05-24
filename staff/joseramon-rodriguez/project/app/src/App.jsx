@@ -17,7 +17,7 @@ function App() {
   const handleLoginClick = () => navigate('/login')
 
   const handleLogoutClick = () => navigate('/login')
-  return <>
+  return <div className=' bg-gray-200 w-screen h-screen p-3'>
     <Routes>
       <Route path='/login' element={logic.isUserLoggedIn() ? <Navigate to='/' /> :
         <Login
@@ -36,7 +36,7 @@ function App() {
         <Navigate to={'/login'} />}
       />
     </Routes>
-  </>
+  </div>
 
 }
 

@@ -1,16 +1,17 @@
-import { useEffect, useState } from "react"
-import { useParams, useNavigate } from "react-router-dom"
-import logic from "../logic"
-import Input from "./Input"
-import Button from "./Button"
-import Form from "./Form"
-import { utils } from "com"
+import { useEffect, useState } from 'react'
+import { useParams, useNavigate } from 'react-router-dom'
+import logic from '../logic'
+import Input from './Input'
+import Button from './Button'
+import Form from './Form'
+import { errors, utils } from 'com'
+
+const { ContentError, MatchError } = errors
 
 function Bet({ onBetModified, onBetRemoved }) {
     const [bet, setBet] = useState(null)
     const [timeStamp, setTimeStamp] = useState(null)
     const [eventStarted, setEventStarted] = useState(false)
-    const [error, setError] = useState(false)
 
     let params = useParams()
     const navigate = useNavigate()
@@ -26,11 +27,7 @@ function Bet({ onBetModified, onBetRemoved }) {
             feedback = `${feedback}, please input correct data`
         else feedback = 'sorry there was an error, please try again later'
 
-        const isAmountError = error.message.includes('amount')
-
-        const isAnotherError = !isAmountError
-
-        setError({ message: feedback, isAmountError, isAnotherError })
+        alert(feedback)
     }
 
     useEffect(() => {
@@ -51,10 +48,8 @@ function Bet({ onBetModified, onBetRemoved }) {
             const timeStamp = new Date().getTime()
             const eventStartDate = new Date(bet?.event.startDate).getTime()
 
-            if (timeStamp <= eventStartDate)
+            if (timeStamp >= eventStartDate)
                 setEventStarted(true)
-            else
-                setEventStarted(false)
 
             setTimeStamp(timeStamp)
         }, 1000)
@@ -72,7 +67,7 @@ function Bet({ onBetModified, onBetRemoved }) {
                 .then(() => {
                     console.log('Bet modified -> navigate to home')
                     onBetModified()
-                    navigate('/')
+                    navigate(`/bets/${logic.getLoggedInUserId()}`)
                 })
                 .catch(error => errorHandler(error))
         } catch (error) {
@@ -88,7 +83,7 @@ function Bet({ onBetModified, onBetRemoved }) {
                 logic.removeBet(bet.id)
                     .then(() => {
                         console.log('bet removed -> navigate to home')
-                        navigate('/')
+                        navigate(`/bets/${logic.getLoggedInUserId()}`)
                         onBetRemoved()
                     })
                     .catch(error => errorHandler(error))
@@ -99,28 +94,28 @@ function Bet({ onBetModified, onBetRemoved }) {
     }
 
     return <>
-        {bet ? <section className=" flex  flex-none justify-between">
-            <div className=" max-w-30">
-                <h2 className=" text-xl">Event name: {bet.event.name}</h2>
-                <p>Event description: {bet.event.description}</p>
-                <p>Start: {utils.formatDate(bet.event.startDate)}</p>
-                <h3>Status : {bet.event.status}</h3>
-                <p className=" text-lg">Player you bet for: {bet.player.name}</p>
-                <p className=" text-lg">Amount you betted : {bet.amount}</p>
-            </div>
-            <div className=" max-w-20 flex flex-col">
-                {eventStarted && <>
+        {bet && <section className=' flex  flex-col justify-between'>
+            <div className=' flex flex-col'>
+                {!eventStarted && bet?.event.status === 'open' && <>
                     <Form onSubmit={handleSubmit}>
-                        <label htmlFor="amount">New amount to bet</label>
-                        <Input type="text" id="amount"></Input>
-                        <Button type="submit">Modify</Button>
-                        {error?.isAmountError && <span className='text-red-500'>{error.message}</span>}
+                        <label htmlFor='amount'>New amount to bet</label>
+                        <Input type='text' id='amount'></Input>
+                        <Button type='submit'>Modify</Button>
                     </Form>
-                    <Button className=" self-end w-full" onClick={handleDeleteClick}>Delete</Button>
+                    <Button className=' self-end w-full' onClick={handleDeleteClick}>Delete</Button>
                 </>
                 }
             </div>
-        </section> : error?.isAnotherError && <span className='text-red-500'>{error.message}</span>}
+            <div className=''>
+                <h2 className=' text-xl'>Event name: {bet.event.name}</h2>
+                <p>Event description: {bet.event.description}</p>
+                <p>Start: {utils.formatDate(bet.event.startDate)}</p>
+                <h3>Status : {bet.event.status}</h3>
+                <p className=' text-lg'>Player you bet for: {bet.player.name}</p>
+                <p className=' text-lg'>Amount you bet : {bet.amount}</p>
+            </div>
+
+        </section>}
 
     </>
 }

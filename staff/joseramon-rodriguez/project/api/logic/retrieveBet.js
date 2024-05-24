@@ -1,5 +1,5 @@
-import { validate, errors } from "com"
-import { User, Event, Bet, Player } from "../data/index.js"
+import { validate, errors } from 'com'
+import { User, Event, Bet, Player } from '../data/index.js'
 const { SystemError, MatchError } = errors
 
 function retrieveBet(userId, betId) {
