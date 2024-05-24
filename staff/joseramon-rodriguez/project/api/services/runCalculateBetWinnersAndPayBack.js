@@ -14,7 +14,7 @@ const cronTime = `${now.getMinutes()} ${now.getHours()} * * *` // @daily to set 
 
 const task = () => {
     console.log('task executed at: ', new Date())
-    // payWinnersAndPayBack()
+    payWinnersAndPayBack()
 }
 
 const scheduledTask = cron.schedule(cronTime, task, {

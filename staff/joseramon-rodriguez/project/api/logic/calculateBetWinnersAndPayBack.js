@@ -1,4 +1,4 @@
-import { Event, Bet, User, Payment } from '../data/index.js'
+import { Event, Bet, User } from '../data/index.js'
 import { errors } from 'com'
 
 const { SystemError, MatchError } = errors
