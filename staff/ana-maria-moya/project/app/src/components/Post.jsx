@@ -2,13 +2,17 @@ import { useState, useEffect } from 'react'
 import logic from '../logic'
 import CreateComment from './CreateComment'
 import ToggleLikeButton from './ToggleLikeButton'
+import { useNavigate } from 'react-router-dom'
 
 function Post({ post, onPostRemoved, onPostModified, userRole, user }) {
 
     const [modifyPost, setModifyPost] = useState(false)
     const [comments, setComments] = useState([])
     const [modifyComment, setModifyComment] = useState({ id: '', text: '' })
-    
+    const [userId, setUserId] = useState(null)
+
+    const navigate = useNavigate()
+
     useEffect(() => {
         refreshComments();
     }, []);
@@ -92,9 +96,18 @@ function Post({ post, onPostRemoved, onPostModified, userRole, user }) {
                     });
             }
         } catch (error) {
-            console.error(error);
+            if (error.message === 'token expired') {
+                logic.logoutUser()
 
-            alert(error.message);
+                alert('session expired')
+
+                navigate('/login')
+
+                return
+            }
+            console.error(error)
+
+            alert(error.message)
         }
     };
 
@@ -112,9 +125,18 @@ function Post({ post, onPostRemoved, onPostModified, userRole, user }) {
                     alert(error);
                 });
         } catch (error) {
-            console.error(error);
+            if (error.message === 'token expired') {
+                logic.logoutUser()
 
-            alert(error);
+                alert('session expired')
+
+                navigate('/login')
+
+                return
+            }
+            console.error(error)
+
+            alert(error.message)
         }
     }
     const handleEditComment = (commentId, commentText) => {
@@ -131,7 +153,7 @@ function Post({ post, onPostRemoved, onPostModified, userRole, user }) {
                 .then(() => {
                     onPostModified()
 
-                
+
                 })
                 .catch(error => {
                     console.error(error)
@@ -139,6 +161,16 @@ function Post({ post, onPostRemoved, onPostModified, userRole, user }) {
                     alert(error.message)
                 })
         } catch (error) {
+            if (error.message === 'token expired') {
+                logic.logoutUser()
+
+                alert('session expired')
+
+                navigate('/login')
+
+                return
+            }
+
             console.error(error)
 
             alert(error.message)
@@ -147,7 +179,26 @@ function Post({ post, onPostRemoved, onPostModified, userRole, user }) {
 
     console.debug('Post render')
 
+    useEffect(() => {
+        try {
+            const loggedUserId = logic.getLoggedInUserId()
+
+            setUserId(loggedUserId)
+        } catch (error) {
+            if (error.message === 'token expired') {
+                logic.logoutUser()
+
+                alert('session expired')
+
+                navigate('/login')
+            }
+        }
+    }, [])
+
+    const isLiked = logic.isUserLoggedIn() && post.likes.includes(userId)
+
     return (
+
         <article className="w-full md:flex">
             <h3 className="font-bold cursor-pointer">{post.author.username}</h3>
             {post.image && <img src={post.image} className="w-full" alt="Post Image" />}
@@ -184,6 +235,7 @@ function Post({ post, onPostRemoved, onPostModified, userRole, user }) {
                 </div>
             )}
 
+            <ToggleLikeButton  onClick={handleToggleLikePost} isLiked={isLiked} />
             {logic.isUserLoggedIn() && <CreateComment postId={post.id} onCommentCreated={handleCommentCreated} />}
 
 
@@ -206,7 +258,7 @@ function Post({ post, onPostRemoved, onPostModified, userRole, user }) {
                                 <button onClick={handleCancelModify}>Cancel</button>
                             </div>
                         }
-                        {comment.author.id === logic.getLoggedInUserId() && <div>
+                        {logic.isUserLoggedIn() && comment.author.id === userId && <div>
                             <button onClick={() => handleEditComment(comment.id, comment.text)}>✏</button>
                             <button onClick={() => handleRemoveComment(comment.id)}>🗑️</button>
                         </div>
@@ -215,7 +267,7 @@ function Post({ post, onPostRemoved, onPostModified, userRole, user }) {
 
 
                 ))}
-                <ToggleLikeButton onClick={handleToggleLikePost} isLiked={post.likes.includes(logic.getLoggedInUserId())} />
+
 
             </div>
         </article>

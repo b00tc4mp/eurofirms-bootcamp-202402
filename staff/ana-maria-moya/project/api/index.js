@@ -57,7 +57,7 @@ mongoose.connect(MONGO_URL)
 
                 logic.authenticateUser(email, password)
                     .then(userId => {
-                        const token = jwt.sign({ sub: userId }, JWT_SECRET, { expiresIn: '60m' })
+                        const token = jwt.sign({ sub: userId }, JWT_SECRET, { expiresIn: '50m' })
 
                         res.status(200).json(token)
                     })
@@ -127,7 +127,7 @@ mongoose.connect(MONGO_URL)
 
                 const { title, image, video, text } = req.body
 
-                logic.createPost({ userId, title, image, video, text})
+                logic.createPost({ userId, title, image, video, text })
                     .then(() => res.status(201).send())
                     .catch(error => {
                         let status = 500
@@ -162,8 +162,8 @@ mongoose.connect(MONGO_URL)
                 const { sub: userId } = jwt.verify(token, JWT_SECRET)
 
                 const { postId } = req.params
-                logic.toggleLikePost(userId,postId)
-                .then(() => res.status(204).send())
+                logic.toggleLikePost(userId, postId)
+                    .then(() => res.status(204).send())
                     .catch(error => {
                         let status = 500
 
@@ -172,7 +172,7 @@ mongoose.connect(MONGO_URL)
 
                         res.status(status).json({ error: error.constructor.name, message: error.message })
                     })
-            } catch(error){
+            } catch (error) {
                 let status = 500
 
                 if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
@@ -437,6 +437,6 @@ mongoose.connect(MONGO_URL)
             }
         })
 
-        
+
 
     })

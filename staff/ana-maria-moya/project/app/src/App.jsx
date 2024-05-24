@@ -84,7 +84,7 @@ function App() {
 
   console.debug('App render')
   return <>
-    <header className="  flex items-center border-b-2 bg-teal-700 border-black fixed top-0 w-full h-15 box-border">
+    <header className="  flex items-center border-b-2 bg-teal-700 border-black fixed top-0 w-full h-15 box-border z-10">
      
       {!user && (
         <>
@@ -98,7 +98,7 @@ function App() {
       )}
 
  <div className=' object-center h-20 w-30 '>
-        <img className= "h-20 w-30" src="/public/Logotipo-MSM-04.png" />
+        <img className= "h-20 w-30" src="logotipo-MSM-04.jpg" />
       </div>
       {user && (
         <button className="px-3 absolute inset-y-0 right-0" id="logout-button" onClick={handleLogout}>🚪</button>

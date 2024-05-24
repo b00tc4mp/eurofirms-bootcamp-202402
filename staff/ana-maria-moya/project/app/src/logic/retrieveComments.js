@@ -3,15 +3,11 @@ import { errors, validate } from 'com';
 const { SystemError } = errors;
 
 function retrieveComments(postId) {
-    validate.token(sessionStorage.token);
     validate.id(postId, 'postId');
    
 
     return fetch(`${import.meta.env.VITE_API_URL}/posts/${postId}/comments`, {
         method: 'GET',
-        headers: {
-            Authorization: `Bearer ${sessionStorage.token}`
-        }
     })
         .catch(error => { throw new SystemError(error.message) })
         .then(res => {

@@ -22,6 +22,15 @@ function CreateComment({ postId, onCommentCreated }) {
                     alert(feedback)
                 });
         } catch (error) {
+            if (error.message === 'token expired') {
+                logic.logoutUser()
+
+                alert('session expired')
+
+                navigate('/login')
+
+                return
+            }
             console.error(error)
 
             let feedback = error.message || 'Ha ocurrido un error. Por favor, intenta de nuevo.';
@@ -35,7 +44,7 @@ function CreateComment({ postId, onCommentCreated }) {
 
     return (
         showForm && (
-            <form onSubmit={handleSubmit}>
+            <form className=" p-2" onSubmit={handleSubmit}>
                 <input
                 type="text"
                 placeholder="Escribe tu comentario..."

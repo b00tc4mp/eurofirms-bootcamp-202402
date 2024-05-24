@@ -2,16 +2,14 @@ import {
     Card,
     CardHeader,
     CardBody,
-    CardFooter,
     Typography,
-    Button,
   } from "@material-tailwind/react";
    
   export function CardDefault({title, description, image}) {
     return (
-      <Card className=" bg-green-300 flex-grow flex-col mt-6 w-96">
+      <Card className=" bg-green-200 flex-grow flex-col mt-6 w-96">
        
-        <CardHeader className="relative h-56">
+        <CardHeader className="relative ">
           <img
             src={image}
             alt="card-image"
