@@ -76,7 +76,13 @@ function Offer({ offer, onOfferDeleted, onOfferUpdate }){
     }
 
     //const publishDateFormat = publishDate.getFullYear() + "-" + publishDate.getMonth() + "-" + publishDate.getDay();
-    
+    function formatDate(isDate){
+
+        const fecha = new Date(isDate)
+
+        return fecha.toLocaleDateString()
+    }
+
     console.debug("Offer render");
 
     return (
@@ -85,8 +91,8 @@ function Offer({ offer, onOfferDeleted, onOfferUpdate }){
             <h2 className="p-2"><span className="font-extrabold">Descripción:</span> { offer.description}</h2>
             <h2 className="p-2"><span className="font-extrabold">Salario:</span> { offer.minSalary}</h2>
             <h2 className="p-2"><span className="font-extrabold">Salario Máximo:</span> { offer.maxSalary}</h2>
-            <h2 className="p-2"><span className="font-extrabold">Fecha de publicación:</span> { offer.publishDate }</h2>
-            <h2 className="p-2"><span className="font-extrabold">Fecha de expiración (aprox):</span> { offer.expirationDate }</h2>
+            <h2 className="p-2"><span className="font-extrabold">Fecha de publicación:</span> { formatDate(offer.publishDate) }</h2>
+            <h2 className="p-2"><span className="font-extrabold">Fecha de expiración (aprox):</span> { formatDate(offer.expirationDate) }</h2>
             
             { offer.company.id === logic.getLoggedInUserId() && 
                 <div>
