@@ -2,13 +2,13 @@ import { validate, errors } from "com";
 
 const { SystemError } = errors;
 
-function deleteOffer(companyId, offerId) {
+function deleteOffer(offerId) {
 
     validate.token(sessionStorage.token);
     validate.id(offerId, "offerId");
     //validate.id(companyId, "companyId");
 
-    return fetch(`http://localhost:8989/users/${companyId}/offers/${offerId}`, {
+    return fetch(`http://localhost:8989/offers/${offerId}`, {
         method: 'DELETE',
         headers: { "Authorization": `Bearer ${sessionStorage.token}` },
     })

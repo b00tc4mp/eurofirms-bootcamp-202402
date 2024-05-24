@@ -10,8 +10,9 @@ function Career({ career, onCareerDeleted, onCareerUpdate }){
         
         if(!deleteConfirmed) return;
         
+        //logic.getLoggedInUserId(), Le quitamos este parámetro porque la sesión la cogemos desde la API
         try{
-            logic.deleteCareer(logic.getLoggedInUserId(), career._id)
+            logic.deleteCareer( career.id)
             .then(() => {onCareerDeleted()})
             .catch(error =>  {
 
@@ -42,7 +43,7 @@ function Career({ career, onCareerDeleted, onCareerUpdate }){
         if(!updateConfirmed) return;
         
         try{
-            logic.updateCareer(career._id, title, description, certification)
+            logic.updateCareer(career.id, title, description, certification)
                 .then(() => {
                     onCareerUpdate();
                     setChangeCareer(false)
@@ -69,10 +70,12 @@ function Career({ career, onCareerDeleted, onCareerUpdate }){
 
     console.debug("Career render");
 
+    console.log(career)
+
     return (
         <article className="border-2 border-solid border-black m-10">
             <h2 className="p-2 text-3xl font-bold">{ career.title }</h2>
-            <img src={career.certification} className="md:sm w-80 h-60 hover:w-full hover:h-full"/>
+            <img src={career.certification} className="md:sm w-80 h-60"/>
             <p className="p-2">{ career.description}</p>
             
             { career.student.id === logic.getLoggedInUserId() && 
@@ -82,8 +85,9 @@ function Career({ career, onCareerDeleted, onCareerUpdate }){
             }
         
             {!changeCareer && career.student.id === logic.getLoggedInUserId() && 
+
+                <Button className="border-2 border-solid border-white bg-green-500 text-white" onClick={()=> setChangeCareer(true)}>Editar estudio</Button>
            
-            <Button className="border-2 border-solid border-white bg-green-500 text-white" onClick={()=> setChangeCareer(true)}>Editar estudio</Button>
             }
             {changeCareer && 
             <>

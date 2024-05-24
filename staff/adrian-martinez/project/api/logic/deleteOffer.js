@@ -23,7 +23,7 @@ function deleteOffer(companyUserId, offerCompanyId){
                 throw new MatchError("The offer no exist");
             }
 
-            if(companyUserId !== offer.company.toString()){
+            if(companyUserId !== offer.company._id.toString()){
 
                 throw new MatchError("The offer is not yours");
             }

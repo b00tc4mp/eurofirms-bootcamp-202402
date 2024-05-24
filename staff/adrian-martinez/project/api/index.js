@@ -357,7 +357,7 @@ mongoose.connect(MONGO_URL)
 
                 const { targetUserId } = req.params
 
-                logic.retrieveOffersFromCompany(userId, targetUserId)
+                logic.retrieveOffersFromCompany(targetUserId)
                     .then(user => res.json(user))
                     .catch(error => {
 
@@ -420,7 +420,7 @@ mongoose.connect(MONGO_URL)
             }
         })
 
-        server.delete('/users/:targetUserId/offers/:offerId', (req, res) => {
+        server.delete('/offers/:offerId', (req, res) => {
             try {
 
                 const { authorization } = req.headers
@@ -429,9 +429,9 @@ mongoose.connect(MONGO_URL)
 
                 const { sub: userId } = jwt.verify(token, JWT_SECRET)
 
-                const { targetUserId, offerId } = req.params
+                const { offerId } = req.params
 
-                logic.deleteOffer(targetUserId, offerId)
+                logic.deleteOffer(userId, offerId)
                     .then(() => res.status(204).send())
                     .catch(error =>{
                       let status = 500;
@@ -453,7 +453,7 @@ mongoose.connect(MONGO_URL)
             }
         })
 
-        server.delete('/users/:targetUserId/careers/:careerId', (req, res) => {
+        server.delete('/careers/:careerId', (req, res) => {
             try {
 
                 const { authorization } = req.headers
@@ -462,9 +462,9 @@ mongoose.connect(MONGO_URL)
 
                 const { sub: userId } = jwt.verify(token, JWT_SECRET)
 
-                const { targetUserId, careerId } = req.params
+                const { careerId } = req.params
 
-                logic.deleteCareer(targetUserId, careerId)
+                logic.deleteCareer(userId, careerId)
                     .then(() => res.status(204).send())
                     .catch(error =>{
                       let status = 500;

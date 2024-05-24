@@ -1,6 +1,11 @@
 import { useState } from "react";
 import logic from "../logic"
 import Button from "./Button";
+/* import { createRequire } from 'node:module';
+
+const require = createRequire(import.meta.url);
+
+var dateFormat = require('dateformat'); */
 
 function Offer({ offer, onOfferDeleted, onOfferUpdate }){
 
@@ -11,7 +16,7 @@ function Offer({ offer, onOfferDeleted, onOfferUpdate }){
         if(!deleteConfirmed) return;
 
         try{
-            logic.deleteOffer(logic.getLoggedInUserId(), offer.id)
+            logic.deleteOffer(offer.id)
             .then(() => {onOfferDeleted()})
             .catch(error =>  {
 
@@ -70,6 +75,8 @@ function Offer({ offer, onOfferDeleted, onOfferUpdate }){
         setChangeOffer(false);
     }
 
+    //const publishDateFormat = publishDate.getFullYear() + "-" + publishDate.getMonth() + "-" + publishDate.getDay();
+    
     console.debug("Offer render");
 
     return (
@@ -78,8 +85,8 @@ function Offer({ offer, onOfferDeleted, onOfferUpdate }){
             <h2 className="p-2"><span className="font-extrabold">Descripción:</span> { offer.description}</h2>
             <h2 className="p-2"><span className="font-extrabold">Salario:</span> { offer.minSalary}</h2>
             <h2 className="p-2"><span className="font-extrabold">Salario Máximo:</span> { offer.maxSalary}</h2>
-            <h2 className="p-2"><span className="font-extrabold">Fecha de publicación:</span> { offer.publishDate}</h2>
-            <h2 className="p-2"><span className="font-extrabold">Fecha de expiración (aprox):</span> { offer.expirationDate}</h2>
+            <h2 className="p-2"><span className="font-extrabold">Fecha de publicación:</span> { offer.publishDate }</h2>
+            <h2 className="p-2"><span className="font-extrabold">Fecha de expiración (aprox):</span> { offer.expirationDate }</h2>
             
             { offer.company.id === logic.getLoggedInUserId() && 
                 <div>
@@ -108,7 +115,7 @@ function Offer({ offer, onOfferDeleted, onOfferUpdate }){
                    <input defaultValue={offer.maxSalary} name="maxSalary" />
 
                    <label htmlFor="publishDate">Fecha publicación de la oferta:</label>
-                   <input type="date" defaultValue={offer.publishDate} name="publishDate" required/>
+                   <input type="date" defaultValue={offer.publishDate/* dateFormat(offer.publishDate, "yyyy-mm-dd") */} name="publishDate" required/>
 
                    <label htmlFor="expirationDate">Fecha de expiración:</label>
                    <input type="date" defaultValue={offer.expirationDate} name="expirationDate" />

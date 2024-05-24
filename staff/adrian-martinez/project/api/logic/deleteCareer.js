@@ -23,13 +23,13 @@ function deleteCareer(studentUserId, careerId){
                 throw new MatchError("The career no exist");
             }
 
-            if(studentUserId !== career.student.toString()){
+            if(studentUserId !== career.student._id.toString()){
 
                 throw new MatchError("The career is not yours");
             }
                 
             //TODO Borrar sujects también (postbootcamp)
-            return Career.deleteOne({ id: career.id })
+            return Career.deleteOne({ _id: career._id })
                 .catch( error => {
                     throw new SystemError(error.message);
                 })
