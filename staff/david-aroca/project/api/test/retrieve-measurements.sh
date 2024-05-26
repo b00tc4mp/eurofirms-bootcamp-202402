@@ -1,4 +1,4 @@
- curl -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NjNhM2IxYmQyNmE4MWQ3MTc4ZjkwNDMiLCJyb2xlIjoidHJhaW5lciIsImlhdCI6MTcxNjQ3NTEzMiwiZXhwIjoxNzE2NDg1OTMyfQ.X7iZ2Ds48H_GY1Al-wJ580R-VnxCU3QJrr4eB9zFglg' http://localhost:4025/measurements -v
+ curl -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NjUwNThhZjBkZjA1ZDQ1NGVkYzk5NDYiLCJyb2xlIjoidHJhaW5lZSIsImlhdCI6MTcxNjU0MjgyNSwiZXhwIjoxNzE2NTUzNjI1fQ.FsO8_MHbqFaidM7krAlBBTMyjUI0fpAvNXcYu8ZLdG4' http://localhost:4025/measurements -v
 
 
 

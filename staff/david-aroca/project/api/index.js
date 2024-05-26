@@ -137,7 +137,7 @@ mongoose.connect(MONGO_URL)
         })
 
         // --------------------------------------------------------------------//
-        server.get('/users/', (req, res) => {
+        server.get('/users', (req, res) => {
             try {
                 const { authorization } = req.headers
 
@@ -533,7 +533,7 @@ mongoose.connect(MONGO_URL)
             }
         })
         // --------------------------------------------------------------------//
-        server.get('/measurements', (req, res) => {
+        server.get('/measurements/:targetUserId', (req, res) => {
             try {
                 const { authorization } = req.headers
 
@@ -541,7 +541,10 @@ mongoose.connect(MONGO_URL)
 
                 const { sub: userId } = jwt.verify(token, JWT_SECRET)
 
-                logic.retrieveAllMeasurements(userId)
+                const { targetUserId } = req.params
+
+
+                logic.retrieveUserMeasurements(userId, targetUserId)
                     .then(measurements => res.json(measurements))
                     .catch(error => {
                         let status = 500
@@ -760,7 +763,7 @@ mongoose.connect(MONGO_URL)
                         if (error instanceof MatchError)
                             status = 404
 
-                        res.status(status).json({ error: constructor.name, message: error.message })
+                        res.status(status).json({ error: error.constructor.name, message: error.message })
                     })
             } catch (error) {
                 let status = 500
@@ -793,7 +796,7 @@ mongoose.connect(MONGO_URL)
                         if (error instanceof MatchError)
                             status = 404
 
-                        res.status(status).json({ error: constructor.name, message: error.message })
+                        res.status(status).json({ error: error.constructor.name, message: error.message })
                     })
             } catch (error) {
                 let status = 500
@@ -823,7 +826,7 @@ mongoose.connect(MONGO_URL)
                 const { targetUserId } = req.params
 
                 logic.removeUser(userId, targetUserId)
-                    .then(userdeleted => res.json(userdeleted))
+                    .then(() => res.status(204).send())
                     .catch(error => {
                         let status = 500
 

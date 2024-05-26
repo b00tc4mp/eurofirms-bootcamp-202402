@@ -47,6 +47,12 @@ function Measurement({ measurement, onMeasurementRemoved, onMeasurementUpdated }
         }
     }
 
+    // TODO FORMATEAR DATE
+
+    // function formatDate(isoDate) {
+    //     const date = new Date(isoDate)
+    // }
+
     return (
         <div className="border border-gray-300 rounded-md p-4 mb-4">
             {modify ? (

@@ -1,4 +1,5 @@
-import logic from '../logic';
+import React from 'react'
+import logic from '../logic'
 
 function RemoveUserButton({ userId, onUserRemoved }) {
     const handleRemoveUser = () => {
@@ -22,22 +23,11 @@ function RemoveUserButton({ userId, onUserRemoved }) {
     return (
         <button
             onClick={handleRemoveUser}
-            style={{
-                backgroundColor: '#FF6347',
-                color: '#FFFFFF',
-                border: 'none',
-                borderRadius: '5px',
-                padding: '10px 20px',
-                cursor: 'pointer',
-                fontSize: '16px',
-                fontWeight: 'bold',
-                outline: 'none',
-                boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.25)',
-            }}
+            className="bg-red-500 text-white border-none rounded-md py-2 px-4 cursor-pointer text-lg font-bold outline-none shadow-md hover:bg-red-600 focus:ring-2 focus:ring-red-500 focus:ring-opacity-50"
         >
             Remove User
         </button>
     )
 }
 
-export default RemoveUserButton;
+export default RemoveUserButton
