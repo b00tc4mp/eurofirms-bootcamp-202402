@@ -62,8 +62,9 @@ function Profile() {
                         {user && 
                         <>
                             <h1 className="text-3xl font-bold">{user.name} {user.surnames}</h1><br/>
-                            <h1 className="text-xl">Edad: {user.age}</h1>
-                            <h1 className="text-xl ">Correo: {user.email}</h1>
+                            <h1 className="text-xl"><span className="font-extrabold">Edad:</span> {user.age}</h1>
+                            <h1 className="text-xl "><span className="font-extrabold">Correo:</span> {user.email}</h1>
+
                         </>
                         }
                         
@@ -88,8 +89,12 @@ function Profile() {
                             {!user && <p>Loading...</p>}
                             {user && 
                             <>
-                                <h1 className="text-3xl font-bold">Admin de {user.name}</h1><br/>
-                                <h1 className="text-xl ">Correo: {user.email}</h1>
+                                <h1 className="text-3xl font-bold">{user.name}</h1><br/>
+                                <h2 className="text-xl "><span className="font-extrabold">Actividad:</span> {user.activity}</h2>
+                                <h2 className="text-xl "><span className="font-extrabold">Ubicación:</span> {user.address}</h2>
+                                <h2 className="text-xl "><span className="font-extrabold">Correo:</span> <a href="https://www.gmail.com/mail/help/intl/es/about.html?iframe" target="_blank">{user.email}</a></h2>
+
+                                <p className='p-4 float-right italic font-extrabold'>Para inscribirse a una oferta es necesario enviar tu CV al correo de la empresa. Mucha suerte! </p>
                             </>
                             }
 

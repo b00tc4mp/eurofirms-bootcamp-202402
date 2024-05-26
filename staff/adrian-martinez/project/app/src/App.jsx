@@ -41,7 +41,7 @@ function App() {
 
   return (
       <Routes>
-          <Route path="/" element={<Inicio onClickLogin={handleUserLogin} onClickRegister={handleUserRegister} onClickParaQuienEs={handleParaQuienEs} onClickTutorial={handleTutorial} onClickContacto={handleContacto} onClickListarUsers={handleListarUsers} />} /> 
+          <Route path="/" element={<Inicio onUserLoggedIn={handleUserLoggedIn} onClickLogin={handleUserLogin} onClickRegister={handleUserRegister} onClickParaQuienEs={handleParaQuienEs} onClickTutorial={handleTutorial} onClickContacto={handleContacto} onClickListarUsers={handleListarUsers} />} /> 
           <Route path="/login" element={<Login onUserLoggedIn={handleUserLoggedIn} onClickResetPassword={handleResetPassword} onClickInicio={handleInicio}/> }/>
           <Route path="/register" element={<Register onClickRegister={handleUserRegister} onClickLogin={handleUserLogin} onClickInicio={handleInicio}/> }/>
           <Route path="/paraQuienEs" element={<ParaQuienEs onClickParaQuienEs={handleParaQuienEs} onClickTutorial={handleTutorial} onClickContacto={handleContacto} onClickLogin={handleUserLogin} onClickRegister={handleUserRegister} onClickInicio={handleInicio}/>}/>

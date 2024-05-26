@@ -75,18 +75,18 @@ function Career({ career, onCareerDeleted, onCareerUpdate }){
     return (
         <article className="border-2 border-solid border-black m-10">
             <h2 className="p-2 text-3xl font-bold">{ career.title }</h2>
-            <img src={career.certification} className="md:sm w-80 h-60"/>
+            <img className="p-2 md:sm w-80 h-60" src={career.certification} />
             <p className="p-2">{ career.description}</p>
             
             { career.student.id === logic.getLoggedInUserId() && 
                 <div>
-                    <Button className="border-2 border-solid border-white bg-red-500 text-white" onClick={ handleDeleteCareer }>Borrar</Button>
+                    <Button className="bg-red-500 text-white m-2 border-solid border-2 border-black" onClick={ handleDeleteCareer }>Borrar estudio</Button>
                 </div>
             }
         
             {!changeCareer && career.student.id === logic.getLoggedInUserId() && 
 
-                <Button className="border-2 border-solid border-white bg-green-500 text-white" onClick={()=> setChangeCareer(true)}>Editar estudio</Button>
+                <Button className="bg-green-500 text-white m-2 border-solid border-2 border-black" onClick={()=> setChangeCareer(true)}>Editar estudio</Button>
            
             }
             {changeCareer && 

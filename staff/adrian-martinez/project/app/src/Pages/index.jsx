@@ -3,46 +3,8 @@ import { errors, validate } from "com"
 
 const { SystemError } = errors;
 
-function Inicio({ onClickLogin , onClickRegister, onClickParaQuienEs, onClickTutorial, onClickContacto, onClickListarUsers, numUsers}) {
+function Inicio({ onClickLogin , onClickRegister, onClickParaQuienEs, onClickTutorial, onClickContacto, onClickListarUsers}) {
 
-    /* const numUsers = 0
-    function numUsers(numUsers){
-       
-            try {
-                logic.retrieveUsers()
-                    .then(user => {
-                        
-                        numUsers ++
-                    })
-                    .catch(error => {
-                        console.error(error.message)
-    
-                        let feedback = error.message
-    
-                        if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
-                            feedback = `${feedback}, please correct it`
-                        else if (error instanceof MatchError)
-                            feedback = `${feedback}, please verify user`
-                        else
-                            feedback = 'sorry, there was an error, please try again later'
-    
-                        alert(feedback)
-                    })
-            } catch (error) {
-                console.error(error.message)
-    
-                let feedback = error.message
-    
-                if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
-                    feedback = `${feedback}, please correct it`
-                else
-                    feedback = 'sorry, there was an error, please try again later'
-    
-                alert(feedback)
-            }
-    
-        return numUsers;
-    } */
     const handleClickUserLogin = () => {
       
         onClickLogin();
@@ -79,9 +41,18 @@ function Inicio({ onClickLogin , onClickRegister, onClickParaQuienEs, onClickTut
             <div id="app">FormativeLife</div>
             <div className="titular"><i>Busca o atrae talento</i></div>
             <div id="area-perfil">
-                
                 <button className="login" onClick={handleClickUserLogin}>Iniciar Sesión</button>
                 <button className="register" onClick={handleClickUserRegister}>Crear cuenta</button>
+                {/* {
+                    !logic.isUserLoggedIn && 
+                    <>
+                    <button className="login" onClick={handleClickUserLogin}>Iniciar Sesión</button>
+                    <button className="register" onClick={handleClickUserRegister}>Crear cuenta</button>
+                    </>
+                }
+                {
+                    logic.isUserLoggedIn && <button className="buscar" ><a href="/home">Volver a tu perfil</a></button>
+                } */}
             </div><br/><br/>
             {/* <div id="area-perfil mt-10">
                 Usuarios registrados: 

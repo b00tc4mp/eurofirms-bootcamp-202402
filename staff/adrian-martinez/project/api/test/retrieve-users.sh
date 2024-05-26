@@ -1,1 +1,1 @@
-curl -X GET -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NjNhMzdkNTA0NTJmMzNhYjFmZjlmMGEiLCJyb2xlIjoic3R1ZGVudCIsImlhdCI6MTcxNjIwMDk0NSwiZXhwIjoxNzE2MjAyNzQ1fQ.9WTDn_AO1kpt1tjEASDRptx1Pyp-8XEtd44G4vwK56Q' http://127.0.0.1:8989/users/663b9e3ec9ea935164211c54 -v
+curl -X GET -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NjNmZGViMmE0ZjhjNWE4ZmFkYTFmZTgiLCJyb2xlIjoic3R1ZGVudCIsImlhdCI6MTcxNjc0MDY3MiwiZXhwIjoxNzE2NzQyNDcyfQ.toDxoECkRVgQuODDr_1sC_boIr_OaUQZ7f5gmhJDHVY' http://127.0.0.1:8989/users -v

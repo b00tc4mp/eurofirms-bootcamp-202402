@@ -23,7 +23,7 @@ function Contacto(props) {
             </aside>
             <container id="container">
                 <section>
-                    <h2 className="font-bold text-xl">Contacto</h2><br/><br/><br/>
+                    <h2 className="font-bold text-xl">Contacto</h2><br/>
                     <h2 className="font-bold text-lf">Correo:</h2><span className="text-lf">adrianmi.info@gmail.com</span>
                     <h2 className="font-bold text-lf">Teléfono:</h2><span className="text-lf">608501323</span>
                     

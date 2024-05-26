@@ -66,16 +66,13 @@ function Home(props) {
             <div id="app" onClick={props.onClickInicio}>FormativeLife</div>
             <div className="titular"><i>Actualiza tu perfil</i></div>
             <div id="area-perfil">
-                <button className="login" onClick={handleLogout}>Cerrar Sesión</button>
+                <button className="button m-4" onClick={props.onClickInicio}>Página principal 🏚️</button>
+                <button className="login button" onClick={handleLogout}>Cerrar Sesión</button>
             </div>
             <div id="area-buscador">
                 <form className="form">
-                    {/* <label htmlFor="ciudad">Ciudad: </label>
-                    <input className="input" type="text" id="ciudad" placeholder="Ejemplo: Coruña"/>
-
-                    &nbsp;<label htmlFor="ciudad">Área profesional: </label>
-                    <input className="input" type="text" id="ciudad" placeholder="Ejemplo: Desarrollo Web"/> */}
-                    <button className="buscar" onClick={props.onClickListarUsers}>Buscar ofertas</button>
+                    {/* Hacer buscador por area profesional si da tiempo */}
+                    <button className="buscar" onClick={props.onClickListarUsers}>Buscar empresas y ver ofertas</button>
                 </form>
             </div>
         </header>
@@ -86,15 +83,15 @@ function Home(props) {
                     {user && 
                     <>
                         <h1 className="text-3xl font-bold">{user.name} {user.surnames}</h1><br/>
-                        <h1 className="text-xl">Edad: {user.age}</h1>
-                        <h1 className="text-xl ">Correo: {user.email}</h1>
+                        <h2 className="text-xl"><span className="font-extrabold">Edad:</span> {user.age}</h2>
+                        <h2 className="text-xl"><span className="font-extrabold">Correo:</span> {user.email}</h2>
                     </>
                     }
                     
                 </section>
                 <section>
                     <div className="mr-40">
-                        <button className="button" onClick={ handleCreateCareerClick }>Añadir estudios ➕</button>
+                        <button className="button m-4" onClick={ handleCreateCareerClick }>Añadir estudios ➕</button>
                     </div>
                     <CareersStudent targetUserId={logic.getLoggedInUserId()} refreshStamp={ refreshStamp }/>
                 </section>
@@ -103,7 +100,7 @@ function Home(props) {
             </container>
         </main>
         <footer className="footer">
-            <button className="button mr-60" onClick={props.onClickInicio}>Página principal 🏚️</button>
+            
         </footer>
     </>
     )

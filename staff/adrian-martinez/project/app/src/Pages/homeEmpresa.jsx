@@ -66,9 +66,11 @@ function HomeEmpresa(props) {
             <div id="app" onClick={props.onClickInicio}>FormativeLife</div>
             <div className="titular"><i>Busca o atrae talento</i></div>
             <div id="area-perfil">
-                <button className="login" onClick={handleLogout}>Cerrar Sesión</button>
+                <button className="button m-4" onClick={props.onClickInicio}>Página principal 🏚️</button>
+                <button className="login button" onClick={handleLogout}>Cerrar Sesión</button>
             </div>
             <div id="area-buscador">
+                {/* Hacer buscador por area profesional si da tiempo */}
                 <form className="form">
                     <button className="buscar"  onClick={props.onClickListarUsers}>Buscar estudiantes</button>
                 </form>
@@ -81,14 +83,16 @@ function HomeEmpresa(props) {
                         {user && 
                         <>
                             <h1 className="text-3xl font-bold">Admin de {user.name}</h1><br/>
-                            <h1 className="text-xl ">Correo: {user.email}</h1>
+                            <h2 className="text-xl "><span className="font-extrabold">Actividad:</span> {user.activity}</h2>
+                            <h2 className="text-xl "><span className="font-extrabold">Ubicación:</span> {user.address}</h2>
+                            <h2 className="text-xl "><span className="font-extrabold">Correo:</span> {user.email}</h2>
                         </>
                         }
 
                     </section>
                     <section>
                     <div className="mr-40">
-                        <button className="button" onClick={ handleCreateOfferClick }>Añadir oferta ➕</button>
+                        <button className="button m-2" onClick={ handleCreateOfferClick }>Añadir oferta ➕</button>
                     </div>
                     <OffersCompany targetUserId={logic.getLoggedInUserId()} refreshStamp={ refreshStamp }/>
                 </section>
@@ -97,7 +101,7 @@ function HomeEmpresa(props) {
             </container>
         </main>
         <footer className="footer">
-            <button className="button mr-60" onClick={props.onClickInicio}>Página principal 🏚️</button>
+            
         </footer>
     </>
     )
