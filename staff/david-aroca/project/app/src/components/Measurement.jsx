@@ -25,7 +25,6 @@ function Measurement({ measurement, onMeasurementRemoved, onMeasurementUpdated }
         event.preventDefault()
 
         const form = event.target
-
         const date = form.date.value
         const weight = form.weight.value
         const torso = form.torso.value
@@ -47,11 +46,10 @@ function Measurement({ measurement, onMeasurementRemoved, onMeasurementUpdated }
         }
     }
 
-    // TODO FORMATEAR DATE
-
-    // function formatDate(isoDate) {
-    //     const date = new Date(isoDate)
-    // }
+    function formatDate(isoDate) {
+        const date = new Date(isoDate)
+        return date.toLocaleDateString()
+    }
 
     return (
         <div className="border border-gray-300 rounded-md p-4 mb-4">
@@ -127,7 +125,7 @@ function Measurement({ measurement, onMeasurementRemoved, onMeasurementUpdated }
                 </form>
             ) : (
                 <div>
-                    <p className="text-lg"><strong>Date:</strong> {measurement.date}</p>
+                    <p className="text-lg"><strong>Date:</strong> {formatDate(measurement.date)}</p>
                     <p className="text-lg"><strong>Weight:</strong> {measurement.weight} kg</p>
                     <p className="text-lg"><strong>Torso:</strong> {measurement.torso} cm</p>
                     <p className="text-lg"><strong>Legs:</strong> {measurement.legs} cm</p>

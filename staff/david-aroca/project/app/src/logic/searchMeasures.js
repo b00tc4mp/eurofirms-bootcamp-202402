@@ -2,14 +2,12 @@ import { errors, validate, } from "com"
 
 const { SystemError } = errors
 
-// TODO 
-
 function searchMeasures(startDate, endDate) {
     validate.token(sessionStorage.token)
     // validate.date(startDateQuery, 'startDateQuery')
     // validate.date(endDateQuery, 'endDateQuery')
 
-    return fetch(`${import.meta.env.VITE_API_URL}/measurements/search?startDate=${startDate}&endDate=${endDate}`, {
+    return fetch(`${import.meta.env.VITE_API_URL}/measurement/search?startDate=${startDate}&endDate=${endDate}`, {
         method: 'GET',
         headers: {
             Authorization: `Bearer ${sessionStorage.token}`

@@ -713,7 +713,7 @@ mongoose.connect(MONGO_URL)
         })
 
         // --------------------------------------------------------------------//
-        server.get('/measurements/search', (req, res) => {
+        server.get('/measurement/search', (req, res) => {
             try {
                 const { startDate, endDate } = req.query
 
@@ -745,6 +745,7 @@ mongoose.connect(MONGO_URL)
                 res.status(status).json({ error: error.constructor.name, message: error.message })
             }
         })
+
 
         // --------------------------------------------------------------------//
         server.get('/trainers/', (req, res) => {
