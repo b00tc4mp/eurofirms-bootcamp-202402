@@ -88,13 +88,13 @@ function App() {
      
       {!user && (
         <>
-          <button className="px-3 ml-36 text-white" onClick={handleRegisterClick}>Register</button>
-          <button className="px-3  text-white" onClick={handleLoginClick}>Login</button>
+          <button className="px-1 rounded-md border mr-2 text-white" onClick={handleRegisterClick}>Register</button>
+          <button className="px-1 rounded-md border text-white" onClick={handleLoginClick}>Login</button>
         </>
       )}
 
       {user && (
-        <h1 className='text-white text-start p-8'>Hola,{user.name}!</h1>
+        <h1 className='text-white text-start  p-8'>Hola,{user.name}!</h1>
       )}
 
  <div className=' object-center h-20 w-30 '>

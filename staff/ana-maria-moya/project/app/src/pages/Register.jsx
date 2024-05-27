@@ -6,7 +6,7 @@ const {ContentError, DuplicityError} = errors
 
 function Register({ onUserRegistered, onLoginClick}) {
     const handleSubmit = event => {
-        EventTarget.preeventDefault()
+       event.preventDefault()
 
         const form = event.target 
 
@@ -64,7 +64,7 @@ function Register({ onUserRegistered, onLoginClick}) {
         <input className=" rounded-md border-b-2 border-green-900" type="text" id="name" />
 
         <label htmlFor="surname">Surname</label>
-        <input className=" rounded-md border-b-2 border-green-900" type="text" id="username" />
+        <input className=" rounded-md border-b-2 border-green-900" type="text" id="surname" />
 
         <label htmlFor="birthdate">Birthdate</label>
         <input className=" rounded-md border-b-2 border-green-900" type="date" id="birthdate" />

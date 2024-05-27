@@ -22,6 +22,7 @@ regular user
 ### UI Design
 
 TODO Figma
+https://www.figma.com/design/PjnAnqxkvKaFJ1dRMr6TnD/WEB-PROJECT?node-id=1-2&t=SkNOBpu296zzlGsN-1
 
 ## TECHNICAL DESCRIPTION
 
@@ -63,4 +64,3 @@ Comment
 - post (Post.id, required)
 - author (User.id, required)
 - text (string, required)
-- date (date, required)

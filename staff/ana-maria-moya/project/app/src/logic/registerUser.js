@@ -12,7 +12,7 @@ function registerUser(name, surname, birthdate, email, password) {
     return fetch(`${import.meta.env.VITE_API_URL}/users`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, birthdate, email, username, password })
+        body: JSON.stringify({ name, birthdate, email, surname, password })
     })
         .catch(error => { throw new SystemError(error.message) })
         .then(res => {
@@ -23,7 +23,7 @@ function registerUser(name, surname, birthdate, email, password) {
                 .then(body => {
                     const { error, message } = body
 
-                    const constructor = errors[errors]
+                    const constructor = errors[error]
 
                     throw new constructor(message)
                 })

@@ -197,9 +197,16 @@ function Post({ post, onPostRemoved, onPostModified, userRole, user }) {
 
     const isLiked = logic.isUserLoggedIn() && post.likes.includes(userId)
 
+    function formatDate(isoDate) {
+        const date = new Date(isoDate)
+        
+        return date.toLocaleString()
+        
+    }
+
     return (
 
-        <article className="w-full md:flex">
+        <article className="w-full md:flex bg-white p-2">
             <h3 className="font-bold cursor-pointer">{post.author.username}</h3>
             {post.image && <img src={post.image} className="w-full" alt="Post Image" />}
             {post.video && (
@@ -221,7 +228,7 @@ function Post({ post, onPostRemoved, onPostModified, userRole, user }) {
                     <button className="px-3" type="submit">✅</button>
                 </form>
             )}
-            <time className="block text-right text-xs">{post.date}</time>
+            <time className="block text-right text-xs">{formatDate(post.date)}</time>
             {userRole === "admin" && (
                 <div>
                     <button className="px-3" onClick={handleModifyPost}>📝</button>
