@@ -1,7 +1,6 @@
 import { errors, validate, } from "com";
 
 const { SystemError } = errors
-// TODO ROLE ON TOKEN?
 function retrieveUsers() {
     validate.token(sessionStorage.token)
 

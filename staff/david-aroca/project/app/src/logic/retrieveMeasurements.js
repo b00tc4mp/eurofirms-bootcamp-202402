@@ -5,6 +5,8 @@ const { SystemError } = errors
 function retrieveMeasurements() {
     validate.token(sessionStorage.token)
 
+    // filtrado de fechas TODO
+
     return fetch(`${import.meta.env.VITE_API_URL}/measurements`, {
         method: 'GET',
         headers: {

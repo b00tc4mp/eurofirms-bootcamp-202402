@@ -1,100 +1,102 @@
 # FitFuel
 
-![](https://media.tenor.com/aD7y5Tg9BzwAAAAM/web-design-modern-web-gif.gif)
+![FitFuel](https://media.tenor.com/aD7y5Tg9BzwAAAAM/web-design-modern-web-gif.gif)
 
-
-A application to make easyer thing at time to training,track your procces,and have fast access to your trainings and diets.
+Welcome to FitFuel, your ultimate companion for achieving a healthier lifestyle. Our application is designed to simplify your fitness journey by providing tools for training, progress tracking, and easy access to workout routines and diet plans.
 
 ## Functional Description
 
 ### Use Cases
 
-trainee
+#### Trainee
 
-- add measures (height, arms, legs, ... date)
-- filter measures (by date)
-- delete measure
-- edit measure
+- **Add Measures:** Record measurements such as height, arms, legs, etc., along with the date.
+- **Filter Measures:** Filter measurements by date for easy tracking.
+- **Delete Measure:** Remove unwanted measurements from your records.
+- **Edit Measure:** Modify existing measurements as needed.
 
-- filter exercises (by query)
-- view exercise
+- **Filter Exercises:** Search and filter exercises by query.
+- **View Exercise:** Access detailed information about specific exercises.
 
-- filter diets (by query)
-- view diet
+- **Filter Diets:** Search and filter diets by query.
+- **View Diet:** Explore detailed information about different diet plans.
+<!-- 
+- **Follow Trainer:** Follow your preferred trainer for personalized guidance.
+- **Unfollow Trainer:** Unfollow trainers when necessary. -->
 
-- follow trainer
-- unfollow trainer
+#### Trainer
 
-trainer
+- **Filter Exercises:** Easily search and filter exercises.
+- **View Exercise:** Access detailed information about each exercise.
+- **Add Exercise:** Add new exercises to the database.
+- **Edit Exercise:** Modify existing exercises as needed.
+- **Delete Exercise:** Remove exercises from the database.
 
-- filter exercises
-- view exercise
-- add exercise
-- edit exercise
-- delete exercise
+- **Filter Diets:** Search and filter diets.
+- **View Diet:** Access detailed information about each diet plan.
+- **Add Diet:** Add new diet plans to the database.
+- **Edit Diet:** Modify existing diet plans as needed.
+- **Delete Diet:** Remove diet plans from the database.
 
-- filter diets
-- view diet
-- add diet
-- edit diet
-- delete diet
-
-- filter trainees
-- follow trainee
-- unfollow trainee
-- view trainee (measures)
+- **Filter Trainees:** Search and filter trainees.
+- **Remove Trainee:** Remove trainees when necessary.
+- **View Trainee (Measures):** Access measurements recorded by trainees.
 
 ### UI Design
+
+Check out the UI design on [Figma](https://www.figma.com/design/krCU3FV6lX2u5QBdp7hon5/FUELFIT?node-id=0-1&t=hk0u2kq0cmTILBV8-0).
 
 
 ## Technical Description
 
 ### Technologies
 
+- JavaScript
 - React
-- Tailwind
-- JavaScritpt
-- Moongose
+- Node
 - Express
-
+- MongoDB
+- Tailwind CSS
+- Mongoose
+- JSON Web Token
+- React Charts
 
 ### Modules
 
-- API (server)
-- APP (client)
+- API (Server)
+- APP (Client)
 
 ### Data Model
 
-User
-- id (auto)
+#### User
+- id (auto-generated)
 - name (string, required)
 - surname (string, required)
 - email (string, required)
 - password (string, required)
 - role (string, required, enum: trainee|trainer)
-- following (array of User.id, optional)
+<!-- - following (array of User.id, optional) -->
 
-Measurement
-- id (auto)
-- user(User.id,required)
-- date(date,required)
-- weight(number,required)
-- torso(number,required)
-- legs(number,required)
+#### Measurement
+- id (auto-generated)
+- user (User.id, required)
+- date (date, required)
+- weight (number, required)
+- torso (number, required)
+- legs (number, required)
 
-
-Exercise
-- id (auto)
+#### Exercise
+- id (auto-generated)
 - title (string, required)
 - description (string, required)
 - image (string, optional)
 - video (string, optional)
 
-Diet
-- id (auto)
+#### Diet
+- id (auto-generated)
 - title (string, required)
 - description (string, required)
 - image (string, optional)
 - video (string, optional)
 
-
+With FitFuel, achieving your fitness goals has never been easier. Start your journey today and transform your life with our comprehensive fitness platform!

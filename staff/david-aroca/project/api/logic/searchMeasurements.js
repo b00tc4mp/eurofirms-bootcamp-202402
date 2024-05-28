@@ -8,7 +8,6 @@ function searchMeasurements(userId, startDateQuery, endDateQuery) {
     validate.date(startDateQuery, 'startDateQuery')
     validate.date(endDateQuery, 'endDateQuery')
 
-
     const startDate = new Date(startDateQuery)
     const endDate = new Date(endDateQuery)
 

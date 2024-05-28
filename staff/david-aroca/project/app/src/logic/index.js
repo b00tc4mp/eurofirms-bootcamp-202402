@@ -33,7 +33,7 @@ import retrieveTrainer from "./retrieveTrainer"
 
 import searchDiets from "./searchDiets"
 import searchExercises from "./SearchExercises"
-import searchMeasures from "./searchMeasures"
+import searchMeasurements from "./searchMeasurements"
 
 
 const logic = {
@@ -59,7 +59,7 @@ const logic = {
     retrieveUsers,
     searchDiets,
     searchExercises,
-    searchMeasures,
+    searchMeasurements,
     retrieveUserMeasurements,
     getLoggedInUserId,
     retrieveTrainees,

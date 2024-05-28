@@ -42,7 +42,7 @@ function Measurements({ refreshStamp }) {
 
     const searchMeasures = () => {
         try {
-            logic.searchMeasures(startDate, endDate)
+            logic.searchMeasurements(startDate, endDate)
                 .then(measures => setMeasurements(measures))
                 .catch(error => {
                     console.log(error)

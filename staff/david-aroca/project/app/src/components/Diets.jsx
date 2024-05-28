@@ -18,8 +18,6 @@ function Diets({ refreshStamp }) {
         const querySearched = event.target.query.value
 
         setSearchParams({ q: querySearched })
-
-        // logic.searchDiet(query)
     }
 
     const refreshDiets = () => {
@@ -46,14 +44,12 @@ function Diets({ refreshStamp }) {
                 })
         } catch (error) {
             console.log(error)
-
             alert(error.message)
         }
     }
 
     useEffect(() => {
         if (query) searchDiets()
-
         else refreshDiets()
     }, [refreshStamp, query])
 
@@ -69,8 +65,6 @@ function Diets({ refreshStamp }) {
         refreshDiets()
         setShowCreateDiet(false)
     }
-
-    // TODO SI NO SOY ENTRENADOR QUE NO PUEDA VER EL BOTON DE CREAR
 
     return (
         <section className="flex flex-col gap-6 px-2 py-14">
@@ -92,13 +86,16 @@ function Diets({ refreshStamp }) {
             {showCreateDiet && userRole === 'trainer' && (
                 <CreateDiet onCancelClick={handleCancelCreateDiet} onDietCreated={handleDietCreated} />
             )}
-            <button className="fixed right-0 top-20 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded z-10" onClick={handleCreateDietClick}>
-                Create Diet
-            </button>
+
+            {userRole === 'trainer' && (
+                <button className="fixed right-0 top-20 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded z-10" onClick={handleCreateDietClick}>
+                    Create Diet
+                </button>
+            )}
+
             {diets.map(diet => (
                 <Diet key={diet.id} diet={diet} onDietRemoved={handleDietRemoved} onDietModified={handleDietUpdated} />
             ))}
-
         </section>
     )
 }

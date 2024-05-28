@@ -14,8 +14,6 @@ function extractYouTubeID(url) {
 
 function Diet({ diet, onDietRemoved, onDietModified }) {
     const [modify, setModify] = useState(false)
-    // TODO  SI NO SOY DUEÑO DE LA DIETA QUE NO ME SALGAN LOS BOTONES PARA PODER MODIFICARLA 
-    // TODO PROBLEMAS CON USERID
     const userId = logic.getLoggedInUserId()
     const isOwner = diet.author.id === userId
 
@@ -103,7 +101,6 @@ function Diet({ diet, onDietRemoved, onDietModified }) {
                     <button className="bg-gray-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onClick={() => setModify(false)}>Cancel</button>
                 ) : (
                     <>
-                        {/* TODO */}
                         {isOwner && <div>
                             <button className="bg-gray-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onClick={handleModifyDiet}>📝 Modify</button>
                             <button className="bg-gray-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onClick={handleRemoveDiet}>🗑️ Remove</button>

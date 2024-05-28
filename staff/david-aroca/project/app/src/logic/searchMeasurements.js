@@ -2,10 +2,12 @@ import { errors, validate, } from "com"
 
 const { SystemError } = errors
 
-function searchMeasures(startDate, endDate) {
+
+// TODO RENOMBRAR
+function searchMeasurements(startDate, endDate) {
     validate.token(sessionStorage.token)
-    // validate.date(startDateQuery, 'startDateQuery')
-    // validate.date(endDateQuery, 'endDateQuery')
+    validate.date(startDate, 'startDate')
+    validate.date(endDate, 'endDate')
 
     return fetch(`${import.meta.env.VITE_API_URL}/measurement/search?startDate=${startDate}&endDate=${endDate}`, {
         method: 'GET',
@@ -30,4 +32,4 @@ function searchMeasures(startDate, endDate) {
                 })
         })
 }
-export default searchMeasures
+export default searchMeasurements

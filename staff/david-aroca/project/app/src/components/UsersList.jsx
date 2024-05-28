@@ -7,7 +7,6 @@ function UsersList() {
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
 
-    // TODO NO VEO A NADIE 
     useEffect(() => {
         retrieveUsers()
             .then(users => {
