@@ -1,24 +1,23 @@
-import { validate, errors } from '../com';
+import { validate, errors, utils } from '../com';
 import SessionStorage from 'react-native-session-storage';
 
 const { SystemError } = errors
 
-function retrieveProductDetails(productId) {
+function retrieveUserProductSaved() {
     validate.token(SessionStorage.getItem('token'))
-    validate.id(productId, 'productId')
 
+    const { sub: userId } = utils.extractPayload(SessionStorage.getItem('token'))
 
-    return fetch(`${process.env.EXPO_PUBLIC_API_URL}/products/${productId}`, {
+    return fetch(`${process.env.EXPO_PUBLIC_API_URL}/products/${userId}/saved`, {
         method: 'GET',
         headers: {
             Authorization: `Bearer ${SessionStorage.getItem('token')}`
         }
     })
-        .catch(error => { throw new Error(error.message) })
+        .catch(error => { throw new SystemError(error.message) })
         .then(res => {
             if (res.status === 200) return res.json()
-                .catch(error => { throw new SystemError(error.message) })
-                .then(product => product)
+                .catch(error => { throw new SystemError })
 
             return res.json()
                 .catch(error => { throw new SystemError(error.message) })
@@ -29,7 +28,8 @@ function retrieveProductDetails(productId) {
 
                     throw new constructor(message)
                 })
+
         })
 }
 
-export default retrieveProductDetails
+export default retrieveUserProductSaved

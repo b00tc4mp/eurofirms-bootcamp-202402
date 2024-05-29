@@ -1,5 +1,5 @@
-import mongoose from "mongoose";
-import registerSeller from "./registerSeller.js";
+import mongoose from 'mongoose';
+import registerSeller from './registerSeller.js';
 
 mongoose.connect('mongodb://localhost:27017/project')
     .catch(error => console.error(error))

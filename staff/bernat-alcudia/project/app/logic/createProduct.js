@@ -5,7 +5,7 @@ const { SystemError } = errors
 
 function createProduct(images, title, description, brand, price, state, stock) {
     validate.token(SessionStorage.getItem('token'))
-    validate.base64(images)
+    validate.images(images)
     validate.string(title, 'title')
     validate.description(description)
     validate.string(brand, 'brand')

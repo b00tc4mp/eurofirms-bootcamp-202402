@@ -1,5 +1,5 @@
-import mongoose from "mongoose";
-import retrieveProducts from "./retrieveProducts.js";
+import mongoose from 'mongoose';
+import retrieveProducts from './retrieveProducts.js';
 
 mongoose.connect('mongodb://localhost:27017/project')
     .then(() => {

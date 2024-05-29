@@ -1,5 +1,5 @@
-import { useState, useEffect, } from "react";
-import logic from "../logic";
+import { useState, useEffect, } from 'react';
+import logic from '../logic';
 import { View, Image, StyleSheet, ScrollView, Button, TextInput, Alert } from 'react-native';
 import { useRoute, useNavigation } from '@react-navigation/native';
 import * as ImagePicker from 'expo-image-picker';
@@ -86,16 +86,16 @@ function ModifyProduct() {
 
     return <ScrollView>
         <View>
-            <Button title="Select Image" onPress={selectImage} />
-            <Button title="Take Picture" onPress={takePicture} />
+            <Button title='Select Image' onPress={selectImage} />
+            <Button title='Take Picture' onPress={takePicture} />
             <Image style={styles.logo} source={{ uri: images }}></Image>
-            <TextInput value={title} onChangeText={setTitle} placeholder="title" />
-            <TextInput value={brand} onChangeText={setBrand} placeholder="brand" />
-            <TextInput value={price} onChangeText={setPrice} placeholder="price" />
-            <TextInput value={state} onChangeText={setState} placeholder="state" />
-            <TextInput value={stock} onChangeText={setStock} placeholder="stock" />
-            <TextInput value={description} onChangeText={setDescription} placeholder="description" />
-            <Button title="Modify" onPress={handleModifyProduct} />
+            <TextInput value={title} onChangeText={setTitle} placeholder='title' />
+            <TextInput value={brand} onChangeText={setBrand} placeholder='brand' />
+            <TextInput value={price} onChangeText={setPrice} placeholder='price' />
+            <TextInput value={state} onChangeText={setState} placeholder='state' />
+            <TextInput value={stock} onChangeText={setStock} placeholder='stock' />
+            <TextInput value={description} onChangeText={setDescription} placeholder='description' />
+            <Button title='Modify' onPress={handleModifyProduct} />
         </View>
     </ScrollView >
 

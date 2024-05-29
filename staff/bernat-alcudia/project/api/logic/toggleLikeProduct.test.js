@@ -1,11 +1,11 @@
 import mongoose from 'mongoose';
-import retrieveUser from './retrieveUser.js';
+import toggleLikeProduct from './toggleLikeProduct.js';
 
 mongoose.connect('mongodb://localhost:27017/project')
     .then(() => {
         try {
-            retrieveUser('663ccaeac792d77a1492d494', '663ccaeac792d77a1492d494')
-                .then(user => console.log('user retrieved', user))
+            toggleLikeProduct('663ccaeac792d77a1492d494', '664764cb14c29838e365765e')
+                .then(() => console.log('product liked'))
                 .catch(error => console.error(error))
         } catch (error) {
             console.error(error)

@@ -1,5 +1,5 @@
-import mongoose from "mongoose";
-import modifyProduct from "./modifyProduct.js";
+import mongoose from 'mongoose';
+import modifyProduct from './modifyProduct.js';
 
 mongoose.connect('mongodb://localhost:27017/project')
     .then(() => {

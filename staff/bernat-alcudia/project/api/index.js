@@ -82,8 +82,16 @@ mongoose.connect(MONGO_URL)
 
                 logic.authenticateUser(username, password)
                     .then(user => {
-                        const token = jwt.sign({ sub: user.userId, role: user.role }, JWT_SECRET, { expiresIn: '60m' })
+                        const token = jwt.sign({ sub: user.id, role: user.role }, JWT_SECRET, { expiresIn: '60m' })
                         res.status(200).json(token)
+                    })
+                    .catch(error => {
+                        let status = 500
+
+                        if (error instanceof MatchError)
+                            status = 404
+
+                        res.status(status).json({ error: error.constructor.name, message: error.message })
                     })
             } catch (error) {
                 let status = 500
@@ -194,7 +202,7 @@ mongoose.connect(MONGO_URL)
 
 
         // ---------------------------------Retrieve Products Detail---------------------------------
-        server.get('/product/:productId', (req, res) => {
+        server.get('/products/:productId', (req, res) => {
             try {
                 const { authorization } = req.headers
 
@@ -276,6 +284,109 @@ mongoose.connect(MONGO_URL)
 
                 logic.modifyProduct(userId, productId, images, title, description, brand, price, state, stock)
                     .then(() => res.status(204).send())
+                    .catch(error => {
+                        let status = 500
+
+                        if (error instanceof MatchError) status = 404
+
+                        res.status(status).json({ error: error.constructor.name, message: error.message })
+                    })
+            } catch (error) {
+                let status = 500
+
+                if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError) status = 400
+
+                else if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError) {
+                    status = 401
+
+                    error = new MatchError(error.message)
+                    res.status(status).json({ error: error.constructor.name, message: error.message })
+                }
+            }
+        })
+
+        // ---------------------------------Toggle Like Products---------------------------------
+
+        server.put('/products/:productId/likes', (req, res) => {
+            try {
+                const { authorization } = req.headers
+
+                const token = authorization.slice(7)
+
+                const { sub: userId } = jwt.verify(token, JWT_SECRET)
+
+                const { productId } = req.params
+
+                logic.toggleLikeProduct(userId, productId)
+                    .then(() => res.status(204).send())
+                    .catch(error => {
+                        let status = 500
+
+                        if (error instanceof MatchError) status = 404
+
+                        res.status(status).json({ error: error.constructor.name, message: error.message })
+                    })
+            } catch (error) {
+                let status = 500
+
+                if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError) status = 400
+
+                else if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError) {
+                    status = 401
+
+                    error = new MatchError(error.message)
+                    res.status(status).json({ error: error.constructor.name, message: error.message })
+                }
+            }
+        })
+
+        // ---------------------------------Toggle Save Products---------------------------------
+
+        server.put('/products/:productId/saved', (req, res) => {
+            try {
+                const { authorization } = req.headers
+
+                const token = authorization.slice(7)
+
+                const { sub: userId } = jwt.verify(token, JWT_SECRET)
+
+                const { productId } = req.params
+
+                logic.toggleSaveProduct(userId, productId)
+                    .then(() => res.status(204).send())
+                    .catch(error => {
+                        let status = 500
+
+                        if (error instanceof MatchError) status = 404
+
+                        res.status(status).json({ error: error.constructor.name, message: error.message })
+                    })
+            } catch (error) {
+                let status = 500
+
+                if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError) status = 400
+
+                else if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError) {
+                    status = 401
+
+                    error = new MatchError(error.message)
+                    res.status(status).json({ error: error.constructor.name, message: error.message })
+                }
+            }
+        })
+
+        // ---------------------------------Retrieve Save Products---------------------------------
+
+        server.get('/products/:userId/saved', (req, res) => {
+            try {
+                const { authorization } = req.headers
+
+                const token = authorization.slice(7)
+
+                const { sub: userId } = jwt.verify(token, JWT_SECRET)
+
+                logic.retrieveSavedProducts(userId)
+                    .then(products => res.json(products))
                     .catch(error => {
                         let status = 500
 

@@ -1,5 +1,5 @@
-import errors from "./errors.js";
-import utils from "./utils.js";
+import errors from './errors.js';
+import utils from './utils.js';
 
 const { ContentError, MatchError } = errors
 

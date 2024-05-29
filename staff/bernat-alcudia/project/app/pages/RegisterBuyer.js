@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import { View, TextInput, Button, Text } from "react-native";
+import React, { useState } from 'react';
+import { View, TextInput, Button, Text } from 'react-native';
 import logic from '../logic';
 import { errors, utils } from '../com';
-import DateTimePicker from "@react-native-community/datetimepicker";
+import DateTimePicker from '@react-native-community/datetimepicker';
 import { useNavigation } from '@react-navigation/native';
 
 
@@ -65,17 +65,17 @@ function RegisterBuyer({ }) {
     };
 
     return <View>
-        <TextInput placeholder="name" value={name} onChangeText={setName} />
-        <TextInput placeholder="email" value={email} onChangeText={setEmail} />
+        <TextInput placeholder='name' value={name} onChangeText={setName} />
+        <TextInput placeholder='email' value={email} onChangeText={setEmail} />
 
-        <TextInput placeholder="username" value={username} onChangeText={setUsername} />
-        <TextInput onPress={() => setShowDatePicker(true)} placeholder="birthdate" value={utils.formatDate(birthdate)} />
+        <TextInput placeholder='username' value={username} onChangeText={setUsername} />
+        <TextInput onPress={() => setShowDatePicker(true)} placeholder='birthdate' value={utils.formatDate(birthdate)} />
         {showDatePicker && (
-            <DateTimePicker display="spinner" onChange={handleDateChange} value={birthdate} />
+            <DateTimePicker display='spinner' onChange={handleDateChange} value={birthdate} />
 
         )}
-        <TextInput secureTextEntry={true} placeholder="password" value={password} onChangeText={setPassword} />
-        <Button title="Register" onPress={handleRegisterBuyer} ></Button>
+        <TextInput secureTextEntry={true} placeholder='password' value={password} onChangeText={setPassword} />
+        <Button title='Register' onPress={handleRegisterBuyer} ></Button>
     </View>
 }
 

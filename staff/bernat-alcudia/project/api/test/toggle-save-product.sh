@@ -1,0 +1,1 @@
+curl -X PUT -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NjNjY2FlYWM3OTJkNzdhMTQ5MmQ0OTQiLCJyb2xlIjoiYnV5ZXIiLCJpYXQiOjE3MTY1NDYyNjIsImV4cCI6MTcxNjU0OTg2Mn0.vqKmaxU7b5Hp-o9ZtX_V5XxOQVOTqWv-C0yTkhef77A' http://localhost:9010/products/saved -v

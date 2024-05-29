@@ -10,8 +10,12 @@ import Home from './pages/Home.js';
 import ProductDetail from './components/ProductDetail.js';
 import ModifyProduct from './components/ModifyProduct.js';
 import CreateProduct from './components/CreateProduct.js';
+import RetrieveSavedProducts from './components/RetrieveSavedProducts.js';
+import logic from './logic/index.js';
 
 const Stack = createStackNavigator()
+
+
 
 export default function App() {
   return (
@@ -20,10 +24,11 @@ export default function App() {
         <Stack.Screen name="LoginUser" component={LoginUser} />
         <Stack.Screen name="RegisterSeller" component={RegisterSeller} />
         <Stack.Screen name="RegisterBuyer" component={RegisterBuyer} />
-        <Stack.Screen name='Home' component={Home} />
+        <Stack.Screen options={{ headerLeft: null }} name='Home' component={Home} />
         <Stack.Screen name='ProductDetail' component={ProductDetail} />
         <Stack.Screen name='ModifyProduct' component={ModifyProduct} />
         <Stack.Screen name='CreateProduct' component={CreateProduct} />
+        <Stack.Screen name='RetrieveSavedProducts' component={RetrieveSavedProducts} />
       </Stack.Navigator>
       <StatusBar style="auto" />
     </NavigationContainer>

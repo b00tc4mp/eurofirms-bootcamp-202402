@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import { View, TextInput, Button, StyleSheet } from "react-native";
+import React, { useState } from 'react';
+import { View, TextInput, Button, StyleSheet } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { useNavigation } from '@react-navigation/native';
 
 import { errors } from '../com';
 
-import logic from "../logic";
+import logic from '../logic';
 
 const { ContentError, MatchError } = errors
 
@@ -62,11 +62,11 @@ function LoginUser() {
 
 
     return <View>
-        <TextInput placeholder="username" value={username} onChangeText={setUsername} />
-        <TextInput secureTextEntry={true} placeholder="password" value={password} onChangeText={setPassword} />
-        <Button title="Login" onPress={handleSubmit}>Login</Button>
-        <Button title="Register Seller" onPress={handleRegisterSeller} ></Button>
-        <Button title="Register Buyer" onPress={handleRegisterBuyer} ></Button>
+        <TextInput placeholder='username' value={username} onChangeText={setUsername} />
+        <TextInput secureTextEntry={true} placeholder='password' value={password} onChangeText={setPassword} />
+        <Button title='Login' onPress={handleSubmit}></Button>
+        <Button title='Register Seller' onPress={handleRegisterSeller} ></Button>
+        <Button title='Register Buyer' onPress={handleRegisterBuyer} ></Button>
     </View>
 }
 

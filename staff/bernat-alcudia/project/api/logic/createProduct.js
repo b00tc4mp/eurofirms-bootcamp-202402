@@ -1,12 +1,12 @@
-import { User, Product } from "../data/index.js";
+import { User, Product } from '../data/index.js';
 
-import { validate, errors } from "com";
+import { validate, errors } from 'com';
 
 const { SystemError, MatchError } = errors
 
 function createProduct(userId, images, title, description, brand, price, state, stock) {
     validate.id(userId, 'userId')
-    validate.base64(images)
+    validate.images(images)
     validate.string(title, 'title')
     validate.description(description)
     validate.string(brand)

@@ -1,6 +1,6 @@
-import { User, Product } from "../data/index.js";
+import { User, Product } from '../data/index.js';
 
-import { validate, errors } from "com";
+import { validate, errors } from 'com';
 
 const { SystemError, MatchError } = errors
 
@@ -27,6 +27,7 @@ function retrieveProducts(userId) {
 
                             delete product.author._id
                         }
+                        product.likes = product.likes.map(like => like.toString())
                     })
 
                     return products

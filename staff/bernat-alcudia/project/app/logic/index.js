@@ -4,6 +4,7 @@ import loginUser from './loginUser.js';
 import retrieveUser from './retrieveUser.js';
 import logoutUser from './logoutUser.js';
 import getLoggedInUserId from './getLoggedInUserId.js';
+import getLoggedInUserRole from './getLoggedInUserRole.js';
 import isUserLoggedIn from './isUserLoggedIn.js';
 
 import createProduct from './createProduct.js';
@@ -11,6 +12,9 @@ import retrieveProducts from './retrieveProducts.js';
 import retrieveProductDetails from './retrieveProductDetails.js';
 import removeProduct from './removeProduct.js';
 import modifyProduct from './modifyProduct.js';
+import toggleLikeProduct from './toggleLikeProduct.js';
+import toggleSavedProduct from './toggleSavedProduct.js';
+import retrieveUserProductSaved from './retrieveUserProductSaved.js';
 
 
 const logic = {
@@ -20,13 +24,18 @@ const logic = {
     retrieveUser,
     logoutUser,
     getLoggedInUserId,
+    getLoggedInUserRole,
     isUserLoggedIn,
 
     createProduct,
     retrieveProducts,
     retrieveProductDetails,
     removeProduct,
-    modifyProduct
+    modifyProduct,
+    toggleLikeProduct,
+    toggleSavedProduct,
+    retrieveUserProductSaved
+
 }
 
 export default logic

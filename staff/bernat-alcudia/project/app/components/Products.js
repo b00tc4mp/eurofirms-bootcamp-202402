@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import { View, Text, Image, StyleSheet, ScrollView, TouchableOpacity, Button } from 'react-native';
+import { View, Text, Image, StyleSheet, ScrollView, TouchableOpacity, Button, Alert } from 'react-native';
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
 
 import logic from '../logic';
@@ -10,13 +10,19 @@ const styles = StyleSheet.create({
         width: 66,
         height: 58,
     },
+    button: {
+        like: {
+            color: 'green'
+        },
+        dislike: {
+            color: 'red'
+        }
+    }
 });
+
 
 function Products({ stamp }) {
     const [products, setProducts] = useState([])
-
-
-
 
     const navigation = useNavigation()
 
@@ -24,11 +30,47 @@ function Products({ stamp }) {
         navigation.navigate('CreateProduct')
     }
 
+    const handleSavesProduct = () => {
+        navigation.navigate('RetrieveSavedProducts')
+    }
+
     const handleProductDetail = id => {
         navigation.navigate('ProductDetail', { id: id })
     }
 
 
+    const handleToggleSavedProduct = (productId) => {
+        try {
+            logic.toggleSavedProduct(productId)
+                .then(() => {
+                    refreshProducts()
+                })
+                .catch(error => {
+                    console.error(error)
+
+                    alert(error.message)
+                })
+        } catch (error) {
+            console.error(error)
+
+            alert(error.message)
+        }
+    }
+    const handleToggleLikeProduct = (productId) => {
+        try {
+            logic.toggleLikeProduct(productId)
+                .then(() => refreshProducts())
+                .catch(error => {
+                    console.error(error)
+
+                    alert(error.message)
+                })
+        } catch (error) {
+            console.error(error)
+
+            alert(error.message)
+        }
+    }
 
     const refreshProducts = () => {
         try {
@@ -48,7 +90,9 @@ function Products({ stamp }) {
 
     useFocusEffect(useCallback(() => {
         refreshProducts()
-    }))
+    }, []))
+
+    // const role = logic.getLoggedInUserRole()
 
     return (
         <ScrollView>
@@ -65,11 +109,18 @@ function Products({ stamp }) {
                             <Text >Brand: {product.brand}</Text>
                             <Text >Price: ${product.price}</Text>
                             <Text>State: {product.state}</Text>
+                            <Button style={styles.button.like} onPress={() => handleToggleLikeProduct(product.id)} title='Like'></Button>
+                            <Button onPress={() => handleToggleSavedProduct(product.id)} title='Save'></Button>
+
                         </View>
                     </View>
                 )
             })}
-            <Button title="Create Product" onPress={handleCreateProduct}></Button>
+
+            {logic.getLoggedInUserRole() === 'seller' ?
+                <Button title='Create Product' onPress={handleCreateProduct}></Button>
+                :
+                <Button title='Saves' onPress={handleSavesProduct}></Button>}
         </ScrollView>
 
 

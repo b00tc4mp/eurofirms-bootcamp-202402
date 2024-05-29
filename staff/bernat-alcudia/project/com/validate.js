@@ -1,6 +1,6 @@
-import errors from "./errors.js";
+import errors from './errors.js';
 import base64 from 'base-64'
-import utils from "./utils.js";
+import utils from './utils.js';
 
 const { ContentError, MatchError } = errors
 
