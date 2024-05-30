@@ -1,11 +1,11 @@
 import mongoose from 'mongoose'
-import deleteStudent from './deleteStudent.js'
+import deleteUser from './deleteUser.js'
 
 //TODO
 mongoose.connect('mongodb://localhost:27017/FormativeLife')
     .then(() => {
         try {
-            deleteStudent('663dfd82fe9f442a3e1d1e6c')
+            deleteUser('6655853b15cf0057799c511a')
                 .then(() => console.log('user deleted'))
                 .catch(error => console.error(error))
         } catch (error) {

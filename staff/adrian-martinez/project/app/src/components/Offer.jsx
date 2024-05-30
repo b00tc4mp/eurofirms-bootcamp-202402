@@ -1,11 +1,9 @@
 import { useState } from "react";
 import logic from "../logic"
 import Button from "./Button";
-/* import { createRequire } from 'node:module';
+import { errors, validate } from "com"
 
-const require = createRequire(import.meta.url);
-
-var dateFormat = require('dateformat'); */
+const { RangeError } = errors
 
 function Offer({ offer, onOfferDeleted, onOfferUpdate }){
 
@@ -32,6 +30,7 @@ function Offer({ offer, onOfferDeleted, onOfferUpdate }){
     }
 
     const [changeOffer, setChangeOffer] = useState(false);
+    const [error, setError] = useState(null);
 
     const handleUpdateSubmit = event => {
         event.preventDefault();
@@ -59,12 +58,14 @@ function Offer({ offer, onOfferDeleted, onOfferUpdate }){
                 })
                 .catch(error => {
 
+                errorHandler(error)
                 console.error(error);
                 alert(error.message);
             })
         }
         catch(error){
             
+            errorHandler(error)
             console.error(error);
             alert(error.message);
         }
@@ -83,6 +84,24 @@ function Offer({ offer, onOfferDeleted, onOfferUpdate }){
         return fecha.toLocaleDateString()
     }
 
+    const errorHandler = (error) => {
+        console.error(error.message)
+
+        let feedback = error.message;
+
+        if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
+            feedback = `${feedback}, please correct it`;
+
+        else if (error instanceof DuplicityError)
+            feedback = `${feedback}, please verify credentials`;
+
+        else
+            feedback = "Sorry, there was an error, please try again later";
+
+        const isSalaryMinError = error.message.includes("salario")
+
+        setError({ message: feedback, isSalaryMinError });
+    }
     console.debug("Offer render");
 
     return (
@@ -102,29 +121,30 @@ function Offer({ offer, onOfferDeleted, onOfferUpdate }){
              
             {!changeOffer && offer.company.id === logic.getLoggedInUserId() && <>
            
-           <Button className="bg-green-500 text-white p-2 border-solid border-2 border-black" onClick={()=> setChangeOffer(true)}>Editar Oferta</Button>
+           <Button className="border-2 border-solid border-white bg-green-500 text-white" onClick={()=> setChangeOffer(true)}>Editar Oferta</Button>
            </>
            }
            {changeOffer && 
            <>
                <form onSubmit={ handleUpdateSubmit }>
                    <label htmlFor="title">Título</label>
-                   <input type="text" defaultValue={offer.title} name="title" />
+                   <input type="text" defaultValue={offer.title} name="title" /><br/>
 
                    <label htmlFor="description">Descripción</label>
-                   <input type="text" defaultValue={offer.description} name="description" />
+                   <input type="text" defaultValue={offer.description} name="description" /><br/>
 
                    <label htmlFor="minSalary">Salario:</label>
-                   <input defaultValue={offer.minSalary} name="minSalary" />
+                   <input defaultValue={offer.minSalary} name="minSalary" /><br/>
+                   {error?.isSalaryMinError && <span className="text-red-500">{error.message}</span>}<br/>
 
                    <label htmlFor="maxSalary">Salario Máximo en esta categoría:</label>
-                   <input defaultValue={offer.maxSalary} name="maxSalary" />
+                   <input defaultValue={offer.maxSalary} name="maxSalary" /><br/>
 
                    <label htmlFor="publishDate">Fecha publicación de la oferta:</label>
-                   <input type="date" defaultValue={offer.publishDate/* dateFormat(offer.publishDate, "yyyy-mm-dd") */} name="publishDate" required/>
+                   <input type="date" defaultValue={offer.publishDate} name="publishDate" required/><br/>
 
                    <label htmlFor="expirationDate">Fecha de expiración:</label>
-                   <input type="date" defaultValue={offer.expirationDate} name="expirationDate" />
+                   <input type="date" defaultValue={offer.expirationDate} name="expirationDate" /><br/>
 
                    <br/><button type="submit">Publicar</button>
                    <button onClick={handleCancelEdit}>Cancelar</button>

@@ -6,11 +6,11 @@ const { SystemError, MatchError } = errors
 
 function updateOffer(companyUserId, offerId, title, description, minSalary, maxSalary, publishDate, expirationDate) {
     validate.id(companyUserId, "companyId")
-    //validate.id(offerId, 'offerId')
+    validate.id(offerId, 'offerId')
     validate.text(title)
     validate.text(description)
     validate.salary(minSalary)
-    //validate.text(publishDate)
+    validate.salary(maxSalary)
 
     return User.findById(companyUserId)
         .catch(error => { throw new SystemError(error.message) })

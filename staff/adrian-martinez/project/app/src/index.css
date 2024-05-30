@@ -23,6 +23,7 @@ body{
 input{
   border: 2px solid black;
   padding: 3px;
+  margin: 3px;
 }
 
 header{
@@ -55,8 +56,14 @@ button{
   cursor: pointer;
 }
 
-.butom-volver{
-  margin-bottom: 2%;
+label{
+  font-weight: bold;
+  margin: 3px;
+}
+
+button.volver{
+  margin-bottom: 0%;
+  margin-top: 40px;
 }
 
 button:hover{
@@ -95,7 +102,7 @@ button:hover{
 }
 
 .buscar{
-  margin-left: 30px;
+  margin-left: 50%;
 }
 
 main{
@@ -148,10 +155,6 @@ nav > ul li{
   margin-top: 15px;
   list-style-type: none;
   cursor: pointer;
-}
-
-ul li:hover{
-  color: green;
 }
 
 

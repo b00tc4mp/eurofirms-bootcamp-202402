@@ -3,6 +3,7 @@ import { errors } from "com"
 import logic from '../logic'
 import CreateCareer from "../components/CreateCareer"
 import CareersStudent from "../components/CareersStudent"
+import Button from '../components/Button'
 
 const { ContentError, MatchError } = errors
 
@@ -60,6 +61,11 @@ function Home(props) {
         setView(null)
     }
 
+    const handleDeleteUser = () => {
+
+        alert("Para eliminar tu cuenta de usuario borra todos tus estudios y luego envía un correo al administrador del sitio web desde el menú de Contacto solicitando la eliminar la cuenta.")
+    }
+
     return (
     <>
         <header className="header">
@@ -68,6 +74,7 @@ function Home(props) {
             <div id="area-perfil">
                 <button className="button m-4" onClick={props.onClickInicio}>Página principal 🏚️</button>
                 <button className="login button" onClick={handleLogout}>Cerrar Sesión</button>
+                <Button className="bg-red-500 text-white m-2 border-solid border-2 border-black" onClick={ handleDeleteUser }>Borrar cuenta</Button>
             </div>
             <div id="area-buscador">
                 <form className="form">

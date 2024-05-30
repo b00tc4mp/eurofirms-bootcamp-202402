@@ -20,7 +20,7 @@ La empresa va mirar con todo detalle aquellas secciones que le interesa de su cu
 
 ##### Usuarios
 
-Todo usuario mayor de edad se va poder registrar y tener su perfil. Una vez que el usuario se registre va tener la opción a rellenar información personal. El usuario va tener un role, o es un estudiante o una empresa.
+Todo usuario mayor de 16 años se va poder registrar y tener su perfil. Una vez que el usuario se registre va tener la opción a rellenar los estudios que tiene o está cursando. El usuario va tener dos roles, o es un estudiante o una empresa.
 
 ##### Estudiantes:
 - El estudiante puede añadir estudios, así como las asignaturas o tecnologías que curse.

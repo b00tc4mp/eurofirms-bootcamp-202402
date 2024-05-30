@@ -1,11 +1,9 @@
 import { useState } from "react";
 //import Form from "../components/Form"
 import logic from "../logic"
-import { errors } from "com"
+import { errors, validate } from "com"
 
-const { ContentError, DuplicityError } = errors
- 
-let nUsers = 4;
+const { ContentError, DuplicityError, RangeError, TypeError } = errors
 
 function Register(props) {
 
@@ -64,15 +62,6 @@ function Register(props) {
         }
     }
 
-    //TODO Añadir y eliminar el classname del formulario según el que elija
-    /* function formStudent(){
-        
-    }
-
-    function FormCompany(){
-
-    } */
-
     //Esta función nos va guardar los tipos de error de cada campo del formulario como propiedad del objeto Error
     const errorHandler = (error) => {
         console.error(error.message)
@@ -93,8 +82,10 @@ function Register(props) {
         const isAgeError = error.message.includes("age")
         const isEmailError = error.message.includes("email")
         const isPasswordError = error.message.includes("password")
+        const isActivityError = error.message.includes("activity")
+        const isAddressError = error.message.includes("address")
 
-        setError({ message: feedback, isNameError, isSurnamesError, isAgeError, isEmailError, isPasswordError });
+        setError({ message: feedback, isNameError, isSurnamesError, isAgeError, isEmailError, isPasswordError, isActivityError, isAddressError });
     }
 
 
@@ -109,39 +100,48 @@ function Register(props) {
             <container id="container">
                 <section className="flex-auto">
                     <form className="float-right" onSubmit={ handleSubmitStudent }>
-                        <label forhtml="name">Nombre: </label>
+                        <label htmlFor="name">Nombre: </label>
                         <input type="text" id="name" placeholder="" required /><br/><br/>
+                        {/* {error?.isNameError && <span className="text-red-500">{error.message}</span>}<br/> */}
 
-                        <label forhtml="surnames">Apellidos: </label>
+                        <label htmlFor="surnames">Apellidos: </label>
                         <input type="text" id="surnames" placeholder="" required /><br/><br/>
+                        {/* {error?.isSurnamesError && <span className="text-red-500">{error.message}</span>}<br/> */}
 
-                        <label forhtml="age">Edad: </label>
-                        <input type="text" id="age" placeholder="Debe ser mayor de 16" required /><br/><br/>
+                        <label htmlFor="age">Edad: </label>
+                        <input type="text" id="age" placeholder="Debe ser mayor de 16" required /><br/><br/>{error?.isAgeError && <span className="text-red-500">{error.message}</span>}<br/>
 
-                        <label forhtml="email">Correo electrónico: </label>
-                        <input type="text" id="email" placeholder="" required /><br/><br/>
+                        <label htmlFor="email">Correo electrónico: </label>
+                        <input type="text" id="email" placeholder="" required /><br/>
+                        {/* {error?.isEmailError && <span className="text-red-500">{error.message}</span>}<br/> */}
 
-                        <label forhtml="password">Contraseña: </label>
+                        <label htmlFor="password">Contraseña: </label>
                         <input type="password" id="password" placeholder="Entre 8 y 16 caracteres" required /><br/><br/>
+                        {/* {error?.isPasswordError && <span className="text-red-500">{error.message}</span>}<br/> */}
 
                         <button type="submit">Registrarse como estudiante</button>
                     </form>
 
                     <form className="float-left mt-30" onSubmit={ handleSubmitCompany }>
-                        <label forhtml="name">Nombre: </label>
-                        <input type="text" id="name" placeholder="" required /><br/><br/>
+                        <label htmlFor="name">Nombre: </label>
+                        <input type="text" id="name" placeholder="" required /><br/>
+                        {/* {error?.isNameError && <span className="text-red-500">{error.message}</span>}<br/> */}
 
-                        <label forhtml="address">Ubicación: </label>
-                        <input type="text" id="address" placeholder="Calle Real, N20 - Coruña" required /><br/><br/>
+                        <label htmlFor="address">Ubicación: </label>
+                        <input type="text" id="address" placeholder="Calle Real, N20 - Coruña" required /><br/>
+                        {error?.isAddressError && <span className="text-red-500">{error.message}</span>}<br/>
 
-                        <label forhtml="activity">Actividad: </label>
-                        <input type="text" id="activity" placeholder="Diseño Web" required /><br/><br/>
+                        <label htmlFor="activity">Actividad: </label>
+                        <input type="text" id="activity" placeholder="Diseño Web" required /><br/>
+                        {/* {error?.isActivityError && <span className="text-red-500">{error.message}</span>}<br/> */}
 
-                        <label forhtml="email">Correo electrónico: </label>
-                        <input type="text" id="email" placeholder="" required /><br/><br/>
+                        <label htmlFor="email">Correo electrónico: </label>
+                        <input type="text" id="email" placeholder="" required /><br/>
+                        {/* {error?.isEmailError && <span className="text-red-500">{error.message}</span>}<br/> */}
 
-                        <label forhtml="password">Contraseña: </label>
+                        <label htmlFor="password">Contraseña: </label>
                         <input type="password" id="password" placeholder="Entre 8 y 16 caracteres" required /><br/><br/>
+                        {/* {error?.isPasswordError && <span className="text-red-500">{error.message}</span>}<br/> */}
 
                         <button type="submit">Registrarse como empresa</button>
                     </form>
@@ -150,7 +150,7 @@ function Register(props) {
                     {/* <button onClick={ FormStudent() }>Registrarse como Estudiante</button> */}
                     {/* <button onClick={ FormCompany() }>Registrarse como Empresa</button> */}
                 <section className="absolute mt-96 m-2">
-                    <button onClick={props.onClickInicio}>Volver</button>
+                    <button className="volver" onClick={props.onClickInicio}>Volver</button>
                 </section>
                 
             </container>
@@ -159,9 +159,6 @@ function Register(props) {
         <footer>
        
         </footer>
-        {/* <Routes>
-          <Route path="/" element={<Inicio numUsers={nUsers} />} /> 
-        </Routes> */}
     </>
     )
 }

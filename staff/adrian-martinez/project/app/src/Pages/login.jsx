@@ -2,7 +2,7 @@ import { useState } from "react"
 import logic from "../logic"
 import { errors, validate} from "com"
 
-const { SystemError, MatchError} = errors;
+const { SystemError, MatchError, ContentError} = errors;
 
 function Login({onUserLoggedIn, onClickResetPassword, onClickInicio}) {
 
@@ -34,18 +34,18 @@ function Login({onUserLoggedIn, onClickResetPassword, onClickInicio}) {
         let feedback = error.message;
 
         if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
-            feedback = `${feedback}, please correct it`;
+            feedback = `${feedback}, por favor corrige eso.`;
 
         else if (error instanceof MatchError)
-            feedback = `${feedback}, please verify credentials`;
+            feedback = `${feedback}, pon unas credenciales válidas.`;
 
         else{
-            feedback = "Sorry, there was an error, please try again later";
+            feedback = "Lo sentimos, ha habido un error, inténtalo de nuevo más tarde.";
             alert(feedback)
         }
             
 
-        const isUserError = error.message.includes("user");
+        const isUserError = error.message.includes("email");
         const isPasswordError = error.message.includes("password");
 
         setError({ message: feedback, isUserError, isPasswordError })
@@ -61,12 +61,13 @@ function Login({onUserLoggedIn, onClickResetPassword, onClickInicio}) {
             <container id="container">
                 <section>
                     <form className="form" onSubmit={handleSubmit}>
-                        <label forhtml="user">Usuario</label>
-                        <input type="text" id="user" placeholder="Tu email"/><br/><br/>
-                        
+                        <label htmlFor="user">Usuario</label>
+                        <input type="text" id="user" placeholder="Tu email"/><br/>
+                        {error?.isUserError && <span className="text-red-500">{error.message}</span>}<br/>
 
-                        <label forhtml="password">Contraseña</label>
-                        <input type="password" id="password" placeholder="Contraseña"/><br/><br/>
+                        <label htmlFor="password">Contraseña</label>
+                        <input type="password" id="password" placeholder="Contraseña"/><br/>
+                        {error?.isPasswordError && <span className="text-red-500">{error.message}</span>}<br/><br/>
 
                         <button type="submit">Iniciar Sesion</button><br/><br/>
                     </form>

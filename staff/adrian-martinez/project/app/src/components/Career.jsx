@@ -92,14 +92,14 @@ function Career({ career, onCareerDeleted, onCareerUpdate }){
             {changeCareer && 
             <>
                 <form onSubmit={ handleUpdateSubmit }>
-                    <label htmlFor="title">Título</label>
-                    <input type="text" defaultValue={career.title} name="title" />
+                    <label htmlFor="title">Título:</label>
+                    <input type="text" defaultValue={career.title} name="title" /><br/>
 
-                    <label htmlFor="description">Descripción</label>
-                    <input type="text" defaultValue={career.description} name="description" />
+                    <label htmlFor="description">Descripción:</label>
+                    <input type="text" defaultValue={career.description} name="description" /><br/>
 
                     <label htmlFor="certification">Certificación:</label>
-                    <input defaultValue={career.certification} name="certification" />
+                    <input defaultValue={career.certification} name="certification" /><br/>
 
                     <br/><button type="submit">Publicar</button>
                     <button onClick={handleCancelEdit}>Cancelar</button>

@@ -23,26 +23,40 @@ function validateName(name) {
 
 function validateSurnames(surnames){
     if(typeof surnames !== "string") throw new TypeError("surname is not string");
+    if(surnames.length > 45) throw new TypeError("Error. surname no es válido. Los apellidos no deben ser tan largo");
+    if(surnames.length < 6) throw new TypeError("Error. surname no es válido. Debes poner tus dos apellidos");
 }
 
 function validateAge(age){
     if(typeof age !== "number") throw new TypeError("age is not a number");
+    if(age < 16) throw new TypeError("Error. age inválida. El estudiante no debe tener menos de 16 años.");
+    if(age >= 67) throw new TypeError("Error. age inválida. El estudiante no debe estar en edad de jubilarse.");
 }
 
 function validateEmail(email){
     if(typeof email !== "string") throw new TypeError("email is not string");
+    if(email.length > 30) throw new RangeError("Error. El email es demasiado largo");
+    if(email.length < 7) throw new RangeError("Error. El email es demasiado corto");
+    if(email === " ") throw new ContentError("Error. El email no debe estar vacío");
+    
+    if(!email.includes("@")) throw new ContentError("Error. El email tiene que llevar una @");
 }
 
 function validatePassword(password){
     if(typeof password !== "string") throw new TypeError("password is not string");
+    if(password.length < 7 || password.length > 16) throw new RangeError("Error. El password tiene que tener entre 8 y 16 caracteres")
 }
 
 function validateDireccion(address){
-    if(typeof address !== "string") throw new TypeError("adrress is not string");
+    if(typeof address !== "string") throw new TypeError("address is not string");
+    if(address.length < 30) throw new RangeError("Error. address no es válido. La dirección es demasiado corta");
 }
 
 function validateActividad(activity){
     if(typeof activity !== "string") throw new TypeError("activity is not string");
+    if(activity.length > 80) throw new RangeError("Error. El activity es demasiado largo")
+    if(activity.length < 10) throw new RangeError("Error. El activity es demasiado corto")
+        
 }
 
 function validateText(text){
@@ -51,10 +65,8 @@ function validateText(text){
 
 function validateSalary(salary){
     if(typeof salary !== "number") throw new TypeError("salary is not a number");
-}
-
-function validateScore(score){
-    if(typeof score !== "number") throw new TypeError("age is not a number");
+    if(salary < 1200 ) throw new RangeError("Error. salary is invalid. El salario mínimo es muy bajo");
+    if(salary > 10000 ) throw new RangeError("Error. salary is invalid. El salario máximo es muy alto para ser mensual");
 }
 
 function validateId(id, explain = "id") {
@@ -104,7 +116,6 @@ const validate = {
     token: validateToken,
     id: validateId,
     text: validateText,
-    score: validateScore,
     salary: validateSalary
 }
 

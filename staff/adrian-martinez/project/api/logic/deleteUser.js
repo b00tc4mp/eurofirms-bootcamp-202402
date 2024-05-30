@@ -4,7 +4,7 @@ import { errors, validate } from "com"
 const { SystemError, MatchError } = errors
 
 //TODO
-function deleteStudent(userId) {
+function deleteUser(userId) {
     validate.id(userId, 'userId')
 
     return User.findById(userId)
@@ -20,4 +20,4 @@ function deleteStudent(userId) {
         .then(result => { })
 }
 
-export default deleteStudent;
+export default deleteUser;
