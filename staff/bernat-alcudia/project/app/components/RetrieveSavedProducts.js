@@ -4,9 +4,9 @@ import { utils } from '../com'
 import { View, Text, Image, StyleSheet, ScrollView, Button } from 'react-native';
 
 const styles = StyleSheet.create({
-    logo: {
-        width: 66,
-        height: 58,
+    image: {
+        width: 350,
+        height: 350,
     },
 });
 
@@ -45,12 +45,12 @@ function RetrieveSavedProducts() {
     return <ScrollView >
         {products.map(product => {
             return <>
-                <View key={product.id} >
+                <View style={{ padding: 30 }} key={product.id} >
                     {product.images.map((image, index) => (
-                        <Image key={index} source={{ uri: 'data:image/png;base64,' + image }} style={styles.logo} onError={(error) => console.error('Error loading image:', error)} />
+                        <Image key={index} source={{ uri: 'data:image/png;base64,' + image }} style={styles.image} onError={(error) => console.error('Error loading image:', error)} />
                     ))}
                 </View>
-                <View >
+                <View style={{ padding: 30 }} >
                     <Text>{utils.formatDate(new Date(product.date))}</Text>
                     <Text>{product.title}</Text>
                     <Text>{product.brand}</Text>

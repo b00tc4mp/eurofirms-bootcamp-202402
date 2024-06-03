@@ -7,11 +7,12 @@ function retrieveUser(userId, targetUserId) {
     validate.id(userId, 'userId')
     validate.id(targetUserId, 'targetUserId')
 
-    return User.findById(userId).select('-_id name username').lean()
+    return User.findById(userId).select('-_id name username saved').lean()
         .catch(error => { throw new SystemError(error.message) })
         .then(targetUser => {
             if (!targetUser) throw new MatchError('target user not found')
-
+            const saved = targetUser.saved.map(savedProduct => savedProduct.toString())
+            targetUser.saved = saved
             return targetUser
         })
 }

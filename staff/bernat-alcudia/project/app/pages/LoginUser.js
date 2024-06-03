@@ -22,7 +22,11 @@ function LoginUser() {
 
         try {
             logic.loginUser(username, password)
-                .then(() => navigation.navigate('Home'))
+                .then(() => {
+                    setUsername('')
+                    setPassword('')
+                    navigation.navigate('Home')
+                })
                 .catch(error => {
                     console.error(error.message)
 

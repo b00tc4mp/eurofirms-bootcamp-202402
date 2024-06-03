@@ -13,7 +13,7 @@ const { ContentError, DuplicityError } = errors
 function RegisterBuyer({ }) {
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
-    const [birthdate, setBirthdate] = useState(new Date())
+    const [birthdate, setBirthdate] = useState(null)
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
 
@@ -33,7 +33,15 @@ function RegisterBuyer({ }) {
     const handleRegisterBuyer = () => {
         try {
             logic.registerBuyer(name, birthdate.toISOString(), email, username, password)
-                .then(() => { alert('user registered'); navigation.navigate('LoginUser') })
+                .then(() => {
+                    alert('user registered')
+                    navigation.navigate('LoginUser')
+                    setName('')
+                    setEmail('')
+                    setBirthdate('')
+                    setUsername('')
+                    setPassword('')
+                })
                 .catch(error => {
                     console.error(error.message)
 
@@ -69,9 +77,9 @@ function RegisterBuyer({ }) {
         <TextInput placeholder='email' value={email} onChangeText={setEmail} />
 
         <TextInput placeholder='username' value={username} onChangeText={setUsername} />
-        <TextInput onPress={() => setShowDatePicker(true)} placeholder='birthdate' value={utils.formatDate(birthdate)} />
+        <TextInput onPress={() => setShowDatePicker(true)} placeholder='birthdate' value={birthdate ? utils.formatDate(birthdate) : null} />
         {showDatePicker && (
-            <DateTimePicker display='spinner' onChange={handleDateChange} value={birthdate} />
+            <DateTimePicker display='spinner' onChange={handleDateChange} value={birthdate || new Date()} />
 
         )}
         <TextInput secureTextEntry={true} placeholder='password' value={password} onChangeText={setPassword} />

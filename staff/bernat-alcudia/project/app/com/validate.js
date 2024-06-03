@@ -111,6 +111,8 @@ function validateUrls(urls) {
 
 function validateImages(strings) {
 
+    if (strings.length === 0) throw new MatchError('at least 1 image')
+
     for (var i = 0; i < strings.length; i++) {
         const string = strings[i]
 

@@ -13,7 +13,7 @@ function retrieveProductDetails(userId, productId) {
         .then(user => {
             if (!user) throw new MatchError('user not found')
 
-            return Product.findById(productId).select('images date  title state price stock description').populate('author', 'username').lean()
+            return Product.findById(productId).select('images date  title state price stock brand description').populate('author', 'username').lean()
                 .catch(error => { throw new SystemError(error.message) })
                 .then(product => {
                     product.author.id = product.author._id.toString()

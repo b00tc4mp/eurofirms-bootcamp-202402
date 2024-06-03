@@ -5,9 +5,9 @@ import { utils } from '../com'
 import { useRoute, useNavigation } from '@react-navigation/native';
 
 const styles = StyleSheet.create({
-    logo: {
-        width: 66,
-        height: 58,
+    image: {
+        width: 350,
+        height: 350,
     },
 });
 
@@ -82,21 +82,21 @@ function ProductDetail() {
     const isAuthor = product.author.id === logic.getLoggedInUserId()
 
     return <ScrollView >
-        <View key={product.id} >
+        <View style={{ padding: 30 }} key={product.id} >
             {product.images.map((image, index) => (
-                <Image key={index} source={{ uri: 'data:image/png;base64,' + image }} style={styles.logo} onError={(error) => console.error('Error loading image:', error)} />
+                <Image key={index} source={{ uri: 'data:image/png;base64,' + image }} style={styles.image} onError={(error) => console.error('Error loading image:', error)} />
             ))}
         </View>
-        <View >
-            <Text>{utils.formatDate(new Date(product.date))}</Text>
-            <Text>{product.title}</Text>
-            <Text>{product.brand}</Text>
-            <Text>${product.price}</Text>
-            <Text>{product.state}</Text>
-            <Text>{product.stock}</Text>
-            <Text>{product.description} </Text>
-            {isAuthor && <Button title='Delete' onPress={handleDeleteProduct}></Button>}
-            {isAuthor && <Button title='Modify' onPress={handleModifyProductDetail}></Button>}
+        <View style={{ padding: 30 }}>
+            <Text>Last Modified:{utils.formatDate(new Date(product.date))}</Text>
+            <Text> Title: {product.title}</Text>
+            <Text> Brand: {product.brand}</Text>
+            <Text>Price: ${product.price}</Text>
+            <Text>State: {product.state}</Text>
+            <Text>Stock: {product.stock}</Text>
+            <Text>Description: {product.description} </Text>
+            {isAuthor && <Button color={'#C40C0C'} title='Delete' onPress={handleDeleteProduct}></Button>}
+            {isAuthor && <Button color={'#F8D082'} title='Modify' onPress={handleModifyProductDetail}></Button>}
         </View>
     </ScrollView >
 

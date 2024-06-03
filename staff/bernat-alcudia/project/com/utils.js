@@ -8,7 +8,7 @@ function extractPayload(token) {
 }
 
 function formatDate(date) {
-    const day = date.getDate()
+    const day = date.getDate(date)
 
     const dayToString = day < 10 ? '0' + day : day
     const month = date.getMonth() + 1

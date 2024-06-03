@@ -21,7 +21,7 @@ function removeProduct(userId, productId) {
             if (!product) throw new MatchError('post not found')
 
             if (product.author.toString() !== userId) throw new MatchError('product does not belong user')
-
+            //TODO later delete likes and saves product._id
             return Product.deleteOne({ _id: product._id })
 
         })
