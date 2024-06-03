@@ -1,5 +1,5 @@
 import logic from '../logic'
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { errors } from 'com'
 import CreateWork from '../components/CreateWork'
 import Works from '../components/Works'
@@ -8,7 +8,7 @@ import Footer from '../components/Footer'
 
 const { ContentError, TypeError, RangeError, MatchError } = errors
 
-function Home({ onUserLoggedOut, onHomeClick, onProfileClick, onUserProfileClick }) {
+function Home({ onUserLoggedOut, onHomeClick, onProfileClick, onUserProfileClick, onNewTeacherClick }) {
   const [view, setView] = useState(null)
   const [refreshStamp, setRefreshStamp] = useState(null)
   const [user, setUser] = useState(null)
@@ -85,6 +85,8 @@ function Home({ onUserLoggedOut, onHomeClick, onProfileClick, onUserProfileClick
         onHomeClick={handleHomeClick}
         onCreateClick={handleCreateClick}
         onProfileClick={handleProfileClick}
+        onNewTeacherClick={onNewTeacherClick}
+        user={user}
       />
       <main className='w-[100%] bg-[whitesmoke]'>
         <div className='w-[100%] flex justify-center items-center'>

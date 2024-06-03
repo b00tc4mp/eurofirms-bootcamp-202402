@@ -10,4 +10,4 @@ function Htwo({ children, className = '', type, onClick }) {
     </h1>
   )
 }
-export default Htwo;
+export default Htwo

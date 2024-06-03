@@ -4,11 +4,14 @@ import Login from './pages/Login.jsx'
 import RegisterStudent from './pages/RegisterStudent.jsx'
 import Profile from './pages/Profile.jsx'
 import logic from './logic'
+import React from 'react'
+import RegisterTeacher from './pages/RegisterTeacher.jsx'
 
 function App() {
   const navigate = useNavigate()
 
   const handleStudentRegistered = () => navigate('/login')
+  const handleTeacherRegistered = () => navigate('/')
 
   const handleUserLoggedIn = () => navigate('/')
 
@@ -25,6 +28,7 @@ function App() {
 
   const handleProfileClick = (targetUserId) => navigate(`/profile/${targetUserId}`)
   const handleUserProfileClick = (userId) => navigate(`/profile/${userId}`)
+  const handleNewTeacherClick = () => navigate('/registerTeacher')
 
   return (
     <Routes>
@@ -36,6 +40,7 @@ function App() {
             onHomeClick={handleHomeClick}
             onProfileClick={handleProfileClick}
             onUserProfileClick={handleUserProfileClick}
+            onNewTeacherClick={handleNewTeacherClick}
           />
         ) : (
           <Navigate to='/login' />
@@ -68,6 +73,17 @@ function App() {
         path='/profile/:targetUserId'
         element={logic.isUserLoggedIn() ? (
           <Profile onUserLoggedOut={handleLogoutClick} onHomeClick={handleHomeClick} onProfileClick={handleProfileClick} />
+        ) : (
+          <Navigate to='/login' />
+        )}
+      />
+      <Route
+        path='/registerTeacher'
+        element={logic.isUserLoggedIn() ? (
+          <RegisterTeacher
+            onTeacherRegistered={handleTeacherRegistered}
+            onLoginClick={handleLoginClick}
+          />
         ) : (
           <Navigate to='/login' />
         )}

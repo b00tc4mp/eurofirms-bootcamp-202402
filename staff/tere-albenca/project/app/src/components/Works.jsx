@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import logic from '../logic'
 import Work from './Work'
-import removeWork from '../logic/removeWork'
 
 function Works({ user, refreshStamp, searchQuery, onUserProfileClick }) {
     const [works, setWorks] = useState([])
@@ -41,15 +40,6 @@ function Works({ user, refreshStamp, searchQuery, onUserProfileClick }) {
             alert(error.message)
         }
     }
-
-    // const handleWorkRemoved = (workId) => {
-    //     removeWork(workId)
-    //         .then(() => loadWorks())
-    //         .catch(error => {
-    //             console.log(error)
-    //             alert(error.message)
-    //         })
-    // }
 
     const handleWorkRemoved = () => loadWorks()
     const handleWorkEdit = () => loadWorks()

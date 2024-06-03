@@ -7,4 +7,4 @@ function Hone({ children, className }) {
     </h1>
   )
 }
-export default Hone;
+export default Hone

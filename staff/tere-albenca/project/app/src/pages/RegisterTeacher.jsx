@@ -10,7 +10,7 @@ import { useState } from 'react'
 
 const { ContentError, DuplicityError } = errors
 
-function RegisterTeacher({ onTeacherRegistered, onLoginClick, onResetPasswordClick }) {
+function RegisterTeacher({ onTeacherRegistered, onLoginClick }) {
   const [error, setError] = useState(null)
 
   const errorHandle = (error) => {
@@ -81,20 +81,17 @@ function RegisterTeacher({ onTeacherRegistered, onLoginClick, onResetPasswordCli
   }
   console.debug("Register teacher render");
 
-  const handleResetPasswordClick = (event) => {
-    event.preventDefault()
-    onResetPasswordClick()
-  }
+
   return (
     <div className='flex flex-col justify-center item-center mt-3 mb-1'>
       <main className='w-3/5 flex flex-col justify-center item-center mb-8' >
         <Hone className='text-center'>REGISTER TEACHER</Hone>
         <Form onSubmit={handleSubmit} className='max-w-sm'>
 
-          <Input type='text' id='Name' placeholder='name' /><br />
+          <Input type='text' id='name' placeholder='name' /><br />
           {error?.isNameError && <Span></Span>}
 
-          <Input type='text' id='Surname' placeholder='Surname' /><br />
+          <Input type='text' id='surname' placeholder='Surname' /><br />
           {error?.isSurnameError && <Span></Span>}
 
           <Input type="text" id="email" placeholder='Email' /><br />

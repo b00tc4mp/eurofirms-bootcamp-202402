@@ -26,7 +26,7 @@ function Comment({ comment, user, onEdit, onDelete }) {
             ) : (
                 <p className="flex-1 mr-2">{comment.text}</p>
             )}
-            {user && user.role === 'teacher' && (  // Asegúrate de que el rol del usuario es teacher
+            {user && user.role === 'teacher' && (  // Aseguro de que el rol del usuario es teacher
                 <div className="flex space-x-2">
                     {isEditing ? (
                         <>
@@ -42,7 +42,7 @@ function Comment({ comment, user, onEdit, onDelete }) {
                 </div>
             )}
         </div>
-    );
+    )
 }
 
 export default Comment
