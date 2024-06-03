@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import logic from '../logic'
 import { errors } from 'com'
+import { format } from 'date-fns'
 
 const { MatchError, ContentError } = errors
 
@@ -26,7 +27,7 @@ function Work({ work, onWorkRemoved, onWorkEdit, user, onUserProfileClick }) {
                         else
                             feedback = 'Sorry, there was an error, please try again later'
                         alert(feedback);
-                    });
+                    })
             }
         } catch (error) {
             console.error(error)
@@ -37,7 +38,7 @@ function Work({ work, onWorkRemoved, onWorkEdit, user, onUserProfileClick }) {
                 feedback = 'Sorry, there was an error, please try again later'
             alert(feedback)
         }
-    };
+    }
 
     const handleUpdateWork = event => {
         try {
@@ -110,9 +111,10 @@ function Work({ work, onWorkRemoved, onWorkEdit, user, onUserProfileClick }) {
 
             <img src={work.image} className="w-[90%] rounded-lg mt-4" alt={work.title} />
             <p className="mt-2 text-gray-700">{work.text}</p>
-            <time className="block text-right text-xs text-gray-500 mt-2">{work.date}</time>
+            {/* <time className="block text-right text-xs text-gray-500 mt-2">{work.date}</time> */}
+            <p className="block text-right text-xs text-gray-500 mt-2">{format(new Date(work.date), ' HH:mm dd/MM/yyyy')}</p>
         </article>
-    );
+    )
 }
 
 export default Work

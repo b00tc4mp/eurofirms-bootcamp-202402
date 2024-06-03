@@ -10,7 +10,7 @@ function Footer({ onLogout }) {
                 </button>
             </div>
         </footer>
-    );
+    )
 }
 
 export default Footer

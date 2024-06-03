@@ -126,7 +126,7 @@ function Home({ onUserLoggedOut, onHomeClick, onProfileClick, onUserProfileClick
       </main>
       <Footer onLogout={handleLogout} />
     </div>
-  );
+  )
 }
 
 export default Home

@@ -73,7 +73,7 @@ function UserWorks({ targetUserId, refreshStamp, user, onProfileClick, isProfile
                 </div>
             ))}
         </section>
-    );
+    )
 }
 
 export default UserWorks

@@ -1,5 +1,7 @@
 import { User, Work } from '../data/index.js'
 import { errors, validate } from 'com'
+// add format data
+import { format } from 'date-fns'
 
 const { SystemError, MatchError } = errors
 
@@ -21,6 +23,7 @@ function createWork(userId, title, image, text) {
                 image,
                 text,
                 date: new Date
+                // date: format(new Date(), 'dd/MM/yyyy HH:mm')
             }
             return Work.create(work)
                 .catch(error => { throw new SystemError(error.message) })

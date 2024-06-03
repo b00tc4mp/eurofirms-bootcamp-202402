@@ -59,10 +59,10 @@ function Login({ onUserLoggedIn, onRegisterClick }) {
   }
 
   return (
-    <>
-      <div className='flex flex-col justify-center item-center min-h-screen'>
-        <main className='w-full max-w-md flex flex-col justify-center items-center mb-8'>
-          <Hone className='text-center mb-8'  >LOGIN</Hone>
+    <div className='flex items-center justify-center h-screen w-screen bg-[whitesmoke] overflow-hidden'>
+      <div className='my-10 w-full max-w-md p-8 bg-white rounded-lg shadow-lg'>
+        <main className='w-full max-w-md flex flex-col justify-center items-center mb-2'>
+          <Hone className='text-center mb-4'>LOGIN</Hone>
 
           <img
             src='../src/assets/images/cabecera.jpg'
@@ -70,7 +70,7 @@ function Login({ onUserLoggedIn, onRegisterClick }) {
             className='h-40'
           />
 
-          <Form onSubmit={handleSubmit} className='max-w-sm'>
+          <Form onSubmit={handleSubmit} className='w-full flex justify-center'>
             <label htmlFor='email'>Email</label>
             <Input type='text' id='email' placeholder=' ' />
             {error?.isEmailError && <span className='text-[#C13E65]'>{error.message}</span>}
@@ -83,13 +83,13 @@ function Login({ onUserLoggedIn, onRegisterClick }) {
             {error?.anotherError && <span className='text-[#C13E65]'>{error.message}</span>}
 
             <div className='flex justify-center bg-[lightgray] hover:bg-[#c3c3c2] rounded-xl p-1 my-1'>
-              <a onClick={handleRegisterClick} className='no-underline text-blue-400 hover:bg-blue-700'>Register</a>
+              <a onClick={handleRegisterClick} className='no-underline text-blue-900 font-semibold'>Register</a>
               <br />
             </div>
           </Form>
         </main>
       </div>
-    </>
+    </div>
   )
 }
 export default Login

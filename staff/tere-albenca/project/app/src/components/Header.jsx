@@ -26,7 +26,7 @@ function Header({ onHomeClick, onCreateClick, onProfileClick, user, onNewTeacher
                 </div>
             </div>
         </header>
-    );
+    )
 }
 
 export default Header

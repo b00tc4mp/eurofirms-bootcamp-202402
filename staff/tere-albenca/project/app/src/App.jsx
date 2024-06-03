@@ -22,7 +22,7 @@ function App() {
   const handleLogoutClick = () => {
     logic.logoutUser()
     navigate('/login')
-  };
+  }
 
   const handleHomeClick = () => navigate('/')
 

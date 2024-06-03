@@ -82,32 +82,35 @@ function RegisterStudent({ onStudentRegistered, onLoginClick }) {
 
 
   return (
-    <div className='flex flex-col justify-center item-center mt-3 mb-1'>
-      <main className='w-3/5 flex flex-col justify-center item-center mb-8'>
-        <Hone className='text-center'>REGISTER</Hone>
-        <Form onSubmit={handleSubmit} className='max-w-sm'>
+    <div className='flex items-center justify-center h-screen w-screen bg-[whitesmoke] overflow-hidden'>
+      <div className='my-10 w-full max-w-md p-8 bg-white rounded-lg shadow-lg'>
+        <main className='w-full max-w-md flex flex-col justify-center items-center mb-8'>
+          <Hone className='text-center'>REGISTER</Hone>
+          <Form onSubmit={handleSubmit} className='w-full flex justify-center'>
 
-          <Input type='text' id='name' placeholder='Name' /><br />
-          {error?.isNameError && <Span></Span>}
+            <Input type='text' id='name' placeholder='Name' /><br />
+            {error?.isNameError && <Span></Span>}
 
-          <Input type='text' id='surname' placeholder='Surname' /><br />
-          {error?.isSurnameError && <Span></Span>}
+            <Input type='text' id='surname' placeholder='Surname' /><br />
+            {error?.isSurnameError && <Span></Span>}
 
-          <Input type='text' id='email' placeholder='Email' /><br />
-          {error?.isEmailError && <Span></Span>}
+            <Input type='text' id='email' placeholder='Email' /><br />
+            {error?.isEmailError && <Span></Span>}
 
-          <Input type='password' id='password' placeholder='Password' /><br />
-          {error?.isPasswordError && <Span></Span>}
+            <Input type='password' id='password' placeholder='Password' /><br />
+            {error?.isPasswordError && <Span></Span>}
 
-          <Button type='submit'>Register</Button>
-          {error?.anotherError && <Span></Span>}
+            <Button type='submit'>Register</Button>
+            {error?.anotherError && <Span></Span>}
 
-          <div className='flex justify-center bg-[lightgray] hover:bg-[#c3c3c2] rounded-xl p-1 my-1'>
-            <a id='login' onClick={handleLoginClick} className='no-underline text-blue-400 hover:bg-blue-700'>Login</a>
-          </div>
-        </Form>
-      </main>
+            <div className='flex justify-center bg-[lightgray] hover:bg-[#c3c3c2] rounded-xl p-1 my-1'>
+              <a id='login' onClick={handleLoginClick} className='no-underline text-blue-900 font-semibold'>Login</a>
+            </div>
+          </Form>
+        </main>
+      </div>
     </div>
   )
 }
+
 export default RegisterStudent
