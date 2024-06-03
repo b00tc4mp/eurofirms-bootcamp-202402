@@ -13,7 +13,6 @@ function authenticateUser(email, password) {
             if (!user)
                 throw new MatchError('user not found')
 
-
             if (user.password !== password)
                 throw new MatchError('wrong credentials')
 

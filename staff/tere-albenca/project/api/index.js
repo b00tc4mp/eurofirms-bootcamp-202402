@@ -198,12 +198,6 @@ mongoose.connect(MONGO_URL)
                 const { sub: userId } = jwt.verify(token, JWT_SECRET)
                 const { workId } = req.params
 
-                // const token = authorization.slice(7)
-
-                // const { sub: userId } = jwt.verify(token, JWT_SECRET)
-
-                // const { workId } = req.params
-
                 logic.removeWork(userId, workId)
                     .then(work => res.status(204).send())
                     .catch(error => {
@@ -226,7 +220,6 @@ mongoose.connect(MONGO_URL)
 
                     error = new MatchError(error.message)
                 }
-
 
                 res.status(status).json({ error: error.constructor.name, message: error.message })
             }
@@ -586,6 +579,160 @@ mongoose.connect(MONGO_URL)
             }
 
         })
+
+        //createLesson
+
+        server.post('/lessons', jsonBodyParser, (req, res) => {
+            try {
+                const { authorization } = req.headers
+
+                const token = authorization.slice(7)
+
+                const { sub: userId } = jwt.verify(token, JWT_SECRET)
+
+                const { title, image, description, video } = req.body
+
+                logic.createLesson(userId, title, image, description, video)
+                    .then(() => res.status(201).send())
+                    .catch(error => {
+                        let status = 500
+
+                        if (error instanceof MatchError)
+                            status = 401
+
+                        res.status(status).json({ error: error.constructor.name, message: error.message })
+                    })
+            } catch (error) {
+                let status = 500
+
+                if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
+
+                    status = 400
+                else if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError) {
+                    status = 401
+
+                    error = new MatchError(error.message)
+                }
+                res.status(status).json({ error: error.constructor.name, message: error.message })
+            }
+        })
+
+        //update lesson
+
+        server.patch('/lessons/:lessonId', jsonBodyParser, (req, res) => {
+            try {
+                const { authorization } = req.headers
+
+                const token = authorization.slice(7)
+
+                const { sub: userId } = jwt.verify(token, JWT_SECRET)
+
+                const { title, image, description, video } = req.body
+
+                logic.updateLesson(userId, title, image, description, video)
+                    .then(() => res.status(204).send())
+                    .catch(error => {
+                        let status = 500
+
+                        if (error instanceof MatchError)
+                            status = 401
+
+                        res.status(status).json({ error: error.constructor.name, message: error.message })
+                    })
+
+            } catch (error) {
+                let status = 500
+
+                if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
+                    status = 400
+
+                else if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError) {
+                    status = 401
+
+                    error = new MatchError(error.message)
+                }
+
+
+                res.status(status).json({ error: error.constructor.name, message: error.message })
+            }
+        })
+
+        //removeLesson
+
+        server.delete('/lessons/:lessonId', (req, res) => {
+            try {
+                const { authorization } = req.headers
+
+                const token = authorization && authorization.slice(7)
+                if (!token) throw new MatchError('token not provided')
+
+                const { sub: userId } = jwt.verify(token, JWT_SECRET)
+                const { lessonId } = req.params
+
+                logic.removeLesson(userId, title, image, description, video)
+                    .then(lesson => res.status(204).send())
+                    .catch(error => {
+                        let status = 500
+
+                        if (error instanceof MatchError)
+                            status = 401
+
+                        res.status(status).json({ error: error.constructor.name, message: error.message })
+                    })
+
+            } catch (error) {
+                let status = 500
+
+                if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
+                    status = 400
+
+                else if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError) {
+                    status = 401
+
+                    error = new MatchError(error.message)
+                }
+
+                res.status(status).json({ error: error.constructor.name, message: error.message })
+            }
+        })
+
+        //retrieveLessons
+
+        server.get('/lessons', (req, res) => {
+            try {
+                const { authorization } = req.headers
+
+                const token = authorization.slice(7)
+
+                const { sub: userId } = jwt.verify(token, JWT_SECRET)
+
+                logic.retrieveLessons(userId)
+                    .then(lessons => res.status(200).json(lessons))
+                    .catch(error => {
+                        let status = 500
+
+                        if (error instanceof MatchError)
+                            status = 401
+
+                        res.status(status).json({ error: error.constructor.name, message: error.message })
+                    })
+
+            } catch (error) {
+                let status = 500
+
+                if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
+                    status = 400
+
+                else if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError) {
+                    status = 401
+
+                    error = new MatchError(error.message)
+                }
+
+                res.status(status).json({ error: error.constructor.name, message: error.message })
+            }
+        })
+
 
         server.listen(PORT, () => console.log('API started at port ' + PORT))
     })

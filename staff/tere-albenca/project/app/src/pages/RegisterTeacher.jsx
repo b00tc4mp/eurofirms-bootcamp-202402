@@ -82,8 +82,8 @@ function RegisterTeacher({ onTeacherRegistered, onLoginClick }) {
 
   return (
     <div className='flex items-center justify-center h-screen w-screen bg-[whitesmoke] overflow-hidden'>
-      <div className='my-10 w-full max-w-md p-8 bg-white rounded-lg shadow-lg'>
-        <main className='w-full max-w-md flex flex-col justify-center items-center mb-8' >
+      <div className='my-4 w-full max-w-md p-2 bg-white rounded-lg shadow-lg'>
+        <main className='w-full max-w-xl flex flex-col justify-center items-center mb-2' >
           <Hone className='text-center'>NEW TEACHER</Hone>
           <Form onSubmit={handleSubmit} className='w-full flex justify-center'>
 

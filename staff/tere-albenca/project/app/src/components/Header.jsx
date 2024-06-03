@@ -21,7 +21,7 @@ function Header({ onHomeClick, onCreateClick, onProfileClick, user, onNewTeacher
                     {/* //new teacher instruction */}
                     <button onClick={onCreateClick} className='w-10 h-10 mr-2.5 rounded-sm shadow cursor-pointer hover:bg-blue-300'>➕</button>
                     <button onClick={onProfileClick} className='w-10 h-10 mr-2.5 rounded-sm shadow cursor-pointer hover:bg-blue-300'>
-                        <img src='../src/assets/images/login.png' alt='perfil' className='max-h-[45px]' />
+                        <img src='../src/assets/images/login.png' alt='perfil' className='max-h-[38px]' />
                     </button>
                 </div>
             </div>

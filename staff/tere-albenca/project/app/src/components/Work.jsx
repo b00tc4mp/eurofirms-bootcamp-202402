@@ -86,7 +86,7 @@ function Work({ work, onWorkRemoved, onWorkEdit, user, onUserProfileClick }) {
         <article className="w-full bg-white rounded-lg shadow-md p-4 mb-4">
             <h3 className="font-bold text-lg text-blue-400 cursor-pointer hover:text-blue-700" onClick={handleProfileUserClick}>{work.author.name}</h3>
             <div className="w-[90%] flex flex-row justify-between items-center mt-2">
-                <h4 className="font-bold text-xl">{work.title}</h4>
+                <h4 className="font-bold text-xl  text-blue-900">{work.title}</h4>
                 {(user && user.role === 'teacher') || (user && user.id === work.author.id) ? (
                     <div className="flex space-x-2">
                         <button className="px-1.5 py-0.5 bg-gray-200 rounded-md text-sm shadow-md hover:bg-gray-300 hover:shadow-lg active:bg-gray-400 active:shadow-xl transition-all duration-200" onClick={handleShowForm}>✏️</button>

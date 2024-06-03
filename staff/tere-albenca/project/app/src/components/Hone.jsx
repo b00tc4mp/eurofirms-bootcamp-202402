@@ -1,7 +1,7 @@
 function Hone({ children, className }) {
   return (
     <h1
-      className={'text-2xl text-blue-400 font-bold mb-[15px] shadow-blue-dark' + className}
+      className={'mt-4 text-2xl text-blue-900 font-bold mb-[15px] shadow-black-dark' + className}
     >
       {children}
     </h1>

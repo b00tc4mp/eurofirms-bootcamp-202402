@@ -4,7 +4,8 @@ function Input({ className, type = 'text', placeholder, id }) {
             type={type}
             id={id}
             placeholder={placeholder}
-            className={'w-full p-2 rounded-md border-lightgray mb-2 box-border hover:bg-[#ececec]' + className}
+            // className={'w-full p-2 rounded-md border-gray-200 mb-2 box-border hover:bg-gray-200' + className}
+            className={`w-full p-2 rounded-md border-gray-200 mb-2 box-border hover:bg-gray-100 ${className}`}
         />
     )
 

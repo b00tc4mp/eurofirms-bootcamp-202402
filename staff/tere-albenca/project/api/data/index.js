@@ -82,7 +82,7 @@ const lesson = new Schema({
         required: true,
     },
 
-    url: {
+    video: {
         type: String
     },
 

@@ -13,6 +13,10 @@ import retrieveUserWorks from './retrieveUserWorks.js'
 import updateWork from './updateWork.js'
 import searchWorks from './searchWorks.js'
 import updateComment from './updateComment.js'
+import createLesson from './createLesson.js'
+import updateLesson from './updateLesson.js'
+import removeLesson from './removeLesson.js'
+import retrieveLessons from './retrieveLessons.js'
 
 const logic = {
     authenticateUser,
@@ -30,6 +34,10 @@ const logic = {
     searchWorks,
     updateWork,
     updateComment,
+    createLesson,
+    updateLesson,
+    removeLesson,
+    retrieveLessons
 }
 
 export default logic
