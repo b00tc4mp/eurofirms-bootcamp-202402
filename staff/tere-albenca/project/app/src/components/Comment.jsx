@@ -1,22 +1,48 @@
-// Comment.jsx
-import React from 'react';
+import React, { useState } from 'react'
 
-function Comment({ comment, onEdit, onDelete }) {
-    const handleEdit = () => {
-        onEdit(comment.id);
-    };
+function Comment({ comment, user, onEdit, onDelete }) {
+    const [isEditing, setIsEditing] = useState(false)
+    const [editText, setEditText] = useState(comment.text)
 
-    const handleDelete = () => {
-        onDelete(comment.id);
-    };
+    const handleSave = () => {
+        onEdit(comment.id, editText)
+        setIsEditing(false)
+    }
+
+    const handleCancel = () => {
+        setIsEditing(false)
+        setEditText(comment.text)
+    }
 
     return (
-        <div className="comment">
-            <p>{comment.text}</p>
-            <button onClick={handleEdit}>Edit</button>
-            <button onClick={handleDelete}>Delete</button>
+        <div className="comment p-2 flex justify-between items-center bg-gray-100 rounded-md mb-2">
+            {isEditing ? (
+                <input
+                    type="text"
+                    value={editText}
+                    onChange={e => setEditText(e.target.value)}
+                    className="flex-1 mr-2 px-2 py-1 border rounded-md"
+                />
+            ) : (
+                <p className="flex-1 mr-2">{comment.text}</p>
+            )}
+            {user && user.role === 'teacher' && (  // Asegúrate de que el rol del usuario es teacher
+                <div className="flex space-x-2">
+                    {isEditing ? (
+                        <>
+                            <button className="px-2 py-1 bg-green-500 text-white rounded-md" onClick={handleSave}>Save</button>
+                            <button className="px-2 py-1 bg-gray-500 text-white rounded-md" onClick={handleCancel}>Cancel</button>
+                        </>
+                    ) : (
+                        <>
+                            <button className="px-2 py-1 bg-yellow-500 text-white rounded-md" onClick={() => setIsEditing(true)}>Edit</button>
+                            <button className="px-2 py-1 bg-red-500 text-white rounded-md" onClick={() => onDelete(comment.id)}>Delete</button>
+                        </>
+                    )}
+                </div>
+            )}
         </div>
     );
 }
 
-export default Comment;
+export default Comment

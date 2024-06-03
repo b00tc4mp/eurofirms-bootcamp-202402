@@ -15,6 +15,7 @@ import createComment from './createComment.js'
 import removeComment from './removeComment.js'
 import updateComment from './updateComment.js'
 import retrieveComments from './retrieveComments.js'
+import searchWorks from './searchWorks.js'
 
 const logic = {
     registerStudent,
@@ -33,7 +34,8 @@ const logic = {
     createComment,
     removeComment,
     updateComment,
-    retrieveComments
+    retrieveComments,
+    searchWorks
 }
 
 export default logic

@@ -3,15 +3,18 @@ import { errors, validate } from 'com'
 
 const { SystemError, MatchError } = errors
 
-function searchWork(userId, searchQuery) {
+function searchWorks(userId, searchQuery) {
+    // Validaciones de entrada
     validate.id(userId, 'userId')
     validate.text(searchQuery, 'searchQuery')
 
+    // Buscar al usuario por ID
     return User.findById(userId)
         .catch(error => { throw new SystemError(error.message) })
         .then(user => {
             if (!user) { throw new MatchError('user not found') }
 
+            // Buscar trabajos cuyo título coincida con searchQuery
             return Work.find({ "title": { '$regex': searchQuery, '$options': 'i' } }).select('-__v').populate('author', 'name surname').lean()
                 .catch(error => { throw new SystemError(error.message) })
                 .then(works => {
@@ -34,4 +37,4 @@ function searchWork(userId, searchQuery) {
                 })
         })
 }
-export default searchWork
+export default searchWorks

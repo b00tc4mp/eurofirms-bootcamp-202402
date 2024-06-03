@@ -60,9 +60,16 @@ function Login({ onUserLoggedIn, onRegisterClick }) {
 
   return (
     <>
-      <div className='flex flex-col justify-center item-center mt-3 mb-1'>
-        <main className='w-3/5 flex flex-col justify-center item-center mb-8'>
-          <Hone className='text-center'>LOGIN</Hone>
+      <div className='flex flex-col justify-center item-center min-h-screen'>
+        <main className='w-full max-w-md flex flex-col justify-center items-center mb-8'>
+          <Hone className='text-center mb-8'  >LOGIN</Hone>
+
+          <img
+            src='../src/assets/images/cabecera.jpg'
+            alt='logo'
+            className='h-40'
+          />
+
           <Form onSubmit={handleSubmit} className='max-w-sm'>
             <label htmlFor='email'>Email</label>
             <Input type='text' id='email' placeholder=' ' />
@@ -76,7 +83,7 @@ function Login({ onUserLoggedIn, onRegisterClick }) {
             {error?.anotherError && <span className='text-[#C13E65]'>{error.message}</span>}
 
             <div className='flex justify-center bg-[lightgray] hover:bg-[#c3c3c2] rounded-xl p-1 my-1'>
-              <a onClick={handleRegisterClick} className='no-underline text-[#25676d] hover:bg-[#25676D]'>Register</a>
+              <a onClick={handleRegisterClick} className='no-underline text-blue-400 hover:bg-blue-700'>Register</a>
               <br />
             </div>
           </Form>

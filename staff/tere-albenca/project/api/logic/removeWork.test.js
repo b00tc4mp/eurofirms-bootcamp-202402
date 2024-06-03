@@ -6,7 +6,7 @@ mongoose.connect('mongodb://localhost:27017/project')
         try {
             removeWork(
                 '663b3fa28392558d89324990',
-                '663b91482a4aa76dae5b8a4b')
+                '663b9e5242529d7ab03ccc83')
                 .then(() => console.log('work deleted'))
                 .catch(error => console.error(error))
         } catch (error) {

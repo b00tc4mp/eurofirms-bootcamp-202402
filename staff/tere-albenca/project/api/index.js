@@ -56,6 +56,7 @@ mongoose.connect(MONGO_URL)
         server.post('/users/teachers', jsonBodyParser, (req, res) => {
 
             try {
+
                 const { name, surname, email, password } = req.body
 
                 logic.registerTeacher(name, surname, email, password)
@@ -191,11 +192,17 @@ mongoose.connect(MONGO_URL)
             try {
                 const { authorization } = req.headers
 
-                const token = authorization.slice(7)
+                const token = authorization && authorization.slice(7)
+                if (!token) throw new MatchError('token not provided')
 
                 const { sub: userId } = jwt.verify(token, JWT_SECRET)
-
                 const { workId } = req.params
+
+                // const token = authorization.slice(7)
+
+                // const { sub: userId } = jwt.verify(token, JWT_SECRET)
+
+                // const { workId } = req.params
 
                 logic.removeWork(userId, workId)
                     .then(work => res.status(204).send())
@@ -538,7 +545,7 @@ mongoose.connect(MONGO_URL)
             }
         })
 
-        //searchWork
+        //searchWorks
 
         server.get('/works/search', (req, res) => {
             try {
@@ -551,7 +558,7 @@ mongoose.connect(MONGO_URL)
 
                 const { sub: userId } = jwt.verify(token, JWT_SECRET)
 
-                logic.searchWork(userId, q)
+                logic.searchWorks(userId, q)
                     .then(works => res.status(200).json(works))
                     .catch(error => {
                         let status = 500

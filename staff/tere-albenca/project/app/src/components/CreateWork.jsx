@@ -5,10 +5,15 @@ import Input from './Input'
 import { errors } from 'com'
 import Htwo from './Htwo'
 
+
 const { MatchError } = errors
 
 function CreateWork({ onCancelClick, onWorkCreated }) {
-  const handleCancelClick = () => onCancelClick()
+  const handleCancelClick = () => {
+    if (onCancelClick) {
+      onCancelClick();
+    }
+  };
 
   const handleSubmit = event => {
     event.preventDefault()
@@ -58,7 +63,7 @@ function CreateWork({ onCancelClick, onWorkCreated }) {
     <>
       <section className='mb-12 fixed bottom-0 left-0 bg-white w-full pb-2 border-t-2 border-black flex flex-col box-border px-2'>
         <Htwo className='font-bold text-xl py-2'>CREATE WORK</Htwo>
-        <Form id='create-post-form' onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit}>
           <Input type='text' placeholder='title' id='title' />
           <Input type='text' placeholder='image' id='image' />
 

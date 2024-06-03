@@ -3,30 +3,27 @@ import { errors, validate } from 'com'
 
 const { SystemError, MatchError } = errors
 
-function removeWork(userId, workId) {
+async function removeWork(userId, workId) {
     validate.id(userId, 'userId')
     validate.id(workId, 'workId')
 
-    return User.findById(userId)
-        .catch(error => { throw new SystemError(error.message) })
-        .then(user => {
-            if (!user)
-                throw new MatchError('student not found')
+    try {
+        const user = await User.findById(userId)
+        if (!user) throw new MatchError('user not found')
 
-            return Work.findById(workId)
-                .catch(error => { throw new SystemError(error.message) })
-        })
-        .then(work => {
-            if (!work)
-                throw new MatchError('work not found')
+        const work = await Work.findById(workId)
+        if (!work) throw new MatchError('work not found')
 
-            if (work.author.toString() !== userId)
-                throw new MatchError('work does not belong user')
+        if (work.author.toString() !== userId && user.role !== 'teacher')
+            throw new MatchError('user is not authorized to delete this work')
 
-            return Work.deleteOne({ _id: work._id })
-                .catch(error => { throw new SystemError(error.message) })
-        })
-        .then(result => { })
+        await Work.deleteOne({ _id: work._id })
+
+        return { id: workId.toString() }
+    } catch (error) {
+        if (error instanceof MatchError) throw error
+        throw new SystemError(error.message)
+    }
 }
 
 export default removeWork

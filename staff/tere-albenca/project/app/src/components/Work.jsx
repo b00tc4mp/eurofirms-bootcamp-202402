@@ -1,271 +1,238 @@
-import { useState, useEffect } from 'react'
-import logic from '../logic'
-import { errors } from 'com'
-import CreateComment from './CreateComment.jsx'
+import React, { useState } from 'react';
+import logic from '../logic';
+import { errors } from 'com';
 
-const { MatchError, ContentError } = errors
+const { MatchError, ContentError } = errors;
 
-function Work({ work, onWorkRemoved, onWorkEdit, user, onUserProfileClick, isProfilePage }) {
-    const [editWork, setEditWork] = useState(false)
-    const [showCommentForm, setShowCommentForm] = useState(false)
-    const [comments, setComments] = useState([])
-    const [editComment, setEditComment] = useState({ id: '', text: '' })
-
-    useEffect(() => {
-        loadComments()
-    }, [])
-
-    const loadComments = () => {
-        logic.retrieveComments(work.id)
-            .then(comments => setComments(comments))
-            .catch(error => console.error(error))
-    }
+function Work({ work, onWorkRemoved, onWorkEdit, user, onUserProfileClick }) {
+    const [editWork, setEditWork] = useState(false);
 
     const handleProfileUserClick = () => {
-        onUserProfileClick(work.author.id)
-    }
+        onUserProfileClick(work.author.id);
+    };
 
     const handleRemoveWork = () => {
         try {
-            if (confirm('delete work?'))
+            if (confirm('Delete work?')) {
                 logic.removeWork(work.id)
                     .then(() => onWorkRemoved())
                     .catch(error => {
-                        console.error(error)
-
-                        let feedback = error.message
-
+                        console.error(error);
+                        let feedback = error.message;
                         if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
-                            feedback = `${feedback},please correct it`
-
+                            feedback = `${feedback}, please correct it`;
                         else if (error instanceof MatchError)
-                            feedback = `${feedback},please verify credentials`
-
+                            feedback = `${feedback}, please verify credentials`;
                         else
-                            feedback = 'sorry, there was an error, please try again later'
-
-                        alert(feedback)
-                    })
-
-        } catch (error) {
-            console.error(error)
-
-            let feedback = error.message
-
-            if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
-                feedback = `${feedback},please correct it`
-            else
-                feedback = 'sorry, there was an error, please try again later'
-
-            alert(feedback)
-        }
-    }
-
-    const handleUpdateWork = event => {
-        try {
-            event.preventDefault()
-            const form = event.target
-            const title = form.title.value
-            const text = form.text.value
-
-            logic.updateWork(work.id, title, text)
-
-                .catch(error => {
-                    console.error(error)
-
-                    let feedback = error.message
-
-                    if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
-                        feedback = `${feedback},please correct it`
-
-                    else if (error instanceof MatchError)
-                        feedback = `${feedback},please verify credentials`
-
-                    else
-                        feedback = 'sorry, there was an error, please try again later'
-
-                    alert(feedback)
-                })
-                .then(() => {
-                    setEditWork(false)
-                    onWorkEdit()
-                })
-        } catch (error) {
-            console.error(error)
-
-            let feedback = error.message
-
-            if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
-                feedback = `${feedback},please correct it`
-            else
-                feedback = 'sorry, there was an error, please try again later'
-
-            alert(feedback)
-        }
-    }
-
-    const handleShowForm = () => {
-        setEditWork(true)
-    }
-
-    const handleCommentWork = () => {
-        setShowCommentForm(!showCommentForm)
-    }
-
-    const handleCancelClick = () => {
-        setEditWork(false);
-        setEditComment({ id: '', text: '' })
-    }
-
-    const handleCommentCreated = () => {
-        loadComments()
-    }
-
-    const handleUpdateComment = event => {
-        event.preventDefault()
-        try {
-            logic.updateComment(work.id, editComment.id, editComment.text)
-                .then(() => {
-                    loadComments()
-                    setEditComment({ id: '', text: '' })
-                })
-                .catch(error => {
-                    console.error(error)
-                    let feedback = error.message
-                    if (error instanceof TypeError || error instanceof MatchError) {
-                        feedback = `${feedback}, please verify credentials`
-                    } else {
-                        feedback = 'Sorry, there was an error. Please try again later.'
-                    }
-                    alert(feedback)
-                });
-        } catch (error) {
-            console.error(error)
-            let feedback = error.message
-            if (error instanceof TypeError || error instanceof MatchError) {
-                feedback = `${feedback}, please verify credentials`
-            } else {
-                feedback = 'Sorry, there was an error. Please try again later.'
-            }
-            alert(feedback);
-        }
-    }
-
-    const handleEditComment = (commentId, commentText) => {
-        setEditComment({ id: commentId, text: commentText })
-    }
-
-    const handleCancelEdit = () => {
-        setEditComment({ id: '', text: '' })
-    }
-
-    const handleRemoveComment = (commentId) => {
-        try {
-            if (confirm('Delete comment?')) {
-                logic.removeComment(work.id, commentId)
-                    .then(() => {
-                        // Actualizar 
-                        loadComments()
-                    })
-                    .catch(error => {
-                        console.error(error)
-
-                        let feedback = error.message
-
-                        if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError) {
-                            feedback = `${feedback}, please correct it`
-                        } else {
-                            feedback = 'Sorry, there was an error, please try again later'
-                        }
-
+                            feedback = 'Sorry, there was an error, please try again later';
                         alert(feedback);
                     });
             }
         } catch (error) {
             console.error(error);
-
             let feedback = error.message;
-
-            if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError) {
+            if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
                 feedback = `${feedback}, please correct it`;
-            } else {
+            else
                 feedback = 'Sorry, there was an error, please try again later';
-            }
-
             alert(feedback);
         }
-
-
     };
 
-    return <article className='w-full'>
-        <h3 className='font-bold cursor-pointer' onClick={handleProfileUserClick}>{work.author.name}</h3>
-        <div className='w-[90%] flex flex-row justify-end items-end'>
-            {(user && user.role === 'teacher' || user && user.id === work.author.id) &&
-                <div className='flex flex-row justify-end'>
-                    <div className='pr-1'>
-                        <h4 className="font-bold">{work.title}</h4>
-                    </div>
-                    <div className='flex justify-end'>
-                        <button className='px-1' onClick={handleRemoveWork}>🗑️</button>
-                        <button className='px-1' onClick={handleShowForm}>✏️</button>
-                    </div>
-                </div>}
-        </div>
+    const handleUpdateWork = event => {
+        try {
+            event.preventDefault();
+            const form = event.target;
+            const title = form.title.value;
+            const text = form.text.value;
 
-        {editWork === true &&
-            <div className='flex flex-row justify-center gap-1'>
-                <form onSubmit={handleUpdateWork} className='flex flex-row gap-1'>
-                    <input id='title' type='text' placeholder='Edit title' defaultValue={work.title}></input>
-                    <input id='text' type='text' placeholder='Edit text' defaultValue={work.text}></input>
-                    <button type='submit'>Update</button>
-                </form>
-                <button onClick={handleCancelClick} >Cancel</button>
-            </div>
+            logic.updateWork(work.id, title, text)
+                .then(() => {
+                    setEditWork(false);
+                    onWorkEdit();
+                })
+                .catch(error => {
+                    console.error(error);
+                    let feedback = error.message;
+                    if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
+                        feedback = `${feedback}, please correct it`;
+                    else if (error instanceof MatchError)
+                        feedback = `${feedback}, please verify credentials`;
+                    else
+                        feedback = 'Sorry, there was an error, please try again later';
+                    alert(feedback);
+                });
+        } catch (error) {
+            console.error(error);
+            let feedback = error.message;
+            if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
+                feedback = `${feedback}, please correct it`;
+            else
+                feedback = 'Sorry, there was an error, please try again later';
+            alert(feedback);
         }
+    };
 
-        <img src={work.image} className='w-[90%]' alt={work.title} />
-        <p>{work.text}</p>
-        <time className='block text-right text-xs mb-[10px] mr-[5px]'>{work.date}</time>
+    const handleShowForm = () => {
+        setEditWork(true);
+    };
 
-        {(user && user.role === 'teacher') &&
-            <div className='flex w-[70%] flex-row bg-[whitesmoke] rounded'>
-                <div className=''>
-                    <button className='px-3' onClick={handleCommentWork}>➕</button>
-                </div>
+    const handleCancelClick = () => {
+        setEditWork(false);
+    };
+
+    return (
+        <article className="w-full bg-white rounded-lg shadow-md p-4 mb-4">
+            <h3 className="font-bold text-lg text-blue-400 cursor-pointer hover:text-blue-700" onClick={handleProfileUserClick}>{work.author.name}</h3>
+            <div className="w-[90%] flex flex-row justify-between items-center mt-2">
+                <h4 className="font-bold text-xl">{work.title}</h4>
+                {(user && user.role === 'teacher') || (user && user.id === work.author.id) ? (
+                    <div className="flex space-x-2">
+                        <button className="px-1.5 py-0.5 bg-gray-200 rounded-md text-sm shadow-md hover:bg-gray-300 hover:shadow-lg active:bg-gray-400 active:shadow-xl transition-all duration-200" onClick={handleShowForm}>✏️</button>
+                        <button className="px-1.5 py-0.5 bg-gray-200 rounded-md text-white text-l font-bold shadow-md hover:bg-gray-300 hover:shadow-lg active:bg-gray-400 active:shadow-xl transition-all duration-200" onClick={handleRemoveWork}>❌</button>
+
+                    </div>
+                ) : null}
             </div>
-        }
 
-        {comments.length > 0 && isProfilePage && user.role === 'student' && (
-            <>
-                <h4 className='font-bold'>Teacher comments</h4>
-                <ul className="pl-8 w-[70%] bg-[whitesmoke] rounded">
-                    {comments.map(comment => (
-                        <li key={comment.id}>
-
-                            <p className="pr-4">{comment.text}</p>
-                        </li>
-                    ))}
-                </ul>
-            </>
-        )}
-
-        <ul className="pl-8 w-[70%] bg-[whitesmoke] rounded">
-            {showCommentForm && <CreateComment workId={work.id} onCommentCreated={handleCommentCreated} />}
-            {comments.map(comment => (
-                <li key={comment.id}>
-                    {user && user.role === "teacher" && (
-                        <div className="flex flex-row">
-                            <p className="pr-4">{comment.text}</p>
-                            <button onClick={() => handleRemoveComment(comment.id)}>🗑️</button>
-                            <button onClick={() => handleEditComment(comment.id, comment.text)}>✏️</button>
+            {editWork && (
+                <div className="mt-2">
+                    <form onSubmit={handleUpdateWork} className="flex flex-col space-y-2">
+                        <input id="title" type="text" placeholder="Edit title" defaultValue={work.title} className="px-2 py-1 border rounded-md" />
+                        <input id="text" type="text" placeholder="Edit text" defaultValue={work.text} className="px-2 py-1 border rounded-md" />
+                        <div className="flex space-x-1">
+                            <button type="submit" className="px-2 py-0.5 bg-gray-200 rounded-md  text-white text-sm shadow-md hover:bg-gray-300 hover:shadow-lg active:bg-gray-400 active:shadow-xl transition-all duration-200"> ok</button>
+                            <button type="button" className="px-1.5 py-0.5 bg-gray-200 rounded-md text-l font-bold shadow-md hover:bg-gray-300 hover:shadow-lg active:bg-gray-400 active:shadow-xl transition-all duration-200" onClick={handleCancelClick}>✖️</button>
                         </div>
-                    )}
-                </li>
-            ))}
-        </ul>
+                    </form>
+                </div>
+            )}
 
-    </article>
+            <img src={work.image} className="w-[90%] rounded-lg mt-4" alt={work.title} />
+            <p className="mt-2 text-gray-700">{work.text}</p>
+            <time className="block text-right text-xs text-gray-500 mt-2">{work.date}</time>
+        </article>
+    );
 }
 
-export default Work
+export default Work;
+
+
+// import React, { useState } from 'react'
+// import logic from '../logic'
+// import { errors } from 'com'
+
+// const { MatchError, ContentError } = errors
+
+// function Work({ work, onWorkRemoved, onWorkEdit, user, onUserProfileClick }) {
+//     const [editWork, setEditWork] = useState(false)
+
+//     const handleProfileUserClick = () => {
+//         onUserProfileClick(work.author.id)
+//     }
+
+//     const handleRemoveWork = () => {
+//         try {
+//             if (confirm('Delete work?')) {
+//                 logic.removeWork(work.id.toString())  // Asegurarse de que work.id es una cadena
+//                     .then(() => onWorkRemoved(work.id.toString()))  // Pasar work.id como cadena
+//                     .catch(error => {
+//                         console.error(error)
+//                         let feedback = error.message
+//                         if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
+//                             feedback = `${feedback}, please correct it`
+//                         else if (error instanceof MatchError)
+//                             feedback = `${feedback}, please verify credentials`
+//                         else
+//                             feedback = 'Sorry, there was an error, please try again later'
+//                         alert(feedback)
+//                     })
+//             }
+//         } catch (error) {
+//             console.error(error)
+//             let feedback = error.message
+//             if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
+//                 feedback = `${feedback}, please correct it`
+//             else
+//                 feedback = 'Sorry, there was an error, please try again later'
+//             alert(feedback)
+//         }
+//     }
+
+//     const handleUpdateWork = event => {
+//         try {
+//             event.preventDefault()
+//             const form = event.target
+//             const title = form.title.value
+//             const text = form.text.value
+
+//             logic.updateWork(work.id, title, text)
+//                 .then(() => {
+//                     setEditWork(false)
+//                     onWorkEdit()
+//                 })
+//                 .catch(error => {
+//                     console.error(error)
+//                     let feedback = error.message
+//                     if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
+//                         feedback = `${feedback}, please correct it`
+//                     else if (error instanceof MatchError)
+//                         feedback = `${feedback}, please verify credentials`
+//                     else
+//                         feedback = 'Sorry, there was an error, please try again later'
+//                     alert(feedback)
+//                 })
+//         } catch (error) {
+//             console.error(error)
+//             let feedback = error.message
+//             if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
+//                 feedback = `${feedback}, please correct it`
+//             else
+//                 feedback = 'Sorry, there was an error, please try again later'
+//             alert(feedback)
+//         }
+//     }
+
+//     const handleShowForm = () => {
+//         setEditWork(true)
+//     }
+
+//     const handleCancelClick = () => {
+//         setEditWork(false)
+//     }
+
+//     return (
+//         <article className="w-full bg-white rounded-lg shadow-md p-4 mb-4">
+//             <h3 className="font-bold text-lg text-blue-400 cursor-pointer hover:text-blue-700" onClick={handleProfileUserClick}>{work.author.name}</h3>
+//             <div className="w-[90%] flex flex-row justify-between items-center mt-2">
+//                 <h4 className="font-bold text-xl">{work.title}</h4>
+//                 {(user && user.role === 'teacher') || (user && user.id === work.author.id) ? (
+//                     <div className="flex space-x-2">
+//                         <button className="px-1.5 py-0.5 bg-gray-200 rounded-md text-sm shadow-md hover:bg-gray-300 hover:shadow-lg active:bg-gray-400 active:shadow-xl transition-all duration-200" onClick={handleShowForm}>✏️</button>
+//                         <button className="px-1.5 py-0.5 bg-gray-200 rounded-md text-white text-l font-bold shadow-md hover:bg-gray-300 hover:shadow-lg active:bg-gray-400 active:shadow-xl transition-all duration-200" onClick={handleRemoveWork}>❌</button>
+
+//                     </div>
+//                 ) : null}
+//             </div>
+
+//             {editWork && (
+//                 <div className="mt-2">
+//                     <form onSubmit={handleUpdateWork} className="flex flex-col space-y-2">
+//                         <input id="title" type="text" placeholder="Edit title" defaultValue={work.title} className="px-2 py-1 border rounded-md" />
+//                         <input id="text" type="text" placeholder="Edit text" defaultValue={work.text} className="px-2 py-1 border rounded-md" />
+//                         <div className="flex space-x-1">
+//                             <button type="submit" className="px-2 py-0.5 bg-gray-200 rounded-md  text-white text-sm shadow-md hover:bg-gray-300 hover:shadow-lg active:bg-gray-400 active:shadow-xl transition-all duration-200"> ok</button>
+//                             <button type="button" className="px-1.5 py-0.5 bg-gray-200 rounded-md text-l font-bold shadow-md hover:bg-gray-300 hover:shadow-lg active:bg-gray-400 active:shadow-xl transition-all duration-200" onClick={handleCancelClick}>✖️</button>
+//                         </div>
+//                     </form>
+//                 </div>
+//             )}
+
+//             <img src={work.image} className="w-[90%] rounded-lg mt-4" alt={work.title} />
+//             <p className="mt-2 text-gray-700">{work.text}</p>
+//             <time className="block text-right text-xs text-gray-500 mt-2">{work.date}</time>
+//         </article>
+//     )
+// }
+
+// export default Work

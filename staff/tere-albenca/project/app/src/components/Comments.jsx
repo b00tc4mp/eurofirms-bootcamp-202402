@@ -1,69 +1,55 @@
-import React from 'react';
-import CreateComment from './CreateComment';
-import logic from '../logic';
+import React from 'react'
+import CreateComment from './CreateComment'
+import Comment from './Comment'
+import logic from '../logic'
 
-function Comments({ workId, comments, userRole, onCommentCreated, onCommentEdit, onCommentDelete }) {
+function Comments({ workId, comments, user, onCommentCreated, onCommentsChanged }) {
     const handleCommentCreated = () => {
-        onCommentCreated();
-    };
+        onCommentCreated()
+    }
 
-    const handleUpdateComment = (commentId, newText) => {
+    const handleUpdateComment = async (commentId, newText) => {
         try {
-            logic.updateComment(workId, commentId, newText)
-                .then(() => {
-                    onCommentEdit(commentId, newText);
-                })
-                .catch(error => {
-                    console.error(error);
-                    let feedback = error.message || 'Sorry, there was an error. Please try again later.';
-                    alert(feedback);
-                });
+            await logic.updateComment(workId, commentId, newText)
+            onCommentsChanged() // Refresca comments
         } catch (error) {
-            console.error(error);
-            let feedback = error.message || 'Sorry, there was an error. Please try again later.';
-            alert(feedback);
+            console.error(error)
+            let feedback = error.message || 'Sorry, there was an error. Please try again later.'
+            alert(feedback)
         }
-    };
+    }
 
-    const handleRemoveComment = (commentId) => {
+    const handleRemoveComment = async (commentId) => {
         try {
             if (confirm('Delete comment?')) {
-                logic.removeComment(workId, commentId)
-                    .then(() => {
-                        onCommentDelete(commentId);
-                    })
-                    .catch(error => {
-                        console.error(error);
-                        let feedback = error.message || 'Sorry, there was an error. Please try again later.';
-                        alert(feedback);
-                    });
+                await logic.removeComment(workId, commentId)
+                onCommentsChanged()
             }
         } catch (error) {
-            console.error(error);
-            let feedback = error.message || 'Sorry, there was an error. Please try again later.';
-            alert(feedback);
+            console.error(error)
+            let feedback = error.message || 'Sorry, there was an error. Please try again later.'
+            alert(feedback)
         }
-    };
+    }
 
     return (
         <div>
             <h2>Comments</h2>
             {comments.map((comment) => (
-                <div key={comment.id}>
-                    <p>{comment.text}</p>
-                    {userRole === 'teacher' && (
-                        <>
-                            <button onClick={() => handleUpdateComment(comment.id, 'New Text')}>Edit</button>
-                            <button onClick={() => handleRemoveComment(comment.id)}>Delete</button>
-                        </>
-                    )}
-                </div>
+                <Comment
+                    key={comment.id}
+                    comment={comment}
+                    user={user}
+                    onEdit={handleUpdateComment}
+                    onDelete={handleRemoveComment}
+                />
             ))}
-            {userRole === 'teacher' && (
+            {user && user.role === 'teacher' && (
                 <CreateComment workId={workId} onCommentCreated={handleCommentCreated} />
             )}
         </div>
     );
 }
 
-export default Comments;
+export default Comments
+

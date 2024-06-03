@@ -11,7 +11,7 @@ import retrieveWorks from './retrieveWorks.js'
 import retrieveUser from './retrieveUser.js'
 import retrieveUserWorks from './retrieveUserWorks.js'
 import updateWork from './updateWork.js'
-import searchWork from './searchWork.js'
+import searchWorks from './searchWorks.js'
 import updateComment from './updateComment.js'
 
 const logic = {
@@ -27,7 +27,7 @@ const logic = {
     retrieveUser,
     retrieveWorks,
     retrieveUserWorks,
-    searchWork,
+    searchWorks,
     updateWork,
     updateComment,
 }

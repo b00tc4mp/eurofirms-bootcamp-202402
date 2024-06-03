@@ -6,13 +6,14 @@ import Works from '../components/Works'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 
-const { ContentError, TypeError, RangeError } = errors
+const { ContentError, TypeError, RangeError, MatchError } = errors
 
 function Home({ onUserLoggedOut, onHomeClick, onProfileClick, onUserProfileClick }) {
   const [view, setView] = useState(null)
   const [refreshStamp, setRefreshStamp] = useState(null)
   const [user, setUser] = useState(null)
-  const [works, setWorks] = useState(null)
+  const [works, setWorks] = useState([])
+  const [searchQuery, setSearchQuery] = useState('')
 
   useEffect(() => {
     const fetchUserAndWorks = async () => {
@@ -44,12 +45,12 @@ function Home({ onUserLoggedOut, onHomeClick, onProfileClick, onUserProfileClick
     onUserLoggedOut()
   }
 
-  const handleCreateClick = () => setView('createWork');
+  const handleCreateClick = () => setView('createWork')
 
-  const handleCancelClick = () => setView(null);
+  const handleCancelClick = () => setView(null)
 
   const handleCreatedWork = () => {
-    setView(null);
+    setView(null)
     setRefreshStamp(Date.now())
   }
 
@@ -58,9 +59,8 @@ function Home({ onUserLoggedOut, onHomeClick, onProfileClick, onUserProfileClick
     onHomeClick()
   }
 
-  const handleProfileClick = event => {
+  const handleProfileClick = (event) => {
     event.preventDefault()
-
     onProfileClick(user.id)
   }
 
@@ -68,22 +68,63 @@ function Home({ onUserLoggedOut, onHomeClick, onProfileClick, onUserProfileClick
     onUserProfileClick(userId)
   }
 
+  const handleSearchWorks = (event) => {
+    event.preventDefault()
+    const query = event.target.query.value
+    setSearchQuery(query)
+  }
+
+  const handleCancelSearch = () => {
+    setSearchQuery('')
+    setRefreshStamp(Date.now())
+  }
+
   return (
     <div className='m-0 p-0 max-w-[100%]'>
       <Header
-        onHomeClick={handleHomeClick} onCreateClick={handleCreateClick} onProfileClick={handleProfileClick}
+        onHomeClick={handleHomeClick}
+        onCreateClick={handleCreateClick}
+        onProfileClick={handleProfileClick}
       />
+      <main className='w-[100%] bg-[whitesmoke]'>
+        <div className='w-[100%] flex justify-center items-center'>
+          <form className='mt-16' onSubmit={handleSearchWorks}>
+            <input
+              name="query"
+              type="text"
+              className="border border-gray-500 rounded-md px-4 py-2 mb-4"
+              placeholder="Search works..."
+            />
+            <button
+              type="submit"
+              className="bg-blue-400 text-white rounded-md px-4 py-2 ml-2 hover:bg-blue-500"
+            >Search
+            </button>
+            <button
+              type="button"
+              onClick={handleCancelSearch}
+              className="bg-blue-400 text-white rounded-md px-4 py-2 ml-2 hover:bg-blue-500"
+            >X
+            </button>
+          </form>
+        </div>
 
-      <main className='w-[100%] bg-[lightgray]'>
-        <Works user={user} refreshStamp={refreshStamp} onUserProfileClick={(targetUserId) => handleProfileUserClick(targetUserId)} />
-
-        {view === 'createWork' && <CreateWork onWorkCreated={handleCreatedWork} onCancelClick={handleCancelClick} />}
+        <Works
+          user={user}
+          refreshStamp={refreshStamp}
+          searchQuery={searchQuery}
+          onUserProfileClick={handleProfileUserClick}
+        />
+        {view === 'createWork' && (
+          <CreateWork
+            onWorkCreated={handleCreatedWork}
+            onCancelClick={handleCancelClick}
+          />
+        )}
       </main>
-
       <Footer onLogout={handleLogout} />
-
     </div>
-  )
+  );
 }
 
 export default Home

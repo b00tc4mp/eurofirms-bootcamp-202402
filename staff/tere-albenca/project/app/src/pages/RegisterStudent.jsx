@@ -103,7 +103,7 @@ function RegisterStudent({ onStudentRegistered, onLoginClick }) {
           {error?.anotherError && <Span></Span>}
 
           <div className='flex justify-center bg-[lightgray] hover:bg-[#c3c3c2] rounded-xl p-1 my-1'>
-            <a id='login' onClick={handleLoginClick} className='no-underline text-[#25676d] hover:bg-[#25676D]'>Login</a>
+            <a id='login' onClick={handleLoginClick} className='no-underline text-blue-400 hover:bg-blue-700'>Login</a>
           </div>
         </Form>
       </main>

@@ -66,7 +66,7 @@ function Profile({ onUserLoggedOut, onHomeClick, onProfileClick }) {
             <Header
                 onHomeClick={handleHomeClick} onCreateClick={handleCreateClick} onProfileClick={handleProfileClick}
             />
-            <main className='w-[100%] bg-[lightgray]'>
+            <main className='w-[100%] bg-[whitesmoke]'>
                 <UserWorks targetUserId={targetUserId} refreshStamp={refreshStamp} user={user} isProfilePage={true} onProfileClick={() => { }} /> { }
                 {view === 'createWork' && <CreateWork onWorkCreated={handleCreatedWork} onCancelClick={handleCancelClick} />}
             </main>
@@ -78,3 +78,4 @@ function Profile({ onUserLoggedOut, onHomeClick, onProfileClick }) {
 }
 
 export default Profile
+
