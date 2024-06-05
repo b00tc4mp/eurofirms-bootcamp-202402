@@ -89,7 +89,7 @@ function App() {
       {!user && (
         <>
           <button className="px-1 rounded-md border mr-2 text-white" onClick={handleRegisterClick}>Register</button>
-          <button className="px-1 rounded-md border text-white" onClick={handleLoginClick}>Login</button>
+          <button className="px-1 rounded-md border text-white mr-6" onClick={handleLoginClick}>Login</button>
         </>
       )}
 
@@ -101,7 +101,7 @@ function App() {
         <img className= "h-20 w-30" src="logotipo-MSM-04.jpg" />
       </div>
       {user && (
-        <button className="px-3 absolute inset-y-0 right-0" id="logout-button" onClick={handleLogout}>🚪</button>
+        <button className=" h-12 w-12 absolute inset-y-0 right-0 top-4 mr-2" id="logout-button" onClick={handleLogout}><img src="salida.png" alt="salida" /></button>
       )}
     </header>
     <main className=' bg-green-100 flex-grow min-h-screen pt-20' >
@@ -120,7 +120,7 @@ function App() {
     <footer className="flex justify-center items-center border-t-2 bg-teal-700 border-black fixed bottom-0 w-full  h-12 px-2 box-border align-end">
       <button className="px-3 text-white" onClick={handleRecursesClick}>Recursos</button>
       <button className="px-3 text-white" onClick={handleDonateClick}>Donaciones</button>
-      <button className="px-3" onClick={handleHomeClick}>🏚️</button>
+      <img className='w-6 h-6 cursor-pointer' src="casa.png" alt="home" onClick={handleHomeClick} />
       <button className="px-3 text-white" onClick={handleGalleryClick}>Galería</button>
       <button className="px-3 text-white" onClick={handleContactClick}>Contacto</button>
 

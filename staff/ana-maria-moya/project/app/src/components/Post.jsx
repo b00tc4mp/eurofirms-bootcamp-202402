@@ -249,7 +249,7 @@ function Post({ post, onPostRemoved, onPostModified, userRole, user }) {
             <div>
                 {comments.map(comment => (
                     <div key={comment.id}>
-                        {modifyComment.id !== comment.id && <p>{comment.text}</p>}
+                        {modifyComment.id !== comment.id && <div><p className= ' text-green-600'>{comment.author.name + ' ' + comment.author.surname} </p><p>{comment.text}</p></div>}
                         {modifyComment.id === comment.id &&
                             <div className="flex flex-row justify-center gap-1 ">
                                 <form onSubmit={handleModifyComment} className="flex flex-row gap-1">

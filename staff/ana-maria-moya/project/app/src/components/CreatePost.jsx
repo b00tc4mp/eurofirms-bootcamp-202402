@@ -33,7 +33,7 @@ function CreatePost({ onCancelClick, onPostCreated }) {
     return (
         <section className=" bg-green-100 fixed bottom-0 left-0 w-full border-t-2 border-black pb-2 px-2">
             <h2 className="font-bold text-xl py-2">Create Post</h2>
-            <form className="flex flex-col gap-2 mb-5" onSubmit={handleSubmit}>
+            <form className="flex flex-col gap-2 mb-12" onSubmit={handleSubmit}>
                 <label htmlFor="title">Title</label>
                 <input className="border-b-2 border-black" type="text" id="title" />
                 <label htmlFor="image">Image</label>
@@ -42,9 +42,10 @@ function CreatePost({ onCancelClick, onPostCreated }) {
                 <input className="border-b-2 border-black" type="url" id="video" />
                 <label htmlFor="text">Text</label>
                 <input className="border-b-2 border-black" type="text" id="text" />
-                <button className="rounded-xl border-2 border-black px-3 self-end" type="submit">Create</button>
+                <button className="rounded-xl border-2 border-black px-3 self-center" type="submit">Create</button>
+                <button className=" rounded-xl border-2  border-black px-3 self-center" onClick={handleCancelClick}>Cancel</button>
             </form>
-            <button className="rounded-xl border-2 border-slate-300 mx-auto px-3" onClick={handleCancelClick}>Cancel</button>
+           
         </section>
     )
 }

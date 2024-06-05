@@ -4,12 +4,12 @@ function ToggleLikeButton({ isLiked, onClick = { onClick } }) {
   return isLiked ?
     <IconButton onClick={onClick} color="red">
         <i className="fas fa-heart" />
-        <img src="public/me-gusta.png"/>
+        <img src="me-gusta.png"/>
       </IconButton>
     :
     <IconButton variant="outlined" onClick={onClick}>
       <i className="fas fa-heart" />
-      <img src="public/me-gusta.png" />
+      <img src="me-gusta.png" />
     </IconButton>
 }
 export default ToggleLikeButton
