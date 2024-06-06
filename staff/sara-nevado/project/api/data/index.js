@@ -55,8 +55,8 @@ const event = new Schema({
         type: String,
     },
     subscribers: {
-        type: [ObjectId],
-        ref: 'User'
+        type: [{ type: ObjectId, ref: 'User' }],
+
     },
     status: {
         type: String,

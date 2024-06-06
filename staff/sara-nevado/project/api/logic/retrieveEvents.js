@@ -9,7 +9,12 @@ async function retrieveEvents(month, year) {
 
     try {
         const events = await Event.find({})
-            .select('-__v')
+            .select('-__v').populate({
+                path: 'subscribers',
+                select: 'name surname'
+
+
+            })
             .lean()
 
         const filteredEvents = events.filter(event => {
@@ -24,12 +29,18 @@ async function retrieveEvents(month, year) {
                 event.id = event._id.toString()
                 delete event._id
             }
-             if (event.subscribers && event.subscribers.length > 0) { 
-                event.subscribers = event.subscribers.map(subscriber => subscriber.toString())
+            if (event.subscribers.length > 0) {
+                event.subscribers = event.subscribers.map(subscriber => {
+                    if (subscriber._id) {
+                        subscriber.id = subscriber._id.toString()
+                        delete subscriber._id
+
+                    }
+                    return subscriber
+                })
             }
-            //si event.id asigna un valor a la pro id del obj event
-            //event.subscribers tendria que hacer lo mismo y asignar un valor a la prop subscribers del obj event.
-            //faltaria:  event.subscribers = 
+
+
             return event
         })
     } catch (error) {
