@@ -118,11 +118,11 @@ function App() {
       </Routes>
     </main>
     <footer className="flex justify-center items-center border-t-2 bg-teal-700 border-black fixed bottom-0 w-full  h-12 px-2 box-border align-end">
-      <button className="px-3 text-white" onClick={handleRecursesClick}>Recursos</button>
+      <button className="px-3 text-white ml-8" onClick={handleRecursesClick}>Recursos</button>
       <button className="px-3 text-white" onClick={handleDonateClick}>Donaciones</button>
-      <img className='w-6 h-6 cursor-pointer' src="casa.png" alt="home" onClick={handleHomeClick} />
+      <img className='w-5 h-5 cursor-pointer' src="casa.png" alt="home" onClick={handleHomeClick} />
       <button className="px-3 text-white" onClick={handleGalleryClick}>Galería</button>
-      <button className="px-3 text-white" onClick={handleContactClick}>Contacto</button>
+      <button className="px-3 text-white mr-8" onClick={handleContactClick}>Contacto</button>
 
       
 

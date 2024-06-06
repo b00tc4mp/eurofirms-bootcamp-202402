@@ -172,7 +172,8 @@ function Post({ post, onPostRemoved, onPostModified, userRole, user }) {
             }
 
             console.error(error)
-
+if(error.message.includes('token'))
+    error.message = 'user must be logged in'
             alert(error.message)
         }
     }

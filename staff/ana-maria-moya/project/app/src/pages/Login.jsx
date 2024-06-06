@@ -17,7 +17,7 @@ function Login({ onUserLoggedIn, onRegisterClick }) {
             logic.loginUser(email, password)
                 .then(() => onUserLoggedIn())
                 .catch(error => {
-                    console.error(error.message)
+                    console.error(error)
 
                     let feedback = error.message
 
@@ -31,7 +31,7 @@ function Login({ onUserLoggedIn, onRegisterClick }) {
                     alert(feedback)
                 })
         } catch (error) {
-            console.error(error.message)
+            console.error(error)
 
             let feedback = error.message
 
