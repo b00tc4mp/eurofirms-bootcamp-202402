@@ -1,7 +1,7 @@
 import React from 'react';
 
 const FloatingWhatsAppButton = () => {
-  const whatsappNumber = '630248450'; // Reemplaza con tu número de WhatsApp
+  const whatsappNumber = '644325003'; // Reemplaza con tu número de WhatsApp
   const message = '¡Hola! Me gustaría obtener más información.';
 
   return (
