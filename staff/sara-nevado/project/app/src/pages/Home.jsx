@@ -1,75 +1,73 @@
-import { useState, useEffect } from 'react'
-import { errors } from 'com'
-import logic from '../logic'
-import CalendarApp from './Calendar.jsx'
-//import Gallery from './Gallery.jsx'
+import React, { useState, useEffect } from 'react';
+import { errors } from 'com';
+import logic from '../logic';
+import Calendar from './Calendar.jsx';
 
-const { ContentError, MatchError } = errors
+const { ContentError, MatchError } = errors;
 
 function Home({ onUserLoggedOut }) {
-    const [user, setUser] = useState(null)
+  const [user, setUser] = useState(null);
+  const [refresh, setRefresh] = useState(Date.now());
 
-    useEffect(() => {
-        try {
-            logic.retrieveUser()
-                .then(user => setUser(user))
-                .catch(error => {
-                    console.error(error.message)
+  useEffect(() => {
+    try {
+      logic.retrieveUser()
+        .then(user => setUser(user))
+        .catch(error => {
+          console.error(error.message);
 
-                    let feedback = error.message
+          let feedback = error.message;
 
-                    if (error instanceof TypeError || error instanceof RangeError)
-                        feedback = `${feedback}, please correct it`
-                    else
-                        feedback = 'sorry, there was an error, please try again later'
+          if (error instanceof TypeError || error instanceof RangeError)
+            feedback = `${feedback}, please correct it`;
+          else
+            feedback = 'sorry, there was an error, please try again later';
 
-                    alert(feedback)
-                })
-        } catch (error) {
-            console.error(error.message)
+          alert(feedback);
+        });
+    } catch (error) {
+      console.error(error.message);
 
-            let feedback = error.message
+      let feedback = error.message;
 
-            if (error instanceof TypeError || error instanceof RangeError)
-                feedback = `${feedback}, please correct it`
-            else
-                feedback = 'sorry, there was an error, please try again later'
+      if (error instanceof TypeError || error instanceof RangeError)
+        feedback = `${feedback}, please correct it`;
+      else
+        feedback = 'sorry, there was an error, please try again later';
 
-            alert(feedback)
-        }
-    }, [])
-
-    const handleLogout = () => {
-        logic.logoutUser()
-        onUserLoggedOut()
+      alert(feedback);
     }
+  }, [refresh]);
 
-    console.log('Home render')
+  const handleLogout = () => {
+    logic.logoutUser();
+    onUserLoggedOut();
+  };
 
-    return (
-        <div className="flex flex-col min-h-screen">
-            <header className="flex justify-between items-center border-b-2 border-white bg-black text-white p-4">
-                {!user && <p>Loading...</p>}
-                {user && <h1 className="text-lg font-bold">Hello, {user.name}!</h1>}
-                <nav>
-                    <button className="px-4 text-white" id="logout-button" onClick={handleLogout}>login</button>
-                </nav>
-            </header>
+  console.log('Home render');
 
+  return (
+    <div className="flex flex-col min-h-screen bg-gray-100 text-gray-800">
+      <header className="flex justify-between items-center bg-gray-400 p-4 shadow-md h-16">
+        {!user && <p>Loading...</p>}
+        {user && <h1 className="text-lg font-bold">Hello, {user.name}!</h1>}
+        <nav>
+          <button className="px-1 py-0,5 bg-blue-200 hover:bg-gray-400 rounded text-white" id="logout-button" onClick={handleLogout}>📟</button>
+        </nav>
+      </header>
 
-            <div className="flex flex-row justify-center items-center">
-             
-                <div className="max-w-screen-lg w-full px-4 flex-grow-1">
-                   <CalendarApp />
-                </div>
-            </div>
-
-
-            <footer className="flex justify-center items-center border-t-2 border-white bg-black text-white p-3">
-                <button className="px-3 text-white">🏚️</button>
-            </footer>
+      <main className="flex flex-col items-center justify-center flex-grow p-4">
+        <div className="w-full max-w-screen-sm">
+          <Calendar onUserAction={() => setRefresh(Date.now())} />
         </div>
-    )
+      </main>
+
+      <footer className="flex justify-center items-center bg-gray-400 p-3 shadow-md h-16">
+      
+      </footer>
+    </div>
+  );
 }
 
-export default Home
+export default Home;
+

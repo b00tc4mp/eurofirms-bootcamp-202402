@@ -6,7 +6,6 @@ function loginUser(email, password) {
 validate.email(email)
 validate.password(password)
 
-
 return fetch(`${import.meta.env.VITE_API_URL}/users/auth`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -18,9 +17,6 @@ return fetch(`${import.meta.env.VITE_API_URL}/users/auth`, {
             return res.json()
                 .catch(error => { throw new SystemError(error.message) })
                 .then(token => sessionStorage.token = token)
-
- 
-
 
         return res.json()
             .catch(error => { throw new SystemError(error.message) })

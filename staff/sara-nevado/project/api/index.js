@@ -57,8 +57,8 @@ mongoose.connect(MONGO_URL)
 
                 logic.authenticateUser(email, password)
                     .then(user => {
-                       // const token = jwt.sign({ sub: user.id, role: user.role }, JWT_SECRET, { expiresIn: '30m' })
-                        const token = jwt.sign({ sub: user.id }, JWT_SECRET, { expiresIn: '60m' })
+
+                        const token = jwt.sign({ sub: user.id }, JWT_SECRET, { expiresIn: '300m' })
                         res.status(200).json(token)
                     })
                     .catch(error => {
@@ -150,212 +150,189 @@ mongoose.connect(MONGO_URL)
             }
         })
 
-     // createEvent 
-server.post('/events', jsonBodyParser, (req, res) => {
-    try {
-        const { authorization } = req.headers
-
-        if (!authorization) {
-            return res.status(401).json({ error: 'Unauthorized', message: 'No authorization token provided' })
-        }
-
-        const token = authorization.slice(7)
-        const { sub: userId, role: userRole } = jwt.verify(token, JWT_SECRET)
-
-        const { day, text } = req.body
-
-        logic.createEvent(day, text, userRole)
-            .then(() => res.status(201).send())
-            .catch(error => {
-                let status = 500
-
-                if (error instanceof MatchError) {
-                    status = 404
-                } else if (error instanceof DuplicityError) {
-                    status = 409
-                } else if (error instanceof SystemError) {
-                    status = 500
-                }
-
-                res.status(status).json({ error: error.constructor.name, message: error.message })
-            })
-    } catch (error) {
-        let status = 500
-
-        if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError) {
-            status = 400
-        } else if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError) {
-            status = 401
-            error = new MatchError(error.message)
-        }
-
-        res.status(status).json({ error: error.constructor.name, message: error.message })
-    }
-})
-
-
-   // editEvent 
-server.put('/events/:eventId', jsonBodyParser, (req, res) => {
-    try {
-        const { authorization } = req.headers
-
-        if (!authorization) {
-            return res.status(401).json({ error: 'Unauthorized', message: 'No authorization token provided' })
-        }
-
-        const token = authorization.slice(7)
-        const { sub: userId } = jwt.verify(token, JWT_SECRET)
-        const { eventId } = req.params
-        const { day, text } = req.body
-
-        logic.editEvent(userId, eventId, day, text)
-            .then(() => res.status(200).json({ message: 'Event edited successfully' }))
-            .catch(error => {
-                let status = 500
-
-                if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError) {
-                    status = 400
-                } else if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError) {
-                    status = 401
-                    error = new MatchError(error.message)
-                }
-
-                res.status(status).json({ error: error.constructor.name, message: error.message })
-            })
-    } catch (error) {
-        let status = 500
-
-        if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError) {
-            status = 400
-        } else if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError) {
-            status = 401
-            error = new MatchError(error.message)
-        }
-
-        res.status(status).json({ error: error.constructor.name, message: error.message })
-    }
-})
-
-// deleteEvent 
-server.delete('/events/:eventId', (req, res) => {
-    try {
-        const { authorization } = req.headers
-
-        if (!authorization) {
-            return res.status(401).json({ error: 'Unauthorized', message: 'No authorization token provided' })
-        }
-
-        const token = authorization.slice(7)
-        const { sub: userId } = jwt.verify(token, JWT_SECRET)
-        const { eventId } = req.params
-
-        logic.deleteEvent(userId, eventId)
-            .then(() => res.status(200).json({ message: 'Event deleted successfully' }))
-            .catch(error => {
-                let status = 500
-
-                if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError) {
-                    status = 400
-                } else if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError) {
-                    status = 401
-                    error = new MatchError(error.message)
-                }
-
-                res.status(status).json({ error: error.constructor.name, message: error.message })
-            })
-    } catch (error) {
-        let status = 500
-
-        if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError) {
-            status = 400
-        } else if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError) {
-            status = 401
-            error = new MatchError(error.message)
-        }
-
-        res.status(status).json({ error: error.constructor.name, message: error.message })
-    }
-})
-
-
-        // selectedEvent
-        server.post('/events/select', jsonBodyParser, async (req, res) => {
+        // createEvent
+        server.post('/events', jsonBodyParser, (req, res) => {
             try {
-                const { eventId, userId } = req.body
-                const token = req.headers.authorization?.split(' ')[1]
-                const decodedToken = jwt.verify(token, JWT_SECRET)
-                const authenticatedUserId = decodedToken.sub
+                const { authorization } = req.headers
+                const token = authorization.slice(7)
+                const { sub: userId } = jwt.verify(token, JWT_SECRET);
+                const { type, title, date, duration, address, description } = req.body
 
-                if (authenticatedUserId !== userId) {
-                    throw new Error('Unauthorized: Provided userId does not match authenticated user')
-                }
+                logic.createEvent({ userId, type, title, date, duration, address, description })
+                    .then(newEvent => res.status(201).json(newEvent))
+                    .catch(error => {
+                        let status = 500;
 
-                await logic.selectedEvent(eventId, userId)
+                        if (error instanceof DuplicityError)
+                            status = 409;
+                        else if (error instanceof MatchError)
+                            status = 404;
+                        else if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError) {
+                            status = 400;
+                        } else if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError) {
+                            status = 401;
+                            error = new MatchError(error.message);
+                        }
 
-                res.status(201).json({ message: 'Event selected successfully' })
+                        res.status(status).json({ error: error.constructor.name, message: error.message });
+                    });
             } catch (error) {
-                let status = 500
-                let errorMessage = 'Internal Server Error'
+                let status = 500;
 
-                if (error instanceof DuplicityError) {
-                    status = 409
-                    errorMessage = error.message
-                } else if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError) {
-                    status = 401
-                    errorMessage = 'Unauthorized: Invalid or expired token'
-                } else if (error instanceof SystemError || error.message === 'Unauthorized: Provided userId does not match authenticated user') {
-                    errorMessage = error.message
+                if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError)
+                    status = 400;
+                else if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError) {
+                    status = 401;
+                    error = new MatchError(error.message);
                 }
 
-                res.status(status).json({ error: error.constructor.name, message: errorMessage })
+                res.status(status).json({ error: error.constructor.name, message: error.message });
             }
         })
 
-        // deselectedEvent
-        server.delete('/events/deselect/:eventId', async (req, res) => {
+        // editEvent
+        server.patch('/events/:eventId', jsonBodyParser, (req, res) => {
             try {
-                const { eventId } = req.params
-                const token = req.headers.authorization?.split(' ')[1]
-                const decodedToken = jwt.verify(token, JWT_SECRET)
-                const authenticatedUserId = decodedToken.sub
+                const { authorization } = req.headers
+                const token = authorization.slice(7)
+                const { sub: userId } = jwt.verify(token, JWT_SECRET)
+                const { eventId } = req.params;
+                const { type, title, date, duration, address, description } = req.body
 
-                await logic.deselectedEvent(eventId, authenticatedUserId)
+                logic.editEvent(userId, eventId, { type, title, date, duration, address, description })
+                    .then(() => res.status(204).send())
+                    .catch(error => {
+                        let status = 500;
 
-                res.status(200).json({ message: 'Event deselected successfully' })
+                        if (error instanceof NotFoundError) {
+                            status = 404;
+                        } else if (error instanceof UnauthorizedError) {
+                            status = 403;
+                        } else if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError) {
+                            status = 400;
+                        } else if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError) {
+                            status = 401;
+                            error = new MatchError(error.message);
+                        }
+
+                        res.status(status).json({ error: error.constructor.name, message: error.message });
+                    });
             } catch (error) {
-                let status = 500
+                let status = 500;
 
-                let errorMessage = 'Internal Server Error'
-
-                if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError) {
-                    status = 401
-                    errorMessage = 'Unauthorized: Invalid or expired token'
-                } else if (error instanceof SystemError) {
-                    errorMessage = error.message
+                if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError) {
+                    status = 400;
+                } else if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError) {
+                    status = 401;
+                    error = new MatchError(error.message);
                 }
 
-                res.status(status).json({ error: error.constructor.name, message: errorMessage })
+                res.status(status).json({ error: error.constructor.name, message: error.message });
             }
         })
 
-        // retrieveEvent
-        server.get('/event/:eventId', (req, res) => {
+
+        // deleteEvent
+        server.delete('/events/:eventId', jsonBodyParser, (req, res) => {
             try {
                 const { authorization } = req.headers
                 const token = authorization.slice(7)
                 const { sub: userId } = jwt.verify(token, JWT_SECRET)
                 const { eventId } = req.params
 
-                logic.retrieveEvent(userId, eventId)
-                    .then(event => res.json(event))
+                logic.deleteEvent({ eventId, userId })
+                    .then(() => res.status(204).send())
+                    .catch(error => {
+                        let status = 500;
+
+                        if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError) {
+                            status = 400;
+                        } else if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError) {
+                            status = 401;
+                            error = new MatchError(error.message);
+                        }
+
+                        res.status(status).json({ error: error.constructor.name, message: error.message });
+                    });
+            } catch (error) {
+                let status = 500;
+
+                if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError) {
+                    status = 400;
+                } else if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError) {
+                    status = 401;
+                    error = new MatchError(error.message);
+                }
+
+                res.status(status).json({ error: error.constructor.name, message: error.message });
+            }
+        })
+
+
+        // selectEvent
+        server.put('/events/:eventId/select', (req, res) => {
+            try {
+                const { authorization } = req.headers
+                const token = authorization.slice(7)
+                const { sub: userId } = jwt.verify(token, JWT_SECRET)
+                const { eventId } = req.params
+
+                logic.selectEvent(userId, eventId)
+                    .then(() => res.status(204).send())
+                    .catch(error => {
+                        let status = 500
+                        if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError) {
+                            status = 400
+                        }
+
+                        res.status(status).json({ error: error.constructor.name, message: error.message })
+                    });
+            } catch (error) {
+                res.status(500).json({ error: error.constructor.name, message: error.message })
+            }
+        })
+
+        // deselectEvent
+        server.put('/events/:eventId/deselect', (req, res) => {
+            try {
+                const { authorization } = req.headers
+                const token = authorization.slice(7)
+                const { sub: userId } = jwt.verify(token, JWT_SECRET)
+                const { eventId } = req.params
+
+                logic.deselectEvent(userId, eventId)
+                    .then(() => res.status(204).send())
+                    .catch(error => {
+                        let status = 500
+                        if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError) {
+                            status = 400
+                        }
+
+                        res.status(status).json({ error: error.constructor.name, message: error.message });
+                    });
+            } catch (error) {
+                res.status(500).json({ error: error.constructor, message: error.message })
+            }
+        });
+
+
+
+        // retrieveEvents
+        server.get('/events/:month/:year', (req, res) => {
+            try {
+                const { authorization } = req.headers
+                const token = authorization.slice(7)
+                const { sub: userId } = jwt.verify(token, JWT_SECRET)
+                const { month, year } = req.params
+
+
+                logic.retrieveEvents(Number(month), Number(year))
+                    .then(events => res.json(events))
                     .catch(error => {
                         let status = 500
 
                         if (error instanceof MatchError) {
-                            status = 401
-                        } else if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError) {
-                            status = 401
-                            error = new MatchError(error.message)
+                            status = 404
                         }
 
                         res.status(status).json({ error: error.constructor.name, message: error.message })
@@ -363,14 +340,19 @@ server.delete('/events/:eventId', (req, res) => {
             } catch (error) {
                 let status = 500
 
-                if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError) {
+                if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError) {
+                    status = 400
+                } else if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError) {
                     status = 401
+
                     error = new MatchError(error.message)
                 }
 
                 res.status(status).json({ error: error.constructor.name, message: error.message })
             }
         })
+
+
 
         server.listen(PORT, () => console.log(`API started on port ${PORT}`))
     })

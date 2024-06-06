@@ -1,6 +1,6 @@
 import { errors, validate } from 'com';
 
-const { SystemError, } = errors 
+const { SystemError, } = errors
 
 function registerAdmin(name, surname, email, password) {
     validate.name(name)
@@ -13,20 +13,19 @@ function registerAdmin(name, surname, email, password) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, surname, email, password })
     })
-    .catch(error => { throw new SystemError(error.message) })
-    .then(res => {
-        if (res.status === 201) return
+        .catch(error => { throw new SystemError(error.message) })
+        .then(res => {
+            if (res.status === 201) return
 
-        return res.json()
-            .then(body => {
-                const { error, message } = body
+            return res.json()
+                .then(body => {
+                    const { error, message } = body
 
+                    const constructor = window[error]
 
-                const constructor = window[error]
-
-                throw new constructor(message)
-            })
-    })
+                    throw new constructor(message)
+                })
+        })
 }
 
 export default registerAdmin

@@ -1,0 +1,5 @@
+curl -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NjU0OTk1ZDFjYWFkOGUxZjI0ZmRkYzciLCJpYXQiOjE3MTczNjY5NTMsImV4cCI6MTcxNzM4NDk1M30.SSEtNiXGpQJ8x_vIv1_D4h0o2X06hBY8OXIqzsD6G2E" "http://localhost:9010/events/6654f0eccda28d2f38a4b2e6"
+
+
+
+//test funcionando

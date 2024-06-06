@@ -1,36 +1,38 @@
+import { errors, validate } from 'com'
 
-import { errors, validate, utils } from 'com'
+const { SystemError } = errors
 
-const { SystemError, NotFoundError } = errors 
+function deleteEvent(eventId) {
+  validate.id(eventId, 'eventId')
+  validate.token(sessionStorage.token)
 
-async function deleteEvent(eventId) {
-    try {
-       
-        validate.token(sessionStorage.token)
-
-        
-        const { sub: userId } = utils.extractPayload(sessionStorage.token)
-
-       
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/events/${eventId}`, {
-            method: 'DELETE',
-            headers: {
-                Authorization: `Bearer ${sessionStorage.token}`
-            }
-        })
-
-   
-        if (response.status === 200) {
-            return response.json()
-        } else if (response.status === 404) {
-            throw new NotFoundError('Event not found')
-        } else {
-            throw new SystemError(`Failed to delete event: ${response.statusText}`)
-        }
-    } catch (error) {
-        
-        throw new SystemError(`Failed to delete event: ${error.message}`)
+  return fetch(`${import.meta.env.VITE_API_URL}/events/${eventId}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${sessionStorage.token}`
     }
+  })
+    .catch(error => { throw new SystemError(error.message) })
+    .then(res => {
+      if (res.status === 204) {
+        return
+      }
+
+      return res.json()
+        .catch(error => { throw new SystemError(error.message) })
+        .then(body => {
+
+          const { error, message } = body
+
+          const constructor = errors[error]
+
+          throw new constructor(message)
+        })
+    })
 }
 
 export default deleteEvent
+
+
+

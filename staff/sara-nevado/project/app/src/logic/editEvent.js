@@ -1,40 +1,39 @@
-import { errors, validate, utils } from 'com'
+import { errors, validate} from 'com'
 
-const { SystemError, NotFoundError } = errors 
+const { SystemError} = errors
 
-function editEvent(eventId, day, newText) { //, userRole
-   // if (userRole !== 'admin') {
-      //  throw new Error('Insufficient permissions to edit events')
-   // }
+function editEvent(eventId, updatedEvent) {
+  validate.id(eventId, 'eventId')
+  validate.event(updatedEvent)
+  validate.token(sessionStorage.token)
 
-    validate.day(day)
-    validate.text(newText)
+  return fetch(`${import.meta.env.VITE_API_URL}/events/${eventId}`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${sessionStorage.token}`,
+    },
+    body: JSON.stringify(updatedEvent),
+  })
+    .catch(error => { throw new SystemError(error.message) })
+    .then(response => {
+      if (response.status === 204) 
+        return
 
-    const token = sessionStorage.getItem('token');
-    validate.token(token);
+      return response.json()
+        .catch(error => { throw new SystemError(error.message) })
+        .then(body => {
+          const { error, message } = body
 
-    const { sub: userId } = utils.extractPayload(token);
+          const constructor = errors[error]
 
-    return fetch(`${import.meta.env.VITE_API_URL}/events/${eventId}`, {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`
-        },
-        body: JSON.stringify({ day, text: newText, userId })
+          throw new constructor(message)
+        })
     })
-    .then(res => {
-        if (res.status === 200) {
-            return res.json();
-        } else if (res.status === 404) {
-            throw new NotFoundError('Event not found')
-        } else {
-            throw new SystemError(`Failed to edit event: ${res.statusText}`)
-        }
-    })
-    .catch(error => {
-        throw new SystemError(`Failed to edit event: ${error.message}`)
-    });
 }
+export default editEvent;
 
-export default editEvent
+
+
+
+

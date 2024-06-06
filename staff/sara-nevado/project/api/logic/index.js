@@ -5,9 +5,9 @@ import registerAdmin from './registerAdmin.js'
 import createEvent from './createEvent.js'
 import editEvent from './editEvent.js'
 import deleteEvent from './deleteEvent.js'
-import selectedEvent from './selectedEvent.js'
-import deselectedEvent from './deselectedEvent.js'
-import retrieveEvents from './retrieveEvent.js'
+import selectEvent from './selectEvent.js'
+import deselectEvent from './deselectEvent.js'
+import retrieveEvents from './retrieveEvents.js'
 
 
 
@@ -21,8 +21,8 @@ const logic = {
     createEvent,
     editEvent,
     deleteEvent,
-    selectedEvent,
-    deselectedEvent,
+    selectEvent,
+    deselectEvent,
     retrieveEvents
 
 

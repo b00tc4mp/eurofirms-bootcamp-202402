@@ -1,22 +1,20 @@
-
 import { User } from '../data/index.js'
-import { errors, validate } from 'com'
+import { errors, validate} from 'com'
 
 const { MatchError, SystemError } = errors
 
-
-function retrieveUser(userId, targetUserId) { 
+function retrieveUser(userId, targetUserId) {
     validate.id(userId, 'userId')
     validate.id(targetUserId, 'targetUserId')
 
     return User.findById(userId)
         .catch(error => { throw new SystemError(error.message) })
         .then(user => {
-            if (!user) { 
+            if (!user) {
                 throw new MatchError('User not found')
             }
 
-            return User.findById(targetUserId).select('-_id name username').lean() 
+            return User.findById(targetUserId).select('-_id name username role').lean()
                 .catch(error => { throw new SystemError(error.message) })
                 .then(targetUser => {
                     if (!targetUser) {
@@ -29,3 +27,4 @@ function retrieveUser(userId, targetUserId) {
 }
 
 export default retrieveUser
+

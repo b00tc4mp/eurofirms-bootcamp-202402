@@ -1,5 +1,4 @@
 import { errors } from 'com'
-
 import logic from '../logic'
 
 const { ContentError, MatchError } = errors
@@ -52,25 +51,25 @@ function Login({ onUserLoggedIn, onRegisterClick }) {
     console.debug('Login render')
     
     return (
-      <main className="flex justify-center items-center h-screen bg-gray-900"> 
-        <div className="max-w-md w-full px-8 py-8 bg-gray-800 rounded-md shadow-md"> 
-          <h1 className="font-bold text-3xl text-white text-center mb-6">Login</h1> 
+      <main className="flex justify-center items-center h-screen bg-gray-100"> 
+        <div className="max-w-md w-full px-8 py-8 bg-white rounded-md shadow-md"> 
+          <h1 className="font-bold text-3xl text-gray-900 text-center mb-6">Login</h1> 
       
           <form onSubmit={handleSubmit} className="mb-6">
             <div className="mb-4">
-              <label htmlFor="email" className="block text-lg font-semibold mb-2 text-white">E-mail</label> 
+              <label htmlFor="email" className="block text-lg font-semibold mb-2 text-gray-800">E-mail</label> 
               <input className="border border-gray-300 rounded-md py-2 px-4 w-full focus:outline-none focus:border-blue-500" type="text" id="email" />
             </div>
       
             <div className="mb-6">
-              <label htmlFor="password" className="block text-lg font-semibold mb-2 text-white">Password</label> 
+              <label htmlFor="password" className="block text-lg font-semibold mb-2 text-gray-800">Password</label> 
               <input className="border border-gray-300 rounded-md py-2 px-4 w-full focus:outline-none focus:border-blue-500" type="password" id="password" />
             </div>
       
-            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-md w-full" type="submit">Login</button>
+            <button className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-6 rounded-md w-full" type="submit">Login</button>
           </form>
 
-          <p className="text-center">
+          <p className="text-center text-gray-800">
             Don't have an account? <button className="text-blue-500" onClick={handleRegisterClick}>Register</button>
           </p>
         </div>

@@ -1,4 +1,3 @@
-
 import { errors, validate } from 'com'
 
 const { SystemError } = errors
@@ -9,8 +8,7 @@ function registerUser(name, surname, email, password) {
     validate.email(email)
     validate.password(password)
 
-
-    return fetch(`${import.meta.env.VITE_API_URL}/users`, {
+ return fetch(`${import.meta.env.VITE_API_URL}/users`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, surname, email, password })
@@ -22,8 +20,6 @@ function registerUser(name, surname, email, password) {
             return res.json()
                 .then(body => {
                     const { error, message } = body
-
-                
 
                     const constructor = window[error]
 

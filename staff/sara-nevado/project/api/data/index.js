@@ -29,15 +29,41 @@ const user = new Schema({
 })
 
 const event = new Schema({
-    day: {
-        type: Date,
+    type: {
+        type: String,
+        enum: ['event', 'training'],
         required: true
     },
-    text: {
+    title: {
         type: String,
         required: true
     },
-
+    description: {
+        type: String,
+    },
+    date: {
+        type: Date,
+        required: true
+    },
+    duration: {
+        type: Number,
+        required: true,
+        enum: [1, 2, 3],
+        default: 1
+    },
+    address: {
+        type: String,
+    },
+    subscribers: {
+        type: [ObjectId],
+        ref: 'User'
+    },
+    status: {
+        type: String,
+        enum: ['active', 'cancelled'],
+        required: true,
+        default: 'active'
+    },
 })
 
 const User = model('User', user)

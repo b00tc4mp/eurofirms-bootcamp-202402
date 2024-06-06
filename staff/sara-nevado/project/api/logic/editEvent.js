@@ -1,37 +1,44 @@
 import { Event, User } from '../data/index.js'
 import { errors, validate } from 'com'
 
-const { NotFoundError, SystemError } = errors
+const {  NotFoundError, UnauthorizedError } = errors;
 
-function editEvent(day, newText) { //, userRole
-  //  const isAdmin = userRole === 'admin'
+function editEvent(userId, eventId, { type, title, date, duration, address, description }) {
+  validate.id(userId, 'userId')
+  validate.id(eventId, 'eventId')
+  validate.id(userId, 'userId')
+  validate.text(type, 'type')
+  validate.text(title, 'title')
+  validate.date(date, 'date')
+  validate.duration(duration, 'duration')
+  if (address) validate.text(address, 'address')
+  if (description) validate.text(description, 'description')
 
-   // if (!isAdmin) {
-       // return Promise.reject(new Error('Insufficient permissions to create events'));
-  //  }
+  return (async () => {
+    const user = await User.findById(userId).lean()
 
-    validate.day(day)
-    validate.text(newText)
+    if (!user)
+      throw new NotFoundError('user not found')
 
-    const newEvent = { day, text: newText} //, role: userRole 
+    const event = await Event.findById(eventId)
 
-    return Event.findOne({ day })
-        .catch(error => { throw new SystemError(error.message) })
-        .then(existingEvent => {
-            if (!existingEvent) {
-                throw new NotFoundError('Event not found for this day')
-            }
+    if (!event)
+      throw new NotFoundError('Event not found')
 
-            existingEvent.text = newText
-            return existingEvent.save()
-        })
-        .catch(error => {
-            if (error instanceof NotFoundError) {
-                throw error
-            } else {
-                throw new SystemError(error.message)
-            }
-        })
+    if (user.role !== 'admin')
+      throw new UnauthorizedError('User does not have permission to edit this event')
+
+    event.type = type;
+    event.title = title;
+    event.date = new Date(date).toISOString();
+    event.duration = duration;
+    event.address = address;
+    event.description = description;
+
+    await event.save()
+    
+
+  })()
 }
 
 export default editEvent

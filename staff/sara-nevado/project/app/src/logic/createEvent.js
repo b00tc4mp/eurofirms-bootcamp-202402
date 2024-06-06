@@ -1,40 +1,32 @@
-import { errors, validate, utils } from 'com'
+import { errors, validate} from 'com'
 
-const { SystemError, DuplicityError } = errors 
+const { SystemError} = errors
 
-function createEvent(day, text ) { //userRole
-   // if (userRole !== 'admin') {
-       // throw new Error('Insufficient permissions to create events')
-   // }
+function createEvent(newEvent) {
+  validate.event(newEvent)
+  validate.token(sessionStorage.token)
 
-    validate.day(day)
-    validate.text(text)
-   
+  return fetch(`${import.meta.env.VITE_API_URL}/events`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${sessionStorage.token}`,
+    },
+    body: JSON.stringify(newEvent), //estaba mal
+  })
 
-    const token = sessionStorage.getItem('token')
-    validate.token(token)
-
-    const { sub: userId } = utils.extractPayload(token)
-
-    return fetch(`${import.meta.env.VITE_API_URL}/events`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`
-        },
-        body: JSON.stringify({ day, text, userId })
-    })
+    .catch(error => { throw new SystemError(error.message) })
     .then(res => {
-        if (res.status === 201) {
-            return res.json();
-        } else if (res.status === 409) {
-            throw new DuplicityError('Event already exists for this day')
-        } else {
-            throw new SystemError(`Failed to create event: ${res.statusText}`)
-        }
-    })
-    .catch(error => {
-        throw new SystemError(`Failed to create event: ${error.message}`)
+      if (res.status === 201)
+        return
+
+      return res.json()
+        .catch(error => { throw new SystemError(error.message) })
+        .then(body => {
+          const { error, message } = body
+          const constructor = errors[error]
+          throw new constructor(message)
+        })
     })
 }
 

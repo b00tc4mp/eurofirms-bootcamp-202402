@@ -8,9 +8,9 @@ import registerAdmin from './registerAdmin'
 import createEvent from './createEvent'
 import editEvent from './editEvent'
 import deleteEvent from './deleteEvent'
-import selectedEvent from './selectedEvent'
-import deselectedEvent from './deselectedEvent'
-import retrieveEvent from './retrieveEvent'
+import selectEvent from './selectEvent'
+import deselectEvent from './deselectEvent'
+import retrieveEvents from './retrieveEvents'
 
 
 
@@ -25,9 +25,9 @@ const logic = {
     createEvent,
     editEvent,
     deleteEvent,
-    selectedEvent,
-    deselectedEvent,
-    retrieveEvent
+    selectEvent,
+    deselectEvent,
+    retrieveEvents
 }
 
 export default logic
