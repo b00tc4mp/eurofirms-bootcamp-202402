@@ -24,7 +24,7 @@ function Comment({ comment, user, onEdit, onDelete }) {
                     className="flex-1 mr-2 px-2 py-1 border rounded-md"
                 />
             ) : (
-                <p className="flex-1 mr-2">{comment.text}</p>
+                <p className="flex-1 mr-2 font-normal">{comment.text}</p>
             )}
             {user && user.role === 'teacher' && (  // Aseguro de que el rol del usuario es teacher
                 <div className="flex space-x-2">

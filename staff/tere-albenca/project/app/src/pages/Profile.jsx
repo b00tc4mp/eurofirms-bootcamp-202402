@@ -9,9 +9,8 @@ import Footer from '../components/Footer'
 
 const { ContentError, TypeError, RangeError } = errors
 
-function Profile({ onUserLoggedOut, onHomeClick, onProfileClick }) {
+function Profile({ onUserLoggedOut, onHomeClick, onProfileClick, onNewTeacherClick }) {
     const { targetUserId } = useParams()
-
     const [view, setView] = useState(null)
     const [refreshStamp, setRefreshStamp] = useState(null)
     const [user, setUser] = useState(null)
@@ -64,7 +63,11 @@ function Profile({ onUserLoggedOut, onHomeClick, onProfileClick }) {
     return (
         <div className='m-0 p-0 max-w-[100%]'>
             <Header
-                onHomeClick={handleHomeClick} onCreateClick={handleCreateClick} onProfileClick={handleProfileClick}
+                onHomeClick={handleHomeClick}
+                onCreateClick={handleCreateClick}
+                onProfileClick={handleProfileClick}
+                onNewTeacherClick={onNewTeacherClick}
+                user={user}
             />
             <main className='w-[100%] bg-[whitesmoke]'>
                 <UserWorks targetUserId={targetUserId} refreshStamp={refreshStamp} user={user} isProfilePage={true} onProfileClick={() => { }} /> { }

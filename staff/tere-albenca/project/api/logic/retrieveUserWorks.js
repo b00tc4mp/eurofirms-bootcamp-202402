@@ -15,7 +15,8 @@ function retrieveUserWorks(userId, targetUserId) {
             return Work.find({ author: targetUserId }).select('-__v').populate('author', 'name').lean()
                 .catch(error => { throw new SystemError(error.message) })
                 .then(works => {
-                    if (works.length === 0) throw new MatchError('Firstly upload work please')
+                    // if (works.length === 0) throw new MatchError('Firstly upload work please')
+                    if (!works) throw new MatchError('works not found')
                     works.forEach(work => {
                         if (work._id) {
                             work.id = work._id.toString()

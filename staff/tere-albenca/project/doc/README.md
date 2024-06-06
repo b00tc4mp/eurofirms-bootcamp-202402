@@ -17,28 +17,41 @@ Alalluna  app is a responsive application for studying arts, where teachers can 
 
 #### For teacher
 
-- view users works (list of teacher and student)
-- publish work
-- edit work (only title and description)
-- delete work
-- add comment to work
-- delete comment from work
-- edit comment from work
+- View all works
+- View my works in profile (list of works of the logged in user)
+- View users works (user's works list)
+- Publish my works
+- Edit any work of a user (only title and description)
+- Delete any work of a user
+- Add comment form some work
+- Delete comment from some work
+- Edit comment from some work
+- Register new teacher
+
+
+- Create lesson (work in progress)
+- Edit lesson (work in progress)
+- Delete lesson (work in progress) 
+- View list of all lessons and own lessons (work in progress)
 
 #### For students
 
-- view users works (list of teacher and student)
-- publish work
-- edit work (only title and description)
-- delete work
-- view work
-- view comments (from work)
+- View all works
+- View my works in profile (list of works of the logged in user)
+- View users works (user's works list)
+- Publish my work
+- Edit only my work (only title and description)
+- Delete only my work
+- View comments (from work of every students)
+
+
+- View list of all lessons and lessons of some teacher (work in progress)
 
 ### UI Design
 
 Figma
 
-https://www.figma.com/file/YyrvzJn83JTceVI1BzmkaF/Alalluna-projects?type=whiteboard&node-id=0-1&t=GGbOo1Tcr5NZLiHu-0
+https://www.figma.com/design/TaAkM7JZWBW6s9Qxw5XMWV/project-academy-online?node-id=0-1&t=jJyJlYurmzM0ruob-0
 
 ## Technical Description
 
@@ -61,34 +74,39 @@ https://www.figma.com/file/YyrvzJn83JTceVI1BzmkaF/Alalluna-projects?type=whitebo
 
 ### Data Model
 
+MVP
+
 User
-- id (string, required)
-- name (string, required)
-- surname (string, required)
-- email (string, required, unique)
-- password (string, required)
-- rol (string, required, enum: student|teacher)
+- Id (string, required)
+- Name (string, required)
+- Surname (string, required)
+- Email (string, required, unique)
+- Password (string, required)
+- Role (string, required, enum: student|teacher)
 
 Work (student)
-- id (string, required)
-- userId(string,required)
-- title (string, required)
-- image (string, required)
-- description (string)
-- date (date, required)
-
-Version two: Lesson (teacher)
-- id (string, required)
-- userId(string,required)
-- title (string, required)
-- image (string, required)
-- description (string, required)
-- url(string, required)
-- date (date, required)
+- Id (string, required)
+- UserId(string,required)
+- Title (string, required)
+- Image (string, required)
+- Description (string)
+- Date (date, required)
 
 Comment
-- id (auto)
-- teacher (User.id)
-- work (Work.id)
-- text (string, required)
-- date (date, required)
+- Id (auto)
+- Teacher (User.id)
+- Work (Work.id)
+- Text (string, required)
+- Date (date, required)
+
+VERSION TWO 
+
+Lesson of teachers(work in progress)
+- Id (auto)
+- Teacher(User.id)
+- Title (string, required)
+- Image (string)
+- Description (string, required)
+- Prezi link(string)
+- Video (string)
+- Date (date, required)

@@ -72,7 +72,7 @@ function App() {
       <Route
         path='/profile/:targetUserId'
         element={logic.isUserLoggedIn() ? (
-          <Profile onUserLoggedOut={handleLogoutClick} onHomeClick={handleHomeClick} onProfileClick={handleProfileClick} />
+          <Profile onUserLoggedOut={handleLogoutClick} onHomeClick={handleHomeClick} onProfileClick={handleProfileClick} onNewTeacherClick={handleNewTeacherClick} />
         ) : (
           <Navigate to='/login' />
         )}

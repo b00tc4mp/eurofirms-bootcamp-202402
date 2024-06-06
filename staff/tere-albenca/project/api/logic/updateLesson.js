@@ -3,12 +3,13 @@ import { validate, errors } from "com"
 
 const { SystemError, MatchError } = errors
 
-function updateLesson(userId, lessonId, title, image, description, video) {
+function updateLesson(userId, lessonId, title, image, description, link, video) {
     validate.id(userId, 'userId')
     validate.id(lessonId, 'lessonId')
     validate.text(title, 'title')
     validate.url(image, 'image')
     validate.text(description, 'description')
+    validate.url(link, 'link')
     validate.url(video, 'video')
 
     return User.findById(userId)
@@ -30,6 +31,7 @@ function updateLesson(userId, lessonId, title, image, description, video) {
             lesson.title = title
             lesson.image = image
             lesson.description = description
+            lesson.link = link
             lesson.video = video
 
             return lesson.save()

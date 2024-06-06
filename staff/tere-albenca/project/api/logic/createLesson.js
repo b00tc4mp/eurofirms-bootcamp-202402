@@ -3,11 +3,12 @@ import { validate, errors } from "com"
 
 const { SystemError, MatchError } = errors
 
-function createLesson(userId, title, image, description, video) {
+function createLesson(userId, title, image, description, link, video) {
     validate.id(userId, 'userId')
     validate.text(title, 'title')
     validate.url(image, 'image')
     validate.text(description, 'description')
+    validate.url(link, 'link')
     validate.url(video, 'video')
 
     return User.findById(userId)
@@ -24,6 +25,7 @@ function createLesson(userId, title, image, description, video) {
                 title,
                 image,
                 description,
+                link,
                 video,
                 date: new Date()
             }

@@ -2,22 +2,35 @@ import React, { useState } from 'react'
 import logic from '../logic'
 import { errors } from 'com'
 import { format } from 'date-fns'
-import Htwo from './Htwo'
+import YouTube from 'react-youtube'
 
 const { MatchError, ContentError } = errors
 
-function Work({ work, onWorkRemoved, onWorkEdit, user, onUserProfileClick }) {
-    const [editWork, setEditWork] = useState(false)
+// Función para extraer el ID de YouTube desde una URL
+function extractYouTubeID(url) {
+    const regExp = /^.*(youtu.be\/|v\/|\/u\/\w\/|embed\/|watch\?v=|\&v=|\?v=|\&v=)([^#\&\?]*).*/;
+    const match = url.match(regExp);
 
-    const handleProfileUserClick = () => {
-        onUserProfileClick(work.author.id)
+    if (match && match[2].length === 11) {
+        return match[2];
+    } else {
+        return null;
+    }
+}
+
+
+function Lesson({ lesson, onLessonRemoved, onLessonEdit, user, onUserLessonClick }) {
+    const [editLesson, setEditLesson] = useState(false)
+
+    const handleLessonsUserClick = () => {
+        onUserLessonClick(lesson.teacher.id)
     }
 
-    const handleRemoveWork = () => {
+    const handleRemoveLesson = () => {
         try {
-            if (confirm('Delete work?')) {
-                logic.removeWork(work.id)
-                    .then(() => onWorkRemoved())
+            if (confirm('Delete lesson?')) {
+                logic.removeLesson(lesson.id)
+                    .then(() => onLessonRemoved())
                     .catch(error => {
                         console.error(error)
                         let feedback = error.message
@@ -41,17 +54,20 @@ function Work({ work, onWorkRemoved, onWorkEdit, user, onUserProfileClick }) {
         }
     }
 
-    const handleUpdateWork = event => {
+    const handleUpdateLesson = event => {
         try {
             event.preventDefault()
             const form = event.target
             const title = form.title.value
-            const text = form.text.value
+            const image = form.image.value
+            const description = form.description.value
+            const link = form.link.value
+            const video = form.video.value
 
-            logic.updateWork(work.id, title, text)
+            logic.updateLesson(lesson.id, title, image, description, link, video)
                 .then(() => {
-                    setEditWork(false)
-                    onWorkEdit()
+                    setEditLesson(false)
+                    onLessonEdit()
                 })
                 .catch(error => {
                     console.error(error)
@@ -76,31 +92,38 @@ function Work({ work, onWorkRemoved, onWorkEdit, user, onUserProfileClick }) {
     }
 
     const handleShowForm = () => {
-        setEditWork(true)
+        setEditLesson(true)
     }
 
     const handleCancelClick = () => {
-        setEditWork(false)
+        setEditLesson(false)
     }
+
+    const youtubeId = extractYouTubeID(lesson.video)
 
     return (
         <article className="w-full bg-white rounded-lg shadow-md p-4 mb-4">
-            <h1 className="font-bold text-lg text-blue-400 cursor-pointer hover:text-blue-700" onClick={handleProfileUserClick}>{work.author.name}</h1>
+            <h3 className="font-bold text-lg text-blue-400 cursor-pointer hover:text-blue-700" onClick={handleLessonsUserClick}>{lesson.teacher.name}</h3>
             <div className="w-[90%] flex flex-row justify-between items-center mt-2">
-                <Htwo className="text-blue-900">{work.title}</Htwo>
-                {(user && user.role === 'teacher') || (user && user.id === work.author.id) ? (
+                <h4 className="font-bold text-xl  text-blue-900">{lesson.title}</h4>
+                {(user && user.role === 'teacher') ? (
                     <div className="flex space-x-2">
                         <button className="px-1.5 py-0.5 bg-gray-200 rounded-md text-sm shadow-md hover:bg-gray-300 hover:shadow-lg active:bg-gray-400 active:shadow-xl transition-all duration-200" onClick={handleShowForm}>✏️</button>
-                        <button className="px-1.5 py-0.5 bg-gray-200 rounded-md text-white text-l font-bold shadow-md hover:bg-gray-300 hover:shadow-lg active:bg-gray-400 active:shadow-xl transition-all duration-200" onClick={handleRemoveWork}>❌</button>
+                        <button className="px-1.5 py-0.5 bg-gray-200 rounded-md text-white text-l font-bold shadow-md hover:bg-gray-300 hover:shadow-lg active:bg-gray-400 active:shadow-xl transition-all duration-200" onClick={handleRemoveLesson}>❌</button>
 
                     </div>
                 ) : null}
             </div>
 
-            {editWork && (
+            {editLesson && (
                 <div className="mt-2">
-                    <form onSubmit={handleUpdateWork} className="flex flex-col space-y-2">
-                        <input id="title" type="text" placeholder="Edit title" defaultValue={work.title} className="px-2 py-1 border rounded-md" />
+                    <form onSubmit={handleUpdateLesson} className="flex flex-col space-y-2">
+                        <Input id="title" type="text" placeholder="Edit title" defaultValue={lesson.title} className="px-2 py-1 border rounded-md" />
+                        <Input type='text' placeholder='edit image' defaultValue={lesson.image} className="px-2 py-1 border rounded-md" />
+
+                        <Input type='text' placeholder='edit description' defaultValue={lesson.description} className="px-2 py-1 border rounded-md" />
+                        <Input type='text' placeholder='edit link' defaultValue={lesson.link} className="px-2 py-1 border rounded-md" />
+                        <Input type='text' placeholder='edit video' defaultValue={lesson.video} className="px-2 py-1 border rounded-md" />
                         <input id="text" type="text" placeholder="Edit text" defaultValue={work.text} className="px-2 py-1 border rounded-md" />
                         <div className="flex space-x-1">
                             <button type="submit" className="px-2 py-0.5 bg-gray-200 rounded-md  text-white text-sm shadow-md hover:bg-gray-300 hover:shadow-lg active:bg-gray-400 active:shadow-xl transition-all duration-200"> ok</button>
@@ -109,13 +132,25 @@ function Work({ work, onWorkRemoved, onWorkEdit, user, onUserProfileClick }) {
                     </form>
                 </div>
             )}
+            <img src={lesson.image} className="w-[90%] rounded-lg mt-4" alt={lesson.title} />
+            <p className="mt-2 text-gray-700">{lesson.description}</p>
 
-            <img src={work.image} className="w-[90%] rounded-lg mt-4" alt={work.title} />
-            <p className="mt-2 text-gray-700 text-sm font-light">{work.text}</p>
-            {/* <time className="block text-right text-xs text-gray-500 mt-2">{work.date}</time> */}
-            <p className="block text-right text-xs text-gray-500 mt-2">{format(new Date(work.date), ' HH:mm dd/MM/yyyy')}</p>
+            {lesson.link && (
+                <div className="w-[90%] mt-4">
+                    <a href={lesson.link} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">
+                        {lesson.link}
+                    </a>
+                </div>
+            )}
+
+            {youtubeId && (
+                <div className="w-[90%] rounded-lg mt-4">
+                    <YouTube videoId={youtubeId} className='youtube' />
+                </div>
+            )}
+            <p className="block text-right text-xs text-gray-500 mt-2">{format(new Date(lesson.date), ' HH:mm dd/MM/yyyy')}</p>
         </article>
     )
 }
 
-export default Work
+export default Lesson

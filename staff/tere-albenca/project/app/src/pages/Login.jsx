@@ -65,7 +65,7 @@ function Login({ onUserLoggedIn, onRegisterClick }) {
           <Hone className='text-center mb-4'>LOGIN</Hone>
 
           <img
-            src='../src/assets/images/cabecera.jpg'
+            src='../images/cabecera.jpg'
             alt='logo'
             className='h-40'
           />

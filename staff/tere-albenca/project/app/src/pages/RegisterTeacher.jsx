@@ -3,7 +3,6 @@ import logic from '../logic'
 import Form from '../components/Form.jsx'
 import Button from '../components/Button.jsx'
 import Hone from '../components/Hone.jsx'
-import Span from '../components/Span.jsx'
 import Input from '../components/Input.jsx'
 import { errors } from 'com'
 import { useState } from 'react'
@@ -88,19 +87,19 @@ function RegisterTeacher({ onTeacherRegistered, onLoginClick }) {
           <Form onSubmit={handleSubmit} className='w-full flex justify-center'>
 
             <Input type='text' id='name' placeholder='name' /><br />
-            {error?.isNameError && <Span></Span>}
+            {error?.isNameError && <span className='text-[#C13E65]'>{error.message}</span>}
 
             <Input type='text' id='surname' placeholder='Surname' /><br />
-            {error?.isSurnameError && <Span></Span>}
+            {error?.isSurnameError && <span className='text-[#C13E65]'>{error.message}</span>}
 
             <Input type="text" id="email" placeholder='Email' /><br />
-            {error?.isEmailError && <Span></Span>}
+            {error?.isEmailError && <span className='text-[#C13E65]'>{error.message}</span>}
 
             <Input type='password' id='password' placeholder='Password' /><br />
-            {error?.isPasswordError && <Span></Span>}
+            {error?.isPasswordError && <span className='text-[#C13E65]'>{error.message}</span>}
 
             <Button type='submit' >Register</Button>
-            {error?.anotherError && <Span></Span>}
+            {error?.anotherError && <span className='text-[#C13E65]'>{error.message}</span>}
 
             <div className='flex justify-center bg-[lightgray] hover:bg-[#c3c3c2] rounded-xl p-1 my-1'>
               <a id='login' onClick={handleLoginClick} className='no-underline text-blue-900 font-semibold'>LOGIN</a>

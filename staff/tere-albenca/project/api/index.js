@@ -590,9 +590,9 @@ mongoose.connect(MONGO_URL)
 
                 const { sub: userId } = jwt.verify(token, JWT_SECRET)
 
-                const { title, image, description, video } = req.body
+                const { title, image, description, link, video } = req.body
 
-                logic.createLesson(userId, title, image, description, video)
+                logic.createLesson(userId, title, image, description, link, video)
                     .then(() => res.status(201).send())
                     .catch(error => {
                         let status = 500
@@ -627,9 +627,9 @@ mongoose.connect(MONGO_URL)
 
                 const { sub: userId } = jwt.verify(token, JWT_SECRET)
 
-                const { title, image, description, video } = req.body
+                const { title, image, description, link, video } = req.body
 
-                logic.updateLesson(userId, title, image, description, video)
+                logic.updateLesson(userId, title, image, description, link, video)
                     .then(() => res.status(204).send())
                     .catch(error => {
                         let status = 500
@@ -669,7 +669,7 @@ mongoose.connect(MONGO_URL)
                 const { sub: userId } = jwt.verify(token, JWT_SECRET)
                 const { lessonId } = req.params
 
-                logic.removeLesson(userId, title, image, description, video)
+                logic.removeLesson(userId, lessonId)
                     .then(lesson => res.status(204).send())
                     .catch(error => {
                         let status = 500

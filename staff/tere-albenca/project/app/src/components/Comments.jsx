@@ -2,6 +2,7 @@ import React from 'react'
 import CreateComment from './CreateComment'
 import Comment from './Comment'
 import logic from '../logic'
+import Htwo from './Htwo'
 
 function Comments({ workId, comments, user, onCommentCreated, onCommentsChanged }) {
     const handleCommentCreated = () => {
@@ -34,7 +35,8 @@ function Comments({ workId, comments, user, onCommentCreated, onCommentsChanged 
 
     return (
         <div>
-            <h2>Comments</h2>
+            {comments.length > 0 && <Htwo>Comments</Htwo>}
+            {/* <h2>Comments</h2> */}
             {comments.map((comment) => (
                 <Comment
                     key={comment.id}
