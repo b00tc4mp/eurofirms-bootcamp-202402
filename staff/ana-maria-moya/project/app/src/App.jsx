@@ -98,13 +98,13 @@ function App() {
       )}
 
  <div className=' object-center h-20 w-30 '>
-        <img className= "h-20 w-30" src="logotipo-MSM-04.jpg" />
+        <img className= "h-20 w-30" src="logotipo-MSM-04.png" />
       </div>
       {user && (
         <button className=" h-12 w-12 absolute inset-y-0 right-0 top-4 mr-2" id="logout-button" onClick={handleLogout}><img src="salida.png" alt="salida" /></button>
       )}
     </header>
-    <main className=' bg-green-100 flex-grow min-h-screen pt-20' >
+    <main className=' bg-green-100 flex-grow  pt-20 w-full' >
 
       <Routes>
         <Route path="/login" element={logic.isUserLoggedIn() ? <Navigate to="/" /> : <Login onUserLoggedIn={handleUserLoggedIn} onRegisterClick={handleRegisterClick} />} />
@@ -118,11 +118,11 @@ function App() {
       </Routes>
     </main>
     <footer className="flex justify-center items-center border-t-2 bg-teal-700 border-black fixed bottom-0 w-full  h-12 px-2 box-border align-end">
-      <button className="px-3 text-white ml-8" onClick={handleRecursesClick}>Recursos</button>
-      <button className="px-3 text-white" onClick={handleDonateClick}>Donaciones</button>
+      <button className="px-2 text-white ml-14" onClick={handleRecursesClick}>Recursos</button>
+      <button className="px-2 text-white" onClick={handleDonateClick}>Donaciones</button>
       <img className='w-5 h-5 cursor-pointer' src="casa.png" alt="home" onClick={handleHomeClick} />
-      <button className="px-3 text-white" onClick={handleGalleryClick}>Galería</button>
-      <button className="px-3 text-white mr-8" onClick={handleContactClick}>Contacto</button>
+      <button className="px-2 text-white" onClick={handleGalleryClick}>Galería</button>
+      <button className="px-2 text-white mr-14" onClick={handleContactClick}>Contacto</button>
 
       
 
