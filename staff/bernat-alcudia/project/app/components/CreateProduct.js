@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useMemo, useState, useEffect } from 'react';
 import logic from '../logic';
-import { View, Image, StyleSheet, ScrollView, Button, TextInput, Alert } from 'react-native';
+import { View, Image, StyleSheet, ScrollView, Button, TextInput, Alert, Text } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import RadioGroup from 'react-native-radio-buttons-group';
 import * as ImagePicker from 'expo-image-picker';
 
 
@@ -10,6 +11,9 @@ const styles = StyleSheet.create({
         width: 66,
         height: 58,
     },
+    radioButtons: {
+        padding: 10
+    }
 });
 
 function CreateProduct({ }) {
@@ -21,7 +25,28 @@ function CreateProduct({ }) {
     const [state, setState] = useState(null)
     const [stock, setStock] = useState(null)
 
+    const [selectedId, setSelectedId] = useState('1');
+
     const navigation = useNavigation()
+
+    const radioButtons = useMemo(() => ([
+        {
+            id: '1',
+            label: 'new',
+            value: 'new',
+            selected: true
+        },
+        {
+            id: '2',
+            label: 'used',
+            value: 'used',
+            selected: false
+        }
+    ]), []);
+
+    const selectedRadioButton = radioButtons.find(button => button.id === selectedId)
+
+
 
     useEffect(() => {
         (async () => {
@@ -63,7 +88,7 @@ function CreateProduct({ }) {
 
     const handleCreateProduct = () => {
         try {
-            logic.createProduct(images, title, description, brand, +price, state, +stock)
+            logic.createProduct(images, title, description, brand, +price, selectedRadioButton.value, +stock)
                 .then(() => {
                     alert('created product')
                     navigation.navigate('Home')
@@ -100,11 +125,16 @@ function CreateProduct({ }) {
                 )) : <Image style={styles.logo} source={{ uri: 'https://fakeimg.pl/200x200/cccccc/d61a1a?font=bebas' }}></Image>
                 }
             </View>
+            <Text>Title:</Text>
             <TextInput value={title} onChangeText={setTitle} placeholder='title' />
+            <Text>Brand:</Text>
             <TextInput value={brand} onChangeText={setBrand} placeholder='brand' />
+            <Text>Price:</Text>
             <TextInput keyboardType='numeric' value={price} onChangeText={setPrice} placeholder='price' />
-            <TextInput value={state} onChangeText={setState} placeholder='state' />
+            <RadioGroup labelStyle={styles.radioButtons} layout='row' radioButtons={radioButtons} onPress={setSelectedId} selectedId={selectedId} />
+            <Text>Stock:</Text>
             <TextInput keyboardType='numeric' value={stock} onChangeText={setStock} placeholder='stock' />
+            <Text>Description:</Text>
             <TextInput value={description} onChangeText={setDescription} placeholder='description' />
             <Button title='Create' onPress={handleCreateProduct} />
         </View>

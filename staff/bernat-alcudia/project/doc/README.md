@@ -7,7 +7,7 @@ A social application to share products with title.
 
 In this application, products will be published and then sold until the stock runs out, informing the user that they are out of stock.
 
-![](https://giphy.com/gifs/for91days-valencia-virgin-FlqAA0VU1VUaI)
+![](https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExazZiaTB5NnhsanB0b3I4d29jY2tlZmFqbnprMDEzMWhya2k5a251biZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/FlqAA0VU1VUaI/giphy.gif)
 
 ## Functional Description
 

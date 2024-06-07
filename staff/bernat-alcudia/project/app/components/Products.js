@@ -5,24 +5,19 @@ import { useNavigation, useFocusEffect } from '@react-navigation/native';
 
 import logic from '../logic';
 
-
-const styles = StyleSheet.create({
-    image: {
-        width: 350,
-        height: 350,
-    },
-    button: {
-        width: 100,
-        height: 100
-    },
-});
-
-
 function Products() {
     const [products, setProducts] = useState([])
     const [user, setUser] = useState()
+    const [isLikePressed, setIsLikePressed] = useState(false)
+
+    const [isSavedPressed, setIsSavedPressed] = useState(false)
+
+
 
     const navigation = useNavigation()
+
+
+
 
     useEffect(() => {
         try {
@@ -76,9 +71,14 @@ function Products() {
         navigation.navigate('ProductDetail', { id: id })
     }
 
+    const handlePressIn = buttonPress => {
+        buttonPress === 'liked' ? setIsLikePressed(!isLikePressed) : setIsSavedPressed(!isSavedPressed)
+    }
+
 
     const handleToggleSavedProduct = (productId) => {
         try {
+            setIsSavedPressed(false)
             logic.toggleSavedProduct(productId)
                 .then(() => refreshProducts())
                 .catch(error => {
@@ -94,6 +94,7 @@ function Products() {
     }
     const handleToggleLikeProduct = (productId) => {
         try {
+            setIsLikePressed(false)
             logic.toggleLikeProduct(productId)
                 .then(() => refreshProducts())
                 .catch(error => {
@@ -127,6 +128,18 @@ function Products() {
     useFocusEffect(useCallback(() => {
         refreshProducts()
     }, []))
+
+    const styles = StyleSheet.create({
+        image: {
+            width: 350,
+            height: 350,
+        },
+        buttonPressIn: {
+            transform: [{ scale: 2.00 }]
+        },
+        button: { justifyContent: 'center' },
+        buttonText: { fontSize: 18, textAlign: 'center', color: 'black' }
+    });
 
     return (<>
         <View style={{ paddingLeft: 8, paddingRight: 8, width: '100%', height: 25, flexDirection: 'row', justifyContent: 'space-between' }}>
@@ -162,11 +175,11 @@ function Products() {
                             <Text >Price: ${product.price}</Text>
                             <Text>State: {product.state}</Text>
                             <View style={{ padding: 8, flexDirection: 'row', flex: 1, width: '100%', height: 40, justifyContent: 'space-between' }}>
-                                <TouchableOpacity style={{ justifyContent: 'center', backgroundColor: isLiked ? '#F2B705' : '#D9042B' }} onPress={() => handleToggleLikeProduct(product.id)} >
-                                    <Text style={{ fontSize: 18, textAlign: 'center', color: 'white' }} >{isLiked ? 'Dislike' : 'Like'}</Text>
+                                <TouchableOpacity style={[{ backgroundColor: isLiked ? '#F2B705' : '#D9042B' }, isLikePressed ? styles.buttonPressIn : styles.button]} onPressIn={() => handlePressIn('liked')} onPressOut={() => handleToggleLikeProduct(product.id)} >
+                                    <Text style={styles.buttonText} >{isLiked ? 'Dislike' : 'Like'}</Text>
                                 </TouchableOpacity>
-                                <TouchableOpacity style={{ justifyContent: 'center', backgroundColor: isSaved ? 'blue' : '#B430F0' }} onPress={() => handleToggleSavedProduct(product.id)} >
-                                    <Text style={{ fontSize: 18, textAlign: 'center', color: 'white' }} >{isSaved ? 'Unsave' : 'Save'}</Text>
+                                <TouchableOpacity style={[{ backgroundColor: isSaved ? 'blue' : '#B430F0' }, isSavedPressed ? styles.buttonPressIn : styles.button]} onPressIn={() => handlePressIn('saved')} onPressOut={() => handleToggleSavedProduct(product.id)} >
+                                    <Text style={styles.buttonText} >{isSaved ? 'Unsave' : 'Save'}</Text>
                                 </TouchableOpacity>
                             </View>
 

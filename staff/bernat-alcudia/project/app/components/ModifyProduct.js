@@ -1,19 +1,41 @@
-import { useState, useEffect, } from 'react';
+import { useMemo, useState, useEffect, } from 'react';
 import logic from '../logic';
 import { View, Image, StyleSheet, ScrollView, Button, TextInput, Alert, Text } from 'react-native';
 import { useRoute, useNavigation } from '@react-navigation/native';
 import * as ImagePicker from 'expo-image-picker';
+import RadioGroup from 'react-native-radio-buttons-group';
 
 
 
 function ModifyProduct() {
-    const [images, setImages] = useState(null)
+    const [images, setImages] = useState([])
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
     const [brand, setBrand] = useState('')
+    const [state, setState] = useState(null)
     const [price, setPrice] = useState(0)
-    const [state, setState] = useState('')
     const [stock, setStock] = useState('')
+
+    const [selectedId, setSelectedId] = useState('');
+
+    const radioButtons = useMemo(() => ([
+        {
+            id: '1',
+            label: 'new',
+            value: 'new',
+            selected: false
+        },
+        {
+            id: '2',
+            label: 'used',
+            value: 'used',
+            selected: false
+        }
+    ]), []);
+
+    const selectedRadioButton = radioButtons.find(button => button.id === selectedId)
+
+    const isSelected = radioButtons.selected
 
 
     const route = useRoute()
@@ -27,6 +49,9 @@ function ModifyProduct() {
             width: 66,
             height: 58,
         },
+        radioButtons: {
+            padding: 10
+        }
     });
 
     useEffect(() => {
@@ -51,6 +76,8 @@ function ModifyProduct() {
                     setBrand(product.brand)
                     setPrice(product.price.toString())
                     setState(product.state)
+                    product.state === 'new' ? setSelectedId('1') : setSelectedId('2')
+
                     setStock(product.stock.toString())
                 })
                 .catch(error => {
@@ -98,7 +125,7 @@ function ModifyProduct() {
 
     const handleModifyProduct = () => {
         try {
-            logic.modifyProduct(productId, images, title, description, brand, +price, state, +stock)
+            logic.modifyProduct(productId, images, title, description, brand, +price, selectedRadioButton.value, +stock)
                 .then(() => {
                     alert('modified product')
                     navigation.navigate('Home')
@@ -140,7 +167,7 @@ function ModifyProduct() {
             <Text>Price:</Text>
             <TextInput keyboardType='numeric' value={price} onChangeText={setPrice} placeholder='price' />
             <Text>State:</Text>
-            <TextInput value={state} onChangeText={setState} placeholder='state' />
+            <RadioGroup labelStyle={styles.radioButtons} layout='row' radioButtons={radioButtons} onPress={setSelectedId} selectedId={selectedId} />
             <Text>Stock:</Text>
             <TextInput keyboardType='numeric' value={stock} onChangeText={setStock} placeholder='stock' />
             <Text>Description:</Text>
