@@ -104,7 +104,7 @@ function App() {
         <button className=" h-12 w-12 absolute inset-y-0 right-0 top-4 mr-2" id="logout-button" onClick={handleLogout}><img src="salida.png" alt="salida" /></button>
       )}
     </header>
-    <main className=' bg-green-100 flex-grow  pt-20 w-full' >
+    <main className='bg-green-100 flex-grow min-h-screen pt-20' >
 
       <Routes>
         <Route path="/login" element={logic.isUserLoggedIn() ? <Navigate to="/" /> : <Login onUserLoggedIn={handleUserLoggedIn} onRegisterClick={handleRegisterClick} />} />
