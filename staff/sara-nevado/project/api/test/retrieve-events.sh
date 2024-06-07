@@ -1,3 +1,3 @@
-curl -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NjVlYzdmNjQ2ZjAzNmQ5ZDgxMmZjMWIiLCJpYXQiOjE3MTc2MjQ3MDIsImV4cCI6MTcxNzY0MjcwMn0.EEZ3CLNpLurOdPlgcJaoD4oeyv--gqyVfV-FVsBjvnI' http://localhost:9010/events/6/2024 -v
+curl -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NjVlYzdmNjQ2ZjAzNmQ5ZDgxMmZjMWIiLCJpYXQiOjE3MTc3NDg2MjYsImV4cCI6MTcxNzc2NjYyNn0.Sn1zz3hIzc6pehDttkMj2HYNQfAPlebs1isKCRLHf-A' http://localhost:9010/events/6/2024 -v
 
 

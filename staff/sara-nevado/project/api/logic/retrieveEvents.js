@@ -12,8 +12,6 @@ async function retrieveEvents(month, year) {
             .select('-__v').populate({
                 path: 'subscribers',
                 select: 'name surname'
-
-
             })
             .lean()
 
@@ -34,13 +32,10 @@ async function retrieveEvents(month, year) {
                     if (subscriber._id) {
                         subscriber.id = subscriber._id.toString()
                         delete subscriber._id
-
                     }
                     return subscriber
                 })
             }
-
-
             return event
         })
     } catch (error) {
