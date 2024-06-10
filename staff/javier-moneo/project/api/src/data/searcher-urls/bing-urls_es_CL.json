@@ -1,0 +1,47 @@
+[
+  {
+    "searcherAlias": "bing",
+    "searcher": "bing",
+    "editionAlias": "es_CL",
+    "searcherType": "global",
+    "searchType": "web",
+    "url": "https://www.bing.com/search?",
+    "urlExample": "https://www.bing.com/search?q=busca"
+  },
+  {
+    "searcherAlias": "bing",
+    "searcher": "bing",
+    "editionAlias": "es_CL",
+    "searcherType": "global",
+    "searchType": "image",
+    "url": "https://www.bing.com/images/search?",
+    "urlExample": "https://www.bing.com/images/search?q=busca"
+  },
+  {
+    "searcherAlias": "bing",
+    "searcher": "bing",
+    "editionAlias": "es_CL",
+    "searcherType": "global",
+    "searchType": "video",
+    "url": "https://www.bing.com/videos/search?",
+    "urlExample": "https://www.bing.com/videos/search?q=busca"
+  },
+  {
+    "searcherAlias": "bing",
+    "searcher": "bing",
+    "editionAlias": "es_CL",
+    "searcherType": "global",
+    "searchType": "news",
+    "url": "https://www.bing.com/news/search?",
+    "urlExample": "https://www.bing.com/news/search?q=busca"
+  },
+  {
+    "searcherAlias": "bing",
+    "searcher": "bing",
+    "editionAlias": "es_CL",
+    "searcherType": "global",
+    "searchType": "maps",
+    "url": "https://www.bing.com/maps?",
+    "urlExample": "https://www.bing.com/maps?q=busca"
+  }
+]

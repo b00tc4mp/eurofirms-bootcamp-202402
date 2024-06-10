@@ -1,0 +1,11 @@
+[
+  { "name": "web" },
+  { "name": "image" },
+  { "name": "video" },
+  { "name": "news" },
+  { "name": "maps" },
+  { "name": "socialGlobal" },
+  { "name": "person" },
+  { "name": "image-video" },
+  { "name": "gifs" }
+]

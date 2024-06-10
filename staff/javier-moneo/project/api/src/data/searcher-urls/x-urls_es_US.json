@@ -1,0 +1,29 @@
+[
+  {
+    "searcherAlias": "x",
+    "searcher": "x",
+    "editionAlias": "es_US",
+    "searcherType": "social",
+    "searchType": "socialGlobal",
+    "url": "https://twitter.com/search?src=typed_query",
+    "urlExample": "https://twitter.com/search?q=busca&src=typed_query"
+  },
+  {
+    "searcherAlias": "x",
+    "searcher": "x",
+    "editionAlias": "es_US",
+    "searcherType": "social",
+    "searchType": "person",
+    "url": "https://twitter.com/search?src=typed_query&f=user",
+    "urlExample": "https://twitter.com/search?q=busca&src=typed_query&f=user"
+  },
+  {
+    "searcherAlias": "x",
+    "searcher": "x",
+    "editionAlias": "es_US",
+    "searcherType": "social",
+    "searchType": "image-video",
+    "url": "https://twitter.com/search?src=typed_query&f=media",
+    "urlExample": "https://twitter.com/search?q=busca&src=typed_query&f=media"
+  }
+]

@@ -1,0 +1,58 @@
+[
+  {
+    "tagName": "Espanya",
+    "editionAlias": "ca_ES",
+    "searchType": "news",
+    "service": "googleNews",
+    "url": "https://news.google.com/topics/CAAqIQgKIhtDQkFTRGdvSUwyMHZNRFp0YTJvU0FtTmhLQUFQAQ?hl=ca-ES&gl=ES&ceid=ES%3Aca"
+  },
+  {
+    "tagName": "Internacional",
+    "editionAlias": "ca_ES",
+    "searchType": "news",
+    "service": "googleNews",
+    "url": "https://news.google.com/topics/CAAqJggKIiBDQkFTRWdvSUwyMHZNRGx1YlY4U0FtTmhHZ0pGVXlnQVAB?hl=ca-ES&gl=ES&ceid=ES%3Aca"
+  },
+  {
+    "tagName": "Negocis",
+    "editionAlias": "ca_ES",
+    "searchType": "news",
+    "service": "googleNews",
+    "url": "https://news.google.com/topics/CAAqJggKIiBDQkFTRWdvSUwyMHZNRGx6TVdZU0FtTmhHZ0pGVXlnQVAB?hl=ca-ES&gl=ES&ceid=ES%3Aca"
+  },
+  {
+    "tagName": "Tecnologia",
+    "editionAlias": "ca_ES",
+    "searchType": "news",
+    "service": "googleNews",
+    "url": "https://news.google.com/topics/CAAqJggKIiBDQkFTRWdvSUwyMHZNRGRqTVhZU0FtTmhHZ0pGVXlnQVAB?hl=ca-ES&gl=ES&ceid=ES%3Aca"
+  },
+  {
+    "tagName": "Entreteniment",
+    "editionAlias": "ca_ES",
+    "searchType": "news",
+    "service": "googleNews",
+    "url": "https://news.google.com/topics/CAAqJggKIiBDQkFTRWdvSUwyMHZNREpxYW5RU0FtTmhHZ0pGVXlnQVAB?hl=ca-ES&gl=ES&ceid=ES%3Aca"
+  },
+  {
+    "tagName": "Esports",
+    "editionAlias": "ca_ES",
+    "searchType": "news",
+    "service": "googleNews",
+    "url": "https://news.google.com/topics/CAAqJggKIiBDQkFTRWdvSUwyMHZNRFp1ZEdvU0FtTmhHZ0pGVXlnQVAB?hl=ca-ES&gl=ES&ceid=ES%3Aca"
+  },
+  {
+    "tagName": "Ciència",
+    "editionAlias": "ca_ES",
+    "searchType": "news",
+    "service": "googleNews",
+    "url": "https://news.google.com/topics/CAAqJggKIiBDQkFTRWdvSUwyMHZNRFp0Y1RjU0FtTmhHZ0pGVXlnQVAB?hl=ca-ES&gl=ES&ceid=ES%3Aca"
+  },
+  {
+    "tagName": "Salut",
+    "editionAlias": "ca_ES",
+    "searchType": "news",
+    "service": "googleNews",
+    "url": "https://news.google.com/topics/CAAqIQgKIhtDQkFTRGdvSUwyMHZNR3QwTlRFU0FtTmhLQUFQAQ?hl=ca-ES&gl=ES&ceid=ES%3Aca"
+  }
+]

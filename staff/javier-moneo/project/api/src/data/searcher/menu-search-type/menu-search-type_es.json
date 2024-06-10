@@ -1,0 +1,100 @@
+[
+  {
+    "searcherName": "google",
+    "editionAlias": "es",
+    "index": 0,
+    "menuName": "Web",
+    "searchType": "web"
+  },
+  {
+    "searcherName": "google",
+    "editionAlias": "es",
+    "index": 1,
+    "menuName": "Imágenes",
+    "searchType": "image"
+  },
+  {
+    "searcherName": "google",
+    "editionAlias": "es",
+    "index": 2,
+    "menuName": "Vídeos",
+    "searchType": "video"
+  },
+  {
+    "searcherName": "google",
+    "editionAlias": "es",
+    "index": 3,
+    "menuName": "Noticias",
+    "searchType": "news"
+  },
+  {
+    "searcherName": "bing",
+    "editionAlias": "es",
+    "index": 0,
+    "menuName": "Web",
+    "searchType": "web"
+  },
+  {
+    "searcherName": "bing",
+    "editionAlias": "es",
+    "index": 1,
+    "menuName": "Imágenes",
+    "searchType": "image"
+  },
+  {
+    "searcherName": "bing",
+    "editionAlias": "es",
+    "index": 2,
+    "menuName": "Vídeos",
+    "searchType": "video"
+  },
+  {
+    "searcherName": "bing",
+    "editionAlias": "es",
+    "index": 3,
+    "menuName": "Maps",
+    "searchType": "maps"
+  },
+  {
+    "searcherName": "youtube",
+    "editionAlias": "es",
+    "index": 0,
+    "menuName": "Vídeos",
+    "searchType": "video"
+  },
+  {
+    "searcherName": "x",
+    "editionAlias": "es",
+    "index": 0,
+    "menuName": "Social",
+    "searchType": "socialGlobal"
+  },
+  {
+    "searcherName": "x",
+    "editionAlias": "es",
+    "index": 1,
+    "menuName": "Person",
+    "searchType": "person"
+  },
+  {
+    "searcherName": "x",
+    "editionAlias": "es",
+    "index": 2,
+    "menuName": "Image & Vídeo",
+    "searchType": "image-video"
+  },
+  {
+    "searcherName": "pornhub",
+    "editionAlias": "es",
+    "index": 0,
+    "menuName": "Video",
+    "searchType": "video"
+  },
+  {
+    "searcherName": "giphy",
+    "editionAlias": "es",
+    "index": 0,
+    "menuName": "Gifs",
+    "searchType": "gifs"
+  }
+]

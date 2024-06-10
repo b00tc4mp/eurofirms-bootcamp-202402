@@ -1,0 +1,65 @@
+[
+  {
+    "name": "Espanya",
+    "tagName": "Espanya",
+    "editionAlias": "ca_ES",
+    "searchType": "news",
+    "index": 0
+  },
+  {
+    "name": "Internacional",
+    "tagName": "Internacional",
+    "editionAlias": "ca_ES",
+    "searchType": "news",
+    "index": 1
+  },
+  {
+    "name": "Negocis",
+    "tagName": "Negocis",
+    "editionAlias": "ca_ES",
+    "searchType": "news",
+    "index": 2
+  },
+  {
+    "name": "Tecnologia",
+    "tagName": "Tecnologia",
+    "editionAlias": "ca_ES",
+    "searchType": "news",
+    "index": 3
+  },
+  {
+    "name": "Entreteniment",
+    "tagName": "Entreteniment",
+    "editionAlias": "ca_ES",
+    "searchType": "news",
+    "index": 4
+  },
+  {
+    "name": "Esports",
+    "tagName": "Esports",
+    "editionAlias": "ca_ES",
+    "searchType": "news",
+    "index": 5
+  },
+  {
+    "name": "Ciència",
+    "tagName": "Ciència",
+    "editionAlias": "ca_ES",
+    "searchType": "news",
+    "index": 6
+  },
+  {
+    "name": "Salut",
+    "tagName": "Salut",
+    "editionAlias": "ca_ES",
+    "searchType": "news",
+    "index": 7
+  },
+  {
+    "name": "NoTagged",
+    "tagName": "NoTagged",
+    "editionAlias": "ca_ES",
+    "searchType": "news",
+    "index": 8
+  }
+]

@@ -1,0 +1,11 @@
+[
+  {
+    "searcherAlias": "giphy",
+    "searcher": "giphy",
+    "editionAlias": "es_PE",
+    "searcherType": "gifs",
+    "searchType": "gifs",
+    "url": "https://giphy.com/search?",
+    "urlExample": "https://giphy.com/search?q=busca"
+  }
+]

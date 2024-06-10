@@ -1,0 +1,38 @@
+[
+  {
+    "searcherAlias": "goog",
+    "searcher": "google",
+    "editionAlias": "es",
+    "searcherType": "global",
+    "searchType": "web",
+    "url": "https://www.google.es/search?",
+    "urlExample": "https://www.google.es/search?q=busca"
+  },
+  {
+    "searcherAlias": "goog",
+    "searcher": "google",
+    "editionAlias": "es",
+    "searcherType": "global",
+    "searchType": "image",
+    "url": "https://www.google.es/search?tbm=isch",
+    "urlExample": "https://www.google.es/search?q=busca&tbm=isch"
+  },
+  {
+    "searcherAlias": "goog",
+    "searcher": "google",
+    "editionAlias": "es",
+    "searcherType": "global",
+    "searchType": "video",
+    "url": "https://www.google.es/search?tbm=vid&hl=es",
+    "urlExample": "https://www.google.es/search?q=busca&tbm=vid&hl=es"
+  },
+  {
+    "searcherAlias": "goog",
+    "searcher": "google",
+    "editionAlias": "es",
+    "searcherType": "global",
+    "searchType": "news",
+    "url": "https://news.google.es/search?hl=es&gl=ES&ceid=ES%3Aes",
+    "urlExample": "https://news.google.es/search?q=busca&hl=es&gl=ES&ceid=ES%3Aes"
+  }
+]

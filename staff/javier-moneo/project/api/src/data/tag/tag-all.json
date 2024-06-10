@@ -1,0 +1,542 @@
+[
+  {
+    "name": "NoTagged",
+    "editionAlias": "ca_ES",
+    "description": ""
+  },
+  {
+    "name": "Espanya",
+    "editionAlias": "ca_ES",
+    "description": ""
+  },
+  {
+    "name": "Internacional",
+    "editionAlias": "ca_ES",
+    "description": ""
+  },
+  {
+    "name": "Negocis",
+    "editionAlias": "ca_ES",
+    "description": ""
+  },
+  {
+    "name": "Tecnologia",
+    "editionAlias": "ca_ES",
+    "description": ""
+  },
+  {
+    "name": "Entreteniment",
+    "editionAlias": "ca_ES",
+    "description": ""
+  },
+  {
+    "name": "Esports",
+    "editionAlias": "ca_ES",
+    "description": ""
+  },
+  {
+    "name": "Ciència",
+    "editionAlias": "ca_ES",
+    "description": ""
+  },
+  {
+    "name": "Salut",
+    "editionAlias": "ca_ES",
+    "description": ""
+  },
+  {
+    "name": "NoTagged",
+    "editionAlias": "en_GB",
+    "description": ""
+  },
+  {
+    "name": "United Kingdom",
+    "editionAlias": "en_GB",
+    "description": ""
+  },
+  {
+    "name": "World",
+    "editionAlias": "en_GB",
+    "description": ""
+  },
+  {
+    "name": "Business",
+    "editionAlias": "en_GB",
+    "description": ""
+  },
+  {
+    "name": "Technology",
+    "editionAlias": "en_GB",
+    "description": ""
+  },
+  {
+    "name": "Entertainment",
+    "editionAlias": "en_GB",
+    "description": ""
+  },
+  {
+    "name": "Sports",
+    "editionAlias": "en_GB",
+    "description": ""
+  },
+  {
+    "name": "Science",
+    "editionAlias": "en_GB",
+    "description": ""
+  },
+  {
+    "name": "Health",
+    "editionAlias": "en_GB",
+    "description": ""
+  },
+  {
+    "name": "NoTagged",
+    "editionAlias": "en_IE",
+    "description": ""
+  },
+  {
+    "name": "Ireland",
+    "editionAlias": "en_IE",
+    "description": ""
+  },
+  {
+    "name": "World",
+    "editionAlias": "en_IE",
+    "description": ""
+  },
+  {
+    "name": "Business",
+    "editionAlias": "en_IE",
+    "description": ""
+  },
+  {
+    "name": "Technology",
+    "editionAlias": "en_IE",
+    "description": ""
+  },
+  {
+    "name": "Entertainment",
+    "editionAlias": "en_IE",
+    "description": ""
+  },
+  {
+    "name": "Sports",
+    "editionAlias": "en_IE",
+    "description": ""
+  },
+  {
+    "name": "Science",
+    "editionAlias": "en_IE",
+    "description": ""
+  },
+  {
+    "name": "Health",
+    "editionAlias": "en_IE",
+    "description": ""
+  },
+  {
+    "name": "NoTagged",
+    "editionAlias": "en_US",
+    "description": ""
+  },
+  {
+    "name": "U.S.",
+    "editionAlias": "en_US",
+    "description": ""
+  },
+  {
+    "name": "World",
+    "editionAlias": "en_US",
+    "description": ""
+  },
+  {
+    "name": "Business",
+    "editionAlias": "en_US",
+    "description": ""
+  },
+  {
+    "name": "Technology",
+    "editionAlias": "en_US",
+    "description": ""
+  },
+  {
+    "name": "Entertainment",
+    "editionAlias": "en_US",
+    "description": ""
+  },
+  {
+    "name": "Sports",
+    "editionAlias": "en_US",
+    "description": ""
+  },
+  {
+    "name": "Science",
+    "editionAlias": "en_US",
+    "description": ""
+  },
+  {
+    "name": "Health",
+    "editionAlias": "en_US",
+    "description": ""
+  },
+  {
+    "name": "NoTagged",
+    "editionAlias": "es_AR",
+    "description": ""
+  },
+  {
+    "name": "Argentina",
+    "editionAlias": "es_AR",
+    "description": ""
+  },
+  {
+    "name": "Internacional",
+    "editionAlias": "es_AR",
+    "description": ""
+  },
+  {
+    "name": "Negocios",
+    "editionAlias": "es_AR",
+    "description": ""
+  },
+  {
+    "name": "CienciaYTecnología",
+    "editionAlias": "es_AR",
+    "description": ""
+  },
+  {
+    "name": "Entretenimiento",
+    "editionAlias": "es_AR",
+    "description": ""
+  },
+  {
+    "name": "Deportes",
+    "editionAlias": "es_AR",
+    "description": ""
+  },
+  {
+    "name": "Salud",
+    "editionAlias": "es_AR",
+    "description": ""
+  },
+  {
+    "name": "NoTagged",
+    "editionAlias": "es_CL",
+    "description": ""
+  },
+  {
+    "name": "Chile",
+    "editionAlias": "es_CL",
+    "description": ""
+  },
+  {
+    "name": "Internacional",
+    "editionAlias": "es_CL",
+    "description": ""
+  },
+  {
+    "name": "Negocios",
+    "editionAlias": "es_CL",
+    "description": ""
+  },
+  {
+    "name": "CienciaYTecnología",
+    "editionAlias": "es_CL",
+    "description": ""
+  },
+  {
+    "name": "Entretenimiento",
+    "editionAlias": "es_CL",
+    "description": ""
+  },
+  {
+    "name": "Deportes",
+    "editionAlias": "es_CL",
+    "description": ""
+  },
+  {
+    "name": "Salud",
+    "editionAlias": "es_CL",
+    "description": ""
+  },
+  {
+    "name": "NoTagged",
+    "editionAlias": "es_CO",
+    "description": ""
+  },
+  {
+    "name": "Colombia",
+    "editionAlias": "es_CO",
+    "description": ""
+  },
+  {
+    "name": "Internacional",
+    "editionAlias": "es_CO",
+    "description": ""
+  },
+  {
+    "name": "Negocios",
+    "editionAlias": "es_CO",
+    "description": ""
+  },
+  {
+    "name": "CienciaYTecnología",
+    "editionAlias": "es_CO",
+    "description": ""
+  },
+  {
+    "name": "Entretenimiento",
+    "editionAlias": "es_CO",
+    "description": ""
+  },
+  {
+    "name": "Deportes",
+    "editionAlias": "es_CO",
+    "description": ""
+  },
+  {
+    "name": "Salud",
+    "editionAlias": "es_CO",
+    "description": ""
+  },
+  {
+    "name": "NoTagged",
+    "editionAlias": "es_CU",
+    "description": ""
+  },
+  {
+    "name": "Cuba",
+    "editionAlias": "es_CU",
+    "description": ""
+  },
+  {
+    "name": "Internacional",
+    "editionAlias": "es_CU",
+    "description": ""
+  },
+  {
+    "name": "Negocios",
+    "editionAlias": "es_CU",
+    "description": ""
+  },
+  {
+    "name": "CienciaYTecnología",
+    "editionAlias": "es_CU",
+    "description": ""
+  },
+  {
+    "name": "Entretenimiento",
+    "editionAlias": "es_CU",
+    "description": ""
+  },
+  {
+    "name": "Deportes",
+    "editionAlias": "es_CU",
+    "description": ""
+  },
+  {
+    "name": "Salud",
+    "editionAlias": "es_CU",
+    "description": ""
+  },
+  {
+    "name": "NoTagged",
+    "editionAlias": "es",
+    "description": ""
+  },
+  {
+    "name": "España",
+    "editionAlias": "es",
+    "description": ""
+  },
+  {
+    "name": "Internacional",
+    "editionAlias": "es",
+    "description": ""
+  },
+  {
+    "name": "Economía",
+    "editionAlias": "es",
+    "description": ""
+  },
+  {
+    "name": "CienciaYTecnología",
+    "editionAlias": "es",
+    "description": ""
+  },
+  {
+    "name": "Entretenimiento",
+    "editionAlias": "es",
+    "description": ""
+  },
+  {
+    "name": "Deportes",
+    "editionAlias": "es",
+    "description": ""
+  },
+  {
+    "name": "Salud",
+    "editionAlias": "es",
+    "description": ""
+  },
+  {
+    "name": "NoTagged",
+    "editionAlias": "es_MX",
+    "description": ""
+  },
+  {
+    "name": "México",
+    "editionAlias": "es_MX",
+    "description": ""
+  },
+  {
+    "name": "Internacional",
+    "editionAlias": "es_MX",
+    "description": ""
+  },
+  {
+    "name": "Negocios",
+    "editionAlias": "es_MX",
+    "description": ""
+  },
+  {
+    "name": "CienciaYTecnología",
+    "editionAlias": "es_MX",
+    "description": ""
+  },
+  {
+    "name": "Entretenimiento",
+    "editionAlias": "es_MX",
+    "description": ""
+  },
+  {
+    "name": "Deportes",
+    "editionAlias": "es_MX",
+    "description": ""
+  },
+  {
+    "name": "Salud",
+    "editionAlias": "es_MX",
+    "description": ""
+  },
+  {
+    "name": "NoTagged",
+    "editionAlias": "es_PE",
+    "description": ""
+  },
+  {
+    "name": "Perú",
+    "editionAlias": "es_PE",
+    "description": ""
+  },
+  {
+    "name": "Internacional",
+    "editionAlias": "es_PE",
+    "description": ""
+  },
+  {
+    "name": "Negocios",
+    "editionAlias": "es_PE",
+    "description": ""
+  },
+  {
+    "name": "CienciaYTecnología",
+    "editionAlias": "es_PE",
+    "description": ""
+  },
+  {
+    "name": "Entretenimiento",
+    "editionAlias": "es_PE",
+    "description": ""
+  },
+  {
+    "name": "Deportes",
+    "editionAlias": "es_PE",
+    "description": ""
+  },
+  {
+    "name": "Salud",
+    "editionAlias": "es_PE",
+    "description": ""
+  },
+  {
+    "name": "NoTagged",
+    "editionAlias": "es_US",
+    "description": ""
+  },
+  {
+    "name": "EE.UU.",
+    "editionAlias": "es_US",
+    "description": ""
+  },
+  {
+    "name": "Internacional",
+    "editionAlias": "es_US",
+    "description": ""
+  },
+  {
+    "name": "Negocios",
+    "editionAlias": "es_US",
+    "description": ""
+  },
+  {
+    "name": "CienciaYTecnología",
+    "editionAlias": "es_US",
+    "description": ""
+  },
+  {
+    "name": "Entretenimiento",
+    "editionAlias": "es_US",
+    "description": ""
+  },
+  {
+    "name": "Deportes",
+    "editionAlias": "es_US",
+    "description": ""
+  },
+  {
+    "name": "Salud",
+    "editionAlias": "es_US",
+    "description": ""
+  },
+  {
+    "name": "NoTagged",
+    "editionAlias": "es_VE",
+    "description": ""
+  },
+  {
+    "name": "Venezuela",
+    "editionAlias": "es_VE",
+    "description": ""
+  },
+  {
+    "name": "Internacional",
+    "editionAlias": "es_VE",
+    "description": ""
+  },
+  {
+    "name": "Negocios",
+    "editionAlias": "es_VE",
+    "description": ""
+  },
+  {
+    "name": "CienciaYTecnología",
+    "editionAlias": "es_VE",
+    "description": ""
+  },
+  {
+    "name": "Entretenimiento",
+    "editionAlias": "es_VE",
+    "description": ""
+  },
+  {
+    "name": "Deportes",
+    "editionAlias": "es_VE",
+    "description": ""
+  },
+  {
+    "name": "Salud",
+    "editionAlias": "es_VE",
+    "description": ""
+  }
+]

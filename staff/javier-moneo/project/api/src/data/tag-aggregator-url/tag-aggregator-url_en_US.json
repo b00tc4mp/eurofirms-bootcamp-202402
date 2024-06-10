@@ -1,0 +1,58 @@
+[
+  {
+    "tagName": "U.S.",
+    "editionAlias": "en_US",
+    "searchType": "news",
+    "service": "googleNews",
+    "url": "https://news.google.com/topics/CAAqIggKIhxDQkFTRHdvSkwyMHZNRGxqTjNjd0VnSmxiaWdBUAE?hl=en-US&gl=US&ceid=US%3Aen"
+  },
+  {
+    "tagName": "World",
+    "editionAlias": "en_US",
+    "searchType": "news",
+    "service": "googleNews",
+    "url": "https://news.google.com/topics/CAAqJggKIiBDQkFTRWdvSUwyMHZNRGx1YlY4U0FtVnVHZ0pWVXlnQVAB?hl=en-US&gl=US&ceid=US%3Aen"
+  },
+  {
+    "tagName": "Business",
+    "editionAlias": "en_US",
+    "searchType": "news",
+    "service": "googleNews",
+    "url": "https://news.google.com/topics/CAAqJggKIiBDQkFTRWdvSUwyMHZNRGx6TVdZU0FtVnVHZ0pWVXlnQVAB?hl=en-US&gl=US&ceid=US%3Aen"
+  },
+  {
+    "tagName": "Technology",
+    "editionAlias": "en_US",
+    "searchType": "news",
+    "service": "googleNews",
+    "url": "https://news.google.com/topics/CAAqJggKIiBDQkFTRWdvSUwyMHZNRGRqTVhZU0FtVnVHZ0pWVXlnQVAB?hl=en-US&gl=US&ceid=US%3Aen"
+  },
+  {
+    "tagName": "Entertainment",
+    "editionAlias": "en_US",
+    "searchType": "news",
+    "service": "googleNews",
+    "url": "https://news.google.com/topics/CAAqJggKIiBDQkFTRWdvSUwyMHZNREpxYW5RU0FtVnVHZ0pWVXlnQVAB?hl=en-US&gl=US&ceid=US%3Aen"
+  },
+  {
+    "tagName": "Sports",
+    "editionAlias": "en_US",
+    "searchType": "news",
+    "service": "googleNews",
+    "url": "https://news.google.com/topics/CAAqJggKIiBDQkFTRWdvSUwyMHZNRFp1ZEdvU0FtVnVHZ0pWVXlnQVAB?hl=en-US&gl=US&ceid=US%3Aen"
+  },
+  {
+    "tagName": "Science",
+    "editionAlias": "en_US",
+    "searchType": "news",
+    "service": "googleNews",
+    "url": "https://news.google.com/topics/CAAqJggKIiBDQkFTRWdvSUwyMHZNRFp0Y1RjU0FtVnVHZ0pWVXlnQVAB?hl=en-US&gl=US&ceid=US%3Aen"
+  },
+  {
+    "tagName": "Health",
+    "editionAlias": "en_US",
+    "searchType": "news",
+    "service": "googleNews",
+    "url": "https://news.google.com/topics/CAAqIQgKIhtDQkFTRGdvSUwyMHZNR3QwTlRFU0FtVnVLQUFQAQ?hl=en-US&gl=US&ceid=US%3Aen"
+  }
+]
