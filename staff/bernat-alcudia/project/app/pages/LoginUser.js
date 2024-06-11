@@ -25,7 +25,7 @@ function LoginUser() {
                 .then(() => {
                     setUsername('')
                     setPassword('')
-                    navigation.navigate('Home')
+                    navigation.navigate('tabs')
                 })
                 .catch(error => {
                     console.error(error.message)

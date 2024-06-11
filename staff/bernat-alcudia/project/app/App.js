@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Text } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -11,7 +11,7 @@ import ProductDetail from './components/ProductDetail.js';
 import ModifyProduct from './components/ModifyProduct.js';
 import CreateProduct from './components/CreateProduct.js';
 import RetrieveSavedProducts from './components/RetrieveSavedProducts.js';
-import logic from './logic/index.js';
+import MyTabs from './components/MyTabs.js';
 
 const Stack = createStackNavigator()
 
@@ -25,6 +25,7 @@ export default function App() {
         <Stack.Screen name="RegisterSeller" component={RegisterSeller} />
         <Stack.Screen name="RegisterBuyer" component={RegisterBuyer} />
         <Stack.Screen options={{ headerLeft: null }} name='Home' component={Home} />
+        <Stack.Screen name='tabs' component={MyTabs} options={{ headerShown: false, headerLeft: null }}></Stack.Screen>
         <Stack.Screen name='ProductDetail' component={ProductDetail} />
         <Stack.Screen name='ModifyProduct' component={ModifyProduct} />
         <Stack.Screen name='CreateProduct' component={CreateProduct} />

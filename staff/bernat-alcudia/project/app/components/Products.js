@@ -146,16 +146,6 @@ function Products() {
             <TouchableOpacity style={{ alignSelf: 'flex-start', backgroundColor: '#E65C19', width: 60, height: 25 }} onPress={handleLogout}>
                 <Text style={{ fontSize: 16, textAlign: 'center', color: 'white' }}> {'Logout'}  </Text>
             </TouchableOpacity>
-            {
-                logic.getLoggedInUserRole() === 'seller' ?
-                    <TouchableOpacity style={{ alignSelf: 'flex-end', backgroundColor: '#B51B75', width: 60, height: 25 }} onPress={handleCreateProduct}>
-                        <Text>{'Create Product'}  </Text>
-                    </TouchableOpacity>
-                    :
-                    <TouchableOpacity style={{ alignSelf: 'flex-end', backgroundColor: '#B51B75', width: 60, height: 25 }} onPress={handleSavesProduct}>
-                        <Text style={{ fontSize: 16, textAlign: 'center', color: 'white' }}> {'Saves'}  </Text>
-                    </TouchableOpacity>
-            }
         </View>
 
         <ScrollView>
