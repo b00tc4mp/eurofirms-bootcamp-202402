@@ -12,6 +12,8 @@ import modifyComment from './modifyComment.js'
 import toggleLikePost from './toggleLikePost.js'
 import createProduct from './createProduct.js'
 import retrieveProducts from './retrieveProducts.js'
+import removeProduct from './removeProduct.js'
+import modifyProduct from './modifyProduct.js'
 
 const logic = {
     registerUser,
@@ -27,7 +29,9 @@ const logic = {
     modifyComment,
     toggleLikePost,
     createProduct,
-    retrieveProducts
+    retrieveProducts,
+    removeProduct,
+    modifyProduct
 }
 
 export default logic
