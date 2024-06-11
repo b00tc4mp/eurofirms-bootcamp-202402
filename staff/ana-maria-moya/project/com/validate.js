@@ -1,6 +1,6 @@
 import errors from './errors.js'
 
-const { ContentError, MatchError } = errors
+const { ContentError, MatchError, SystemError } = errors
 
 function validateName(name) {
     if (typeof name !== 'string') throw new TypeError('name is not string')
@@ -147,6 +147,11 @@ function validateTitle(title) {
         throw new ContentError('title is blank')
 }
 
+function validateNumber(number, explain = 'number') {
+    if (typeof number !== 'number' || isNaN(number)) throw new TypeError(`${explain} is not a number`)
+}
+
+
 
 const validate = {
     name: validateName,
@@ -158,7 +163,8 @@ const validate = {
     text: validateText,
     url: validateUrl,
     token: validateToken,
-    title: validateTitle
+    title: validateTitle,
+    number: validateNumber
 }
 
 export default validate

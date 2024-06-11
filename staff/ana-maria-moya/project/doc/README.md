@@ -64,3 +64,11 @@ Comment
 - post (Post.id, required)
 - author (User.id, required)
 - text (string, required)
+
+Product
+- name (string,required)
+- image (string,required)
+- description(string)
+- stock(number, required)
+- price(number,required)
+

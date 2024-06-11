@@ -81,14 +81,41 @@ const comment = new Schema({
         type: Date,
         required: true
     }
+    
+})
+
+const product = new Schema({
+    name: {
+        type: String,
+        required: true
+    },
+    image: {
+        type: String,
+        required: true
+    },
+    description: {
+        type: String,
+        required: true,
+
+    },
+    stock:{
+        type: Number,
+        required: true
+    },
+    price: {
+        type: Number,
+        required: true
+    }
 })
 
 const User = model('User', user)
 const Post = model('Post', post)
 const Comment = model('Comment', comment)
+const Product = model('Product', product)
 
 export {
     User,
     Post,
-    Comment
+    Comment,
+    Product
 }

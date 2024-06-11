@@ -437,6 +437,68 @@ mongoose.connect(MONGO_URL)
             }
         })
 
+        //createProduct
+        server.post('/products', jsonBodyParser, (req, res) => {
+            try {
+                const { authorization } = req.headers
+
+                const token = authorization.slice(7)
+
+                const { sub: userId } = jwt.verify(token, JWT_SECRET)
+                const { name, image, description, stock, price} = req.body
+
+                logic.createProduct(userId, { name, image, description, stock, price})
+                    .then(() => res.status(201).send())
+                    .catch(error => {
+                        let status = 500
+
+                        if (error instanceof MatchError) status = 401
+
+                        res.status(status).json({ error: error.constructor.name, message: error.message })
+                    })
+            } catch (error) {
+                let status = 500
+
+                if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError) status = 400
+                else if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError) {
+                    status = 401
+
+                    error = new MatchError(error.message)
+                }
+
+                res.status(status).json({ error: error.constructor.name, message: error.message })
+            }
+        })
+        
+        //retriveProducts
+        server.get('/products', (req, res) => {
+            try {
+                const { authorization } = req.headers
+
+                const token = authorization.slice(7)
+
+                const { sub: userId } = jwt.verify(token, JWT_SECRET)
+
+                logic.retrieveProducts(userId)
+                    .then(products => res.json(products))
+                    .catch(error => {
+                        let status = 500
+
+                        if (error instanceof MatchError) status = 404
+
+                        res.status(status).json({ error: error.constructor, message: error.message })
+                    })
+            } catch (error) {
+                let status = 500
+
+                if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError) status = 400
+                else if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError)
+                    status = 401
+
+                error = new MatchError(error.message)
+                res.status(status).json({ error: error.constructor.name, message: error.message })
+            }
+        })
 
 
     })
