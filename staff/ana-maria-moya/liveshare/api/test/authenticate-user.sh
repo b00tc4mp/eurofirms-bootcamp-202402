@@ -1,0 +1,1 @@
+ curl -X POST -H 'Content-type: application/json' -d '{"username":"Anamml001","password":"123456789"}' http://127.0.0.1:8080/users/auth -v
