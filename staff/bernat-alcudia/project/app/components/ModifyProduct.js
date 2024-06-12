@@ -128,7 +128,7 @@ function ModifyProduct() {
             logic.modifyProduct(productId, images, title, description, brand, +price, selectedRadioButton.value, +stock)
                 .then(() => {
                     alert('modified product')
-                    navigation.navigate('Home')
+                    navigation.navigate('tabs')
                 })
                 .catch(error => {
                     console.error(error)

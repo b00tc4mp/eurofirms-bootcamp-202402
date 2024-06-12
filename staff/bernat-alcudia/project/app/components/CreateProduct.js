@@ -91,7 +91,7 @@ function CreateProduct({ }) {
             logic.createProduct(images, title, description, brand, +price, selectedRadioButton.value, +stock)
                 .then(() => {
                     alert('created product')
-                    navigation.navigate('Home')
+                    navigation.navigate('tabs')
                 })
                 .catch(error => {
                     console.error(error)

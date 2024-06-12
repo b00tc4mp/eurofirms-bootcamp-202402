@@ -1,7 +1,9 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Home from '../pages/Home';
 import CreateProduct from './CreateProduct';
 import RetrieveSavedProducts from './RetrieveSavedProducts';
+import { StyleSheet } from 'react-native'
 import React, { useState, useEffect } from 'react';
 import logic from '../logic';
 
@@ -44,13 +46,13 @@ function MyTabs() {
 
     return (
         <Tab.Navigator
-            screenOptions={{ tabBarActiveTintColor: 'purple', tabBarInactiveTintColor: 'grey' }}
+            screenOptions={{ tabBarActiveTintColor: 'black', tabBarInactiveTintColor: 'grey' }} // headerShown: false
         >
-            <Tab.Screen name='Home' component={Home}></Tab.Screen>
-            {logic.getLoggedInUserRole() === 'seller' && <Tab.Screen name='CreateProduct' component={CreateProduct}></Tab.Screen>}
+            <Tab.Screen name='Home' component={Home} options={{ toBarLabel: 'Home', tabBarIcon: ({ color, size }) => <MaterialCommunityIcons name='home' color={color} size={size} /> }}></Tab.Screen>
+            {logic.getLoggedInUserRole() === 'seller' && <Tab.Screen name='CreateProduct' component={CreateProduct} options={{ toBarLabel: 'Home', tabBarIcon: ({ color, size }) => <MaterialCommunityIcons name='plus-circle-outline' color={color} size={size} /> }}></Tab.Screen>}
 
-            <Tab.Screen name='RetrieveSavedProducts' component={RetrieveSavedProducts}></Tab.Screen>
-        </Tab.Navigator>
+            <Tab.Screen name='RetrieveSavedProducts' component={RetrieveSavedProducts} options={{ toBarLabel: 'Home', tabBarIcon: ({ color, size }) => <MaterialCommunityIcons name='bookmark-multiple' color={color} size={size} /> }}></Tab.Screen>
+        </Tab.Navigator >
     );
 }
 

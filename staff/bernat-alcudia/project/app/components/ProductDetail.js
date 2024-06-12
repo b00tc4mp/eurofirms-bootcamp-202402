@@ -33,7 +33,7 @@ function ProductDetail() {
                 onPress: () => {
                     try {
                         logic.removeProduct(productId)
-                            .then(() => navigation.navigate('Home'))
+                            .then(() => navigation.navigate('tabs'))
                             .catch(error => {
                                 console.error(error)
 

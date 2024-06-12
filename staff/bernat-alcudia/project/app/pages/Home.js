@@ -12,7 +12,7 @@ function Home() {
 
 
 
-    return <ScrollView>
+    return <ScrollView >
 
         <Products stamp={''} />
 
