@@ -81,7 +81,7 @@ const comment = new Schema({
         type: Date,
         required: true
     }
-    
+
 })
 
 const product = new Schema({
@@ -98,12 +98,39 @@ const product = new Schema({
         required: true,
 
     },
-    stock:{
+    stock: {
         type: Number,
         required: true
     },
     price: {
         type: Number,
+        required: true
+    }
+
+})
+
+const item = new Schema({
+    product: product,
+    quantity: {
+        type: Number,
+        default: 1,
+        required: true
+    }
+})
+
+const cart = new Schema({
+    items: [item]
+})
+
+const order = new Schema({
+    buyer: {
+        type: ObjectId,
+        required: true,
+        ref: 'User'
+    },
+    cart: cart,
+    date: {
+        type: Date,
         required: true
     }
 })
@@ -112,10 +139,16 @@ const User = model('User', user)
 const Post = model('Post', post)
 const Comment = model('Comment', comment)
 const Product = model('Product', product)
+const Item = model('Item', item)
+const Cart = model('Cart', cart)
+const Order = model('Order', order)
 
 export {
     User,
     Post,
     Comment,
-    Product
+    Product,
+    Order,
+    Cart,
+    Item
 }

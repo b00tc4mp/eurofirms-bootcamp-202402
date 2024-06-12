@@ -14,6 +14,8 @@ import createProduct from './createProduct.js'
 import retrieveProducts from './retrieveProducts.js'
 import removeProduct from './removeProduct.js'
 import modifyProduct from './modifyProduct.js'
+import createOrder from './createOrder.js'
+
 
 const logic = {
     registerUser,
@@ -31,7 +33,8 @@ const logic = {
     createProduct,
     retrieveProducts,
     removeProduct,
-    modifyProduct
+    modifyProduct,
+    createOrder
 }
 
 export default logic
