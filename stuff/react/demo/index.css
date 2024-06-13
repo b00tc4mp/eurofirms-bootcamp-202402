@@ -1,0 +1,9 @@
+.Button {
+    background-color: white;
+    border: 1px solid black;
+}
+
+.Button--invert {
+    background-color: black;
+    color: white;
+}
