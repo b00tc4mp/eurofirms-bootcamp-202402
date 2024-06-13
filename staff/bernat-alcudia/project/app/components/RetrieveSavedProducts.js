@@ -17,7 +17,7 @@ function RetrieveSavedProducts() {
 
     useEffect(() => {
         showSavedProducts()
-    }, [])
+    }, [products])
 
 
     const showSavedProducts = () => {

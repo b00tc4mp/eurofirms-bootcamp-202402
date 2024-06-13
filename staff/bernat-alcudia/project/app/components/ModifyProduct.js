@@ -1,9 +1,11 @@
 import { useMemo, useState, useEffect, } from 'react';
 import logic from '../logic';
-import { View, Image, StyleSheet, ScrollView, Button, TextInput, Alert, Text } from 'react-native';
+import { View, Image, StyleSheet, ScrollView, Button, TextInput, Alert, Text, TouchableOpacity } from 'react-native';
 import { useRoute, useNavigation } from '@react-navigation/native';
 import * as ImagePicker from 'expo-image-picker';
 import RadioGroup from 'react-native-radio-buttons-group';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+
 
 
 
@@ -155,8 +157,10 @@ function ModifyProduct() {
 
                 {images?.map((image, index) => (
                     <>
+                        <TouchableOpacity style={{ paddingLeft: 50 }} onPress={() => handleDeleteImage(image)}>
+                            <MaterialCommunityIcons name='close' size={25} color={'black'} />
+                        </TouchableOpacity>
                         <Image key={index} source={{ uri: 'data:image/png;base64,' + image }} style={styles.logo} onError={(error) => console.error('Error loading image:', error)} />
-                        <Button title='Delete Image' onPress={() => handleDeleteImage(image)}></Button>
                     </>
                 ))}
             </View>
@@ -172,7 +176,9 @@ function ModifyProduct() {
             <TextInput keyboardType='numeric' value={stock} onChangeText={setStock} placeholder='stock' />
             <Text>Description:</Text>
             <TextInput value={description} onChangeText={setDescription} placeholder='description' />
-            <Button title='Modify' onPress={handleModifyProduct} />
+            <TouchableOpacity style={{ paddingLeft: 200 }} onPress={handleModifyProduct}>
+                <MaterialCommunityIcons name='pencil-plus' size={30} color={'black'} />
+            </TouchableOpacity>
         </View>
     </ScrollView >
 

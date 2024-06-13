@@ -54,15 +54,6 @@ function Products() {
         navigation.navigate('LoginUser')
     }
 
-
-    const handleCreateProduct = () => {
-        navigation.navigate('CreateProduct')
-    }
-
-    const handleSavesProduct = () => {
-        navigation.navigate('RetrieveSavedProducts')
-    }
-
     const handleProductDetail = id => {
         navigation.navigate('ProductDetail', { id: id })
     }
@@ -156,10 +147,10 @@ function Products() {
                             <Text>State: {product.state}</Text>
                             <View style={{ padding: 8, flexDirection: 'row', flex: 1, width: '100%', height: 40, justifyContent: 'space-between' }}>
                                 <TouchableOpacity style={isLiked ? styles.button : styles.buttonPressIn} onPressOut={() => handleToggleLikeProduct(product.id)} >
-                                    {isLiked ? <MaterialCommunityIcons name='heart-outline' size={25} color={'red'} /> : <MaterialCommunityIcons name='heart' size={25} color={'red'} />}
+                                    <MaterialCommunityIcons name={isLiked ? 'heart' : 'heart-outline'} size={25} color={'red'} />
                                 </TouchableOpacity>
                                 <TouchableOpacity style={isSaved ? styles.button : styles.buttonPressIn} onPressOut={() => handleToggleSavedProduct(product.id)} >
-                                    {isSaved ? <MaterialCommunityIcons name='bookmark-outline' size={25} color={'blue'} /> : <MaterialCommunityIcons name='bookmark' size={25} color={'blue'} />}
+                                    <MaterialCommunityIcons name={isSaved ? 'bookmark' : 'bookmark-outline'} size={25} color={'blue'} />
                                 </TouchableOpacity>
                             </View>
 

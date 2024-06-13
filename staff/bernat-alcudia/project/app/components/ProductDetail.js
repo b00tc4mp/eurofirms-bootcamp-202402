@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, Image, StyleSheet, ScrollView, Button, Alert } from 'react-native';
+import { View, Text, Image, StyleSheet, ScrollView, Button, Alert, TouchableOpacity } from 'react-native';
 import logic from '../logic';
 import { utils } from '../com'
 import { useRoute, useNavigation } from '@react-navigation/native';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+
 
 const styles = StyleSheet.create({
     image: {
@@ -95,8 +97,14 @@ function ProductDetail() {
             <Text>State: {product.state}</Text>
             <Text>Stock: {product.stock}</Text>
             <Text>Description: {product.description} </Text>
-            {isAuthor && <Button color={'#C40C0C'} title='Delete' onPress={handleDeleteProduct}></Button>}
-            {isAuthor && <Button color={'#F8D082'} title='Modify' onPress={handleModifyProductDetail}></Button>}
+            <View style={{ padding: 8, flexDirection: 'row', flex: 1, width: '100%', height: 40, justifyContent: 'space-between' }}>
+                <TouchableOpacity style={{ paddingLeft: 70 }} onPress={handleModifyProductDetail}>
+                    {isAuthor && <MaterialCommunityIcons name='pencil' size={25} color={'black'} />}
+                </TouchableOpacity>
+                <TouchableOpacity style={{ paddingRight: 20 }} onPress={handleDeleteProduct}>
+                    {isAuthor && <MaterialCommunityIcons name='trash-can-outline' size={25} color={'black'} />}
+                </TouchableOpacity>
+            </View>
         </View>
     </ScrollView >
 
