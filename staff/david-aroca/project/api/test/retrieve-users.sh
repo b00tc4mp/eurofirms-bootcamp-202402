@@ -1,0 +1,4 @@
+ curl -X GET -H 'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NjUwNThhZjBkZjA1ZDQ1NGVkYzk5NDYiLCJyb2xlIjoidHJhaW5lZSIsImlhdCI6MTcxNjU1NjEzMywiZXhwIjoxNzE2NTY2OTMzfQ.0kVWMZ2iW4RfRdkupazBHBUr8kVToCRem193a9F6sV4' http://localhost:4025/users -v
+
+
+# sanitaze ok[{"name":"david","birthdate":"1111-11-11T00:00:00.000Z","email":"david@gmail.com","username":"david","password":"123123123","role":"trainer","id":"664f9c87f1486803cb51df34"},{"name":"JOSERAMON56","birthdate":"2000-01-01T00:00:00.000Z","email":"JOSE56@RAMON.COM","username":"JOSERAMON56","password":"123123123","role":"trainee","id":"665058af0df05d454edc9946"}]* Connection #0 to host localhost left intact
