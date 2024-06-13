@@ -1,0 +1,58 @@
+.body {
+  width: 600px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 40px;
+}
+
+.header h1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.board {
+  display: grid;
+  border: 2px solid black;
+  width: 600px;
+  height: 600px;
+  background-color: lightgray;
+  gap: 1px;
+  padding: 10px;
+}
+
+.clicked-cell {
+  background-color: blueviolet;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cell-button {
+  width: 100%;
+  height: 100%;
+  box-shadow: inset gray 0px 0px 60px -12px;
+  background-color: indigo;
+}
+
+.board-buttons {
+  width: 400px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.pointer-cursor {
+  cursor: pointer;
+}
+
+.selected-button {
+  border: 4px solid rgb(48, 153, 233);
+  border-radius: 2px;
+}
+
+.select-marker-button {
+  width: 30px;
+}
