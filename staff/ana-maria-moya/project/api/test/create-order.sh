@@ -1,0 +1,1 @@
+curl -X POST -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NjM5MGE4ZWE2MzgwNTc0OGY4M2JhZTMiLCJpYXQiOjE3MTgyMDU2OTUsImV4cCI6MTcxODIwODY5NX0.VD28KUyLP6dOkDmweQHAfSoW_OIkyTqRgV8dM1wk7QA' -H 'Content-type: application/json' -d '{"order": [{"id": "6668279eda8dcbaf1aa5a169", "quantity": 10}]}' http://localhost:9010/orders -v

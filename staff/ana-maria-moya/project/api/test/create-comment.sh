@@ -1,0 +1,1 @@
+curl -X POST -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NjM5MGE4ZWE2MzgwNTc0OGY4M2JhZTMiLCJpYXQiOjE3MTU3MDAzNzksImV4cCI6MTcxNTcwMzk3OX0.i0gwtMoodjY9yKMMrvTAWytI3toSRx3cIGTmNdftt-4' -H 'Content-type: application/json' -d '{"text":"I am a new comment"}' http://localhost:9010/posts/66436d297176087ae2779002/comments/ -v
