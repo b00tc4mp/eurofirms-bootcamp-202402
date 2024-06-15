@@ -42,7 +42,11 @@ function Login({ onUserLoggedIn, onRegisterClick }) {
 
     try {
       logic.loginUser(email, password)
-        .then(() => { onUserLoggedIn() })
+        .then(() => {
+          alert('Usuario logeado correctamente')
+          setError(null)
+          onUserLoggedIn()
+        })
         .catch(error => {
           errorHandle(error)
         })

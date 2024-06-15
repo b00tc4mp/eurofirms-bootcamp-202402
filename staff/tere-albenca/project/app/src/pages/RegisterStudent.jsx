@@ -64,7 +64,12 @@ function RegisterStudent({ onStudentRegistered, onLoginClick }) {
 
     try {
       logic.registerStudent(name, surname, email, password)
-        .then(() => onStudentRegistered())
+        .then(() => {
+          alert('Usuario registrado correctamente')
+          setError(null)
+          onStudentRegistered()
+
+        })
         .catch(error => {
           errorHandle(error)
         })
