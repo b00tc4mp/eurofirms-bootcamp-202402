@@ -111,9 +111,28 @@ function Products() {
     }, []))
 
     const styles = StyleSheet.create({
+        container: {
+            flex: 1,
+            backgroundColor: '#f0f0f0',
+            padding: 30
+        },
+        productContainer: {
+            padding: 20,
+            margin: 10,
+            backgroundColor: '#fff',
+            borderRadius: 10,
+            shadowColor: '#000',
+            shadowOffset: { width: 0, height: 2 },
+            shadowOpacity: 0.1,
+            shadowRadius: 5,
+            elevation: 3,
+
+        },
         image: {
             width: 350,
             height: 350,
+            borderRadius: 15,
+
         },
         buttonPressIn: {
             transform: [{ scale: 1.00 }]
@@ -134,26 +153,23 @@ function Products() {
                 const isLiked = product.likes.includes(logic.getLoggedInUserId())
                 const isSaved = user?.saved.includes(product.id)
                 return (
-                    <View style={{ padding: 30 }} key={product.id} >
-                        <View  >
-                            <Image style={styles.image} source={{ uri: 'data:image/png;base64,' + product.images[0] }} onError={(error) => console.error('Error loading image:', error)} />
-                        </View>
-                        <View >
-                            <TouchableOpacity onPress={() => handleProductDetail(product.id)}>
-                                <Text >Title: {product.title}</Text>
+                    <View style={styles.productContainer} key={product.id} >
+                        <Image style={styles.image} source={{ uri: 'data:image/png;base64,' + product.images[0] }} onError={(error) => console.error('Error loading image:', error)} />
+                        <View style={{ padding: 8 }}>
+                            <TouchableOpacity style={{ paddingTop: 5 }} onPress={() => handleProductDetail(product.id)}>
+                                <Text >{product.title}</Text>
                             </TouchableOpacity>
-                            <Text >Brand: {product.brand}</Text>
+                            <Text >{product.brand}</Text>
                             <Text >Price: ${product.price}</Text>
                             <Text>State: {product.state}</Text>
-                            <View style={{ padding: 8, flexDirection: 'row', flex: 1, width: '100%', height: 40, justifyContent: 'space-between' }}>
-                                <TouchableOpacity style={isLiked ? styles.button : styles.buttonPressIn} onPressOut={() => handleToggleLikeProduct(product.id)} >
-                                    <MaterialCommunityIcons name={isLiked ? 'heart' : 'heart-outline'} size={25} color={'red'} />
-                                </TouchableOpacity>
-                                <TouchableOpacity style={isSaved ? styles.button : styles.buttonPressIn} onPressOut={() => handleToggleSavedProduct(product.id)} >
-                                    <MaterialCommunityIcons name={isSaved ? 'bookmark' : 'bookmark-outline'} size={25} color={'blue'} />
-                                </TouchableOpacity>
-                            </View>
-
+                        </View>
+                        <View style={{ padding: 8, flexDirection: 'row', flex: 1, width: '100%', height: 40, justifyContent: 'space-between' }}>
+                            <TouchableOpacity style={isLiked ? styles.button : styles.buttonPressIn} onPressOut={() => handleToggleLikeProduct(product.id)} >
+                                <MaterialCommunityIcons name={isLiked ? 'heart' : 'heart-outline'} size={25} color={'red'} />
+                            </TouchableOpacity>
+                            <TouchableOpacity style={isSaved ? styles.button : styles.buttonPressIn} onPressOut={() => handleToggleSavedProduct(product.id)} >
+                                <MaterialCommunityIcons name={isSaved ? 'bookmark' : 'bookmark-outline'} size={25} color={'blue'} />
+                            </TouchableOpacity>
                         </View>
                     </View>
                 )

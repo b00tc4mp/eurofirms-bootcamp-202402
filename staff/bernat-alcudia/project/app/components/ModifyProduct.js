@@ -47,14 +47,50 @@ function ModifyProduct() {
     const navigation = useNavigation()
 
     const styles = StyleSheet.create({
+        view: {
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 5,
+            alignItems: 'center',
+        },
+        input: {
+            width: '80%',
+            padding: 10,
+            borderWidth: 1,
+            borderColor: '#ccc',
+            borderRadius: 5,
+        },
+        button: {
+            width: '80%',
+            padding: 15,
+            backgroundColor: 'black',
+            borderRadius: 5,
+        },
+        buttonText: {
+            color: '#fff',
+            fontSize: 16,
+            alignSelf: 'center'
+        },
         logo: {
             width: 66,
             height: 58,
         },
         radioButtons: {
             padding: 10
+        },
+        galleryPreview: {
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'flex-start',
+            alignItems: 'flex-start',
+            maxWidth: '70%',
+            flexWrap: 'wrap'
+        },
+        text: {
+            alignSelf: 'flex-start',
+            paddingLeft: 40
         }
-    });
+    })
 
     useEffect(() => {
         (async () => {
@@ -150,33 +186,37 @@ function ModifyProduct() {
     }
 
     return <ScrollView>
-        <View>
-            <Button title='Select Image' onPress={selectImage} />
-            <Button title='Take Picture' onPress={takePicture} />
-            <View >
+        <View style={styles.view}>
+            <TouchableOpacity style={styles.button} onPress={selectImage}>
+                <Text style={styles.buttonText} >Select Image</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.button} onPress={takePicture}>
+                <Text style={styles.buttonText} >Take Picture</Text>
+            </TouchableOpacity>
+            <View style={styles.galleryPreview} >
 
                 {images?.map((image, index) => (
                     <>
-                        <TouchableOpacity style={{ paddingLeft: 50 }} onPress={() => handleDeleteImage(image)}>
+                        <Image key={index} source={{ uri: 'data:image/png;base64,' + image }} style={styles.logo} onError={(error) => console.error('Error loading image:', error)} />
+                        <TouchableOpacity onPress={() => handleDeleteImage(image)}>
                             <MaterialCommunityIcons name='close' size={25} color={'black'} />
                         </TouchableOpacity>
-                        <Image key={index} source={{ uri: 'data:image/png;base64,' + image }} style={styles.logo} onError={(error) => console.error('Error loading image:', error)} />
                     </>
                 ))}
             </View>
-            <Text>Title:</Text>
-            <TextInput value={title} onChangeText={setTitle} placeholder='title' />
-            <Text>Brand:</Text>
-            <TextInput value={brand} onChangeText={setBrand} placeholder='brand' />
-            <Text>Price:</Text>
-            <TextInput keyboardType='numeric' value={price} onChangeText={setPrice} placeholder='price' />
-            <Text>State:</Text>
+            <Text style={styles.text}>Title</Text>
+            <TextInput style={styles.input} value={title} onChangeText={setTitle} placeholder='title' />
+            <Text style={styles.text} >Brand</Text>
+            <TextInput style={styles.input} value={brand} onChangeText={setBrand} placeholder='brand' />
+            <Text style={styles.text}>Price</Text>
+            <TextInput style={styles.input} keyboardType='numeric' value={price} onChangeText={setPrice} placeholder='price' />
+            <Text>State</Text>
             <RadioGroup labelStyle={styles.radioButtons} layout='row' radioButtons={radioButtons} onPress={setSelectedId} selectedId={selectedId} />
-            <Text>Stock:</Text>
-            <TextInput keyboardType='numeric' value={stock} onChangeText={setStock} placeholder='stock' />
-            <Text>Description:</Text>
-            <TextInput value={description} onChangeText={setDescription} placeholder='description' />
-            <TouchableOpacity style={{ paddingLeft: 200 }} onPress={handleModifyProduct}>
+            <Text style={styles.text}>Stock</Text>
+            <TextInput style={styles.input} keyboardType='numeric' value={stock} onChangeText={setStock} placeholder='stock' />
+            <Text style={styles.text}>Description</Text>
+            <TextInput style={styles.input} value={description} onChangeText={setDescription} placeholder='description' />
+            <TouchableOpacity style={{ paddingTop: 30 }} onPress={handleModifyProduct}>
                 <MaterialCommunityIcons name='pencil-plus' size={30} color={'black'} />
             </TouchableOpacity>
         </View>

@@ -7,6 +7,13 @@ const styles = StyleSheet.create({
     image: {
         width: 350,
         height: 350,
+        borderRadius: 15,
+        margin: 10
+    },
+    productContainer: {
+        marginBottom: 20,
+        backgroundColor: '#f9f9f9',
+        borderRadius: 10,
     },
 });
 
@@ -44,13 +51,13 @@ function RetrieveSavedProducts() {
 
     return <ScrollView >
         {products.map(product => {
-            return <>
+            return <View style={styles.productContainer} >
                 <View style={{ padding: 30 }} key={product.id} >
                     {product.images.map((image, index) => (
-                        <Image key={index} source={{ uri: 'data:image/png;base64,' + image }} style={styles.image} onError={(error) => console.error('Error loading image:', error)} />
+                        <Image style={styles.image} key={index} source={{ uri: 'data:image/png;base64,' + image }} onError={(error) => console.error('Error loading image:', error)} />
                     ))}
                 </View>
-                <View style={{ padding: 30 }} >
+                <View style={{ padding: 30, marginLeft: 15 }} >
                     <Text>{utils.formatDate(new Date(product.date))}</Text>
                     <Text>{product.title}</Text>
                     <Text>{product.brand}</Text>
@@ -59,7 +66,8 @@ function RetrieveSavedProducts() {
                     <Text>{product.stock}</Text>
                     <Text>{product.description}</Text>
                 </View>
-            </>
+            </View>
+
         })}
     </ScrollView >
 

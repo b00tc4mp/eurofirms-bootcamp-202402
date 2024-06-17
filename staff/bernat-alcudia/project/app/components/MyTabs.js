@@ -3,7 +3,6 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import Home from '../pages/Home';
 import CreateProduct from './CreateProduct';
 import RetrieveSavedProducts from './RetrieveSavedProducts';
-import { StyleSheet } from 'react-native'
 import React, { useState, useEffect } from 'react';
 import logic from '../logic';
 
@@ -46,7 +45,7 @@ function MyTabs() {
 
     return (
         <Tab.Navigator
-            screenOptions={{ tabBarActiveTintColor: 'black', tabBarInactiveTintColor: 'grey' }} // headerShown: false
+            screenOptions={{ tabBarActiveTintColor: 'black', tabBarInactiveTintColor: 'grey', tabBarShowLabel: false }} // headerShown: false
         >
             <Tab.Screen name='Home' component={Home} options={{ toBarLabel: 'Home', tabBarIcon: ({ color, size }) => <MaterialCommunityIcons name='home' color={color} size={size} /> }}></Tab.Screen>
             {logic.getLoggedInUserRole() === 'seller' && <Tab.Screen name='CreateProduct' component={CreateProduct} options={{ toBarLabel: 'Home', tabBarIcon: ({ color, size }) => <MaterialCommunityIcons name='plus-circle-outline' color={color} size={size} /> }}></Tab.Screen>}

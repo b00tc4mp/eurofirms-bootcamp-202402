@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { View, TextInput, Button, StyleSheet } from 'react-native';
-import { createStackNavigator } from '@react-navigation/stack';
+import { View, TextInput, Button, StyleSheet, TouchableOpacity, Text } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 import { errors } from '../com';
@@ -64,13 +63,47 @@ function LoginUser() {
         navigation.navigate('RegisterBuyer')
     }
 
+    const styles = StyleSheet.create({
+        view: {
+            paddingTop: '50%',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 20,
+            alignItems: 'center',
+        },
+        input: {
+            width: '80%',
+            padding: 10,
+            marginVertical: 10,
+            borderWidth: 1,
+            borderColor: '#ccc',
+            borderRadius: 5,
+        },
+        button: {
+            width: '80%',
+            padding: 15,
+            backgroundColor: 'black',
+            borderRadius: 5,
+        },
+        buttonText: {
+            color: '#fff',
+            fontSize: 16,
+            alignSelf: 'center'
+        },
+    })
 
-    return <View>
-        <TextInput placeholder='username' value={username} onChangeText={setUsername} />
-        <TextInput secureTextEntry={true} placeholder='password' value={password} onChangeText={setPassword} />
-        <Button title='Login' onPress={handleSubmit}></Button>
-        <Button title='Register Seller' onPress={handleRegisterSeller} ></Button>
-        <Button title='Register Buyer' onPress={handleRegisterBuyer} ></Button>
+    return <View style={styles.view}>
+        <TextInput style={styles.input} placeholder='username' value={username} onChangeText={setUsername} />
+        <TextInput style={styles.input} secureTextEntry={true} placeholder='password' value={password} onChangeText={setPassword} />
+        <TouchableOpacity style={[styles.button, { marginTop: 10 }]} onPress={handleSubmit}>
+            <Text style={styles.buttonText}>Login</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.button} onPress={handleRegisterSeller}>
+            <Text style={styles.buttonText}>Register Seller</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.button} onPress={handleRegisterBuyer}>
+            <Text style={styles.buttonText}>Register Buyer</Text>
+        </TouchableOpacity>
     </View>
 }
 
