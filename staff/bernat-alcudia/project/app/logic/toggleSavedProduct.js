@@ -13,7 +13,7 @@ function toggleSavedProduct(productId) {
             Authorization: `Bearer ${SessionStorage.getItem('token')}`
         }
     })
-        .catch(error => { throw new Error(error.message) })
+        .catch(error => { throw new SystemError(error.message) })
         .then(res => {
             if (res.status === 204) return
 

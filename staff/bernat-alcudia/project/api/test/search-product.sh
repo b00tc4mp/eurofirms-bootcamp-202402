@@ -1,0 +1,2 @@
+curl -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NjU5ZjcwZjUzNmMwNjRmYzBmODk1OTciLCJyb2xlIjoic2VsbGVyIiwiaWF0IjoxNzE4NzE1MDkwLCJleHAiOjE3MTg3MTg2OTB9.dIJN1cBs1DxnDfxHLI4BLsJiqMxbe5dCZkcwdwz66FY' "http://localhost:9010/products/search?query=traje" -v
+# curl -H 'authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NjNhM2IxYmQyNmE4MWQ3MTc4ZjkwNDMiLCJyb2xlIjoidHJhaW5lciIsImlhdCI6MTcxNjQ3NTEzMiwiZXhwIjoxNzE2NDg1OTMyfQ.X7iZ2Ds48H_GY1Al-wJ580R-VnxCU3QJrr4eB9zFglg' "http://localhost:4025/exercises/search?q=muerto" -v

@@ -3,20 +3,21 @@ import SessionStorage from 'react-native-session-storage';
 
 const { SystemError } = errors
 
-function toggleLikeProduct(productId) {
+function searchProducts(searchQuery) {
     validate.token(SessionStorage.getItem('token'))
-    validate.id(productId, 'productId')
+    validate.string(searchQuery, 'query')
 
-    return fetch(`${process.env.EXPO_PUBLIC_API_URL}/products/${productId}/likes`, {
-        method: 'PUT',
+    return fetch(`${process.env.EXPO_PUBLIC_API_URL}/products/search?q=traje`, {
+        method: 'GET',
         headers: {
-            Authorization: `Bearer ${SessionStorage.getItem('token')}`
+            Authorization: `Bearer ${sessionStorage.getItem('token')}`
         }
     })
         .catch(error => { throw new SystemError(error.message) })
         .then(res => {
-            if (res.status === 204) return
-
+            if (res.status === 200) return res.json()
+                .catch(error => { throw new SystemError(error.message) })
+                .then(products => products)
 
             return res.json()
                 .catch(error => { throw new SystemError(error.message) })
@@ -28,6 +29,7 @@ function toggleLikeProduct(productId) {
                     throw new constructor(message)
                 })
         })
+
 }
 
-export default toggleLikeProduct
+export default searchProducts

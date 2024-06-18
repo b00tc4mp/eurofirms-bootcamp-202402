@@ -10,6 +10,7 @@ import modifyProduct from './modifyProduct.js'
 import toggleLikeProduct from './toggleLikeProduct.js'
 import toggleSaveProduct from './toggleSaveProduct.js'
 import retrieveSavedProducts from './retrieveSavedProducts.js'
+import searchProduct from './searchProduct.js'
 
 
 const logic = {
@@ -24,7 +25,8 @@ const logic = {
     modifyProduct,
     toggleLikeProduct,
     toggleSaveProduct,
-    retrieveSavedProducts
+    retrieveSavedProducts,
+    searchProduct
 }
 
 export default logic

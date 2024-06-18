@@ -12,7 +12,7 @@ function retrieveProducts() {
             Authorization: `Bearer ${SessionStorage.getItem('token')}`
         }
     })
-        .catch(error => { throw new Error(error.message) })
+        .catch(error => { throw new SystemError(error.message) })
         .then(res => {
             if (res.status === 200) return res.json()
                 .catch(error => { throw new SystemError(error.message) })

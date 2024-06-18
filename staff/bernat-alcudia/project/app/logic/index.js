@@ -15,6 +15,7 @@ import modifyProduct from './modifyProduct.js';
 import toggleLikeProduct from './toggleLikeProduct.js';
 import toggleSavedProduct from './toggleSavedProduct.js';
 import retrieveUserProductSaved from './retrieveUserProductSaved.js';
+import searchProducts from './searchProducts.js';
 
 
 const logic = {
@@ -34,7 +35,8 @@ const logic = {
     modifyProduct,
     toggleLikeProduct,
     toggleSavedProduct,
-    retrieveUserProductSaved
+    retrieveUserProductSaved,
+    searchProducts
 
 }
 

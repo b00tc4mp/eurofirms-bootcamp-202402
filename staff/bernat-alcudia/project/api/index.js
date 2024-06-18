@@ -200,6 +200,38 @@ mongoose.connect(MONGO_URL)
             }
         })
 
+        // ---------------------------------Products Search---------------------------------
+        server.get('/products/search', (req, res) => {
+            try {
+                const { authorization } = req.headers
+
+                const token = authorization.slice(7)
+
+                const { sub: userId } = jwt.verify(token, JWT_SECRET)
+
+                const { query } = req.query
+
+                logic.searchProduct(userId, query)
+                    .then(product => res.status(200).json(product))
+                    .catch(error => {
+                        let status = 500
+                        if (error instanceof MatchError) status = 404
+
+                        res.status(status).json({ error: error.constructor.name, message: error.message })
+                    })
+            } catch (error) {
+                let status = 500
+
+                if (error instanceof TypeError || error instanceof RangeError || error instanceof ContentError) status = 400
+
+                else if (error instanceof JsonWebTokenError || error instanceof TokenExpiredError) {
+                    status = 401
+
+                    error = new MatchError(error.message)
+                    res.status(status).json({ error: error.constructor.name, message: error.message })
+                }
+            }
+        })
 
         // ---------------------------------Retrieve Products Detail---------------------------------
         server.get('/products/:productId', (req, res) => {
