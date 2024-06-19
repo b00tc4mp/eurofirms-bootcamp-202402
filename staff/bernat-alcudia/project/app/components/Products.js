@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import { View, Text, Image, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
+import { View, Text, Image, StyleSheet, ScrollView, TouchableOpacity, TextInput } from 'react-native';
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
@@ -9,6 +9,7 @@ import logic from '../logic';
 function Products() {
     const [products, setProducts] = useState([])
     const [user, setUser] = useState()
+    const [searchQuery, setSearchQuery] = useState('')
 
     const navigation = useNavigation()
 
@@ -90,6 +91,32 @@ function Products() {
         }
     }
 
+    const handleSearchQueryChange = newSearchQuery => {
+        console.log('search', newSearchQuery)
+        setSearchQuery(newSearchQuery)
+        newSearchQuery === '' ? refreshProducts() : searchProducts(newSearchQuery);
+    };
+
+    const searchProducts = searchQuery => {
+        try {
+            console.log(searchQuery)
+            logic.searchProducts(searchQuery) //I return the products searched
+                .then(products => {
+                    console.log(products.map(product => product.id))
+                    setProducts(products)
+                })
+                .catch(error => {
+                    console.error(error)
+
+                    alert(error.message)
+                })
+        } catch (error) {
+            console.error(error)
+
+            alert(error.message)
+        }
+    }
+
     const refreshProducts = () => {
         try {
             logic.retrieveProducts() //I return the products
@@ -110,6 +137,8 @@ function Products() {
         refreshProducts()
     }, []))
 
+
+
     const styles = StyleSheet.create({
         container: {
             flex: 1,
@@ -128,6 +157,15 @@ function Products() {
             elevation: 3,
 
         },
+        input: {
+            width: '80%',
+            padding: 10,
+            marginVertical: 10,
+            borderWidth: 1,
+            borderColor: '#ccc',
+            borderRadius: 5,
+            alignSelf: 'center'
+        },
         image: {
             width: 350,
             height: 350,
@@ -142,6 +180,7 @@ function Products() {
     });
 
     return (<>
+
         <View style={{ paddingLeft: 8, paddingRight: 8, width: '100%', height: 25, flexDirection: 'row', justifyContent: 'space-between' }}>
             <TouchableOpacity onPress={handleLogout}>
                 <MaterialCommunityIcons name='door' size={25} color={'black'} />
@@ -149,6 +188,8 @@ function Products() {
         </View>
 
         <ScrollView>
+            <TextInput style={styles.input} placeholder='search products' onChangeText={newSearchQuery => handleSearchQueryChange(newSearchQuery)} defaultValue={searchQuery} />
+
             {products.map(product => {
                 const isLiked = product.likes.includes(logic.getLoggedInUserId())
                 const isSaved = user?.saved.includes(product.id)

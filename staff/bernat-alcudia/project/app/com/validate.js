@@ -5,7 +5,7 @@ const { ContentError, MatchError } = errors
 
 function validateString(string, explain = 'string') {
     if (typeof string !== 'string') throw new TypeError(`${explain} is not a string`)
-    if (!string.length) throw new ContentError(`${explain} is empty`)
+    if (string.length < 0) throw new ContentError(`${explain} is empty`)
 }
 
 function validateNumber(number, explain = 'number') {

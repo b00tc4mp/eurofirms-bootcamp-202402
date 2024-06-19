@@ -7,10 +7,10 @@ function searchProducts(searchQuery) {
     validate.token(SessionStorage.getItem('token'))
     validate.string(searchQuery, 'query')
 
-    return fetch(`${process.env.EXPO_PUBLIC_API_URL}/products/search?q=traje`, {
+    return fetch(`${process.env.EXPO_PUBLIC_API_URL}/products/search?query=${searchQuery}`, {
         method: 'GET',
         headers: {
-            Authorization: `Bearer ${sessionStorage.getItem('token')}`
+            Authorization: `Bearer ${SessionStorage.getItem('token')}`
         }
     })
         .catch(error => { throw new SystemError(error.message) })

@@ -15,11 +15,11 @@ function searchProduct(userId, searchQuery) {
             return Product.find({ 'title': { '$regex': searchQuery, '$options': 'i' } }).select('-__v').populate('author', 'username').lean()
                 .catch(error => { throw new SystemError(error.message) })
                 .then(product => {
-                    if (product.length === 0) { throw new MatchError('product not found') }
+                    if (!product) { throw new MatchError('product not found') }
 
 
                     product.forEach(product => {
-                        product._id = product._id.toString()
+                        product.id = product._id.toString()
                         delete product._id
 
                         if (product.author._id) {
