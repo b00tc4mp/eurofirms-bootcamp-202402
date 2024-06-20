@@ -3,13 +3,16 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import Home from '../pages/Home';
 import CreateProduct from './CreateProduct';
 import RetrieveSavedProducts from './RetrieveSavedProducts';
-import React, { useState, useEffect } from 'react';
+import SearchProduct from './SearchProducts';
+import React, { useState, useEffect, Text } from 'react';
 import logic from '../logic';
 
 const Tab = createBottomTabNavigator()
 
 function MyTabs() {
     const [user, setUser] = useState()
+    const [searchQuery, setSearchQuery] = useState('')
+
     useEffect(() => {
         try {
             if (!logic.isUserLoggedIn()) {
@@ -43,11 +46,21 @@ function MyTabs() {
         }
     }, [])
 
+    const handleSearch = searchQuery => {
+        setSearchQuery(searchQuery)
+    }
+
     return (
         <Tab.Navigator
             screenOptions={{ tabBarActiveTintColor: 'black', tabBarInactiveTintColor: 'grey', tabBarShowLabel: false }} // headerShown: false
         >
-            <Tab.Screen name='Home' component={Home} options={{ toBarLabel: 'Home', tabBarIcon: ({ color, size }) => <MaterialCommunityIcons name='home' color={color} size={size} /> }}></Tab.Screen>
+            <Tab.Screen name='Home' children={() => <Home searchQuery={searchQuery} />}
+                options={{
+                    headerStyle: {
+                        height: 80, // Specify the height of your custom header
+                    }, headerTitleAlign: 'center', // Center the header title
+                    headerTitle: () => <SearchProduct onSearch={handleSearch} />, toBarLabel: 'Home', tabBarIcon: ({ color, size }) => <MaterialCommunityIcons name='home' color={color} size={size} />
+                }}></Tab.Screen>
             {logic.getLoggedInUserRole() === 'seller' && <Tab.Screen name='CreateProduct' component={CreateProduct} options={{ toBarLabel: 'Home', tabBarIcon: ({ color, size }) => <MaterialCommunityIcons name='plus-circle-outline' color={color} size={size} /> }}></Tab.Screen>}
 
             <Tab.Screen name='RetrieveSavedProducts' component={RetrieveSavedProducts} options={{ toBarLabel: 'Home', tabBarIcon: ({ color, size }) => <MaterialCommunityIcons name='bookmark-multiple' color={color} size={size} /> }}></Tab.Screen>

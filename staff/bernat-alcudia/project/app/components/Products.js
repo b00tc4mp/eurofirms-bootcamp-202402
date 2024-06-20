@@ -1,15 +1,13 @@
-import React, { useEffect, useState, useCallback } from 'react';
-import { View, Text, Image, StyleSheet, ScrollView, TouchableOpacity, TextInput } from 'react-native';
-import { useNavigation, useFocusEffect } from '@react-navigation/native';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
+import React, { useCallback, useEffect, useState } from 'react';
+import { Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-
 
 import logic from '../logic';
 
-function Products() {
+function Products({ searchQuery }) {
     const [products, setProducts] = useState([])
     const [user, setUser] = useState()
-    const [searchQuery, setSearchQuery] = useState('')
 
     const navigation = useNavigation()
 
@@ -91,18 +89,10 @@ function Products() {
         }
     }
 
-    const handleSearchQueryChange = newSearchQuery => {
-        console.log('search', newSearchQuery)
-        setSearchQuery(newSearchQuery)
-        newSearchQuery === '' ? refreshProducts() : searchProducts(newSearchQuery);
-    };
-
     const searchProducts = searchQuery => {
         try {
-            console.log(searchQuery)
             logic.searchProducts(searchQuery) //I return the products searched
                 .then(products => {
-                    console.log(products.map(product => product.id))
                     setProducts(products)
                 })
                 .catch(error => {
@@ -134,8 +124,8 @@ function Products() {
     }
 
     useFocusEffect(useCallback(() => {
-        refreshProducts()
-    }, []))
+        searchQuery === '' ? refreshProducts() : searchProducts(searchQuery)
+    }, [searchQuery]))
 
 
 
@@ -188,8 +178,6 @@ function Products() {
         </View>
 
         <ScrollView>
-            <TextInput style={styles.input} placeholder='search products' onChangeText={newSearchQuery => handleSearchQueryChange(newSearchQuery)} defaultValue={searchQuery} />
-
             {products.map(product => {
                 const isLiked = product.likes.includes(logic.getLoggedInUserId())
                 const isSaved = user?.saved.includes(product.id)
@@ -217,7 +205,6 @@ function Products() {
             })}
         </ScrollView >
     </>
-
     );
 };
 

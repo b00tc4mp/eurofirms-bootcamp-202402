@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, TextInput, Button, Text } from 'react-native';
+import { View, TextInput, Button, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import logic from '../logic';
 import { errors, utils } from '../com';
 import DateTimePicker from '@react-native-community/datetimepicker';
@@ -72,18 +72,49 @@ function RegisterBuyer({ }) {
         }
     };
 
-    return <View>
-        <TextInput placeholder='name' value={name} onChangeText={setName} />
-        <TextInput placeholder='email' value={email} onChangeText={setEmail} />
+    const styles = StyleSheet.create({
+        view: {
+            paddingTop: '20%',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 20,
+            alignItems: 'center',
+        },
+        input: {
+            width: '80%',
+            padding: 10,
+            marginVertical: 10,
+            borderWidth: 1,
+            borderColor: '#ccc',
+            borderRadius: 5,
+        },
+        button: {
+            width: '80%',
+            padding: 15,
+            backgroundColor: 'black',
+            borderRadius: 5,
+        },
+        buttonText: {
+            color: '#fff',
+            fontSize: 16,
+            alignSelf: 'center'
+        },
+    })
 
-        <TextInput placeholder='username' value={username} onChangeText={setUsername} />
-        <TextInput onPress={() => setShowDatePicker(true)} placeholder='birthdate' value={birthdate ? utils.formatDate(birthdate) : null} />
+    return <View style={styles.view}>
+        <TextInput style={styles.input} placeholder='name' value={name} onChangeText={setName} />
+        <TextInput style={styles.input} placeholder='email' value={email} onChangeText={setEmail} />
+
+        <TextInput style={styles.input} placeholder='username' value={username} onChangeText={setUsername} />
+        <TextInput style={styles.input} onPress={() => setShowDatePicker(true)} placeholder='birthdate' value={birthdate ? utils.formatDate(birthdate) : null} />
         {showDatePicker && (
             <DateTimePicker display='spinner' onChange={handleDateChange} value={birthdate || new Date()} />
 
         )}
-        <TextInput secureTextEntry={true} placeholder='password' value={password} onChangeText={setPassword} />
-        <Button title='Register' onPress={handleRegisterBuyer} ></Button>
+        <TextInput style={styles.input} secureTextEntry={true} placeholder='password' value={password} onChangeText={setPassword} />
+        <TouchableOpacity style={styles.button} onPress={handleRegisterBuyer}>
+            <Text style={styles.buttonText}>Register </Text>
+        </TouchableOpacity>
     </View>
 }
 

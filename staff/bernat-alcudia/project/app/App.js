@@ -24,7 +24,10 @@ export default function App() {
         <Stack.Screen name="LoginUser" component={LoginUser} />
         <Stack.Screen name="RegisterSeller" component={RegisterSeller} />
         <Stack.Screen name="RegisterBuyer" component={RegisterBuyer} />
-        <Stack.Screen name='tabs' component={MyTabs} options={{ headerShown: false, headerLeft: null }}></Stack.Screen>
+        <Stack.Screen name='tabs' component={MyTabs} options={{
+          headerShown: false, headerLeft: null
+        }}
+        ></Stack.Screen>
         <Stack.Screen name='ProductDetail' component={ProductDetail} />
         <Stack.Screen name='ModifyProduct' component={ModifyProduct} />
         <Stack.Screen name='CreateProduct' component={CreateProduct} />

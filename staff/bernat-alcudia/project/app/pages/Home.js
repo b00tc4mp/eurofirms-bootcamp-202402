@@ -3,18 +3,19 @@ import { Button, ScrollView, StyleSheet, Text, TouchableOpacity } from 'react-na
 import { errors } from '../com';
 import Products from '../components/Products';
 
-
 const { ContentError } = errors
 
-function Home() {
+function Home({ searchQuery, onChangeText }) {
 
 
-
+    onChangeText = () => {
+        console.log('hola mundo')
+    }
 
 
     return <ScrollView >
 
-        <Products stamp={''} />
+        <Products searchQuery={searchQuery} stamp={''} />
 
     </ScrollView>
 }
