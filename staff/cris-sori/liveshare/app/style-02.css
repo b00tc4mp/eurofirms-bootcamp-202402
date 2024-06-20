@@ -1,0 +1,59 @@
+.title {
+    background-color: rgb(174 218 255);
+    text-align: center;
+    border-radius: 20px 20px 1000px 1000px;
+    top: 7px;
+    position: relative;
+}
+
+.main {
+    background-color: aliceblue;
+    position: absolute;
+    left: 20%;
+    right: 20%;
+    padding-left: 5%;
+    padding-right: 5%;
+    border-radius: 100px 100px 50px 50px;
+    height: 80%;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+#username,
+#password {
+    height: 8vh;
+    font-size: 30px;
+}
+
+.username,
+.password {
+    font-size: 30px;
+}
+
+.submit {
+    position: relative;
+    top: 50px;
+    width: 500px;
+    height: 50px;
+    align-self: center;
+    background-color: deepskyblue;
+    font-size: 20px;
+}
+
+
+.register {
+    top: 65vh;
+    position: absolute;
+    font-size: 30px;
+    background-color: deepskyblue;
+    width: 25vh;
+    text-align: center;
+    border-radius: 50px 50px 50px 50px;
+    left: 106%;
+    top: 108%;
+    color: #0051ff;
+    border: solid #000000;
+}

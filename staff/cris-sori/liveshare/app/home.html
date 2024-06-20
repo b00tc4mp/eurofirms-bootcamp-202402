@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1>Bienvenid@!</h1>
+
+    <nav id="top-menu">
+        <button id="chat-button">💬</button>
+        <button id="logout-button">🚪</button>
+    </nav>
+
+    <section id="posts-section">
+        <h2>Posts</h2>
+
+        <article class="post">
+            <h3>Coco Drilo</h3>
+            <img class="post-image"
+                src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExc2Qyc250NTFweG1iN3h1MTlhbnVnMHptN3E4bTdrOWlkcm44d3VhdiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l49F5FtmOKYb3cD84/giphy.gif">
+            <p>aqui, yo, cocodrilo!<br><sup>2024-03-14 16:47</sup></p>
+        </article>
+
+        <article class="post">
+            <h3>La Garto</h3>
+            <img class="post-image"
+                src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExejdzcGg3M252ZGdsYm0ybWk1ZHk1ODFqeTF0ZHEzaGg2c2oxOWR4byZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Jmn0QU5fYKqizwkR5v/giphy.gif">
+            <p> y aqui, yo, lagarto!<br><sup>2024-03-14 16:47</sup></p>
+        </article>
+    </section>
+
+    <section id="chat-section" class="chat-section--off">
+        <h2>Chat</h2>
+
+        <ul id="chat-users"></ul>
+
+        <div id="chat">
+            <h3 id="chat-interlocutor">username</h3>
+
+            <ul id="chat-messages"></ul>
+
+            <form id="chat-form">
+                <label for="text">Text</label>
+                <input type="text" id="text">
+
+                <button type="submit">Send</button>
+            </form>
+        </div>
+    </section>
+
+    <section id="create-post-section" class="create-post-section--off">
+        <h2>Create Post</h2>
+
+        <form id="create-post-form">
+            <label for="image">Image</label>
+            <input type="text" id="image">
+
+            <label for="text">Text</label>
+            <input type="text" id="text">
+
+            <button type="submit">Create</button>
+        </form>
+
+        <button id="create-post-cancel-button">Cancel</button>
+    </section>
+
+    <footer>
+        <button id="posts-button">🏚️</button>
+        <button id="create-post-button">➕</button>
+    </footer>
+
+    <script src="data.js"></script>
+    <script src="logic.js"></script>
+    <script src="home.js"></script>
+</body>
+
+</html>
