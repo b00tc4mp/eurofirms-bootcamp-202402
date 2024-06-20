@@ -1,0 +1,14 @@
+{
+  "expo": {
+    "android": {
+      "permissions": [
+        "CAMERA",
+        "READ_EXTERNAL_STORAGE",
+        "WRITE_EXTERNAL_STORAGE"
+      ]
+    },
+    "name": "app",
+    "slug": "app",
+    "version": "1.0.0"
+  }
+}
