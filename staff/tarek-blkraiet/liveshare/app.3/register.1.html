@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+</head>
+
+<body>
+
+    <main class="form" action="">
+
+        <h1>Register</h1>
+
+        <form class=" form" action="">
+
+            <label for=" name">Name</label>
+            <input type="text" id="name">
+
+            <label for="birthday">Birthday</label>
+            <input type="date" id="birthday">
+
+            <label for="username">Username</label>
+            <input type="text" id="username">
+
+            <label for="email">E-mail</label>
+            <input type="text" id="email">
+
+            <label for=" password">Password</label>
+            <input type="password" id="password">
+
+
+            <button type="submit">Register</button>
+
+
+        </form>
+
+        <a href="">Login</a>
+
+    </main>
+
+    <Style>
+        .main {
+            padding-left: 20vw;
+            padding-right: 20vw;
+        }
+
+        .form {
+            display: flex;
+            flex-direction: column;
+        }
+    </Style>
+
+    <script>
+        var form = document.querySelector('.form')
+
+        form.onsubmit = function (event) {
+            event.preventDefault()
+
+            var nameInput = form.querySelector('#name')
+            var name = nameInput.value()
+
+            console.log('name', name)
+
+            var birthdateInput = form.querySelector('#birthdate')
+            var birthdate = birthdate.value
+
+            console.log('birthdate', birthdate)
+
+            var usernameInput = form.querySelector('#username')
+            var username = username.value
+
+            console.log('username', username)
+
+            var emailInput = form.querySelector('#email')
+            var email = email.value
+
+            console.log('email', email)
+
+            var passwordInput = form.querySelector('#password')
+            var password = password.value
+
+            console.log('password', password)
+        }
+    </script>
+</body>
+
+</html>
