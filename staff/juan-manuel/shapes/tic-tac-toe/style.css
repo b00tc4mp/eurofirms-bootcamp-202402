@@ -1,0 +1,19 @@
+.board {
+    display: grid;
+    width: 40vw;
+    height: 40vw;
+    background-color: rgb(0, 0, 0);
+    gap: 1px;
+    position: relative;
+    left: 30%;
+    margin-top: 2.5%;
+}
+
+.cell {
+    background-color: rgba(13, 255, 198, 0.241);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: xx-large;
+}
