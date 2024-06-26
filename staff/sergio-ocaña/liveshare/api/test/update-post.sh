@@ -1,0 +1,1 @@
+curl -X PATCH -H 'Authorization:Bearer 661921ccda5eee762a343a6a' -H 'Content-type: application/json' -d '{"text":"I am a robot"}' http://localhost:8080/posts/6620d95b2995410eed0728a0 -v
