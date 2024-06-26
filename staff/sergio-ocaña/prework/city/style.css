@@ -1,0 +1,20 @@
+#head {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    background-color: navy;
+    width: 500px;
+    height: 500px;
+}
+
+#face {
+    width: 20px;
+    height: 100px;
+    background-color: rgba(230, 170, 7, 0.836);
+}
+
+#beard {
+    width: 100px;
+    height: 100px;
+    background-color: black;
+}
