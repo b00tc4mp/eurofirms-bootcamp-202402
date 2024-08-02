@@ -1,0 +1,45 @@
+.board{
+  display: grid;
+  border: 2px solid black;
+  background-color: lightgray;
+  gap: 1px;
+}
+
+.clicked-cell{
+  background-color: rgba(30, 144, 255, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cell-button{
+  width: 100%;
+  height: 100%;
+  background-color:dodgerblue;
+  box-shadow: inset gray 0px 0px 60px -12px;
+}
+
+.board-buttons{
+  width: 400px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.flag-cursor{
+  cursor: url('./assets/red-flag.png'), auto !important
+}
+
+.pointer-cursor{
+  cursor: pointer;
+}
+
+.selected-button{
+  border: 4px solid rgb(48, 153, 233);
+  border-radius: 2px;
+}
+
+.select-marker-button{
+  width: 30px
+}
