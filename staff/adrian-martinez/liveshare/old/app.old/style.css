@@ -1,0 +1,194 @@
+@import url('https://fonts.googleapis.com/css2?family=Madimi+One&display=swap');
+
+body{
+    margin: 0;
+}
+.app{
+    font-size:60px;
+    font-weight:bold;
+    font-family: "Madimi One"
+}
+.margen{
+    margin-left: 2%;
+    margin-right: 2%;
+}
+.form{
+    display: flex;
+    flex-direction: column;
+}
+#top-menu{
+    display: flex;
+    justify-content: end;
+}
+input{
+    height: 30px;
+    border: 2px solid black;
+    margin-top: 10px;
+}
+button{
+    margin-top: 10px;
+    font-size:16px;
+    padding: 10px;
+    border-radius: 50% solid blue; 
+    background-color: rgb(4, 104, 254);
+    color: white
+}
+nav > button{
+    color:black;
+    margin-bottom: 5px;
+    font-size: 22px;
+}
+nav > button:active{
+    font-weight: bold;
+}
+header{
+    background-color: lightgray;
+    border: 4px solid black;
+}
+hr{
+    height: 5px;
+    background-color: rgb(4, 104, 254);
+}
+.profile-chat-container{
+    display: flex;
+    justify-content: space-between;
+}
+#datos-perfil{
+    padding: 10px;
+    width: 20%;
+    height: 10%;
+}
+#datos-perfil > button{
+    margin-top: -30px
+}
+button a{
+    text-decoration: none;
+    color: white
+}
+.lista-usuarios{
+    margin-left:10%;
+    border: 3px solid black;
+    border: radius;
+    padding: 10px;
+    width: 15%;
+    cursor: pointer;
+}
+.lista-usuarios--off{
+    display: none;
+}
+ul#chat-users{
+    display: inline;
+}
+#top-menu{
+    display: flex;
+    justify-content: center;
+}
+li {
+    font-size: 20px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif, 'Arial Narrow', Arial, sans-serif;
+    border-bottom: 1px solid gainsboro;
+    padding:10px;
+}
+#chat{
+    position:relative;
+    float: right;
+    margin-right: 15%;
+    margin-top: -15%;
+    display: inline;
+    border: 3px solid blue;
+    padding: 2%;
+    width: 50%;
+    margin-bottom: 60px;
+}
+.chat--off{
+    display: none;
+}
+#chat-section{
+    /* display: flex; */
+    flex-direction: column;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 60px;
+}
+.chat-section--off{
+    display: none;
+}
+#chat-messages{
+    min-height: 40px;
+    display: flex;
+    flex-direction: column;
+}
+.chat.messages-left{
+    align-self: flex-start;
+    text-align: left;
+}
+.chat.messages-right{
+    align-self: flex-end;
+    text-align: right;
+}
+sup{
+    font-size: 12px;
+    color: grey;
+}
+#chat-form{
+    display: flex;
+    gap: 5px;
+}
+#chat-form > #text{
+    width: 100%;
+}
+#post-section{
+    margin-bottom: 60px;
+    margin-left: 3%;
+    width: 80%;
+}
+.post-section--off{
+    display: none;
+}
+.post{
+    border: 2px solid black;
+    margin: 10px;
+    padding: 10px;
+}
+.post-image{
+    width: 80%;
+    height: 80%;
+}
+#create-post-section{
+    margin-bottom: 40px;
+    position: fixed;
+    bottom: 0;
+    background-color: darkgray;
+    width: 100%;
+    padding-bottom: 10px;
+}
+.create-post-section--off{
+    display: none;
+}
+#create-post-form{
+    display: flex;
+    flex-direction: column;
+}
+footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color:lightgray;
+    height: 40px;
+}
+li.chat-user-online::marker{
+    color: limegreen;
+}
+li.chat-user-offline::marker{
+    color:gray;
+}
+li.chat-user-online:hover{
+    color: limegreen;
+}
+li.chat-user-offline:hover{
+    color:gray;
+}
+
