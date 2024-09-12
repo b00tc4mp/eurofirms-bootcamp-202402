@@ -1,0 +1,17 @@
+.board {
+    display: grid;
+    width: 20w;
+    height: 20w;
+    background-color: violet;
+    gap: 1px;
+}
+
+.cell {
+    background-color: aquamarine;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: whitesmoke;
+    font-size: xx-small;
+
+}
