@@ -1,0 +1,1 @@
+ curl -X GET -H 'authorization: bearer 66216b525f8dc92bbe2d13c6'  http://localhost:8080/post/662244e2ce4373b1aca2b0e4 -v

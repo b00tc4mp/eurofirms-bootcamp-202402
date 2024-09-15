@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header id="top-menu">
+        <h1>Hello , Home!</h1>
+
+        <nav class="top-menu--right">
+            <button id="chat-button">Chat</button>
+            <button id="logout-button">Log->out</button>
+        </nav>
+    </header>
+    <section id="posts-section" class="posts-section">
+        <h2>Posts</h2>
+        <div id="posts-list">
+
+        </div>
+    </section>
+
+    <section id="chat-section" class="chat-section--off">
+        <h2>Chat Section</h2>
+        <ul id="chat-users"></ul>
+
+        <div id="chat" class="chat--off">
+            <h3 id="chat-interlocutor">username</h3>
+
+            <ul id="chat-messages"></ul>
+
+            <form id="chat-form">
+                <label for="text">Text</label>
+                <input type="text" id="text">
+
+                <button type="submit">Send</button>
+            </form>
+        </div>
+    </section>
+
+    <section id="create-post-section" class="create-post-section--off">
+        <h2>Create post</h2>
+
+        <form id="create-post-form">
+            <label for="image">Image</label>
+            <input type="text" id="image">
+
+            <label for="text">Text</label>
+            <input type="text" id="text">
+
+            <button type="submit">Create Post</button>
+        </form>
+
+        <button id="create-post-cancel-button">Cancel create post</button>
+    </section>
+
+    <footer>
+        <button id="posts-button">Posts</button>
+        <button id="create-post-button">Create post</button>
+    </footer>
+
+    <script src="data.js"></script>
+    <script src="logic.js"></script>
+    <script src="home.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,1 @@
+curl -X PATCH -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NjIxNmI1MjVmOGRjOTJiYmUyZDEzYzYiLCJpYXQiOjE3MTQ1NzAxNTEsImV4cCI6MTcxNDU3MTk1MX0.SUdfLnPOjzS1rXzfnfFNrUvaIzBKcUPB409wmfgVOtw' -H 'Content-type: application/json' -d '{"text":"new text again"}' http://localhost:8080/posts/6632447d6a4f2e410805c6dd -v
