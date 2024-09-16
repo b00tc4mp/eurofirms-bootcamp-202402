@@ -1,0 +1,17 @@
+.container {
+    width: 80vw;
+    display: grid;
+    grid-template-columns: repeat(auto-fit), minmax(200px), 1fr;
+    gap: 10px;
+    width: 200px;
+    height: 200px;
+}
+.delfin.galaxia.gato.perro. {
+
+    width: 100px;
+    height: 100px;
+}
+img {
+    width: 200px;
+    height: 200px;
+}
