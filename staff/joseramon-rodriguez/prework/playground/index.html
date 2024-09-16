@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playground</title>
+
+</head>
+
+<body style="background-color: gainsboro; height:100%;">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        .field {
+            margin: 0;
+            padding: 0;
+            background-color: greenyellow;
+            display: flex;
+            justify-content: space-evenly;
+            flex-direction: row;
+            height: 500px;
+            width: 1000px;
+            position: absolute;
+            top: 500px;
+            left: 500px;
+            border-color: whitesmoke;
+            border-style: solid;
+            border-width: 0px;
+        }
+
+
+        .left-side {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: left;
+            height: 100%;
+            width: 50%;
+            border-style: solid;
+            border-color: whitesmoke;
+            border-width: 1px;
+        }
+
+        .right-side {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: left;
+            height: 100%;
+            width: 50%;
+            border-style: solid;
+            border-color: whitesmoke;
+            border-width: 1px;
+            transform: rotate(180deg);
+            border-right: 0px;
+
+        }
+
+        .left-field {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            ;
+        }
+
+
+        .center-field {
+            border-color: whitesmoke;
+            border-style: solid;
+            width: 50px;
+            height: 100px;
+            border-width: 1px;
+            border-right: 0px;
+            border-radius: 100px 0 0 100px;
+            display: flex;
+            justify-content: end;
+            align-items: center;
+        }
+
+        .semi-circulo {
+            width: 100px;
+            height: 50px;
+            border: 1px solid #555;
+            background: #5cb85c;
+            -moz-border-radius: 100px 100px 0 0;
+            -webkit-border-radius: 100px 100px 0 0;
+            border-radius: 100px 100px 0 0;
+        }
+
+        .area {
+            height: 150px;
+            width: 100px;
+            border-width: 1px;
+            border-color: blue;
+            border-style: dotted;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-left: 0px;
+
+        }
+
+        .penalty {
+            height: 10px;
+            width: 10px;
+            background-color: red;
+            border-radius: 10px;
+        }
+
+        .mid-field {
+            height: 10px;
+            width: 5px;
+            background-color: red;
+            border-radius: 100px 0 0 100px;
+            position: relative;
+            left: 0.5px;
+        }
+
+        .corner-down {
+            height: 10px;
+            width: 10px;
+            border-color: whitesmoke;
+            border-radius: 0 100% 0 0;
+            background-color: black;
+            border-width: 5px;
+        }
+
+        .corner-up {
+            height: 10px;
+            width: 10px;
+            border-color: whitesmoke;
+            border-width: 1px;
+            background-color: black;
+            border-radius: 0 0 100% 0;
+        }
+
+        .mondrian {
+            height: 600px;
+            width: 600px;
+            position: absolute;
+            left: 1500px;
+            border-width: 20px;
+            border-color: black;
+            border-style: solid;
+            background-color: #5cb85c;
+            display: flex;
+            flex-direction: column;
+            align-items: normal;
+        }
+
+        .mondrian-container-1 {
+            width: 100%;
+            height: 80%;
+            border-width: 20px;
+            border-color: black;
+            border-style: solid;
+            border-top: 0px;
+            border-left: 0px;
+            border-right: 0px;
+            display: flex;
+            justify-content: row;
+            align-items: normal;
+
+        }
+
+        .mondrian-container-1-2 {
+            width: 30%;
+            height: 100%;
+            border-width: 0px;
+            border-color: black;
+            display: flex;
+            flex-direction: column;
+            align-items: normal;
+        }
+
+        .mondrian-a {
+            width: 100%;
+            height: 60%;
+            border-width: 20px;
+            border-style: solid;
+            border-top: 0px;
+            border-left: 0px;
+            background-color: yellow;
+        }
+
+        .mondrian-b {
+            width: 100%;
+            height: 40%;
+            border-style: solid;
+            border-top: 0px;
+            border-left: 0px;
+            border-bottom: 0px;
+            border-width: 20px;
+            background-color: lightblue;
+        }
+
+        .mondrian-f {
+            width: 70%;
+            height: 100%;
+            border-width: 20px;
+            background-color: red;
+        }
+
+        .mondrian-container-2 {
+            width: 100%;
+            height: 20%;
+            border-width: 20px;
+            border-color: black;
+            display: flex;
+            justify-content: left;
+            align-items: normal;
+        }
+
+        .mondrian-container-2-1 {
+            width: 100%;
+            height: 100%;
+            border-width: 20px;
+            border-color: black;
+            display: flex;
+            flex-direction: row;
+            align-items: normal;
+        }
+
+        .mondrian-c {
+            width: 30%;
+            height: 100%;
+            border-width: 20px;
+            border-style: solid;
+            border-left: 0px;
+            border-top: 0px;
+            border-bottom: 0px;
+            background-color: violet;
+        }
+
+        .mondrian-d {
+            width: 50%;
+            height: 100%;
+            border-width: 20px;
+            border-style: solid;
+            border-left: 0px;
+            border-top: 0px;
+            border-bottom: 0px;
+            background-color: brown;
+        }
+
+        .mondrian-e {
+            width: 20%;
+            height: 100%;
+            border-width: 20px;
+            background-color: aqua;
+        }
+    </style>
+
+    <div class="semi-circulo"></div>
+    <div class="mondrian">
+        <div class="mondrian-container-1">
+            <div class="mondrian-container-1-2">
+                <div class="mondrian-a">A</div>
+                <div class="mondrian-b">B</div>
+            </div>
+            <div class="mondrian-f">F</div>
+        </div>
+        <div class="mondrian-container-2">
+            <div class="mondrian-c">C</div>
+            <div class="mondrian-d">D</div>
+            <div class="mondrian-e">E</div>
+        </div>
+    </div>
+    <div class="field">
+        <div class="left-side">
+            <div class="corner-up"></div>
+            <div class="left-field">
+                <div class="area">
+                    <div class="penalty"></div>
+                </div>
+                <div class="center-field">
+                    <div class="mid-field"></div>
+                </div>
+            </div>
+            <div class="corner-down"></div>
+        </div>
+        <div class="right-side">
+            <div class="corner-up"></div>
+            <div class="left-field">
+                <div class="area">
+                    <div class="penalty"></div>
+                </div>
+                <div class="center-field">
+                    <div class="mid-field"></div>
+                </div>
+            </div>
+            <div class="corner-down"></div>
+        </div>
+    </div>
+    <div id="car" style="width: 50px; position: absolute; left: 200px; top: 400px; transform: translate(200px, 400px);">
+        <div style="background-color: red; padding: 2px; border-style: solid; border-width: 1px;">
+            <div style="background-color: aqua; border-style: solid; border-width: 2px;">
+                🥳
+            </div>
+            <div
+                style="border-style: solid; border-width: 1px; margin-top: 1px; margin-bottom: 1px; display: flex; justify-content: space-between;">
+                <div
+                    style="border-style: solid; border-width:1px; width: 10px; height:10px; background-color: blueviolet;">
+
+                </div>
+                <div
+                    style="border-style: solid; border-width:1px; width: 10px; height:10px; background-color: blueviolet;">
+
+                </div>
+
+            </div>
+            <div style="border-style: solid; border-width: 3px; border-color: yellowgreen;">
+            </div>
+        </div>
+        <div
+            style="border-width: 1px; margin-top: 1px; margin-bottom: 1px; display: flex; justify-content: space-between;">
+            <div style="border-style: solid; border-width:1px; width: 10px; height:15px; background-color: black;">
+
+            </div>
+            <div style="border-style: solid; border-width:1px; width: 10px; height: 15px; background-color: black;">
+
+            </div>
+
+        </div>
+    </div>
+    <div id="horse">
+        <div style="position: relative; left: 25px; ">
+            <div style="display: flex; gap: 1px;">
+                <div style="background-color: brown; width: 2px; height: 2px;"></div>
+                <div style="background-color: brown; width: 2px; height: 2px;"></div>
+            </div>
+            <div style="background-color: brown; width: 20px; height: 10px; position: relative;">
+                <div
+                    style="background-color: white ; width: 5px; height: 5px; position: absolute; left: 2px; top: 1px;">
+                    <div
+                        style="background-color: black; width: 2px; height: 2px; position: absolute; left: 3px; top: 1px;">
+                    </div>
+                </div>
+            </div>
+            <div style="background-color: brown; width: 5px; height: 10px;"></div>
+
+        </div>
+        <div style="background-color: brown; width: 30px; height: 5px;"></div>
+        <div style="display: flex; gap: 3px;">
+            <div style="background-color: brown; width: 5px; height: 10px;"></div>
+            <div style="background-color: brown; width: 5px; height: 10px;"></div>
+            <div style="background-color: brown; width: 5px; height: 10px;"></div>
+            <div style="background-color: brown; width: 5px; height: 10px;"></div>
+        </div>
+
+    </div>
+
+    <script>
+        var x = 300, y = 600
+        document.onkeydown = function (event) {
+            console.log(event.key)
+            if (event.key === 'ArrowRight') {
+                x = x + 10
+            } else if (event.key === 'ArrowLeft') {
+                x = x - 10
+            } else if (event.key === 'ArrowUp') {
+                y = y - 10
+            } else if (event.key === 'ArrowDown') {
+                y = y + 10
+            }
+            var transform = 'translate(' + x + 'px, ' + y + 'px)'
+            car.style.transform = transform
+        }
+    </script>
+</body>
+
+</html>
