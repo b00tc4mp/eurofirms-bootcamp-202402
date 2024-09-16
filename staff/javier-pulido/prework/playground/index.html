@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Playground</title>
+</head>
+
+<body style="background-color: gainsboro;">
+  <div id="car" style="width: 60px; position: absolute; _left: 300px; _top: 600px; transform: translate(300px, 600px);">
+    <div
+      style="background-color: red; padding: 2px ;  border-style: solid; border-width: 1px; display: flex; flex-direction: column; gap: 1px;">
+      <div
+        style="background-color: skyblue; border-style: solid; border-width: 1px; display: flex; justify-content: right;">
+        😜
+      </div>
+      <div style="border-style: solid; border-width: 1px; padding: 1px; display: flex; justify-content: space-between;">
+        <div style="border-style: solid; border-width: 1px; width: 10px; height: 10px;background-color: yellow;">
+        </div>
+        <div style="border-style: solid; border-width: 1px; width: 10px; height: 10px;background-color: yellow;">
+
+        </div>
+      </div>
+      <div style="border-style: solid; border-width: 5px;">
+      </div>
+    </div>
+    <div style="margin-top: 1px; margin-bottom: 1px; display: flex; justify-content: space-between;">
+      <div style="border-style: solid; border-width: 1px; width: 10px; height: 15px;background-color: gray;">
+      </div>
+      <div style="border-style: solid; border-width: 1px; width: 10px; height: 15px;background-color: gray;"></div>
+    </div>
+  </div>
+  </div>
+  <script>
+    /*
+    document.addEventListener('keydown', function(event) {
+        console.log(event.key)
+    })
+
+    document.onkeydown = function(event) {
+      console.log(event.key)
+
+    }
+    */
+
+    var x = 300, y = 600
+
+    document.onkeydown = function (event) {
+      console.log(event.key)
+
+      if (event.key === 'ArrowRight') {
+        x = x + 10
+      } else if (event.key === 'ArrowLeft') {
+        x = x - 10
+      } else if (event.key === 'ArrowUp') {
+        y = y - 10
+      } else if (event.key === 'ArrowDown') {
+        y = y + 10
+      }
+
+
+      var transform = 'translate(' + x + 'px, ' + y + 'px)'
+
+      car.style.transform = transform
+
+    }
+
+
+
+
+  </script>
+  <div id="horse"
+    style=" width: 45px; position: absolute;  _left: 300px; _top: 600px; transform: translate(400px, 600px);">
+    <div style="position: absolute; left: 5px; top: 4px;">
+      🤠
+    </div>
+    <div style="position: relative; left: 25px;">
+      <div style="display: flex; gap: 1px;">
+        <div style="background-color: brown; width: 2px; height: 5px;"></div>
+        <div style="background-color: brown; width: 2px; height: 5px;"></div>
+      </div>
+
+      <div style="background-color: brown; width: 20px; height: 10px; position: relative;">
+        <div style="background-color: white; width: 5px; height: 5px; position: absolute; left: 3px; top: 2px;">
+          <div style="background-color: black; width: 2px; height: 2px; position: absolute; left: 2px; top: 1px;">
+
+
+          </div>
+        </div>
+      </div>
+      <div style="background-color: brown; width: 5px; height: 10px;">
+      </div>
+    </div>
+    <div style="background-color: brown; width: 30px; height: 10px;"></div>
+
+    <div style="display: flex; justify-content: space-between; width: 30px;">
+      <div style="background-color: brown; width: 2px; height: 15px;"></div>
+      <div style="background-color: brown; width: 2px; height: 15px;"></div>
+      <div style="background-color: brown; width: 2px; height: 15px;"></div>
+      <div style="background-color: brown; width: 2px; height: 15px;"></div>
+
+    </div>
+  </div>
+  <script>
+    /*
+        var x = 300 y = 600
+    
+        document.onkeydown = function (event) {
+          console.log(event.key)
+    
+          if (event.key === 'ArrowRight') {
+    
+            x = x + 10
+          }else if (event.key === 'ArrowLeft'){
+          x = x - 10
+        } else if (event.key === 'ArrowUp') {
+           y = y - 10 
+    
+        }else if (event.key === 'ArrowDown') {
+          y = y + 10
+    
+         } 
+    
+           var transform = 'translate (' + x + 'px, ' + y + 'px )'
+    
+           horse.style.transform = transform
+    
+        }
+    
+    */
+  </script>
+  <!--  
+  <div id="micky_mouse" 
+    style="background-color:black; width: 30px; height: 30 px; position: absolute; top: 500;  left: 180; transform: translate(150px, 600px);">
+
+
+    <div style="background-color: aliceblue; width: 30px; height: 30px; border-style: solid;padding-right: 2px;">
+    </div>
+
+    <div style="background-color: black; width: 60px; height: 60px; position: absolute;left: 38px;">
+
+      <div style="background-color: white; width: 10px; height: 10px; position: absolute;left: 40px; top: 20px ;"></div>
+
+      <div style="background-color: white; width: 10px; height: 10px; position: absolute;left: 10px; top: 20px ;"></div>
+
+      <div style="background-color: white; width: 30px; height: 10px; position: absolute;left: 15px; top: 40px ;"></div>
+
+    </div>
+    <div
+      style="background-color: white; width: 30px; height: 30px; position: absolute;left: 98px; top: 1px; border-style: solid;"> -->
+
+  </div>
+
+  <div id="mickey">
+    <div id="mickey-ear" class="mickey-ear-left"></div>
+    <div id="mickey-ear" class="mickey-ear-right"></div>
+    <div id="mickey-face">
+      <div id="mickey-eye" class="mickey-eye-left">
+        <div id="mickey-iris"></div>
+      </div>
+      <div id="mickey-eye" class="mickey-eye-right">
+        <div id="mickey-iris"></div>
+      </div>
+
+      <div id="mickey-mouth"></div>
+    </div>
+    <div id="mickey-body">
+      <div id="mickey-foot" class="mickey-foot-left">🥾</div>
+      <div id="mickey-foot" class="mickey-foot-right">🥾</div>
+    </div>
+  </div>
+
+  <style>
+    #mickey {
+      /* border-color: red;
+          border-width: 1px;
+          border-style: solid;
+          width: 20px;
+          height: 20px; */
+      position: absolute;
+      left: 220px;
+      top: 600px;
+    }
+
+    #mickey-ear {
+      width: 10px;
+      height: 10px;
+      background-color: black;
+      border-radius: 50%;
+      position: absolute;
+    }
+
+    .mickey-ear-right {
+      transform: translate(15px);
+      animation-name: mickey-ear-right;
+      animation-duration: .25s;
+      animation-iteration-count: infinite;
+    }
+
+    @keyframes mickey-ear-right {
+      0% {
+        transform: translate(15px);
+      }
+
+      25% {
+        transform: translate(18px, 3px);
+      }
+    }
+
+    #mickey-face {
+      width: 15px;
+      height: 15px;
+      border-color: black;
+      border-width: 1px;
+      border-style: solid;
+      position: absolute;
+      border-radius: 50%;
+      transform: translate(4px, 7px);
+    }
+
+    #mickey-eye {
+      width: 5px;
+      height: 5px;
+      border-color: black;
+      border-width: 1px;
+      border-style: solid;
+      border-radius: 50%;
+      position: absolute;
+      top: 3px;
+    }
+
+    .mickey-eye-left {
+      transform: translate(1px);
+    }
+
+    .mickey-eye-right {
+      transform: translate(7px);
+    }
+
+    #mickey-iris {
+      width: 3px;
+      height: 3px;
+      background-color: black;
+      border-radius: 50%;
+      transform: translate(1px, 1px);
+      animation-name: mickey-iris;
+      animation-duration: 20s;
+      animation-iteration-count: infinite;
+    }
+
+    @keyframes mickey-iris {
+      0% {
+        transform: translate(1px, 1px);
+      }
+
+      10% {
+        transform: translate(1px, 2px);
+      }
+
+      20% {
+        transform: translate(1px, 1px);
+      }
+
+      30% {
+        transform: translate(2px, 1px);
+      }
+
+      40% {
+        transform: translate(1px, 1px);
+      }
+
+      50% {
+        transform: translate(1px, 0px);
+      }
+
+      60% {
+        transform: translate(1px, 1px);
+      }
+
+      70% {
+        transform: translate(0px, 1px);
+      }
+
+      80% {
+        transform: translate(1px, 1px);
+      }
+    }
+
+    #mickey-mouth {
+      width: 3px;
+      height: 1px;
+      background-color: black;
+      position: absolute;
+      transform: translate(6px, 11px);
+      animation-name: mickey-mouth;
+      animation-duration: 10s;
+      animation-iteration-count: infinite;
+    }
+
+    @keyframes mickey-mouth {
+      0% {
+        height: 1px;
+      }
+
+      50% {
+        height: 3px;
+      }
+
+      100% {
+        height: 1px;
+      }
+    }
+
+    #mickey-foot {
+      position: absolute;
+    }
+
+    .mickey-foot-right {
+      transform: translate(12px, 20px) rotateZ(-40deg);
+    }
+
+    .mickey-foot-left {
+      transform: translate(4px, 21px) rotateZ(-20deg);
+      z-index: 1;
+    }
+  </style>
+  <div class="container">
+    <div class="build" id="build">
+      <div class="floor2">
+        <div class="window">
+          <div class="barra"></div>
+          <div class="barra"></div>
+          <div class="barra"></div>
+          <div class="barra"></div>
+
+        </div>
+
+
+
+        <div class="window">
+
+          <div class="barra"></div>
+          <div class="barra"></div>
+          <div class="barra"></div>
+          <div class="barra"></div>
+
+
+
+        </div>
+
+        <div class="window">
+
+          <div class="barra"></div>
+          <div class="barra"></div>
+          <div class="barra"></div>
+          <div class="barra"></div>
+
+
+        </div>
+      </div>
+      <div class="floor1">
+        <div class="window">
+
+          <div class="barra"></div>
+          <div class="barra"></div>
+          <div class="barra"></div>
+          <div class="barra"></div>
+
+
+        </div>
+        <div class="window">
+
+          <div class="barra"></div>
+          <div class="barra"></div>
+          <div class="barra"></div>
+          <div class="barra"></div>
+
+
+        </div>
+        <div class="window">
+
+          <div class="barra"></div>
+          <div class="barra"></div>
+          <div class="barra"></div>
+          <div class="barra"></div>
+
+
+        </div>
+      </div>
+      <div class="floor0">
+        <div class="door door-left">
+          <div class="bracelet"></div>
+        </div>
+        <div class="door door-right">
+          <div class="bracelet"></div>
+        </div>
+        <div class="tejado0"></div>
+      </div>
+    </div>
+  </div>
+  <style>
+
+    * {
+      margin: 0;
+      padding: 0;
+
+    }
+
+    .window {
+      width: 25%;
+      height: 60%;
+      background-color: aqua;
+      border: solid black 2px;
+      display: flex;
+      flex-wrap: wrap;
+
+
+    }
+
+
+
+    .barra {
+      width: 47%;
+      height: 50%;
+      border: 1px solid #000;
+
+
+
+    }
+
+    /* _.barra {
+            position: absolute;
+            width: 100%;
+            height: 20px;
+            background-color: #000;
+            top: 50%;
+            transform: translateY(-50%);
+        } */
+
+    /* _.barra-horizontal {
+            width: 20px;
+            height: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+        } */
+
+    /* _.ventana {
+            position: relative;
+            width: 600px;
+            height: 200px;
+            background-color: #fff;
+            border: 2px solid #000;
+            _overflow: hidden;
+        } */
+
+    /* _.reja {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        } */
+    /* 
+        _.barra {
+            width: 100%;  4 barras en una fila 
+            border: 2px solid #000;
+            background-color: #000; 
+
+        }  */
+
+    /* _.reja {
+
+      width: 100%;
+      height: 100%;
+      background-color: aqua;
+      border: solid black 2px;
+      display: flex;
+      align-items: center ;
+
+
+
+    } */
+    /* _.tejado0 {
+      width: 0;
+      height: 0;
+      border-right: 250px solid transparent;
+      border-top: 125px solid transparent;
+      border-left: 100px solid transparent;
+      border-bottom: 100px solid #f0ad4e;
+      position: absolute;
+      top: 0;
+      left: 180;
+
+
+    } */
+
+    .container {
+      height: 100vh;
+      width: 100vw;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      left: 0px;
+      top: 10px;
+    }
+
+    .build {
+      border: solid black 2px;
+      /* border-color: black;
+           border-width: 2px;
+           border-style: solid; */
+      height: 500px;
+      width: 300px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .floor2 {
+      width: 100%;
+      height: 33%;
+      background-color: brown;
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+    }
+
+    .floor1 {
+      width: 100%;
+      height: 33%;
+      background-color: blueviolet;
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+    }
+
+    .floor0 {
+      width: 100%;
+      height: 34%;
+      background-color: blue;
+      display: flex;
+      justify-content: center;
+      align-items: end;
+    }
+
+
+    /* _.barra1 {
+          width: 60vw;
+          height: 5px;
+            border: 0px solid yellow;
+            background-color:yellow;
+            display: flex;
+            _justify-content: center;
+            _align-items: center;
+            transform:  rotate(90deg)
+       
+
+        }
+     */
+
+    .door {
+      width: 17.5%;
+      height: 60%;
+      background-color: brown;
+      border: solid black 1px;
+      display: flex;
+      justify-content: end;
+      align-items: center;
+      padding-right: 5px;
+    }
+
+    .door-right {
+      transform: rotateY(180deg);
+    }
+
+    .bracelet {
+      width: 5%;
+      height: 20%;
+      background-color: black;
+    }
+  </style>
+  <div class="container1">
+    <div class="build" id="build">
+      <div class="floor2">
+        <div class="window"></div>
+        <div class="window"></div>
+        <div class="window"></div>
+      </div>
+      <div class="floor1">
+        <div class="window"></div>
+        <div class="window"></div>
+        <div class="window"></div>
+      </div>
+      <div class="floor0">
+        <div class="door door-left">
+          <div class="bracelet"></div>
+        </div>
+        <div class="door door-right">
+          <div class="bracelet"></div>
+        </div>
+        <div class="tejado1"></div>
+      </div>
+    </div>
+  </div>
+  <style>
+    .tejado1 {
+      width: 0;
+      height: 0;
+      border-right: 250px solid transparent;
+      border-top: 125px solid transparent;
+      border-left: 100px solid transparent;
+      border-bottom: 100px solid #f0ad4e;
+      position: absolute;
+      top: 0;
+      left: 180;
+
+
+    }
+
+    .container1 {
+      height: 100vh;
+      width: 100vw;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      left: 400px;
+      top: 10px;
+    }
+
+    .build {
+      border: solid black 2px;
+      /* border-color: black;
+             border-width: 2px;
+             border-style: solid; */
+      height: 400px;
+      width: 200px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .floor2 {
+      width: 100%;
+      height: 33%;
+      background-color: brown;
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+    }
+
+    .floor1 {
+      width: 100%;
+      height: 33%;
+      background-color: blueviolet;
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+    }
+
+    .floor0 {
+      width: 100%;
+      height: 34%;
+      background-color: blue;
+      display: flex;
+      justify-content: center;
+      align-items: end;
+    }
+
+    .window {
+      width: 25%;
+      height: 60%;
+      background-color: aqua;
+      border: solid black 2px;
+    }
+
+    .door {
+      width: 17.5%;
+      height: 60%;
+      background-color: brown;
+      border: solid black 1px;
+      display: flex;
+      justify-content: end;
+      align-items: center;
+      padding-right: 5px;
+    }
+
+    .door-right {
+      transform: rotateY(180deg);
+    }
+
+    .bracelet {
+      width: 5%;
+      height: 20%;
+      background-color: black;
+    }
+  </style>
+  <div class="container2">
+    <div class="build" id="build">
+      <div class="floor2">
+        <div class="window"></div>
+        <div class="window"></div>
+        <div class="window"></div>
+
+      </div>
+      <div class="floor1">
+        <div class="window"></div>
+        <div class="window"></div>
+        <div class="window"></div>
+      </div>
+      <div class="floor0">
+        <div class="door door-left">
+          <div class="bracelet"></div>
+        </div>
+        <div class="door door-right">
+          <div class="bracelet"></div>
+        </div>
+        <div class="tejado2"></div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    .tejado2 {
+      width: 0;
+      height: 0;
+      border-right: 250px solid transparent;
+      border-top: 125px solid transparent;
+      border-left: 100px solid transparent;
+      border-bottom: 100px solid #f0ad4e;
+      position: absolute;
+      top: 0;
+      left: 180;
+
+
+    }
+
+    .container2 {
+      height: 100vh;
+      width: 100vw;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      left: 800px;
+      top: 10px;
+    }
+
+    .build {
+      border: solid black 2px;
+      /* border-color: black;
+            border-width: 2px;
+            border-style: solid; */
+      height: 500px;
+      width: 300px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .floor2 {
+      width: 100%;
+      height: 33%;
+      background-color: brown;
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+    }
+
+    .floor1 {
+      width: 100%;
+      height: 33%;
+      background-color: blueviolet;
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+    }
+
+    .floor0 {
+      width: 100%;
+      height: 34%;
+      background-color: blue;
+      display: flex;
+      justify-content: center;
+      align-items: end;
+    }
+
+    .window {
+      width: 25%;
+      height: 60%;
+      background-color: aqua;
+      border: solid black 2px;
+    }
+
+    .door {
+      width: 17.5%;
+      height: 60%;
+      background-color: brown;
+      border: solid black 1px;
+      display: flex;
+      justify-content: end;
+      align-items: center;
+      padding-right: 5px;
+    }
+
+    .door-right {
+      transform: rotateY(180deg);
+    }
+
+    .bracelet {
+      width: 5%;
+      height: 20%;
+      background-color: black;
+    }
+  </style>
+
+  <div class="container3">
+    <div class="casa" id="casa">
+      <div class="piso2">
+        <div class="ventana"></div>
+        <div class="ventana"></div>
+        <div class="ventana"></div>
+      </div>
+      <div class="piso1">
+        <div class="ventana"></div>
+        <div class="ventana"></div>
+        <div class="ventana"></div>
+      </div>
+      <div class="piso0">
+        <div class="puerta puerta-izquierda">
+          <div class="manilla"></div>
+        </div>
+        <div class="puerta puerta-derecha">
+          <div class="manilla"></div>
+        </div>
+        <div class="tejado-nuevo1"></div>
+
+
+      </div>
+    </div>
+  </div>
+
+
+  <style>
+    .container3 {
+      height: 100vh;
+      width: 100vw;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      left: 1200px;
+      top: 110px;
+    }
+
+    .casa {
+      border: solid black 2px;
+      height: 300px;
+      width: 200px;
+      display: flex;
+      flex-direction: column;
+      background-color: #f0ad4e;
+    }
+
+    .piso2 {
+      width: 100%;
+      height: 33%;
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      background-color: red;
+      background-image: conic-gradient(red, yellow, green, blue, black);
+    }
+
+    .piso1 {
+      width: 100%;
+      height: 33%;
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      background-color: red;
+      background-image: conic-gradient(red, yellow, green, blue, black);
+    }
+
+    .piso0 {
+      width: 100%;
+      height: 34%;
+      display: flex;
+      justify-content: center;
+      align-items: end;
+      background-color: red;
+      background-image: conic-gradient(red, yellow, green, blue, black);
+
+    }
+
+    .ventana {
+      position: relative;
+      width: 25%;
+      height: 60%;
+      background-color: aqua;
+      border: solid black 2px;
+    }
+
+    .ventana::before,
+    .ventana::after {
+      content: "";
+      position: absolute;
+      width: 2px;
+      height: 90%;
+      background-color: #000;
+    }
+
+    .ventana::before {
+      left: 50%;
+      transform: translateX(-50%) rotate(90deg);
+    }
+
+    .ventana::after {
+      top: 60%;
+      left: 50%;
+
+      /* display: flex;
+      justify-content: center;
+      align-items: center; */
+
+      transform: translateY(-50%) rotate(0deg);
+    }
+
+    .puerta {
+      width: 17.5%;
+      height: 60%;
+      background-color: brown;
+      border: solid black 1px;
+      display: flex;
+      justify-content: end;
+      align-items: center;
+      padding-right: 5px;
+    }
+
+    .puerta-derecha {
+      transform: rotateY(180deg);
+    }
+
+    .manilla {
+      width: 5%;
+      height: 20%;
+      background-color: black;
+    }
+
+
+
+    .tejado-nuevo1 {
+      top: 5px;
+      border-right: 250px solid transparent;
+      border-top: 240px solid transparent;
+      border-left: 0px solid transparent;
+      border-bottom: 80px solid yellow;
+      position: absolute;
+
+    }
+  </style>
+
+
+  <body>
+
+</html>

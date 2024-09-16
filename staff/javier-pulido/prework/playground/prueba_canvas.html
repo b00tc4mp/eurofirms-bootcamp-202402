@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo de Canvas</title>
+</head>
+<body>
+    <canvas id="micanvas" width="200" height="200" style="border:1px solid #000;"></canvas>
+
+
+    <script>
+
+        //Obtener el contexto 2D del canvas
+        var canvas = document.getElementById('micanvas');
+        var contexto = canvas.getContext('2d');
+
+        //Dibujar un cuadrado rojo en canvas
+        contexto.fillStyle = 'red';
+        contexto.fillRect(50, 50, 100, 100);
+
+    </script>
+
+</body>
+</html>
+
+
+
+
+
+
+

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Mascotas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Bienvenido a nuestra página de mascotas</h1>
+        <nav>
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#productos">Productos</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="inicio">
+        <h2>¡Adopta una mascota!</h2>
+        <p>En nuestra página encontrarás una variedad de mascotas disponibles para adopción.</p>
+        <button>Ver mascotas disponibles</button>
+    </section>
+
+    <section id="servicios">
+        <h2>Servicios</h2>
+        <ul>
+            <li>Adopción de mascotas</li>
+            <li>Cuidado veterinario</li>
+            <li>Entrenamiento de mascotas</li>
+            <li>Peluquería</li>
+        </ul>
+    </section>
+
+    <section id="productos">
+        <h2>Productos para mascotas</h2>
+        <ul>
+            <li Alimentos</li>
+            <li>Juguetes</li>
+            <li>Camas</li>
+            <li>Correas y collares</li>
+        </ul>
+    </section>
+
+    <section id="contacto">
+        <h2>Contacto</h2>
+        <p>Puedes ponerte en contacto con nosotros a través del siguiente formulario:</p>
+        <form action="enviar.php" method="post">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required><br>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required><br>
+            <label for="mensaje">Mensaje:</label><br>
+            <textarea id="mensaje" name="mensaje" required></textarea><br>
+            <button type="submit">Enviar mensaje</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>Derechos de autor © 2024 Página de Mascotas. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>
