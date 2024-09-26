@@ -1,0 +1,71 @@
+.ashe1{
+    background-color: rgb(174 218 255);
+    text-align: center;
+    border-radius: 20px 20px 1000px 1000px;
+    top: 7px;
+    position: relative;
+}
+
+.main {
+    background-color: aliceblue;
+    position: absolute;
+    left: 20%;
+    right: 20%;
+    padding-left: 5%;
+    padding-right: 5%;
+    border-radius: 100px 100px 50px 50px;
+    height: 85%;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+.registrarse{
+    font-size: 20px;
+}
+
+#enviarboton {
+    height: 50px;
+    margin-top: 20px;
+    background-color: deepskyblue;
+    -webkit-transition: all .9s ease;
+    -moz-transition: all .9s ease;
+    -o-transition: all .9s ease;
+    -ms-transition: all .9s ease;
+    width: 90%;
+    z-index: 10000;
+    align-self: center;
+}
+
+.formulario {
+    height: 50px;
+    font-size: 30px;
+}
+
+#conectarboton{
+    background-color: deepskyblue;
+    position: absolute;
+    font-size: 33px;
+    left: 105%;
+    top: 50px;
+    width: 175px;
+    text-align: center;
+    height: 45px;
+    color: #0070e0;
+    border: solid #000000;
+    border-radius: 100px 100px 100px 100px;
+}
+
+#enviarboton:hover{
+    -webkit-transform:scale(1.25);
+    -moz-transform:scale(1.25);
+    -ms-transform:scale(1.25);
+    -o-transform:scale(1.25);
+    transform:scale(1.25);
+    }
+
+label{
+    font-size: 30px;
+}
