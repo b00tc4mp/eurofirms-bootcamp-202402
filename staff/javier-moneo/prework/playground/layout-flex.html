@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header center-content boder-radius">
+        <h1>header</h1>
+      </div>
+      <div class="central-content center-content boder-radius">
+        <div class="left-navigation center-content boder-radius">
+          <span>left-navigation</span>
+        </div>
+        <div class="content center-content boder-radius">
+          <span>content</span>
+        </div>
+      </div>
+
+      <div class="footer center-content boder-radius">
+        <span>footer</span>
+      </div>
+    </div>
+    <style>
+      * {
+        margin: 0px;
+        padding: 0px;
+      }
+      .center-content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .boder-radius {
+        border-radius: 30px;
+      }
+      .container {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        background-color: aquamarine;
+      }
+      .header {
+        width: 100%;
+        background-color: blue;
+        height: 20vh;
+      }
+      .central-content {
+        display: flex;
+      }
+      .left-navigation {
+        width: 20%;
+        height: 60vh;
+        background-color: orange;
+        text-align: center;
+      }
+      .content {
+        width: 80%;
+        height: 60vh;
+        background-color: gray;
+        text-align: center;
+      }
+      .footer {
+        width: 100%;
+        background-color: green;
+        height: 20vh;
+      }
+    </style>
+  </body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Playground</title>
+  </head>
+  <body style="background-color: gainsboro">
+    <div
+      id="car"
+      style="width: 60px; position: absolute; left: 300px; top: 200px"
+    >
+      <div
+        style="
+          background-color: red;
+          padding: 2px;
+          border-style: solid;
+          border-width: 1px;
+        "
+      >
+        <div
+          style="
+            background-color: skyblue;
+            border-style: solid;
+            border-width: 2px;
+          "
+        >
+          😄
+        </div>
+        <div
+          style="
+            border-style: solid;
+            border-width: 1px;
+            margin-top: 4px;
+            display: flex;
+            padding: 1px;
+            justify-content: space-between;
+          "
+        >
+          <div
+            style="
+              border-style: solid;
+              border-width: 1px;
+              width: 10px;
+              height: 10px;
+              background-color: yellow;
+            "
+          ></div>
+          <div
+            style="
+              border-style: solid;
+              border-width: 1px;
+              width: 10px;
+              height: 10px;
+              background-color: yellow;
+            "
+          ></div>
+        </div>
+        <div style="border-style: solid; border-width: 5px"></div>
+      </div>
+
+      <div
+        style="margin-top: 1px; display: flex; justify-content: space-between"
+      >
+        <div
+          style="
+            border-style: solid;
+            border-width: 1px;
+            width: 10px;
+            height: 15px;
+            background-color: gray;
+          "
+        ></div>
+        <div
+          style="
+            border-style: solid;
+            border-width: 1px;
+            width: 10px;
+            height: 15px;
+            background-color: gray;
+          "
+        ></div>
+      </div>
+    </div>
+
+    <script>
+      let x = 0,// 300
+        y = 0; // 200
+      let car = document.getElementById("car");
+      document.onkeydown = function (event) {
+        // console.log(event.key);
+        if (event.key === "ArrowRight") {
+          x = x + 10;
+        } else if (event.key === "ArrowLeft") {
+          x = x - 10;
+        } else if (event.key === "ArrowUp") {
+          y = y - 10;
+        } else if (event.key === "ArrowDown") {
+          y = y + 10;
+        }
+        let transform = "translate(" + x + "px, " + y + "px)";
+        car.style.transform = transform;
+      };
+    </script>
+
+    <div
+      id="horse"
+      style="position: relative; width: 45px; top: 200px; left: 100px"
+    >
+      <div id="jinete" style="position: absolute; left: 5px; top: 4px">🤠</div>
+      <div id="cuello-cabeza" style="position: relative; left: 25px">
+        <div style="display: flex; gap: 1px">
+          <div style="background-color: brown; width: 2px; height: 5px"></div>
+          <div style="background-color: brown; width: 2px; height: 5px"></div>
+        </div>
+        <div
+          style="
+            background-color: brown;
+            width: 20px;
+            height: 10px;
+            position: relative;
+          "
+        >
+          <div
+            style="
+              background-color: white;
+              width: 5px;
+              height: 5px;
+              position: absolute;
+              left: 3px;
+              top: 2px;
+            "
+          >
+            <div
+              style="
+                background-color: black;
+                width: 2px;
+                height: 2px;
+                position: absolute;
+                left: 2px;
+                top: 1px;
+              "
+            ></div>
+          </div>
+        </div>
+
+        <div
+          id="cuello"
+          style="background-color: brown; width: 5px; height: 10px"
+        ></div>
+      </div>
+
+      <div
+        id="cuerpo"
+        style="background-color: brown; width: 30px; height: 10px"
+      ></div>
+
+      <div
+        id="patas"
+        style="width: 30px; display: flex; justify-content: space-between"
+      >
+        <div style="background-color: brown; width: 2px; height: 15px"></div>
+        <div style="background-color: brown; width: 2px; height: 15px"></div>
+        <div style="background-color: brown; width: 2px; height: 15px"></div>
+        <div style="background-color: brown; width: 2px; height: 15px"></div>
+      </div>
+    </div>
+  </body>
+</html>
