@@ -1,0 +1,95 @@
+body {
+    margin: 0;
+    background-color: gainsboro;
+    width: 100%;
+    height: 100%;
+}
+.sky{
+    width: 100%;
+    height: 10vw;
+}
+.container{
+    display: flex;
+    justify-content: space-between;
+    padding-left:4vw;
+    padding-right: 4vw;
+    bottom: 4vw; 
+    top: 20vw  
+}
+.roof{
+    width: 25vw;
+    height: 0;
+    border-left: 50px solid transparent; /* Longitud de la base superior */
+    border-right: 50px solid transparent; /* Longitud de la base superior */
+    border-bottom: 100px solid blue; /* Altura del trapecio */
+  }
+.build {
+   
+    height: 35vw;
+    width: 25vw;
+    display: flex;
+    flex-direction: column;
+    
+  }
+  .floors{
+    border: solid black 4px;
+    height: 30vw;
+    width: 25vw;
+    display: flex;
+    flex-direction: column;
+  }
+ 
+  .floor3 {
+    
+    width: 100%;
+    height: 33%;
+    background-color: rgb(172, 88, 250);
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+  .floor2 {
+    
+    width: 100%;
+    height: 33%;
+    background-color: rgb(241, 92, 46);
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+  .floor1 {
+    width: 100%;
+    height: 34%;
+    background-color: rgb(113, 113, 249);
+    display: flex;
+    justify-content: center;
+    align-items: end;
+  }
+  .window {
+    width: 25%;
+    height: 60%;
+    background-color: white;
+    border: solid black 3px;
+  }
+
+  .door {
+    width: 17.5%;
+    height: 60%;
+    background-color: rgb(93, 9, 9);
+    border: solid black 1px;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    padding-right: 5px;
+  }
+
+  .door-right {
+    transform: rotateY(180deg);
+  }
+  .doorknob {
+    width: 5%;
+    height: 20%;
+    background-color: black;
+  }
