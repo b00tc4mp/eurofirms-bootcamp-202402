@@ -1,0 +1,346 @@
+/* general */
+
+@import url('https://fonts.googleapis.com/css2?family=Coming+Soon&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anaheim&display=swap');
+
+
+.coming-soon-regular {
+    font-family: "Coming Soon", cursive;
+    font-weight: 400;
+    font-style: normal;
+}
+  
+* {
+    font-family: "Coming Soon"
+}
+
+body {
+    margin:0;
+    padding:0;
+    max-width: 100vw;
+    margin-top:70px;
+    margin-bottom: 60px;
+}
+
+.body-rlr{
+    display:flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items:center;
+    margin-top:30px;
+    margin-bottom: 10px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 1px;
+    border-top: 0;
+    border-color: black;
+    border-style: solid;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: grey;
+    height: 50px;
+    padding: 5px 0;
+    box-sizing: border-box;
+}
+
+main{
+    width: 60%;
+    display: flex;
+    flex-direction: column ;
+    align-items: center;
+    margin-bottom: 80px;
+}
+
+h1{
+    font-size: 30px;
+    font-weight: bold; 
+    color:midnightblue;
+    margin-bottom: 15px;
+    
+}
+
+h2{
+    font-size: 23px;
+    font-weight: bold; 
+    color:midnightblue;
+    margin-bottom: 20px;
+}
+
+h1, h2, a ,button{
+    font-family: "anaheim";
+}
+
+/* top-menu */
+
+#top-menu{
+    display: flex;
+    align-items: center; 
+    justify-content: flex-end;
+    align-items: center; 
+    width: 50%;
+}
+
+#top-menu button {
+    width: 40px;
+    height: 40px; 
+    margin-right: 10px; 
+    border: none;
+    border-radius: 5px; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    cursor: pointer; 
+}
+  
+#top-menu button:hover {
+    background-color: lightgray;
+}
+
+/* form*/
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    gap:5px;
+}
+
+
+label{
+    margin-top: 3px;
+}
+  
+input{
+    width: 100%;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    margin-bottom: 6px;
+}
+  
+input:hover{
+    background-color: rgb(237, 239, 239);
+}
+  
+button[type="submit"] {
+    width: 100%;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 16px;
+    align-self: center;
+    cursor: pointer;
+    margin-bottom: 5px;
+}
+  
+button[type="submit"]:hover {
+      background-color: #0056b3;
+}
+  
+.container-a{
+    display: flex;
+    justify-content: center;
+    background-color:lightgray;
+    border-radius: 5px;
+    padding: 5px;
+    
+    margin: 5px 0;
+  
+}
+
+.container-a:hover{
+    background-color: rgb(195, 195, 194);
+}
+
+a{ 
+    text-decoration: none;
+    color: #0056b3;
+}
+
+a:hover {
+    color: #042e5a;
+}
+
+/* register, reset & login */
+
+.little-form{
+    width: 300px;
+}
+
+.big-form{
+    width: 450px;
+}
+
+.container-a-little{
+    width: 34.5%;
+}
+.container-a-big{
+    width: 98%;
+}
+
+/*home */
+
+.h1{
+    display: flex;
+    justify-content: center;
+}
+
+/* chat */
+
+#chat-section {
+    background-color:lightgray;
+    padding: 10px;
+    margin-bottom: 60px;
+}
+
+.chat-section--off {
+    display: none;
+}
+
+#chat h3 {
+    color:aliceblue;
+    background-color: darkgrey; 
+    padding: 10px 30px; 
+    border-radius: 5px;
+    border: 2px solid aliceblue; 
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); 
+ 
+}
+
+.chat-user {
+    cursor: pointer;
+    font-size: 1em; 
+}
+.chat-user-online:hover{
+    color: limegreen; 
+}
+
+.chat-user-online::marker {
+    color: limegreen;
+}
+
+.chat-user-offline::marker {
+    color: gray;
+}
+
+.chat-user-offline:hover{
+    color: gray; 
+}
+
+.chat--off{
+    display: none;
+}
+
+#chat-messages {
+    border: 1px solid black;
+    min-height: 40px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    list-style: none;
+}
+
+.chat-message--left {
+    align-self: flex-start;
+    text-align: left;
+}
+
+.chat-message--right {
+    align-self: flex-end;
+    text-align: right;
+}
+
+sup {
+    font-size: 10px;
+    color: dimgrey;
+    padding-left: 10px;
+}
+
+#chat-form {
+    display: flex;
+    gap: 5px;
+}
+
+#chat-form>#text {
+    width: 100%;
+}
+
+/* posts */
+.posts-section--off {
+    display: none;
+}
+
+.post {
+    border: 1px solid black;
+    margin: 10px;
+    padding: 10px;
+    max-width: 100%;
+    align-self: center;
+}
+
+#posts-section h2{
+    padding-left: 15px;
+}
+
+.post-image {
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 90%;
+}
+
+/* create-post */
+#create-post-section {
+    margin-bottom: 40px;
+    position: fixed;
+    bottom: 0;
+    background-color: darkgray;
+    width: 100%;
+    padding-bottom: 20px;
+}
+
+.create-post-section--off {
+    display: none;
+}
+
+#create-post-form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* footer */
+footer{
+      
+    background-color: dimgrey;
+    color: white;
+    padding: 15px;
+    padding-right: 5px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    display:flex;
+    justify-content: space-between;
+    align-items: center    
+}
+footer div {
+    display: flex;
+    align-items: center;
+    padding-right: 20px;
+    padding-left: 10px;
+}
+
+footer .right button {
+    background-color:white;
+    color: #333;
+    border: none;
+    padding: 5px 15px;
+    border-radius: 7px;
+}
+footer .right button:hover{
+    background-color:gainsboro ;
+}
