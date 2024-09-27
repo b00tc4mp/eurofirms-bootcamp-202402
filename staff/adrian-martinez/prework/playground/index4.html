@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prioridad estilos CSS</title>
+    <style>
+        #build{
+            width: 20%;
+            height: 600px;
+            border: 2px solid black;
+        }
+        .build{
+            background-color: gray;
+        }
+        /*El floor hace referencia a los pisos del edificio*/
+        .floor1{
+            height: 30%;
+            display: flex;
+            flex-direction: column; 
+            border: 1;
+            justify-content: 50%;
+            /*align-items: end;*/
+        }
+    </style>
+</head>
+<body>
+    <div id="build" class="build">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <div></div>
+    <div></div>
+</body>
+</html>

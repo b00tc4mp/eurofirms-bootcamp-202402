@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estilos CSS Dependientes</title>
+    <style>
+        #Mickey-ear{
+            background-color: black;
+            width:15px;
+            height: 15px;
+            border: 1px solid black;
+            border-radius: 50%; 
+            z-index: 2;
+        }
+        .OrejaIzquierda{
+            z-index:1;
+            position: absolute;
+            margin-left: 20px;
+        }
+        .OrejaDerecha{
+            z-index:1;
+            position: absolute;
+            margin-right: 0;
+        }
+        #Mickey{
+            margin:10%;
+            width:200px;
+            height:200px;
+            border: 1px solid black;
+        }
+        #Mickey-face{
+            width: 30px;
+            height: 30px;
+            margin-top: 10px;
+            border: 3px solid black;
+            border-radius: 50%;
+        }
+        #Mickey-eye{
+            width: 8px;
+            height: 8px;
+            border: 1px solid black;
+            border-radius: 50%;
+            transform: translate(1px,1px);
+        }
+        .Mickey-eye-right{
+            z-index:1;
+            position: absolute;
+            margin-top:10px;
+            margin-left: 20px;
+        }
+        .Mickey-eye-left{
+            z-index:1;
+            position: absolute;
+            margin-top: 10px;
+            margin-left: 10px;
+            /* transform: translateX(7px); */
+        }
+        #Mickey-iris{
+            width: 3px;
+            height: 3px;
+            background-color: black;
+            border-radius: 50%;
+            transform: translate(1px,1px);
+            animation-name: "Mickey-iris";
+            animation-duration: 10s;
+            animation-iteration-count: infinite;
+        }
+        #Mickey-mouth{
+            position:absolute;
+            margin-left:10px;
+            margin-top:25px;
+            border: 1px solid black;
+            width: 5px;
+            height: 1px;
+        }
+        @keyframes Mickey-iris{
+
+            0% {
+                transform: translate(1px,1px);
+            }
+            10% {
+                transform: translate(1px,2px);
+            }
+            20% {
+                transform: translate(1px,1px);
+            }
+            30% {
+                transform: translate(1px,0px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="Mickey">
+        <div id="Mickey-ear" class="OrejaIzquierda"></div>
+        <div id="Mickey-ear" class="OrejaDerecha"></div>
+        <div id="Mickey-face">
+            <div id="Mickey-eye" class="Mickey-eye-left">
+                <div id="Mickey-iris"></div>
+            </div>
+            <div id="Mickey-eye" class="Mickey-eye-right">
+                <div id="Mickey-iris"></div>
+            </div>
+            <div id="Mickey-mouth"></div>
+        </div>
+    </div>
+    </div>
+</body>
+</html>
