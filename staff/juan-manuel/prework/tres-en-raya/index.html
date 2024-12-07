@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minijuego: 3 EN RAYA</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="./images/fav-3.png">
+</head>
+<body>
+  <audio id="fondo" src="./muzicatowapa/fondo.mp3"></audio>
+  <audio id="pop" src="./muzicatowapa/pop.mp3"></audio>
+
+  <div id="tres-en-raya">
+    <div id="celda_0_0" class="color-negro" onclick="makeMove(0, 0)"></div>
+    <div id="celda_0_1" class="color-blanco" onclick="makeMove(0, 1)"></div>
+    <div id="celda_0_2" class="color-negro" onclick="makeMove(0, 2)"></div>
+    <div id="celda_1_0" class="color-blanco" onclick="makeMove(1, 0)"></div>
+    <div id="celda_1_1" class="color-negro" onclick="makeMove(1, 1)"></div>
+    <div id="celda_1_2" class="color-blanco" onclick="makeMove(1, 2)"></div>
+    <div id="celda_2_0" class="color-negro" onclick="makeMove(2, 0)"></div>
+    <div id="celda_2_1" class="color-blanco" onclick="makeMove(2, 1)"></div>
+    <div id="celda_2_2" class="color-negro" onclick="makeMove(2, 2)"></div>
+    <div id="corason"></div>
+    <div id="equis"></div>
+  </div>
+<script src="script.js"></script>
+</body>
+</html>
