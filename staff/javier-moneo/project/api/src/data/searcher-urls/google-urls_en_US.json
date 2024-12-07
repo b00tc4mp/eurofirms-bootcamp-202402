@@ -1,0 +1,38 @@
+[
+  {
+    "searcherAlias": "goog",
+    "searcher": "google",
+    "editionAlias": "en_US",
+    "searcherType": "global",
+    "searchType": "web",
+    "url": "https://www.google.com/search?",
+    "urlExample": "https://www.google.com/search?q=busca"
+  },
+  {
+    "searcherAlias": "goog",
+    "searcher": "google",
+    "editionAlias": "en_US",
+    "searcherType": "global",
+    "searchType": "image",
+    "url": "https://www.google.com/search?tbm=isch&hl=en",
+    "urlExample": "https://www.google.com/search?q=busca&tbm=isch"
+  },
+  {
+    "searcherAlias": "goog",
+    "searcher": "google",
+    "editionAlias": "en_US",
+    "searcherType": "global",
+    "searchType": "video",
+    "url": "https://www.google.com/search?tbm=vid&hl=en",
+    "urlExample": "https://www.google.com/search?q=busca&tbm=vid&hl=en"
+  },
+  {
+    "searcherAlias": "goog",
+    "searcher": "google",
+    "editionAlias": "en_US",
+    "searcherType": "global",
+    "searchType": "news",
+    "url": "https://news.google.com/search?hl=en&gl=US&ceid=US:en",
+    "urlExample": "https://news.google.com/search?q=search&hl=en-US&gl=US&ceid=US:en"
+  }
+]

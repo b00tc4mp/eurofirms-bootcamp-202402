@@ -1,0 +1,51 @@
+[
+  {
+    "tagName": "Venezuela",
+    "editionAlias": "es_VE",
+    "searchType": "news",
+    "service": "googleNews",
+    "url": "https://news.google.com/topics/CAAqJggKIiBDQkFTRWdvSUwyMHZNRGQ1YkdvU0JtVnpMVFF4T1NnQVAB?hl=es-419&gl=VE&ceid=VE%3Aes-419"
+  },
+  {
+    "tagName": "Internacional",
+    "editionAlias": "es_VE",
+    "searchType": "news",
+    "service": "googleNews",
+    "url": "https://news.google.com/topics/CAAqLAgKIiZDQkFTRmdvSUwyMHZNRGx1YlY4U0JtVnpMVFF4T1JvQ1ZrVW9BQVAB?hl=es-419&gl=VE&ceid=VE%3Aes-419"
+  },
+  {
+    "tagName": "Negocios",
+    "editionAlias": "es_VE",
+    "searchType": "news",
+    "service": "googleNews",
+    "url": "https://news.google.com/topics/CAAqLAgKIiZDQkFTRmdvSUwyMHZNRGx6TVdZU0JtVnpMVFF4T1JvQ1ZrVW9BQVAB?hl=es-419&gl=VE&ceid=VE%3Aes-419"
+  },
+  {
+    "tagName": "CienciaYTecnología",
+    "editionAlias": "es_VE",
+    "searchType": "news",
+    "service": "googleNews",
+    "url": "https://news.google.com/topics/CAAqLQgKIidDQkFTRndvSkwyMHZNR1ptZHpWbUVnWmxjeTAwTVRrYUFsWkZLQUFQAQ?hl=es-419&gl=VE&ceid=VE%3Aes-419"
+  },
+  {
+    "tagName": "Entretenimiento",
+    "editionAlias": "es_VE",
+    "searchType": "news",
+    "service": "googleNews",
+    "url": "https://news.google.com/topics/CAAqLAgKIiZDQkFTRmdvSUwyMHZNREpxYW5RU0JtVnpMVFF4T1JvQ1ZrVW9BQVAB?hl=es-419&gl=VE&ceid=VE%3Aes-419"
+  },
+  {
+    "tagName": "Deportes",
+    "editionAlias": "es_VE",
+    "searchType": "news",
+    "service": "googleNews",
+    "url": "https://news.google.com/topics/CAAqLAgKIiZDQkFTRmdvSUwyMHZNRFp1ZEdvU0JtVnpMVFF4T1JvQ1ZrVW9BQVAB?hl=es-419&gl=VE&ceid=VE%3Aes-419"
+  },
+  {
+    "tagName": "Salud",
+    "editionAlias": "es_VE",
+    "searchType": "news",
+    "service": "googleNews",
+    "url": "https://news.google.com/topics/CAAqJggKIiBDQkFTRWdvSUwyMHZNR3QwTlRFU0JtVnpMVFF4T1NnQVAB?hl=es-419&gl=VE&ceid=VE%3Aes-419"
+  }
+]

@@ -1,0 +1,51 @@
+[
+  {
+    "tagName": "España",
+    "editionAlias": "es",
+    "searchType": "news",
+    "service": "googleNews",
+    "url": "https://news.google.com/topics/CAAqIQgKIhtDQkFTRGdvSUwyMHZNRFp0YTJvU0FtVnpLQUFQAQ?hl=es&gl=ES&ceid=ES%3Aes"
+  },
+  {
+    "tagName": "Internacional",
+    "editionAlias": "es",
+    "searchType": "news",
+    "service": "googleNews",
+    "url": "https://news.google.com/topics/CAAqJggKIiBDQkFTRWdvSUwyMHZNRGx1YlY4U0FtVnpHZ0pGVXlnQVAB?hl=es&gl=ES&ceid=ES%3Aes"
+  },
+  {
+    "tagName": "Economía",
+    "editionAlias": "es",
+    "searchType": "news",
+    "service": "googleNews",
+    "url": "https://news.google.com/topics/CAAqJggKIiBDQkFTRWdvSUwyMHZNRGx6TVdZU0FtVnpHZ0pGVXlnQVAB?hl=es&gl=ES&ceid=ES%3Aes"
+  },
+  {
+    "tagName": "CienciaYTecnología",
+    "editionAlias": "es",
+    "searchType": "news",
+    "service": "googleNews",
+    "url": "https://news.google.com/topics/CAAqKAgKIiJDQkFTRXdvSkwyMHZNR1ptZHpWbUVnSmxjeG9DUlZNb0FBUAE?hl=es&gl=ES&ceid=ES%3Aes"
+  },
+  {
+    "tagName": "Entretenimiento",
+    "editionAlias": "es",
+    "searchType": "news",
+    "service": "googleNews",
+    "url": "https://news.google.com/topics/CAAqJggKIiBDQkFTRWdvSUwyMHZNREpxYW5RU0FtVnpHZ0pGVXlnQVAB?hl=es&gl=ES&ceid=ES%3Aes"
+  },
+  {
+    "tagName": "Deportes",
+    "editionAlias": "es",
+    "searchType": "news",
+    "service": "googleNews",
+    "url": "https://news.google.com/topics/CAAqJggKIiBDQkFTRWdvSUwyMHZNRFp1ZEdvU0FtVnpHZ0pGVXlnQVAB?hl=es&gl=ES&ceid=ES%3Aes"
+  },
+  {
+    "tagName": "Salud",
+    "editionAlias": "es",
+    "searchType": "news",
+    "service": "googleNews",
+    "url": "https://news.google.com/topics/CAAqIQgKIhtDQkFTRGdvSUwyMHZNR3QwTlRFU0FtVnpLQUFQAQ?hl=es&gl=ES&ceid=ES%3Aes"
+  }
+]

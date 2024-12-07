@@ -1,0 +1,11 @@
+[
+  {
+    "searcherAlias": "youtu",
+    "searcher": "youtube",
+    "editionAlias": "es_AR",
+    "searcherType": "onlyVideo",
+    "searchType": "video",
+    "url": "https://www.youtube.com/results?",
+    "urlExample": "https://www.youtube.com/results?search_query=busca"
+  }
+]

@@ -1,0 +1,58 @@
+[
+  {
+    "name": "Perú",
+    "tagName": "Perú",
+    "editionAlias": "es_PE",
+    "searchType": "web",
+    "index": 0
+  },
+  {
+    "name": "Internacional",
+    "tagName": "Internacional",
+    "editionAlias": "es_PE",
+    "searchType": "web",
+    "index": 1
+  },
+  {
+    "name": "Negocios",
+    "tagName": "Negocios",
+    "editionAlias": "es_PE",
+    "searchType": "web",
+    "index": 2
+  },
+  {
+    "name": "CienciaYTecnología",
+    "tagName": "CienciaYTecnología",
+    "editionAlias": "es_PE",
+    "searchType": "web",
+    "index": 3
+  },
+  {
+    "name": "Entretenimiento",
+    "tagName": "Entretenimiento",
+    "editionAlias": "es_PE",
+    "searchType": "web",
+    "index": 4
+  },
+  {
+    "name": "Deportes",
+    "tagName": "Deportes",
+    "editionAlias": "es_PE",
+    "searchType": "web",
+    "index": 5
+  },
+  {
+    "name": "Salud",
+    "tagName": "Salud",
+    "editionAlias": "es_PE",
+    "searchType": "web",
+    "index": 6
+  },
+  {
+    "name": "NoTagged",
+    "tagName": "NoTagged",
+    "editionAlias": "es_PE",
+    "searchType": "web",
+    "index": 7
+  }
+]

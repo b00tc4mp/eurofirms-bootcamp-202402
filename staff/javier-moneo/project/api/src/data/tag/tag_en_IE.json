@@ -1,0 +1,11 @@
+[
+  { "name": "NoTagged", "editionAlias": "en_IE", "description": "" },
+  { "name": "Ireland", "editionAlias": "en_IE", "description": "" },
+  { "name": "World", "editionAlias": "en_IE", "description": "" },
+  { "name": "Business", "editionAlias": "en_IE", "description": "" },
+  { "name": "Technology", "editionAlias": "en_IE", "description": "" },
+  { "name": "Entertainment", "editionAlias": "en_IE", "description": "" },
+  { "name": "Sports", "editionAlias": "en_IE", "description": "" },
+  { "name": "Science", "editionAlias": "en_IE", "description": "" },
+  { "name": "Health", "editionAlias": "en_IE", "description": "" }
+]

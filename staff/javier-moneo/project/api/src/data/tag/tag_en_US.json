@@ -1,0 +1,11 @@
+[
+  { "name": "NoTagged", "editionAlias": "en_US", "description": "" },
+  { "name": "U.S.", "editionAlias": "en_US", "description": "" },
+  { "name": "World", "editionAlias": "en_US", "description": "" },
+  { "name": "Business", "editionAlias": "en_US", "description": "" },
+  { "name": "Technology", "editionAlias": "en_US", "description": "" },
+  { "name": "Entertainment", "editionAlias": "en_US", "description": "" },
+  { "name": "Sports", "editionAlias": "en_US", "description": "" },
+  { "name": "Science", "editionAlias": "en_US", "description": "" },
+  { "name": "Health", "editionAlias": "en_US", "description": "" }
+]

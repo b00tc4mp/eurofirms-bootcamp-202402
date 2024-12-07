@@ -1,0 +1,17 @@
+[
+  {
+    "name": "global"
+  },
+  {
+    "name": "onlyVideo"
+  },
+  {
+    "name": "social"
+  },
+  {
+    "name": "gifs"
+  },
+  {
+    "name": "adult"
+  }
+]

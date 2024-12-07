@@ -1,0 +1,38 @@
+[
+  {
+    "searcherAlias": "goog",
+    "searcher": "google",
+    "editionAlias": "es_AR",
+    "searcherType": "global",
+    "searchType": "web",
+    "url": "https://www.google.com.ar/search?",
+    "urlExample": "https://www.google.com.ar/search?q=busca"
+  },
+  {
+    "searcherAlias": "goog",
+    "searcher": "google",
+    "editionAlias": "es_AR",
+    "searcherType": "global",
+    "searchType": "image",
+    "url": "https://www.google.com.ar/search?tbm=isch",
+    "urlExample": "https://www.google.com.ar/search?q=busca&tbm=isch"
+  },
+  {
+    "searcherAlias": "goog",
+    "searcher": "google",
+    "editionAlias": "es_AR",
+    "searcherType": "global",
+    "searchType": "video",
+    "url": "https://www.google.com.ar/search?tbm=vid&hl=es",
+    "urlExample": "https://www.google.com.ar/search?q=busca&tbm=vid&hl=es"
+  },
+  {
+    "searcherAlias": "goog",
+    "searcher": "google",
+    "editionAlias": "es_AR",
+    "searcherType": "global",
+    "searchType": "news",
+    "url": "https://news.google.com/search?hl=es&gl=AR&ceid=AR:es-419",
+    "urlExample": "https://news.google.com/search?q=busca&hl=es&gl=AR&ceid=AR:es-419"
+  }
+]

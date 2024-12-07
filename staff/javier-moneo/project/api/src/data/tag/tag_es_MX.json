@@ -1,0 +1,10 @@
+[
+  { "name": "NoTagged", "editionAlias": "es_MX", "description": "" },
+  { "name": "México", "editionAlias": "es_MX", "description": "" },
+  { "name": "Internacional", "editionAlias": "es_MX", "description": "" },
+  { "name": "Negocios", "editionAlias": "es_MX", "description": "" },
+  { "name": "CienciaYTecnología", "editionAlias": "es_MX", "description": "" },
+  { "name": "Entretenimiento", "editionAlias": "es_MX", "description": "" },
+  { "name": "Deportes", "editionAlias": "es_MX", "description": "" },
+  { "name": "Salud", "editionAlias": "es_MX", "description": "" }
+]

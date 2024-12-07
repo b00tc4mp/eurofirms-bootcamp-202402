@@ -1,0 +1,51 @@
+[
+  {
+    "name": "Cuba",
+    "tagName": "Cuba",
+    "editionAlias": "es_CU",
+    "searchType": "web",
+    "index": 0
+  },
+  {
+    "name": "Internacional",
+    "tagName": "Internacional",
+    "editionAlias": "es_CU",
+    "searchType": "web",
+    "index": 1
+  },
+  {
+    "name": "Negocios",
+    "tagName": "Negocios",
+    "editionAlias": "es_CU",
+    "searchType": "web",
+    "index": 2
+  },
+  {
+    "name": "CienciaYTecnología",
+    "tagName": "CienciaYTecnología",
+    "editionAlias": "es_CU",
+    "searchType": "web",
+    "index": 3
+  },
+  {
+    "name": "Entretenimiento",
+    "tagName": "Entretenimiento",
+    "editionAlias": "es_CU",
+    "searchType": "web",
+    "index": 4
+  },
+  {
+    "name": "Deportes",
+    "tagName": "Deportes",
+    "editionAlias": "es_CU",
+    "searchType": "web",
+    "index": 5
+  },
+  {
+    "name": "NoTagged",
+    "tagName": "NoTagged",
+    "editionAlias": "es_CU",
+    "searchType": "web",
+    "index": 6
+  }
+]

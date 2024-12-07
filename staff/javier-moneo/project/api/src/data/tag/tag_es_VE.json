@@ -1,0 +1,10 @@
+[
+  { "name": "NoTagged", "editionAlias": "es_VE", "description": "" },
+  { "name": "Venezuela", "editionAlias": "es_VE", "description": "" },
+  { "name": "Internacional", "editionAlias": "es_VE", "description": "" },
+  { "name": "Negocios", "editionAlias": "es_VE", "description": "" },
+  { "name": "CienciaYTecnología", "editionAlias": "es_VE", "description": "" },
+  { "name": "Entretenimiento", "editionAlias": "es_VE", "description": "" },
+  { "name": "Deportes", "editionAlias": "es_VE", "description": "" },
+  { "name": "Salud", "editionAlias": "es_VE", "description": "" }
+]

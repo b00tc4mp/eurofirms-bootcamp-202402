@@ -1,0 +1,38 @@
+[
+  {
+    "searcherAlias": "goog",
+    "searcher": "google",
+    "editionAlias": "es_MX",
+    "searcherType": "global",
+    "searchType": "web",
+    "url": "https://www.google.com.mx/search?",
+    "urlExample": "https://www.google.com.mx/search?q=busca"
+  },
+  {
+    "searcherAlias": "goog",
+    "searcher": "google",
+    "editionAlias": "es_MX",
+    "searcherType": "global",
+    "searchType": "image",
+    "url": "https://www.google.com.mx/search?tbm=isch",
+    "urlExample": "https://www.google.com.mx/search?q=busca&tbm=isch"
+  },
+  {
+    "searcherAlias": "goog",
+    "searcher": "google",
+    "editionAlias": "es_MX",
+    "searcherType": "global",
+    "searchType": "video",
+    "url": "https://www.google.com.mx/search?tbm=vid&hl=es-419",
+    "urlExample": "https://www.google.com.mx/search?q=busca&tbm=vid&hl=es-419"
+  },
+  {
+    "searcherAlias": "goog",
+    "searcher": "google",
+    "editionAlias": "es_MX",
+    "searcherType": "global",
+    "searchType": "news",
+    "url": "https://news.google.com.mx/search?hl=es-419&gl=MX&ceid=MX%3Aes-419",
+    "urlExample": "https://news.google.com.mx/search?q=busca&hl=es-419&gl=MX&ceid=MX%3Aes-419"
+  }
+]

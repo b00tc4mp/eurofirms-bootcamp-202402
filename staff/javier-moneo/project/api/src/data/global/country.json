@@ -1,0 +1,46 @@
+[
+  {
+    "code": "es",
+    "nativeName": "España"
+  },
+  {
+    "code": "us",
+    "nativeName": "United States"
+  },
+  {
+    "code": "ar",
+    "nativeName": "Argentina"
+  },
+  {
+    "code": "cl",
+    "nativeName": "Chile"
+  },
+  {
+    "code": "co",
+    "nativeName": "Colombia"
+  },
+  {
+    "code": "cu",
+    "nativeName": "Cuba"
+  },
+  {
+    "code": "mx",
+    "nativeName": "México"
+  },
+  {
+    "code": "pe",
+    "nativeName": "Perú"
+  },
+  {
+    "code": "ve",
+    "nativeName": "Venezuela"
+  },
+  {
+    "code": "gb",
+    "nativeName": "United Kingdom"
+  },
+  {
+    "code": "ie",
+    "nativeName": "Ireland"
+  }
+]

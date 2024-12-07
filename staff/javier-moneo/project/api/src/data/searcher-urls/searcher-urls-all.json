@@ -1,0 +1,1640 @@
+[
+  {
+    "searcherAlias": "bing",
+    "searcher": "bing",
+    "editionAlias": "ca_ES",
+    "searcherType": "global",
+    "searchType": "web",
+    "url": "https://www.bing.com/search?",
+    "urlExample": "https://www.bing.com/search?q=busca"
+  },
+  {
+    "searcherAlias": "bing",
+    "searcher": "bing",
+    "editionAlias": "ca_ES",
+    "searcherType": "global",
+    "searchType": "image",
+    "url": "https://www.bing.com/images/search?",
+    "urlExample": "https://www.bing.com/images/search?q=busca"
+  },
+  {
+    "searcherAlias": "bing",
+    "searcher": "bing",
+    "editionAlias": "ca_ES",
+    "searcherType": "global",
+    "searchType": "video",
+    "url": "https://www.bing.com/videos/search?",
+    "urlExample": "https://www.bing.com/videos/search?q=busca"
+  },
+  {
+    "searcherAlias": "bing",
+    "searcher": "bing",
+    "editionAlias": "ca_ES",
+    "searcherType": "global",
+    "searchType": "news",
+    "url": "https://www.bing.com/news/search?",
+    "urlExample": "https://www.bing.com/news/search?q=busca"
+  },
+  {
+    "searcherAlias": "bing",
+    "searcher": "bing",
+    "editionAlias": "ca_ES",
+    "searcherType": "global",
+    "searchType": "maps",
+    "url": "https://www.bing.com/maps?",
+    "urlExample": "https://www.bing.com/maps?q=busca"
+  },
+  {
+    "searcherAlias": "bing",
+    "searcher": "bing",
+    "editionAlias": "en_GB",
+    "searcherType": "global",
+    "searchType": "web",
+    "url": "https://www.bing.com/search?",
+    "urlExample": "https://www.bing.com/search?q=busca"
+  },
+  {
+    "searcherAlias": "bing",
+    "searcher": "bing",
+    "editionAlias": "en_GB",
+    "searcherType": "global",
+    "searchType": "image",
+    "url": "https://www.bing.com/images/search?",
+    "urlExample": "https://www.bing.com/images/search?q=busca"
+  },
+  {
+    "searcherAlias": "bing",
+    "searcher": "bing",
+    "editionAlias": "en_GB",
+    "searcherType": "global",
+    "searchType": "video",
+    "url": "https://www.bing.com/videos/search?",
+    "urlExample": "https://www.bing.com/videos/search?q=busca"
+  },
+  {
+    "searcherAlias": "bing",
+    "searcher": "bing",
+    "editionAlias": "en_GB",
+    "searcherType": "global",
+    "searchType": "news",
+    "url": "https://www.bing.com/news/search?",
+    "urlExample": "https://www.bing.com/news/search?q=busca"
+  },
+  {
+    "searcherAlias": "bing",
+    "searcher": "bing",
+    "editionAlias": "en_GB",
+    "searcherType": "global",
+    "searchType": "maps",
+    "url": "https://www.bing.com/maps?",
+    "urlExample": "https://www.bing.com/maps?q=busca"
+  },
+  {
+    "searcherAlias": "bing",
+    "searcher": "bing",
+    "editionAlias": "en_IE",
+    "searcherType": "global",
+    "searchType": "web",
+    "url": "https://www.bing.com/search?",
+    "urlExample": "https://www.bing.com/search?q=busca"
+  },
+  {
+    "searcherAlias": "bing",
+    "searcher": "bing",
+    "editionAlias": "en_IE",
+    "searcherType": "global",
+    "searchType": "image",
+    "url": "https://www.bing.com/images/search?",
+    "urlExample": "https://www.bing.com/images/search?q=busca"
+  },
+  {
+    "searcherAlias": "bing",
+    "searcher": "bing",
+    "editionAlias": "en_IE",
+    "searcherType": "global",
+    "searchType": "video",
+    "url": "https://www.bing.com/videos/search?",
+    "urlExample": "https://www.bing.com/videos/search?q=busca"
+  },
+  {
+    "searcherAlias": "bing",
+    "searcher": "bing",
+    "editionAlias": "en_IE",
+    "searcherType": "global",
+    "searchType": "news",
+    "url": "https://www.bing.com/news/search?",
+    "urlExample": "https://www.bing.com/news/search?q=busca"
+  },
+  {
+    "searcherAlias": "bing",
+    "searcher": "bing",
+    "editionAlias": "en_IE",
+    "searcherType": "global",
+    "searchType": "maps",
+    "url": "https://www.bing.com/maps?",
+    "urlExample": "https://www.bing.com/maps?q=busca"
+  },
+  {
+    "searcherAlias": "bing",
+    "searcher": "bing",
+    "editionAlias": "en_US",
+    "searcherType": "global",
+    "searchType": "web",
+    "url": "https://www.bing.com/search?",
+    "urlExample": "https://www.bing.com/search?q=busca"
+  },
+  {
+    "searcherAlias": "bing",
+    "searcher": "bing",
+    "editionAlias": "en_US",
+    "searcherType": "global",
+    "searchType": "image",
+    "url": "https://www.bing.com/images/search?",
+    "urlExample": "https://www.bing.com/images/search?q=busca"
+  },
+  {
+    "searcherAlias": "bing",
+    "searcher": "bing",
+    "editionAlias": "en_US",
+    "searcherType": "global",
+    "searchType": "video",
+    "url": "https://www.bing.com/videos/search?",
+    "urlExample": "https://www.bing.com/videos/search?q=busca"
+  },
+  {
+    "searcherAlias": "bing",
+    "searcher": "bing",
+    "editionAlias": "en_US",
+    "searcherType": "global",
+    "searchType": "news",
+    "url": "https://www.bing.com/news/search?",
+    "urlExample": "https://www.bing.com/news/search?q=busca"
+  },
+  {
+    "searcherAlias": "bing",
+    "searcher": "bing",
+    "editionAlias": "en_US",
+    "searcherType": "global",
+    "searchType": "maps",
+    "url": "https://www.bing.com/maps?",
+    "urlExample": "https://www.bing.com/maps?q=busca"
+  },
+  {
+    "searcherAlias": "bing",
+    "searcher": "bing",
+    "editionAlias": "es_AR",
+    "searcherType": "global",
+    "searchType": "web",
+    "url": "https://www.bing.com/search?",
+    "urlExample": "https://www.bing.com/search?q=busca"
+  },
+  {
+    "searcherAlias": "bing",
+    "searcher": "bing",
+    "editionAlias": "es_AR",
+    "searcherType": "global",
+    "searchType": "image",
+    "url": "https://www.bing.com/images/search?",
+    "urlExample": "https://www.bing.com/images/search?q=busca"
+  },
+  {
+    "searcherAlias": "bing",
+    "searcher": "bing",
+    "editionAlias": "es_AR",
+    "searcherType": "global",
+    "searchType": "video",
+    "url": "https://www.bing.com/videos/search?",
+    "urlExample": "https://www.bing.com/videos/search?q=busca"
+  },
+  {
+    "searcherAlias": "bing",
+    "searcher": "bing",
+    "editionAlias": "es_AR",
+    "searcherType": "global",
+    "searchType": "news",
+    "url": "https://www.bing.com/news/search?",
+    "urlExample": "https://www.bing.com/news/search?q=busca"
+  },
+  {
+    "searcherAlias": "bing",
+    "searcher": "bing",
+    "editionAlias": "es_AR",
+    "searcherType": "global",
+    "searchType": "maps",
+    "url": "https://www.bing.com/maps?",
+    "urlExample": "https://www.bing.com/maps?q=busca"
+  },
+  {
+    "searcherAlias": "bing",
+    "searcher": "bing",
+    "editionAlias": "es_CL",
+    "searcherType": "global",
+    "searchType": "web",
+    "url": "https://www.bing.com/search?",
+    "urlExample": "https://www.bing.com/search?q=busca"
+  },
+  {
+    "searcherAlias": "bing",
+    "searcher": "bing",
+    "editionAlias": "es_CL",
+    "searcherType": "global",
+    "searchType": "image",
+    "url": "https://www.bing.com/images/search?",
+    "urlExample": "https://www.bing.com/images/search?q=busca"
+  },
+  {
+    "searcherAlias": "bing",
+    "searcher": "bing",
+    "editionAlias": "es_CL",
+    "searcherType": "global",
+    "searchType": "video",
+    "url": "https://www.bing.com/videos/search?",
+    "urlExample": "https://www.bing.com/videos/search?q=busca"
+  },
+  {
+    "searcherAlias": "bing",
+    "searcher": "bing",
+    "editionAlias": "es_CL",
+    "searcherType": "global",
+    "searchType": "news",
+    "url": "https://www.bing.com/news/search?",
+    "urlExample": "https://www.bing.com/news/search?q=busca"
+  },
+  {
+    "searcherAlias": "bing",
+    "searcher": "bing",
+    "editionAlias": "es_CL",
+    "searcherType": "global",
+    "searchType": "maps",
+    "url": "https://www.bing.com/maps?",
+    "urlExample": "https://www.bing.com/maps?q=busca"
+  },
+  {
+    "searcherAlias": "bing",
+    "searcher": "bing",
+    "editionAlias": "es_CO",
+    "searcherType": "global",
+    "searchType": "web",
+    "url": "https://www.bing.com/search?",
+    "urlExample": "https://www.bing.com/search?q=busca"
+  },
+  {
+    "searcherAlias": "bing",
+    "searcher": "bing",
+    "editionAlias": "es_CO",
+    "searcherType": "global",
+    "searchType": "image",
+    "url": "https://www.bing.com/images/search?",
+    "urlExample": "https://www.bing.com/images/search?q=busca"
+  },
+  {
+    "searcherAlias": "bing",
+    "searcher": "bing",
+    "editionAlias": "es_CO",
+    "searcherType": "global",
+    "searchType": "video",
+    "url": "https://www.bing.com/videos/search?",
+    "urlExample": "https://www.bing.com/videos/search?q=busca"
+  },
+  {
+    "searcherAlias": "bing",
+    "searcher": "bing",
+    "editionAlias": "es_CO",
+    "searcherType": "global",
+    "searchType": "news",
+    "url": "https://www.bing.com/news/search?",
+    "urlExample": "https://www.bing.com/news/search?q=busca"
+  },
+  {
+    "searcherAlias": "bing",
+    "searcher": "bing",
+    "editionAlias": "es_CO",
+    "searcherType": "global",
+    "searchType": "maps",
+    "url": "https://www.bing.com/maps?",
+    "urlExample": "https://www.bing.com/maps?q=busca"
+  },
+  {
+    "searcherAlias": "bing",
+    "searcher": "bing",
+    "editionAlias": "es_CU",
+    "searcherType": "global",
+    "searchType": "web",
+    "url": "https://www.bing.com/search?",
+    "urlExample": "https://www.bing.com/search?q=busca"
+  },
+  {
+    "searcherAlias": "bing",
+    "searcher": "bing",
+    "editionAlias": "es_CU",
+    "searcherType": "global",
+    "searchType": "image",
+    "url": "https://www.bing.com/images/search?",
+    "urlExample": "https://www.bing.com/images/search?q=busca"
+  },
+  {
+    "searcherAlias": "bing",
+    "searcher": "bing",
+    "editionAlias": "es_CU",
+    "searcherType": "global",
+    "searchType": "video",
+    "url": "https://www.bing.com/videos/search?",
+    "urlExample": "https://www.bing.com/videos/search?q=busca"
+  },
+  {
+    "searcherAlias": "bing",
+    "searcher": "bing",
+    "editionAlias": "es_CU",
+    "searcherType": "global",
+    "searchType": "news",
+    "url": "https://www.bing.com/news/search?",
+    "urlExample": "https://www.bing.com/news/search?q=busca"
+  },
+  {
+    "searcherAlias": "bing",
+    "searcher": "bing",
+    "editionAlias": "es_CU",
+    "searcherType": "global",
+    "searchType": "maps",
+    "url": "https://www.bing.com/maps?",
+    "urlExample": "https://www.bing.com/maps?q=busca"
+  },
+  {
+    "searcherAlias": "bing",
+    "searcher": "bing",
+    "editionAlias": "es",
+    "searcherType": "global",
+    "searchType": "web",
+    "url": "https://www.bing.com/search?",
+    "urlExample": "https://www.bing.com/search?q=busca"
+  },
+  {
+    "searcherAlias": "bing",
+    "searcher": "bing",
+    "editionAlias": "es",
+    "searcherType": "global",
+    "searchType": "image",
+    "url": "https://www.bing.com/images/search?",
+    "urlExample": "https://www.bing.com/images/search?q=busca"
+  },
+  {
+    "searcherAlias": "bing",
+    "searcher": "bing",
+    "editionAlias": "es",
+    "searcherType": "global",
+    "searchType": "video",
+    "url": "https://www.bing.com/videos/search?",
+    "urlExample": "https://www.bing.com/videos/search?q=busca"
+  },
+  {
+    "searcherAlias": "bing",
+    "searcher": "bing",
+    "editionAlias": "es",
+    "searcherType": "global",
+    "searchType": "news",
+    "url": "https://www.bing.com/news/search?",
+    "urlExample": "https://www.bing.com/news/search?q=busca"
+  },
+  {
+    "searcherAlias": "bing",
+    "searcher": "bing",
+    "editionAlias": "es",
+    "searcherType": "global",
+    "searchType": "maps",
+    "url": "https://www.bing.com/maps?",
+    "urlExample": "https://www.bing.com/maps?q=busca"
+  },
+  {
+    "searcherAlias": "bing",
+    "searcher": "bing",
+    "editionAlias": "es_MX",
+    "searcherType": "global",
+    "searchType": "web",
+    "url": "https://www.bing.com/search?",
+    "urlExample": "https://www.bing.com/search?q=busca"
+  },
+  {
+    "searcherAlias": "bing",
+    "searcher": "bing",
+    "editionAlias": "es_MX",
+    "searcherType": "global",
+    "searchType": "image",
+    "url": "https://www.bing.com/images/search?",
+    "urlExample": "https://www.bing.com/images/search?q=busca"
+  },
+  {
+    "searcherAlias": "bing",
+    "searcher": "bing",
+    "editionAlias": "es_MX",
+    "searcherType": "global",
+    "searchType": "video",
+    "url": "https://www.bing.com/videos/search?",
+    "urlExample": "https://www.bing.com/videos/search?q=busca"
+  },
+  {
+    "searcherAlias": "bing",
+    "searcher": "bing",
+    "editionAlias": "es_MX",
+    "searcherType": "global",
+    "searchType": "news",
+    "url": "https://www.bing.com/news/search?",
+    "urlExample": "https://www.bing.com/news/search?q=busca"
+  },
+  {
+    "searcherAlias": "bing",
+    "searcher": "bing",
+    "editionAlias": "es_MX",
+    "searcherType": "global",
+    "searchType": "maps",
+    "url": "https://www.bing.com/maps?",
+    "urlExample": "https://www.bing.com/maps?q=busca"
+  },
+  {
+    "searcherAlias": "bing",
+    "searcher": "bing",
+    "editionAlias": "es_PE",
+    "searcherType": "global",
+    "searchType": "web",
+    "url": "https://www.bing.com/search?",
+    "urlExample": "https://www.bing.com/search?q=busca"
+  },
+  {
+    "searcherAlias": "bing",
+    "searcher": "bing",
+    "editionAlias": "es_PE",
+    "searcherType": "global",
+    "searchType": "image",
+    "url": "https://www.bing.com/images/search?",
+    "urlExample": "https://www.bing.com/images/search?q=busca"
+  },
+  {
+    "searcherAlias": "bing",
+    "searcher": "bing",
+    "editionAlias": "es_PE",
+    "searcherType": "global",
+    "searchType": "video",
+    "url": "https://www.bing.com/videos/search?",
+    "urlExample": "https://www.bing.com/videos/search?q=busca"
+  },
+  {
+    "searcherAlias": "bing",
+    "searcher": "bing",
+    "editionAlias": "es_PE",
+    "searcherType": "global",
+    "searchType": "news",
+    "url": "https://www.bing.com/news/search?",
+    "urlExample": "https://www.bing.com/news/search?q=busca"
+  },
+  {
+    "searcherAlias": "bing",
+    "searcher": "bing",
+    "editionAlias": "es_PE",
+    "searcherType": "global",
+    "searchType": "maps",
+    "url": "https://www.bing.com/maps?",
+    "urlExample": "https://www.bing.com/maps?q=busca"
+  },
+  {
+    "searcherAlias": "bing",
+    "searcher": "bing",
+    "editionAlias": "es_US",
+    "searcherType": "global",
+    "searchType": "web",
+    "url": "https://www.bing.com/search?",
+    "urlExample": "https://www.bing.com/search?q=busca"
+  },
+  {
+    "searcherAlias": "bing",
+    "searcher": "bing",
+    "editionAlias": "es_US",
+    "searcherType": "global",
+    "searchType": "image",
+    "url": "https://www.bing.com/images/search?",
+    "urlExample": "https://www.bing.com/images/search?q=busca"
+  },
+  {
+    "searcherAlias": "bing",
+    "searcher": "bing",
+    "editionAlias": "es_US",
+    "searcherType": "global",
+    "searchType": "video",
+    "url": "https://www.bing.com/videos/search?",
+    "urlExample": "https://www.bing.com/videos/search?q=busca"
+  },
+  {
+    "searcherAlias": "bing",
+    "searcher": "bing",
+    "editionAlias": "es_US",
+    "searcherType": "global",
+    "searchType": "news",
+    "url": "https://www.bing.com/news/search?",
+    "urlExample": "https://www.bing.com/news/search?q=busca"
+  },
+  {
+    "searcherAlias": "bing",
+    "searcher": "bing",
+    "editionAlias": "es_US",
+    "searcherType": "global",
+    "searchType": "maps",
+    "url": "https://www.bing.com/maps?",
+    "urlExample": "https://www.bing.com/maps?q=busca"
+  },
+  {
+    "searcherAlias": "bing",
+    "searcher": "bing",
+    "editionAlias": "es_VE",
+    "searcherType": "global",
+    "searchType": "web",
+    "url": "https://www.bing.com/search?",
+    "urlExample": "https://www.bing.com/search?q=busca"
+  },
+  {
+    "searcherAlias": "bing",
+    "searcher": "bing",
+    "editionAlias": "es_VE",
+    "searcherType": "global",
+    "searchType": "image",
+    "url": "https://www.bing.com/images/search?",
+    "urlExample": "https://www.bing.com/images/search?q=busca"
+  },
+  {
+    "searcherAlias": "bing",
+    "searcher": "bing",
+    "editionAlias": "es_VE",
+    "searcherType": "global",
+    "searchType": "video",
+    "url": "https://www.bing.com/videos/search?",
+    "urlExample": "https://www.bing.com/videos/search?q=busca"
+  },
+  {
+    "searcherAlias": "bing",
+    "searcher": "bing",
+    "editionAlias": "es_VE",
+    "searcherType": "global",
+    "searchType": "news",
+    "url": "https://www.bing.com/news/search?",
+    "urlExample": "https://www.bing.com/news/search?q=busca"
+  },
+  {
+    "searcherAlias": "bing",
+    "searcher": "bing",
+    "editionAlias": "es_VE",
+    "searcherType": "global",
+    "searchType": "maps",
+    "url": "https://www.bing.com/maps?",
+    "urlExample": "https://www.bing.com/maps?q=busca"
+  },
+  {
+    "searcherAlias": "giphy",
+    "searcher": "giphy",
+    "editionAlias": "ca_ES",
+    "searcherType": "gifs",
+    "searchType": "gifs",
+    "url": "https://giphy.com/search?",
+    "urlExample": "https://giphy.com/search?q=busca"
+  },
+  {
+    "searcherAlias": "giphy",
+    "searcher": "giphy",
+    "editionAlias": "en_GB",
+    "searcherType": "gifs",
+    "searchType": "gifs",
+    "url": "https://giphy.com/search?",
+    "urlExample": "https://giphy.com/search?q=busca"
+  },
+  {
+    "searcherAlias": "giphy",
+    "searcher": "giphy",
+    "editionAlias": "en_IE",
+    "searcherType": "gifs",
+    "searchType": "gifs",
+    "url": "https://giphy.com/search?",
+    "urlExample": "https://giphy.com/search?q=busca"
+  },
+  {
+    "searcherAlias": "giphy",
+    "searcher": "giphy",
+    "editionAlias": "en_US",
+    "searcherType": "gifs",
+    "searchType": "gifs",
+    "url": "https://giphy.com/search?",
+    "urlExample": "https://giphy.com/search?q=busca"
+  },
+  {
+    "searcherAlias": "giphy",
+    "searcher": "giphy",
+    "editionAlias": "es_AR",
+    "searcherType": "gifs",
+    "searchType": "gifs",
+    "url": "https://giphy.com/search?",
+    "urlExample": "https://giphy.com/search?q=busca"
+  },
+  {
+    "searcherAlias": "giphy",
+    "searcher": "giphy",
+    "editionAlias": "es_CL",
+    "searcherType": "gifs",
+    "searchType": "gifs",
+    "url": "https://giphy.com/search?",
+    "urlExample": "https://giphy.com/search?q=busca"
+  },
+  {
+    "searcherAlias": "giphy",
+    "searcher": "giphy",
+    "editionAlias": "es_CO",
+    "searcherType": "gifs",
+    "searchType": "gifs",
+    "url": "https://giphy.com/search?",
+    "urlExample": "https://giphy.com/search?q=busca"
+  },
+  {
+    "searcherAlias": "giphy",
+    "searcher": "giphy",
+    "editionAlias": "es_CU",
+    "searcherType": "gifs",
+    "searchType": "gifs",
+    "url": "https://giphy.com/search?",
+    "urlExample": "https://giphy.com/search?q=busca"
+  },
+  {
+    "searcherAlias": "giphy",
+    "searcher": "giphy",
+    "editionAlias": "es",
+    "searcherType": "gifs",
+    "searchType": "gifs",
+    "url": "https://giphy.com/search?",
+    "urlExample": "https://giphy.com/search?q=busca"
+  },
+  {
+    "searcherAlias": "giphy",
+    "searcher": "giphy",
+    "editionAlias": "es_MX",
+    "searcherType": "gifs",
+    "searchType": "gifs",
+    "url": "https://giphy.com/search?",
+    "urlExample": "https://giphy.com/search?q=busca"
+  },
+  {
+    "searcherAlias": "giphy",
+    "searcher": "giphy",
+    "editionAlias": "es_PE",
+    "searcherType": "gifs",
+    "searchType": "gifs",
+    "url": "https://giphy.com/search?",
+    "urlExample": "https://giphy.com/search?q=busca"
+  },
+  {
+    "searcherAlias": "giphy",
+    "searcher": "giphy",
+    "editionAlias": "es_US",
+    "searcherType": "gifs",
+    "searchType": "gifs",
+    "url": "https://giphy.com/search?",
+    "urlExample": "https://giphy.com/search?q=busca"
+  },
+  {
+    "searcherAlias": "giphy",
+    "searcher": "giphy",
+    "editionAlias": "es_VE",
+    "searcherType": "gifs",
+    "searchType": "gifs",
+    "url": "https://giphy.com/search?",
+    "urlExample": "https://giphy.com/search?q=busca"
+  },
+  {
+    "searcherAlias": "goog",
+    "searcher": "google",
+    "editionAlias": "ca_ES",
+    "searcherType": "global",
+    "searchType": "web",
+    "url": "https://www.google.es/search?",
+    "urlExample": "https://www.google.es/search?q=busca"
+  },
+  {
+    "searcherAlias": "goog",
+    "searcher": "google",
+    "editionAlias": "ca_ES",
+    "searcherType": "global",
+    "searchType": "image",
+    "url": "https://www.google.es/search?tbm=isch",
+    "urlExample": "https://www.google.es/search?q=busca&tbm=isch"
+  },
+  {
+    "searcherAlias": "goog",
+    "searcher": "google",
+    "editionAlias": "ca_ES",
+    "searcherType": "global",
+    "searchType": "video",
+    "url": "https://www.google.es/search?tbm=vid&hl=ca-ES",
+    "urlExample": "https://www.google.es/search?q=busca&tbm=vid&hl=ca-ES"
+  },
+  {
+    "searcherAlias": "goog",
+    "searcher": "google",
+    "editionAlias": "ca_ES",
+    "searcherType": "global",
+    "searchType": "news",
+    "url": "https://news.google.es/search?hl=ca-ES&gl=ES&ceid=ES:ca",
+    "urlExample": "https://news.google.es/search?q=busca&hl=ca-ES&gl=ES&ceid=ES:ca"
+  },
+  {
+    "searcherAlias": "goog",
+    "searcher": "google",
+    "editionAlias": "en_GB",
+    "searcherType": "global",
+    "searchType": "web",
+    "url": "https://www.google.com/search?",
+    "urlExample": "https://www.google.com/search?q=busca"
+  },
+  {
+    "searcherAlias": "goog",
+    "searcher": "google",
+    "editionAlias": "en_GB",
+    "searcherType": "global",
+    "searchType": "image",
+    "url": "https://www.google.com/search?tbm=isch&hl=en-GB",
+    "urlExample": "https://www.google.com/search?q=busca&tbm=isch&hl=en-GB"
+  },
+  {
+    "searcherAlias": "goog",
+    "searcher": "google",
+    "editionAlias": "en_GB",
+    "searcherType": "global",
+    "searchType": "video",
+    "url": "https://www.google.com/search?tbm=vid&hl=en-GB",
+    "urlExample": "https://www.google.com/search?q=busca&tbm=vid&hl=en-GB"
+  },
+  {
+    "searcherAlias": "goog",
+    "searcher": "google",
+    "editionAlias": "en_GB",
+    "searcherType": "global",
+    "searchType": "news",
+    "url": "https://news.google.com/search?hl=en-GB&gl=GB&ceid=GB:en",
+    "urlExample": "https://news.google.com/search?q=search&hl=en-GB&gl=GB&ceid=GB:en"
+  },
+  {
+    "searcherAlias": "goog",
+    "searcher": "google",
+    "editionAlias": "en_IE",
+    "searcherType": "global",
+    "searchType": "web",
+    "url": "https://www.google.ie/search?",
+    "urlExample": "https://www.google.ie/search?q=busca"
+  },
+  {
+    "searcherAlias": "goog",
+    "searcher": "google",
+    "editionAlias": "en_IE",
+    "searcherType": "global",
+    "searchType": "image",
+    "url": "https://www.google.ie/search?tbm=isch&hl=en-IE",
+    "urlExample": "https://www.google.ie/search?q=busca&tbm=isch&hl=en-IE"
+  },
+  {
+    "searcherAlias": "goog",
+    "searcher": "google",
+    "editionAlias": "en_IE",
+    "searcherType": "global",
+    "searchType": "video",
+    "url": "https://www.google.ie/search?tbm=vid&hl=en-IE",
+    "urlExample": "https://www.google.ie/search?q=busca&tbm=vid&hl=en-IE"
+  },
+  {
+    "searcherAlias": "goog",
+    "searcher": "google",
+    "editionAlias": "en_IE",
+    "searcherType": "global",
+    "searchType": "news",
+    "url": "https://news.google.ie/search?hl=en-IE&gl=IE&ceid=IE:en",
+    "urlExample": "https://news.google.ie/search?q=search&hl=en-IE&gl=IE&ceid=IE:en"
+  },
+  {
+    "searcherAlias": "goog",
+    "searcher": "google",
+    "editionAlias": "en_US",
+    "searcherType": "global",
+    "searchType": "web",
+    "url": "https://www.google.com/search?",
+    "urlExample": "https://www.google.com/search?q=busca"
+  },
+  {
+    "searcherAlias": "goog",
+    "searcher": "google",
+    "editionAlias": "en_US",
+    "searcherType": "global",
+    "searchType": "image",
+    "url": "https://www.google.com/search?tbm=isch&hl=en",
+    "urlExample": "https://www.google.com/search?q=busca&tbm=isch"
+  },
+  {
+    "searcherAlias": "goog",
+    "searcher": "google",
+    "editionAlias": "en_US",
+    "searcherType": "global",
+    "searchType": "video",
+    "url": "https://www.google.com/search?tbm=vid&hl=en",
+    "urlExample": "https://www.google.com/search?q=busca&tbm=vid&hl=en"
+  },
+  {
+    "searcherAlias": "goog",
+    "searcher": "google",
+    "editionAlias": "en_US",
+    "searcherType": "global",
+    "searchType": "news",
+    "url": "https://news.google.com/search?hl=en&gl=US&ceid=US:en",
+    "urlExample": "https://news.google.com/search?q=search&hl=en-US&gl=US&ceid=US:en"
+  },
+  {
+    "searcherAlias": "goog",
+    "searcher": "google",
+    "editionAlias": "es_AR",
+    "searcherType": "global",
+    "searchType": "web",
+    "url": "https://www.google.com.ar/search?",
+    "urlExample": "https://www.google.com.ar/search?q=busca"
+  },
+  {
+    "searcherAlias": "goog",
+    "searcher": "google",
+    "editionAlias": "es_AR",
+    "searcherType": "global",
+    "searchType": "image",
+    "url": "https://www.google.com.ar/search?tbm=isch",
+    "urlExample": "https://www.google.com.ar/search?q=busca&tbm=isch"
+  },
+  {
+    "searcherAlias": "goog",
+    "searcher": "google",
+    "editionAlias": "es_AR",
+    "searcherType": "global",
+    "searchType": "video",
+    "url": "https://www.google.com.ar/search?tbm=vid&hl=es",
+    "urlExample": "https://www.google.com.ar/search?q=busca&tbm=vid&hl=es"
+  },
+  {
+    "searcherAlias": "goog",
+    "searcher": "google",
+    "editionAlias": "es_AR",
+    "searcherType": "global",
+    "searchType": "news",
+    "url": "https://news.google.com/search?hl=es&gl=AR&ceid=AR:es-419",
+    "urlExample": "https://news.google.com/search?q=busca&hl=es&gl=AR&ceid=AR:es-419"
+  },
+  {
+    "searcherAlias": "goog",
+    "searcher": "google",
+    "editionAlias": "es_CL",
+    "searcherType": "global",
+    "searchType": "web",
+    "url": "https://www.google.cl/search?",
+    "urlExample": "https://www.google.cl/search?q=busca"
+  },
+  {
+    "searcherAlias": "goog",
+    "searcher": "google",
+    "editionAlias": "es_CL",
+    "searcherType": "global",
+    "searchType": "image",
+    "url": "https://www.google.cl/search?tbm=isch",
+    "urlExample": "https://www.google.cl/search?q=busca&tbm=isch"
+  },
+  {
+    "searcherAlias": "goog",
+    "searcher": "google",
+    "editionAlias": "es_CL",
+    "searcherType": "global",
+    "searchType": "video",
+    "url": "https://www.google.cl/search?tbm=vid&hl=es-419",
+    "urlExample": "https://www.google.cl/search?q=busca&tbm=vid&hl=es-419"
+  },
+  {
+    "searcherAlias": "goog",
+    "searcher": "google",
+    "editionAlias": "es_CL",
+    "searcherType": "global",
+    "searchType": "news",
+    "url": "https://news.google.com/search?hl=es-419&gl=CL&ceid=CL%3Aes-419",
+    "urlExample": "https://news.google.com/search?q=busca&hl=es-419&gl=CL&ceid=CL%3Aes-419"
+  },
+  {
+    "searcherAlias": "goog",
+    "searcher": "google",
+    "editionAlias": "es_CO",
+    "searcherType": "global",
+    "searchType": "web",
+    "url": "https://www.google.com.co/search?",
+    "urlExample": "https://www.google.com.co/search?q=busca"
+  },
+  {
+    "searcherAlias": "goog",
+    "searcher": "google",
+    "editionAlias": "es_CO",
+    "searcherType": "global",
+    "searchType": "image",
+    "url": "https://www.google.com.co/search?tbm=isch",
+    "urlExample": "https://www.google.com.co/search?q=busca&tbm=isch"
+  },
+  {
+    "searcherAlias": "goog",
+    "searcher": "google",
+    "editionAlias": "es_CO",
+    "searcherType": "global",
+    "searchType": "video",
+    "url": "https://www.google.com.co/search?tbm=vid&hl=es",
+    "urlExample": "https://www.google.com.co/search?q=busca&tbm=vid&hl=es"
+  },
+  {
+    "searcherAlias": "goog",
+    "searcher": "google",
+    "editionAlias": "es_CO",
+    "searcherType": "global",
+    "searchType": "news",
+    "url": "https://news.google.com/search?hl=es-419&gl=CO&ceid=CO%3Aes-419",
+    "urlExample": "https://news.google.com/search?q=busca&hl=es-419&gl=CO&ceid=CO%3Aes-419"
+  },
+  {
+    "searcherAlias": "goog",
+    "searcher": "google",
+    "editionAlias": "es_CU",
+    "searcherType": "global",
+    "searchType": "web",
+    "url": "https://www.google.com/search?",
+    "urlExample": "https://www.google.com/search?q=busca"
+  },
+  {
+    "searcherAlias": "goog",
+    "searcher": "google",
+    "editionAlias": "es_CU",
+    "searcherType": "global",
+    "searchType": "image",
+    "url": "https://www.google.com/search?tbm=isch",
+    "urlExample": "https://www.google.com/search?q=busca&tbm=isch"
+  },
+  {
+    "searcherAlias": "goog",
+    "searcher": "google",
+    "editionAlias": "es_CU",
+    "searcherType": "global",
+    "searchType": "video",
+    "url": "https://www.google.com/search?tbm=vid&hl=es",
+    "urlExample": "https://www.google.com/search?q=busca&tbm=vid&hl=es"
+  },
+  {
+    "searcherAlias": "goog",
+    "searcher": "google",
+    "editionAlias": "es_CU",
+    "searcherType": "global",
+    "searchType": "news",
+    "url": "https://news.google.com/search?hl=es-419&gl=CU&ceid=CU%3Aes-419",
+    "urlExample": "https://news.google.com/search?q=busca&hl=es-419&gl=CU&ceid=CU%3Aes-419"
+  },
+  {
+    "searcherAlias": "goog",
+    "searcher": "google",
+    "editionAlias": "es",
+    "searcherType": "global",
+    "searchType": "web",
+    "url": "https://www.google.es/search?",
+    "urlExample": "https://www.google.es/search?q=busca"
+  },
+  {
+    "searcherAlias": "goog",
+    "searcher": "google",
+    "editionAlias": "es",
+    "searcherType": "global",
+    "searchType": "image",
+    "url": "https://www.google.es/search?tbm=isch",
+    "urlExample": "https://www.google.es/search?q=busca&tbm=isch"
+  },
+  {
+    "searcherAlias": "goog",
+    "searcher": "google",
+    "editionAlias": "es",
+    "searcherType": "global",
+    "searchType": "video",
+    "url": "https://www.google.es/search?tbm=vid&hl=es",
+    "urlExample": "https://www.google.es/search?q=busca&tbm=vid&hl=es"
+  },
+  {
+    "searcherAlias": "goog",
+    "searcher": "google",
+    "editionAlias": "es",
+    "searcherType": "global",
+    "searchType": "news",
+    "url": "https://news.google.es/search?hl=es&gl=ES&ceid=ES%3Aes",
+    "urlExample": "https://news.google.es/search?q=busca&hl=es&gl=ES&ceid=ES%3Aes"
+  },
+  {
+    "searcherAlias": "goog",
+    "searcher": "google",
+    "editionAlias": "es_MX",
+    "searcherType": "global",
+    "searchType": "web",
+    "url": "https://www.google.com.mx/search?",
+    "urlExample": "https://www.google.com.mx/search?q=busca"
+  },
+  {
+    "searcherAlias": "goog",
+    "searcher": "google",
+    "editionAlias": "es_MX",
+    "searcherType": "global",
+    "searchType": "image",
+    "url": "https://www.google.com.mx/search?tbm=isch",
+    "urlExample": "https://www.google.com.mx/search?q=busca&tbm=isch"
+  },
+  {
+    "searcherAlias": "goog",
+    "searcher": "google",
+    "editionAlias": "es_MX",
+    "searcherType": "global",
+    "searchType": "video",
+    "url": "https://www.google.com.mx/search?tbm=vid&hl=es-419",
+    "urlExample": "https://www.google.com.mx/search?q=busca&tbm=vid&hl=es-419"
+  },
+  {
+    "searcherAlias": "goog",
+    "searcher": "google",
+    "editionAlias": "es_MX",
+    "searcherType": "global",
+    "searchType": "news",
+    "url": "https://news.google.com.mx/search?hl=es-419&gl=MX&ceid=MX%3Aes-419",
+    "urlExample": "https://news.google.com.mx/search?q=busca&hl=es-419&gl=MX&ceid=MX%3Aes-419"
+  },
+  {
+    "searcherAlias": "goog",
+    "searcher": "google",
+    "editionAlias": "es_PE",
+    "searcherType": "global",
+    "searchType": "web",
+    "url": "https://www.google.com.pe/search?",
+    "urlExample": "https://www.google.com.pe/search?q=busca"
+  },
+  {
+    "searcherAlias": "goog",
+    "searcher": "google",
+    "editionAlias": "es_PE",
+    "searcherType": "global",
+    "searchType": "image",
+    "url": "https://www.google.com.pe/search?tbm=isch",
+    "urlExample": "https://www.google.com.pe/search?q=busca&tbm=isch"
+  },
+  {
+    "searcherAlias": "goog",
+    "searcher": "google",
+    "editionAlias": "es_PE",
+    "searcherType": "global",
+    "searchType": "video",
+    "url": "https://www.google.com.pe/search?tbm=vid&hl=es",
+    "urlExample": "https://www.google.com.pe/search?q=busca&tbm=vid&hl=es"
+  },
+  {
+    "searcherAlias": "goog",
+    "searcher": "google",
+    "editionAlias": "es_PE",
+    "searcherType": "global",
+    "searchType": "news",
+    "url": "https://news.google.com.pe/search?hl=es-419&gl=PE&ceid=PE%3Aes-419",
+    "urlExample": "https://news.google.com.pe/search?q=busca&hl=es-419&gl=PE&ceid=PE%3Aes-419"
+  },
+  {
+    "searcherAlias": "goog",
+    "searcher": "google",
+    "editionAlias": "es_US",
+    "searcherType": "global",
+    "searchType": "web",
+    "url": "https://www.google.com/search?",
+    "urlExample": "https://www.google.com/search?q=busca"
+  },
+  {
+    "searcherAlias": "goog",
+    "searcher": "google",
+    "editionAlias": "es_US",
+    "searcherType": "global",
+    "searchType": "image",
+    "url": "https://www.google.com/search?tbm=isch",
+    "urlExample": "https://www.google.com/search?q=busca&tbm=isch"
+  },
+  {
+    "searcherAlias": "goog",
+    "searcher": "google",
+    "editionAlias": "es_US",
+    "searcherType": "global",
+    "searchType": "video",
+    "url": "https://www.google.com/search?tbm=vid&hl=es",
+    "urlExample": "https://www.google.com/search?q=busca&tbm=vid&hl=es"
+  },
+  {
+    "searcherAlias": "goog",
+    "searcher": "google",
+    "editionAlias": "es_US",
+    "searcherType": "global",
+    "searchType": "news",
+    "url": "https://news.google.com/search?hl=es-419&gl=US&ceid=US%3Aes-419",
+    "urlExample": "https://news.google.com/search?q=busca&hl=es-419&gl=US&ceid=US%3Aes-419"
+  },
+  {
+    "searcherAlias": "goog",
+    "searcher": "google",
+    "editionAlias": "es_VE",
+    "searcherType": "global",
+    "searchType": "web",
+    "url": "https://www.google.co.ve/search?",
+    "urlExample": "https://www.google.co.ve/search?q=busca"
+  },
+  {
+    "searcherAlias": "goog",
+    "searcher": "google",
+    "editionAlias": "es_VE",
+    "searcherType": "global",
+    "searchType": "image",
+    "url": "https://www.google.co.ve/search?tbm=isch",
+    "urlExample": "https://www.google.co.ve/search?q=busca&tbm=isch"
+  },
+  {
+    "searcherAlias": "goog",
+    "searcher": "google",
+    "editionAlias": "es_VE",
+    "searcherType": "global",
+    "searchType": "video",
+    "url": "https://www.google.co.ve/search?tbm=vid&hl=es",
+    "urlExample": "https://www.google.co.ve/search?q=busca&tbm=vid&hl=es"
+  },
+  {
+    "searcherAlias": "goog",
+    "searcher": "google",
+    "editionAlias": "es_VE",
+    "searcherType": "global",
+    "searchType": "news",
+    "url": "https://news.google.co.ve/search?hl=es-419&gl=VE&ceid=VE%3Aes-419",
+    "urlExample": "https://news.google.co.ve/search?q=busca&hl=es-419&gl=VE&ceid=VE%3Aes-419"
+  },
+  {
+    "searcherAlias": "x",
+    "searcher": "x",
+    "editionAlias": "ca_ES",
+    "searcherType": "social",
+    "searchType": "socialGlobal",
+    "url": "https://twitter.com/search?src=typed_query",
+    "urlExample": "https://twitter.com/search?q=busca&src=typed_query"
+  },
+  {
+    "searcherAlias": "x",
+    "searcher": "x",
+    "editionAlias": "ca_ES",
+    "searcherType": "social",
+    "searchType": "person",
+    "url": "https://twitter.com/search?src=typed_query&f=user",
+    "urlExample": "https://twitter.com/search?q=busca&src=typed_query&f=user"
+  },
+  {
+    "searcherAlias": "x",
+    "searcher": "x",
+    "editionAlias": "ca_ES",
+    "searcherType": "social",
+    "searchType": "image-video",
+    "url": "https://twitter.com/search?src=typed_query&f=media",
+    "urlExample": "https://twitter.com/search?q=busca&src=typed_query&f=media"
+  },
+  {
+    "searcherAlias": "x",
+    "searcher": "x",
+    "editionAlias": "en_GB",
+    "searcherType": "social",
+    "searchType": "socialGlobal",
+    "url": "https://twitter.com/search?src=typed_query",
+    "urlExample": "https://twitter.com/search?q=busca&src=typed_query"
+  },
+  {
+    "searcherAlias": "x",
+    "searcher": "x",
+    "editionAlias": "en_GB",
+    "searcherType": "social",
+    "searchType": "person",
+    "url": "https://twitter.com/search?src=typed_query&f=user",
+    "urlExample": "https://twitter.com/search?q=busca&src=typed_query&f=user"
+  },
+  {
+    "searcherAlias": "x",
+    "searcher": "x",
+    "editionAlias": "en_GB",
+    "searcherType": "social",
+    "searchType": "image-video",
+    "url": "https://twitter.com/search?src=typed_query&f=media",
+    "urlExample": "https://twitter.com/search?q=busca&src=typed_query&f=media"
+  },
+  {
+    "searcherAlias": "x",
+    "searcher": "x",
+    "editionAlias": "en_IE",
+    "searcherType": "social",
+    "searchType": "socialGlobal",
+    "url": "https://twitter.com/search?src=typed_query",
+    "urlExample": "https://twitter.com/search?q=busca&src=typed_query"
+  },
+  {
+    "searcherAlias": "x",
+    "searcher": "x",
+    "editionAlias": "en_IE",
+    "searcherType": "social",
+    "searchType": "person",
+    "url": "https://twitter.com/search?src=typed_query&f=user",
+    "urlExample": "https://twitter.com/search?q=busca&src=typed_query&f=user"
+  },
+  {
+    "searcherAlias": "x",
+    "searcher": "x",
+    "editionAlias": "en_IE",
+    "searcherType": "social",
+    "searchType": "image-video",
+    "url": "https://twitter.com/search?src=typed_query&f=media",
+    "urlExample": "https://twitter.com/search?q=busca&src=typed_query&f=media"
+  },
+  {
+    "searcherAlias": "x",
+    "searcher": "x",
+    "editionAlias": "en_US",
+    "searcherType": "social",
+    "searchType": "socialGlobal",
+    "url": "https://twitter.com/search?src=typed_query",
+    "urlExample": "https://twitter.com/search?q=busca&src=typed_query"
+  },
+  {
+    "searcherAlias": "x",
+    "searcher": "x",
+    "editionAlias": "en_US",
+    "searcherType": "social",
+    "searchType": "person",
+    "url": "https://twitter.com/search?src=typed_query&f=user",
+    "urlExample": "https://twitter.com/search?q=busca&src=typed_query&f=user"
+  },
+  {
+    "searcherAlias": "x",
+    "searcher": "x",
+    "editionAlias": "en_US",
+    "searcherType": "social",
+    "searchType": "image-video",
+    "url": "https://twitter.com/search?src=typed_query&f=media",
+    "urlExample": "https://twitter.com/search?q=busca&src=typed_query&f=media"
+  },
+  {
+    "searcherAlias": "x",
+    "searcher": "x",
+    "editionAlias": "es_AR",
+    "searcherType": "social",
+    "searchType": "socialGlobal",
+    "url": "https://twitter.com/search?src=typed_query",
+    "urlExample": "https://twitter.com/search?q=busca&src=typed_query"
+  },
+  {
+    "searcherAlias": "x",
+    "searcher": "x",
+    "editionAlias": "es_AR",
+    "searcherType": "social",
+    "searchType": "person",
+    "url": "https://twitter.com/search?src=typed_query&f=user",
+    "urlExample": "https://twitter.com/search?q=busca&src=typed_query&f=user"
+  },
+  {
+    "searcherAlias": "x",
+    "searcher": "x",
+    "editionAlias": "es_AR",
+    "searcherType": "social",
+    "searchType": "image-video",
+    "url": "https://twitter.com/search?src=typed_query&f=media",
+    "urlExample": "https://twitter.com/search?q=busca&src=typed_query&f=media"
+  },
+  {
+    "searcherAlias": "x",
+    "searcher": "x",
+    "editionAlias": "es_CL",
+    "searcherType": "social",
+    "searchType": "socialGlobal",
+    "url": "https://twitter.com/search?src=typed_query",
+    "urlExample": "https://twitter.com/search?q=busca&src=typed_query"
+  },
+  {
+    "searcherAlias": "x",
+    "searcher": "x",
+    "editionAlias": "es_CL",
+    "searcherType": "social",
+    "searchType": "person",
+    "url": "https://twitter.com/search?src=typed_query&f=user",
+    "urlExample": "https://twitter.com/search?q=busca&src=typed_query&f=user"
+  },
+  {
+    "searcherAlias": "x",
+    "searcher": "x",
+    "editionAlias": "es_CL",
+    "searcherType": "social",
+    "searchType": "image-video",
+    "url": "https://twitter.com/search?src=typed_query&f=media",
+    "urlExample": "https://twitter.com/search?q=busca&src=typed_query&f=media"
+  },
+  {
+    "searcherAlias": "x",
+    "searcher": "x",
+    "editionAlias": "es_CO",
+    "searcherType": "social",
+    "searchType": "socialGlobal",
+    "url": "https://twitter.com/search?src=typed_query",
+    "urlExample": "https://twitter.com/search?q=busca&src=typed_query"
+  },
+  {
+    "searcherAlias": "x",
+    "searcher": "x",
+    "editionAlias": "es_CO",
+    "searcherType": "social",
+    "searchType": "person",
+    "url": "https://twitter.com/search?src=typed_query&f=user",
+    "urlExample": "https://twitter.com/search?q=busca&src=typed_query&f=user"
+  },
+  {
+    "searcherAlias": "x",
+    "searcher": "x",
+    "editionAlias": "es_CO",
+    "searcherType": "social",
+    "searchType": "image-video",
+    "url": "https://twitter.com/search?src=typed_query&f=media",
+    "urlExample": "https://twitter.com/search?q=busca&src=typed_query&f=media"
+  },
+  {
+    "searcherAlias": "x",
+    "searcher": "x",
+    "editionAlias": "es_CU",
+    "searcherType": "social",
+    "searchType": "socialGlobal",
+    "url": "https://twitter.com/search?src=typed_query",
+    "urlExample": "https://twitter.com/search?q=busca&src=typed_query"
+  },
+  {
+    "searcherAlias": "x",
+    "searcher": "x",
+    "editionAlias": "es_CU",
+    "searcherType": "social",
+    "searchType": "person",
+    "url": "https://twitter.com/search?src=typed_query&f=user",
+    "urlExample": "https://twitter.com/search?q=busca&src=typed_query&f=user"
+  },
+  {
+    "searcherAlias": "x",
+    "searcher": "x",
+    "editionAlias": "es_CU",
+    "searcherType": "social",
+    "searchType": "image-video",
+    "url": "https://twitter.com/search?src=typed_query&f=media",
+    "urlExample": "https://twitter.com/search?q=busca&src=typed_query&f=media"
+  },
+  {
+    "searcherAlias": "x",
+    "searcher": "x",
+    "editionAlias": "es",
+    "searcherType": "social",
+    "searchType": "socialGlobal",
+    "url": "https://twitter.com/search?src=typed_query",
+    "urlExample": "https://twitter.com/search?q=busca&src=typed_query"
+  },
+  {
+    "searcherAlias": "x",
+    "searcher": "x",
+    "editionAlias": "es",
+    "searcherType": "social",
+    "searchType": "person",
+    "url": "https://twitter.com/search?src=typed_query&f=user",
+    "urlExample": "https://twitter.com/search?q=busca&src=typed_query&f=user"
+  },
+  {
+    "searcherAlias": "x",
+    "searcher": "x",
+    "editionAlias": "es",
+    "searcherType": "social",
+    "searchType": "image-video",
+    "url": "https://twitter.com/search?src=typed_query&f=media",
+    "urlExample": "https://twitter.com/search?q=busca&src=typed_query&f=media"
+  },
+  {
+    "searcherAlias": "x",
+    "searcher": "x",
+    "editionAlias": "es_MX",
+    "searcherType": "social",
+    "searchType": "socialGlobal",
+    "url": "https://twitter.com/search?src=typed_query",
+    "urlExample": "https://twitter.com/search?q=busca&src=typed_query"
+  },
+  {
+    "searcherAlias": "x",
+    "searcher": "x",
+    "editionAlias": "es_MX",
+    "searcherType": "social",
+    "searchType": "person",
+    "url": "https://twitter.com/search?src=typed_query&f=user",
+    "urlExample": "https://twitter.com/search?q=busca&src=typed_query&f=user"
+  },
+  {
+    "searcherAlias": "x",
+    "searcher": "x",
+    "editionAlias": "es_MX",
+    "searcherType": "social",
+    "searchType": "image-video",
+    "url": "https://twitter.com/search?src=typed_query&f=media",
+    "urlExample": "https://twitter.com/search?q=busca&src=typed_query&f=media"
+  },
+  {
+    "searcherAlias": "x",
+    "searcher": "x",
+    "editionAlias": "es_PE",
+    "searcherType": "social",
+    "searchType": "socialGlobal",
+    "url": "https://twitter.com/search?src=typed_query",
+    "urlExample": "https://twitter.com/search?q=busca&src=typed_query"
+  },
+  {
+    "searcherAlias": "x",
+    "searcher": "x",
+    "editionAlias": "es_PE",
+    "searcherType": "social",
+    "searchType": "person",
+    "url": "https://twitter.com/search?src=typed_query&f=user",
+    "urlExample": "https://twitter.com/search?q=busca&src=typed_query&f=user"
+  },
+  {
+    "searcherAlias": "x",
+    "searcher": "x",
+    "editionAlias": "es_PE",
+    "searcherType": "social",
+    "searchType": "image-video",
+    "url": "https://twitter.com/search?src=typed_query&f=media",
+    "urlExample": "https://twitter.com/search?q=busca&src=typed_query&f=media"
+  },
+  {
+    "searcherAlias": "x",
+    "searcher": "x",
+    "editionAlias": "es_US",
+    "searcherType": "social",
+    "searchType": "socialGlobal",
+    "url": "https://twitter.com/search?src=typed_query",
+    "urlExample": "https://twitter.com/search?q=busca&src=typed_query"
+  },
+  {
+    "searcherAlias": "x",
+    "searcher": "x",
+    "editionAlias": "es_US",
+    "searcherType": "social",
+    "searchType": "person",
+    "url": "https://twitter.com/search?src=typed_query&f=user",
+    "urlExample": "https://twitter.com/search?q=busca&src=typed_query&f=user"
+  },
+  {
+    "searcherAlias": "x",
+    "searcher": "x",
+    "editionAlias": "es_US",
+    "searcherType": "social",
+    "searchType": "image-video",
+    "url": "https://twitter.com/search?src=typed_query&f=media",
+    "urlExample": "https://twitter.com/search?q=busca&src=typed_query&f=media"
+  },
+  {
+    "searcherAlias": "x",
+    "searcher": "x",
+    "editionAlias": "es_VE",
+    "searcherType": "social",
+    "searchType": "socialGlobal",
+    "url": "https://twitter.com/search?src=typed_query",
+    "urlExample": "https://twitter.com/search?q=busca&src=typed_query"
+  },
+  {
+    "searcherAlias": "x",
+    "searcher": "x",
+    "editionAlias": "es_VE",
+    "searcherType": "social",
+    "searchType": "person",
+    "url": "https://twitter.com/search?src=typed_query&f=user",
+    "urlExample": "https://twitter.com/search?q=busca&src=typed_query&f=user"
+  },
+  {
+    "searcherAlias": "x",
+    "searcher": "x",
+    "editionAlias": "es_VE",
+    "searcherType": "social",
+    "searchType": "image-video",
+    "url": "https://twitter.com/search?src=typed_query&f=media",
+    "urlExample": "https://twitter.com/search?q=busca&src=typed_query&f=media"
+  },
+  {
+    "searcherAlias": "youtu",
+    "searcher": "youtube",
+    "editionAlias": "ca_ES",
+    "searcherType": "onlyVideo",
+    "searchType": "video",
+    "url": "https://www.youtube.com/results?",
+    "urlExample": "https://www.youtube.com/results?search_query=busca"
+  },
+  {
+    "searcherAlias": "youtu",
+    "searcher": "youtube",
+    "editionAlias": "en_GB",
+    "searcherType": "onlyVideo",
+    "searchType": "video",
+    "url": "https://www.youtube.com/results?",
+    "urlExample": "https://www.youtube.com/results?search_query=busca"
+  },
+  {
+    "searcherAlias": "youtu",
+    "searcher": "youtube",
+    "editionAlias": "en_IE",
+    "searcherType": "onlyVideo",
+    "searchType": "video",
+    "url": "https://www.youtube.com/results?",
+    "urlExample": "https://www.youtube.com/results?search_query=busca"
+  },
+  {
+    "searcherAlias": "youtu",
+    "searcher": "youtube",
+    "editionAlias": "en_US",
+    "searcherType": "onlyVideo",
+    "searchType": "video",
+    "url": "https://www.youtube.com/results?",
+    "urlExample": "https://www.youtube.com/results?search_query=busca"
+  },
+  {
+    "searcherAlias": "youtu",
+    "searcher": "youtube",
+    "editionAlias": "es_AR",
+    "searcherType": "onlyVideo",
+    "searchType": "video",
+    "url": "https://www.youtube.com/results?",
+    "urlExample": "https://www.youtube.com/results?search_query=busca"
+  },
+  {
+    "searcherAlias": "youtu",
+    "searcher": "youtube",
+    "editionAlias": "es_CL",
+    "searcherType": "onlyVideo",
+    "searchType": "video",
+    "url": "https://www.youtube.com/results?",
+    "urlExample": "https://www.youtube.com/results?search_query=busca"
+  },
+  {
+    "searcherAlias": "youtu",
+    "searcher": "youtube",
+    "editionAlias": "es_CO",
+    "searcherType": "onlyVideo",
+    "searchType": "video",
+    "url": "https://www.youtube.com/results?",
+    "urlExample": "https://www.youtube.com/results?search_query=busca"
+  },
+  {
+    "searcherAlias": "youtu",
+    "searcher": "youtube",
+    "editionAlias": "es_CU",
+    "searcherType": "onlyVideo",
+    "searchType": "video",
+    "url": "https://www.youtube.com/results?",
+    "urlExample": "https://www.youtube.com/results?search_query=busca"
+  },
+  {
+    "searcherAlias": "youtu",
+    "searcher": "youtube",
+    "editionAlias": "es",
+    "searcherType": "onlyVideo",
+    "searchType": "video",
+    "url": "https://www.youtube.com/results?",
+    "urlExample": "https://www.youtube.com/results?search_query=busca"
+  },
+  {
+    "searcherAlias": "youtu",
+    "searcher": "youtube",
+    "editionAlias": "es_MX",
+    "searcherType": "onlyVideo",
+    "searchType": "video",
+    "url": "https://www.youtube.com/results?",
+    "urlExample": "https://www.youtube.com/results?search_query=busca"
+  },
+  {
+    "searcherAlias": "youtu",
+    "searcher": "youtube",
+    "editionAlias": "es_PE",
+    "searcherType": "onlyVideo",
+    "searchType": "video",
+    "url": "https://www.youtube.com/results?",
+    "urlExample": "https://www.youtube.com/results?search_query=busca"
+  },
+  {
+    "searcherAlias": "youtu",
+    "searcher": "youtube",
+    "editionAlias": "es_US",
+    "searcherType": "onlyVideo",
+    "searchType": "video",
+    "url": "https://www.youtube.com/results?",
+    "urlExample": "https://www.youtube.com/results?search_query=busca"
+  },
+  {
+    "searcherAlias": "youtu",
+    "searcher": "youtube",
+    "editionAlias": "es_VE",
+    "searcherType": "onlyVideo",
+    "searchType": "video",
+    "url": "https://www.youtube.com/results?",
+    "urlExample": "https://www.youtube.com/results?search_query=busca"
+  }
+]

@@ -1,0 +1,119 @@
+[
+  {
+    "alias": "es",
+    "name": "Español (España)",
+    "languageNative": "Español",
+    "codeLanguage": "es",
+    "countryNameNative": "España",
+    "codeCountry": "es",
+    "isActive": true
+  },
+  {
+    "alias": "en_US",
+    "name": "English (United States)",
+    "languageNative": "English",
+    "codeLanguage": "en",
+    "countryNameNative": "United States",
+    "codeCountry": "us",
+    "isActive": true
+  },
+  {
+    "alias": "es_AR",
+    "name": "Español (Argentina)",
+    "languageNative": "Español",
+    "codeLanguage": "es",
+    "countryNameNative": "Argentina",
+    "codeCountry": "ar",
+    "isActive": true
+  },
+  {
+    "alias": "es_CL",
+    "name": "Español (Chile)",
+    "languageNative": "Español",
+    "codeLanguage": "es",
+    "countryNameNative": "Chile",
+    "codeCountry": "cl",
+    "isActive": true
+  },
+  {
+    "alias": "es_CO",
+    "name": "Español (Colombia)",
+    "languageNative": "Español",
+    "codeLanguage": "es",
+    "countryNameNative": "Colombia",
+    "codeCountry": "co",
+    "isActive": true
+  },
+  {
+    "alias": "es_CU",
+    "name": "Español (Cuba)",
+    "languageNative": "Español",
+    "codeLanguage": "es",
+    "countryNameNative": "Cuba",
+    "codeCountry": "cu",
+    "isActive": true
+  },
+  {
+    "alias": "es_US",
+    "name": "Español (Estados Unidos)",
+    "languageNative": "Español",
+    "codeLanguage": "es",
+    "countryNameNative": "United States",
+    "codeCountry": "us",
+    "isActive": true
+  },
+  {
+    "alias": "es_MX",
+    "name": "Español (México)",
+    "languageNative": "Español",
+    "codeLanguage": "es",
+    "countryNameNative": "México",
+    "codeCountry": "mx",
+    "isActive": true
+  },
+  {
+    "alias": "es_PE",
+    "name": "Español (Perú)",
+    "languageNative": "Español",
+    "codeLanguage": "es",
+    "countryNameNative": "Perú",
+    "codeCountry": "pe",
+    "isActive": true
+  },
+  {
+    "alias": "es_VE",
+    "name": "Español (Venezuela)",
+    "languageNative": "Español",
+    "codeLanguage": "es",
+    "countryNameNative": "Venezuela",
+    "codeCountry": "ve",
+    "isActive": true
+  },
+  {
+    "alias": "ca_ES",
+    "name": "Català (Espanya)",
+    "languageNative": "Català",
+    "codeLanguage": "ca",
+    "countryNameNative": "Espanya",
+    "codeCountry": "es",
+    "isActive": true
+  },
+  {
+    "alias": "en_GB",
+    "name": "English (United Kingdom)",
+    "languageNative": "English",
+    "codeLanguage": "en",
+    "countryNameNative": "United Kingdom",
+    "codeCountry": "gb",
+    "isActive": true
+  },
+  {
+    "alias": "en_IE",
+    "name": "English (Ireland)",
+    "languageNative": "English",
+    "codeLanguage": "en",
+    "countryNameNative": "Ireland",
+    "codeCountry": "ie",
+    "isActive": true
+  }
+]
