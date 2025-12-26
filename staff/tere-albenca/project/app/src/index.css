@@ -1,0 +1,34 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    @font-face {
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url('/fonts/Roboto-Regular.ttf') format('truetype');
+    }
+
+    body {
+        font-family: 'Roboto', sans-serif;
+    }
+}
+
+/* tailwing paleta azul */
+/* 
+
+'cyan': {
+    '50': '#ecfeff',
+    '100': '#cffafe',
+    '200': '#a5f3fc',
+    '300': '#67e8f9',
+    '400': '#22d3ee',
+    '500': '#06b6d4',
+    '600': '#0891b2',
+    '700': '#0e7490',
+    '800': '#155e75',
+    '900': '#164e63',
+    '950': '#083344',
+}, */
